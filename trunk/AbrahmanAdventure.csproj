@@ -53,6 +53,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="waves\IWave.cs" />
+    <Compile Include="waves\Wave.cs" />
+    <Compile Include="waves\WaveFunctions.cs" />
+    <Compile Include="waves\WavePack.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="waves" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>
