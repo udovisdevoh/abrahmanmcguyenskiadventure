@@ -1,0 +1,5 @@
+D:\abrahman\Desktop\AbrahmanAdventure\bin\Debug\AbrahmanAdventure.exe
+D:\abrahman\Desktop\AbrahmanAdventure\bin\Debug\AbrahmanAdventure.pdb
+D:\abrahman\Desktop\AbrahmanAdventure\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\abrahman\Desktop\AbrahmanAdventure\obj\x86\Debug\AbrahmanAdventure.exe
+D:\abrahman\Desktop\AbrahmanAdventure\obj\x86\Debug\AbrahmanAdventure.pdb
