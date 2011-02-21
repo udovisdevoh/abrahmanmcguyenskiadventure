@@ -35,8 +35,6 @@ namespace AbrahmanAdventure
 
         public static double viewOffsetY = 0.0;
 
-        public static double zoomRatio = 1.0;
-
         private UserInput userInput;
 
         private Level level;
@@ -58,7 +56,7 @@ namespace AbrahmanAdventure
 
             userInput = new UserInput();
 
-            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, false, false, isFullScreen, true);
+            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, 32, false, false, isFullScreen,true);
 
             levelViewer = new LevelViewer(mainSurface);
         }
@@ -69,10 +67,6 @@ namespace AbrahmanAdventure
         {
             if (args.Key == Key.Escape)
                 Events.QuitApplication();
-            else if (args.Key == Key.Plus || args.Key == Key.Equals)
-                zoomRatio *= 1.25;
-            else if (args.Key == Key.Minus)
-                zoomRatio *= 0.8;
             else if (args.Key == Key.LeftArrow)
                 userInput.isPressLeft = true;
             else if (args.Key == Key.RightArrow)
@@ -121,14 +115,16 @@ namespace AbrahmanAdventure
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 16.0;
             previousDateTime = DateTime.Now;
 
-            if (userInput.isPressLeft)
-                viewOffsetX -= (timeDelta / 50) / zoomRatio;
-            if (userInput.isPressRight)
-                viewOffsetX += (timeDelta / 50) / zoomRatio;
-            if (userInput.isPressUp)
-                viewOffsetY += (timeDelta / 50) / zoomRatio;
-            if (userInput.isPressDown)
-                viewOffsetY -= (timeDelta / 50) / zoomRatio;
+
+            if (userInput.isPressLeft && !userInput.isPressRight)
+                viewOffsetX -= timeDelta / 64.0;
+            else if (userInput.isPressRight && !userInput.isPressLeft)
+                viewOffsetX += timeDelta / 64.0;
+
+            if (userInput.isPressUp && !userInput.isPressDown)
+                viewOffsetY += timeDelta / 64.0;
+            else if (userInput.isPressDown && !userInput.isPressUp)
+                viewOffsetY -= timeDelta / 64.0;
 
             levelViewer.Update(level);
         }
