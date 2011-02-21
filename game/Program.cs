@@ -38,22 +38,30 @@ namespace AbrahmanAdventure
 
         private UserInput userInput;
 
-        private WavePack wave;
+        private IWave wave;
 
         private WaveViewer waveViewer;
 
         private DateTime previousDateTime = DateTime.Now;
+
+        private Random random;
         #endregion
 
         #region Constructor
         public Program()
         {
+            random = new Random();
+
             userInput = new UserInput();
-            wave = new WavePack(new Wave(4, 8, 0, WaveFunctions.Sine));
+
+            WaveBuilder waveBuilder = new WaveBuilder();
+
+            wave = waveBuilder.Build(random);
+            /*wave = new WavePack(new Wave(4, 8, 0, WaveFunctions.Sine));
             wave.Add(new Wave(32, 126.1234, 0, WaveFunctions.Sine));
             wave.Add(new Wave(2, 11.012, 0, WaveFunctions.Sine));
             wave.Add(new Wave(3, 30.012, 0, WaveFunctions.Square));
-            wave.Add(new Wave(2.5, 31.112, 0, WaveFunctions.Square));
+            wave.Add(new Wave(2.5, 31.112, 0, WaveFunctions.Square));*/
 
             Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, false, false, isFullScreen, true);
 
