@@ -5,8 +5,6 @@ using System.Text;
 using System.Drawing;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
-using SdlDotNet.Input;
-using SdlDotNet.Audio;
 using AbrahmanAdventure.waves;
 
 namespace AbrahmanAdventure.level
