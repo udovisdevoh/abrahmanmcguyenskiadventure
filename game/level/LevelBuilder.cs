@@ -14,10 +14,9 @@ namespace AbrahmanAdventure.level
         {
             Level level = new Level(random);
 
-            do
-            {
+            int waveCount = random.Next(2, 4);
+            for (int i = 0; i < waveCount; i++)
                 level.AddTerrainWave(waveBuilder.Build(random));
-            } while (random.Next(0, 3) != 0);
 
             return level;
         }

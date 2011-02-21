@@ -5,6 +5,7 @@ using SdlDotNet.Input;
 using SdlDotNet.Audio;
 using System.Windows.Forms;
 using AbrahmanAdventure.waves;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure
 {
@@ -38,9 +39,9 @@ namespace AbrahmanAdventure
 
         private UserInput userInput;
 
-        private IWave wave;
+        private Level level;
 
-        private WaveViewer waveViewer;
+        private LevelViewer levelViewer;
 
         private DateTime previousDateTime = DateTime.Now;
 
@@ -52,20 +53,14 @@ namespace AbrahmanAdventure
         {
             random = new Random();
 
+            LevelBuilder levelBuilder = new LevelBuilder();
+            level = levelBuilder.Build(random);
+
             userInput = new UserInput();
-
-            WaveBuilder waveBuilder = new WaveBuilder();
-
-            wave = waveBuilder.Build(random);
-            /*wave = new WavePack(new Wave(4, 8, 0, WaveFunctions.Sine));
-            wave.Add(new Wave(32, 126.1234, 0, WaveFunctions.Sine));
-            wave.Add(new Wave(2, 11.012, 0, WaveFunctions.Sine));
-            wave.Add(new Wave(3, 30.012, 0, WaveFunctions.Square));
-            wave.Add(new Wave(2.5, 31.112, 0, WaveFunctions.Square));*/
 
             Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, false, false, isFullScreen, true);
 
-            waveViewer = new WaveViewer(mainSurface);
+            levelViewer = new LevelViewer(mainSurface);
         }
         #endregion
 
@@ -127,15 +122,15 @@ namespace AbrahmanAdventure
             previousDateTime = DateTime.Now;
 
             if (userInput.isPressLeft)
-                viewOffsetX -= (timeDelta / 100) / zoomRatio;
+                viewOffsetX -= (timeDelta / 50) / zoomRatio;
             if (userInput.isPressRight)
-                viewOffsetX += (timeDelta / 100) / zoomRatio;
+                viewOffsetX += (timeDelta / 50) / zoomRatio;
             if (userInput.isPressUp)
-                viewOffsetY += (timeDelta / 100) / zoomRatio;
+                viewOffsetY += (timeDelta / 50) / zoomRatio;
             if (userInput.isPressDown)
-                viewOffsetY -= (timeDelta / 100) / zoomRatio;
+                viewOffsetY -= (timeDelta / 50) / zoomRatio;
 
-            waveViewer.Update(wave);
+            levelViewer.Update(level);
         }
 
         public void Start()
