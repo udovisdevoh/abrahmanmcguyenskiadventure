@@ -23,18 +23,24 @@ namespace AbrahmanAdventure
         public const bool isFullScreen = false;
 
         public const int tileColumnCount = 20;
+
+        public const int waveResolution = 1;
         #endregion
 
         #region Fields and parts
-        public int tileSize = screenWidth / tileColumnCount;
+        public static int tileSize = screenWidth / tileColumnCount;
+
+        public static double viewOffsetX = 0.0;
+
+        public static double viewOffsetY = 0.0;
+
+        public static double zoomRatio = 1.0;
+
+        private UserInput userInput;
 
         private Wave wave;
 
         private WaveViewer waveViewer;
-
-        private double viewOffsetX;
-
-        private double viewOffsetY;
 
         private DateTime previousDateTime = DateTime.Now;
         #endregion
@@ -42,8 +48,12 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
-            wave = new Wave(4, 1 / 8, 0, WaveFunctions.Sine);
-            waveViewer = new WaveViewer();
+            userInput = new UserInput();
+            wave = new Wave(8, 8, 0, WaveFunctions.Sine);
+
+            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, false, false, isFullScreen, true);
+
+            waveViewer = new WaveViewer(mainSurface);
         }
         #endregion
 
@@ -57,7 +67,27 @@ namespace AbrahmanAdventure
         {
             #warning Implement OnKeyboardUp
         }
-        
+
+        public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
+        {
+            #warning Implement OnJoystickButtonDown
+        }
+
+        public void OnJoystickButtonUp(object sender, JoystickButtonEventArgs args)
+        {
+            #warning Implement OnJoystickButtonUp
+        }
+
+        public void OnJoystickHatMotion(object sender, JoystickHatEventArgs args)
+        {
+            #warning Implement OnJoystickHatMotion
+        }
+
+        public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
+        {
+            #warning Implement OnJoystickAxisMotion
+        }
+
         public void Update(object sender, TickEventArgs args)
         {
             //We process the time multiplicator
@@ -73,6 +103,10 @@ namespace AbrahmanAdventure
             Events.Tick += Update;
             Events.KeyboardDown += OnKeyboardDown;
             Events.KeyboardUp += OnKeyboardUp;
+            Events.JoystickButtonDown += OnJoystickButtonDown;
+            Events.JoystickButtonUp += OnJoystickButtonUp;
+            Events.JoystickAxisMotion += OnJoystickAxisMotion;
+            Events.JoystickHatMotion += OnJoystickHatMotion;
             Events.Run();
         }
 		#endregion

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="game\Program.cs" />
+    <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\IWave.cs" />
     <Compile Include="game\waves\Wave.cs" />
     <Compile Include="game\waves\WaveFunctions.cs" />
