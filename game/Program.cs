@@ -21,16 +21,20 @@ namespace AbrahmanAdventure
         public const int targetFps = 60;
         
         public const bool isFullScreen = false;
+
+        public const int tileColumnCount = 20;
         #endregion
 
         #region Fields and parts
-        private IWave wave;
+        public int tileSize = screenWidth / tileColumnCount;
+
+        private Wave wave;
 
         private WaveViewer waveViewer;
 
-        private double offsetX;
+        private double viewOffsetX;
 
-        private double offsetY;
+        private double viewOffsetY;
 
         private DateTime previousDateTime = DateTime.Now;
         #endregion
@@ -38,6 +42,7 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
+            wave = new Wave(4, 1 / 8, 0, WaveFunctions.Sine);
             waveViewer = new WaveViewer();
         }
         #endregion
