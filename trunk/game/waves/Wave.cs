@@ -37,10 +37,10 @@ namespace AbrahmanAdventure.waves
         /// Create a wave
         /// </summary>
         /// <param name="amplitude">Amplitude (from 0 to 1)</param>
-        /// <param name="frequency">Amount of wave cycle per common position/time span</param>
+        /// <param name="waveLength">Length of the wave</param>
         /// <param name="phase">Phase, from -1 to 1</param>
-        public Wave(double amplitude, double frequency, double phase)
-            : this(amplitude, frequency, phase, null)
+        public Wave(double amplitude, double waveLength, double phase)
+            : this(amplitude, waveLength, phase, null)
         {
         }
 
@@ -48,16 +48,16 @@ namespace AbrahmanAdventure.waves
         /// Create a wave
         /// </summary>
         /// <param name="amplitude">Amplitude (from 0 to 1)</param>
-        /// <param name="frequency">Amount of wave cycle per common position/time span</param>
+        /// <param name="waveLength">Length of the wave</param>
         /// <param name="phase">Phase, from -1 to 1</param>
         /// <param name="waveFunction">wave function (default: Math.sin)</param>
-        public Wave(double amplitude, double frequency, double phase, WaveFunction waveFunction)
+        public Wave(double amplitude, double waveLength, double phase, WaveFunction waveFunction)
         {
             if (waveFunction == null)
                 waveFunction = Math.Sin;
 
             this.amplitude = amplitude;
-            this.frequency = frequency;
+            this.frequency = 1.0 / waveLength;
             this.phase = phase;
             this.waveFunction = waveFunction;
         }
