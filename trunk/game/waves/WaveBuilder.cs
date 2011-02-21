@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.waves
             do
             {
                 wavePack.Add(this.BuildIndividualWave(0.05, 2, 0.1, 0.4, random, false));
-            } while (random.Next(0, 5) != 0);
+            } while (random.Next(0, 3) != 0);
             
             return wavePack;
         }
