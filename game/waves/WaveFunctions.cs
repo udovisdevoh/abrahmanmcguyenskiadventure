@@ -39,7 +39,7 @@ namespace AbrahmanAdventure.waves
         /// <returns>Random wave functions</returns>
         public static WaveFunction GetRandomWaveFunction(Random random)
         {
-            return GetRandomWaveFunction(random, false);
+            return GetRandomWaveFunction(random, false, true);
         }
 
         /// <summary>
@@ -47,12 +47,15 @@ namespace AbrahmanAdventure.waves
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="isOnlyContinuous">whether we only want continuous waves (default: false)</param>
+        /// <param name="isAllowSawWave">whether we allow saw waves</param>
         /// <returns>random wave function</returns>
-        public static WaveFunction GetRandomWaveFunction(Random random, bool isOnlyContinuous)
+        public static WaveFunction GetRandomWaveFunction(Random random, bool isOnlyContinuous, bool isAllowSawWave)
         {
             int functionType;
             if (isOnlyContinuous)
                 functionType = random.Next(1, 3);
+            else if (!isAllowSawWave)
+                functionType = random.Next(1, 4);
             else
                 functionType = random.Next(1, 5);
 

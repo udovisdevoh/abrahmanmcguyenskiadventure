@@ -305,11 +305,20 @@ namespace AbrahmanAdventure.waves
         /// <returns></returns>
         public void Normalize()
         {
+            Normalize(1.0);
+        }
+
+        /// <summary>
+        /// Normalize the wave pack
+        /// </summary>
+        /// <returns></returns>
+        public void Normalize(double maxValue)
+        {
             double y;
 
             double maxY = double.NegativeInfinity;
             double minY = double.PositiveInfinity;
-            for (double x = -2.0; x < 2.0; x += 0.001)
+            for (double x = -10024.0; x < 10024.0; x += 16)
             {
                 y = this[x];
                 if (y > maxY)
@@ -321,7 +330,7 @@ namespace AbrahmanAdventure.waves
 
             maxY = Math.Max(maxY, minY * -1.0);
 
-            normalizationMultiplicator = 1.0 / maxY;
+            normalizationMultiplicator = 1.0 / maxY * maxValue;
         }
         #endregion
 

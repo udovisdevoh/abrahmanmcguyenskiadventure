@@ -119,12 +119,17 @@ namespace AbrahmanAdventure.waves
             }
         }
 
+        public void Normalize()
+        {
+            Normalize(1.0);
+        }
+
         /// <summary>
         /// Normalize the wave to amplitude 1
         /// </summary>
-        public void Normalize()
+        public void Normalize(double maxValue)
         {
-            amplitude = 1.0;
+            amplitude = maxValue;
         }
         #endregion
     }

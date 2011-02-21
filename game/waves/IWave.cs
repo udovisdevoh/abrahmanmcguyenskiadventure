@@ -7,11 +7,17 @@ namespace AbrahmanAdventure.waves
 	/// </summary>
 	public interface IWave : IEquatable<IWave>
 	{
-		/// <summary>
+        /// <summary>
         /// Normalize the wave
         /// </summary>
         /// <returns>Normalized wave</returns>
         void Normalize();
+
+		/// <summary>
+        /// Normalize the wave
+        /// </summary>
+        /// <returns>Normalized wave</returns>
+        void Normalize(double maxValue);
         
         /// <summary>
         /// Get amplitude momentum Y value at X
