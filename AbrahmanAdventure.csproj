@@ -54,7 +54,6 @@
     <Compile Include="game\level\Level.cs" />
     <Compile Include="game\level\LevelBuilder.cs" />
     <Compile Include="game\level\LevelViewer.cs" />
-    <Compile Include="game\level\ScreenBuffer9Grid.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\IWave.cs" />
@@ -62,7 +61,6 @@
     <Compile Include="game\waves\WaveBuilder.cs" />
     <Compile Include="game\waves\WaveFunctions.cs" />
     <Compile Include="game\waves\WavePack.cs" />
-    <Compile Include="game\waves\WaveViewer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

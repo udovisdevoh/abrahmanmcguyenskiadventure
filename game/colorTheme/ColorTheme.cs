@@ -66,8 +66,13 @@ namespace AbrahmanAdventure.colorTheme
             currentLightness = Math.Max(0, currentLightness);
 
             currentHue = Math.Min(255, currentHue);
-            currentSaturation = Math.Min(255, currentSaturation);
-            currentLightness = Math.Min(255, currentLightness);
+            //currentSaturation = Math.Min(255, currentSaturation);
+            while (currentSaturation < 0)
+                currentSaturation += 256;
+
+            //currentLightness = Math.Min(255, currentLightness);
+            while (currentLightness < 0)
+                currentLightness += 256;
 
             Color color = ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 
