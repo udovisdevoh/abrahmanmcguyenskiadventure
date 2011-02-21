@@ -38,7 +38,7 @@ namespace AbrahmanAdventure
 
         private UserInput userInput;
 
-        private Wave wave;
+        private WavePack wave;
 
         private WaveViewer waveViewer;
 
@@ -49,7 +49,11 @@ namespace AbrahmanAdventure
         public Program()
         {
             userInput = new UserInput();
-            wave = new Wave(4, 8, 0, WaveFunctions.Sine);
+            wave = new WavePack(new Wave(4, 8, 0, WaveFunctions.Sine));
+            wave.Add(new Wave(32, 126.1234, 0, WaveFunctions.Sine));
+            wave.Add(new Wave(2, 11.012, 0, WaveFunctions.Sine));
+            wave.Add(new Wave(3, 30.012, 0, WaveFunctions.Square));
+            wave.Add(new Wave(2.5, 31.112, 0, WaveFunctions.Square));
 
             Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, false, false, isFullScreen, true);
 
@@ -60,12 +64,32 @@ namespace AbrahmanAdventure
         #region Public Methods and event handlers        
         public void OnKeyboardDown(object sender, KeyboardEventArgs args)
         {
-        	#warning Implement OnKeyboardDown
+            if (args.Key == Key.Escape)
+                Events.QuitApplication();
+            else if (args.Key == Key.Plus || args.Key == Key.Equals)
+                zoomRatio *= 1.25;
+            else if (args.Key == Key.Minus)
+                zoomRatio *= 0.8;
+            else if (args.Key == Key.LeftArrow)
+                userInput.isPressLeft = true;
+            else if (args.Key == Key.RightArrow)
+                userInput.isPressRight = true;
+            else if (args.Key == Key.UpArrow)
+                userInput.isPressUp = true;
+            else if (args.Key == Key.DownArrow)
+                userInput.isPressDown = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
         {
-            #warning Implement OnKeyboardUp
+            if (args.Key == Key.LeftArrow)
+                userInput.isPressLeft = false;
+            else if (args.Key == Key.RightArrow)
+                userInput.isPressRight = false;
+            else if (args.Key == Key.UpArrow)
+                userInput.isPressUp = false;
+            else if (args.Key == Key.DownArrow)
+                userInput.isPressDown = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
@@ -93,7 +117,16 @@ namespace AbrahmanAdventure
             //We process the time multiplicator
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 16.0;
             previousDateTime = DateTime.Now;
-            
+
+            if (userInput.isPressLeft)
+                viewOffsetX -= (timeDelta / 100) / zoomRatio;
+            if (userInput.isPressRight)
+                viewOffsetX += (timeDelta / 100) / zoomRatio;
+            if (userInput.isPressUp)
+                viewOffsetY += (timeDelta / 100) / zoomRatio;
+            if (userInput.isPressDown)
+                viewOffsetY -= (timeDelta / 100) / zoomRatio;
+
             waveViewer.Update(wave);
         }
 
