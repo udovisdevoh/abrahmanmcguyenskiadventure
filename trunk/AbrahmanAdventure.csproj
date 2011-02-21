@@ -54,6 +54,7 @@
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\IWave.cs" />
     <Compile Include="game\waves\Wave.cs" />
+    <Compile Include="game\waves\WaveBuilder.cs" />
     <Compile Include="game\waves\WaveFunctions.cs" />
     <Compile Include="game\waves\WavePack.cs" />
     <Compile Include="game\waves\WaveViewer.cs" />
