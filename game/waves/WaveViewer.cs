@@ -20,7 +20,7 @@ namespace AbrahmanAdventure
             this.mainSurface = mainSurface;
         }
 
-        internal void Update(IWave wave)
+        internal void Update(IWave wave, Color waveColor)
         {
             Rectangle rectangle;
             double relativeTileSize = Program.tileSize * Program.zoomRatio;
@@ -32,7 +32,7 @@ namespace AbrahmanAdventure
                 waveOutput += Program.viewOffsetY * relativeTileSize * 28;
 
                 rectangle = new Rectangle(x, Program.screenHeight / 2 + (int)waveOutput, Program.waveResolution, (int)relativeTileSize * 4);
-                mainSurface.Fill(rectangle, Color.Blue);
+                mainSurface.Fill(rectangle, waveColor);
 
                 if ((int)(x % relativeTileSize) == 0)
                 {
