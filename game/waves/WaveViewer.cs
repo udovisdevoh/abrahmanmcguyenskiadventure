@@ -35,11 +35,12 @@ namespace AbrahmanAdventure
                 rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.screenHeight - relativeFloorHeight);
                 mainSurface.Fill(rectangle, waveColor);
 
-                if ((int)(x % relativeTileSize) == 0)
-                {
-                    rectangle = new Rectangle(x, 0, 1, Program.screenHeight);
-                    mainSurface.Fill(rectangle, Color.Gray);
-                }
+                if (Program.zoomRatio > 0.1)
+                    if ((int)(x % relativeTileSize) == 0)
+                    {
+                        rectangle = new Rectangle(x, 0, 1, Program.screenHeight);
+                        mainSurface.Fill(rectangle, Color.Gray);
+                    }
             }
         }
     }
