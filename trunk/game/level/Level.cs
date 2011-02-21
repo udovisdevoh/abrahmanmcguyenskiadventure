@@ -12,7 +12,7 @@ namespace AbrahmanAdventure.level
         #region Fields and parts
         private List<IWave> terrainWaveList;
 
-        private ColorTheme colorTheme;
+        public ColorTheme colorTheme;
         #endregion
 
         #region Constructor
@@ -48,6 +48,13 @@ namespace AbrahmanAdventure.level
         internal void AddTerrainWave(IWave wave)
         {
             terrainWaveList.Add(wave);
+        }
+        #endregion
+
+        #region Properties
+        public int Count
+        {
+            get { return terrainWaveList.Count; }
         }
         #endregion
     }

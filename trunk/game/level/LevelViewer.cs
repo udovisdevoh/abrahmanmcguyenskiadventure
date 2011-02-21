@@ -26,9 +26,13 @@ namespace AbrahmanAdventure.level
         internal void Update(Level level)
         {
             mainSurface.Fill(Color.Black);
+            
+            int themeColorId = level.Count -1;
             foreach (IWave wave in level)
             {
-                waveViewer.Update(wave);
+                Color color = level.colorTheme.GetColor(themeColorId);
+                waveViewer.Update(wave, color);
+                themeColorId--;
             }
             mainSurface.Update();
         }
