@@ -31,7 +31,8 @@ namespace AbrahmanAdventure
                 waveOutput *= relativeTileSize / 2.0;
                 waveOutput += Program.viewOffsetY * relativeTileSize * 28;
 
-                rectangle = new Rectangle(x, Program.screenHeight / 2 + (int)waveOutput, Program.waveResolution, (int)relativeTileSize * 4);
+                int relativeFloorHeight = Program.screenHeight / 2 + (int)waveOutput;
+                rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.screenHeight - relativeFloorHeight);
                 mainSurface.Fill(rectangle, waveColor);
 
                 if ((int)(x % relativeTileSize) == 0)
