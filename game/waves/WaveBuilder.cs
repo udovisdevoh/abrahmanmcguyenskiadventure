@@ -25,8 +25,8 @@ namespace AbrahmanAdventure.waves
             //Soil
             do
             {
-                wavePack.Add(this.BuildIndividualWave(0.05, 2, 0.1, 0.4, random, false));
-            } while (random.Next(0, 3) != 0);
+                wavePack.Add(this.BuildIndividualWave(0.1, 2, 0.1, 0.4, random, false));
+            } while (random.Next(0, 2) != 0);
             
             return wavePack;
         }

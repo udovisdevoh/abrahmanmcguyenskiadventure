@@ -50,6 +50,9 @@
     <Reference Include="Tao.Sdl, Version=1.2.13.0, Culture=neutral, PublicKeyToken=9c7a200e36c0094e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="game\colorTheme\ColorTheme.cs" />
+    <Compile Include="game\level\Level.cs" />
+    <Compile Include="game\level\LevelBuilder.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\IWave.cs" />
