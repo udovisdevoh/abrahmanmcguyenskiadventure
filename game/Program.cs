@@ -4,8 +4,9 @@ using SdlDotNet.Core;
 using SdlDotNet.Input;
 using SdlDotNet.Audio;
 using System.Windows.Forms;
+using AbrahmanAdventure.waves;
 
-namespace AbrahmanAdventure.waves
+namespace AbrahmanAdventure
 {
 	/// <summary>
 	/// Class with program entry point.
@@ -13,25 +14,35 @@ namespace AbrahmanAdventure.waves
 	internal sealed class Program
 	{
         #region Constants
-        private const int screenWidth = 640;
+        public const int screenWidth = 640;
 
-        private const int screenHeight = 480;
+        public const int screenHeight = 480;
+
+        public const int targetFps = 60;
         
-        private const int targetFps = 60;
-        
-        private const bool isFullScreen = false;
+        public const bool isFullScreen = false;
         #endregion
-        
-		#region Public Methods and event handlers
-        public void Start()
+
+        #region Fields and parts
+        private IWave wave;
+
+        private WaveViewer waveViewer;
+
+        private double offsetX;
+
+        private double offsetY;
+
+        private DateTime previousDateTime = DateTime.Now;
+        #endregion
+
+        #region Constructor
+        public Program()
         {
-        	Events.TargetFps = targetFps;
-            Events.Tick += Update;
-            Events.KeyboardDown += OnKeyboardDown;
-            Events.KeyboardUp += OnKeyboardUp;
-            Events.Run();	
+            waveViewer = new WaveViewer();
         }
-        
+        #endregion
+
+        #region Public Methods and event handlers        
         public void OnKeyboardDown(object sender, KeyboardEventArgs args)
         {
         	#warning Implement OnKeyboardDown
@@ -48,7 +59,16 @@ namespace AbrahmanAdventure.waves
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 16.0;
             previousDateTime = DateTime.Now;
             
-            gameViewer.Update(gameModel);
+            waveViewer.Update(wave);
+        }
+
+        public void Start()
+        {
+            Events.TargetFps = targetFps;
+            Events.Tick += Update;
+            Events.KeyboardDown += OnKeyboardDown;
+            Events.KeyboardUp += OnKeyboardUp;
+            Events.Run();
         }
 		#endregion
 		
