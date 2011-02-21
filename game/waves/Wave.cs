@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.waves
                 double value = 0.0;
 
                 x += (phase / frequency);
-                value = waveFunction(Math.PI * x * frequency) * amplitude * -1.0;
+                value = waveFunction(Math.PI * x * frequency) * amplitude;
 
                 return value;
             }

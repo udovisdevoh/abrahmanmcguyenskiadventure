@@ -49,7 +49,7 @@ namespace AbrahmanAdventure
         public Program()
         {
             userInput = new UserInput();
-            wave = new Wave(8, 8, 0, WaveFunctions.Sine);
+            wave = new Wave(4, 8, 0, WaveFunctions.Sine);
 
             Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, false, false, isFullScreen, true);
 
