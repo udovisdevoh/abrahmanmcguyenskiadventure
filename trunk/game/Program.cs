@@ -26,6 +26,10 @@ namespace AbrahmanAdventure
         public const int tileColumnCount = 20;
 
         public const int waveResolution = 1;
+
+        public const int levelWidth = 32;
+
+        public const int levelHeight = 6;
         #endregion
 
         #region Fields and parts
