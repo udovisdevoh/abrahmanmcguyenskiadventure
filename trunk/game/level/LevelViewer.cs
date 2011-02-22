@@ -14,6 +14,8 @@ namespace AbrahmanAdventure.level
     {
         private Surface mainSurface;
 
+        private Surface levelSurface;
+
         public LevelViewer(Surface mainSurface)
         {
             this.mainSurface = mainSurface;
@@ -21,10 +23,21 @@ namespace AbrahmanAdventure.level
 
         internal void Update(Level level)
         {
-            Rectangle rectangle;
-            int previousX = 0;
-            int previousRelativeFloorHeight = 0;
+            if (levelSurface == null)
+                levelSurface = BuildLevelSurface(level);
 
+            mainSurface.Blit(levelSurface, new Point((int)Program.viewOffsetX, (int)Program.viewOffsetY));
+            
+            mainSurface.Update();
+        }
+
+        private Surface BuildLevelSurface(Level level)
+        {
+            Rectangle rectangle;
+            
+            int totalLevelWith = Program.levelWidth * Program.screenWidth;
+            int totalLevelHeight = Program.levelHeight * Program.screenHeight;
+            Surface levelSurface = new Surface(totalLevelWith, totalLevelHeight, Program.bitDepth);
 
             int themeColorId = level.Count - 1;
             bool isFirstWave = true;
@@ -33,7 +46,7 @@ namespace AbrahmanAdventure.level
                 Color waveColor = level.colorTheme.GetColor(themeColorId);
                 themeColorId--;
 
-                for (int x = 0; x < Program.screenWidth; x += Program.waveResolution)
+                for (int x = 0; x < totalLevelWith; x += Program.waveResolution)
                 {
                     double waveInput = (double)(x) / Program.tileSize + (Program.viewOffsetX * Program.tileSize);
                     double waveOutput = wave[waveInput];
@@ -41,24 +54,21 @@ namespace AbrahmanAdventure.level
                     waveOutput *= Program.tileSize / 2.0;
                     waveOutput += Program.viewOffsetY * Program.tileSize * 28;
 
-                    int relativeFloorHeight = Program.screenHeight / 2 + (int)waveOutput;
+                    int relativeFloorHeight = totalLevelHeight / 2 + (int)waveOutput;
 
                     if (isFirstWave)
                     {
                         rectangle = new Rectangle(x, 0, Program.waveResolution, relativeFloorHeight);
-                        mainSurface.Fill(rectangle, Color.Black);
+                        levelSurface.Fill(rectangle, Color.Black);
                     }
 
-                    rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.screenHeight - relativeFloorHeight);
-                    mainSurface.Fill(rectangle, waveColor);
-
-                    previousX = x;
-                    previousRelativeFloorHeight = relativeFloorHeight;
+                    rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, totalLevelHeight - relativeFloorHeight);
+                    levelSurface.Fill(rectangle, waveColor);
                 }
                 isFirstWave = false;
             }
 
-            mainSurface.Update();
+            return levelSurface;
         }
     }
 }

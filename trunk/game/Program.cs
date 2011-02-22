@@ -27,9 +27,11 @@ namespace AbrahmanAdventure
 
         public const int waveResolution = 1;
 
-        public const int levelWidth = 32;
+        public const int levelWidth = 16;
 
         public const int levelHeight = 6;
+
+        public const int bitDepth = 16;
         #endregion
 
         #region Fields and parts
@@ -60,7 +62,7 @@ namespace AbrahmanAdventure
 
             userInput = new UserInput();
 
-            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, 32, false, false, isFullScreen,true);
+            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen,true);
 
             levelViewer = new LevelViewer(mainSurface);
         }
@@ -121,14 +123,14 @@ namespace AbrahmanAdventure
 
 
             if (userInput.isPressLeft && !userInput.isPressRight)
-                viewOffsetX -= timeDelta / 64.0;
+                viewOffsetX += timeDelta * 16.0;
             else if (userInput.isPressRight && !userInput.isPressLeft)
-                viewOffsetX += timeDelta / 64.0;
+                viewOffsetX -= timeDelta * 16.0;
 
             if (userInput.isPressUp && !userInput.isPressDown)
-                viewOffsetY += timeDelta / 64.0;
+                viewOffsetY += timeDelta * 16.0;
             else if (userInput.isPressDown && !userInput.isPressUp)
-                viewOffsetY -= timeDelta / 64.0;
+                viewOffsetY -= timeDelta * 16.0;
 
             levelViewer.Update(level);
         }
