@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
+/*using SdlDotNet.Graphics.Primitives;*/
 using AbrahmanAdventure.waves;
 
 namespace AbrahmanAdventure.level
@@ -21,16 +22,19 @@ namespace AbrahmanAdventure.level
         internal void Update(Level level)
         {
             Rectangle rectangle;
+            int previousX = 0;
+            int previousRelativeFloorHeight = 0;
 
-            for (int x = 0; x < Program.screenWidth; x += Program.waveResolution)
+
+            int themeColorId = level.Count - 1;
+            bool isFirstWave = true;
+            foreach (IWave wave in level)
             {
-                int themeColorId = level.Count - 1;
-                bool isFirstWave = true;
-                foreach (IWave wave in level)
-                {
-                    Color waveColor = level.colorTheme.GetColor(themeColorId);
-                    themeColorId--;
+                Color waveColor = level.colorTheme.GetColor(themeColorId);
+                themeColorId--;
 
+                for (int x = 0; x < Program.screenWidth; x += Program.waveResolution)
+                {
                     double waveInput = (double)(x) / Program.tileSize + (Program.viewOffsetX * Program.tileSize);
                     double waveOutput = wave[waveInput];
 
@@ -48,8 +52,10 @@ namespace AbrahmanAdventure.level
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.screenHeight - relativeFloorHeight);
                     mainSurface.Fill(rectangle, waveColor);
 
-                    isFirstWave = false;
+                    previousX = x;
+                    previousRelativeFloorHeight = relativeFloorHeight;
                 }
+                isFirstWave = false;
             }
 
             mainSurface.Update();
