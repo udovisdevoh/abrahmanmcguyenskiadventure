@@ -1,3 +1,0 @@
-D:\abrahman\Programming\C Sharp\AbrahmanMcGuyenskiAdventure\obj\Debug\ResolveAssemblyReference.cache
-D:\abrahman\Programming\C Sharp\AbrahmanMcGuyenskiAdventure\obj\Debug\AbrahmanAdventure.Properties.Resources.resources
-D:\abrahman\Programming\C Sharp\AbrahmanMcGuyenskiAdventure\obj\Debug\AbrahmanAdventure.csproj.GenerateResource.Cache
