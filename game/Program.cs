@@ -40,6 +40,8 @@ namespace AbrahmanAdventure
         public static double viewOffsetX = 0.0;
 
         public static double viewOffsetY = 0.0;
+        
+        public static double zoomRatio = 1.0;
 
         private UserInput userInput;
 
@@ -81,6 +83,16 @@ namespace AbrahmanAdventure
                 userInput.isPressUp = true;
             else if (args.Key == Key.DownArrow)
                 userInput.isPressDown = true;
+            else if (args.Key == Key.Equals || args.Key == Key.Plus)
+            {
+            	zoomRatio *= 1.25;
+            	levelViewer.ClearScaledSurface();
+            }
+            else if (args.Key == Key.Minus)
+            {
+            	zoomRatio *= 0.8;
+            	levelViewer.ClearScaledSurface();
+            }
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)

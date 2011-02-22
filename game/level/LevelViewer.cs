@@ -15,6 +15,8 @@ namespace AbrahmanAdventure.level
         private Surface mainSurface;
 
         private Surface levelSurface;
+        
+        private Surface scaledSurface;
 
         public LevelViewer(Surface mainSurface)
         {
@@ -26,9 +28,22 @@ namespace AbrahmanAdventure.level
             if (levelSurface == null)
                 levelSurface = BuildLevelSurface(level);
 
-            mainSurface.Blit(levelSurface, new Point((int)Program.viewOffsetX, (int)Program.viewOffsetY));
+            if (scaledSurface == null)
+            {
+            	if (Program.zoomRatio == 1.0)
+            		scaledSurface = levelSurface;
+            	else
+            		scaledSurface = levelSurface.CreateScaledSurface(Program.zoomRatio, false);
+            }
+            
+            mainSurface.Blit(scaledSurface, new Point((int)Program.viewOffsetX, (int)Program.viewOffsetY));
             
             mainSurface.Update();
+        }
+        
+        public void ClearScaledSurface()
+        {
+        	scaledSurface = null;
         }
 
         private Surface BuildLevelSurface(Level level)
