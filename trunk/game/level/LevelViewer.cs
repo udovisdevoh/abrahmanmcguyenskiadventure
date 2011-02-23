@@ -32,8 +32,6 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
 
-
-
             for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
             {
                 Surface currentSurface;
