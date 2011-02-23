@@ -4,7 +4,6 @@ using SdlDotNet.Core;
 using SdlDotNet.Input;
 using SdlDotNet.Audio;
 using System.Windows.Forms;
-using AbrahmanAdventure.waves;
 using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure
@@ -59,6 +58,7 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
+            #warning Should clean unused rendered columns
             random = new Random();
 
             LevelBuilder levelBuilder = new LevelBuilder();

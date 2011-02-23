@@ -6,7 +6,6 @@ using System.Drawing;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
 /*using SdlDotNet.Graphics.Primitives;*/
-using AbrahmanAdventure.waves;
 
 namespace AbrahmanAdventure.level
 {
@@ -14,10 +13,6 @@ namespace AbrahmanAdventure.level
     {
         #region Fields and parts
         private Surface mainSurface;
-
-        private Surface leftColumnSurface;
-        
-        private Surface centerColumnSurface;
 
         private Dictionary<int, Surface> zoneSurfaceCache = new Dictionary<int, Surface>();
         #endregion
@@ -56,15 +51,16 @@ namespace AbrahmanAdventure.level
 
             int themeColorId = level.Count - 1;
             bool isFirstWave = true;
-            foreach (IWave wave in level)
+            foreach (Ground ground in level)
             {
+                IWave terrainWave = ground.TerrainWave;
                 Color waveColor = level.colorTheme.GetColor(themeColorId);
                 themeColorId--;
 
                 for (int x = 0; x < Program.totalZoneWidth; x += Program.waveResolution)
                 {
                     double waveInput = (double)(x + startX) / Program.tileSize;
-                    double waveOutput = wave[waveInput];
+                    double waveOutput = terrainWave[waveInput];
 
                     waveOutput *= Program.tileSize / 2.0;
 
