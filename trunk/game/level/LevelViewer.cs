@@ -12,11 +12,17 @@ namespace AbrahmanAdventure.level
 {
     internal class LevelViewer
     {
+        #region Fields and parts
         private Surface mainSurface;
 
-        private Surface levelSurface;
+        private Surface leftColumnSurface;
         
-        private Surface scaledSurface;
+        private Surface centerColumnSurface;
+
+        private Surface rightColumnSurface;
+
+        private Dictionary<int, Surface> zoneSurfaceCache = new Dictionary<int, Surface>();
+        #endregion
 
         public LevelViewer(Surface mainSurface)
         {
@@ -25,34 +31,41 @@ namespace AbrahmanAdventure.level
 
         internal void Update(Level level)
         {
-            if (levelSurface == null)
-                levelSurface = BuildLevelSurface(level);
+            int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
+            double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
 
-            if (scaledSurface == null)
+            if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex - 1, out leftColumnSurface))
             {
-            	if (Program.zoomRatio == 1.0)
-            		scaledSurface = levelSurface;
-            	else
-            		scaledSurface = levelSurface.CreateScaledSurface(Program.zoomRatio, false);
+                leftColumnSurface = BuildZoneSurface(level, zoneColumnIndex - 1);
+                zoneSurfaceCache.Add(zoneColumnIndex - 1, leftColumnSurface);
             }
-            
-            mainSurface.Blit(scaledSurface, new Point((int)Program.viewOffsetX, (int)Program.viewOffsetY));
+
+            if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex, out centerColumnSurface))
+            {
+                centerColumnSurface = BuildZoneSurface(level, zoneColumnIndex);
+                zoneSurfaceCache.Add(zoneColumnIndex, centerColumnSurface);
+            }
+
+            if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex + 1, out rightColumnSurface))
+            {
+                rightColumnSurface = BuildZoneSurface(level, zoneColumnIndex + 1);
+                zoneSurfaceCache.Add(zoneColumnIndex + 1, rightColumnSurface);
+            }
+
+            mainSurface.Blit(leftColumnSurface, new Point((int)offsetXPerZone - Program.totalZoneWidth, (int)Program.viewOffsetY));
+            mainSurface.Blit(centerColumnSurface, new Point((int)offsetXPerZone, (int)Program.viewOffsetY));
+            mainSurface.Blit(rightColumnSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth, (int)Program.viewOffsetY));
+
             
             mainSurface.Update();
         }
-        
-        public void ClearScaledSurface()
-        {
-        	scaledSurface = null;
-        }
 
-        private Surface BuildLevelSurface(Level level)
+        private Surface BuildZoneSurface(Level level, int zoneColumnIndex)
         {
             Rectangle rectangle;
-            
-            int totalLevelWith = Program.levelWidth * Program.screenWidth;
-            int totalLevelHeight = Program.levelHeight * Program.screenHeight;
-            Surface levelSurface = new Surface(totalLevelWith, totalLevelHeight, Program.bitDepth);
+            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
+
+            int startX = zoneColumnIndex * Program.totalZoneWidth;
 
             int themeColorId = level.Count - 1;
             bool isFirstWave = true;
@@ -61,29 +74,28 @@ namespace AbrahmanAdventure.level
                 Color waveColor = level.colorTheme.GetColor(themeColorId);
                 themeColorId--;
 
-                for (int x = 0; x < totalLevelWith; x += Program.waveResolution)
+                for (int x = 0; x < Program.totalZoneWidth; x += Program.waveResolution)
                 {
-                    double waveInput = (double)(x) / Program.tileSize + (Program.viewOffsetX * Program.tileSize);
+                    double waveInput = (double)(x + startX) / Program.tileSize;
                     double waveOutput = wave[waveInput];
 
                     waveOutput *= Program.tileSize / 2.0;
-                    waveOutput += Program.viewOffsetY * Program.tileSize * 28;
 
-                    int relativeFloorHeight = totalLevelHeight / 2 + (int)waveOutput;
+                    int relativeFloorHeight = Program.totalZoneHeight / 2 + (int)waveOutput;
 
                     if (isFirstWave)
                     {
                         rectangle = new Rectangle(x, 0, Program.waveResolution, relativeFloorHeight);
-                        levelSurface.Fill(rectangle, Color.Black);
+                        zoneSurface.Fill(rectangle, Color.Black);
                     }
 
-                    rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, totalLevelHeight - relativeFloorHeight);
-                    levelSurface.Fill(rectangle, waveColor);
+                    rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
+                    zoneSurface.Fill(rectangle, waveColor);
                 }
                 isFirstWave = false;
             }
 
-            return levelSurface;
+            return zoneSurface;
         }
     }
 }
