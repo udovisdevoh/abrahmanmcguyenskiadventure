@@ -60,7 +60,6 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
-            #warning Should clean unused rendered columns
             random = new Random();
 
             LevelBuilder levelBuilder = new LevelBuilder();
