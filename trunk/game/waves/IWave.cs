@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AbrahmanAdventure.waves
+namespace AbrahmanAdventure.level
 {
 	/// <summary>
 	/// Represent a wave or a wave pack

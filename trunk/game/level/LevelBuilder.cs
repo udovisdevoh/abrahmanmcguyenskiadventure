@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AbrahmanAdventure.waves;
 
 namespace AbrahmanAdventure.level
 {
@@ -16,7 +15,7 @@ namespace AbrahmanAdventure.level
 
             int waveCount = random.Next(3, 12);
             for (int i = 0; i < waveCount; i++)
-                level.AddTerrainWave(waveBuilder.Build(random));
+                level.AddTerrainWave(new Ground(waveBuilder.Build(random)));
 
             /*WavePack terrainWave = new WavePack(); //To test rendering
             terrainWave.Add(new Wave(40, 400, 0, WaveFunctions.Saw));

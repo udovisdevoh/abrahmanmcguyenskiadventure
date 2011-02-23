@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AbrahmanAdventure.waves;
-using AbrahmanAdventure.colorTheme;
 
 namespace AbrahmanAdventure.level
 {
-    internal class Level : IEnumerable<IWave>
+    internal class Level : IEnumerable<Ground>
     {
         #region Fields and parts
-        private List<IWave> terrainWaveList;
+        private List<Ground> groundList;
 
         public ColorTheme colorTheme;
         #endregion
@@ -22,39 +20,39 @@ namespace AbrahmanAdventure.level
         /// Warning! Use
         /// </summary>
         /// <param name="random">random number generator</param>
-        /// <param name="firstTerrainWave"></param>
-        public Level(Random random, IWave firstTerrainWave)
+        /// <param name="firstGround"></param>
+        public Level(Random random, Ground firstGround)
         {
             colorTheme = new ColorTheme(random);
-            terrainWaveList = new List<IWave>();
-            if (firstTerrainWave != null)
-                this.terrainWaveList.Add(firstTerrainWave);
+            groundList = new List<Ground>();
+            if (firstGround != null)
+                this.groundList.Add(firstGround);
         }
         #endregion
 
         #region IEnumerable<IWave> Members
-        public IEnumerator<IWave> GetEnumerator()
+        public IEnumerator<Ground> GetEnumerator()
         {
-            return terrainWaveList.GetEnumerator();
+            return groundList.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return terrainWaveList.GetEnumerator();
+            return groundList.GetEnumerator();
         }
         #endregion
 
         #region Internal Methods
-        internal void AddTerrainWave(IWave wave)
+        internal void AddTerrainWave(Ground ground)
         {
-            terrainWaveList.Add(wave);
+            groundList.Add(ground);
         }
         #endregion
 
         #region Properties
         public int Count
         {
-            get { return terrainWaveList.Count; }
+            get { return groundList.Count; }
         }
         #endregion
     }

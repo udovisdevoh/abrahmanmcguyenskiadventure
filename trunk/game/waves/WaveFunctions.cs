@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AbrahmanAdventure.waves
+namespace AbrahmanAdventure.level
 {
     #region Delegate types
     /// <summary>
