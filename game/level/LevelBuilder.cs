@@ -18,6 +18,10 @@ namespace AbrahmanAdventure.level
             for (int i = 0; i < waveCount; i++)
                 level.AddTerrainWave(waveBuilder.Build(random));
 
+            /*WavePack terrainWave = new WavePack(); //To test rendering
+            terrainWave.Add(new Wave(40, 400, 0, WaveFunctions.Saw));
+            level.AddTerrainWave(terrainWave);*/
+
             return level;
         }
     }
