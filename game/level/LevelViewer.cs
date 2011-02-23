@@ -14,7 +14,7 @@ namespace AbrahmanAdventure.level
         #region Fields and parts
         private Surface mainSurface;
 
-        private Dictionary<int, Surface> zoneSurfaceCache = new Dictionary<int, Surface>();
+        private LevelViewerCache levelViewerCache = new LevelViewerCache();
         #endregion
 
         public LevelViewer(Surface mainSurface)
@@ -30,14 +30,16 @@ namespace AbrahmanAdventure.level
             for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
             {
                 Surface currentSurface;
-                if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
+                if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
                 {
                     currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset);
-                    zoneSurfaceCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
+                    levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
                 mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, (int)Program.viewOffsetY));
             }
+
+            levelViewerCache.Trim(Program.maxCachedColumnCount);
             
             mainSurface.Update();
         }
