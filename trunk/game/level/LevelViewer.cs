@@ -19,8 +19,6 @@ namespace AbrahmanAdventure.level
         
         private Surface centerColumnSurface;
 
-        private Surface rightColumnSurface;
-
         private Dictionary<int, Surface> zoneSurfaceCache = new Dictionary<int, Surface>();
         #endregion
 
@@ -34,28 +32,19 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
 
-            if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex - 1, out leftColumnSurface))
+
+
+            for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
             {
-                leftColumnSurface = BuildZoneSurface(level, zoneColumnIndex - 1);
-                zoneSurfaceCache.Add(zoneColumnIndex - 1, leftColumnSurface);
+                Surface currentSurface;
+                if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
+                {
+                    currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset);
+                    zoneSurfaceCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
+                }
+
+                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, (int)Program.viewOffsetY));
             }
-
-            if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex, out centerColumnSurface))
-            {
-                centerColumnSurface = BuildZoneSurface(level, zoneColumnIndex);
-                zoneSurfaceCache.Add(zoneColumnIndex, centerColumnSurface);
-            }
-
-            if (!zoneSurfaceCache.TryGetValue(zoneColumnIndex + 1, out rightColumnSurface))
-            {
-                rightColumnSurface = BuildZoneSurface(level, zoneColumnIndex + 1);
-                zoneSurfaceCache.Add(zoneColumnIndex + 1, rightColumnSurface);
-            }
-
-            mainSurface.Blit(leftColumnSurface, new Point((int)offsetXPerZone - Program.totalZoneWidth, (int)Program.viewOffsetY));
-            mainSurface.Blit(centerColumnSurface, new Point((int)offsetXPerZone, (int)Program.viewOffsetY));
-            mainSurface.Blit(rightColumnSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth, (int)Program.viewOffsetY));
-
             
             mainSurface.Update();
         }

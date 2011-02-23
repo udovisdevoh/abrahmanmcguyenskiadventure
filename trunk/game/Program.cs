@@ -27,7 +27,7 @@ namespace AbrahmanAdventure
 
         public const int waveResolution = 1;
 
-        public const int zoneWidthScreenCount = 1;
+        public const double zoneWidthScreenCount = 0.025;
 
         public const int zoneHeightScreenCount = 6;
 
@@ -41,7 +41,7 @@ namespace AbrahmanAdventure
 
         public static double viewOffsetY = 0.0;
 
-        public static int totalZoneWidth = Program.zoneWidthScreenCount * Program.screenWidth;
+        public static int totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
 
         public static int totalZoneHeight = Program.zoneHeightScreenCount * Program.screenHeight;
 
