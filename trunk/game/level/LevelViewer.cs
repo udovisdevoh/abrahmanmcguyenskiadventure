@@ -27,8 +27,7 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
 
-            #warning, must blit the sky
-            //mainSurface.Blit(level.Sky.Surface,new Point(0,0));
+            mainSurface.Blit(level.Sky.Surface,new Point(0,Sky.skyHeight / -2));
             for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
             {
                 Surface currentSurface;
@@ -49,13 +48,12 @@ namespace AbrahmanAdventure.level
         private Surface BuildZoneSurface(Level level, int zoneColumnIndex)
         {
             Rectangle rectangle;
-            #warning this surface should be transparent
-            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth, true);
+            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
+            zoneSurface.Transparent = true;
 
             int startX = zoneColumnIndex * Program.totalZoneWidth;
 
             int themeColorId = level.Count - 1;
-            bool isFirstWave = true;
             foreach (Ground ground in level)
             {
                 IWave terrainWave = ground.TerrainWave;
@@ -71,16 +69,9 @@ namespace AbrahmanAdventure.level
 
                     int relativeFloorHeight = Program.totalZoneHeight / 2 + (int)waveOutput;
 
-                    /*if (isFirstWave)
-                    {
-                        rectangle = new Rectangle(x, 0, Program.waveResolution, relativeFloorHeight);
-                        zoneSurface.Fill(rectangle, Color.Black);
-                    }*/
-
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                     zoneSurface.Fill(rectangle, waveColor);
                 }
-                isFirstWave = false;
             }
 
             return zoneSurface;
