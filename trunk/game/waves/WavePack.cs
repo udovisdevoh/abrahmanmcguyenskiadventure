@@ -314,6 +314,17 @@ namespace AbrahmanAdventure.level
         /// <returns></returns>
         public void Normalize(double maxValue)
         {
+            Normalize(maxValue, true);
+        }
+
+        /// <summary>
+        /// Normalize the wave pack
+        /// </summary>
+        /// <returns></returns>
+        public void Normalize(double maxValue, bool isIncreaseToo)
+        {
+            double oldNormalizationMultiplicator = normalizationMultiplicator;
+
             normalizationMultiplicator = 1.0;
             double y;
 
@@ -332,6 +343,9 @@ namespace AbrahmanAdventure.level
             maxY = Math.Max(maxY, minY * -1.0);
 
             normalizationMultiplicator = 1.0 / maxY * maxValue;
+
+            if (!isIncreaseToo)
+                normalizationMultiplicator = Math.Min(oldNormalizationMultiplicator, normalizationMultiplicator);
         }
         #endregion
 
