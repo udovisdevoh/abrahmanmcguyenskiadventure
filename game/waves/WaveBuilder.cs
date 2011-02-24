@@ -7,7 +7,11 @@ namespace AbrahmanAdventure.level
 {
     internal class WaveBuilder
     {
-        public WavePack Build(Random random)
+        #region Constants
+        private const int defaultHowManyLeaf = 8;
+        #endregion
+
+        public WavePack BuildWavePack(Random random)
         {
             WavePack wavePack = new WavePack();
             //Mountains
@@ -34,7 +38,65 @@ namespace AbrahmanAdventure.level
             return wavePack;
         }
 
-        private IWave BuildIndividualWave(double minWaveLength, double maxWaveLength, double minAmplitude, double maxAmplitude, Random random, bool isOnlyContinuous, bool isAllowSawWave)
+        /// <summary>
+        /// Build a wave tree
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave tree</returns>
+        public WaveTree BuildWaveTree(Random random)
+        {
+            /*List<WaveTree> leafList = new List<WaveTree>();
+            for (int i = 0; i < 8; i++)
+                leafList.Add(new WaveTree(BuildWave(random)));
+
+            for (int i = 0; i < 8; i+=2)
+                firstBranchList.Add(new WaveTree(leafList[));*/
+
+            return BuildWaveTree(random, defaultHowManyLeaf);
+        }
+
+        /// <summary>
+        /// Build a wave tree
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="howManyLeaf">how many wave leaf (must be a power of 2)</param>
+        /// <returns>wave tree</returns>
+        public WaveTree BuildWaveTree(Random random, int howManyLeaf)
+        {
+            if (howManyLeaf == 1)
+            {
+                bool isOnlyContinuous = random.Next(0, 2) == 0;
+                bool isAllowSawWave = random.Next(0, 2) == 0;
+
+                double minWaveLength;
+                double maxWaveLength;
+                double minAmplitude;
+                double maxAmplitude;
+
+                if (random.Next(0, 2) == 0)
+                {
+                    minWaveLength = 4.0;
+                    maxWaveLength = 64.0;
+                    minAmplitude = 1.0;
+                    maxAmplitude = 6.0;
+                }
+                else
+                {
+                    minWaveLength = 32.0;
+                    maxWaveLength = 512.0;
+                    minAmplitude = 16.0;
+                    maxAmplitude = 48.0;
+                }
+
+                return new WaveTree(BuildIndividualWave(minWaveLength, maxWaveLength, minAmplitude, maxAmplitude, random, isOnlyContinuous, isAllowSawWave));
+            }
+
+            bool isMultNotAdd = random.Next(0, 20) == 0;
+
+            return new WaveTree(BuildWaveTree(random, howManyLeaf / 2), isMultNotAdd, BuildWaveTree(random, howManyLeaf / 2));
+        }
+
+        private Wave BuildIndividualWave(double minWaveLength, double maxWaveLength, double minAmplitude, double maxAmplitude, Random random, bool isOnlyContinuous, bool isAllowSawWave)
         {
             double waveLength = minWaveLength + random.NextDouble() * (maxWaveLength - minWaveLength);
             double amplitude = minAmplitude + random.NextDouble() * (maxAmplitude - minAmplitude);
