@@ -28,7 +28,7 @@ namespace AbrahmanAdventure
 
         public const double zoneWidthScreenCount = 0.025;
 
-        public const int zoneHeightScreenCount = 6;
+        public const int zoneHeightScreenCount = 4;
 
         public const int bitDepth = 16;
 

@@ -21,8 +21,9 @@ namespace AbrahmanAdventure.level
                     wave = waveBuilder.BuildWavePack(random);
                 else
                     wave = waveBuilder.BuildWaveTree(random,16);
-                
-                wave.Normalize(48, false);
+
+                double normalizationFactor = (random.NextDouble() * 40) + 8;
+                wave.Normalize(normalizationFactor, false);
 
                 level.AddTerrainWave(new Ground(wave));
             }
