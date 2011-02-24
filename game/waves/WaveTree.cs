@@ -67,13 +67,26 @@ namespace AbrahmanAdventure.level
             Normalize(1.0);
         }
 
+        /// <summary>
+        /// Normalize the wave pack
+        /// </summary>
+        /// <returns></returns>
         public void Normalize(double maxValue)
         {
-            normalizationMultiplicator = 1.0;
-            if (atomicWave != null)
-                atomicWave.Normalize(maxValue);
+            Normalize(maxValue, true);
+        }
 
+        /// <summary>
+        /// Normalize the wave pack
+        /// </summary>
+        /// <returns></returns>
+        public void Normalize(double maxValue, bool isIncreaseToo)
+        {
+            double oldNormalizationMultiplicator = normalizationMultiplicator;
+
+            normalizationMultiplicator = 1.0;
             double y;
+
             double maxY = double.NegativeInfinity;
             double minY = double.PositiveInfinity;
             for (double x = -10024.0; x < 10024.0; x += 16)
@@ -89,6 +102,9 @@ namespace AbrahmanAdventure.level
             maxY = Math.Max(maxY, minY * -1.0);
 
             normalizationMultiplicator = 1.0 / maxY * maxValue;
+
+            if (!isIncreaseToo)
+                normalizationMultiplicator = Math.Min(oldNormalizationMultiplicator, normalizationMultiplicator);
         }
 
         public double this[double x]

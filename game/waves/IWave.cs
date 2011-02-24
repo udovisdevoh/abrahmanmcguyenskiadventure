@@ -18,6 +18,13 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <returns>Normalized wave</returns>
         void Normalize(double maxValue);
+
+        /// <summary>
+        /// Normalize the wave
+        /// </summary>
+        /// <param name="maxValue">max value</param>
+        /// <param name="isIncreaseToo">true: can increase normalization factor, not just decrease</param>
+        void Normalize(double maxValue, bool isIncreaseToo);
         
         /// <summary>
         /// Get amplitude momentum Y value at X
@@ -28,5 +35,5 @@ namespace AbrahmanAdventure.level
         {
             get;
         }
-	}
+    }
 }

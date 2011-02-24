@@ -86,6 +86,8 @@ namespace AbrahmanAdventure.level
                     maxWaveLength = 512.0;
                     minAmplitude = 16.0;
                     maxAmplitude = 48.0;
+                    isOnlyContinuous = true;
+                    isAllowSawWave = false;
                 }
 
                 return new WaveTree(BuildIndividualWave(minWaveLength, maxWaveLength, minAmplitude, maxAmplitude, random, isOnlyContinuous, isAllowSawWave));

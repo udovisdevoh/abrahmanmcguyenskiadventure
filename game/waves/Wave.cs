@@ -127,9 +127,23 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Normalize the wave to amplitude 1
         /// </summary>
+        /// <param name="maxValue">max value</param>
         public void Normalize(double maxValue)
         {
-            amplitude = maxValue;
+            Normalize(maxValue, true);
+        }
+
+        /// <summary>
+        /// Normalize the wave to amplitude 1
+        /// </summary>
+        /// <param name="maxValue">max value</param>
+        /// <param name="isIncreaseToo">true: we can increase amplitude, false: decrease only</param>
+        public void Normalize(double maxValue, bool isIncreaseToo)
+        {
+            if (isIncreaseToo)
+                amplitude = maxValue;
+            else
+                amplitude = Math.Min(amplitude, maxValue);
         }
         #endregion
     }
