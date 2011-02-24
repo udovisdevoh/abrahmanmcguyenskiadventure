@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
+using SdlDotNet.Graphics.Primitives;
 
 namespace AbrahmanAdventure.level
 {
@@ -48,23 +50,23 @@ namespace AbrahmanAdventure.level
             
             for (int x = 0; x < skyWidth; x++)
             {
-            	double waveOffset = verticalWave[x];
+            	double verticalWaveOffset = verticalWave[x];
             	for (int y = 0; y < skyHeight; y++)
             	{
             		double currentHue = hue;
             		double currentSaturation = saturation;
             		double currentLightness = lightness;
             		
-            		double relativeY = waveOffset + (double)y;
+            		double relativeY = verticalWaveOffset + (double)y;
             		
         			currentHue += horizontalWaveHue[relativeY];
             		currentSaturation += horizontalWaveSaturation[relativeY];
             		currentLightness += horizontalWaveLightness[relativeY];
+            		
+            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
+            		surface.Fill(new Rectangle(x,y,1,1), color);
             	}
             }
-            
-            throw new NotImplementedException();
-            //surface = BuildSurface(verticalWave, horizontalWave, Program.screenWidth * screenColumnCount, Program.screenHeight * screenRowCount);
         }
         #endregion
 
