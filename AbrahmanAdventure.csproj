@@ -63,6 +63,7 @@
     <Compile Include="game\waves\WaveBuilder.cs" />
     <Compile Include="game\waves\WaveFunctions.cs" />
     <Compile Include="game\waves\WavePack.cs" />
+    <Compile Include="game\waves\WaveTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

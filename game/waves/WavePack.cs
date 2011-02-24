@@ -314,6 +314,7 @@ namespace AbrahmanAdventure.level
         /// <returns></returns>
         public void Normalize(double maxValue)
         {
+            normalizationMultiplicator = 1.0;
             double y;
 
             double maxY = double.NegativeInfinity;
