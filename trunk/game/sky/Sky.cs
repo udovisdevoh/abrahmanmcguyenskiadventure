@@ -48,9 +48,18 @@ namespace AbrahmanAdventure.level
             
             for (int x = 0; x < skyWidth; x++)
             {
+            	double waveOffset = verticalWave[x];
             	for (int y = 0; y < skyHeight; y++)
             	{
+            		double currentHue = hue;
+            		double currentSaturation = saturation;
+            		double currentLightness = lightness;
             		
+            		double relativeY = waveOffset + (double)y;
+            		
+        			currentHue += horizontalWaveHue[relativeY];
+            		currentSaturation += horizontalWaveSaturation[relativeY];
+            		currentLightness += horizontalWaveLightness[relativeY];
             	}
             }
             
