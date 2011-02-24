@@ -22,6 +22,8 @@ namespace AbrahmanAdventure.level
                 else
                     wave = waveBuilder.BuildWaveTree(random,16);
 
+                //wave = new Wave(10, 10, 0, WaveFunctions.AbsSin);
+
                 double normalizationFactor = (random.NextDouble() * 40) + 8;
                 wave.Normalize(normalizationFactor, false);
 

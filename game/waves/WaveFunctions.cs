@@ -29,6 +29,8 @@ namespace AbrahmanAdventure.level
         private static WaveFunction saw = SawWave;
 
         private static WaveFunction negativeSaw = NegativeSawWave;
+
+        private static WaveFunction absSin = AbsSinWave;
         #endregion
 
         #region Public Methods
@@ -53,17 +55,19 @@ namespace AbrahmanAdventure.level
         {
             int functionType;
             if (isOnlyContinuous)
-                functionType = random.Next(1, 3);
-            else if (!isAllowSawWave)
                 functionType = random.Next(1, 4);
-            else
+            else if (!isAllowSawWave)
                 functionType = random.Next(1, 5);
+            else
+                functionType = random.Next(1, 6);
 
             if (functionType == 1)
                 return sine;
             else if (functionType == 2)
                 return triangle;
             else if (functionType == 3)
+                return absSin;
+            else if (functionType == 4)
                 return square;
             else
             {
@@ -99,6 +103,11 @@ namespace AbrahmanAdventure.level
         {
             return (x - Math.Round(x)) * -1.0;
         }
+
+        private static double AbsSinWave(double x)
+        {
+            return -Math.Abs(Math.Sin(x));
+        }
         #endregion
 
         #region Properties
@@ -132,6 +141,14 @@ namespace AbrahmanAdventure.level
         public static WaveFunction NegativeSaw
         {
             get { return negativeSaw; }
+        }
+
+        /// <summary>
+        /// Absolute sine wave
+        /// </summary>
+        public static WaveFunction AbsSin
+        {
+            get { return absSin; }
         }
         #endregion
     }
