@@ -47,7 +47,7 @@ namespace AbrahmanAdventure.level
         private Surface BuildZoneSurface(Level level, int zoneColumnIndex)
         {
             Rectangle rectangle;
-            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
+            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth,true);
 
             int startX = zoneColumnIndex * Program.totalZoneWidth;
 
@@ -68,11 +68,11 @@ namespace AbrahmanAdventure.level
 
                     int relativeFloorHeight = Program.totalZoneHeight / 2 + (int)waveOutput;
 
-                    if (isFirstWave)
+                    /*if (isFirstWave)
                     {
                         rectangle = new Rectangle(x, 0, Program.waveResolution, relativeFloorHeight);
                         zoneSurface.Fill(rectangle, Color.Black);
-                    }
+                    }*/
 
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                     zoneSurface.Fill(rectangle, waveColor);
