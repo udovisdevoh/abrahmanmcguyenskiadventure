@@ -26,6 +26,10 @@ namespace AbrahmanAdventure.level
         private int saturation;
 
         private int lightness;
+        
+        private static int skyHeight = Program.screenHeight * screenRowCount;
+        
+        private static int skyWidth = Program.screenWidth * screenColumnCount;
         #endregion
 
         #region Constructor
@@ -40,6 +44,16 @@ namespace AbrahmanAdventure.level
             IWave horizontalWaveLightness = BuildWave(random);
             IWave verticalWave = BuildWave(random);
 
+            surface = new Surface(skyWidth,skyHeight,16);
+            
+            for (int x = 0; x < skyWidth; x++)
+            {
+            	for (int y = 0; y < skyHeight; y++)
+            	{
+            		
+            	}
+            }
+            
             throw new NotImplementedException();
             //surface = BuildSurface(verticalWave, horizontalWave, Program.screenWidth * screenColumnCount, Program.screenHeight * screenRowCount);
         }
