@@ -10,6 +10,8 @@ namespace AbrahmanAdventure.level
         #region Fields and parts
         private List<Ground> groundList;
 
+        private Sky sky;
+
         public ColorTheme colorTheme;
         #endregion
 
@@ -23,6 +25,7 @@ namespace AbrahmanAdventure.level
         /// <param name="firstGround"></param>
         public Level(Random random, Ground firstGround)
         {
+            sky = new Sky(random);
             colorTheme = new ColorTheme(random);
             groundList = new List<Ground>();
             if (firstGround != null)
@@ -53,6 +56,11 @@ namespace AbrahmanAdventure.level
         public int Count
         {
             get { return groundList.Count; }
+        }
+
+        public Sky Sky
+        {
+            get { return sky; }
         }
         #endregion
     }
