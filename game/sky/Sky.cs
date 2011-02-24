@@ -15,9 +15,9 @@ namespace AbrahmanAdventure.level
     internal class Sky
     {
         #region Constants
-        private const int screenColumnCount = 3;
+        private const int screenColumnCount = 1;
 
-        private const int screenRowCount = 3;
+        private const int screenRowCount = 2;
         #endregion
 
         #region Fields and parts
@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.level
 
         private int lightness;
         
-        private static int skyHeight = Program.screenHeight * screenRowCount;
+        public static int skyHeight = Program.screenHeight * screenRowCount;
         
         private static int skyWidth = Program.screenWidth * screenColumnCount;
         #endregion
@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.level
             for (int x = 0; x < skyWidth; x++)
             {
             	double relativeX = (double)x / (double)Program.screenWidth * 640.0;
-            	double verticalWaveOffset = verticalWave[relativeX] / 5.0;
+            	double verticalWaveOffset = verticalWave[relativeX] / 4.0;
             	
             	if (column == null)
             	{
@@ -69,6 +69,14 @@ namespace AbrahmanAdventure.level
 	            		currentHue += horizontalWaveHue[relativeY];
 	            		currentSaturation += horizontalWaveSaturation[relativeY];
 	            		currentLightness += horizontalWaveLightness[relativeY];
+	            		
+	            		currentHue = Math.Max(0, currentHue);
+	            		currentSaturation = Math.Max(0, currentSaturation);
+	            		currentLightness = Math.Max(0, currentLightness);
+	            		
+	            		currentHue = Math.Min(255, currentHue);
+	            		currentSaturation = Math.Min(255, currentSaturation);
+	            		currentLightness = Math.Min(255, currentLightness);
 	            		
 	            		#warning, problem with hue. There is no red
 	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
@@ -87,7 +95,7 @@ namespace AbrahmanAdventure.level
             for (int i = 1; i < 5; i++)
             {
                 double amplitude = random.NextDouble() * 7.0 + 1.0;
-                double waveLength = (double)i * 30;
+                double waveLength = (double)i * 60;
                 double phase = random.NextDouble() * 2.0 - 1.0;
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.Sine));
             }
