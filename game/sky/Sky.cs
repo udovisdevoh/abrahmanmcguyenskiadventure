@@ -46,28 +46,31 @@ namespace AbrahmanAdventure.level
             IWave horizontalWaveLightness = BuildWave(random);
             IWave verticalWave = BuildWave(random);
 
-            surface = new Surface(skyWidth,skyHeight,16);
+            surface = new Surface(skyWidth,skyHeight,Program.bitDepth);
             
             Surface column = null;
             
             for (int x = 0; x < skyWidth; x++)
             {
-            	double verticalWaveOffset = verticalWave[x];
+            	double relativeX = (double)x / (double)Program.screenWidth * 640.0;
+            	double verticalWaveOffset = verticalWave[relativeX] / 5.0;
             	
             	if (column == null)
             	{
-            		column = new Surface(1, skyHeight,16);
+            		column = new Surface(1, skyHeight,Program.bitDepth);
 	            	for (int y = 0; y < skyHeight; y++)
 	            	{
 	            		double currentHue = hue;
 	            		double currentSaturation = saturation;
 	            		double currentLightness = lightness;
 	            		
+	            		double relativeY = (double)y / (double)Program.screenHeight * 480.0;
            		
-	            		currentHue += horizontalWaveHue[(double)y];
-	            		currentSaturation += horizontalWaveSaturation[(double)y];
-	            		currentLightness += horizontalWaveLightness[(double)y];
+	            		currentHue += horizontalWaveHue[relativeY];
+	            		currentSaturation += horizontalWaveSaturation[relativeY];
+	            		currentLightness += horizontalWaveLightness[relativeY];
 	            		
+	            		#warning, problem with hue. There is no red
 	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 	            		column.Fill(new Rectangle(0,y,1,1), color);
             		}
@@ -84,7 +87,7 @@ namespace AbrahmanAdventure.level
             for (int i = 1; i < 5; i++)
             {
                 double amplitude = random.NextDouble() * 7.0 + 1.0;
-                double waveLength = (double)i;
+                double waveLength = (double)i * 30;
                 double phase = random.NextDouble() * 2.0 - 1.0;
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.Sine));
             }
