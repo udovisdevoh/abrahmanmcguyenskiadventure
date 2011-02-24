@@ -85,7 +85,7 @@ namespace AbrahmanAdventure.level
                     minWaveLength = 32.0;
                     maxWaveLength = 512.0;
                     minAmplitude = 16.0;
-                    maxAmplitude = 48.0;
+                    maxAmplitude = 32.0;
                     isOnlyContinuous = true;
                     isAllowSawWave = false;
                 }
