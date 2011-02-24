@@ -27,6 +27,8 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
 
+            #warning, must blit the sky
+            //mainSurface.Blit(level.Sky.Surface,new Point(0,0));
             for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
             {
                 Surface currentSurface;
@@ -47,7 +49,8 @@ namespace AbrahmanAdventure.level
         private Surface BuildZoneSurface(Level level, int zoneColumnIndex)
         {
             Rectangle rectangle;
-            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth,true);
+            #warning this surface should be transparent
+            Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth, true);
 
             int startX = zoneColumnIndex * Program.totalZoneWidth;
 
