@@ -27,7 +27,9 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
 
-            mainSurface.Blit(level.Sky.Surface,new Point(0,Sky.skyHeight / -2));
+            mainSurface.Blit(level.Sky.Surface,new Point(0,Sky.skyHeight / -4));
+            
+            #warning following -4 and 44 must be known automatically
             for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
             {
                 Surface currentSurface;

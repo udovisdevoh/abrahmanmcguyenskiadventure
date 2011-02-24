@@ -30,7 +30,7 @@ namespace AbrahmanAdventure
 
         public const int zoneHeightScreenCount = 4;
 
-        public const int bitDepth = 16;
+        public const int bitDepth = 32;
 
         public const int maxCachedColumnCount = 100;
         #endregion
