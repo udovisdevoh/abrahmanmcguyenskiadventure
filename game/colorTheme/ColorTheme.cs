@@ -73,6 +73,7 @@ namespace AbrahmanAdventure.level
             //currentLightness = Math.Min(255, currentLightness);
             while (currentLightness < 0)
                 currentLightness += 256;
+            currentLightness = Math.Max(24, currentLightness);
 
             Color color = ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 
