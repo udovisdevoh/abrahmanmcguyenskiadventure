@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.level
             colorList.Add(color);
         }
 
-        private static Color ColorFromHSV(double hue, double saturation, double value)
+        public static Color ColorFromHSV(double hue, double saturation, double value)
         {
             int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
             double f = hue / 60 - Math.Floor(hue / 60);
