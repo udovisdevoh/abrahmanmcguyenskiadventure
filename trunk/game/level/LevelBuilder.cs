@@ -15,7 +15,13 @@ namespace AbrahmanAdventure.level
 
             int waveCount = random.Next(3, 12);
             for (int i = 0; i < waveCount; i++)
-                level.AddTerrainWave(new Ground(waveBuilder.Build(random)));
+            {
+                IWave wave = waveBuilder.BuildWavePack(random);
+                //IWave wave = waveBuilder.BuildWaveTree(random,32);
+                wave.Normalize(32);
+
+                level.AddTerrainWave(new Ground(wave));
+            }
 
             /*WavePack terrainWave = new WavePack(); //To test rendering
             terrainWave.Add(new Wave(40, 400, 0, WaveFunctions.Saw));
