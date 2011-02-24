@@ -48,24 +48,31 @@ namespace AbrahmanAdventure.level
 
             surface = new Surface(skyWidth,skyHeight,16);
             
+            Surface column = null;
+            
             for (int x = 0; x < skyWidth; x++)
             {
             	double verticalWaveOffset = verticalWave[x];
-            	for (int y = 0; y < skyHeight; y++)
+            	
+            	if (column == null)
             	{
-            		double currentHue = hue;
-            		double currentSaturation = saturation;
-            		double currentLightness = lightness;
-            		
-            		double relativeY = verticalWaveOffset + (double)y;
-            		
-        			currentHue += horizontalWaveHue[relativeY];
-            		currentSaturation += horizontalWaveSaturation[relativeY];
-            		currentLightness += horizontalWaveLightness[relativeY];
-            		
-            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
-            		surface.Fill(new Rectangle(x,y,1,1), color);
+            		column = new Surface(1, skyHeight,16);
+	            	for (int y = 0; y < skyHeight; y++)
+	            	{
+	            		double currentHue = hue;
+	            		double currentSaturation = saturation;
+	            		double currentLightness = lightness;
+	            		
+           		
+	            		currentHue += horizontalWaveHue[(double)y];
+	            		currentSaturation += horizontalWaveSaturation[(double)y];
+	            		currentLightness += horizontalWaveLightness[(double)y];
+	            		
+	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
+	            		column.Fill(new Rectangle(0,y,1,1), color);
+            		}
             	}
+            	surface.Blit(column,new Point(x,(int)verticalWaveOffset));
             }
         }
         #endregion
