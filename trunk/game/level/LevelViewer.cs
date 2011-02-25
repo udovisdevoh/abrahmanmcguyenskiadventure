@@ -73,6 +73,10 @@ namespace AbrahmanAdventure.level
 
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                     zoneSurface.Fill(rectangle, waveColor);
+
+                    #warning There seem to be a problem with offset and texture sampling x coordinates
+                    double textureInput = (double)x * (double)ground.Texture.Surface.Width / (double)Program.totalZoneWidth;
+                    zoneSurface.Blit(ground.Texture.Surface, new Point(x, relativeFloorHeight), new Rectangle((int)textureInput, 0, 1, ground.Texture.Surface.Height));
                 }
             }
 
