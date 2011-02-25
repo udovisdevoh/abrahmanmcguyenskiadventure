@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace AbrahmanAdventure.level
 {
@@ -46,9 +47,9 @@ namespace AbrahmanAdventure.level
             groundList.Add(ground);
         }
 
-        internal void BuildNewGround(IWave wave, Random random)
+        internal void BuildNewGround(IWave wave, Random random, Color color)
         {
-            groundList.Add(new Ground(wave, random, colorTheme.GetColor(groundList.Count)));
+            groundList.Add(new Ground(wave, random, color));
         }
         #endregion
 

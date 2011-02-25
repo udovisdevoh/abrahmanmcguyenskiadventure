@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.level
                 Surface currentSurface;
                 if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
                 {
-                    currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset);
+                    currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset, currentZoneOffset);
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
@@ -42,12 +42,15 @@ namespace AbrahmanAdventure.level
             }
 
             mainSurface.Blit(level[0].Texture.Surface, new Point(0, 0));
+            mainSurface.Blit(level[1].Texture.Surface, new Point(64, 0));
+            mainSurface.Blit(level[2].Texture.Surface, new Point(128, 0));
+            mainSurface.Blit(level[3].Texture.Surface, new Point(192, 0));
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
             mainSurface.Update();
         }
 
-        private Surface BuildZoneSurface(Level level, int zoneColumnIndex)
+        private Surface BuildZoneSurface(Level level, int zoneColumnIndex, int absoluteX)
         {
             Rectangle rectangle;
             Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
@@ -75,8 +78,13 @@ namespace AbrahmanAdventure.level
                     zoneSurface.Fill(rectangle, waveColor);
 
                     #warning There seem to be a problem with offset and texture sampling x coordinates
-                    double textureInput = (double)x * (double)ground.Texture.Surface.Width / (double)Program.totalZoneWidth;
-                    zoneSurface.Blit(ground.Texture.Surface, new Point(x, relativeFloorHeight), new Rectangle((int)textureInput, 0, 1, ground.Texture.Surface.Height));
+                    int textureInputX = absoluteX + x;
+                    while (textureInputX > ground.Texture.Surface.Width)
+                        textureInputX -= ground.Texture.Surface.Width;
+                    while (textureInputX < 0)
+                        textureInputX += ground.Texture.Surface.Width;
+                    
+                    zoneSurface.Blit(ground.Texture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.Texture.Surface.Height));
                 }
             }
 
