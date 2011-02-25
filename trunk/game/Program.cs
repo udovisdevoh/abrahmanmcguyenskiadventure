@@ -137,9 +137,15 @@ namespace AbrahmanAdventure
                 viewOffsetX -= timeDelta * 16.0;
 
             if (userInput.isPressUp && !userInput.isPressDown)
+            {
                 viewOffsetY += timeDelta * 16.0;
+                viewOffsetY = Math.Min(viewOffsetY, totalZoneHeight - screenHeight);
+            }
             else if (userInput.isPressDown && !userInput.isPressUp)
+            {
                 viewOffsetY -= timeDelta * 16.0;
+                viewOffsetY = Math.Max(viewOffsetY, -totalZoneHeight + screenHeight);
+            }
 
             levelViewer.Update(level);
         }
