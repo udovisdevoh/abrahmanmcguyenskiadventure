@@ -58,6 +58,7 @@
     <Compile Include="game\level\LevelViewerCache.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\sky\Sky.cs" />
+    <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\IWave.cs" />
     <Compile Include="game\waves\Wave.cs" />

@@ -27,7 +27,8 @@ namespace AbrahmanAdventure.level
                 double normalizationFactor = (random.NextDouble() * 40) + 8;
                 wave.Normalize(normalizationFactor, false);
 
-                level.AddTerrainWave(new Ground(wave));
+                //level.AddTerrainWave(new Ground(wave, random));
+                level.BuildNewGround(wave, random);
             }
 
             /*WavePack terrainWave = new WavePack(); //To test rendering
