@@ -68,6 +68,7 @@ namespace AbrahmanAdventure.level
             int surfaceSize = Program.tileSize * 2;
 
             surface = new Surface(surfaceSize, surfaceSize, Program.bitDepth);
+            surface.Transparent=false;
 
 
             double originalHue = color.GetHue();
@@ -118,17 +119,20 @@ namespace AbrahmanAdventure.level
                         currentHue -= 256.0;*/
 
 
-                    currentSaturation = Math.Max(0, currentSaturation);
-                    currentLightness = Math.Max(0, currentLightness);
-                    currentHue = Math.Max(0, currentHue);
-                    currentSaturation = Math.Min(255, currentSaturation);
-                    currentLightness = Math.Min(255, currentLightness);
-                    currentHue = Math.Min(255, currentHue);
+                    currentSaturation = Math.Max(0.0, currentSaturation);
+                    currentLightness = Math.Max(0.0, currentLightness);
+                    currentHue = Math.Max(0.0, currentHue);
+                    currentSaturation = Math.Min(255.0, currentSaturation);
+                    currentLightness = Math.Min(255.0, currentLightness);
+                    currentHue = Math.Min(255.0, currentHue);
 
                     Color currentColor = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
                     surface.Fill(new Rectangle(x,y,1,1),currentColor);
                 }
             }
+            
+            short circleSize = (short)(surfaceSize/2);
+            surface.Draw(new Circle(circleSize,circleSize,circleSize),Color.Red);
         }
         #endregion
 
