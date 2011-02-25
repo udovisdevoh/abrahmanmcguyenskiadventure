@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.level
         public Level(Random random) : this(random, null) { }
 
         /// <summary>
-        /// Warning! Use
+        /// Use level generator instead
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="firstGround"></param>
