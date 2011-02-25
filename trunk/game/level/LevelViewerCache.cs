@@ -33,5 +33,10 @@ namespace AbrahmanAdventure.level
                 internalDictionary.Remove(internalQueue.Dequeue());
             }
         }
+        
+        public bool IsFull
+        {
+        	get {return internalDictionary.Count >= Program.maxCachedColumnCount;}
+        }
     }
 }
