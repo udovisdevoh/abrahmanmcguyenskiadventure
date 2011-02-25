@@ -20,7 +20,7 @@ namespace AbrahmanAdventure
 
         public const int targetFps = 60;
         
-        public const bool isFullScreen = false;
+        public const bool isFullScreen = true;
 
         public const int tileColumnCount = 20;
 

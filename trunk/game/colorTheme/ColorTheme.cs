@@ -42,7 +42,7 @@ namespace AbrahmanAdventure.level
         internal Color GetColor(int themeColorId)
         {
             if (colorList.Count - 1 < themeColorId)
-                buildColor(themeColorId);
+                BuildColor(themeColorId);
             return colorList[themeColorId];
         }
         
@@ -73,10 +73,10 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Private methods
-        private void buildColor(int themeColorId)
+        private void BuildColor(int themeColorId)
         {
             if (colorList.Count < themeColorId)
-                buildColor(themeColorId - 1);
+                BuildColor(themeColorId - 1);
 
             int currentHue = hue;
             int currentSaturation = saturation;
