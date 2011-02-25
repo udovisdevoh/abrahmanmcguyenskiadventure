@@ -12,6 +12,8 @@ namespace AbrahmanAdventure.level
         private IWave terrainWave;
 
         private Texture texture;
+        
+        private bool isTransparent;
         #endregion
 
         #region Constructors
@@ -19,6 +21,22 @@ namespace AbrahmanAdventure.level
         {
             texture = new Texture(random, color);
             this.terrainWave = terrainWave;
+            isTransparent = random.Next(0,5) == 0;
+        }
+        #endregion
+        
+        #region Public Methods
+        public bool IsHigherThanOtherGrounds(Level level, double xInput)
+        {
+        	double yOutput = terrainWave[xInput];
+        	
+        	foreach (Ground otherGround in level)
+        		if (otherGround != this)
+        			if (otherGround.terrainWave[xInput] < yOutput)
+        				return false;
+
+        	
+        	return true;
         }
         #endregion
 
@@ -31,6 +49,11 @@ namespace AbrahmanAdventure.level
         public Texture Texture
         {
             get { return texture; }
+        }
+        
+        public bool IsTransparent
+        {
+        	get{return isTransparent;}
         }
         #endregion
     }

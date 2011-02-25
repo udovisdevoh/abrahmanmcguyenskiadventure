@@ -15,6 +15,8 @@ namespace AbrahmanAdventure.level
         private Surface mainSurface;
 
         private LevelViewerCache levelViewerCache = new LevelViewerCache();
+        
+        private static Color transparentColor = ColorTheme.ColorFromHSV(0,0,0);
         #endregion
 
         public LevelViewer(Surface mainSurface)
@@ -59,6 +61,7 @@ namespace AbrahmanAdventure.level
             {
                 IWave terrainWave = ground.TerrainWave;
                 Color waveColor = level.colorTheme.GetColor(themeColorId);
+                
                 themeColorId--;
 
                 for (int x = 0; x < Program.totalZoneWidth; x += Program.waveResolution)
@@ -71,7 +74,11 @@ namespace AbrahmanAdventure.level
                     int relativeFloorHeight = Program.totalZoneHeight / 2 + (int)waveOutput;
 
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
-                    zoneSurface.Fill(rectangle, waveColor);
+                    
+                    if (ground.IsTransparent && ground.IsHigherThanOtherGrounds(level,waveInput))
+                    	zoneSurface.Fill(rectangle, transparentColor);
+                	else
+                    	zoneSurface.Fill(rectangle, waveColor);
 
                     #warning There seem to be a problem with offset and texture sampling x coordinates and transparency
                     int textureInputX = absoluteXOffset + x;
