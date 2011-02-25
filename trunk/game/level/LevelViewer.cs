@@ -34,7 +34,8 @@ namespace AbrahmanAdventure.level
                 Surface currentSurface;
                 if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
                 {
-                    currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset, currentZoneOffset);
+                	int absoluteXOffset = (int)(Math.Round((double)zoneColumnIndex * (double)Program.totalZoneWidth));
+                	currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset, absoluteXOffset);
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
@@ -50,7 +51,7 @@ namespace AbrahmanAdventure.level
             mainSurface.Update();
         }
 
-        private Surface BuildZoneSurface(Level level, int zoneColumnIndex, int absoluteX)
+        private Surface BuildZoneSurface(Level level, int zoneColumnIndex, int absoluteXOffset)
         {
             Rectangle rectangle;
             Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
@@ -77,8 +78,9 @@ namespace AbrahmanAdventure.level
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                     zoneSurface.Fill(rectangle, waveColor);
 
-                    #warning There seem to be a problem with offset and texture sampling x coordinates
-                    int textureInputX = absoluteX + x;
+                    #warning There seem to be a problem with offset and texture sampling x coordinates and transparency
+                    int textureInputX = absoluteXOffset + x;
+                    textureInputX %= ground.Texture.Surface.Width;
                     while (textureInputX > ground.Texture.Surface.Width)
                         textureInputX -= ground.Texture.Surface.Width;
                     while (textureInputX < 0)
