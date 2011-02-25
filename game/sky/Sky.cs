@@ -46,6 +46,7 @@ namespace AbrahmanAdventure.level
             IWave horizontalWaveLightness = BuildWave(random);
             IWave verticalWave = BuildWave(random);
 
+
             surface = new Surface(skyWidth,skyHeight,Program.bitDepth);
             
             Surface column = null;
@@ -63,7 +64,6 @@ namespace AbrahmanAdventure.level
 	            		double currentHue = hue;
 	            		double currentSaturation = saturation;
 	            		double currentLightness = lightness;
-	            		
 	            		double relativeY = (double)y / (double)Program.screenHeight * 480.0;
            		
 	            		currentHue += horizontalWaveHue[relativeY];
@@ -78,11 +78,11 @@ namespace AbrahmanAdventure.level
 	            		currentSaturation = Math.Min(255, currentSaturation);
 	            		currentLightness = Math.Min(255, currentLightness);
 	            		
-	            		#warning, problem with hue. There is no red
 	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 	            		column.Fill(new Rectangle(0,y,1,1), color);
             		}
             	}
+
             	surface.Blit(column,new Point(x,(int)verticalWaveOffset));
             }
         }
