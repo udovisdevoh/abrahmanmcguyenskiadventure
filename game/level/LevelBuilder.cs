@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.level
                 wave.Normalize(normalizationFactor, false);
 
                 //level.AddTerrainWave(new Ground(wave, random));
-                level.BuildNewGround(wave, random);
+                level.BuildNewGround(wave, random, level.colorTheme.GetColor(waveCount - i - 1));
             }
 
             /*WavePack terrainWave = new WavePack(); //To test rendering
