@@ -65,9 +65,10 @@ namespace AbrahmanAdventure.level
             
             isAlignedToGround = random.Next(0, 2) == 0;
 
-            int surfaceSize = Program.tileSize * 2;
+            int surfaceWidth = Program.tileSize * 2;
+            int surfaceHeight = (int)((double)Program.tileSize * random.NextDouble() * 3.5 + 0.5);
 
-            surface = new Surface(surfaceSize, surfaceSize, Program.bitDepth);
+            surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
             surface.Transparent=false;
 
 
@@ -75,12 +76,12 @@ namespace AbrahmanAdventure.level
             double originalSaturation = color.GetSaturation() * 256.0;
             double originalLightness = color.GetBrightness() * 256.0;
             
-            for (int x = 0; x < surfaceSize; x++)
+            for (int x = 0; x < surfaceWidth; x++)
             {
-                double relativeX = (double)x / (double)surfaceSize * 24.0;
-                for (int y = 0; y < surfaceSize; y++)
+                double relativeX = (double)x / (double)surfaceWidth * 24.0;
+                for (int y = 0; y < surfaceHeight; y++)
                 {
-                    double relativeY = (double)y / (double)surfaceSize * 24.0;
+                    double relativeY = (double)y / (double)surfaceHeight * 24.0;
 
                     double currentHue = originalHue;
                     double currentSaturation = originalSaturation;
@@ -131,7 +132,7 @@ namespace AbrahmanAdventure.level
                 }
             }
             
-            short circleSize = (short)(surfaceSize/2);
+            short circleSize = (short)(surfaceWidth/2);
             //surface.Draw(new Circle(circleSize,circleSize,circleSize),Color.Red);
         }
         #endregion
