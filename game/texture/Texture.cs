@@ -120,7 +120,7 @@ namespace AbrahmanAdventure.level
 
 
                     currentSaturation = Math.Max(0.0, currentSaturation);
-                    currentLightness = Math.Max(0.0, currentLightness);
+                    currentLightness = Math.Max(1, currentLightness);
                     currentHue = Math.Max(0.0, currentHue);
                     currentSaturation = Math.Min(255.0, currentSaturation);
                     currentLightness = Math.Min(255.0, currentLightness);
@@ -132,7 +132,7 @@ namespace AbrahmanAdventure.level
             }
             
             short circleSize = (short)(surfaceSize/2);
-            surface.Draw(new Circle(circleSize,circleSize,circleSize),Color.Red);
+            //surface.Draw(new Circle(circleSize,circleSize,circleSize),Color.Red);
         }
         #endregion
 
