@@ -139,9 +139,9 @@ namespace AbrahmanAdventure.level
 
             int waveCount = random.Next(2, 6);
 
-            for (int i = 1; i < waveCount; i++)
+            for (int i = 1; i < 5; i++)
             {
-                double waveLength = (double)Program.tileSize / (double)i;
+                double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5) * random.Next(1,3));
                 double amplitude = random.NextDouble();
                 double phase = random.NextDouble() * 2.0 - 1.0;
 
