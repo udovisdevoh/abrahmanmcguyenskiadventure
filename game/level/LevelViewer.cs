@@ -42,11 +42,6 @@ namespace AbrahmanAdventure.level
                 mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, (int)Program.viewOffsetY));
             }
 
-            /*mainSurface.Blit(level[0].Texture.Surface, new Point(0, 0));
-            mainSurface.Blit(level[1].Texture.Surface, new Point(64, 0));
-            mainSurface.Blit(level[2].Texture.Surface, new Point(128, 0));
-            mainSurface.Blit(level[3].Texture.Surface, new Point(192, 0));*/
-
             levelViewerCache.Trim(Program.maxCachedColumnCount);
             mainSurface.Update();
         }
