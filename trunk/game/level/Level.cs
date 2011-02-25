@@ -16,20 +16,15 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Constructor
-        public Level(Random random) : this(random, null) { }
-
         /// <summary>
         /// Use level generator instead
         /// </summary>
         /// <param name="random">random number generator</param>
-        /// <param name="firstGround"></param>
-        public Level(Random random, Ground firstGround)
+        public Level(Random random)
         {
             sky = new Sky(random);
             colorTheme = new ColorTheme(random);
             groundList = new List<Ground>();
-            if (firstGround != null)
-                this.groundList.Add(firstGround);
         }
         #endregion
 
@@ -50,6 +45,11 @@ namespace AbrahmanAdventure.level
         {
             groundList.Add(ground);
         }
+
+        internal void BuildNewGround(IWave wave, Random random)
+        {
+            groundList.Add(new Ground(wave, random, colorTheme.GetColor(groundList.Count)));
+        }
         #endregion
 
         #region Properties
@@ -61,6 +61,11 @@ namespace AbrahmanAdventure.level
         public Sky Sky
         {
             get { return sky; }
+        }
+
+        public Ground this[int index]
+        {
+            get { return groundList[index]; }
         }
         #endregion
     }

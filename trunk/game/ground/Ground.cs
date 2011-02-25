@@ -11,16 +11,13 @@ namespace AbrahmanAdventure.level
         #region Fields and parts
         private IWave terrainWave;
 
-        private IWave xTextureWave;
-
-        private IWave yTextureWave;
-
-        private bool isTextureMultiply;
+        private Texture texture;
         #endregion
 
         #region Constructors
-        public Ground(IWave terrainWave)
+        public Ground(IWave terrainWave, Random random, Color color)
         {
+            texture = new Texture(random, color);
             this.terrainWave = terrainWave;
         }
         #endregion
@@ -29,6 +26,11 @@ namespace AbrahmanAdventure.level
         public IWave TerrainWave
         {
             get{return terrainWave;}
+        }
+
+        public Texture Texture
+        {
+            get { return texture; }
         }
         #endregion
     }
