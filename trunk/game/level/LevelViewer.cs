@@ -29,8 +29,7 @@ namespace AbrahmanAdventure.level
 
             mainSurface.Blit(level.Sky.Surface,new Point(0,Sky.skyHeight / -4));
             
-            #warning following -4 and 44 must be known automatically
-            for (int currentZoneOffset = -4; currentZoneOffset < 44; currentZoneOffset++)
+            for (int currentZoneOffset = -Program.terrainColumnBufferLeftCount; currentZoneOffset < Program.terrainColumnBufferRightCount; currentZoneOffset++)
             {
                 Surface currentSurface;
                 if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))

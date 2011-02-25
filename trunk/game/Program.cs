@@ -46,6 +46,10 @@ namespace AbrahmanAdventure
 
         public static int totalZoneHeight = Program.zoneHeightScreenCount * Program.screenHeight;
 
+        public static int terrainColumnBufferRightCount = (int)(1.1 / zoneWidthScreenCount);
+
+        public static int terrainColumnBufferLeftCount = (int)(0.1 / zoneWidthScreenCount);
+
         private UserInput userInput;
 
         private Level level;
