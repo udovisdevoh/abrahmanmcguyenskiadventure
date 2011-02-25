@@ -69,6 +69,10 @@ namespace AbrahmanAdventure.level
 
             surface = new Surface(surfaceSize, surfaceSize, Program.bitDepth);
 
+
+            double originalHue = color.GetHue();
+            double originalSaturation = color.GetSaturation() * 256.0;
+            double originalLightness = color.GetBrightness() * 256.0;
             
             for (int x = 0; x < surfaceSize; x++)
             {
@@ -77,9 +81,9 @@ namespace AbrahmanAdventure.level
                 {
                     double relativeY = (double)y / (double)surfaceSize * 24.0;
 
-                    double currentHue = 128.0;
-                    double currentSaturation = 128.0;
-                    double currentLightness = 128.0;
+                    double currentHue = originalHue;
+                    double currentSaturation = originalSaturation;
+                    double currentLightness = originalLightness;
 
                     double verticalHueContribution = verticalHueWave[y];
                     double horizontalHueContribution = horizontalHueWave[x];
