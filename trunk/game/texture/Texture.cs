@@ -62,6 +62,7 @@ namespace AbrahmanAdventure.level
             isHueMultiply = random.Next(0, 3) == 0;
             isSaturationMultiply = random.Next(0, 3) == 0;
             isLightnessMultiply = random.Next(0, 3) == 0;
+            
             isAlignedToGround = random.Next(0, 2) == 0;
 
             int surfaceSize = Program.tileSize * 2;
@@ -80,20 +81,30 @@ namespace AbrahmanAdventure.level
                     double currentSaturation = 128.0;
                     double currentLightness = 128.0;
 
+                    double verticalHueContribution = verticalHueWave[y];
+                    double horizontalHueContribution = horizontalHueWave[x];
+
+                    double horizontalSaturationContribution = horizontalSaturationWave[x];
+                    double verticalSaturationContribution = horizontalSaturationWave[y];
+
+                    double horizontalLightnessContribution = horizontalLightnessWave[x];
+                    double verticalLightnessContribution = verticalLightnessWave[y];
+
+
                     if (isHueMultiply)
-                        currentHue += (horizontalHueWave[x] + verticalHueWave[y]) * 20.0;
+                        currentHue += (horizontalHueContribution * verticalHueContribution) * 10.0;
                     else
-                        currentHue += ((horizontalHueWave[x] * verticalHueWave[y]) * 20.0);
+                        currentHue += ((horizontalHueContribution + verticalHueContribution) * 10.0);
 
                     if (isSaturationMultiply)
-                        currentSaturation += (horizontalSaturationWave[x] + verticalSaturationWave[y]) * 40;
+                        currentSaturation += (horizontalSaturationContribution * verticalSaturationContribution) * 30;
                     else
-                        currentSaturation += ((horizontalSaturationWave[x] * verticalSaturationWave[y]) * 40.0);
+                        currentSaturation += ((horizontalSaturationContribution + verticalSaturationContribution) * 30.0);
 
                     if (isLightnessMultiply)
-                        currentLightness += (horizontalLightnessWave[x] + verticalLightnessWave[y]) * 40;
+                        currentLightness += (horizontalLightnessContribution * verticalLightnessContribution) * 30;
                     else
-                        currentLightness += ((horizontalLightnessWave[x] * verticalLightnessWave[y]) * 40.0);
+                        currentLightness += ((horizontalLightnessContribution + verticalLightnessContribution) * 30.0);
 
 
                     /*while (currentHue < 0.0)
@@ -129,7 +140,8 @@ namespace AbrahmanAdventure.level
                 double waveLength = (double)Program.tileSize / (double)i;
                 double amplitude = random.NextDouble();
                 double phase = random.NextDouble() * 2.0 - 1.0;
-                wavePack.Add(new Wave(amplitude,waveLength,phase, WaveFunctions.GetRandomWaveFunction(random)));
+
+                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
             }
 
             wavePack.Normalize();
