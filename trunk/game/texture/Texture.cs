@@ -61,7 +61,8 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
-        public Texture(Random random, Color color, double waveStrengthMultiplicator) : this(random,color,-1, waveStrengthMultiplicator)
+        public Texture(Random random, Color color, double waveStrengthMultiplicator, bool isTop)
+            : this(random, color, -1, waveStrengthMultiplicator, isTop)
         {
         }
 
@@ -71,7 +72,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
         /// <param name="defaultHeight">default height (how manu tiles)</param>
-        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator)
+        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, bool isTop)
         {
             this.color = color;
             horizontalHueWave = BuildWave(random);
@@ -173,10 +174,13 @@ namespace AbrahmanAdventure.level
                     while (currentHue > 255.0)
                         currentHue -= 256.0;*/
 
-                    if (y == 0)
-                        currentLightness += 75;
-                    else if (y == 1)
-                        currentLightness += 25;
+                    if (isTop)
+                    {
+                        if (y == 0)
+                            currentLightness += 75;
+                        else if (y == 1)
+                            currentLightness += 25;
+                    }
 
                     currentSaturation = Math.Max(0.0, currentSaturation);
                     currentLightness = Math.Max(1, currentLightness);

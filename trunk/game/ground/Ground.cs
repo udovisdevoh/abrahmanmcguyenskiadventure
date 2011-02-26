@@ -23,12 +23,12 @@ namespace AbrahmanAdventure.level
         #region Constructors
         public Ground(IWave terrainWave, Random random, Color color)
         {
-            topTexture = new Texture(random, color, 1.5);
+            topTexture = new Texture(random, color, 1.5, true);
 
             isUseBottomTexture = random.Next(0, 2) == 0;
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
-                bottomTexture = new Texture(random, color, 16, 0.75);
+                bottomTexture = new Texture(random, color, 16, 0.75, false);
             this.terrainWave = terrainWave;
             isTransparent = random.Next(0,5) == 0;
         }
