@@ -94,10 +94,7 @@ namespace AbrahmanAdventure.level
                             int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.Height);
                             int bottomSurfacePositionY = (relativeFloorHeight + ground.TopTexture.Surface.Height) / bottomSurfaceAligment * bottomSurfaceAligment;
 
-                            for (int bottomTextureBlitCount = 0; bottomTextureBlitCount < 16; bottomTextureBlitCount++)
-                            {
-                                zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY + (ground.BottomTexture.Surface.Height * bottomTextureBlitCount)), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
-                            }
+                            zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
                         }
                         else
                         {
