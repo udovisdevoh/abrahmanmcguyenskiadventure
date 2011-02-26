@@ -75,7 +75,6 @@ namespace AbrahmanAdventure.level
 
                    
 
-                    #warning There seem to be a problem with offset and texture sampling x coordinates and transparency
                     int textureInputX = absoluteXOffset + x;
                     textureInputX %= ground.TopTexture.Surface.Width;
                     while (textureInputX > ground.TopTexture.Surface.Width)
