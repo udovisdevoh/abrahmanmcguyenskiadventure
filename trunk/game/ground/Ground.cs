@@ -74,6 +74,11 @@ namespace AbrahmanAdventure.level
         {
             get { return isUseBottomTexture; }
         }
+
+        public bool IsUseTopTextureThicknessScaling
+        {
+            get { return topTexture.IsUseTopTextureThicknessScaling; }
+        }
         #endregion
     }
 }

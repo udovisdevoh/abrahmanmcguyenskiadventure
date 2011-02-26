@@ -24,6 +24,8 @@ namespace AbrahmanAdventure
 
         public const bool isUseBottomTexture = true;
 
+        public const bool isUseTopTextureThicknessScaling = true;
+
         public const int tileColumnCount = 20;
 
         public const int waveResolution = 1;

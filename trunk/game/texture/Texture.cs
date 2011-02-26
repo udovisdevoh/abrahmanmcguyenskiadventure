@@ -20,8 +20,6 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private Color color;
 
-        private bool isAlignedToGround;
-
         private Surface surface;
 
         private IWave horizontalHueWave;
@@ -43,6 +41,8 @@ namespace AbrahmanAdventure.level
         private bool isSaturationMultiply;
 
         private bool isLightnessMultiply;
+
+        private bool isUseTopTextureThicknessScaling;
 
         private Dictionary<int, Surface> scalingCache = new Dictionary<int, Surface>();
         #endregion
@@ -73,12 +73,16 @@ namespace AbrahmanAdventure.level
             verticalSaturationWave = BuildWave(random);
             verticalLightnessWave = BuildWave(random);
 
+            isUseTopTextureThicknessScaling = random.Next(0, 2) == 0;
+
+
+            if (Program.isUseTopTextureThicknessScaling && isUseTopTextureThicknessScaling)
+                this.horizontalThicknessWave = BuildThicknessWave(random);
 
             isHueMultiply = random.Next(0, 3) == 0;
             isSaturationMultiply = random.Next(0, 3) == 0;
             isLightnessMultiply = random.Next(0, 3) == 0;
             
-            isAlignedToGround = random.Next(0, 2) == 0;
 
             int surfaceWidth = Program.tileSize * 2;
             int surfaceHeight;
@@ -178,9 +182,29 @@ namespace AbrahmanAdventure.level
             return wavePack;
         }
 
+        private IWave BuildThicknessWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+
+            int waveCount = random.Next(2, 24);
+
+            for (int i = 1; i < 5; i++)
+            {
+                double waveLength = (double)Program.tileSize * (double)random.Next(1, 5);
+                double amplitude = random.NextDouble();
+                double phase = random.NextDouble() * 2.0 - 1.0;
+
+                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
+            }
+
+            wavePack.Normalize(random.NextDouble() * 0.5 + 0.5);
+
+            return wavePack;
+        }
+
         private int GetRoundedScaling(double scaling)
         {
-            return (int)(scaling * 10.0);
+            return (int)(scaling * 20.0);
         }
         #endregion
 
@@ -208,14 +232,14 @@ namespace AbrahmanAdventure.level
             get { return surface; }
         }
 
-        public bool IsAlignedToGround
-        {
-            get { return isAlignedToGround; }
-        }
-
         public IWave HorizontalThicknessWave
         {
             get { return horizontalThicknessWave; }
+        }
+
+        public bool IsUseTopTextureThicknessScaling
+        {
+            get { return isUseTopTextureThicknessScaling; }
         }
         #endregion
     }

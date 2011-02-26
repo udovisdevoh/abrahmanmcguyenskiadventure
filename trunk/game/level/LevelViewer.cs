@@ -82,15 +82,6 @@ namespace AbrahmanAdventure.level
                     while (textureInputX < 0)
                         textureInputX += ground.TopTexture.Surface.Width;
 
-                    /*double scaling = ground.Texture.HorizontalThicknessWave[textureInputX] + 2.0;
-                    Surface scaledSurface = ground.Texture.GetCachedScaledSurface(scaling);
-                    if (scaledSurface == null)
-                    {
-                        scaledSurface = ground.Texture.Surface.CreateScaledSurface(1.0, scaling);
-                        ground.Texture.SetCachedScaledSurface(scaledSurface, scaling);
-                    }
-                    zoneSurface.Blit(scaledSurface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, scaledSurface.Height));*/
-
                     if (ground.IsTransparent && ground.IsHigherThanOtherGrounds(level, waveInput))
                     {
                         rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
@@ -111,7 +102,21 @@ namespace AbrahmanAdventure.level
                         }
                     }
 
-                    zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.Height));
+                    if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
+                    {
+                        double scaling = ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
+                        Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
+                        if (scaledSurface == null)
+                        {
+                            scaledSurface = ground.TopTexture.Surface.CreateScaledSurface(1.0, scaling);
+                            ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
+                        }
+                        zoneSurface.Blit(scaledSurface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, scaledSurface.Height));
+                    }
+                    else
+                    {
+                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.Height));
+                    }
                 }
             }
 
