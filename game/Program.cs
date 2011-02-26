@@ -22,6 +22,8 @@ namespace AbrahmanAdventure
         
         public const bool isFullScreen = false;
 
+        public const bool isHardwareSurface = true;
+
         public const bool isUseBottomTexture = true;
 
         public const bool isUseTopTextureThicknessScaling = true;
@@ -75,7 +77,7 @@ namespace AbrahmanAdventure
 
             userInput = new UserInput();
 
-            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen,true);
+            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
             levelViewer = new LevelViewer(mainSurface);
         }
