@@ -38,6 +38,8 @@ namespace AbrahmanAdventure.level
 
         private IWave xOffsetInputWave;
 
+        private IWave yOffsetInputWave;
+
         private bool isHueMultiply;
 
         private bool isSaturationMultiply;
@@ -46,7 +48,9 @@ namespace AbrahmanAdventure.level
 
         private bool isUseTopTextureThicknessScaling;
 
-        private bool isUseOffsetInputWave;
+        private bool isUseXOffsetInputWave;
+
+        private bool isUseYOffsetInputWave;
 
         private Dictionary<int, Surface> scalingCache = new Dictionary<int, Surface>();
         #endregion
@@ -78,7 +82,8 @@ namespace AbrahmanAdventure.level
             verticalLightnessWave = BuildWave(random);
 
             isUseTopTextureThicknessScaling = random.Next(0, 3) == 0;
-            isUseOffsetInputWave = random.Next(0, 3) == 0;
+            isUseXOffsetInputWave = random.Next(0, 3) == 0;
+            isUseYOffsetInputWave = random.Next(0, 3) == 0;
             
 
 
@@ -99,12 +104,17 @@ namespace AbrahmanAdventure.level
                 surfaceHeight = Program.tileSize * defaultHeight;
 
 
-            if (isUseOffsetInputWave)
+            if (isUseXOffsetInputWave)
             {
                 xOffsetInputWave = BuildWave(random);
                 xOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1,5));
             }
 
+            if (isUseYOffsetInputWave)
+            {
+                yOffsetInputWave = BuildWave(random);
+                yOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
+            }
 
             surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
             surface.Transparent=false;
@@ -118,24 +128,27 @@ namespace AbrahmanAdventure.level
             {
                 for (int y = 0; y < surfaceHeight; y++)
                 {
-                    double relativeY = (double)y / (double)surfaceHeight * 24.0;
+                    double relativeY = y;
                     double relativeX = x;
                         
-                    if (isUseOffsetInputWave)
+                    if (isUseXOffsetInputWave)
                         relativeX += xOffsetInputWave[y];
+
+                    if (isUseYOffsetInputWave)
+                        relativeY += yOffsetInputWave[x];
 
                     double currentHue = originalHue;
                     double currentSaturation = originalSaturation;
                     double currentLightness = originalLightness;
 
-                    double verticalHueContribution = verticalHueWave[y] * waveStrengthMultiplicator;
+                    double verticalHueContribution = verticalHueWave[relativeY] * waveStrengthMultiplicator;
                     double horizontalHueContribution = horizontalHueWave[relativeX] * waveStrengthMultiplicator;
 
                     double horizontalSaturationContribution = horizontalSaturationWave[relativeX] * waveStrengthMultiplicator;
-                    double verticalSaturationContribution = horizontalSaturationWave[y] * waveStrengthMultiplicator;
+                    double verticalSaturationContribution = horizontalSaturationWave[relativeY] * waveStrengthMultiplicator;
 
                     double horizontalLightnessContribution = horizontalLightnessWave[relativeX] * waveStrengthMultiplicator;
-                    double verticalLightnessContribution = verticalLightnessWave[y] * waveStrengthMultiplicator;
+                    double verticalLightnessContribution = verticalLightnessWave[relativeY] * waveStrengthMultiplicator;
 
 
                     if (isHueMultiply)
