@@ -22,6 +22,8 @@ namespace AbrahmanAdventure
         
         public const bool isFullScreen = false;
 
+        public const bool isUseBottomTexture = true;
+
         public const int tileColumnCount = 20;
 
         public const int waveResolution = 1;

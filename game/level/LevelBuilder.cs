@@ -13,7 +13,7 @@ namespace AbrahmanAdventure.level
         {
             Level level = new Level(random);
 
-            int waveCount = random.Next(3, 12);
+            int waveCount = random.Next(3, 6);
             for (int i = 0; i < waveCount; i++)
             {
                 IWave wave;

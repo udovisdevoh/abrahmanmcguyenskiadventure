@@ -75,18 +75,14 @@ namespace AbrahmanAdventure.level
 
                     rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                     
-                    if (ground.IsTransparent && ground.IsHigherThanOtherGrounds(level,waveInput))
-                    	zoneSurface.Fill(rectangle, transparentColor);
-                	else
-                    	zoneSurface.Fill(rectangle, waveColor);
 
                     #warning There seem to be a problem with offset and texture sampling x coordinates and transparency
                     int textureInputX = absoluteXOffset + x;
-                    textureInputX %= ground.Texture.Surface.Width;
-                    while (textureInputX > ground.Texture.Surface.Width)
-                        textureInputX -= ground.Texture.Surface.Width;
+                    textureInputX %= ground.TopTexture.Surface.Width;
+                    while (textureInputX > ground.TopTexture.Surface.Width)
+                        textureInputX -= ground.TopTexture.Surface.Width;
                     while (textureInputX < 0)
-                        textureInputX += ground.Texture.Surface.Width;
+                        textureInputX += ground.TopTexture.Surface.Width;
 
                     /*double scaling = ground.Texture.HorizontalThicknessWave[textureInputX] + 2.0;
                     Surface scaledSurface = ground.Texture.GetCachedScaledSurface(scaling);
@@ -97,8 +93,23 @@ namespace AbrahmanAdventure.level
                     }
                     zoneSurface.Blit(scaledSurface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, scaledSurface.Height));*/
 
-                    
-                    zoneSurface.Blit(ground.Texture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.Texture.Surface.Height));
+                    if (ground.IsTransparent && ground.IsHigherThanOtherGrounds(level, waveInput))
+                    {
+                        zoneSurface.Fill(rectangle, transparentColor);
+                    }
+                    else
+                    {
+                        zoneSurface.Fill(rectangle, waveColor);
+
+                        if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                        {
+                            int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.Height);
+                            int bottomSurfacePositionY = (relativeFloorHeight + ground.TopTexture.Surface.Height) / bottomSurfaceAligment * bottomSurfaceAligment;
+                            zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
+                        }
+                    }
+
+                    zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.Height));
                 }
             }
 

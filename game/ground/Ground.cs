@@ -11,15 +11,24 @@ namespace AbrahmanAdventure.level
         #region Fields and parts
         private IWave terrainWave;
 
-        private Texture texture;
+        private Texture topTexture;
+
+        private Texture bottomTexture;
         
         private bool isTransparent;
+
+        private bool isUseBottomTexture;
         #endregion
 
         #region Constructors
         public Ground(IWave terrainWave, Random random, Color color)
         {
-            texture = new Texture(random, color);
+            topTexture = new Texture(random, color, 1.5);
+
+            isUseBottomTexture = random.Next(0, 2) == 0;
+
+            if (Program.isUseBottomTexture && isUseBottomTexture)
+                bottomTexture = new Texture(random, color, 16, 0.75);
             this.terrainWave = terrainWave;
             isTransparent = random.Next(0,5) == 0;
         }
@@ -46,14 +55,24 @@ namespace AbrahmanAdventure.level
             get{return terrainWave;}
         }
 
-        public Texture Texture
+        public Texture TopTexture
         {
-            get { return texture; }
+            get { return topTexture; }
+        }
+
+        public Texture BottomTexture
+        {
+            get { return bottomTexture; }
         }
         
         public bool IsTransparent
         {
         	get{return isTransparent;}
+        }
+
+        public bool IsUseBottomTexture
+        {
+            get { return isUseBottomTexture; }
         }
         #endregion
     }
