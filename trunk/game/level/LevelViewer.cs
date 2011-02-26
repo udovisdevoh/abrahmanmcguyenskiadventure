@@ -73,8 +73,7 @@ namespace AbrahmanAdventure.level
 
                     int relativeFloorHeight = Program.totalZoneHeight / 2 + (int)waveOutput;
 
-                    rectangle = new Rectangle(x, relativeFloorHeight, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
-                    
+                   
 
                     #warning There seem to be a problem with offset and texture sampling x coordinates and transparency
                     int textureInputX = absoluteXOffset + x;
@@ -95,17 +94,21 @@ namespace AbrahmanAdventure.level
 
                     if (ground.IsTransparent && ground.IsHigherThanOtherGrounds(level, waveInput))
                     {
+                        rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                         zoneSurface.Fill(rectangle, transparentColor);
                     }
                     else
                     {
-                        zoneSurface.Fill(rectangle, waveColor);
-
                         if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                         {
                             int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.Height);
                             int bottomSurfacePositionY = (relativeFloorHeight + ground.TopTexture.Surface.Height) / bottomSurfaceAligment * bottomSurfaceAligment;
                             zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
+                        }
+                        else
+                        {
+                            rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
+                            zoneSurface.Fill(rectangle, waveColor);
                         }
                     }
 
