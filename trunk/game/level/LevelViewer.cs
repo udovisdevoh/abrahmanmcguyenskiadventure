@@ -87,6 +87,16 @@ namespace AbrahmanAdventure.level
                         textureInputX -= ground.Texture.Surface.Width;
                     while (textureInputX < 0)
                         textureInputX += ground.Texture.Surface.Width;
+
+                    /*double scaling = ground.Texture.HorizontalThicknessWave[textureInputX] + 2.0;
+                    Surface scaledSurface = ground.Texture.GetCachedScaledSurface(scaling);
+                    if (scaledSurface == null)
+                    {
+                        scaledSurface = ground.Texture.Surface.CreateScaledSurface(1.0, scaling);
+                        ground.Texture.SetCachedScaledSurface(scaledSurface, scaling);
+                    }
+                    zoneSurface.Blit(scaledSurface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, scaledSurface.Height));*/
+
                     
                     zoneSurface.Blit(ground.Texture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.Texture.Surface.Height));
                 }
