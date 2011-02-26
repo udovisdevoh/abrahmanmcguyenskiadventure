@@ -160,6 +160,10 @@ namespace AbrahmanAdventure.level
                     while (currentHue > 255.0)
                         currentHue -= 256.0;*/
 
+                    if (y == 0)
+                        currentLightness += 75;
+                    else if (y == 1)
+                        currentLightness += 25;
 
                     currentSaturation = Math.Max(0.0, currentSaturation);
                     currentLightness = Math.Max(1, currentLightness);
@@ -169,6 +173,7 @@ namespace AbrahmanAdventure.level
                     currentHue = Math.Min(255.0, currentHue);
 
                     Color currentColor = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
+                    
                     surface.Fill(new Rectangle(x,y,1,1),currentColor);
                 }
             }
@@ -214,7 +219,7 @@ namespace AbrahmanAdventure.level
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
             }
 
-            wavePack.Normalize(random.NextDouble() * 0.5 + 0.5);
+            wavePack.Normalize(random.NextDouble() * 0.75 + 0.15);
 
             return wavePack;
         }
