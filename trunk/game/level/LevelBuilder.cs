@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.level
             for (int i = 0; i < waveCount; i++)
             {
                 IWave wave;
-                if (random.Next(0,2) == 0)
+                if (random.Next(0,4) != 0)
                     wave = waveBuilder.BuildWavePack(random);
                 else
                     wave = waveBuilder.BuildWaveTree(random,16);
