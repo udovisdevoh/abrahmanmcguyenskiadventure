@@ -330,7 +330,7 @@ namespace AbrahmanAdventure.level
 
             double maxY = double.NegativeInfinity;
             double minY = double.PositiveInfinity;
-            for (double x = -10024.0; x < 10024.0; x += 16)
+            for (double x = -10024.0; x < 10024.0; x += 1)
             {
                 y = this[x];
                 if (y > maxY)

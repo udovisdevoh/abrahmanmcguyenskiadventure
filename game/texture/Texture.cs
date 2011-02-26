@@ -36,11 +36,15 @@ namespace AbrahmanAdventure.level
 
         private IWave verticalLightnessWave;
 
+        private IWave horizontalThicknessWave;
+
         private bool isHueMultiply;
 
         private bool isSaturationMultiply;
 
         private bool isLightnessMultiply;
+
+        private Dictionary<int, Surface> scalingCache = new Dictionary<int, Surface>();
         #endregion
 
         #region Constructor
@@ -58,6 +62,7 @@ namespace AbrahmanAdventure.level
             verticalHueWave = BuildWave(random);
             verticalSaturationWave = BuildWave(random);
             verticalLightnessWave = BuildWave(random);
+
 
             isHueMultiply = random.Next(0, 3) == 0;
             isSaturationMultiply = random.Next(0, 3) == 0;
@@ -146,7 +151,7 @@ namespace AbrahmanAdventure.level
 
             for (int i = 1; i < 5; i++)
             {
-                double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5) * random.Next(1, 3) * random.Next(1, 3));
+                double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5)) * random.Next(1, 3) / random.Next(1,3);
                 double amplitude = random.NextDouble();
                 double phase = random.NextDouble() * 2.0 - 1.0;
 
@@ -156,6 +161,26 @@ namespace AbrahmanAdventure.level
             wavePack.Normalize();
 
             return wavePack;
+        }
+
+        private int GetRoundedScaling(double scaling)
+        {
+            return (int)(scaling * 10.0);
+        }
+        #endregion
+
+        #region Public Methods
+        internal Surface GetCachedScaledSurface(double scaling)
+        {
+            Surface scaledSurface;
+            if (scalingCache.TryGetValue(GetRoundedScaling(scaling), out scaledSurface))
+                return scaledSurface;
+            return null;
+        }
+
+        internal void SetCachedScaledSurface(Surface scaledSurface, double scaling)
+        {
+            scalingCache.Add(GetRoundedScaling(scaling), scaledSurface);
         }
         #endregion
 
@@ -171,6 +196,11 @@ namespace AbrahmanAdventure.level
         public bool IsAlignedToGround
         {
             get { return isAlignedToGround; }
+        }
+
+        public IWave HorizontalThicknessWave
+        {
+            get { return horizontalThicknessWave; }
         }
         #endregion
     }
