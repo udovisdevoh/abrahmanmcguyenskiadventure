@@ -71,7 +71,7 @@ namespace AbrahmanAdventure.level
             isAlignedToGround = random.Next(0, 2) == 0;
 
             int surfaceWidth = Program.tileSize * 2;
-            int surfaceHeight = (int)((double)Program.tileSize * random.NextDouble() * 3.5 + 0.5);
+            int surfaceHeight = (int)((double)Program.tileSize * random.NextDouble() * 3.5 + (0.5 * Program.tileSize));
 
             surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
             surface.Transparent=false;
@@ -147,7 +147,7 @@ namespace AbrahmanAdventure.level
         {
             WavePack wavePack = new WavePack();
 
-            int waveCount = random.Next(2, 6);
+            int waveCount = random.Next(2, 24);
 
             for (int i = 1; i < 5; i++)
             {
