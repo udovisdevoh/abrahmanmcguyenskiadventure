@@ -53,7 +53,17 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
-        public Texture(Random random, Color color)
+        public Texture(Random random, Color color, double waveStrengthMultiplicator) : this(random,color,-1, waveStrengthMultiplicator)
+        {
+        }
+
+        /// <summary>
+        /// Create a random texture
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="color">main color</param>
+        /// <param name="defaultHeight">default height (how manu tiles)</param>
+        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator)
         {
             this.color = color;
             horizontalHueWave = BuildWave(random);
@@ -71,7 +81,12 @@ namespace AbrahmanAdventure.level
             isAlignedToGround = random.Next(0, 2) == 0;
 
             int surfaceWidth = Program.tileSize * 2;
-            int surfaceHeight = (int)((double)Program.tileSize * random.NextDouble() * 3.5 + (0.5 * Program.tileSize));
+            int surfaceHeight;
+
+            if (defaultHeight == -1)
+                surfaceHeight = (int)((double)Program.tileSize * random.NextDouble() * 3.5 + (0.5 * Program.tileSize));
+            else
+                surfaceHeight = Program.tileSize * defaultHeight;
 
             surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
             surface.Transparent=false;
@@ -92,14 +107,14 @@ namespace AbrahmanAdventure.level
                     double currentSaturation = originalSaturation;
                     double currentLightness = originalLightness;
 
-                    double verticalHueContribution = verticalHueWave[y];
-                    double horizontalHueContribution = horizontalHueWave[x];
+                    double verticalHueContribution = verticalHueWave[y] * waveStrengthMultiplicator;
+                    double horizontalHueContribution = horizontalHueWave[x] * waveStrengthMultiplicator;
 
-                    double horizontalSaturationContribution = horizontalSaturationWave[x];
-                    double verticalSaturationContribution = horizontalSaturationWave[y];
+                    double horizontalSaturationContribution = horizontalSaturationWave[x] * waveStrengthMultiplicator;
+                    double verticalSaturationContribution = horizontalSaturationWave[y] * waveStrengthMultiplicator;
 
-                    double horizontalLightnessContribution = horizontalLightnessWave[x];
-                    double verticalLightnessContribution = verticalLightnessWave[y];
+                    double horizontalLightnessContribution = horizontalLightnessWave[x] * waveStrengthMultiplicator;
+                    double verticalLightnessContribution = verticalLightnessWave[y] * waveStrengthMultiplicator;
 
 
                     if (isHueMultiply)
@@ -158,7 +173,7 @@ namespace AbrahmanAdventure.level
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
             }
 
-            wavePack.Normalize();
+            wavePack.Normalize(random.NextDouble() + 0.5);
 
             return wavePack;
         }
