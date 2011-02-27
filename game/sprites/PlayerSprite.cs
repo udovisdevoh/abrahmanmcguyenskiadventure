@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         public PlayerSprite(double xPosition, double yPosition)
-            : base(xPosition, yield)
+            : base(xPosition, xPosition)
         {
         }
         #endregion
