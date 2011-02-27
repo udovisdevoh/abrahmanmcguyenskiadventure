@@ -24,10 +24,13 @@ namespace AbrahmanAdventure.level
             this.mainSurface = mainSurface;
         }
 
-        internal void Update(Level level)
+        internal void Update(Level level, double viewOffsetX, double viewOffsetY)
         {
-            int zoneColumnIndex = -((int)(Program.viewOffsetX) / Program.totalZoneWidth);
-            double offsetXPerZone = Program.viewOffsetX % (double)Program.totalZoneWidth;
+            viewOffsetX *= Program.tileSize * -1;
+            viewOffsetY *= Program.tileSize * -1;
+
+            int zoneColumnIndex = -((int)(viewOffsetX) / Program.totalZoneWidth);
+            double offsetXPerZone = viewOffsetX % (double)Program.totalZoneWidth;
 
             mainSurface.Blit(level.Sky.Surface,new Point(0,Sky.skyHeight / -4));
             
@@ -41,7 +44,7 @@ namespace AbrahmanAdventure.level
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
-                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, (int)Program.viewOffsetY));
+                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, (int)viewOffsetY));
             }
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);

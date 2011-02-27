@@ -73,5 +73,21 @@ namespace AbrahmanAdventure.sprites
             return (int)Math.Ceiling(sprite.XPosition + sprite.Width / 2.0);
         }
         #endregion
+
+        #region Properties
+        public Bucket this[int bucketId]
+        {
+            get
+            {
+                Bucket bucket;
+                if (!bucketList.TryGetValue(bucketId, out bucket))
+                {
+                    bucket = new Bucket();
+                    bucketList.Add(bucketId, bucket);
+                }
+                return bucket;
+            }
+        }
+        #endregion
     }
 }
