@@ -52,6 +52,8 @@ namespace AbrahmanAdventure
         public static int terrainColumnBufferRightCount = (int)(1.1 / zoneWidthScreenCount);
 
         public static int terrainColumnBufferLeftCount = (int)(0.1 / zoneWidthScreenCount);
+
+        public static int totalHeightTileCount = totalZoneHeight / tileSize;
         #endregion
 
         #region Fields and parts
@@ -89,7 +91,7 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
 
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, 5);
+            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / 2);
             spritePopulation.Add(playerSprite);
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
