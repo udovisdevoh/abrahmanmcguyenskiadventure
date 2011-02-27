@@ -43,10 +43,6 @@ namespace AbrahmanAdventure
 
         public static int tileSize = screenWidth / tileColumnCount;
 
-        public static double viewOffsetX = 0.0;
-
-        public static double viewOffsetY = 0.0;
-
         public static int totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
 
         public static int totalZoneHeight = Program.zoneHeightScreenCount * Program.screenHeight;
@@ -63,6 +59,8 @@ namespace AbrahmanAdventure
 
         private LevelViewer levelViewer;
 
+        private SpriteViewer spriteViewer;
+
         private DateTime previousDateTime = DateTime.Now;
 
         private Random random;
@@ -70,6 +68,10 @@ namespace AbrahmanAdventure
         private SpritePopulation spritePopulation;
 
         private PlayerSprite playerSprite;
+
+        private double viewOffsetX = 0.0;
+
+        private double viewOffsetY = 0.0;
         #endregion
 
         #region Constructor
@@ -89,6 +91,7 @@ namespace AbrahmanAdventure
             Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
             levelViewer = new LevelViewer(mainSurface);
+            spriteViewer = new SpriteViewer(spritePopulation);
         }
         #endregion
 
@@ -142,27 +145,28 @@ namespace AbrahmanAdventure
         public void Update(object sender, TickEventArgs args)
         {
             //We process the time multiplicator
-            double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 16.0;
+            double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
 
 
             if (userInput.isPressLeft && !userInput.isPressRight)
-                viewOffsetX += timeDelta * 16.0;
+                viewOffsetX -= timeDelta;
             else if (userInput.isPressRight && !userInput.isPressLeft)
-                viewOffsetX -= timeDelta * 16.0;
+                viewOffsetX += timeDelta;
 
             if (userInput.isPressUp && !userInput.isPressDown)
             {
-                viewOffsetY += timeDelta * 16.0;
+                viewOffsetY -= timeDelta;
                 viewOffsetY = Math.Min(viewOffsetY, totalZoneHeight - screenHeight);
             }
             else if (userInput.isPressDown && !userInput.isPressUp)
             {
-                viewOffsetY -= timeDelta * 16.0;
+                viewOffsetY += timeDelta;
                 viewOffsetY = Math.Max(viewOffsetY, -totalZoneHeight + screenHeight);
             }
 
-            levelViewer.Update(level);
+            levelViewer.Update(level, viewOffsetX, viewOffsetY);
+            spriteViewer.Update();
         }
 
         public void Start()

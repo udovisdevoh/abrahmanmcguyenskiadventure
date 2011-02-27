@@ -62,6 +62,7 @@
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\PlayerSprite.cs" />
     <Compile Include="game\spatialHashing\SpritePopulation.cs" />
+    <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\IWave.cs" />
