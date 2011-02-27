@@ -89,7 +89,7 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
 
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, 10);
+            playerSprite = new PlayerSprite(0, 5);
             spritePopulation.Add(playerSprite);
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
