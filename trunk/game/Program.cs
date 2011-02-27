@@ -5,6 +5,7 @@ using SdlDotNet.Input;
 using SdlDotNet.Audio;
 using System.Windows.Forms;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.sprites;
 
 namespace AbrahmanAdventure
 {
@@ -13,7 +14,7 @@ namespace AbrahmanAdventure
 	/// </summary>
 	internal sealed class Program
 	{
-        #region Constants
+        #region Constants and static variables
         public const int screenWidth = 640;
 
         public const int screenHeight = 480;
@@ -39,9 +40,7 @@ namespace AbrahmanAdventure
         public const int bitDepth = 32;
 
         public const int maxCachedColumnCount = 100;
-        #endregion
 
-        #region Fields and parts
         public static int tileSize = screenWidth / tileColumnCount;
 
         public static double viewOffsetX = 0.0;
@@ -55,7 +54,9 @@ namespace AbrahmanAdventure
         public static int terrainColumnBufferRightCount = (int)(1.1 / zoneWidthScreenCount);
 
         public static int terrainColumnBufferLeftCount = (int)(0.1 / zoneWidthScreenCount);
+        #endregion
 
+        #region Fields and parts
         private UserInput userInput;
 
         private Level level;
@@ -65,6 +66,10 @@ namespace AbrahmanAdventure
         private DateTime previousDateTime = DateTime.Now;
 
         private Random random;
+
+        private SpritePopulation spritePopulation;
+
+        private PlayerSprite playerSprite;
         #endregion
 
         #region Constructor
@@ -76,6 +81,10 @@ namespace AbrahmanAdventure
             level = levelBuilder.Build(random);
 
             userInput = new UserInput();
+
+            spritePopulation = new SpritePopulation();
+            playerSprite = new PlayerSprite(0, 0);
+            spritePopulation.Add(playerSprite);
 
             Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
