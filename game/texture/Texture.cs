@@ -52,6 +52,8 @@ namespace AbrahmanAdventure.level
 
         private bool isUseYOffsetInputWave;
 
+        private bool isWaveHeightMultiplicator;
+
         private Dictionary<int, Surface> scalingCache = new Dictionary<int, Surface>();
         #endregion
 
@@ -75,17 +77,11 @@ namespace AbrahmanAdventure.level
         public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, bool isTop)
         {
             this.color = color;
-            horizontalHueWave = BuildWave(random);
-            horizontalSaturationWave = BuildWave(random);
-            horizontalLightnessWave = BuildWave(random);
-            verticalHueWave = BuildWave(random);
-            verticalSaturationWave = BuildWave(random);
-            verticalLightnessWave = BuildWave(random);
 
             isUseTopTextureThicknessScaling = random.Next(0, 3) == 0;
             isUseXOffsetInputWave = random.Next(0, 3) == 0;
             isUseYOffsetInputWave = random.Next(0, 3) == 0;
-            
+            isWaveHeightMultiplicator = random.Next(0, 2) == 0;
 
 
             if (Program.isUseTopTextureThicknessScaling && isUseTopTextureThicknessScaling)
@@ -105,15 +101,27 @@ namespace AbrahmanAdventure.level
                 surfaceHeight = Program.tileSize * defaultHeight;
 
 
+            int waveHeightMultiplicator = 1;
+            if (isWaveHeightMultiplicator)
+                waveHeightMultiplicator = surfaceHeight / Program.tileSize;
+
+            horizontalHueWave = BuildWave(random, 1);
+            horizontalSaturationWave = BuildWave(random, 1);
+            horizontalLightnessWave = BuildWave(random, 1);
+            verticalHueWave = BuildWave(random, waveHeightMultiplicator);
+            verticalSaturationWave = BuildWave(random, waveHeightMultiplicator);
+            verticalLightnessWave = BuildWave(random, waveHeightMultiplicator);
+
+
             if (isUseXOffsetInputWave)
             {
-                xOffsetInputWave = BuildWave(random);
+                xOffsetInputWave = BuildWave(random,1);
                 xOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1,5));
             }
 
             if (isUseYOffsetInputWave)
             {
-                yOffsetInputWave = BuildWave(random);
+                yOffsetInputWave = BuildWave(random,1);
                 yOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
@@ -201,7 +209,13 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Private Methods
-        private IWave BuildWave(Random random)
+        /// <summary>
+        /// Build wave
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="waveLengthMultiplicator">if -1, 0 or 1: ignored.</param>
+        /// <returns>wave</returns>
+        private IWave BuildWave(Random random, int waveLengthMultiplicator)
         {
             WavePack wavePack = new WavePack();
 
@@ -212,6 +226,9 @@ namespace AbrahmanAdventure.level
                 double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5)) * random.Next(1, 3) / random.Next(1,3);
                 double amplitude = random.NextDouble();
                 double phase = random.NextDouble() * 2.0 - 1.0;
+
+                if (waveLengthMultiplicator > 1)
+                    waveLength *= waveLengthMultiplicator;
 
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
             }
