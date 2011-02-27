@@ -6,6 +6,7 @@ using SdlDotNet.Audio;
 using System.Windows.Forms;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure
 {
@@ -75,6 +76,8 @@ namespace AbrahmanAdventure
 
         private PlayerSprite playerSprite;
 
+        private Physics physics;
+
         private double viewOffsetX = -(Program.tileColumnCount / 2);
 
         private double viewOffsetY = 0.0;
@@ -83,6 +86,7 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
+            physics = new Physics();
             random = new Random();
 
             LevelBuilder levelBuilder = new LevelBuilder();
@@ -170,6 +174,8 @@ namespace AbrahmanAdventure
                 viewOffsetY += timeDelta;
                 viewOffsetY = Math.Max(viewOffsetY, -totalZoneHeight + screenHeight);
             }
+
+            physics.Update(playerSprite, level);
 
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY);
