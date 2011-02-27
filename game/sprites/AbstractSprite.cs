@@ -35,6 +35,13 @@ namespace AbrahmanAdventure.sprites
         /// Width
         /// </summary>
         protected double width;
+
+        /// <summary>
+        /// To which sprite collection the sprite belongs
+        /// </summary>
+        protected SpritePopulation parentSpriteCollection;
+
+        protected HashSet<Bucket> parentBucketList;
         #endregion
 
         #region Constructor
@@ -50,6 +57,7 @@ namespace AbrahmanAdventure.sprites
             width = BuildWidth();
             height = BuildHeight();
             mass = BuildMass();
+            parentBucketList = new HashSet<Bucket>();
         }
         #endregion
 
@@ -80,7 +88,12 @@ namespace AbrahmanAdventure.sprites
         public double XPosition
         {
             get { return xPosition; }
-            set { xPosition = value; }
+            set
+            {
+                parentSpriteCollection.RemoveSpatialHashing(this);
+                xPosition = value;
+                parentSpriteCollection.SetSpatialHashing(this);
+            }
         }
 
         /// <summary>
@@ -89,7 +102,12 @@ namespace AbrahmanAdventure.sprites
         public double YPosition
         {
             get { return yPosition; }
-            set { yPosition = value; }
+            set
+            {
+                parentSpriteCollection.RemoveSpatialHashing(this);
+                yPosition = value;
+                parentSpriteCollection.SetSpatialHashing(this);
+            }
         }
 
         /// <summary>
@@ -114,6 +132,20 @@ namespace AbrahmanAdventure.sprites
         public double Height
         {
             get { return height; }
+        }
+        
+        /// <summary>
+        /// To which sprite collection the sprite belongs
+        /// </summary>
+        public SpritePopulation ParentSpriteCollection
+        {
+            get { return parentSpriteCollection; }
+            set { parentSpriteCollection = value; }
+        }
+
+        public HashSet<Bucket> ParentBucketList
+        {
+            get { return parentBucketList; }
         }
         #endregion
     }
