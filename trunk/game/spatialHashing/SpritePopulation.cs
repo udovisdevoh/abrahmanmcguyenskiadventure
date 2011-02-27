@@ -65,12 +65,12 @@ namespace AbrahmanAdventure.sprites
         #region Private Methods
         private int GetLeftMostBucketId(AbstractSprite sprite)
         {
-            return (int)Math.Floor(sprite.XPosition - sprite.Width / 2.0);
+            return ((int)Math.Floor(sprite.XPosition - sprite.Width / 2.0)) / Program.spatialHashingBucketWidth;
         }
 
         private int GetRightMostBucketId(AbstractSprite sprite)
         {
-            return (int)Math.Ceiling(sprite.XPosition + sprite.Width / 2.0);
+            return ((int)Math.Ceiling(sprite.XPosition + sprite.Width / 2.0)) / Program.spatialHashingBucketWidth;
         }
         #endregion
 

@@ -81,6 +81,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="assets\originals\Abrahman McGuyenski.fla" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,6 +93,86 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\originals\01_robot.png" />
+    <Content Include="assets\originals\03_robot.png" />
+    <Content Include="assets\originals\04_robot.png" />
+    <Content Include="assets\originals\06_robot.png" />
+    <Content Include="assets\originals\07_robot.png" />
+    <Content Include="assets\originals\aqua_monster.png" />
+    <Content Include="assets\originals\basket_empty.png" />
+    <Content Include="assets\originals\butterfly.png" />
+    <Content Include="assets\originals\comix.png" />
+    <Content Include="assets\originals\crispy_new_tree.png" />
+    <Content Include="assets\originals\crystal_skull.png" />
+    <Content Include="assets\originals\delivery.png" />
+    <Content Include="assets\originals\evil_king.png" />
+    <Content Include="assets\originals\frankenstein.png" />
+    <Content Include="assets\originals\head.png" />
+    <Content Include="assets\originals\media_player.png" />
+    <Content Include="assets\originals\monster01.png" />
+    <Content Include="assets\originals\monster02.png" />
+    <Content Include="assets\originals\monster03.png" />
+    <Content Include="assets\originals\monster04.png" />
+    <Content Include="assets\originals\monster05.png" />
+    <Content Include="assets\originals\my_computer.png" />
+    <Content Include="assets\originals\network.png" />
+    <Content Include="assets\originals\painted_skull_2.png" />
+    <Content Include="assets\originals\robot.png" />
+    <Content Include="assets\originals\robot_servant.png" />
+    <Content Include="assets\originals\search.png" />
+    <Content Include="assets\originals\sea_monster.png" />
+    <Content Include="assets\originals\shopping_cart.png" />
+    <Content Include="assets\originals\skull.png" />
+    <Content Include="assets\originals\snake_glyph.png" />
+    <Content Include="assets\originals\spider_robot_sh.png" />
+    <Content Include="assets\originals\toothpaste_monster.png" />
+    <Content Include="assets\originals\transmit_monster_truck.png" />
+    <Content Include="assets\originals\tree_1.png" />
+    <Content Include="assets\originals\tree_archigraphs.png" />
+    <Content Include="assets\originals\ultraman_monster.png" />
+    <Content Include="assets\originals\van.png" />
+    <Content Include="assets\originals\weird_creature_icon_05.png" />
+    <Content Include="assets\originals\weird_creature_icon_06.png" />
+    <Content Include="assets\originals\weird_creature_icon_26.png" />
+    <Content Include="assets\originals\weird_creature_icon_35.png" />
+    <Content Include="assets\originals\weird_creature_icon_40.png" />
+    <Content Include="assets\originals\weird_creature_icon_54.png" />
+    <Content Include="assets\rendered\abrahman\block.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\crouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\crouchedBlock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\crouchedHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\crouchedPunch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\hit1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\jump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\kick.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\punch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\stand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\walk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\walk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="jpeg.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

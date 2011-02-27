@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SdlDotNet.Graphics;
+using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -42,6 +44,11 @@ namespace AbrahmanAdventure.sprites
         protected SpritePopulation parentSpriteCollection;
 
         protected HashSet<Bucket> parentBucketList;
+
+        /// <summary>
+        /// True: face left, False: face right
+        /// </summary>
+        private bool isPointingLeft;
         #endregion
 
         #region Constructor
@@ -63,15 +70,15 @@ namespace AbrahmanAdventure.sprites
 
         #region Abstract Methods
         /// <summary>
-        /// sprite's width (0.5 = player's width)
+        /// sprite's width (1.5 = player's width)
         /// </summary>
-        /// <returns>sprite's width (0.5 = player's width)</returns>
+        /// <returns>sprite's width (1.5 = player's width)</returns>
         protected abstract double BuildWidth();
 
         /// <summary>
-        /// sprite's height (1.0 = player's height)
+        /// sprite's height (2.0 = player's height)
         /// </summary>
-        /// <returns>sprite's height (1.0 = player's height)</returns>
+        /// <returns>sprite's height (2.0 = player's height)</returns>
         protected abstract double BuildHeight();
 
         /// <summary>
@@ -79,6 +86,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>sprite's mass (1.0 = player's mass)</returns>
         protected abstract double BuildMass();
+
+        /// <summary>
+        /// Sprite's surface
+        /// </summary>
+        /// <returns>Sprite's surface</returns>
+        public abstract Surface GetCurrentSurface();
         #endregion
 
         #region Properties
@@ -146,6 +159,15 @@ namespace AbrahmanAdventure.sprites
         public HashSet<Bucket> ParentBucketList
         {
             get { return parentBucketList; }
+        }
+
+        /// <summary>
+        /// True: face left, False: face right
+        /// </summary>
+        public bool IsPointingLeft
+        {
+            get { return isPointingLeft; }
+            set { isPointingLeft = value; }
         }
         #endregion
     }

@@ -48,7 +48,6 @@ namespace AbrahmanAdventure.level
             }
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
-            mainSurface.Update();
         }
 
         private Surface BuildZoneSurface(Level level, int zoneColumnIndex, int absoluteXOffset)

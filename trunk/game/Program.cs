@@ -41,6 +41,8 @@ namespace AbrahmanAdventure
 
         public const int maxCachedColumnCount = 100;
 
+        public const int spatialHashingBucketWidth = 2;
+
         public static int tileSize = screenWidth / tileColumnCount;
 
         public static int totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
@@ -53,6 +55,8 @@ namespace AbrahmanAdventure
         #endregion
 
         #region Fields and parts
+        private Surface mainSurface;
+
         private UserInput userInput;
 
         private Level level;
@@ -69,7 +73,7 @@ namespace AbrahmanAdventure
 
         private PlayerSprite playerSprite;
 
-        private double viewOffsetX = 0.0;
+        private double viewOffsetX = -(Program.tileColumnCount / 2);
 
         private double viewOffsetY = 0.0;
         #endregion
@@ -85,13 +89,13 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
 
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, 0);
+            playerSprite = new PlayerSprite(0, 10);
             spritePopulation.Add(playerSprite);
 
-            Surface mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
+            mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
             levelViewer = new LevelViewer(mainSurface);
-            spriteViewer = new SpriteViewer(spritePopulation);
+            spriteViewer = new SpriteViewer(spritePopulation, mainSurface);
         }
         #endregion
 
@@ -166,7 +170,8 @@ namespace AbrahmanAdventure
             }
 
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
-            spriteViewer.Update();
+            spriteViewer.Update(viewOffsetX, viewOffsetY);
+            mainSurface.Update();
         }
 
         public void Start()

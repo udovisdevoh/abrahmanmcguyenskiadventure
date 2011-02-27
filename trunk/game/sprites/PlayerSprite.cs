@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SdlDotNet.Graphics;
+using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -10,6 +12,10 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class PlayerSprite : AbstractSprite
     {
+        #region Fields and parts
+        private Surface defaultSurface;
+        #endregion
+
         #region Constructors
         /// <summary>
         /// Create a player's sprite
@@ -17,7 +23,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         public PlayerSprite(double xPosition, double yPosition)
-            : base(xPosition, xPosition)
+            : base(xPosition, yPosition)
         {
         }
         #endregion
@@ -29,7 +35,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>width</returns>
         protected override double BuildWidth()
         {
-            return 0.5;
+            return 1.5;
         }
 
         /// <summary>
@@ -38,7 +44,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>height</returns>
         protected override double BuildHeight()
         {
-            return 1.0;
+            return 2.0;
         }
 
         /// <summary>
@@ -48,6 +54,17 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildMass()
         {
             return 1.0;
+        }
+
+        public override Surface GetCurrentSurface()
+        {
+            if (defaultSurface == null)
+            {
+                defaultSurface = new Surface("./assets/rendered/abrahman/walk1.png");
+                double zoom = height * Program.tileSize / defaultSurface.Height;
+                defaultSurface = defaultSurface.CreateScaledSurface(zoom);
+            }
+            return defaultSurface;
         }
         #endregion
     }
