@@ -18,7 +18,16 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
-            if (sprite.Ground != null)
+        	ApplyGravity(sprite, level, timeDelta);
+        }
+        
+        /// <summary>
+        /// Apply gravity to sprite
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        private void ApplyGravity(AbstractSprite sprite, Level level, double timeDelta)
+        {
+        	if (sprite.Ground != null)
             {
                 sprite.CurrentJumpAcceleration = 0;
             }
