@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
-        	ApplyGravity(sprite, level, timeDelta);
+        	//ApplyGravity(sprite, level, timeDelta);
         }
         
         /// <summary>
