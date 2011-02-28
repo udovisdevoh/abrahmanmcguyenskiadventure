@@ -111,6 +111,9 @@ namespace AbrahmanAdventure.level
         {
             get
             {
+            	if (x > -10 && x < 10)
+            		return Program.totalHeightTileCount / -2;
+            	
                 if (atomicWave != null)
                 {
                     return atomicWave[x];

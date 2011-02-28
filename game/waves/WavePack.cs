@@ -276,6 +276,9 @@ namespace AbrahmanAdventure.level
         {
             get
             {
+            	if (x > -10 && x < 10)
+            		return Program.totalHeightTileCount / -2;
+            	
                 double value = 0.0;
 
                 if (junctionType == JunctionMultiply)
