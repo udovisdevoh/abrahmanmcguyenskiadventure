@@ -32,7 +32,7 @@ namespace AbrahmanAdventure.physics
                 else
                 {
                     double closestDownGroundHeight = closestDownGround.TerrainWave[sprite.XPosition];
-                    sprite.YPosition += sprite.CurrentJumpAcceleration / 500 * timeDelta;
+                    sprite.YPosition += sprite.CurrentJumpAcceleration / 200 * timeDelta;
                     sprite.CurrentJumpAcceleration -= 1.0 * timeDelta;
 
                     if (sprite.YPosition <= closestDownGroundHeight)
