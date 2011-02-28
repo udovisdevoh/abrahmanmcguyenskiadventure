@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -59,9 +60,9 @@ namespace AbrahmanAdventure.sprites
         private bool isPointingLeft;
 
         /// <summary>
-        /// Whether sprite is on ground
+        /// Current ground attached to sprite
         /// </summary>
-        private bool isOnGround = false;
+        private Ground ground;
         #endregion
 
         #region Constructor
@@ -193,12 +194,12 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// Whether sprite is on ground
+        /// Current ground attached to sprite
         /// </summary>
-        public bool IsOnGround
+        public Ground Ground
         {
-            get { return isOnGround; }
-            set { isOnGround = value; }
+            get { return ground; }
+            set { ground = value; }
         }
         #endregion
     }

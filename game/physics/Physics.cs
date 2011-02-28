@@ -18,58 +18,60 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
-            if (sprite.IsOnGround)
+            if (sprite.Ground != null)
             {
                 sprite.CurrentJumpAcceleration = 0;
             }
             else
             {
-                double closestDownGroundHeight = GetClosestDownGroundHeight(sprite, level);
-                sprite.YPosition += sprite.CurrentJumpAcceleration / 500 * timeDelta;
-                sprite.CurrentJumpAcceleration -= 1.0 * timeDelta;
-                sprite.YPosition = Math.Max(closestDownGroundHeight, sprite.YPosition);
-
-                if (sprite.YPosition <= closestDownGroundHeight)
+                Ground closestDownGround = GetClosestDownGround(sprite, level);
+                if (closestDownGround == null)
                 {
-                    sprite.IsOnGround = true;
+                    sprite.CurrentJumpAcceleration = 0;
+                }
+                else
+                {
+                    double closestDownGroundHeight = closestDownGround.TerrainWave[sprite.XPosition];
+                    sprite.YPosition += sprite.CurrentJumpAcceleration / 500 * timeDelta;
+                    sprite.CurrentJumpAcceleration -= 1.0 * timeDelta;
+
+                    if (sprite.YPosition <= closestDownGroundHeight)
+                    {
+                        sprite.YPosition = closestDownGroundHeight;
+                        sprite.Ground = closestDownGround;
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// Whether sprite is on a ground
+        /// Closest down ground
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
-        /// <returns>Whether sprite is on a ground</returns>
-        private bool IsOnAGround(AbstractSprite sprite, Level level)
+        /// <returns>Closest down ground</returns>
+        private Ground GetClosestDownGround(AbstractSprite sprite, Level level)
         {
-            foreach (Ground ground in level)
-                if (sprite.YPosition == ground.TerrainWave[sprite.XPosition])
-                    return true;
-            return false;
-        }
+            #warning Fix code: find closest ground that is not above sprite
 
-        /// <summary>
-        /// Closest down ground's height
-        /// </summary>
-        /// <param name="sprite">sprite</param>
-        /// <param name="level">level</param>
-        /// <returns>Closest down ground's height</returns>
-        private double GetClosestDownGroundHeight(AbstractSprite sprite, Level level)
-        {
-            #warning remove dummy code
-            return 30.0;
-            double previousHeight = double.NegativeInfinity;
+            Ground closestDownGround = null;
+            double closestDistance = -1;
+
             foreach (Ground ground in level)
             {
                 double currentHeight = ground.TerrainWave[sprite.XPosition];
-                if (sprite.YPosition >= currentHeight)
-                    return previousHeight;
+                double distance = Math.Abs(sprite.XPosition - currentHeight);
 
-                previousHeight = currentHeight;
+                if (sprite.YPosition >= currentHeight)
+                {
+                    if (closestDistance == -1 || distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestDownGround = ground;
+                    }
+                }
             }
-            return double.PositiveInfinity;
+            return closestDownGround;
         }
     }
 }
