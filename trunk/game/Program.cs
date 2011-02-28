@@ -55,6 +55,8 @@ namespace AbrahmanAdventure
         public static int terrainColumnBufferLeftCount = (int)(0.1 / zoneWidthScreenCount);
 
         public static int totalHeightTileCount = totalZoneHeight / tileSize;
+        
+        public static int tileRowCount = screenHeight / tileSize;
         #endregion
 
         #region Fields and parts
@@ -167,13 +169,13 @@ namespace AbrahmanAdventure
             #warning Fix maximum and minimum height
             if (userInput.isPressUp && !userInput.isPressDown)
             {
-                viewOffsetY -= timeDelta;
-                viewOffsetY = Math.Min(viewOffsetY, totalZoneHeight - screenHeight);
+                viewOffsetY -= timeDelta;                
+                viewOffsetY = Math.Max(viewOffsetY, totalHeightTileCount / -2);
             }
             else if (userInput.isPressDown && !userInput.isPressUp)
             {
                 viewOffsetY += timeDelta;
-                viewOffsetY = Math.Max(viewOffsetY, -totalZoneHeight + screenHeight);
+                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 + tileRowCount);
             }
 
             physics.Update(playerSprite, level, timeDelta);
