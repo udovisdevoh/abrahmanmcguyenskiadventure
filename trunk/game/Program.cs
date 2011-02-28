@@ -95,7 +95,7 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
 
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / 2);
+            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount);
             spritePopulation.Add(playerSprite);
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
@@ -175,7 +175,7 @@ namespace AbrahmanAdventure
                 viewOffsetY = Math.Max(viewOffsetY, -totalZoneHeight + screenHeight);
             }
 
-            physics.Update(playerSprite, level);
+            physics.Update(playerSprite, level, timeDelta);
 
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY);

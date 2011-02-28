@@ -39,16 +39,29 @@ namespace AbrahmanAdventure.sprites
         protected double width;
 
         /// <summary>
+        /// Current jump or falling acceleration
+        /// </summary>
+        protected double currentJumpAcceleration;
+
+        /// <summary>
         /// To which sprite collection the sprite belongs
         /// </summary>
         protected SpritePopulation parentSpriteCollection;
 
+        /// <summary>
+        /// List of bucket that contain this sprite
+        /// </summary>
         protected HashSet<Bucket> parentBucketList;
 
         /// <summary>
         /// True: face left, False: face right
         /// </summary>
         private bool isPointingLeft;
+
+        /// <summary>
+        /// Whether sprite is on ground
+        /// </summary>
+        private bool isOnGround = false;
         #endregion
 
         #region Constructor
@@ -168,6 +181,24 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isPointingLeft; }
             set { isPointingLeft = value; }
+        }
+
+        /// <summary>
+        /// Current jump or falling acceleration
+        /// </summary>
+        public double CurrentJumpAcceleration
+        {
+            get { return currentJumpAcceleration; }
+            set { currentJumpAcceleration = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is on ground
+        /// </summary>
+        public bool IsOnGround
+        {
+            get { return isOnGround; }
+            set { isOnGround = value; }
         }
         #endregion
     }
