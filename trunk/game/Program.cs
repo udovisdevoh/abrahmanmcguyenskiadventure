@@ -164,6 +164,7 @@ namespace AbrahmanAdventure
             else if (userInput.isPressRight && !userInput.isPressLeft)
                 viewOffsetX += timeDelta;
 
+            #warning Fix maximum and minimum height
             if (userInput.isPressUp && !userInput.isPressDown)
             {
                 viewOffsetY -= timeDelta;
