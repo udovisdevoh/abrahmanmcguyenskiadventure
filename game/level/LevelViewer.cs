@@ -44,7 +44,7 @@ namespace AbrahmanAdventure.level
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
-                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, 0 - (int)viewOffsetY - Program.totalZoneHeight / 2));
+                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, 0 - (int)viewOffsetY));
             }
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
