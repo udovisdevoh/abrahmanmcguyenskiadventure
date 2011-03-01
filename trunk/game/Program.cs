@@ -22,6 +22,8 @@ namespace AbrahmanAdventure
 
         public const int targetFps = 60;
         
+        public const bool isBindViewOffsetToPlayer = true;
+        
         public const bool isFullScreen = false;
 
         public const bool isHardwareSurface = true;
@@ -97,7 +99,7 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
 
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2 + 2);
+            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2);
             spritePopulation.Add(playerSprite);
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
@@ -165,18 +167,25 @@ namespace AbrahmanAdventure
                 viewOffsetX -= timeDelta;
             else if (userInput.isPressRight && !userInput.isPressLeft)
                 viewOffsetX += timeDelta;
-
-            #warning Fix maximum and minimum height
-            if (userInput.isPressUp && !userInput.isPressDown)
+            
+            if (isBindViewOffsetToPlayer)
             {
-                viewOffsetY -= timeDelta;                
-                viewOffsetY = Math.Max(viewOffsetY, totalHeightTileCount / -2);
+            	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
+            	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
             }
-            else if (userInput.isPressDown && !userInput.isPressUp)
-            {
-                viewOffsetY += timeDelta;
-                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 - tileRowCount);
-            }
+			else
+			{
+	            if (userInput.isPressUp && !userInput.isPressDown)
+	            {
+	                viewOffsetY -= timeDelta;                
+	                viewOffsetY = Math.Max(viewOffsetY, totalHeightTileCount / -2);
+	            }
+	            else if (userInput.isPressDown && !userInput.isPressUp)
+	            {
+	                viewOffsetY += timeDelta;
+	                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 - tileRowCount);
+	            }
+			}
 
             physics.Update(playerSprite, level, timeDelta);
 
