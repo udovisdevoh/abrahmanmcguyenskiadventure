@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.physics
         	ApplyGravity(sprite, level, timeDelta);
         }
         
-        internal void TryMakeWalk(AbstractSprite sprite, bool isRight, double timeDelta)
+        internal void TryMakeWalk(AbstractSprite sprite, bool isRight, double timeDelta, Level level)
         {
         	if (isRight)
         		sprite.XPosition += timeDelta;
@@ -30,8 +30,30 @@ namespace AbrahmanAdventure.physics
         	
         	if (sprite.Ground != null)
         	{        		
+        		Ground frontestGroundAccessibleWalkingHeightForSprite = GetFrontestGroundAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);        		
+        		
+        		//If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
+        		if (frontestGroundAccessibleWalkingHeightForSprite != null)
+        			sprite.Ground = frontestGroundAccessibleWalkingHeightForSprite;
+        			
         		sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
         	}
+        }
+        
+        private Ground GetFrontestGroundAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
+        {
+        	#warning: must not consider ground that are too high above ground from which sprite originates
+        	for (int groundId = level.Count -1; groundId >= 0; groundId--)
+        	{
+        		Ground currentGround = level[groundId];
+        		
+        		if (currentGround == ground)
+        			break;
+    			
+        		if (currentGround.TerrainWave[sprite.XPosition] < ground.TerrainWave[sprite.XPosition])
+    				return currentGround;
+        	}
+        	return null;
         }
         
         /// <summary>
