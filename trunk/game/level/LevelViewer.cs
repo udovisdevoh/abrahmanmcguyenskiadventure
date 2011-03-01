@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.level
         internal void Update(Level level, double viewOffsetX, double viewOffsetY)
         {
             viewOffsetX *= Program.tileSize * -1;
-            viewOffsetY *= Program.tileSize * -1;
+            viewOffsetY *= Program.tileSize;
 
             int zoneColumnIndex = -((int)(viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = viewOffsetX % (double)Program.totalZoneWidth;
@@ -44,7 +44,7 @@ namespace AbrahmanAdventure.level
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
-                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, (int)viewOffsetY));
+                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, 0 - (int)viewOffsetY - Program.totalZoneHeight / 2));
             }
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
@@ -71,10 +71,8 @@ namespace AbrahmanAdventure.level
                     double waveInput = (double)(x + startX) / Program.tileSize;
                     double waveOutput = terrainWave[waveInput];
 
-                    waveOutput *= Program.tileSize / 2.0;
-
-                    int relativeFloorHeight = Program.totalZoneHeight / 2 + (int)waveOutput;
-
+                    //waveOutput *= Program.tileSize / 2.0;
+                    int relativeFloorHeight = (int)(waveOutput *= Program.tileSize) + Program.totalZoneHeight / 2;
                    
 
                     int textureInputX = absoluteXOffset + x;
