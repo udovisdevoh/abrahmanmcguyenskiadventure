@@ -23,34 +23,95 @@ namespace AbrahmanAdventure.physics
         
         internal void TryMakeWalk(AbstractSprite sprite, bool isRight, double timeDelta, Level level)
         {
+        	double walkingDistance;
         	if (isRight)
-        		sprite.XPosition += timeDelta;
+        		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,timeDelta,level);
         	else
-        		sprite.XPosition -= timeDelta;
+        		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,-timeDelta,level);
+        	
+        	
+        	sprite.XPosition += walkingDistance;
+        	
         	
         	if (sprite.Ground != null)
         	{        		
-        		Ground frontestGroundAccessibleWalkingHeightForSprite = GetFrontestGroundAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);        		
+        		Ground frontestGroundHavingAccessibleWalkingHeightForSprite = GetFrontestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);        		
         		
         		//If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
-        		if (frontestGroundAccessibleWalkingHeightForSprite != null)
-        			sprite.Ground = frontestGroundAccessibleWalkingHeightForSprite;
+        		if (frontestGroundHavingAccessibleWalkingHeightForSprite != null)
+        			sprite.Ground = frontestGroundHavingAccessibleWalkingHeightForSprite;
         			
         		sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
         	}
         }
         
-        private Ground GetFrontestGroundAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
+        private double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level)
+        {
+        	double previousDistance = 0;
+        	if (desiredDistance > 0)
+        	{
+        		for (double currentDistance = 0; currentDistance <= desiredDistance; currentDistance += Program.collisionDetectionResolution)
+        		{
+        			if (IsDetectCollision(sprite, currentDistance, level, true))
+        				return previousDistance;
+    				previousDistance = currentDistance;
+        		}
+        	}
+        	else
+        	{
+        		for (double currentDistance = 0; currentDistance >= desiredDistance; currentDistance -= Program.collisionDetectionResolution)
+        		{
+        			if (IsDetectCollision(sprite, currentDistance, level, false))
+        				return previousDistance;
+    				previousDistance = currentDistance;
+        		}
+        	}
+        	return previousDistance;
+        }
+        
+        private bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight)
+        {
+        	if (sprite.Ground == null)
+        		return false;
+        	
+        	double angleX1;
+        	double angleX2;
+        	
+        	if (isWalkingRight)
+        	{
+        		angleX1 = xDesiredPosition + sprite.Width / 2;
+        		angleX2 = angleX1 + Program.collisionDetectionResolution;
+        	}
+        	else 
+        	{
+        		angleX1 = xDesiredPosition - sprite.Width / 2;
+        		angleX2 = angleX1 - Program.collisionDetectionResolution;
+        	}
+        	
+        	double angleY1 = sprite.Ground.TerrainWave[angleX1];
+        	double angleY2 = sprite.Ground.TerrainWave[angleX2];
+        	
+        	if (angleY2 > angleY1)
+        		return false;
+        	#warning Fix collsion detection
+        	return (angleY1 - angleY2 >= sprite.Height / 2);
+        }
+        
+        private Ground GetFrontestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
         {
         	#warning: must not consider ground that are too high above ground from which sprite originates
+        	double groundHeight = ground.TerrainWave[sprite.XPosition];
+        	
         	for (int groundId = level.Count -1; groundId >= 0; groundId--)
         	{
         		Ground currentGround = level[groundId];
         		
         		if (currentGround == ground)
         			break;
+        		
+        		double currentGroundHeight = currentGround.TerrainWave[sprite.XPosition];
     			
-        		if (currentGround.TerrainWave[sprite.XPosition] < ground.TerrainWave[sprite.XPosition])
+        		if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.Height / 5)
     				return currentGround;
         	}
         	return null;
