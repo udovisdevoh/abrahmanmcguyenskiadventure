@@ -166,9 +166,9 @@ namespace AbrahmanAdventure
             if (isBindViewOffsetToPlayer)
             {
             	if (userInput.isPressLeft && !userInput.isPressRight)
-            		physics.TryMakeWalk(playerSprite, false, timeDelta);
+            		physics.TryMakeWalk(playerSprite, false, timeDelta, level);
 		        else if (userInput.isPressRight && !userInput.isPressLeft)
-		            physics.TryMakeWalk(playerSprite, true, timeDelta);
+		            physics.TryMakeWalk(playerSprite, true, timeDelta, level);
 		        
             	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
             	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
