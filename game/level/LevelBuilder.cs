@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.level
 
                 //wave = new Wave(10, 10, 0, WaveFunctions.AbsSin);
 
-                double normalizationFactor = (random.NextDouble() * 40) + 8;
+                double normalizationFactor = (random.NextDouble() * 20) + 4;
                 wave.Normalize(normalizationFactor, false);
 
                 //level.AddTerrainWave(new Ground(wave, random));
