@@ -162,19 +162,24 @@ namespace AbrahmanAdventure
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
 
-
-            if (userInput.isPressLeft && !userInput.isPressRight)
-                viewOffsetX -= timeDelta;
-            else if (userInput.isPressRight && !userInput.isPressLeft)
-                viewOffsetX += timeDelta;
             
             if (isBindViewOffsetToPlayer)
             {
+            	if (userInput.isPressLeft && !userInput.isPressRight)
+            		physics.TryMakeWalk(playerSprite, false, timeDelta);
+		        else if (userInput.isPressRight && !userInput.isPressLeft)
+		            physics.TryMakeWalk(playerSprite, true, timeDelta);
+		        
             	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
             	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
             }
 			else
 			{
+		        if (userInput.isPressLeft && !userInput.isPressRight)
+		            viewOffsetX -= timeDelta;
+		        else if (userInput.isPressRight && !userInput.isPressLeft)
+		            viewOffsetX += timeDelta;
+            
 	            if (userInput.isPressUp && !userInput.isPressDown)
 	            {
 	                viewOffsetY -= timeDelta;                
