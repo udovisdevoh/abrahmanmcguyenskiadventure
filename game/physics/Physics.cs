@@ -21,6 +21,19 @@ namespace AbrahmanAdventure.physics
         	ApplyGravity(sprite, level, timeDelta);
         }
         
+        internal void TryMakeWalk(AbstractSprite sprite, bool isRight, double timeDelta)
+        {
+        	if (isRight)
+        		sprite.XPosition += timeDelta;
+        	else
+        		sprite.XPosition -= timeDelta;
+        	
+        	if (sprite.Ground != null)
+        	{        		
+        		sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
+        	}
+        }
+        
         /// <summary>
         /// Apply gravity to sprite
         /// </summary>
