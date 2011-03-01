@@ -37,6 +37,8 @@ namespace AbrahmanAdventure
         public const int waveResolution = 1;
 
         public const double zoneWidthScreenCount = 0.025;
+        
+        public const double collisionDetectionResolution = 0.0625;
 
         public const int zoneHeightScreenCount = 4;
 
