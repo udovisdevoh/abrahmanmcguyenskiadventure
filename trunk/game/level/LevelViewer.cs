@@ -44,7 +44,7 @@ namespace AbrahmanAdventure.level
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
-                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, 0 - (int)viewOffsetY));
+                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, - (int)viewOffsetY - Program.totalZoneHeight / 2));
             }
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
@@ -72,8 +72,12 @@ namespace AbrahmanAdventure.level
                     double waveOutput = terrainWave[waveInput];
 
                     //waveOutput *= Program.tileSize / 2.0;
-                    int relativeFloorHeight = (int)(waveOutput *= Program.tileSize) + Program.totalZoneHeight / 2;
-                   
+                    //int relativeFloorHeight = (int)(waveOutput *= Program.tileSize) + Program.totalZoneHeight;
+
+                    //waveOutput = Program.totalHeightTileCount / -2;
+                    //int relativeFloorHeight = (int)((waveOutput + (double)Program.totalHeightTileCount / 2.0) * Program.tileSize);
+
+                    int relativeFloorHeight = (int)((waveOutput + (double)Program.totalHeightTileCount / 2.0) * (double)Program.tileSize);
 
                     int textureInputX = absoluteXOffset + x;
                     textureInputX %= ground.TopTexture.Surface.Width;

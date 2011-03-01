@@ -175,7 +175,7 @@ namespace AbrahmanAdventure
             else if (userInput.isPressDown && !userInput.isPressUp)
             {
                 viewOffsetY += timeDelta;
-                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 + tileRowCount);
+                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 - tileRowCount);
             }
 
             physics.Update(playerSprite, level, timeDelta);

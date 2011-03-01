@@ -276,8 +276,12 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-            	if (x > -10 && x < 10)
-            		return Program.totalHeightTileCount / -2;
+                /*if (x > -10 && x < 10)
+                    return Program.totalHeightTileCount / -2;
+                else if (x >= 10 && x < 30)
+                    return 0;
+                else if (x >= 30 && x < 50)
+                    return Program.totalHeightTileCount / 2;*/
             	
                 double value = 0.0;
 
