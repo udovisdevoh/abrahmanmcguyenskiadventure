@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
-        	//ApplyGravity(sprite, level, timeDelta);
+        	ApplyGravity(sprite, level, timeDelta);
         }
         
         /// <summary>
@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.physics
             }
             else
             {
-                Ground closestDownGround = GetClosestDownGround(sprite, level);
+                Ground closestDownGround = GetHighestGroundBelowSprite(sprite, level);
                 if (closestDownGround == null)
                 {
                     sprite.CurrentJumpAcceleration = 0;
@@ -54,33 +54,30 @@ namespace AbrahmanAdventure.physics
         }
 
         /// <summary>
-        /// Closest down ground
+        /// Highest ground below sprite
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
-        /// <returns>Closest down ground</returns>
-        private Ground GetClosestDownGround(AbstractSprite sprite, Level level)
+        /// <returns>Highest ground below sprite</returns>
+        private Ground GetHighestGroundBelowSprite(AbstractSprite sprite, Level level)
         {
-            #warning Fix code: find closest ground that is not above sprite
-
-            Ground closestDownGround = null;
-            double closestDistance = -1;
+            Ground highestGroundBelowSprite = null;
+            double highestHeight = -1;
 
             foreach (Ground ground in level)
             {
                 double currentHeight = ground.TerrainWave[sprite.XPosition];
-                double distance = Math.Abs(sprite.XPosition - currentHeight);
 
-                if (sprite.YPosition >= currentHeight)
+                if (sprite.YPosition <= currentHeight)
                 {
-                    if (closestDistance == -1 || distance < closestDistance)
+                    if (highestHeight == -1 || currentHeight < highestHeight)
                     {
-                        closestDistance = distance;
-                        closestDownGround = ground;
+                        highestHeight = currentHeight;
+                        highestGroundBelowSprite = ground;
                     }
                 }
             }
-            return closestDownGround;
+            return highestGroundBelowSprite;
         }
     }
 }
