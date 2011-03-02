@@ -201,6 +201,16 @@ namespace AbrahmanAdventure.sprites
             get { return ground; }
             set { ground = value; }
         }
+
+        public double RightBound
+        {
+            get { return xPosition + width / 2.0; }
+        }
+
+        public double LeftBound
+        {
+            get { return xPosition - width / 2.0; }
+        }
         #endregion
     }
 }
