@@ -31,6 +31,18 @@ namespace AbrahmanAdventure.physics
 
             if (walkingDistance != 0)
             {
+                /*double slope;
+                
+                if (isRight)
+                    slope = 1.0 - (sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance] - sprite.Ground.TerrainWave[sprite.XPosition]) / walkingDistance;
+                else
+                    slope = 1.0 - (sprite.Ground.TerrainWave[sprite.XPosition] - sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance;
+
+                slope = Math.Sqrt(slope);
+
+                if (slope > 0)
+                    walkingDistance /= slope;*/
+
                 sprite.XPosition += walkingDistance;
             }
         	
@@ -43,7 +55,7 @@ namespace AbrahmanAdventure.physics
         		if (frontestGroundHavingAccessibleWalkingHeightForSprite != null)
         			sprite.Ground = frontestGroundHavingAccessibleWalkingHeightForSprite;
 
-                sprite.YPosition = (sprite.Ground.TerrainWave[sprite.LeftBound] + sprite.Ground.TerrainWave[sprite.RightBound]) / 2.0;
+                sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
         	}
         }
         
