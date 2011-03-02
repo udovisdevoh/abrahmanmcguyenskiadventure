@@ -50,29 +50,18 @@ namespace AbrahmanAdventure.physics
         	double previousDistance = 0;
         	if (desiredDistance > 0)
         	{
-                if (IsDetectCollision(sprite, sprite.XPosition, level, true))
-                    return 0;
-                else
-                    return Program.collisionDetectionResolution;
-
         		for (double currentDistance = 0; currentDistance <= desiredDistance; currentDistance += Program.collisionDetectionResolution)
         		{
-        			if (IsDetectCollision(sprite, currentDistance, level, true))
+                    if (IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, true))
         				return previousDistance;
     				previousDistance = currentDistance;
         		}
         	}
         	else
         	{
-                if (IsDetectCollision(sprite, sprite.XPosition, level, false))
-                    return 0;
-                else
-                    return -Program.collisionDetectionResolution;
-                    
-
         		for (double currentDistance = 0; currentDistance >= desiredDistance; currentDistance -= Program.collisionDetectionResolution)
         		{
-        			if (IsDetectCollision(sprite, currentDistance, level, false))
+                    if (IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, false))
         				return previousDistance;
     				previousDistance = currentDistance;
         		}
