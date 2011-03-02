@@ -28,9 +28,11 @@ namespace AbrahmanAdventure.physics
         		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,timeDelta,level);
         	else
         		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,-timeDelta,level);
-        	
-        	if (walkingDistance != 0)
-        	    sprite.XPosition += walkingDistance;
+
+            if (walkingDistance != 0)
+            {
+                sprite.XPosition += walkingDistance;
+            }
         	
         	
         	if (sprite.Ground != null)
@@ -40,8 +42,8 @@ namespace AbrahmanAdventure.physics
         		//If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
         		if (frontestGroundHavingAccessibleWalkingHeightForSprite != null)
         			sprite.Ground = frontestGroundHavingAccessibleWalkingHeightForSprite;
-        			
-        		sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
+
+                sprite.YPosition = (sprite.Ground.TerrainWave[sprite.LeftBound] + sprite.Ground.TerrainWave[sprite.RightBound]) / 2.0;
         	}
         }
         
