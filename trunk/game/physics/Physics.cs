@@ -29,8 +29,8 @@ namespace AbrahmanAdventure.physics
         	else
         		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,-timeDelta,level);
         	
-        	
-        	sprite.XPosition += walkingDistance;
+        	if (walkingDistance != 0)
+        	    sprite.XPosition += walkingDistance;
         	
         	
         	if (sprite.Ground != null)
@@ -50,6 +50,11 @@ namespace AbrahmanAdventure.physics
         	double previousDistance = 0;
         	if (desiredDistance > 0)
         	{
+                if (IsDetectCollision(sprite, sprite.XPosition, level, true))
+                    return 0;
+                else
+                    return Program.collisionDetectionResolution;
+
         		for (double currentDistance = 0; currentDistance <= desiredDistance; currentDistance += Program.collisionDetectionResolution)
         		{
         			if (IsDetectCollision(sprite, currentDistance, level, true))
@@ -59,6 +64,12 @@ namespace AbrahmanAdventure.physics
         	}
         	else
         	{
+                if (IsDetectCollision(sprite, sprite.XPosition, level, false))
+                    return 0;
+                else
+                    return -Program.collisionDetectionResolution;
+                    
+
         		for (double currentDistance = 0; currentDistance >= desiredDistance; currentDistance -= Program.collisionDetectionResolution)
         		{
         			if (IsDetectCollision(sprite, currentDistance, level, false))
@@ -79,22 +90,20 @@ namespace AbrahmanAdventure.physics
         	
         	if (isWalkingRight)
         	{
-        		angleX1 = xDesiredPosition + sprite.Width / 2;
+                angleX1 = xDesiredPosition;
         		angleX2 = angleX1 + Program.collisionDetectionResolution;
         	}
         	else 
         	{
-        		angleX1 = xDesiredPosition - sprite.Width / 2;
+        		angleX1 = xDesiredPosition;
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
         	
         	double angleY1 = sprite.Ground.TerrainWave[angleX1];
         	double angleY2 = sprite.Ground.TerrainWave[angleX2];
-        	
-        	if (angleY2 > angleY1)
-        		return false;
-        	#warning Fix collsion detection
-        	return (angleY1 - angleY2 >= sprite.Height / 2);
+
+            double slope = angleY1 - angleY2;
+            return (slope >= sprite.Height / 5.0);
         }
         
         private Ground GetFrontestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
