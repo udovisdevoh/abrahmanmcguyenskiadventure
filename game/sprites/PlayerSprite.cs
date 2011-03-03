@@ -14,6 +14,10 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private Surface defaultSurface;
+
+        private bool isNeedToJumpAgain = false;
+
+        private double maxJumpAcceleration = 10;
         #endregion
 
         #region Constructors
@@ -66,6 +70,11 @@ namespace AbrahmanAdventure.sprites
                 //defaultSurface.Fill(System.Drawing.Color.Red);
             }
             return defaultSurface;
+        }
+
+        protected override double BuildMaxJumpAcceleration()
+        {
+            return 40.0;
         }
         #endregion
     }

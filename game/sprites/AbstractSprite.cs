@@ -63,6 +63,10 @@ namespace AbrahmanAdventure.sprites
         /// Current ground attached to sprite
         /// </summary>
         private Ground ground;
+
+        private bool isNeedToJumpAgain = false;
+
+        private double maxJumpAcceleration;
         #endregion
 
         #region Constructor
@@ -78,11 +82,14 @@ namespace AbrahmanAdventure.sprites
             width = BuildWidth();
             height = BuildHeight();
             mass = BuildMass();
+            maxJumpAcceleration = BuildMaxJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
         }
         #endregion
 
         #region Abstract Methods
+        protected abstract double BuildMaxJumpAcceleration();
+
         /// <summary>
         /// sprite's width (1.5 = player's width)
         /// </summary>
@@ -220,6 +227,17 @@ namespace AbrahmanAdventure.sprites
         public double MinimumFallingHeight
         {
             get { return height / 3.0; }
+        }
+
+        public bool IsNeedToJumpAgain
+        {
+            get { return isNeedToJumpAgain; }
+            set { isNeedToJumpAgain = value; }
+        }
+
+        public double MaxJumpAcceleration
+        {
+            get { return maxJumpAcceleration; }
         }
         #endregion
     }
