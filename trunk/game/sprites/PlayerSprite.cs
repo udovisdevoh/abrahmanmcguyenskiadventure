@@ -74,7 +74,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxJumpAcceleration()
         {
-            return 40.0;
+            return 25.0;
         }
         #endregion
     }
