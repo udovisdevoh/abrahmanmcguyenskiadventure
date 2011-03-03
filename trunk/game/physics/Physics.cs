@@ -131,11 +131,7 @@ namespace AbrahmanAdventure.physics
             if (sprite.Ground == null)
             {
                 referenceGround = GetHighestGroundBelowSprite(sprite, level);
-
-                if (referenceGround.TerrainWave[xDesiredPosition] >= sprite.YPosition)
-                    return false;
-                else
-                    return true;
+                return referenceGround.TerrainWave[xDesiredPosition] < sprite.YPosition;
             }
             else
                 referenceGround = sprite.Ground;
