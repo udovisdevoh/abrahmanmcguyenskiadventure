@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>width</returns>
         protected override double BuildWidth()
         {
-            return 1.5;
+            return 1.2;
         }
 
         /// <summary>
@@ -63,6 +63,7 @@ namespace AbrahmanAdventure.sprites
                 defaultSurface = new Surface("./assets/rendered/abrahman/walk1.png");
                 double zoom = height * Program.tileSize / defaultSurface.Height;
                 defaultSurface = defaultSurface.CreateScaledSurface(zoom);
+                //defaultSurface.Fill(System.Drawing.Color.Red);
             }
             return defaultSurface;
         }

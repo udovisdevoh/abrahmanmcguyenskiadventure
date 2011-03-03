@@ -20,14 +20,25 @@ namespace AbrahmanAdventure.physics
         {
         	ApplyGravity(sprite, level, timeDelta);
         }
-        
-        internal void TryMakeWalk(AbstractSprite sprite, bool isRight, double timeDelta, Level level)
+
+        internal void TryMakeWalk(AbstractSprite sprite, bool isWalkingRight, double timeDelta, Level level)
         {
-        	double walkingDistance;
-        	if (isRight)
-        		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,timeDelta,level);
-        	else
-        		walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite,-timeDelta,level);
+            double desiredWalkingDistance;
+            double walkingDistance;
+            if (isWalkingRight)
+            {
+                desiredWalkingDistance = timeDelta;
+                walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite, desiredWalkingDistance + sprite.Width / 2.0, level);
+                walkingDistance -= sprite.Width / 2.0;
+                walkingDistance = Math.Max(0, walkingDistance);
+            }
+            else
+            {
+                desiredWalkingDistance = -timeDelta;
+                walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite, desiredWalkingDistance - sprite.Width / 2.0, level);
+                walkingDistance += sprite.Width / 2.0;
+                walkingDistance = Math.Min(0, walkingDistance);
+            }
 
             if (walkingDistance != 0)
             {
