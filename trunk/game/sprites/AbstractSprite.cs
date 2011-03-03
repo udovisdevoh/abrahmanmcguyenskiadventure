@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.sprites
             width = BuildWidth();
             height = BuildHeight();
             mass = BuildMass();
-            startingJumpAcceleration = BuildMaxJumpAcceleration();
+            startingJumpAcceleration = BuildStartingJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
             walkingSpeed = BuildWalkingSpeed();
         }
@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.sprites
         #region Abstract Methods
         protected abstract double BuildWalkingSpeed();
 
-        protected abstract double BuildMaxJumpAcceleration();
+        protected abstract double BuildStartingJumpAcceleration();
 
         /// <summary>
         /// sprite's width (1.5 = player's width)
