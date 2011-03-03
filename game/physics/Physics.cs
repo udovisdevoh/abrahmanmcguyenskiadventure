@@ -150,6 +150,7 @@ namespace AbrahmanAdventure.physics
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
 
+            #warning Must always detect collision with hiding ground
             //We check other grounds for collision
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
