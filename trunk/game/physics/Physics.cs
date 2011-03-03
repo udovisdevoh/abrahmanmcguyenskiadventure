@@ -28,14 +28,14 @@ namespace AbrahmanAdventure.physics
             double walkingDistance;
             if (isWalkingRight)
             {
-                desiredWalkingDistance = timeDelta;
+                desiredWalkingDistance = timeDelta * sprite.WalkingSpeed;
                 walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite, desiredWalkingDistance + sprite.Width / 2.0, level);
                 walkingDistance -= sprite.Width / 2.0;
                 walkingDistance = Math.Max(0, walkingDistance);
             }
             else
             {
-                desiredWalkingDistance = -timeDelta;
+                desiredWalkingDistance = -timeDelta * sprite.WalkingSpeed;
                 walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite, desiredWalkingDistance - sprite.Width / 2.0, level);
                 walkingDistance += sprite.Width / 2.0;
                 walkingDistance = Math.Min(0, walkingDistance);
