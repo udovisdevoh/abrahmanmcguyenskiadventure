@@ -76,6 +76,11 @@ namespace AbrahmanAdventure.sprites
         {
             return 25.0;
         }
+
+        protected override double BuildWalkingSpeed()
+        {
+            return 0.5;
+        }
         #endregion
     }
 }
