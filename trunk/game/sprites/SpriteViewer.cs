@@ -51,9 +51,7 @@ namespace AbrahmanAdventure.sprites
             {
                 Surface spriteSurface = sprite.GetCurrentSurface();
 
-                int xBlitPosition = (int)Math.Round(((sprite.XPosition - (spriteSurface.Width / Program.tileSize) / 2.0 - viewOffsetX) * Program.tileSize));
-                //int yBlitPosition = Program.totalHeightTileCount * Program.tileSize - ((int)Math.Round((sprite.YPosition - (spriteSurface.Height / Program.tileSize) +viewOffsetY) * Program.tileSize));
-
+                int xBlitPosition = (int)Math.Round(((sprite.XPosition - ((double)spriteSurface.Width / (double)Program.tileSize) / 2.0 - viewOffsetX) * Program.tileSize));
                 int yBlitPosition = (int)((sprite.YPosition - viewOffsetY) * (double)Program.tileSize) - spriteSurface.Height ;
 
                 mainSurface.Blit(spriteSurface, new Point(xBlitPosition, yBlitPosition));
