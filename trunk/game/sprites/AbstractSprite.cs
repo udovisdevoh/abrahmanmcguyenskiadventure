@@ -212,9 +212,14 @@ namespace AbrahmanAdventure.sprites
             get { return xPosition - width / 2.0; }
         }
 
-        public double WalkingHeight
+        public double MaximumWalkingHeight
         {
             get { return height / 5.0; }
+        }
+
+        public double MinimumFallingHeight
+        {
+            get { return height / 3.0; }
         }
         #endregion
     }
