@@ -72,7 +72,7 @@ namespace AbrahmanAdventure.sprites
             return defaultSurface;
         }
 
-        protected override double BuildMaxJumpAcceleration()
+        protected override double BuildStartingJumpAcceleration()
         {
             return 25.0;
         }
