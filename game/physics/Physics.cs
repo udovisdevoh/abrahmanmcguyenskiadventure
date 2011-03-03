@@ -79,7 +79,7 @@ namespace AbrahmanAdventure.physics
 
         internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
-            #warning: must jump higher if we press space for longer
+            #warning: must balance falling speed with jumping speed
             if (!sprite.IsNeedToJumpAgain)
             {
                 if (sprite.Ground != null)
