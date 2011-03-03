@@ -66,7 +66,7 @@ namespace AbrahmanAdventure.sprites
 
         private bool isNeedToJumpAgain = false;
 
-        private double maxJumpAcceleration;
+        private double startingJumpAcceleration;
         #endregion
 
         #region Constructor
@@ -82,7 +82,7 @@ namespace AbrahmanAdventure.sprites
             width = BuildWidth();
             height = BuildHeight();
             mass = BuildMass();
-            maxJumpAcceleration = BuildMaxJumpAcceleration();
+            startingJumpAcceleration = BuildMaxJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
         }
         #endregion
@@ -235,9 +235,9 @@ namespace AbrahmanAdventure.sprites
             set { isNeedToJumpAgain = value; }
         }
 
-        public double MaxJumpAcceleration
+        public double StartingJumpAcceleration
         {
-            get { return maxJumpAcceleration; }
+            get { return startingJumpAcceleration; }
         }
         #endregion
     }

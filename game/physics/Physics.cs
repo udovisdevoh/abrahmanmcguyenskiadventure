@@ -59,7 +59,6 @@ namespace AbrahmanAdventure.physics
             }
         	
         	
-            //We sometimes make fall the sprite
         	if (sprite.Ground != null)
         	{        		
         		Ground frontestGroundHavingAccessibleWalkingHeightForSprite = GetFrontestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);        		
@@ -70,6 +69,7 @@ namespace AbrahmanAdventure.physics
 
                 double groundHeight = sprite.Ground.TerrainWave[sprite.XPosition];
 
+                //We sometimes make fall the sprite
                 if (sprite.YPosition < groundHeight - sprite.MinimumFallingHeight)
                     sprite.Ground = null;
                 else
@@ -79,16 +79,17 @@ namespace AbrahmanAdventure.physics
 
         internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
+            #warning: must jump higher if we press space for longer
             if (!sprite.IsNeedToJumpAgain)
             {
                 if (sprite.Ground != null)
                 {
-                    sprite.CurrentJumpAcceleration = sprite.MaxJumpAcceleration;
+                    sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                     sprite.Ground = null;
                 }
                 else
                 {
-                    sprite.CurrentJumpAcceleration += 0.065 * timeDelta;
+                    sprite.CurrentJumpAcceleration += 3 * timeDelta;
                 }
 
                 if (sprite.CurrentJumpAcceleration < 0)
