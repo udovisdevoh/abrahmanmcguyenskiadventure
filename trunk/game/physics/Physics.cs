@@ -66,7 +66,12 @@ namespace AbrahmanAdventure.physics
         		if (frontestGroundHavingAccessibleWalkingHeightForSprite != null)
         			sprite.Ground = frontestGroundHavingAccessibleWalkingHeightForSprite;
 
-                sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
+                double groundHeight = sprite.Ground.TerrainWave[sprite.XPosition];
+
+                if (sprite.YPosition < groundHeight - sprite.WalkingHeight)
+                    sprite.Ground = null;
+                else
+                    sprite.YPosition = groundHeight;
         	}
         }
         
@@ -117,7 +122,7 @@ namespace AbrahmanAdventure.physics
         	double angleY2 = sprite.Ground.TerrainWave[angleX2];
 
             double slope = angleY1 - angleY2;
-            return (slope >= sprite.Height / 5.0);
+            return (slope >= sprite.WalkingHeight);
         }
         
         private Ground GetFrontestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
@@ -133,8 +138,8 @@ namespace AbrahmanAdventure.physics
         			break;
         		
         		double currentGroundHeight = currentGround.TerrainWave[sprite.XPosition];
-    			
-        		if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.Height / 5)
+
+                if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.WalkingHeight)
     				return currentGround;
         	}
         	return null;
@@ -160,8 +165,8 @@ namespace AbrahmanAdventure.physics
                 else
                 {
                     double closestDownGroundHeight = closestDownGround.TerrainWave[sprite.XPosition];
-                    sprite.YPosition -= sprite.CurrentJumpAcceleration / 200 * timeDelta;
-                    sprite.CurrentJumpAcceleration -= 1.0 * timeDelta;
+                    sprite.YPosition -= sprite.CurrentJumpAcceleration / 50 * timeDelta;
+                    sprite.CurrentJumpAcceleration -= 4.0 * timeDelta;
 
                     if (sprite.YPosition >= closestDownGroundHeight)
                     {
