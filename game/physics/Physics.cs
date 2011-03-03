@@ -58,6 +58,7 @@ namespace AbrahmanAdventure.physics
             }
         	
         	
+            //We sometimes make fall the sprite
         	if (sprite.Ground != null)
         	{        		
         		Ground frontestGroundHavingAccessibleWalkingHeightForSprite = GetFrontestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);        		
@@ -68,7 +69,7 @@ namespace AbrahmanAdventure.physics
 
                 double groundHeight = sprite.Ground.TerrainWave[sprite.XPosition];
 
-                if (sprite.YPosition < groundHeight - sprite.WalkingHeight)
+                if (sprite.YPosition < groundHeight - sprite.MinimumFallingHeight)
                     sprite.Ground = null;
                 else
                     sprite.YPosition = groundHeight;
@@ -117,12 +118,22 @@ namespace AbrahmanAdventure.physics
         		angleX1 = xDesiredPosition;
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
-        	
-        	double angleY1 = sprite.Ground.TerrainWave[angleX1];
-        	double angleY2 = sprite.Ground.TerrainWave[angleX2];
 
-            double slope = angleY1 - angleY2;
-            return (slope >= sprite.WalkingHeight);
+            //We check other grounds for collision
+            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+            {
+                Ground currentGround = level[groundId];
+                double angleY1 = sprite.Ground.TerrainWave[angleX1];
+                double angleY2 = sprite.Ground.TerrainWave[angleX2];
+
+                double slope = angleY1 - angleY2;
+                if (slope >= sprite.MaximumWalkingHeight)
+                    return true;
+
+                if (currentGround == sprite.Ground)
+                    break;
+            }
+            return false;
         }
         
         private Ground GetFrontestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
@@ -139,7 +150,7 @@ namespace AbrahmanAdventure.physics
         		
         		double currentGroundHeight = currentGround.TerrainWave[sprite.XPosition];
 
-                if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.WalkingHeight)
+                if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
     				return currentGround;
         	}
         	return null;
