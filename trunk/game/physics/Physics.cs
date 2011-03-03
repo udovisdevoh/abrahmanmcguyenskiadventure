@@ -12,6 +12,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class Physics
     {
+        #region Public Methods
         /// <summary>
         /// Update physics for sprite
         /// </summary>
@@ -75,7 +76,30 @@ namespace AbrahmanAdventure.physics
                     sprite.YPosition = groundHeight;
         	}
         }
-        
+
+        internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
+        {
+            if (!sprite.IsNeedToJumpAgain)
+            {
+                if (sprite.Ground != null)
+                {
+                    sprite.CurrentJumpAcceleration = sprite.MaxJumpAcceleration;
+                    sprite.Ground = null;
+                }
+                else
+                {
+                    sprite.CurrentJumpAcceleration += 0.065 * timeDelta;
+                }
+
+                if (sprite.CurrentJumpAcceleration < 0)
+                {
+                    sprite.IsNeedToJumpAgain = true;
+                }
+            }
+        }
+        #endregion
+
+        #region Private Methods
         private double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level)
         {
         	double previousDistance = 0;
@@ -214,5 +238,6 @@ namespace AbrahmanAdventure.physics
             }
             return highestGroundBelowSprite;
         }
+        #endregion
     }
 }

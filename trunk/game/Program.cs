@@ -124,6 +124,8 @@ namespace AbrahmanAdventure
                 userInput.isPressUp = true;
             else if (args.Key == Key.DownArrow)
                 userInput.isPressDown = true;
+            else if (args.Key == Key.Space)
+                userInput.isPressJump = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
@@ -136,6 +138,8 @@ namespace AbrahmanAdventure
                 userInput.isPressUp = false;
             else if (args.Key == Key.DownArrow)
                 userInput.isPressDown = false;
+            else if (args.Key == Key.Space)
+                userInput.isPressJump = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
@@ -171,6 +175,11 @@ namespace AbrahmanAdventure
             		physics.TryMakeWalk(playerSprite, false, timeDelta, level);
 		        else if (userInput.isPressRight && !userInput.isPressLeft)
 		            physics.TryMakeWalk(playerSprite, true, timeDelta, level);
+
+                if (userInput.isPressJump)
+                    physics.StartOrContinueJump(playerSprite, timeDelta);
+                else
+                    playerSprite.IsNeedToJumpAgain = false;
 		        
             	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
             	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
@@ -193,6 +202,7 @@ namespace AbrahmanAdventure
 	                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 - tileRowCount);
 	            }
 			}
+
 
             physics.Update(playerSprite, level, timeDelta);
 

@@ -17,5 +17,7 @@ namespace AbrahmanAdventure
         public bool isPressLeft = false;
 
         public bool isPressRight = false;
+
+        public bool isPressJump = false;
     }
 }
