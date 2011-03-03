@@ -126,8 +126,19 @@ namespace AbrahmanAdventure.physics
         
         private bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight)
         {
-        	if (sprite.Ground == null)
-        		return false;
+            Ground referenceGround;
+
+            if (sprite.Ground == null)
+            {
+                referenceGround = GetHighestGroundBelowSprite(sprite, level);
+
+                if (referenceGround.TerrainWave[xDesiredPosition] >= sprite.YPosition)
+                    return false;
+                else
+                    return true;
+            }
+            else
+                referenceGround = sprite.Ground;
         	
         	double angleX1;
         	double angleX2;
@@ -147,14 +158,14 @@ namespace AbrahmanAdventure.physics
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
                 Ground currentGround = level[groundId];
-                double angleY1 = sprite.Ground.TerrainWave[angleX1];
-                double angleY2 = sprite.Ground.TerrainWave[angleX2];
+                double angleY1 = referenceGround.TerrainWave[angleX1];
+                double angleY2 = referenceGround.TerrainWave[angleX2];
 
                 double slope = angleY1 - angleY2;
                 if (slope >= sprite.MaximumWalkingHeight)
                     return true;
 
-                if (currentGround == sprite.Ground)
+                if (currentGround == referenceGround)
                     break;
             }
             return false;
