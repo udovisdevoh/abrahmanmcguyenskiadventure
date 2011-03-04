@@ -52,17 +52,20 @@ namespace AbrahmanAdventure.physics
 
             if (walkingDistance != 0)
             {
-                /*double slope;
-                
-                if (isRight)
-                    slope = 1.0 - (sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance] - sprite.Ground.TerrainWave[sprite.XPosition]) / walkingDistance;
-                else
-                    slope = 1.0 - (sprite.Ground.TerrainWave[sprite.XPosition] - sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance;
-
-                slope = Math.Sqrt(slope);
-
-                if (slope > 0)
-                    walkingDistance /= slope;*/
+            	if (sprite.Ground != null)
+            	{
+	                double slope;
+	                
+	                if (isWalkingRight)
+	                	slope = 1.0 - ((sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance] - sprite.Ground.TerrainWave[sprite.XPosition]) / walkingDistance) / 2.0;
+	                else
+	                	slope = 1.0 - ((sprite.Ground.TerrainWave[sprite.XPosition] - sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
+	
+	                slope = Math.Sqrt(slope);
+	
+	                if (slope > 0)
+	                    walkingDistance /= slope;
+            	}
 
                 sprite.XPosition += walkingDistance;
             }
@@ -136,6 +139,8 @@ namespace AbrahmanAdventure.physics
         
         private bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight)
         {
+        	
+        	#warning for transparent grounds and maybe for all grounds, must use texture's width for collision detection (should not block if player is under texture)
             Ground referenceGround;
 
             if (sprite.Ground == null)

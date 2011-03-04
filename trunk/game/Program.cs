@@ -265,7 +265,8 @@ namespace AbrahmanAdventure
 
         public void Start()
         {
-            Joystick joystick = Joysticks.OpenJoystick(0);
+        	#warning re-enable joystick
+            //Joystick joystick = Joysticks.OpenJoystick(0);
             
 
             //Events.TargetFps = targetFps;
