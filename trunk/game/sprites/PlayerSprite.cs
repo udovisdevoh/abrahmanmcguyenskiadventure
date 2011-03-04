@@ -44,8 +44,11 @@ namespace AbrahmanAdventure.sprites
             if (walking1RightSurface == null)
             {
                 walking1RightSurface = new Surface("./assets/rendered/abrahman/walk1.png");
-                double zoom = Height * Program.tileSize / walking1RightSurface.Height;
-                walking1RightSurface = walking1RightSurface.CreateScaledSurface(zoom);
+                if (walking1RightSurface.Height != (int)Height * Program.tileSize)
+                {
+                    double zoom = Height * Program.tileSize / walking1RightSurface.Height;
+                    walking1RightSurface = walking1RightSurface.CreateScaledSurface(zoom);
+                }
             }
             return walking1RightSurface;
         }
@@ -71,8 +74,11 @@ namespace AbrahmanAdventure.sprites
             if (walking2RightSurface == null)
             {
                 walking2RightSurface = new Surface("./assets/rendered/abrahman/walk2.png");
-                double zoom = Height * Program.tileSize / walking2RightSurface.Height;
-                walking2RightSurface = walking2RightSurface.CreateScaledSurface(zoom);
+                if (walking2RightSurface.Height != (int)Height * Program.tileSize)
+                {
+                    double zoom = Height * Program.tileSize / walking2RightSurface.Height;
+                    walking2RightSurface = walking2RightSurface.CreateScaledSurface(zoom);
+                }
             }
             return walking2RightSurface;
         }
@@ -90,8 +96,11 @@ namespace AbrahmanAdventure.sprites
             if (standingRightSurface == null)
             {
                 standingRightSurface = new Surface("./assets/rendered/abrahman/stand.png");
-                double zoom = Height * Program.tileSize / standingRightSurface.Height;
-                standingRightSurface = standingRightSurface.CreateScaledSurface(zoom);
+                if (standingRightSurface.Height != (int)Height * Program.tileSize)
+                {
+                    double zoom = Height * Program.tileSize / standingRightSurface.Height;
+                    standingRightSurface = standingRightSurface.CreateScaledSurface(zoom);
+                }
             }
             return standingRightSurface;
         }
