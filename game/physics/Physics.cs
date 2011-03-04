@@ -92,6 +92,7 @@ namespace AbrahmanAdventure.physics
         internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
             #warning: must balance falling speed with jumping speed
+            #warning: rethink all jump physics
             if (!sprite.IsNeedToJumpAgain)
             {
                 if (sprite.Ground != null)
