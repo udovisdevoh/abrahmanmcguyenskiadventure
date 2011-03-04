@@ -172,7 +172,26 @@ namespace AbrahmanAdventure
             if (isBindViewOffsetToPlayer)
             {
                 if (userInput.isPressJump)
-                    physics.StartOrContinueJump(playerSprite, timeDelta);
+                {
+                    if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null)
+                    {
+                        playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
+                        Ground highestVisibleGroundBelowSprite = physics.GetHighestVisibleGroundBelowSprite(playerSprite, level);
+                        if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
+                        {
+                            playerSprite.Ground = null;
+                        }
+                        else
+                        {
+                            //Oops, we jumped from the lowest ground. Let's undo the falling
+                            playerSprite.YPosition -= playerSprite.MaximumWalkingHeight;
+                        }
+                    }
+                    else
+                    {
+                        physics.StartOrContinueJump(playerSprite, timeDelta);
+                    }
+                }
                 else
                     playerSprite.IsNeedToJumpAgain = false;
 
