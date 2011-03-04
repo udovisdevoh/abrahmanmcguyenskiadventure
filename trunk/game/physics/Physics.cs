@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
-                    sprite.CurrentJumpAcceleration += 3 * timeDelta;
+                    sprite.CurrentJumpAcceleration += 2.7 * timeDelta;
                 }
 
                 if (sprite.CurrentJumpAcceleration < 0)
@@ -131,7 +131,11 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.Ground == null)
             {
-                referenceGround = GetHighestGroundBelowSprite(sprite, level);
+                referenceGround = GetHighestVisibleGroundBelowSprite(sprite, level);
+
+                if (referenceGround == null)
+                    return false;
+
                 return referenceGround.TerrainWave[xDesiredPosition] < sprite.YPosition;
             }
             else
@@ -160,11 +164,14 @@ namespace AbrahmanAdventure.physics
                 double angleY2 = referenceGround.TerrainWave[angleX2];
 
                 double slope = angleY1 - angleY2;
+
                 if (slope >= sprite.MaximumWalkingHeight)
                     return true;
 
                 if (currentGround == referenceGround)
                     break;
+                else if (currentGround.TerrainWave[sprite.XPosition] < sprite.YPosition)
+                    return true;
             }
             return false;
         }
@@ -201,7 +208,7 @@ namespace AbrahmanAdventure.physics
             }
             else
             {
-                Ground closestDownGround = GetHighestGroundBelowSprite(sprite, level);
+                Ground closestDownGround = GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (closestDownGround == null)
                 {
                     sprite.CurrentJumpAcceleration = 0;
@@ -227,7 +234,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
         /// <returns>Highest ground below sprite</returns>
-        private Ground GetHighestGroundBelowSprite(AbstractSprite sprite, Level level)
+        internal Ground GetHighestVisibleGroundBelowSprite(AbstractSprite sprite, Level level)
         {
             Ground highestGroundBelowSprite = null;
             double highestHeight = -1;
@@ -240,12 +247,39 @@ namespace AbrahmanAdventure.physics
                 {
                     if (highestHeight == -1 || currentHeight < highestHeight)
                     {
-                        highestHeight = currentHeight;
-                        highestGroundBelowSprite = ground;
+                        if (IsGroundVisible(ground, level,sprite.XPosition))
+                        {
+                            highestHeight = currentHeight;
+                            highestGroundBelowSprite = ground;
+                        }
                     }
                 }
             }
             return highestGroundBelowSprite;
+        }
+
+        /// <summary>
+        /// Whether ground is visible at X Position
+        /// </summary>
+        /// <param name="ground">ground</param>
+        /// <param name="level">level</param>
+        /// <param name="xPosition">X Position</param>
+        /// <returns>Whether ground is visible at X Position</returns>
+        private bool IsGroundVisible(Ground ground, Level level, double xPosition)
+        {
+            double yPosition = ground.TerrainWave[xPosition];
+
+            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+            {
+                Ground currentGround = level[groundId];
+                if (currentGround == ground)
+                    break;
+
+                if (currentGround.TerrainWave[xPosition] < yPosition)
+                    return false;
+            }
+
+            return true;
         }
         #endregion
     }
