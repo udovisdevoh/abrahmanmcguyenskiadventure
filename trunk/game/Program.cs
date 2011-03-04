@@ -201,15 +201,34 @@ namespace AbrahmanAdventure
                 else
                     playerSprite.IsNeedToJumpAgain = false;
 
-            	if (userInput.isPressLeft && !userInput.isPressRight)
-            		physics.TryMakeWalk(playerSprite, false, timeDelta, level);
-                else if (userInput.isPressRight && !userInput.isPressLeft)
-                    physics.TryMakeWalk(playerSprite, true, timeDelta, level);
+
+
+                if (userInput.isPressLeft && !userInput.isPressRight)
+                {
+                    if (playerSprite.IsTryingToWalkRight)
+                        playerSprite.CurrentWalkingSpeed = 0;
+
+                    playerSprite.IsTryingToWalk = true;
+                    playerSprite.IsTryingToWalkRight = false;
+                }
+                else if (!userInput.isPressLeft && userInput.isPressRight)
+                {
+                    if (!playerSprite.IsTryingToWalkRight)
+                        playerSprite.CurrentWalkingSpeed = 0;
+
+                    playerSprite.IsTryingToWalk = true;
+                    playerSprite.IsTryingToWalkRight = true;
+                }
                 else
                 {
+                    playerSprite.IsTryingToWalk = false;
                     playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                     playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
                 }
+
+
+                if (playerSprite.IsTryingToWalk || playerSprite.CurrentWalkingSpeed > 0)
+                    physics.TryMakeWalk(playerSprite, playerSprite.IsTryingToWalk, playerSprite.IsTryingToWalkRight, timeDelta, level);
 		        
             	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
             	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
