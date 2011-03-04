@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
         
         public const bool isBindViewOffsetToPlayer = true;
         
-        public const bool isFullScreen = false;
+        public const bool isFullScreen = true;
 
         public const bool isHardwareSurface = true;
 
