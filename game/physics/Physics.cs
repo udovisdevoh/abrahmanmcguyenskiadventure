@@ -220,6 +220,8 @@ namespace AbrahmanAdventure.physics
                 Ground closestDownGround = GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (closestDownGround == null)
                 {
+                    sprite.Ground = GetLowestVisibleGround(sprite, level);
+                    sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
                     sprite.CurrentJumpAcceleration = 0;
                 }
                 else
@@ -289,6 +291,27 @@ namespace AbrahmanAdventure.physics
             }
 
             return true;
+        }
+
+        private Ground GetLowestVisibleGround(AbstractSprite sprite, Level level)
+        {
+            Ground lowestGround = null;
+            double lowestHeight = double.NegativeInfinity;
+
+            foreach (Ground ground in level)
+            {
+                double currentHeight = ground.TerrainWave[sprite.XPosition];
+
+                if (currentHeight > lowestHeight)
+                {
+                    if (IsGroundVisible(ground, level, sprite.XPosition))
+                    {
+                        lowestHeight = currentHeight;
+                        lowestGround = ground;
+                    }
+                }
+            }
+            return lowestGround;
         }
         #endregion
     }
