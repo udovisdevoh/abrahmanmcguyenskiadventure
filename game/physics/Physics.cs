@@ -22,12 +22,13 @@ namespace AbrahmanAdventure.physics
         	ApplyGravity(sprite, level, timeDelta);
         }
 
-        internal void TryMakeWalk(AbstractSprite sprite, bool isWalkingRight, double timeDelta, Level level)
+        internal void TryMakeWalk(AbstractSprite sprite, bool isTryingToWalk, bool isWalkingRight, double timeDelta, Level level)
         {
             double desiredWalkingDistance;
             double walkingDistance;
 
-            sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
+            if (isTryingToWalk)
+                sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
 
             if (sprite.IsRunning)
                 sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxRunningSpeed);

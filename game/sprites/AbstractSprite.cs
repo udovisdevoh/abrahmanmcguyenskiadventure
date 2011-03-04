@@ -77,6 +77,10 @@ namespace AbrahmanAdventure.sprites
         private double maxRunningSpeed;
 
         private bool isRunning = false;
+
+        private bool isTryingToWalk = false;
+
+        private bool isTryingToWalkRight = false;
         #endregion
 
         #region Constructor
@@ -284,6 +288,18 @@ namespace AbrahmanAdventure.sprites
         public double WalkingAcceleration
         {
             get { return walkingAcceleration; }
+        }
+
+        public bool IsTryingToWalk
+        {
+            get { return isTryingToWalk; }
+            set { isTryingToWalk = value; }
+        }
+
+        public bool IsTryingToWalkRight
+        {
+            get { return isTryingToWalkRight; }
+            set { isTryingToWalkRight = value; }
         }
         #endregion
     }
