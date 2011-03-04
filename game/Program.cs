@@ -184,7 +184,7 @@ namespace AbrahmanAdventure
                         else
                         {
                             //Oops, we jumped from the lowest ground. Let's undo the falling
-                            playerSprite.YPosition -= playerSprite.MaximumWalkingHeight;
+                            playerSprite.YPosition = playerSprite.Ground.TerrainWave[playerSprite.XPosition];
                         }
                     }
                     else
