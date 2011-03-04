@@ -191,7 +191,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 80;
+            return 10;
         }
         #endregion
     }

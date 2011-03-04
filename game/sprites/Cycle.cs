@@ -36,8 +36,8 @@ namespace AbrahmanAdventure.sprites
 
         public int GetCycleDivision(double divisor)
         {
-            #warning Fix cycle divisor
-            return (int)(currentValue / divisor);
+            double otherDivisor = totalTimeLength / divisor;
+            return (int)(currentValue / otherDivisor);
         }
         #endregion
 
