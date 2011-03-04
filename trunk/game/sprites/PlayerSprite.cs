@@ -13,11 +13,17 @@ namespace AbrahmanAdventure.sprites
     internal class PlayerSprite : AbstractSprite
     {
         #region Fields and parts
-        private Surface defaultSurface;
+        private Surface walking1LeftSurface;
 
-        private bool isNeedToJumpAgain = false;
+        private Surface walking1RightSurface;
 
-        private double maxJumpAcceleration = 10;
+        private Surface walking2LeftSurface;
+
+        private Surface walking2RightSurface;
+
+        private Surface standingLeftSurface;
+
+        private Surface standingRightSurface;
         #endregion
 
         #region Constructors
@@ -29,6 +35,65 @@ namespace AbrahmanAdventure.sprites
         public PlayerSprite(double xPosition, double yPosition)
             : base(xPosition, yPosition)
         {
+        }
+        #endregion
+
+        #region Private Methods
+        private Surface GetWalking1RightSurface()
+        {
+            if (walking1RightSurface == null)
+            {
+                walking1RightSurface = new Surface("./assets/rendered/abrahman/walk1.png");
+                double zoom = Height * Program.tileSize / walking1RightSurface.Height;
+                walking1RightSurface = walking1RightSurface.CreateScaledSurface(zoom);
+            }
+            return walking1RightSurface;
+        }
+
+        private Surface GetWalking1LeftSurface()
+        {
+            if (walking1LeftSurface == null)
+                walking1LeftSurface = GetWalking1RightSurface().CreateFlippedHorizontalSurface();
+
+            return walking1LeftSurface;
+        }
+
+        private Surface GetWalking2LeftSurface()
+        {
+            if (walking2LeftSurface == null)
+                walking2LeftSurface = GetWalking2RightSurface().CreateFlippedHorizontalSurface();
+
+            return walking2LeftSurface;
+        }
+
+        private Surface GetWalking2RightSurface()
+        {
+            if (walking2RightSurface == null)
+            {
+                walking2RightSurface = new Surface("./assets/rendered/abrahman/walk2.png");
+                double zoom = Height * Program.tileSize / walking2RightSurface.Height;
+                walking2RightSurface = walking2RightSurface.CreateScaledSurface(zoom);
+            }
+            return walking2RightSurface;
+        }
+
+        private Surface GetStandingLeftSurface()
+        {
+            if (standingLeftSurface == null)
+                standingLeftSurface = GetStandingRightSurface().CreateFlippedHorizontalSurface();
+
+            return standingLeftSurface;
+        }
+
+        private Surface GetStandingRightSurface()
+        {
+            if (standingRightSurface == null)
+            {
+                standingRightSurface = new Surface("./assets/rendered/abrahman/stand.png");
+                double zoom = Height * Program.tileSize / standingRightSurface.Height;
+                standingRightSurface = standingRightSurface.CreateScaledSurface(zoom);
+            }
+            return standingRightSurface;
         }
         #endregion
 
@@ -62,14 +127,46 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface()
         {
-            if (defaultSurface == null)
+            if (CurrentJumpAcceleration != 0)
             {
-                defaultSurface = new Surface("./assets/rendered/abrahman/walk1.png");
-                double zoom = Height * Program.tileSize / defaultSurface.Height;
-                defaultSurface = defaultSurface.CreateScaledSurface(zoom);
-                //defaultSurface.Fill(System.Drawing.Color.Red);
+                if (IsTryingToWalkRight)
+                    return GetWalking1RightSurface();
+                else
+                    return GetWalking1LeftSurface();
             }
-            return defaultSurface;
+            else if (IsTryingToWalk || CurrentWalkingSpeed != 0)
+            {
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+
+                if (cycleDivision == 1)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking1RightSurface();
+                    else
+                        return GetWalking1LeftSurface();
+                }
+                else if (cycleDivision == 3)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking2RightSurface();
+                    else
+                        return GetWalking2LeftSurface();
+                }
+                else
+                {
+                    if (IsTryingToWalkRight)
+                        return GetStandingRightSurface();
+                    else
+                        return GetStandingLeftSurface();
+                }
+            }
+            else
+            {
+                if (IsTryingToWalkRight)
+                    return GetStandingRightSurface();
+                else
+                    return GetStandingLeftSurface();
+            }
         }
 
         protected override double BuildStartingJumpAcceleration()
@@ -90,6 +187,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildMaxRunningSpeed()
         {
             return 0.75;
+        }
+
+        protected override double BuildWalkingCycleLength()
+        {
+            return 80;
         }
         #endregion
     }

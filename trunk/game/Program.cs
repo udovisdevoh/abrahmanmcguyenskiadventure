@@ -20,11 +20,11 @@ namespace AbrahmanAdventure
 
         public const int screenHeight = 480;
 
-        public const int targetFps = 60;
+        //public const int targetFps = 60;
         
         public const bool isBindViewOffsetToPlayer = true;
         
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isHardwareSurface = true;
 
@@ -208,6 +208,7 @@ namespace AbrahmanAdventure
                     if (playerSprite.IsTryingToWalkRight)
                         playerSprite.CurrentWalkingSpeed = 0;
 
+                    playerSprite.WalkingCycle.Increment(timeDelta);
                     playerSprite.IsTryingToWalk = true;
                     playerSprite.IsTryingToWalkRight = false;
                 }
@@ -216,11 +217,13 @@ namespace AbrahmanAdventure
                     if (!playerSprite.IsTryingToWalkRight)
                         playerSprite.CurrentWalkingSpeed = 0;
 
+                    playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
                     playerSprite.IsTryingToWalk = true;
                     playerSprite.IsTryingToWalkRight = true;
                 }
                 else
                 {
+                    playerSprite.WalkingCycle.Reset();
                     playerSprite.IsTryingToWalk = false;
                     playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                     playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
