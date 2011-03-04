@@ -17,42 +17,42 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// X position
         /// </summary>
-        protected double xPosition;
+        private double xPosition;
 
         /// <summary>
         /// Y position
         /// </summary>
-        protected double yPosition;
+        private double yPosition;
 
         /// <summary>
         /// Mass
         /// </summary>
-        protected double mass;
+        private double mass;
 
         /// <summary>
         /// Height
         /// </summary>
-        protected double height;
+        private double height;
 
         /// <summary>
         /// Width
         /// </summary>
-        protected double width;
+        private double width;
 
         /// <summary>
         /// Current jump or falling acceleration
         /// </summary>
-        protected double currentJumpAcceleration;
+        private double currentJumpAcceleration;
 
         /// <summary>
         /// To which sprite collection the sprite belongs
         /// </summary>
-        protected SpritePopulation parentSpriteCollection;
+        private SpritePopulation parentSpriteCollection;
 
         /// <summary>
         /// List of bucket that contain this sprite
         /// </summary>
-        protected HashSet<Bucket> parentBucketList;
+        private HashSet<Bucket> parentBucketList;
 
         /// <summary>
         /// True: face left, False: face right
@@ -68,7 +68,15 @@ namespace AbrahmanAdventure.sprites
 
         private double startingJumpAcceleration;
 
-        private double walkingSpeed;
+        private double maxWalkingSpeed;
+
+        private double currentWalkingSpeed = 0;
+
+        private double walkingAcceleration;
+
+        private double maxRunningSpeed;
+
+        private bool isRunning = false;
         #endregion
 
         #region Constructor
@@ -86,12 +94,18 @@ namespace AbrahmanAdventure.sprites
             mass = BuildMass();
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
-            walkingSpeed = BuildWalkingSpeed();
+            maxWalkingSpeed = BuildMaxWalkingSpeed();
+            maxRunningSpeed = BuildMaxRunningSpeed();
+            walkingAcceleration = BuildWalkingAcceleration();
         }
         #endregion
 
         #region Abstract Methods
-        protected abstract double BuildWalkingSpeed();
+        protected abstract double BuildWalkingAcceleration();
+
+        protected abstract double BuildMaxWalkingSpeed();
+
+        protected abstract double BuildMaxRunningSpeed();
 
         protected abstract double BuildStartingJumpAcceleration();
 
@@ -172,6 +186,12 @@ namespace AbrahmanAdventure.sprites
         {
             get { return height; }
         }
+
+        public bool IsRunning
+        {
+            get { return isRunning; }
+            set { isRunning = value; }
+        }
         
         /// <summary>
         /// To which sprite collection the sprite belongs
@@ -245,9 +265,25 @@ namespace AbrahmanAdventure.sprites
             get { return startingJumpAcceleration; }
         }
 
-        public double WalkingSpeed
+        public double MaxWalkingSpeed
         {
-            get { return walkingSpeed; }
+            get { return maxWalkingSpeed; }
+        }
+
+        public double MaxRunningSpeed
+        {
+            get { return maxRunningSpeed; }
+        }
+
+        public double CurrentWalkingSpeed
+        {
+            get { return currentWalkingSpeed; }
+            set { currentWalkingSpeed = value; }
+        }
+
+        public double WalkingAcceleration
+        {
+            get { return walkingAcceleration; }
         }
         #endregion
     }

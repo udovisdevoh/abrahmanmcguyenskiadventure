@@ -126,6 +126,8 @@ namespace AbrahmanAdventure
                 userInput.isPressDown = true;
             else if (args.Key == Key.Space)
                 userInput.isPressJump = true;
+            else if (args.Key == Key.LeftControl)
+                userInput.isPressRun = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
@@ -140,6 +142,8 @@ namespace AbrahmanAdventure
                 userInput.isPressDown = false;
             else if (args.Key == Key.Space)
                 userInput.isPressJump = false;
+            else if (args.Key == Key.LeftControl)
+                userInput.isPressRun = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
@@ -171,6 +175,8 @@ namespace AbrahmanAdventure
             
             if (isBindViewOffsetToPlayer)
             {
+                playerSprite.IsRunning = userInput.isPressRun;
+
                 if (userInput.isPressJump)
                 {
                     if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null)
@@ -197,14 +203,19 @@ namespace AbrahmanAdventure
 
             	if (userInput.isPressLeft && !userInput.isPressRight)
             		physics.TryMakeWalk(playerSprite, false, timeDelta, level);
-		        else if (userInput.isPressRight && !userInput.isPressLeft)
-		            physics.TryMakeWalk(playerSprite, true, timeDelta, level);
+                else if (userInput.isPressRight && !userInput.isPressLeft)
+                    physics.TryMakeWalk(playerSprite, true, timeDelta, level);
+                else
+                {
+                    playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
+                    playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
+                }
 		        
             	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
             	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
             }
 			else
-			{
+			{                   
 		        if (userInput.isPressLeft && !userInput.isPressRight)
 		            viewOffsetX -= timeDelta;
 		        else if (userInput.isPressRight && !userInput.isPressLeft)

@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.sprites
             if (defaultSurface == null)
             {
                 defaultSurface = new Surface("./assets/rendered/abrahman/walk1.png");
-                double zoom = height * Program.tileSize / defaultSurface.Height;
+                double zoom = Height * Program.tileSize / defaultSurface.Height;
                 defaultSurface = defaultSurface.CreateScaledSurface(zoom);
                 //defaultSurface.Fill(System.Drawing.Color.Red);
             }
@@ -77,9 +77,19 @@ namespace AbrahmanAdventure.sprites
             return 25.0;
         }
 
-        protected override double BuildWalkingSpeed()
+        protected override double BuildMaxWalkingSpeed()
         {
-            return 0.5;
+            return 0.4;
+        }
+
+        protected override double BuildWalkingAcceleration()
+        {
+            return 0.02;
+        }
+
+        protected override double BuildMaxRunningSpeed()
+        {
+            return 0.65;
         }
         #endregion
     }
