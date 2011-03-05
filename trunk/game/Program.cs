@@ -294,21 +294,25 @@ namespace AbrahmanAdventure
                 #region We manage walking logic
                 if (userInput.isPressLeft && !userInput.isPressRight && !playerSprite.IsCrouch)
                 {
+                    #region Walking left
                     if (playerSprite.IsTryingToWalkRight)
                         playerSprite.CurrentWalkingSpeed = 0;
 
                     playerSprite.WalkingCycle.Increment(timeDelta);
                     playerSprite.IsTryingToWalk = true;
                     playerSprite.IsTryingToWalkRight = false;
+                    #endregion
                 }
                 else if (!userInput.isPressLeft && userInput.isPressRight && !playerSprite.IsCrouch)
                 {
+                    #region Walking right
                     if (!playerSprite.IsTryingToWalkRight)
                         playerSprite.CurrentWalkingSpeed = 0;
 
                     playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
                     playerSprite.IsTryingToWalk = true;
                     playerSprite.IsTryingToWalkRight = true;
+                    #endregion
                 }
                 else
                 {
