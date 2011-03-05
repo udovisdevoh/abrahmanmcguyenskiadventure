@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
         
         public const bool isBindViewOffsetToPlayer = true;
         
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isHardwareSurface = true;
 
@@ -234,8 +234,8 @@ namespace AbrahmanAdventure
                 if (playerSprite.IsTryingToWalk || playerSprite.CurrentWalkingSpeed > 0)
                     physics.TryMakeWalk(playerSprite, playerSprite.IsTryingToWalk, playerSprite.IsTryingToWalkRight, timeDelta, level);
 		        
-            	viewOffsetY = playerSprite.YPosition - Program.tileRowCount / 2 - playerSprite.Height /2;
-            	viewOffsetX = playerSprite.XPosition - Program.tileColumnCount / 2;
+                viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
+            	viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
             }
 			else
 			{                   
