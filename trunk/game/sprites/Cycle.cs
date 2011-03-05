@@ -13,6 +13,8 @@ namespace AbrahmanAdventure.sprites
         private double currentValue;
 
         private bool isAutoReset;
+
+        private bool isFired;
         #endregion
 
         #region Constructor
@@ -31,6 +33,8 @@ namespace AbrahmanAdventure.sprites
             if (isAutoReset)
                 while (currentValue > totalTimeLength)
                     currentValue -= totalTimeLength;
+            else if (currentValue >= totalTimeLength)
+                isFired = false;
         }
 
         public void Reset()
@@ -43,6 +47,12 @@ namespace AbrahmanAdventure.sprites
             double otherDivisor = totalTimeLength / divisor;
             return (int)(currentValue / otherDivisor);
         }
+
+        internal void Fire()
+        {
+            isFired = true;
+            currentValue = 0;
+        }
         #endregion
 
         #region Properties
@@ -54,6 +64,19 @@ namespace AbrahmanAdventure.sprites
         public bool IsFinished
         {
             get { return currentValue >= totalTimeLength; }
+        }
+
+        public bool IsReadyToFire
+        {
+            get
+            {
+                return currentValue == 0 || currentValue >= totalTimeLength;
+            }
+        }
+
+        public bool IsFired
+        {
+            get { return isFired; }
         }
         #endregion
     }

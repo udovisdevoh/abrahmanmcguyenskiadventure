@@ -66,6 +66,8 @@ namespace AbrahmanAdventure.sprites
 
         private bool isNeedToJumpAgain = false;
 
+        private bool isNeedToAttackAgain = false;
+
         private double startingJumpAcceleration;
 
         private double maxWalkingSpeed;
@@ -89,6 +91,8 @@ namespace AbrahmanAdventure.sprites
         private Cycle walkingCycle;
 
         private Cycle jumpingCycle;
+
+        private Cycle attackingCycle;
         #endregion
 
         #region Constructor
@@ -111,6 +115,7 @@ namespace AbrahmanAdventure.sprites
             walkingAcceleration = BuildWalkingAcceleration();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
+            attackingCycle = new Cycle(BuildAttackingTime(), false);
         }
         #endregion
 
@@ -126,6 +131,8 @@ namespace AbrahmanAdventure.sprites
         protected abstract double BuildMaxRunningSpeed();
 
         protected abstract double BuildStartingJumpAcceleration();
+
+        protected abstract double BuildAttackingTime();
 
         /// <summary>
         /// sprite's width (1.5 = player's width)
@@ -278,6 +285,12 @@ namespace AbrahmanAdventure.sprites
             set { isNeedToJumpAgain = value; }
         }
 
+        public bool IsNeedToAttackAgain
+        {
+            get { return isNeedToAttackAgain; }
+            set { isNeedToAttackAgain = value; }
+        }
+
         public double StartingJumpAcceleration
         {
             get { return startingJumpAcceleration; }
@@ -336,6 +349,11 @@ namespace AbrahmanAdventure.sprites
         public Cycle JumpingCycle
         {
             get { return jumpingCycle; }
+        }
+
+        public Cycle AttackingCycle
+        {
+            get { return attackingCycle; }
         }
         #endregion
     }
