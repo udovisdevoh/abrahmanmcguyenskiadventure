@@ -74,6 +74,8 @@ namespace AbrahmanAdventure
 
         private SpriteViewer spriteViewer;
 
+        private JoystickManager joystickManager;
+
         private DateTime previousDateTime = DateTime.Now;
 
         private Random random;
@@ -94,6 +96,7 @@ namespace AbrahmanAdventure
         {
             physics = new Physics();
             random = new Random();
+            joystickManager = new JoystickManager();
 
             LevelBuilder levelBuilder = new LevelBuilder();
             level = levelBuilder.Build(random);
@@ -148,12 +151,18 @@ namespace AbrahmanAdventure
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
         {
-            #warning Implement OnJoystickButtonDown
+            if (args.Button == 3)
+                userInput.isPressRun = true;
+            else if (args.Button == 2)
+                userInput.isPressJump = true;
         }
 
         public void OnJoystickButtonUp(object sender, JoystickButtonEventArgs args)
         {
-            #warning Implement OnJoystickButtonUp
+            if (args.Button == 3)
+                userInput.isPressRun = false;
+            else if (args.Button == 2)
+                userInput.isPressJump = false;
         }
 
         public void OnJoystickHatMotion(object sender, JoystickHatEventArgs args)
@@ -164,6 +173,43 @@ namespace AbrahmanAdventure
         public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
         {
             #warning Implement OnJoystickAxisMotion
+
+            if (args.AxisIndex == 0)
+            {
+                if (args.AxisValue > 0.9)
+                {
+                    userInput.isPressRight = true;
+                    userInput.isPressLeft = false;
+                }
+                else if (args.AxisValue < 0.1)
+                {
+                    userInput.isPressLeft = true;
+                    userInput.isPressRight = false;
+                }
+                else
+                {
+                    userInput.isPressLeft = false;
+                    userInput.isPressRight = false;
+                }
+            }
+            else if (args.AxisIndex == 1)
+            {
+                if (args.AxisValue > 0.9)
+                {
+                    userInput.isPressUp = false;
+                    userInput.isPressDown = true;
+                }
+                else if (args.AxisValue < 0.1)
+                {
+                    userInput.isPressDown = false;
+                    userInput.isPressUp = true;
+                }
+                else
+                {
+                    userInput.isPressDown = false;
+                    userInput.isPressUp = false;
+                }
+            }
         }
 
         public void Update(object sender, TickEventArgs args)
@@ -172,6 +218,7 @@ namespace AbrahmanAdventure
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
             playerSprite.IsTryingToJump = false;
+
             
             if (isBindViewOffsetToPlayer)
             {
@@ -267,10 +314,6 @@ namespace AbrahmanAdventure
         public void Start()
         {
         	#warning re-enable joystick
-            //Joystick joystick = Joysticks.OpenJoystick(0);
-            
-
-            //Events.TargetFps = targetFps;
             Events.Tick += Update;
             Events.KeyboardDown += OnKeyboardDown;
             Events.KeyboardUp += OnKeyboardUp;
