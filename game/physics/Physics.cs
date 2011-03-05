@@ -20,6 +20,7 @@ namespace AbrahmanAdventure.physics
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
         	ApplyGravity(sprite, level, timeDelta);
+            sprite.JumpingCycle.Increment(timeDelta / Math.Max(sprite.MaximumWalkingHeight,sprite.CurrentWalkingSpeed));
         }
 
         internal void TryMakeWalk(AbstractSprite sprite, bool isTryingToWalk, bool isWalkingRight, double timeDelta, Level level)
@@ -91,18 +92,14 @@ namespace AbrahmanAdventure.physics
 
         internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
-            #warning: must balance falling speed with jumping speed
-            #warning: rethink all jump physics
+            #warning add some resistance when jumping while touching a wall
             if (!sprite.IsNeedToJumpAgain)
             {
                 if (sprite.Ground != null)
                 {
+                    sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                     sprite.Ground = null;
-                }
-                else
-                {
-                    sprite.CurrentJumpAcceleration += 2.7 * timeDelta;
                 }
 
                 if (sprite.CurrentJumpAcceleration < 0)
@@ -234,7 +231,11 @@ namespace AbrahmanAdventure.physics
                 {
                     double closestDownGroundHeight = closestDownGround.TerrainWave[sprite.XPosition];
                     sprite.YPosition -= sprite.CurrentJumpAcceleration / 50 * timeDelta;
-                    sprite.CurrentJumpAcceleration -= 4.0 * timeDelta;
+
+                    if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
+                    {
+                        sprite.CurrentJumpAcceleration -= 4.0 * timeDelta;
+                    }
 
                     if (sprite.YPosition >= closestDownGroundHeight)
                     {
