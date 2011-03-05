@@ -104,7 +104,12 @@ namespace AbrahmanAdventure.level
             double amplitude = minAmplitude + random.NextDouble() * (maxAmplitude - minAmplitude);
             double phase = random.NextDouble() * 2.0 - 1.0;
 
-            return new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, isOnlyContinuous, isAllowSawWave));
+            WaveFunction waveFunction = WaveFunctions.GetRandomWaveFunction(random, isOnlyContinuous, isAllowSawWave);
+
+            if (waveFunction == WaveFunctions.AbsSin)
+                amplitude /= 2.0;
+
+            return new Wave(amplitude, waveLength, phase, waveFunction);
         }
     }
 }
