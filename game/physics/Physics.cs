@@ -70,7 +70,15 @@ namespace AbrahmanAdventure.physics
 
                 sprite.XPosition += walkingDistance;
             }
-        	
+
+            #warning Must prevent sprite from accelerating while pushing on a collision
+            /*if (walkingDistance == 0 && sprite.CurrentWalkingSpeed > sprite.MaxWalkingSpeed / 2.0)
+                sprite.CurrentWalkingSpeed = 0;*/
+            /*if (isWalkingRight && IsDetectCollision(sprite, sprite.XPosition + Program.collisionDetectionResolution, level, isWalkingRight))
+                sprite.CurrentWalkingSpeed = 0;
+            else if (!isWalkingRight && IsDetectCollision(sprite, sprite.XPosition - Program.collisionDetectionResolution, level, isWalkingRight))
+                sprite.CurrentWalkingSpeed = 0;*/
+
         	
         	if (sprite.Ground != null)
         	{        		
@@ -92,7 +100,7 @@ namespace AbrahmanAdventure.physics
 
         internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
-            #warning add some resistance when jumping while touching a wall
+            #warning add some resistance when jumping while touching 
             if (!sprite.IsNeedToJumpAgain)
             {
                 if (sprite.Ground != null)
