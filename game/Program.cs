@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
         
         public const bool isBindViewOffsetToPlayer = true;
         
-        public const bool isFullScreen = false;
+        public const bool isFullScreen = true;
 
         public const bool isHardwareSurface = true;
 
@@ -170,7 +170,7 @@ namespace AbrahmanAdventure
             #warning Implement OnJoystickHatMotion
         }
 
-        public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
+        /*public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
         {
             #warning Implement OnJoystickAxisMotion
 
@@ -210,7 +210,7 @@ namespace AbrahmanAdventure
                     userInput.isPressUp = false;
                 }
             }
-        }
+        }*/
 
         public void Update(object sender, TickEventArgs args)
         {
@@ -218,6 +218,8 @@ namespace AbrahmanAdventure
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
             playerSprite.IsTryingToJump = false;
+
+            joystickManager.SetInputStateFromAxis(userInput);
 
             
             if (isBindViewOffsetToPlayer)
@@ -313,13 +315,12 @@ namespace AbrahmanAdventure
 
         public void Start()
         {
-        	#warning re-enable joystick
             Events.Tick += Update;
             Events.KeyboardDown += OnKeyboardDown;
             Events.KeyboardUp += OnKeyboardUp;
             Events.JoystickButtonDown += OnJoystickButtonDown;
             Events.JoystickButtonUp += OnJoystickButtonUp;
-            Events.JoystickAxisMotion += OnJoystickAxisMotion;
+            //Events.JoystickAxisMotion += OnJoystickAxisMotion;
             Events.JoystickHatMotion += OnJoystickHatMotion;
             Events.Run();
         }
