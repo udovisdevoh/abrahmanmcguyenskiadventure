@@ -100,7 +100,6 @@ namespace AbrahmanAdventure.physics
 
         internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
-            #warning add some resistance when jumping while touching 
             if (!sprite.IsNeedToJumpAgain)
             {
                 if (sprite.Ground != null)
@@ -222,6 +221,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         private void ApplyGravity(AbstractSprite sprite, Level level, double timeDelta)
         {
+            #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it
         	if (sprite.Ground != null)
             {
                 sprite.CurrentJumpAcceleration = 0;
