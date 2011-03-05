@@ -117,9 +117,10 @@ namespace AbrahmanAdventure
         }
         #endregion
 
-        #region Public Methods and event handlers        
+        #region Public Methods and event handlers
         public void OnKeyboardDown(object sender, KeyboardEventArgs args)
         {
+            joystickManager.IsUseAxes = false;
             if (args.Key == Key.Escape)
                 Events.QuitApplication();
             else if (args.Key == Key.LeftArrow)
@@ -170,7 +171,79 @@ namespace AbrahmanAdventure
 
         public void OnJoystickHatMotion(object sender, JoystickHatEventArgs args)
         {
+            joystickManager.IsUseAxes = false;
+            if (args.HatValue == 0)
+            {
+                userInput.isPressDown = false;
+                userInput.isPressUp = false;
+                userInput.isPressLeft = false;
+                userInput.isPressRight = false;
+            }
+            else if (args.HatValue == 8)
+            {
+                userInput.isPressDown = false;
+                userInput.isPressUp = false;
+                userInput.isPressLeft = true;
+                userInput.isPressRight = false;
+            }
+            else if (args.HatValue == 2)
+            {
+                userInput.isPressDown = false;
+                userInput.isPressUp = false;
+                userInput.isPressLeft = false;
+                userInput.isPressRight = true;
+            }
+            else if (args.HatValue == 1)
+            {
+                userInput.isPressDown = false;
+                userInput.isPressUp = true;
+                userInput.isPressLeft = false;
+                userInput.isPressRight = false;
+            }
+            else if (args.HatValue == 4)
+            {
+                userInput.isPressDown = true;
+                userInput.isPressUp = false;
+                userInput.isPressLeft = false;
+                userInput.isPressRight = false;
+            }
+            else if (args.HatValue == 9)
+            {
+                userInput.isPressDown = false;
+                userInput.isPressUp = true;
+                userInput.isPressLeft = true;
+                userInput.isPressRight = false;
+            }
+            else if (args.HatValue == 3)
+            {
+                userInput.isPressDown = false;
+                userInput.isPressUp = true;
+                userInput.isPressLeft = false;
+                userInput.isPressRight = true;
+            }
+            else if (args.HatValue == 12)
+            {
+                userInput.isPressDown = true;
+                userInput.isPressUp = false;
+                userInput.isPressLeft = false;
+                userInput.isPressRight = true;
+            }
+            else if (args.HatValue == 6)
+            {
+                userInput.isPressDown = true;
+                userInput.isPressUp = false;
+                userInput.isPressLeft = true;
+                userInput.isPressRight = false;
+            }
+
+            joystickManager.IsUseAxes = false;
+
             #warning Implement OnJoystickHatMotion
+        }
+
+        public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
+        {
+            joystickManager.IsUseAxes = true;
         }
 
         public void Update(object sender, TickEventArgs args)
@@ -180,7 +253,8 @@ namespace AbrahmanAdventure
             previousDateTime = DateTime.Now;
             playerSprite.IsTryingToJump = false;
 
-            joystickManager.SetInputStateFromAxis(userInput);
+            if (joystickManager.IsUseAxes)
+                joystickManager.SetInputStateFromAxes(userInput);
 
             
             if (isBindViewOffsetToPlayer)
@@ -285,6 +359,7 @@ namespace AbrahmanAdventure
             Events.JoystickButtonDown += OnJoystickButtonDown;
             Events.JoystickButtonUp += OnJoystickButtonUp;
             Events.JoystickHatMotion += OnJoystickHatMotion;
+            Events.JoystickAxisMotion += OnJoystickAxisMotion;
             Events.Run();
         }
 		#endregion

@@ -13,13 +13,14 @@ namespace AbrahmanAdventure
     {
         #region Parts
         private List<Joystick> joystickList;
+
+        private bool isUseAxes = false;
         #endregion
 
         #region Constructor
         public JoystickManager()
         {
             #warning Must allow user to setup input (keyboard / joystick) config
-            #warning Must work with digital DPad
             joystickList = new List<Joystick>();
 
             for (int i = 0; i < Joysticks.NumberOfJoysticks; i++)
@@ -39,7 +40,8 @@ namespace AbrahmanAdventure
         }
         #endregion
 
-        internal void SetInputStateFromAxis(UserInput userInput)
+        #region Public Methods
+        internal void SetInputStateFromAxes(UserInput userInput)
         {
             if (joystickList.Count > 0)
             {
@@ -79,5 +81,14 @@ namespace AbrahmanAdventure
                 }
             }
         }
+        #endregion
+
+        #region Properties
+        public bool IsUseAxes
+        {
+            get { return isUseAxes; }
+            set{isUseAxes = value;}
+        }
+        #endregion
     }
 }
