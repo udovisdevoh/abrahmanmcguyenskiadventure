@@ -117,7 +117,7 @@ namespace AbrahmanAdventure
         }
         #endregion
 
-        #region Public Methods and event handlers
+        #region Event handlers
         public void OnKeyboardDown(object sender, KeyboardEventArgs args)
         {
             joystickManager.DefaultJoystickForRealAxes = null;
@@ -243,7 +243,9 @@ namespace AbrahmanAdventure
         {
             joystickManager.DefaultJoystickForRealAxes = joystickManager[args.Device];
         }
+        #endregion
 
+        #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
             //We process the time multiplicator

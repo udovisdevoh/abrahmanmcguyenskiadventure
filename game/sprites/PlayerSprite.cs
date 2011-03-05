@@ -165,7 +165,7 @@ namespace AbrahmanAdventure.sprites
                 else
                     return GetWalking1LeftSurface();
             }
-            else if (IsTryingToWalk || CurrentWalkingSpeed != 0)
+            else if (/*IsTryingToWalk || */CurrentWalkingSpeed != 0)
             {
                 int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 

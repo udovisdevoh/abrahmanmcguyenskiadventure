@@ -27,6 +27,7 @@ namespace AbrahmanAdventure.physics
         {
             double desiredWalkingDistance;
             double walkingDistance;
+            double previousWalkingSpeed = sprite.CurrentWalkingSpeed;
 
             if (isTryingToWalk)
                 sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
@@ -71,17 +72,13 @@ namespace AbrahmanAdventure.physics
                 sprite.XPosition += walkingDistance;
             }
 
-            #warning Must prevent sprite from accelerating while pushing on a collision
-            /*if (walkingDistance == 0 && sprite.CurrentWalkingSpeed > sprite.MaxWalkingSpeed / 2.0)
-                sprite.CurrentWalkingSpeed = 0;*/
-            /*if (isWalkingRight && IsDetectCollision(sprite, sprite.XPosition + Program.collisionDetectionResolution, level, isWalkingRight))
+            #warning Must improve prevent sprite from accelerating while pushing on a collision
+            //Must prevent sprite from accelerating while pushing on a collision
+            if (sprite.Ground != null && walkingDistance == 0 && previousWalkingSpeed > 0.1)
                 sprite.CurrentWalkingSpeed = 0;
-            else if (!isWalkingRight && IsDetectCollision(sprite, sprite.XPosition - Program.collisionDetectionResolution, level, isWalkingRight))
-                sprite.CurrentWalkingSpeed = 0;*/
 
-        	
         	if (sprite.Ground != null)
-        	{        		
+        	{
         		Ground frontestGroundHavingAccessibleWalkingHeightForSprite = GetFrontestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);        		
         		
         		//If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
@@ -125,7 +122,7 @@ namespace AbrahmanAdventure.physics
         	{
         		for (double currentDistance = 0; currentDistance <= desiredDistance; currentDistance += Program.collisionDetectionResolution)
         		{
-                    if (IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, true))
+                    if (IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, true, true))
         				return previousDistance;
     				previousDistance = currentDistance;
         		}
@@ -134,7 +131,7 @@ namespace AbrahmanAdventure.physics
         	{
         		for (double currentDistance = 0; currentDistance >= desiredDistance; currentDistance -= Program.collisionDetectionResolution)
         		{
-                    if (IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, false))
+                    if (IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, false, true))
         				return previousDistance;
     				previousDistance = currentDistance;
         		}
@@ -142,7 +139,7 @@ namespace AbrahmanAdventure.physics
         	return previousDistance;
         }
         
-        private bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight)
+        private bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight, bool isConsiderFallingCollision)
         {
         	
         	#warning for transparent grounds and maybe for all grounds, must use texture's width for collision detection (should not block if player is under texture) (consider crouching height too)
@@ -151,11 +148,10 @@ namespace AbrahmanAdventure.physics
             if (sprite.Ground == null)
             {
                 referenceGround = GetHighestVisibleGroundBelowSprite(sprite, level);
-
                 if (referenceGround == null)
                     return false;
-
-                return referenceGround.TerrainWave[xDesiredPosition] < sprite.YPosition;
+                if (isConsiderFallingCollision)
+                    return referenceGround.TerrainWave[xDesiredPosition] < sprite.YPosition;
             }
             else
                 referenceGround = sprite.Ground;
@@ -188,7 +184,7 @@ namespace AbrahmanAdventure.physics
 
                 if (currentGround == referenceGround)
                     break;
-                else if (currentGround.TerrainWave[sprite.XPosition] < sprite.YPosition)
+                else if (isConsiderFallingCollision && currentGround.TerrainWave[sprite.XPosition] < sprite.YPosition)
                     return true;
             }
             return false;
