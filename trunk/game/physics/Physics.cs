@@ -145,7 +145,7 @@ namespace AbrahmanAdventure.physics
         private bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight)
         {
         	
-        	#warning for transparent grounds and maybe for all grounds, must use texture's width for collision detection (should not block if player is under texture)
+        	#warning for transparent grounds and maybe for all grounds, must use texture's width for collision detection (should not block if player is under texture) (consider crouching height too)
             Ground referenceGround;
 
             if (sprite.Ground == null)
@@ -174,7 +174,6 @@ namespace AbrahmanAdventure.physics
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
 
-            #warning Must always detect collision with hiding ground
             //We check other grounds for collision
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
@@ -197,7 +196,6 @@ namespace AbrahmanAdventure.physics
         
         private Ground GetFrontestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
         {
-        	#warning: must not consider ground that are too high above ground from which sprite originates
         	double groundHeight = ground.TerrainWave[sprite.XPosition];
         	
         	for (int groundId = level.Count -1; groundId >= 0; groundId--)
