@@ -83,6 +83,8 @@ namespace AbrahmanAdventure.sprites
         private bool isTryingToWalkRight = false;
 
         private bool isTryingToJump = false;
+
+        private bool isCrouch = false;
         
         private Cycle walkingCycle;
 
@@ -318,6 +320,12 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryingToJump; }
             set { isTryingToJump = value; }
+        }
+
+        public bool IsCrouch
+        {
+            get { return isCrouch; }
+            set { isCrouch = value; }
         }
 
         public Cycle WalkingCycle

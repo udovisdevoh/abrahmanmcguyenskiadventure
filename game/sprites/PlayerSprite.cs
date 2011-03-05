@@ -24,6 +24,10 @@ namespace AbrahmanAdventure.sprites
         private Surface standingLeftSurface;
 
         private Surface standingRightSurface;
+
+        private Surface crouchedRightSurface;
+
+        private Surface crouchedLeftSurface;
         #endregion
 
         #region Constructors
@@ -78,6 +82,22 @@ namespace AbrahmanAdventure.sprites
             return standingLeftSurface;
         }
 
+        private Surface GetCrouchedRightSurface()
+        {
+            if (crouchedRightSurface == null)
+                crouchedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouched.png");
+
+            return crouchedRightSurface;
+        }
+
+        private Surface GetCrouchedLeftSurface()
+        {
+            if (crouchedLeftSurface == null)
+                crouchedLeftSurface = GetCrouchedRightSurface().CreateFlippedHorizontalSurface();
+
+            return crouchedLeftSurface;
+        }
+
         private Surface GetStandingRightSurface()
         {
             if (standingRightSurface == null)
@@ -130,6 +150,14 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface()
         {
+            if (IsCrouch)
+            {
+                if (IsTryingToWalkRight)
+                    return GetCrouchedRightSurface();
+                else
+                    return GetCrouchedLeftSurface();
+            }
+
             if (CurrentJumpAcceleration != 0)
             {
                 if (IsTryingToWalkRight)
