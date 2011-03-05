@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
         
         public const bool isBindViewOffsetToPlayer = true;
         
-        public const bool isFullScreen = false;
+        public const bool isFullScreen = true;
 
         public const bool isHardwareSurface = true;
 
@@ -171,7 +171,7 @@ namespace AbrahmanAdventure
             //We process the time multiplicator
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
-
+            playerSprite.IsTryingToJump = false;
             
             if (isBindViewOffsetToPlayer)
             {
@@ -195,6 +195,7 @@ namespace AbrahmanAdventure
                     }
                     else
                     {
+                        playerSprite.IsTryingToJump = true;
                         physics.StartOrContinueJump(playerSprite, timeDelta);
                     }
                 }

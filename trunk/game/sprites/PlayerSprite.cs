@@ -202,6 +202,11 @@ namespace AbrahmanAdventure.sprites
         {
             return 10;
         }
+
+        protected override double BuildJumpingTime()
+        {
+            return 10.0;
+        }
         #endregion
     }
 }

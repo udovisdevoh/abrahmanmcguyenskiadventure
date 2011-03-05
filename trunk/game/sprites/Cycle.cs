@@ -11,12 +11,15 @@ namespace AbrahmanAdventure.sprites
         private double totalTimeLength;
 
         private double currentValue;
+
+        private bool isAutoReset;
         #endregion
 
         #region Constructor
-        public Cycle(double totalTimeLength)
+        public Cycle(double totalTimeLength, bool isAutoReset)
         {
             this.totalTimeLength = totalTimeLength;
+            this.isAutoReset = isAutoReset;
             currentValue = 0;
         }
         #endregion
@@ -25,8 +28,9 @@ namespace AbrahmanAdventure.sprites
         public void Increment(double incrementTime)
         {
             currentValue += incrementTime;
-            while (currentValue > totalTimeLength)
-                currentValue -= totalTimeLength;
+            if (isAutoReset)
+                while (currentValue > totalTimeLength)
+                    currentValue -= totalTimeLength;
         }
 
         public void Reset()
@@ -45,6 +49,11 @@ namespace AbrahmanAdventure.sprites
         public double CurrentValue
         {
             get { return currentValue; }
+        }
+
+        public bool IsFinished
+        {
+            get { return currentValue >= totalTimeLength; }
         }
         #endregion
     }

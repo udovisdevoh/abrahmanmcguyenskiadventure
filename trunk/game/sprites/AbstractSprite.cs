@@ -81,8 +81,12 @@ namespace AbrahmanAdventure.sprites
         private bool isTryingToWalk = false;
 
         private bool isTryingToWalkRight = false;
+
+        private bool isTryingToJump = false;
         
         private Cycle walkingCycle;
+
+        private Cycle jumpingCycle;
         #endregion
 
         #region Constructor
@@ -103,11 +107,14 @@ namespace AbrahmanAdventure.sprites
             maxWalkingSpeed = BuildMaxWalkingSpeed();
             maxRunningSpeed = BuildMaxRunningSpeed();
             walkingAcceleration = BuildWalkingAcceleration();
-            walkingCycle = new Cycle(BuildWalkingCycleLength());
+            walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
+            jumpingCycle = new Cycle(BuildJumpingTime(), false);
         }
         #endregion
 
         #region Abstract Methods
+        protected abstract double BuildJumpingTime();
+
         protected abstract double BuildWalkingCycleLength();
 
         protected abstract double BuildWalkingAcceleration();
@@ -307,9 +314,20 @@ namespace AbrahmanAdventure.sprites
             set { isTryingToWalkRight = value; }
         }
 
+        public bool IsTryingToJump
+        {
+            get { return isTryingToJump; }
+            set { isTryingToJump = value; }
+        }
+
         public Cycle WalkingCycle
         {
             get { return walkingCycle; }
+        }
+
+        public Cycle JumpingCycle
+        {
+            get { return jumpingCycle; }
         }
         #endregion
     }
