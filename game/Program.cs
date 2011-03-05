@@ -173,48 +173,6 @@ namespace AbrahmanAdventure
             #warning Implement OnJoystickHatMotion
         }
 
-        /*public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
-        {
-            #warning Implement OnJoystickAxisMotion
-
-            if (args.AxisIndex == 0)
-            {
-                if (args.AxisValue > 0.9)
-                {
-                    userInput.isPressRight = true;
-                    userInput.isPressLeft = false;
-                }
-                else if (args.AxisValue < 0.1)
-                {
-                    userInput.isPressLeft = true;
-                    userInput.isPressRight = false;
-                }
-                else
-                {
-                    userInput.isPressLeft = false;
-                    userInput.isPressRight = false;
-                }
-            }
-            else if (args.AxisIndex == 1)
-            {
-                if (args.AxisValue > 0.9)
-                {
-                    userInput.isPressUp = false;
-                    userInput.isPressDown = true;
-                }
-                else if (args.AxisValue < 0.1)
-                {
-                    userInput.isPressDown = false;
-                    userInput.isPressUp = true;
-                }
-                else
-                {
-                    userInput.isPressDown = false;
-                    userInput.isPressUp = false;
-                }
-            }
-        }*/
-
         public void Update(object sender, TickEventArgs args)
         {
             //We process the time multiplicator
@@ -323,7 +281,6 @@ namespace AbrahmanAdventure
             Events.KeyboardUp += OnKeyboardUp;
             Events.JoystickButtonDown += OnJoystickButtonDown;
             Events.JoystickButtonUp += OnJoystickButtonUp;
-            //Events.JoystickAxisMotion += OnJoystickAxisMotion;
             Events.JoystickHatMotion += OnJoystickHatMotion;
             Events.Run();
         }
