@@ -244,6 +244,7 @@ namespace AbrahmanAdventure
         public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
         {
             joystickManager.IsUseAxes = true;
+            joystickManager.DefaultJoystick = joystickManager[args.Device];
         }
 
         public void Update(object sender, TickEventArgs args)
