@@ -28,6 +28,14 @@ namespace AbrahmanAdventure.sprites
         private Surface crouchedRightSurface;
 
         private Surface crouchedLeftSurface;
+
+        private Surface attackRightSurface;
+
+        private Surface crouchedAttackRightSurface;
+
+        private Surface attackLeftSurface;
+
+        private Surface crouchedAttackLeftSurface;
         #endregion
 
         #region Constructors
@@ -106,6 +114,38 @@ namespace AbrahmanAdventure.sprites
             return standingRightSurface;
         }
 
+        private Surface GetAttackRightSurface()
+        {
+            if (attackRightSurface == null)
+                attackRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch.png");
+
+            return attackRightSurface;
+        }
+
+        private Surface GetCrouchedAttackRightSurface()
+        {
+            if (crouchedAttackRightSurface == null)
+                crouchedAttackRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch.png");
+
+            return crouchedAttackRightSurface;
+        }
+
+        private Surface GetAttackLeftSurface()
+        {
+            if (attackLeftSurface == null)
+                attackLeftSurface = GetAttackRightSurface().CreateFlippedHorizontalSurface();
+
+            return attackLeftSurface;
+        }
+
+        private Surface GetCrouchedAttackLeftSurface()
+        {
+            if (crouchedAttackLeftSurface == null)
+                crouchedAttackLeftSurface = GetCrouchedAttackRightSurface().CreateFlippedHorizontalSurface();
+
+            return crouchedAttackLeftSurface;
+        }
+
         private Surface BuildSpriteSurface(string fileName)
         {
             Surface spriteSurface = new Surface(fileName);
@@ -150,6 +190,33 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface()
         {
+            //If currently attacking
+            if (AttackingCycle.GetCycleDivision(8) >= 1)
+            {
+                if (IsCrouch)
+                {
+                    if (IsTryingToWalkRight)
+                    {
+                        return GetCrouchedAttackRightSurface();
+                    }
+                    else
+                    {
+                        return GetCrouchedAttackLeftSurface();
+                    }
+                }
+                else
+                {
+                    if (IsTryingToWalkRight)
+                    {
+                        return GetAttackRightSurface();
+                    }
+                    else
+                    {
+                        return GetAttackLeftSurface();
+                    }
+                }
+            }
+
             if (IsCrouch)
             {
                 if (IsTryingToWalkRight)
@@ -228,6 +295,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildJumpingTime()
         {
             return 10.0;
+        }
+
+        protected override double BuildAttackingTime()
+        {
+            return 4;
         }
         #endregion
     }

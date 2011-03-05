@@ -20,6 +20,6 @@ namespace AbrahmanAdventure
 
         public bool isPressJump = false;
 
-        public bool isPressRun = false;
+        public bool isPressAttack = false;
     }
 }

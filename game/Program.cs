@@ -134,7 +134,7 @@ namespace AbrahmanAdventure
             else if (args.Key == Key.Space)
                 userInput.isPressJump = true;
             else if (args.Key == Key.LeftControl)
-                userInput.isPressRun = true;
+                userInput.isPressAttack = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
@@ -150,13 +150,13 @@ namespace AbrahmanAdventure
             else if (args.Key == Key.Space)
                 userInput.isPressJump = false;
             else if (args.Key == Key.LeftControl)
-                userInput.isPressRun = false;
+                userInput.isPressAttack = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
         {
             if (args.Button == 3)
-                userInput.isPressRun = true;
+                userInput.isPressAttack = true;
             else if (args.Button == 2)
                 userInput.isPressJump = true;
         }
@@ -164,7 +164,7 @@ namespace AbrahmanAdventure
         public void OnJoystickButtonUp(object sender, JoystickButtonEventArgs args)
         {
             if (args.Button == 3)
-                userInput.isPressRun = false;
+                userInput.isPressAttack = false;
             else if (args.Button == 2)
                 userInput.isPressJump = false;
         }
@@ -259,7 +259,7 @@ namespace AbrahmanAdventure
             
             if (isBindViewOffsetToPlayer)
             {
-                playerSprite.IsRunning = userInput.isPressRun;
+                playerSprite.IsRunning = userInput.isPressAttack;
 
                 if (userInput.isPressJump)
                 {
@@ -316,6 +316,25 @@ namespace AbrahmanAdventure
                     playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                     playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
                 }
+
+
+                //Attacking logic
+                if (userInput.isPressAttack)
+                {
+                    if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
+                    {
+                        playerSprite.AttackingCycle.Fire();
+                        playerSprite.IsNeedToAttackAgain = true;
+                    }
+                }
+                else
+                {
+                    playerSprite.IsNeedToAttackAgain = false;
+                }
+                if (playerSprite.AttackingCycle.IsFired)
+                    playerSprite.AttackingCycle.Increment(timeDelta);
+                if (playerSprite.AttackingCycle.IsFinished)
+                    playerSprite.AttackingCycle.Reset();
 
 
                 if (playerSprite.IsTryingToWalk || playerSprite.CurrentWalkingSpeed > 0)
