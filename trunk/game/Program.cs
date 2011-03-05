@@ -120,7 +120,7 @@ namespace AbrahmanAdventure
         #region Public Methods and event handlers
         public void OnKeyboardDown(object sender, KeyboardEventArgs args)
         {
-            joystickManager.IsUseAxes = false;
+            joystickManager.DefaultJoystickForRealAxes = null;
             if (args.Key == Key.Escape)
                 Events.QuitApplication();
             else if (args.Key == Key.LeftArrow)
@@ -171,7 +171,7 @@ namespace AbrahmanAdventure
 
         public void OnJoystickHatMotion(object sender, JoystickHatEventArgs args)
         {
-            joystickManager.IsUseAxes = false;
+            joystickManager.DefaultJoystickForRealAxes = null;
             if (args.HatValue == 0)
             {
                 userInput.isPressDown = false;
@@ -236,15 +236,14 @@ namespace AbrahmanAdventure
                 userInput.isPressRight = false;
             }
 
-            joystickManager.IsUseAxes = false;
+            joystickManager.DefaultJoystickForRealAxes = null;
 
             #warning Implement OnJoystickHatMotion
         }
 
         public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
         {
-            joystickManager.IsUseAxes = true;
-            joystickManager.DefaultJoystick = joystickManager[args.Device];
+            joystickManager.DefaultJoystickForRealAxes = joystickManager[args.Device];
         }
 
         public void Update(object sender, TickEventArgs args)
@@ -254,7 +253,7 @@ namespace AbrahmanAdventure
             previousDateTime = DateTime.Now;
             playerSprite.IsTryingToJump = false;
 
-            if (joystickManager.IsUseAxes)
+            if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
             
