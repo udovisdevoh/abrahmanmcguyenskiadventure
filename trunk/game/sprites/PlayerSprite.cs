@@ -42,14 +42,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking1RightSurface()
         {
             if (walking1RightSurface == null)
-            {
-                walking1RightSurface = new Surface("./assets/rendered/abrahman/walk1.png");
-                if (walking1RightSurface.Height != (int)Height * Program.tileSize)
-                {
-                    double zoom = Height * Program.tileSize / walking1RightSurface.Height;
-                    walking1RightSurface = walking1RightSurface.CreateScaledSurface(zoom);
-                }
-            }
+                walking1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1.png");
             return walking1RightSurface;
         }
 
@@ -72,14 +65,8 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurface()
         {
             if (walking2RightSurface == null)
-            {
-                walking2RightSurface = new Surface("./assets/rendered/abrahman/walk2.png");
-                if (walking2RightSurface.Height != (int)Height * Program.tileSize)
-                {
-                    double zoom = Height * Program.tileSize / walking2RightSurface.Height;
-                    walking2RightSurface = walking2RightSurface.CreateScaledSurface(zoom);
-                }
-            }
+                walking2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2.png");
+
             return walking2RightSurface;
         }
 
@@ -94,15 +81,22 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurface()
         {
             if (standingRightSurface == null)
-            {
-                standingRightSurface = new Surface("./assets/rendered/abrahman/stand.png");
-                if (standingRightSurface.Height != (int)Height * Program.tileSize)
-                {
-                    double zoom = Height * Program.tileSize / standingRightSurface.Height;
-                    standingRightSurface = standingRightSurface.CreateScaledSurface(zoom);
-                }
-            }
+                standingRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/stand.png");
+
             return standingRightSurface;
+        }
+
+        private Surface BuildSpriteSurface(string fileName)
+        {
+            Surface spriteSurface = new Surface(fileName);
+
+            if (Program.screenHeight != 480)
+            {
+                double zoom = (double)spriteSurface.Height / 480.0 * (double)Program.screenHeight;
+                spriteSurface = spriteSurface.CreateScaledSurface(zoom);
+            }
+
+            return spriteSurface;
         }
         #endregion
 

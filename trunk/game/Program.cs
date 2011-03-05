@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
         
         public const bool isBindViewOffsetToPlayer = true;
         
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isHardwareSurface = true;
 
@@ -106,6 +106,9 @@ namespace AbrahmanAdventure
             spritePopulation = new SpritePopulation();
             playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2);
             spritePopulation.Add(playerSprite);
+
+            if (isFullScreen)
+                Cursor.Hide();
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
