@@ -261,6 +261,7 @@ namespace AbrahmanAdventure
             {
                 playerSprite.IsRunning = userInput.isPressAttack;
 
+                #region We manage jumping logic
                 if (userInput.isPressJump)
                 {
                     //We manage jumping from one ground to a lower ground
@@ -286,11 +287,11 @@ namespace AbrahmanAdventure
                 }
                 else
                     playerSprite.IsNeedToJumpAgain = false;
+                #endregion
 
-                
                 playerSprite.IsCrouch = userInput.isPressDown;
 
-
+                #region We manage walking logic
                 if (userInput.isPressLeft && !userInput.isPressRight && !playerSprite.IsCrouch)
                 {
                     if (playerSprite.IsTryingToWalkRight)
@@ -317,7 +318,11 @@ namespace AbrahmanAdventure
                     playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
                 }
 
+                if (playerSprite.IsTryingToWalk || playerSprite.CurrentWalkingSpeed > 0)
+                    physics.TryMakeWalk(playerSprite, playerSprite.IsTryingToWalk, playerSprite.IsTryingToWalkRight, timeDelta, level);
+                #endregion
 
+                #region We manage attack logic
                 //Attacking logic
                 if (userInput.isPressAttack)
                 {
@@ -335,17 +340,15 @@ namespace AbrahmanAdventure
                     playerSprite.AttackingCycle.Increment(timeDelta);
                 if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
                     playerSprite.AttackingCycle.Reset();
-
-
-                if (playerSprite.IsTryingToWalk || playerSprite.CurrentWalkingSpeed > 0)
-                    physics.TryMakeWalk(playerSprite, playerSprite.IsTryingToWalk, playerSprite.IsTryingToWalkRight, timeDelta, level);
+                #endregion
 		        
                 viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
             	viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
             }
 			else
-			{                   
-		        if (userInput.isPressLeft && !userInput.isPressRight)
+            {
+                #region If camera is not binded to player's sprite
+                if (userInput.isPressLeft && !userInput.isPressRight)
 		            viewOffsetX -= timeDelta;
 		        else if (userInput.isPressRight && !userInput.isPressLeft)
 		            viewOffsetX += timeDelta;
@@ -359,8 +362,9 @@ namespace AbrahmanAdventure
 	            {
 	                viewOffsetY += timeDelta;
 	                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 - tileRowCount);
-	            }
-			}
+                }
+                #endregion
+            }
 
 
             physics.Update(playerSprite, level, timeDelta);
