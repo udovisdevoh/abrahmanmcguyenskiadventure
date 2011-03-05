@@ -237,8 +237,6 @@ namespace AbrahmanAdventure
             }
 
             joystickManager.DefaultJoystickForRealAxes = null;
-
-            #warning Implement OnJoystickHatMotion
         }
 
         public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
