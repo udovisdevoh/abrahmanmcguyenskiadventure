@@ -333,7 +333,7 @@ namespace AbrahmanAdventure
                 }
                 if (playerSprite.AttackingCycle.IsFired)
                     playerSprite.AttackingCycle.Increment(timeDelta);
-                if (playerSprite.AttackingCycle.IsFinished)
+                if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
                     playerSprite.AttackingCycle.Reset();
 
 
