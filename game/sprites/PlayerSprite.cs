@@ -31,9 +31,13 @@ namespace AbrahmanAdventure.sprites
 
         private Surface attackRightSurface;
 
+        private Surface kickRightSurface;
+
         private Surface crouchedAttackRightSurface;
 
         private Surface attackLeftSurface;
+
+        private Surface kickLeftSurface;
 
         private Surface crouchedAttackLeftSurface;
         #endregion
@@ -146,6 +150,22 @@ namespace AbrahmanAdventure.sprites
             return crouchedAttackLeftSurface;
         }
 
+        private Surface GetKickLeftSurface()
+        {
+            if (kickLeftSurface == null)
+                kickLeftSurface = GetKickRightSurface().CreateFlippedHorizontalSurface();
+
+            return kickLeftSurface;
+        }
+
+        private Surface GetKickRightSurface()
+        {
+            if (kickRightSurface == null)
+                kickRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick.png");
+
+            return kickRightSurface;
+        }
+
         private Surface BuildSpriteSurface(string fileName)
         {
             Surface spriteSurface = new Surface(fileName);
@@ -202,6 +222,17 @@ namespace AbrahmanAdventure.sprites
                     else
                     {
                         return GetCrouchedAttackLeftSurface();
+                    }
+                }
+                else if (Ground == null)
+                {
+                    if (IsTryingToWalkRight)
+                    {
+                        return GetKickRightSurface();
+                    }
+                    else
+                    {
+                        return GetKickLeftSurface();
                     }
                 }
                 else
