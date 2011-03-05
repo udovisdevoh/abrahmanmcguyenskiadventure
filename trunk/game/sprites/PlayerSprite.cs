@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.sprites
 
             if (Program.screenHeight != 480)
             {
-                double zoom = (double)spriteSurface.Height / 480.0 * (double)Program.screenHeight;
+                double zoom = (double)Program.screenHeight / 480.0;
                 spriteSurface = spriteSurface.CreateScaledSurface(zoom);
             }
 
