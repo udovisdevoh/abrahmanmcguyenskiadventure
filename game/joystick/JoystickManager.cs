@@ -18,7 +18,7 @@ namespace AbrahmanAdventure
         #region Constructor
         public JoystickManager()
         {
-            #warning Must allow user to setup joystick config
+            #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must work with digital DPad
             joystickList = new List<Joystick>();
 
