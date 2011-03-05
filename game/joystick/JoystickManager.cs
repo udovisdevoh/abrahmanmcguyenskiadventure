@@ -15,6 +15,8 @@ namespace AbrahmanAdventure
         private List<Joystick> joystickList;
 
         private bool isUseAxes = false;
+
+        private Joystick defaultJoystick = null;
         #endregion
 
         #region Constructor
@@ -25,6 +27,9 @@ namespace AbrahmanAdventure
 
             for (int i = 0; i < Joysticks.NumberOfJoysticks; i++)
                 joystickList.Add(Joysticks.OpenJoystick(i));
+
+            if (joystickList.Count > 0)
+                defaultJoystick = joystickList[0];
         }
         #endregion
 
@@ -43,10 +48,10 @@ namespace AbrahmanAdventure
         #region Public Methods
         internal void SetInputStateFromAxes(UserInput userInput)
         {
-            if (joystickList.Count > 0)
+            if (defaultJoystick != null)
             {
-                double horizontalAxisPosition = joystickList[0].GetAxisPosition(JoystickAxis.Horizontal);
-                double verticalAxisPosition = joystickList[0].GetAxisPosition(JoystickAxis.Vertical);
+                double horizontalAxisPosition = defaultJoystick.GetAxisPosition(JoystickAxis.Horizontal);
+                double verticalAxisPosition = defaultJoystick.GetAxisPosition(JoystickAxis.Vertical);
 
                 if (horizontalAxisPosition > 0.9)
                 {
@@ -88,6 +93,17 @@ namespace AbrahmanAdventure
         {
             get { return isUseAxes; }
             set{isUseAxes = value;}
+        }
+
+        public Joystick DefaultJoystick
+        {
+            get { return defaultJoystick; }
+            set { defaultJoystick = value; }
+        }
+
+        public Joystick this[byte index]
+        {
+            get { return joystickList[index]; }
         }
         #endregion
     }
