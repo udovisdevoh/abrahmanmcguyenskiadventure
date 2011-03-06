@@ -7,6 +7,9 @@ using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
+    /// <summary>
+    /// Manages stuff that are falling
+    /// </summary>
     internal class GravityManager
     {
         #region Internal Methods

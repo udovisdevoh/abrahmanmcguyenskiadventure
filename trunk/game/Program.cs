@@ -254,16 +254,12 @@ namespace AbrahmanAdventure
             //We process the time multiplicator
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
-            playerSprite.IsTryingToJump = false;
 
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
-            
-
-            playerSprite.IsRunning = userInput.isPressAttack;
-
             #region We manage jumping logic
+            playerSprite.IsTryingToJump = false;
             if (userInput.isPressJump)
             {
                 //We manage jumping from one ground to a lower ground
@@ -293,6 +289,7 @@ namespace AbrahmanAdventure
             playerSprite.IsCrouch = userInput.isPressDown;
 
             #region We manage walking logic
+            playerSprite.IsRunning = userInput.isPressAttack;
             if (userInput.isPressLeft && !userInput.isPressRight && !playerSprite.IsCrouch)
             {
                 #region Walking left

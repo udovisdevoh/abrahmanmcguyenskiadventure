@@ -8,7 +8,7 @@ using AbrahmanAdventure.level;
 namespace AbrahmanAdventure.physics
 {
     /// <summary>
-    /// For physics
+    /// For physic operations
     /// </summary>
     internal class Physics
     {
@@ -45,7 +45,15 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Public Static Methods
-        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isWalkingRight, bool isConsiderFallingCollision)
+        /// <summary>
+        /// To detect collision from sprite to level
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="xDesiredPosition">desired x position for sprite</param>
+        /// <param name="level">level to look into</param>
+        /// <param name="isConsiderFallingCollision">whether we consider vertical (falling collisions</param>
+        /// <returns>Whether collision was detected</returns>
+        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isConsiderFallingCollision)
         {
         	#warning for transparent grounds and maybe for all grounds, must use texture's thickness for collision detection (should not block if player is under texture) (consider crouching height too)
             Ground referenceGround;
@@ -64,7 +72,7 @@ namespace AbrahmanAdventure.physics
         	double angleX1;
         	double angleX2;
         	
-        	if (isWalkingRight)
+        	if (sprite.IsTryingToWalkRight)
         	{
                 angleX1 = xDesiredPosition;
         		angleX2 = angleX1 + Program.collisionDetectionResolution;
