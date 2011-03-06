@@ -258,7 +258,7 @@ namespace AbrahmanAdventure
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
-            #region We manage jumping logic
+            #region We manage jumping input logic
             playerSprite.IsTryingToJump = false;
             if (userInput.isPressJump)
             {
@@ -268,14 +268,9 @@ namespace AbrahmanAdventure
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
                     if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
-                    {
                         playerSprite.Ground = null;
-                    }
-                    else
-                    {
-                        //Oops, we jumped from the lowest ground. Let's undo the falling
+                    else //Oops, we jumped from the lowest ground. Let's undo the falling
                         playerSprite.YPosition = playerSprite.Ground.TerrainWave[playerSprite.XPosition];
-                    }
                 }
                 else
                 {
@@ -288,20 +283,20 @@ namespace AbrahmanAdventure
 
             playerSprite.IsCrouch = userInput.isPressDown;
 
-            #region We manage walking logic
+            #region We manage walking input logic
             playerSprite.IsRunning = userInput.isPressAttack;
-            if (userInput.isPressLeft && !userInput.isPressRight && !playerSprite.IsCrouch)
+            if (userInput.isPressLeft && !userInput.isPressRight && !userInput.isPressDown)
             {
                 #region Walking left
                 if (playerSprite.IsTryingToWalkRight)
                     playerSprite.CurrentWalkingSpeed = 0;
 
-                playerSprite.WalkingCycle.Increment(timeDelta);
+                playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
                 playerSprite.IsTryingToWalk = true;
                 playerSprite.IsTryingToWalkRight = false;
                 #endregion
             }
-            else if (!userInput.isPressLeft && userInput.isPressRight && !playerSprite.IsCrouch)
+            else if (!userInput.isPressLeft && userInput.isPressRight && !userInput.isPressDown)
             {
                 #region Walking right
                 if (!playerSprite.IsTryingToWalkRight)
