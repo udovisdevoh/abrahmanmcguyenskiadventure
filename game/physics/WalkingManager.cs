@@ -22,18 +22,24 @@ namespace AbrahmanAdventure.physics
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
             if (sprite.IsTryingToWalk || sprite.CurrentWalkingSpeed > 0)
-                TryMakeWalk(sprite, sprite.IsTryingToWalk, sprite.IsTryingToWalkRight, timeDelta, level);
+                TryMakeWalk(sprite, timeDelta, level);
         }
         #endregion
 
         #region Private Methods
-        private void TryMakeWalk(AbstractSprite sprite, bool isTryingToWalk, bool isWalkingRight, double timeDelta, Level level)
+        /// <summary>
+        /// Try to make walk the sprice if there are no collisions
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="timeDelta">time delta</param>
+        /// <param name="level">level</param>
+        private void TryMakeWalk(AbstractSprite sprite, double timeDelta, Level level)
         {
             double desiredWalkingDistance;
             double walkingDistance;
             double previousWalkingSpeed = sprite.CurrentWalkingSpeed;
 
-            if (isTryingToWalk)
+            if (sprite.IsTryingToWalk)
                 sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
 
             if (sprite.IsRunning)
@@ -41,7 +47,7 @@ namespace AbrahmanAdventure.physics
             else
                 sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxWalkingSpeed);
 
-            if (isWalkingRight)
+            if (sprite.IsTryingToWalkRight)
             {
                 desiredWalkingDistance = timeDelta * sprite.CurrentWalkingSpeed;
                 walkingDistance = GetFarthestWalkingDistanceNoCollision(sprite, desiredWalkingDistance + sprite.Width / 2.0, level);
@@ -62,7 +68,7 @@ namespace AbrahmanAdventure.physics
                 {
                     double slope;
 
-                    if (isWalkingRight)
+                    if (sprite.IsTryingToWalkRight)
                         slope = 1.0 - ((sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance] - sprite.Ground.TerrainWave[sprite.XPosition]) / walkingDistance) / 2.0;
                     else
                         slope = 1.0 - ((sprite.Ground.TerrainWave[sprite.XPosition] - sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
@@ -83,7 +89,7 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.Ground != null)
             {
-                Ground frontestGroundHavingAccessibleWalkingHeightForSprite = GetFrontestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
+                Ground frontestGroundHavingAccessibleWalkingHeightForSprite = GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
 
                 //If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
                 if (frontestGroundHavingAccessibleWalkingHeightForSprite != null)
@@ -99,6 +105,13 @@ namespace AbrahmanAdventure.physics
             }
         }
 
+        /// <summary>
+        /// Get farthest walking distance without collision
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="desiredDistance">desired walking distance</param>
+        /// <param name="level">level</param>
+        /// <returns>farthest walking distance without collision</returns>
         private double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level)
         {
             double previousDistance = 0;
@@ -106,7 +119,7 @@ namespace AbrahmanAdventure.physics
             {
                 for (double currentDistance = 0; currentDistance <= desiredDistance; currentDistance += Program.collisionDetectionResolution)
                 {
-                    if (Physics.IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, true, true))
+                    if (Physics.IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, true))
                         return previousDistance;
                     previousDistance = currentDistance;
                 }
@@ -115,7 +128,7 @@ namespace AbrahmanAdventure.physics
             {
                 for (double currentDistance = 0; currentDistance >= desiredDistance; currentDistance -= Program.collisionDetectionResolution)
                 {
-                    if (Physics.IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, false, true))
+                    if (Physics.IsDetectCollision(sprite, sprite.XPosition + currentDistance, level, true))
                         return previousDistance;
                     previousDistance = currentDistance;
                 }
@@ -123,7 +136,14 @@ namespace AbrahmanAdventure.physics
             return previousDistance;
         }
 
-        private Ground GetFrontestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
+        /// <summary>
+        /// Get frontmost ground having accessible walking height for sprite
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="ground">ground</param>
+        /// <param name="level">level</param>
+        /// <returns>frontmost ground having accessible walking height for sprite</returns>
+        private Ground GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
         {
             double groundHeight = ground.TerrainWave[sprite.XPosition];
 
