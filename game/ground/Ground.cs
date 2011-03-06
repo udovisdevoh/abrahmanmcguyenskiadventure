@@ -32,6 +32,7 @@ namespace AbrahmanAdventure.level
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
                 bottomTexture = new Texture(random, color, 16, 0.75, false);
+            
             this.terrainWave = terrainWave;
             isTransparent = random.Next(0,5) == 0;
         }
