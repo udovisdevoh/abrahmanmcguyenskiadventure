@@ -82,7 +82,6 @@ namespace AbrahmanAdventure.physics
                 sprite.XPosition += walkingDistance;
             }
 
-            #warning Must improve prevent sprite from accelerating while pushing on a collision
             //Must prevent sprite from accelerating while pushing on a collision
             if (sprite.Ground != null && walkingDistance == 0 && previousWalkingSpeed > 0.1)
                 sprite.CurrentWalkingSpeed = 0;
