@@ -267,7 +267,7 @@ namespace AbrahmanAdventure
             if (userInput.isPressJump)
             {
                 //We manage jumping from one ground to a lower ground
-                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed < playerSprite.MaxSpeedForLowerJump)
+                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
