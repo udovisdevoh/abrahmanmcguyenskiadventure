@@ -272,7 +272,7 @@ namespace AbrahmanAdventure
                     if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                     {
                         playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
-                        Ground highestVisibleGroundBelowSprite = physics.GetHighestVisibleGroundBelowSprite(playerSprite, level);
+                        Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
                         if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
                         {
                             playerSprite.Ground = null;
@@ -286,7 +286,6 @@ namespace AbrahmanAdventure
                     else
                     {
                         playerSprite.IsTryingToJump = true;
-                        physics.StartOrContinueJump(playerSprite, timeDelta);
                     }
                 }
                 else
