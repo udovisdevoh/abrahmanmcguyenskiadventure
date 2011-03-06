@@ -248,7 +248,6 @@ namespace AbrahmanAdventure
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
-            #warning implement crouch sliding
             #warning fix vertical teleportation bug
             #warning Must improve prevent sprite from accelerating while pushing on a collision
             #warning Must allow user to setup input (keyboard / joystick) config
