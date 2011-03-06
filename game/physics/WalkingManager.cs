@@ -62,21 +62,30 @@ namespace AbrahmanAdventure.physics
                 walkingDistance = Math.Min(0, walkingDistance);
             }
 
+            //We adjust walking distance according to the slope
             if (walkingDistance != 0)
             {
                 if (sprite.Ground != null)
                 {
-                    double slope;
+                    double slope = Physics.GetSlopeRatio(sprite, sprite.Ground, walkingDistance);
+                    
+                    double adjustedSquareRootSlope = Math.Sqrt(Math.Abs(slope)) * 0.75;
+                    if (adjustedSquareRootSlope > 0 != slope > 0)
+                        adjustedSquareRootSlope *= -1;
 
-                    if (sprite.IsTryingToWalkRight)
-                        slope = 1.0 - ((sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance] - sprite.Ground.TerrainWave[sprite.XPosition]) / walkingDistance) / 2.0;
-                    else
-                        slope = 1.0 - ((sprite.Ground.TerrainWave[sprite.XPosition] - sprite.Ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
+                    if (slope != 0)
+                    {
+                        //We escalate a hill
+                        if (slope < 0)
+                        {
+                            walkingDistance += (adjustedSquareRootSlope * walkingDistance);
+                            sprite.CurrentWalkingSpeed += (adjustedSquareRootSlope * walkingDistance) * sprite.WalkingAcceleration;
+                        }
 
-                    slope = Math.Sqrt(slope);
-
-                    if (slope > 0)
-                        walkingDistance /= slope;
+                        //We sometimes make fall the sprite
+                        if (slope > 0.5)
+                            sprite.Ground = null;
+                    }
                 }
 
                 sprite.XPosition += walkingDistance;
@@ -97,10 +106,10 @@ namespace AbrahmanAdventure.physics
                 double groundHeight = sprite.Ground.TerrainWave[sprite.XPosition];
 
                 //We sometimes make fall the sprite
-                if (sprite.YPosition < groundHeight - sprite.MinimumFallingHeight)
+                /*if (sprite.YPosition < groundHeight - sprite.MinimumFallingHeight)
                     sprite.Ground = null;
-                else
-                    sprite.YPosition = groundHeight;
+                else*/
+                sprite.YPosition = groundHeight;
             }
 
             sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed);

@@ -101,6 +101,21 @@ namespace AbrahmanAdventure.physics
             }
             return false;
         }
+
+        /// <summary>
+        /// Get the ratio of a slope at sprite's position going in sprite's current direction
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="ground">ground</param>
+        /// <param name="walkingDistance">walking distance (could be negative)</param>
+        /// <returns>ratio of a slope at sprite's position going in sprite's current direction. 0: flat, 1: 45% going down, -1: -45% going up</returns>
+        internal static double GetSlopeRatio(AbstractSprite sprite, Ground ground, double walkingDistance)
+        {
+            if (sprite.IsTryingToWalkRight)
+                return ((ground.TerrainWave[sprite.XPosition + walkingDistance] - ground.TerrainWave[sprite.XPosition]) / walkingDistance) / 2.0;
+            else
+                return ((ground.TerrainWave[sprite.XPosition] - ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
+        }
         #endregion
     }
 }
