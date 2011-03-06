@@ -20,7 +20,6 @@ namespace AbrahmanAdventure
         #region Constructor
         public JoystickManager()
         {
-            #warning Must allow user to setup input (keyboard / joystick) config
             joystickList = new List<Joystick>();
 
             for (int i = 0; i < Joysticks.NumberOfJoysticks; i++)

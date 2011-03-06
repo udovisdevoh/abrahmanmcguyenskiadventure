@@ -55,7 +55,6 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether collision was detected</returns>
         internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isConsiderFallingCollision)
         {
-        	#warning for transparent grounds and maybe for all grounds, must use texture's thickness for collision detection (should not block if player is under texture) (consider crouching height too)
             Ground referenceGround;
 
             if (sprite.Ground == null)
