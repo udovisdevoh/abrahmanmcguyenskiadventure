@@ -12,6 +12,18 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class Physics
     {
+        #region Parts
+        /// <summary>
+        /// Manages jumping
+        /// </summary>
+        private JumpingManager jumpingManager = new JumpingManager();
+
+        /// <summary>
+        /// Manages falling
+        /// </summary>
+        private GravityManager gravityManager = new GravityManager();
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Update physics for sprite
@@ -19,8 +31,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
-        	ApplyGravity(sprite, level, timeDelta);
-            sprite.JumpingCycle.Increment(timeDelta / Math.Max(sprite.MaximumWalkingHeight,sprite.CurrentWalkingSpeed));
+        	gravityManager.ApplyGravity(sprite, level, timeDelta);
+            jumpingManager.Update(sprite, timeDelta);
         }
 
         internal void TryMakeWalk(AbstractSprite sprite, bool isTryingToWalk, bool isWalkingRight, double timeDelta, Level level)
@@ -94,24 +106,6 @@ namespace AbrahmanAdventure.physics
                     sprite.YPosition = groundHeight;
         	}
         }
-
-        internal void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
-        {
-            if (!sprite.IsNeedToJumpAgain)
-            {
-                if (sprite.Ground != null)
-                {
-                    sprite.JumpingCycle.Reset();
-                    sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                    sprite.Ground = null;
-                }
-
-                if (sprite.CurrentJumpAcceleration < 0)
-                {
-                    sprite.IsNeedToJumpAgain = true;
-                }
-            }
-        }
         #endregion
 
         #region Private Methods
@@ -146,7 +140,7 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.Ground == null)
             {
-                referenceGround = GetHighestVisibleGroundBelowSprite(sprite, level);
+                referenceGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (referenceGround == null)
                     return false;
                 if (isConsiderFallingCollision)
@@ -206,120 +200,6 @@ namespace AbrahmanAdventure.physics
     				return currentGround;
         	}
         	return null;
-        }
-        
-        /// <summary>
-        /// Apply gravity to sprite
-        /// </summary>
-        /// <param name="sprite">sprite</param>
-        private void ApplyGravity(AbstractSprite sprite, Level level, double timeDelta)
-        {
-            #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it
-        	if (sprite.Ground != null)
-            {
-                sprite.CurrentJumpAcceleration = 0;
-            }
-            else
-            {
-                Ground closestDownGround = GetHighestVisibleGroundBelowSprite(sprite, level);
-                if (closestDownGround == null)
-                {
-                    sprite.Ground = GetLowestVisibleGround(sprite, level);
-                    sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
-                    sprite.CurrentJumpAcceleration = 0;
-                }
-                else
-                {
-                    double closestDownGroundHeight = closestDownGround.TerrainWave[sprite.XPosition];
-                    sprite.YPosition -= sprite.CurrentJumpAcceleration / 50 * timeDelta;
-
-                    if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
-                    {
-                        sprite.CurrentJumpAcceleration -= 4.0 * timeDelta;
-                    }
-
-                    if (sprite.YPosition >= closestDownGroundHeight)
-                    {
-                        sprite.YPosition = closestDownGroundHeight;
-                        sprite.Ground = closestDownGround;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Highest ground below sprite
-        /// </summary>
-        /// <param name="sprite">sprite</param>
-        /// <param name="level">level</param>
-        /// <returns>Highest ground below sprite</returns>
-        internal Ground GetHighestVisibleGroundBelowSprite(AbstractSprite sprite, Level level)
-        {
-            Ground highestGroundBelowSprite = null;
-            double highestHeight = -1;
-
-            foreach (Ground ground in level)
-            {
-                double currentHeight = ground.TerrainWave[sprite.XPosition];
-
-                if (sprite.YPosition <= currentHeight)
-                {
-                    if (highestHeight == -1 || currentHeight < highestHeight)
-                    {
-                        if (IsGroundVisible(ground, level,sprite.XPosition))
-                        {
-                            highestHeight = currentHeight;
-                            highestGroundBelowSprite = ground;
-                        }
-                    }
-                }
-            }
-            return highestGroundBelowSprite;
-        }
-
-        /// <summary>
-        /// Whether ground is visible at X Position
-        /// </summary>
-        /// <param name="ground">ground</param>
-        /// <param name="level">level</param>
-        /// <param name="xPosition">X Position</param>
-        /// <returns>Whether ground is visible at X Position</returns>
-        private bool IsGroundVisible(Ground ground, Level level, double xPosition)
-        {
-            double yPosition = ground.TerrainWave[xPosition];
-
-            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
-            {
-                Ground currentGround = level[groundId];
-                if (currentGround == ground)
-                    break;
-
-                if (currentGround.TerrainWave[xPosition] < yPosition)
-                    return false;
-            }
-
-            return true;
-        }
-
-        private Ground GetLowestVisibleGround(AbstractSprite sprite, Level level)
-        {
-            Ground lowestGround = null;
-            double lowestHeight = double.NegativeInfinity;
-
-            foreach (Ground ground in level)
-            {
-                double currentHeight = ground.TerrainWave[sprite.XPosition];
-
-                if (currentHeight > lowestHeight)
-                {
-                    if (IsGroundVisible(ground, level, sprite.XPosition))
-                    {
-                        lowestHeight = currentHeight;
-                        lowestGround = ground;
-                    }
-                }
-            }
-            return lowestGround;
         }
         #endregion
     }
