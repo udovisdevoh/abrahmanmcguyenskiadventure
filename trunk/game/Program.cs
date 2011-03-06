@@ -253,7 +253,6 @@ namespace AbrahmanAdventure
             #warning Must improve prevent sprite from accelerating while pushing on a collision
             #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it
-            #warning Must improve slowing down when escalating a cliff
             #warning for transparent grounds and maybe for all grounds, must use texture's thickness for collision detection (should not block if player is under texture) (consider crouching height too)
 
             //We process the time multiplicator

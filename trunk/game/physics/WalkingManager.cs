@@ -83,7 +83,6 @@ namespace AbrahmanAdventure.physics
                         }
 
                         //We sometimes make fall the sprite
-                        #warning Test > 0.8 value
                         if (slope > 0.8)
                             sprite.Ground = null;
                     }
@@ -106,10 +105,6 @@ namespace AbrahmanAdventure.physics
 
                 double groundHeight = sprite.Ground.TerrainWave[sprite.XPosition];
 
-                //We sometimes make fall the sprite
-                /*if (sprite.YPosition < groundHeight - sprite.MinimumFallingHeight)
-                    sprite.Ground = null;
-                else*/
                 sprite.YPosition = groundHeight;
             }
 
