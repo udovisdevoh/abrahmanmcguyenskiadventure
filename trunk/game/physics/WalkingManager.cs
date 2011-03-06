@@ -83,7 +83,8 @@ namespace AbrahmanAdventure.physics
                         }
 
                         //We sometimes make fall the sprite
-                        if (slope > 0.5)
+                        #warning Test > 0.8 value
+                        if (slope > 0.8)
                             sprite.Ground = null;
                     }
                 }
