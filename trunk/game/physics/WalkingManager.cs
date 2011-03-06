@@ -62,9 +62,9 @@ namespace AbrahmanAdventure.physics
                 walkingDistance = Math.Min(0, walkingDistance);
             }
 
-            //We adjust walking distance according to the slope
             if (walkingDistance != 0)
             {
+                #region Slope logic (slowing down when escalating, falling off a cliff
                 if (sprite.Ground != null)
                 {
                     double slope = Physics.GetSlopeRatio(sprite, sprite.Ground, walkingDistance);
@@ -87,6 +87,7 @@ namespace AbrahmanAdventure.physics
                             sprite.Ground = null;
                     }
                 }
+                #endregion
 
                 sprite.XPosition += walkingDistance;
             }
