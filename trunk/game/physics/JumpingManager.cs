@@ -6,8 +6,17 @@ using AbrahmanAdventure.sprites;
 
 namespace AbrahmanAdventure.physics
 {
+    /// <summary>
+    /// Manages jumping logic
+    /// </summary>
     internal class JumpingManager
     {
+        #region Internal Methods
+        /// <summary>
+        /// Update jumping logic
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="timeDelta">time delta</param>
         internal void Update(AbstractSprite sprite, double timeDelta)
         {
             if (sprite.IsTryingToJump)
@@ -15,7 +24,14 @@ namespace AbrahmanAdventure.physics
 
             sprite.JumpingCycle.Increment(timeDelta / Math.Max(sprite.MaximumWalkingHeight, sprite.CurrentWalkingSpeed));
         }
+        #endregion
 
+        #region Private Methods
+        /// <summary>
+        /// Start or continue jump
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="timeDelta">time delta</param>
         private void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
             if (!sprite.IsNeedToJumpAgain)
@@ -33,6 +49,6 @@ namespace AbrahmanAdventure.physics
                 }
             }
         }
-
+        #endregion
     }
 }

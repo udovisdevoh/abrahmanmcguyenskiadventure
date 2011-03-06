@@ -6,6 +6,9 @@ using System.Drawing;
 
 namespace AbrahmanAdventure.level
 {
+    /// <summary>
+    /// Represents a surface on which a sprite can walk
+    /// </summary>
     internal class Ground
     {
         #region Fields and parts

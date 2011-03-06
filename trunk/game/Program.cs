@@ -249,7 +249,6 @@ namespace AbrahmanAdventure
         public void Update(object sender, TickEventArgs args)
         {
             #warning implement crouch sliding
-            #warning fix vertical camera flickering
             #warning fix vertical teleportation bug
 
             //We process the time multiplicator
@@ -261,123 +260,102 @@ namespace AbrahmanAdventure
                 joystickManager.SetInputStateFromAxes(userInput);
 
             
-            if (isBindViewOffsetToPlayer)
-            {
-                playerSprite.IsRunning = userInput.isPressAttack;
 
-                #region We manage jumping logic
-                if (userInput.isPressJump)
+            playerSprite.IsRunning = userInput.isPressAttack;
+
+            #region We manage jumping logic
+            if (userInput.isPressJump)
+            {
+                //We manage jumping from one ground to a lower ground
+                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                 {
-                    //We manage jumping from one ground to a lower ground
-                    if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
+                    playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
+                    Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
+                    if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
                     {
-                        playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
-                        Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
-                        if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
-                        {
-                            playerSprite.Ground = null;
-                        }
-                        else
-                        {
-                            //Oops, we jumped from the lowest ground. Let's undo the falling
-                            playerSprite.YPosition = playerSprite.Ground.TerrainWave[playerSprite.XPosition];
-                        }
+                        playerSprite.Ground = null;
                     }
                     else
                     {
-                        playerSprite.IsTryingToJump = true;
-                    }
-                }
-                else
-                    playerSprite.IsNeedToJumpAgain = false;
-                #endregion
-
-                playerSprite.IsCrouch = userInput.isPressDown;
-
-                #region We manage walking logic
-                if (userInput.isPressLeft && !userInput.isPressRight && !playerSprite.IsCrouch)
-                {
-                    #region Walking left
-                    if (playerSprite.IsTryingToWalkRight)
-                        playerSprite.CurrentWalkingSpeed = 0;
-
-                    playerSprite.WalkingCycle.Increment(timeDelta);
-                    playerSprite.IsTryingToWalk = true;
-                    playerSprite.IsTryingToWalkRight = false;
-                    #endregion
-                }
-                else if (!userInput.isPressLeft && userInput.isPressRight && !playerSprite.IsCrouch)
-                {
-                    #region Walking right
-                    if (!playerSprite.IsTryingToWalkRight)
-                        playerSprite.CurrentWalkingSpeed = 0;
-
-                    playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
-                    playerSprite.IsTryingToWalk = true;
-                    playerSprite.IsTryingToWalkRight = true;
-                    #endregion
-                }
-                else
-                {
-                    playerSprite.WalkingCycle.Reset();
-                    playerSprite.IsTryingToWalk = false;
-                    playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
-                    playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
-                }
-
-                if (playerSprite.IsTryingToWalk || playerSprite.CurrentWalkingSpeed > 0)
-                    physics.TryMakeWalk(playerSprite, playerSprite.IsTryingToWalk, playerSprite.IsTryingToWalkRight, timeDelta, level);
-                #endregion
-
-                #region We manage attack logic
-                //Attacking logic
-                if (userInput.isPressAttack)
-                {
-                    if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
-                    {
-                        playerSprite.AttackingCycle.Fire();
-                        playerSprite.IsNeedToAttackAgain = true;
+                        //Oops, we jumped from the lowest ground. Let's undo the falling
+                        playerSprite.YPosition = playerSprite.Ground.TerrainWave[playerSprite.XPosition];
                     }
                 }
                 else
                 {
-                    playerSprite.IsNeedToAttackAgain = false;
+                    playerSprite.IsTryingToJump = true;
                 }
-                if (playerSprite.AttackingCycle.IsFired)
-                    playerSprite.AttackingCycle.Increment(timeDelta);
-                if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
-                    playerSprite.AttackingCycle.Reset();
-                #endregion
-		        
-                viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
-            	viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
             }
-			else
+            else
+                playerSprite.IsNeedToJumpAgain = false;
+            #endregion
+
+            playerSprite.IsCrouch = userInput.isPressDown;
+
+            #region We manage walking logic
+            if (userInput.isPressLeft && !userInput.isPressRight && !playerSprite.IsCrouch)
             {
-                #region If camera is not binded to player's sprite
-                if (userInput.isPressLeft && !userInput.isPressRight)
-		            viewOffsetX -= timeDelta;
-		        else if (userInput.isPressRight && !userInput.isPressLeft)
-		            viewOffsetX += timeDelta;
-            
-	            if (userInput.isPressUp && !userInput.isPressDown)
-	            {
-	                viewOffsetY -= timeDelta;                
-	                viewOffsetY = Math.Max(viewOffsetY, totalHeightTileCount / -2);
-	            }
-	            else if (userInput.isPressDown && !userInput.isPressUp)
-	            {
-	                viewOffsetY += timeDelta;
-	                viewOffsetY = Math.Min(viewOffsetY, totalHeightTileCount / 2 - tileRowCount);
-                }
+                #region Walking left
+                if (playerSprite.IsTryingToWalkRight)
+                    playerSprite.CurrentWalkingSpeed = 0;
+
+                playerSprite.WalkingCycle.Increment(timeDelta);
+                playerSprite.IsTryingToWalk = true;
+                playerSprite.IsTryingToWalkRight = false;
                 #endregion
             }
+            else if (!userInput.isPressLeft && userInput.isPressRight && !playerSprite.IsCrouch)
+            {
+                #region Walking right
+                if (!playerSprite.IsTryingToWalkRight)
+                    playerSprite.CurrentWalkingSpeed = 0;
+
+                playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
+                playerSprite.IsTryingToWalk = true;
+                playerSprite.IsTryingToWalkRight = true;
+                #endregion
+            }
+            else
+            {
+                playerSprite.WalkingCycle.Reset();
+                playerSprite.IsTryingToWalk = false;
+                playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
+                playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
+            }
+            #endregion
+
+            #region We manage attack logic
+            //Attacking logic
+            if (userInput.isPressAttack)
+            {
+                if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
+                {
+                    playerSprite.AttackingCycle.Fire();
+                    playerSprite.IsNeedToAttackAgain = true;
+                }
+            }
+            else
+            {
+                playerSprite.IsNeedToAttackAgain = false;
+            }
+            if (playerSprite.AttackingCycle.IsFired)
+                playerSprite.AttackingCycle.Increment(timeDelta);
+            if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
+                playerSprite.AttackingCycle.Reset();
+            #endregion
 
 
             physics.Update(playerSprite, level, timeDelta);
 
+            #region Camera positioning
+            viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
+            viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
+            #endregion
+
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY);
+
+
             mainSurface.Update();
         }
 
