@@ -267,7 +267,7 @@ namespace AbrahmanAdventure
             if (userInput.isPressJump)
             {
                 //We manage jumping from one ground to a lower ground
-                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
+                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed < playerSprite.MaxSpeedForLowerJump)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
@@ -309,6 +309,32 @@ namespace AbrahmanAdventure
                 playerSprite.IsTryingToWalkRight = true;
                 #endregion
             }
+            else if (userInput.isPressDown)
+            {
+                #region Sliding
+                playerSprite.IsTryingToWalk = false;
+                if (playerSprite.Ground != null)
+                {
+                    double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution,true);
+                    if (rightSlope > 0.125)
+                    {
+                        playerSprite.IsTryingToWalk = true;
+                        playerSprite.IsTryingToWalkRight = true;
+                        playerSprite.IsRunning = true;
+                    }
+                    else
+                    {
+                        double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, -Program.collisionDetectionResolution,false);
+                        if (leftSlope > 0.125)
+                        {
+                            playerSprite.IsTryingToWalk = true;
+                            playerSprite.IsTryingToWalkRight = false;
+                            playerSprite.IsRunning = true;
+                        }
+                    }
+                }
+                #endregion
+            }
             else
             {
                 playerSprite.IsTryingToWalk = false;
@@ -343,6 +369,10 @@ namespace AbrahmanAdventure
             #region We position the camera
             viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
             viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
+            /*if (playerSprite.IsTryingToWalkRight)
+                viewOffsetX += Math.Abs(playerSprite.CurrentWalkingSpeed);
+            else
+                viewOffsetX -= Math.Abs(playerSprite.CurrentWalkingSpeed);*/
             #endregion
 
             #region We update the viewers
