@@ -248,6 +248,11 @@ namespace AbrahmanAdventure
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
+            #warning implement crouch sliding
+            #warning random bouncy grounds
+            #warning fix vertical camera flickering
+            #warning fix vertical teleportation bug
+
             //We process the time multiplicator
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
