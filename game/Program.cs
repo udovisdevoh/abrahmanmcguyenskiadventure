@@ -317,7 +317,7 @@ namespace AbrahmanAdventure
             }
             #endregion
 
-            #region We manage attack logic
+            #region We manage attack input logic
             //Attacking logic
             if (userInput.isPressAttack)
             {
@@ -336,6 +336,7 @@ namespace AbrahmanAdventure
             if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
                 playerSprite.AttackingCycle.Reset();
             #endregion
+
 
             physics.Update(playerSprite, level, timeDelta);
 
