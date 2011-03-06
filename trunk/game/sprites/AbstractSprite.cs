@@ -76,6 +76,8 @@ namespace AbrahmanAdventure.sprites
 
         private double walkingAcceleration;
 
+        private double maxSpeedForLowerJump;
+
         private double maxRunningSpeed;
 
         private bool isRunning = false;
@@ -108,6 +110,7 @@ namespace AbrahmanAdventure.sprites
             width = BuildWidth();
             height = BuildHeight();
             mass = BuildMass();
+            maxSpeedForLowerJump = BuildMaxSpeedForLowerJump();
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
             maxWalkingSpeed = BuildMaxWalkingSpeed();
@@ -120,6 +123,8 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Abstract Methods
+        protected abstract double BuildMaxSpeedForLowerJump();
+
         protected abstract double BuildJumpingTime();
 
         protected abstract double BuildWalkingCycleLength();
@@ -315,6 +320,11 @@ namespace AbrahmanAdventure.sprites
         public double WalkingAcceleration
         {
             get { return walkingAcceleration; }
+        }
+
+        public double MaxSpeedForLowerJump
+        {
+            get { return maxSpeedForLowerJump; }
         }
 
         public bool IsTryingToWalk

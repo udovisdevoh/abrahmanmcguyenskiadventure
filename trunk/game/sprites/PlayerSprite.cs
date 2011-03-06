@@ -332,6 +332,11 @@ namespace AbrahmanAdventure.sprites
         {
             return 4;
         }
+
+        protected override double BuildMaxSpeedForLowerJump()
+        {
+            return 1.0;
+        }
         #endregion
     }
 }

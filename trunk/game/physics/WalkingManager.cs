@@ -67,23 +67,23 @@ namespace AbrahmanAdventure.physics
                 #region Slope logic (slowing down when escalating, falling off a cliff
                 if (sprite.Ground != null)
                 {
-                    double slope = Physics.GetSlopeRatio(sprite, sprite.Ground, walkingDistance);
+                    double slope = Physics.GetSlopeRatio(sprite, sprite.Ground, walkingDistance, sprite.IsTryingToWalkRight);
                     
-                    double adjustedSquareRootSlope = Math.Sqrt(Math.Abs(slope)) * 0.75;
-                    if (adjustedSquareRootSlope > 0 != slope > 0)
-                        adjustedSquareRootSlope *= -1;
+                    double adjustedEffectFromSlope = Math.Sqrt(Math.Abs(slope)) * 0.75;
+                    
+                    if (adjustedEffectFromSlope > 0 != slope > 0)
+                        adjustedEffectFromSlope *= -1;
 
                     if (slope != 0)
                     {
-                        //We escalate a hill
-                        if (slope < 0)
+                        if (slope < 0 || sprite.IsCrouch) //if we must go up a hill
                         {
-                            walkingDistance += (adjustedSquareRootSlope * walkingDistance);
-                            sprite.CurrentWalkingSpeed += (adjustedSquareRootSlope * walkingDistance) * sprite.WalkingAcceleration;
+                            double slopeAdjustmentRatio = sprite.IsCrouch ? 0.5 : 0.15;
+                            sprite.CurrentWalkingSpeed *= Math.Min(1.0, 1.0 + slope * slopeAdjustmentRatio);
                         }
 
                         //We sometimes make fall the sprite
-                        if (slope > 0.8)
+                        if ((!sprite.IsCrouch && slope > 0.8) || (sprite.IsCrouch && slope > 3))
                             sprite.Ground = null;
                     }
                 }
