@@ -103,6 +103,8 @@ namespace AbrahmanAdventure.physics
                 else
                     sprite.YPosition = groundHeight;
             }
+
+            sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed);
         }
 
         /// <summary>
