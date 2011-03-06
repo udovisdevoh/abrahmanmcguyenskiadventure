@@ -61,6 +61,7 @@
     <Compile Include="game\ground\GroundHelper.cs" />
     <Compile Include="game\physics\JumpingManager.cs" />
     <Compile Include="game\physics\Physics.cs" />
+    <Compile Include="game\physics\WalkingManager.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\sky\Sky.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
