@@ -291,7 +291,6 @@ namespace AbrahmanAdventure
                 if (playerSprite.IsTryingToWalkRight)
                     playerSprite.CurrentWalkingSpeed = 0;
 
-                playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
                 playerSprite.IsTryingToWalk = true;
                 playerSprite.IsTryingToWalkRight = false;
                 #endregion
@@ -302,14 +301,12 @@ namespace AbrahmanAdventure
                 if (!playerSprite.IsTryingToWalkRight)
                     playerSprite.CurrentWalkingSpeed = 0;
 
-                playerSprite.WalkingCycle.Increment(timeDelta * playerSprite.CurrentWalkingSpeed);
                 playerSprite.IsTryingToWalk = true;
                 playerSprite.IsTryingToWalkRight = true;
                 #endregion
             }
             else
             {
-                playerSprite.WalkingCycle.Reset();
                 playerSprite.IsTryingToWalk = false;
                 playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                 playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
@@ -336,19 +333,16 @@ namespace AbrahmanAdventure
                 playerSprite.AttackingCycle.Reset();
             #endregion
 
-
             physics.Update(playerSprite, level, timeDelta);
 
-            #region Camera positioning
+            #region We update the viewers
             viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
             viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
-            #endregion
 
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY);
-
-
             mainSurface.Update();
+            #endregion
         }
 
         public void Start()
