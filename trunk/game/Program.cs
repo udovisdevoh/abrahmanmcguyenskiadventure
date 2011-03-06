@@ -340,10 +340,12 @@ namespace AbrahmanAdventure
 
             physics.Update(playerSprite, level, timeDelta);
 
-            #region We update the viewers
+            #region We position the camera
             viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
             viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
+            #endregion
 
+            #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY);
             mainSurface.Update();

@@ -82,22 +82,24 @@ namespace AbrahmanAdventure.physics
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
 
-            //We check other grounds for collision
-            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+            double angleY1 = referenceGround.TerrainWave[angleX1];
+            double angleY2 = referenceGround.TerrainWave[angleX2];
+            double slope = angleY1 - angleY2;
+            if (slope >= sprite.MaximumWalkingHeight)
+                return true;
+
+
+            //We check other grounds for ground collisions
+            if (isConsiderFallingCollision)
             {
-                Ground currentGround = level[groundId];
-                double angleY1 = referenceGround.TerrainWave[angleX1];
-                double angleY2 = referenceGround.TerrainWave[angleX2];
-
-                double slope = angleY1 - angleY2;
-
-                if (slope >= sprite.MaximumWalkingHeight)
-                    return true;
-
-                if (currentGround == referenceGround)
-                    break;
-                else if (isConsiderFallingCollision && currentGround.TerrainWave[sprite.XPosition] < sprite.YPosition)
-                    return true;
+                for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+                {
+                    Ground currentGround = level[groundId];
+                    if (currentGround == referenceGround)
+                        break;
+                    else if (currentGround.TerrainWave[sprite.XPosition] < sprite.YPosition)
+                        return true;
+                }
             }
             return false;
         }
