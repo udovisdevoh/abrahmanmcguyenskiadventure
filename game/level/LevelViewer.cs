@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.level
             foreach (Ground ground in level)
             {
                 IWave terrainWave = ground.TerrainWave;
-                Color waveColor = level.colorTheme.GetColor(themeColorId);
+                Color waveColor = level.ColorTheme.GetColor(themeColorId);
                 
                 themeColorId--;
 

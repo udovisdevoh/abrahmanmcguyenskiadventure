@@ -12,12 +12,21 @@ namespace AbrahmanAdventure
     internal class JoystickManager : IEnumerable<Joystick>
     {
         #region Parts
+        /// <summary>
+        /// List of available joysticks
+        /// </summary>
         private List<Joystick> joystickList;
 
+        /// <summary>
+        /// Default joystick to get axes value from
+        /// </summary>
         private Joystick defaultJoystickForRealAxes = null;
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Build joystick manager
+        /// </summary>
         public JoystickManager()
         {
             joystickList = new List<Joystick>();
@@ -31,11 +40,19 @@ namespace AbrahmanAdventure
         #endregion
 
         #region IEnumerable<Joystick> Members
+        /// <summary>
+        /// List of joysticks
+        /// </summary>
+        /// <returns>List of joysticks</returns>
         public IEnumerator<Joystick> GetEnumerator()
         {
             return joystickList.GetEnumerator();
         }
 
+        /// <summary>
+        /// List of joysticks
+        /// </summary>
+        /// <returns>List of joysticks</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return joystickList.GetEnumerator();
@@ -43,6 +60,10 @@ namespace AbrahmanAdventure
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Set input states in user input object fro joystick axes state
+        /// </summary>
+        /// <param name="userInput">user input object</param>
         internal void SetInputStateFromAxes(UserInput userInput)
         {
             if (defaultJoystickForRealAxes != null)
@@ -86,12 +107,20 @@ namespace AbrahmanAdventure
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Default joystick to get axes value from
+        /// </summary>
         public Joystick DefaultJoystickForRealAxes
         {
             get { return defaultJoystickForRealAxes; }
             set { defaultJoystickForRealAxes = value; }
         }
 
+        /// <summary>
+        /// Joystick at index
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <returns>Joystick at index</returns>
         public Joystick this[byte index]
         {
             get { return joystickList[index]; }
