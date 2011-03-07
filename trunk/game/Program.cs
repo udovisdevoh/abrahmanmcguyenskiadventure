@@ -358,7 +358,6 @@ namespace AbrahmanAdventure
                 playerSprite.AttackingCycle.Reset();
             #endregion
 
-
             physics.Update(playerSprite, level, timeDelta);
 
             #region We position the camera
@@ -369,6 +368,7 @@ namespace AbrahmanAdventure
             else
                 viewOffsetX -= Math.Abs(playerSprite.CurrentWalkingSpeed);*/
             #endregion
+
 
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
