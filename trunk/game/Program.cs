@@ -96,8 +96,7 @@ namespace AbrahmanAdventure
             random = new Random();
             joystickManager = new JoystickManager();
 
-            LevelBuilder levelBuilder = new LevelBuilder();
-            level = levelBuilder.Build(random);
+            level = new Level(random);
 
             userInput = new UserInput();
 
