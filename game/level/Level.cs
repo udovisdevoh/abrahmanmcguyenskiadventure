@@ -26,6 +26,11 @@ namespace AbrahmanAdventure.level
         /// Color theme
         /// </summary>
         private ColorTheme colorTheme;
+
+        /// <summary>
+        /// Represents wave modelization of holes in a level
+        /// </summary>
+        private HoleSet holeSet;
         #endregion
 
         #region Constructor
@@ -38,6 +43,25 @@ namespace AbrahmanAdventure.level
             sky = new Sky(random);
             colorTheme = new ColorTheme(random);
             groundList = new List<Ground>();
+            holeSet = new HoleSet(random);
+
+            int waveCount = random.Next(3, 6);
+            for (int i = 0; i < waveCount; i++)
+            {
+                IWave wave;
+                if (random.Next(0, 4) != 0)
+                    wave = WaveBuilder.BuildWavePack(random);
+                else
+                    wave = WaveBuilder.BuildWaveTree(random, 16);
+
+                //wave = new Wave(10, 10, 0, WaveFunctions.AbsSin);
+
+                double normalizationFactor = (random.NextDouble() * 20) + 4;
+                wave.Normalize(normalizationFactor, false);
+
+                //level.AddTerrainWave(new Ground(wave, random));
+                BuildNewGround(wave, random, ColorTheme.GetColor(waveCount - i - 1));
+            }
         }
         #endregion
 
@@ -70,14 +94,16 @@ namespace AbrahmanAdventure.level
         {
             groundList.Add(ground);
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Build new ground (internally)
         /// </summary>
         /// <param name="wave">wave</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">color</param>
-        internal void BuildNewGround(IWave wave, Random random, Color color)
+        private void BuildNewGround(IWave wave, Random random, Color color)
         {
             groundList.Add(new Ground(wave, random, color));
         }
