@@ -6,25 +6,53 @@ using System.Drawing;
 
 namespace AbrahmanAdventure.level
 {
+    /// <summary>
+    /// Color theme for a level
+    /// </summary>
     internal class ColorTheme
     {
         #region Fields
+        /// <summary>
+        /// Hue: from 0 to 255
+        /// </summary>
         public int hue;
 
+        /// <summary>
+        /// Saturation: from 0 to 255
+        /// </summary>
         public int saturation;
 
+        /// <summary>
+        /// Lightness: from 0 to 255
+        /// </summary>
         public int lightness;
 
+        /// <summary>
+        /// How much the saturation changes when changing layers
+        /// </summary>
         public int saturationShiftRate;
 
+        /// <summary>
+        /// How much the lightness changes when changing layers
+        /// </summary>
         public int lightnessShiftRate;
 
+        /// <summary>
+        /// How much the hue changes when changing layers
+        /// </summary>
         public int hueShiftRate;
 
+        /// <summary>
+        /// List of color (one per layer)
+        /// </summary>
         private List<Color> colorList;
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Create a color theme
+        /// </summary>
+        /// <param name="random">random number generator</param>
         public ColorTheme(Random random)
         {
             colorList = new List<Color>();
@@ -38,7 +66,12 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region Internal methods
+        #region Public methods
+        /// <summary>
+        /// Get color at layer index
+        /// </summary>
+        /// <param name="themeColorId">layer index</param>
+        /// <returns>color at layer index</returns>
         internal Color GetColor(int themeColorId)
         {
             if (colorList.Count - 1 < themeColorId)
@@ -46,7 +79,14 @@ namespace AbrahmanAdventure.level
             return colorList[themeColorId];
         }
         
-        public static Color ColorFromHSV(double hue, double saturation, double value)
+        /// <summary>
+        /// Create color from hue saturation lightness (value)
+        /// </summary>
+        /// <param name="hue">hue</param>
+        /// <param name="saturation">saturation</param>
+        /// <param name="value">lightness (value)</param>
+        /// <returns>color from hue saturation lightness (value)</returns>
+        internal static Color ColorFromHSV(double hue, double saturation, double value)
         {
             int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
             double f = hue / 60 - Math.Floor(hue / 60);
@@ -73,6 +113,10 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Private methods
+        /// <summary>
+        /// Build color at layer index
+        /// </summary>
+        /// <param name="themeColorId">layer index</param>
         private void BuildColor(int themeColorId)
         {
             if (colorList.Count < themeColorId)

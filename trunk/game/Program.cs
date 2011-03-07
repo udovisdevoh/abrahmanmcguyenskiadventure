@@ -266,7 +266,7 @@ namespace AbrahmanAdventure
             if (userInput.isPressJump)
             {
                 //We manage jumping from one ground to a lower ground
-                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain)
+                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
@@ -308,7 +308,7 @@ namespace AbrahmanAdventure
                 playerSprite.IsTryingToWalkRight = true;
                 #endregion
             }
-            else if (userInput.isPressDown)
+            else if (userInput.isPressDown && userInput.isPressAttack)
             {
                 #region Sliding
                 playerSprite.IsTryingToWalk = false;
@@ -319,7 +319,6 @@ namespace AbrahmanAdventure
                     {
                         playerSprite.IsTryingToWalk = true;
                         playerSprite.IsTryingToWalkRight = true;
-                        playerSprite.IsRunning = true;
                     }
                     else
                     {
@@ -328,7 +327,6 @@ namespace AbrahmanAdventure
                         {
                             playerSprite.IsTryingToWalk = true;
                             playerSprite.IsTryingToWalkRight = false;
-                            playerSprite.IsRunning = true;
                         }
                     }
                 }
