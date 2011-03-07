@@ -5,10 +5,24 @@ using System.Text;
 
 namespace AbrahmanAdventure.level
 {
+    /// <summary>
+    /// To build levels
+    /// </summary>
     internal class LevelBuilder
     {
+        #region Fields and parts
+        /// <summary>
+        /// To build waves
+        /// </summary>
         private WaveBuilder waveBuilder = new WaveBuilder();
+        #endregion
 
+        #region Public Methods
+        /// <summary>
+        /// Build levels
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>new level</returns>
         public Level Build(Random random)
         {
             Level level = new Level(random);
@@ -37,5 +51,6 @@ namespace AbrahmanAdventure.level
 
             return level;
         }
+        #endregion
     }
 }
