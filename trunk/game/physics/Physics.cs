@@ -63,7 +63,7 @@ namespace AbrahmanAdventure.physics
                 if (referenceGround == null)
                     return false;
                 if (isConsiderFallingCollision)
-                    return referenceGround.TerrainWave[xDesiredPosition] < sprite.YPosition;
+                    return referenceGround[xDesiredPosition] < sprite.YPosition;
             }
             else
                 referenceGround = sprite.Ground;
@@ -82,8 +82,8 @@ namespace AbrahmanAdventure.physics
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
 
-            double angleY1 = referenceGround.TerrainWave[angleX1];
-            double angleY2 = referenceGround.TerrainWave[angleX2];
+            double angleY1 = referenceGround[angleX1];
+            double angleY2 = referenceGround[angleX2];
             double slope = angleY1 - angleY2;
             if (slope >= sprite.MaximumWalkingHeight)
                 return true;
@@ -97,7 +97,7 @@ namespace AbrahmanAdventure.physics
                     Ground currentGround = level[groundId];
                     if (currentGround == referenceGround)
                         break;
-                    else if (currentGround.TerrainWave[sprite.XPosition] < sprite.YPosition)
+                    else if (currentGround[sprite.XPosition] < sprite.YPosition)
                         return true;
                 }
             }
@@ -114,9 +114,9 @@ namespace AbrahmanAdventure.physics
         internal static double GetSlopeRatio(AbstractSprite sprite, Ground ground, double walkingDistance, bool isRight)
         {
             if (isRight)
-                return ((ground.TerrainWave[sprite.XPosition + walkingDistance] - ground.TerrainWave[sprite.XPosition]) / walkingDistance) / 2.0;
+                return ((ground[sprite.XPosition + walkingDistance] - ground[sprite.XPosition]) / walkingDistance) / 2.0;
             else
-                return ((ground.TerrainWave[sprite.XPosition] - ground.TerrainWave[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
+                return ((ground[sprite.XPosition] - ground[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
         }
         #endregion
     }

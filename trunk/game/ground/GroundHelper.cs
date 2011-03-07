@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (Ground ground in level)
             {
-                double currentHeight = ground.TerrainWave[sprite.XPosition];
+                double currentHeight = ground[sprite.XPosition];
 
                 if (sprite.YPosition <= currentHeight)
                 {
@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether ground is visible at X Position</returns>
         internal static bool IsGroundVisible(Ground ground, Level level, double xPosition)
         {
-            double yPosition = ground.TerrainWave[xPosition];
+            double yPosition = ground[xPosition];
 
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
@@ -59,7 +59,7 @@ namespace AbrahmanAdventure.physics
                 if (currentGround == ground)
                     break;
 
-                if (currentGround.TerrainWave[xPosition] < yPosition)
+                if (currentGround[xPosition] < yPosition)
                     return false;
             }
 
@@ -79,7 +79,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (Ground ground in level)
             {
-                double currentHeight = ground.TerrainWave[sprite.XPosition];
+                double currentHeight = ground[sprite.XPosition];
 
                 if (currentHeight > lowestHeight)
                 {
@@ -101,10 +101,10 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether ground is higher than other grounds</returns>
         internal static bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
         {
-            double yOutput = ground.TerrainWave[xInput];
+            double yOutput = ground[xInput];
             foreach (Ground otherGround in level)
                 if (otherGround != ground)
-                    if (otherGround.TerrainWave[xInput] < yOutput)
+                    if (otherGround[xInput] < yOutput)
                         return false;
             return true;
         }

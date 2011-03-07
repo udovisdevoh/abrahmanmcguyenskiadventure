@@ -60,7 +60,7 @@ namespace AbrahmanAdventure.level
                 wave.Normalize(normalizationFactor, false);
 
                 //level.AddTerrainWave(new Ground(wave, random));
-                BuildNewGround(wave, random, ColorTheme.GetColor(waveCount - i - 1));
+                BuildNewGround(wave, random, ColorTheme.GetColor(waveCount - i - 1),holeSet);
             }
         }
         #endregion
@@ -103,9 +103,9 @@ namespace AbrahmanAdventure.level
         /// <param name="wave">wave</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">color</param>
-        private void BuildNewGround(IWave wave, Random random, Color color)
+        private void BuildNewGround(IWave wave, Random random, Color color, HoleSet holeSet)
         {
-            groundList.Add(new Ground(wave, random, color));
+            groundList.Add(new Ground(wave, random, color, holeSet));
         }
         #endregion
 

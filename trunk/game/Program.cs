@@ -270,7 +270,7 @@ namespace AbrahmanAdventure
                     if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
                         playerSprite.Ground = null;
                     else //Oops, we jumped from the lowest ground. Let's undo the falling
-                        playerSprite.YPosition = playerSprite.Ground.TerrainWave[playerSprite.XPosition];
+                        playerSprite.YPosition = playerSprite.Ground[playerSprite.XPosition];
                 }
                 else
                 {
@@ -293,6 +293,7 @@ namespace AbrahmanAdventure
 
                 playerSprite.IsTryingToWalk = true;
                 playerSprite.IsTryingToWalkRight = false;
+                playerSprite.IsTryingToSlide = false;
                 #endregion
             }
             else if (!userInput.isPressLeft && userInput.isPressRight && !userInput.isPressDown)
@@ -303,6 +304,7 @@ namespace AbrahmanAdventure
 
                 playerSprite.IsTryingToWalk = true;
                 playerSprite.IsTryingToWalkRight = true;
+                playerSprite.IsTryingToSlide = false;
                 #endregion
             }
             else if (userInput.isPressDown && userInput.isPressAttack)
@@ -312,18 +314,20 @@ namespace AbrahmanAdventure
                 if (playerSprite.Ground != null)
                 {
                     double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution,true);
-                    if (rightSlope > 0.125)
+                    if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
                     {
                         playerSprite.IsTryingToWalk = true;
                         playerSprite.IsTryingToWalkRight = true;
+                        playerSprite.IsTryingToSlide = true;
                     }
                     else
                     {
                         double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, -Program.collisionDetectionResolution,false);
-                        if (leftSlope > 0.125)
+                        if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
                         {
                             playerSprite.IsTryingToWalk = true;
                             playerSprite.IsTryingToWalkRight = false;
+                            playerSprite.IsTryingToSlide = true;
                         }
                     }
                 }
@@ -332,6 +336,7 @@ namespace AbrahmanAdventure
             else
             {
                 playerSprite.IsTryingToWalk = false;
+                playerSprite.IsTryingToSlide = false;
                 playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                 playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
             }

@@ -45,7 +45,8 @@ namespace AbrahmanAdventure.level
         /// <param name="terrainWave">wave to use for terrain</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
-        public Ground(IWave terrainWave, Random random, Color color)
+        /// <param name="holeSet">hole set</param>
+        public Ground(IWave terrainWave, Random random, Color color, HoleSet holeSet)
         {
             topTexture = new Texture(random, color, 1.5, true);
 
@@ -82,11 +83,13 @@ namespace AbrahmanAdventure.level
 
         #region Properties
         /// <summary>
-        /// Ground's wave
+        /// Y value at X position
         /// </summary>
-        public IWave TerrainWave
+        /// <param name="xPosition">X position</param>
+        /// <returns>Y value at X position</returns>
+        public double this[double xPosition]
         {
-            get{return terrainWave;}
+            get { return terrainWave[xPosition]; }
         }
 
         /// <summary>
