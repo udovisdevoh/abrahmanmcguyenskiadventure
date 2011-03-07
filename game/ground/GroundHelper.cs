@@ -7,6 +7,9 @@ using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
+    /// <summary>
+    /// Operations and transformations on Ground (level surfaces)
+    /// </summary>
     internal static class GroundHelper
     {
         /// <summary>
@@ -88,6 +91,22 @@ namespace AbrahmanAdventure.physics
                 }
             }
             return lowestGround;
+        }
+
+        /// <summary>
+        /// Whether ground is higher than other grounds in level
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="xInput">x value</param>
+        /// <returns>Whether ground is higher than other grounds</returns>
+        internal static bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
+        {
+            double yOutput = ground.TerrainWave[xInput];
+            foreach (Ground otherGround in level)
+                if (otherGround != ground)
+                    if (otherGround.TerrainWave[xInput] < yOutput)
+                        return false;
+            return true;
         }
     }
 }

@@ -12,18 +12,39 @@ namespace AbrahmanAdventure.level
     internal class Ground
     {
         #region Fields and parts
+        /// <summary>
+        /// Terrain's wave
+        /// </summary>
         private IWave terrainWave;
 
+        /// <summary>
+        /// Top texture
+        /// </summary>
         private Texture topTexture;
 
+        /// <summary>
+        /// Base texture
+        /// </summary>
         private Texture bottomTexture;
         
+        /// <summary>
+        /// Whether ground's color is transparent
+        /// </summary>
         private bool isTransparent;
 
+        /// <summary>
+        /// Whether we put a base texture
+        /// </summary>
         private bool isUseBottomTexture;
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Create a ground
+        /// </summary>
+        /// <param name="terrainWave">wave to use for terrain</param>
+        /// <param name="random">random number generator</param>
+        /// <param name="color">terrain's top most layer's color</param>
         public Ground(IWave terrainWave, Random random, Color color)
         {
             topTexture = new Texture(random, color, 1.5, true);
@@ -39,7 +60,13 @@ namespace AbrahmanAdventure.level
         #endregion
         
         #region Public Methods
-        public bool IsHigherThanOtherGrounds(Level level, double xInput)
+        /// <summary>
+        /// Whether ground is higher than other grounds in level
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="xInput">x value</param>
+        /// <returns>Whether ground is higher than other grounds</returns>
+        public bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
         {
         	double yOutput = terrainWave[xInput];
         	
@@ -54,31 +81,49 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Ground's wave
+        /// </summary>
         public IWave TerrainWave
         {
             get{return terrainWave;}
         }
 
+        /// <summary>
+        /// Top texture
+        /// </summary>
         public Texture TopTexture
         {
             get { return topTexture; }
         }
 
+        /// <summary>
+        /// Base texture
+        /// </summary>
         public Texture BottomTexture
         {
             get { return bottomTexture; }
         }
         
+        /// <summary>
+        /// Whether ground's color is transparent
+        /// </summary>
         public bool IsTransparent
         {
         	get{return isTransparent;}
         }
 
+        /// <summary>
+        /// Whether we use a base texture
+        /// </summary>
         public bool IsUseBottomTexture
         {
             get { return isUseBottomTexture; }
         }
 
+        /// <summary>
+        /// Whether there will be a scaling effect on top texture's thickness
+        /// </summary>
         public bool IsUseTopTextureThicknessScaling
         {
             get { return topTexture.IsUseTopTextureThicknessScaling; }

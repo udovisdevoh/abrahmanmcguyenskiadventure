@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
-//using SdlDotNet.Graphics.Primitives;
+using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.level
 {
@@ -86,7 +86,7 @@ namespace AbrahmanAdventure.level
                     while (textureInputX < 0)
                         textureInputX += ground.TopTexture.Surface.Width;
 
-                    if (ground.IsTransparent && ground.IsHigherThanOtherGrounds(level, waveInput))
+                    if (ground.IsTransparent && GroundHelper.IsHigherThanOtherGrounds(ground, level, waveInput))
                     {
                         rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                         zoneSurface.Fill(rectangle, transparentColor);
