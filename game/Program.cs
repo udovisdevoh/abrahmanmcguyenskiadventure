@@ -376,7 +376,9 @@ namespace AbrahmanAdventure
             mainSurface.Update();
             #endregion
         }
-
+		#endregion
+		
+        #region Main
         public void Start()
         {
             Events.Tick += Update;
@@ -388,9 +390,7 @@ namespace AbrahmanAdventure
             Events.JoystickAxisMotion += OnJoystickAxisMotion;
             Events.Run();
         }
-		#endregion
-		
-        #region Static
+
         public static void Main(string[] args)
         {
             Program program = new Program();
