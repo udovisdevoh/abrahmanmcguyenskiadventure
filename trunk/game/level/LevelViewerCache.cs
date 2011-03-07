@@ -7,25 +7,50 @@ using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.level
 {
+    /// <summary>
+    /// To re-use rendered zone (view segments)
+    /// </summary>
     internal class LevelViewerCache
     {
         #region Fields and parts
+        /// <summary>
+        /// Internal cached zone surface list
+        /// </summary>
         private Dictionary<int, Surface> internalDictionary = new Dictionary<int, Surface>();
 
+        /// <summary>
+        /// Queue of cached zone indexes
+        /// </summary>
         private Queue<int> internalQueue = new Queue<int>();
         #endregion
 
-        internal bool TryGetValue(int index, out Surface currentSurface)
+        #region Public Methods
+        /// <summary>
+        /// Get surface from index
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <param name="surface">surface</param>
+        /// <returns>whether could find surface at index</returns>
+        internal bool TryGetValue(int index, out Surface surface)
         {
-            return internalDictionary.TryGetValue(index, out currentSurface);
+            return internalDictionary.TryGetValue(index, out surface);
         }
 
-        internal void Add(int index, Surface currentSurface)
+        /// <summary>
+        /// Add surface at index
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <param name="surface">surface</param>
+        internal void Add(int index, Surface surface)
         {
-            internalDictionary.Add(index, currentSurface);
+            internalDictionary.Add(index, surface);
             internalQueue.Enqueue(index);
         }
 
+        /// <summary>
+        /// Only keep maximum surface count, remove other cached surfaces
+        /// </summary>
+        /// <param name="maxCachedColumnCount">maximum surface count</param>
         internal void Trim(int maxCachedColumnCount)
         {
             while (internalDictionary.Count > maxCachedColumnCount)
@@ -33,10 +58,16 @@ namespace AbrahmanAdventure.level
                 internalDictionary.Remove(internalQueue.Dequeue());
             }
         }
-        
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Whether level viewer cache is full
+        /// </summary>
         public bool IsFull
         {
         	get {return internalDictionary.Count >= Program.maxCachedColumnCount;}
         }
+        #endregion
     }
 }

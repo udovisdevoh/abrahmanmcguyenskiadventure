@@ -9,21 +9,48 @@ using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.level
 {
+    /// <summary>
+    /// To view levels
+    /// </summary>
     internal class LevelViewer
     {
-        #region Fields and parts
+        #region Instance fields and parts
+        /// <summary>
+        /// Main surface
+        /// </summary>
         private Surface mainSurface;
 
+        /// <summary>
+        /// Level viewer's cache
+        /// </summary>
         private LevelViewerCache levelViewerCache = new LevelViewerCache();
-        
+        #endregion
+
+        #region Static fields and parts
+        /// <summary>
+        /// Color of transparency
+        /// </summary>
         private static Color transparentColor = ColorTheme.ColorFromHSV(0,0,0);
         #endregion
 
+        #region Constructors
+        /// <summary>
+        /// Build level viewer
+        /// </summary>
+        /// <param name="mainSurface">main surface</param>
         public LevelViewer(Surface mainSurface)
         {
             this.mainSurface = mainSurface;
         }
+        #endregion
 
+        #region Public Methods
+        /// <summary>
+        /// Update level viewer
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="viewOffsetX">view offset x</param>
+        /// <param name="viewOffsetY">view offset y</param>
         internal void Update(Level level, double viewOffsetX, double viewOffsetY)
         {
             viewOffsetX *= Program.tileSize * -1;
@@ -49,7 +76,16 @@ namespace AbrahmanAdventure.level
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
         }
+        #endregion
 
+        #region Private Methods
+        /// <summary>
+        /// Build zone surface (internally)
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="zoneColumnIndex">zone column index</param>
+        /// <param name="absoluteXOffset">absolute x index</param>
+        /// <returns>zone surface</returns>
         private Surface BuildZoneSurface(Level level, int zoneColumnIndex, int absoluteXOffset)
         {
             Rectangle rectangle;
@@ -127,5 +163,6 @@ namespace AbrahmanAdventure.level
 
             return zoneSurface;
         }
+        #endregion
     }
 }
