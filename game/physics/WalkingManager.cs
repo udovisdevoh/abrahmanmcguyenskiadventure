@@ -104,7 +104,7 @@ namespace AbrahmanAdventure.physics
                 if (frontestGroundHavingAccessibleWalkingHeightForSprite != null)
                     sprite.Ground = frontestGroundHavingAccessibleWalkingHeightForSprite;
 
-                double groundHeight = sprite.Ground.TerrainWave[sprite.XPosition];
+                double groundHeight = sprite.Ground[sprite.XPosition];
 
                 sprite.YPosition = groundHeight;
             }
@@ -152,7 +152,7 @@ namespace AbrahmanAdventure.physics
         /// <returns>frontmost ground having accessible walking height for sprite</returns>
         private Ground GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
         {
-            double groundHeight = ground.TerrainWave[sprite.XPosition];
+            double groundHeight = ground[sprite.XPosition];
 
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
@@ -161,7 +161,7 @@ namespace AbrahmanAdventure.physics
                 if (currentGround == ground)
                     break;
 
-                double currentGroundHeight = currentGround.TerrainWave[sprite.XPosition];
+                double currentGroundHeight = currentGround[sprite.XPosition];
 
                 if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
                     return currentGround;

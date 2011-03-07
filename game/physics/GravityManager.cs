@@ -29,12 +29,12 @@ namespace AbrahmanAdventure.physics
                 if (closestDownGround == null)
                 {
                     sprite.Ground = GroundHelper.GetLowestVisibleGround(sprite, level);
-                    sprite.YPosition = sprite.Ground.TerrainWave[sprite.XPosition];
+                    sprite.YPosition = sprite.Ground[sprite.XPosition];
                     sprite.CurrentJumpAcceleration = 0;
                 }
                 else
                 {
-                    double closestDownGroundHeight = closestDownGround.TerrainWave[sprite.XPosition];
+                    double closestDownGroundHeight = closestDownGround[sprite.XPosition];
                     sprite.YPosition -= sprite.CurrentJumpAcceleration / 50 * timeDelta;
 
                     if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)

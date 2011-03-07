@@ -97,7 +97,6 @@ namespace AbrahmanAdventure.level
             int themeColorId = level.Count - 1;
             foreach (Ground ground in level)
             {
-                IWave terrainWave = ground.TerrainWave;
                 Color waveColor = level.ColorTheme.GetColor(themeColorId);
                 
                 themeColorId--;
@@ -105,7 +104,7 @@ namespace AbrahmanAdventure.level
                 for (int x = 0; x < Program.totalZoneWidth; x += Program.waveResolution)
                 {
                     double waveInput = (double)(x + startX) / Program.tileSize;
-                    double waveOutput = terrainWave[waveInput];
+                    double waveOutput = ground[waveInput];
 
                     //waveOutput *= Program.tileSize / 2.0;
                     //int relativeFloorHeight = (int)(waveOutput *= Program.tileSize) + Program.totalZoneHeight;
