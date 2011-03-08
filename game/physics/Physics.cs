@@ -39,8 +39,11 @@ namespace AbrahmanAdventure.physics
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
             walkingManager.Update(sprite, level, timeDelta);
-        	gravityManager.ApplyGravity(sprite, level, timeDelta);
+        	gravityManager.Update(sprite, level, timeDelta);
             jumpingManager.Update(sprite, timeDelta);
+
+            if (sprite.YPosition > Program.totalHeightTileCount)
+                sprite.IsAlive = false;
         }
         #endregion
 

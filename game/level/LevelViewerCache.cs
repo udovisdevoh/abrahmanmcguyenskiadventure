@@ -58,6 +58,14 @@ namespace AbrahmanAdventure.level
                 internalDictionary.Remove(internalQueue.Dequeue());
             }
         }
+
+        /// <summary>
+        /// Clear level viewer cache
+        /// </summary>
+        internal void Clear()
+        {
+            internalDictionary.Clear();
+        }
         #endregion
 
         #region Properties

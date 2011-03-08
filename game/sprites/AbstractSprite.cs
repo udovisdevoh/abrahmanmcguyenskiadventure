@@ -95,6 +95,8 @@ namespace AbrahmanAdventure.sprites
 
         private bool isTryingToSlide = false;
 
+        private bool isAlive = true;
+
         private Cycle walkingCycle;
 
         private Cycle jumpingCycle;
@@ -361,6 +363,12 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryingToSlide; }
             set { isTryingToSlide = value; }
+        }
+
+        public bool IsAlive
+        {
+            get { return isAlive; }
+            set { isAlive = value; }
         }
 
         public Cycle WalkingCycle
