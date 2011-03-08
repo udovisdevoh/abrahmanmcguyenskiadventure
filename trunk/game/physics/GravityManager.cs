@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.physics
                 Ground closestDownGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (closestDownGround == null)
                 {
-                    if (sprite.YPositionPrevious < sprite.YPosition) //if sprite is not fall/jumping up but only falling down
+                    if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
                     {
                         Ground lowestVisibleGround = GroundHelper.GetLowestVisibleGround(sprite, level);
                         if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
@@ -42,6 +42,11 @@ namespace AbrahmanAdventure.physics
                             ApplyGravityMovement(sprite, timeDelta);
                             ApplyGravityAcceleration(sprite, timeDelta);
                         }
+                    }
+                    else
+                    {
+                        ApplyGravityMovement(sprite, timeDelta);
+                        ApplyGravityAcceleration(sprite, timeDelta);
                     }
                 }
                 else
