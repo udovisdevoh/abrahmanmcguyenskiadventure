@@ -29,8 +29,11 @@ namespace AbrahmanAdventure.physics
                 if (closestDownGround == null)
                 {
                     sprite.Ground = GroundHelper.GetLowestVisibleGround(sprite, level);
-                    sprite.YPosition = sprite.Ground[sprite.XPosition];
-                    sprite.CurrentJumpAcceleration = 0;
+                    if (sprite.YPositionPrevious < sprite.YPosition) //if sprite is not fall/jumping up but only falling down
+                    {
+                        sprite.YPosition = sprite.Ground[sprite.XPosition];
+                        sprite.CurrentJumpAcceleration = 0;
+                    }
                 }
                 else
                 {

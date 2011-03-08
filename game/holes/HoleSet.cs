@@ -11,25 +11,11 @@ namespace AbrahmanAdventure.level
     internal class HoleSet
     {
         #region Fields and parts
-        /// <summary>
-        /// For Y position of holes
-        /// </summary>
-        private IWave holeYPositionWave;
+        private int cycleCount;
 
-        /// <summary>
-        /// For thickness of holes (on Y axis)
-        /// </summary>
-        private IWave holeThicknessWave;
+        private List<double> listCycleLength;
 
-        /// <summary>
-        /// For probability of having holes
-        /// </summary>
-        private IWave holeProbabilityWave;
-
-        /// <summary>
-        /// Threshold for probability of having holes
-        /// </summary>
-        private double holeProbabilityThreshold;
+        private List<double> listHoleWidth;
         #endregion
 
         #region Constructor
@@ -39,16 +25,42 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public HoleSet(Random random)
         {
-            holeYPositionWave = WaveBuilder.BuildWavePack(random);
-            holeYPositionWave.Normalize(1.0, true);
+            cycleCount = 1;
+            listCycleLength = new List<double>();
+            listHoleWidth = new List<double>();
 
-            holeThicknessWave = WaveBuilder.BuildWavePack(random);
-            holeThicknessWave.Normalize(1.0, true);
+            for (int i = 0; i < cycleCount; i++)
+            {
+                listCycleLength.Add(random.NextDouble() * 30.0 + 4.0);
+                listHoleWidth.Add(random.NextDouble() * 8.0 + 1.0);
+            }
+        }
+        #endregion
 
-            holeProbabilityWave = WaveBuilder.BuildWavePack(random);
-            holeProbabilityWave.Normalize(1.0, true);
+        #region Properties
+        /// <summary>
+        /// True: there's a hole, false: there's no hole
+        /// </summary>
+        /// <param name="xPosition">X Position</param>
+        /// <param name="yPosition">Y Position</param>
+        /// <returns>True: there's a hole, false: there's no hole</returns>
+        public bool this[double xPosition, double yPosition]
+        {
+            get
+            {
+                //if ((int)(xPosition) % 10 > 7)
 
-            holeProbabilityThreshold = random.NextDouble();
+                for (int i = 0; i < cycleCount; i++)
+                    if (Math.Abs(xPosition) % listCycleLength[i] <= listCycleLength[i] - listHoleWidth[i])
+                        return false;
+
+                return true;
+
+                /*if (Math.Abs(xPosition) % 10 > 10 - 3)
+                    return true;
+                else
+                    return false;*/
+            }
         }
         #endregion
     }

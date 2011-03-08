@@ -246,6 +246,7 @@ namespace AbrahmanAdventure
         public void Update(object sender, TickEventArgs args)
         {
             #warning fix vertical teleportation bug
+            #warning Fix bug of collision when walking toward a small pothole followed by a stone
             #warning Must improve prevent sprite from accelerating while pushing on a collision
             #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it
