@@ -108,5 +108,31 @@ namespace AbrahmanAdventure.physics
                         return false;
             return true;
         }
+
+        /// <summary>
+        /// Get frontmost ground having accessible walking height for sprite
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="ground">ground</param>
+        /// <param name="level">level</param>
+        /// <returns>frontmost ground having accessible walking height for sprite</returns>
+        internal static Ground GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
+        {
+            double groundHeight = ground[sprite.XPosition];
+
+            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+            {
+                Ground currentGround = level[groundId];
+
+                if (currentGround == ground)
+                    break;
+
+                double currentGroundHeight = currentGround[sprite.XPosition];
+
+                if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
+                    return currentGround;
+            }
+            return null;
+        }
     }
 }
