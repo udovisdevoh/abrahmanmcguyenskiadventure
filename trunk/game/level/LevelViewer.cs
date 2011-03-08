@@ -76,6 +76,14 @@ namespace AbrahmanAdventure.level
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
         }
+
+        /// <summary>
+        /// Clear level viewer cache
+        /// </summary>
+        internal void ClearCache()
+        {
+            levelViewerCache.Clear();
+        }
         #endregion
 
         #region Private Methods

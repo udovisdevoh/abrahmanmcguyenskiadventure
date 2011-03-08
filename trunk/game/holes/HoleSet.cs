@@ -11,11 +11,16 @@ namespace AbrahmanAdventure.level
     internal class HoleSet
     {
         #region Fields and parts
-        private int cycleCount;
+        /// <summary>
+        /// Odd number for key: start of a hole -> is a hole
+        /// Even number for key: end of a hole -> is not a hole
+        /// </summary>
+        private List<double> holeIntervals;
 
-        private List<double> listCycleLength;
-
-        private List<double> listHoleWidth;
+        /// <summary>
+        /// Length of a full cycle of hole patterns
+        /// </summary>
+        private double cycleLength;
         #endregion
 
         #region Constructor
@@ -25,14 +30,40 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public HoleSet(Random random)
         {
-            cycleCount = 1;
-            listCycleLength = new List<double>();
-            listHoleWidth = new List<double>();
+            cycleLength = 40.0;
+            holeIntervals = new List<double>();
+            holeIntervals.Add(0);
+            holeIntervals.Add(6.0);
+            holeIntervals.Add(10.0);
+            holeIntervals.Add(12.0);
+            holeIntervals.Add(14.0);
+        }
+        #endregion
 
-            for (int i = 0; i < cycleCount; i++)
+        #region Private Methods
+        /// <summary>
+        /// Find key of provided value using binary search. If can't find exact value, takes the immediate lower value
+        /// </summary>
+        /// <param name="value">value</param>
+        /// <param name="collection">collection to look into</param>
+        /// <param name="minKeyIncl">minimum key (including itself)</param>
+        /// <param name="maxKeyExcl">maximum key (excluding itself)</param>
+        /// <returns>key of provided value using binary search. If can't find exact value, takes the immediate lower value</returns>
+        private int BinarySearchValueGetKey(double value, List<double> collection, int minKeyIncl, int maxKeyExcl)
+        {
+            int pivotKey = (minKeyIncl + maxKeyExcl) / 2;
+
+            if (minKeyIncl == pivotKey)
             {
-                listCycleLength.Add(random.NextDouble() * 30.0 + 4.0);
-                listHoleWidth.Add(random.NextDouble() * 8.0 + 1.0);
+                return pivotKey;
+            }
+            else if (value < collection[pivotKey])
+            {
+                return BinarySearchValueGetKey(value, collection, minKeyIncl, pivotKey);
+            }
+            else
+            {
+                return BinarySearchValueGetKey(value, collection, pivotKey, maxKeyExcl);
             }
         }
         #endregion
@@ -48,18 +79,7 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-                //if ((int)(xPosition) % 10 > 7)
-
-                for (int i = 0; i < cycleCount; i++)
-                    if (Math.Abs(xPosition) % listCycleLength[i] <= listCycleLength[i] - listHoleWidth[i])
-                        return false;
-
-                return true;
-
-                /*if (Math.Abs(xPosition) % 10 > 10 - 3)
-                    return true;
-                else
-                    return false;*/
+                return BinarySearchValueGetKey(Math.Abs(xPosition) % cycleLength, holeIntervals, 0, holeIntervals.Count) % 2 == 1;
             }
         }
         #endregion

@@ -59,6 +59,8 @@ namespace AbrahmanAdventure
         public static int totalHeightTileCount = totalZoneHeight / tileSize;
         
         public static int tileRowCount = screenHeight / tileSize;
+
+        public static double maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
         #endregion
 
         #region Fields and parts
@@ -259,6 +261,17 @@ namespace AbrahmanAdventure
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
+            #region We manage the death logic
+            if (!playerSprite.IsAlive)
+            {
+                //levelViewer.ClearCache();
+                //level = new Level(random);
+                playerSprite.XPosition = 0;
+                playerSprite.YPosition = Program.totalHeightTileCount / -2;
+                playerSprite.IsAlive = true;
+            }
+            #endregion
+
             #region We manage jumping input logic
             playerSprite.IsTryingToJump = false;
             if (userInput.isPressJump)
@@ -366,12 +379,9 @@ namespace AbrahmanAdventure
             physics.Update(playerSprite, level, timeDelta);
 
             #region We position the camera
-            viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
             viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
-            /*if (playerSprite.IsTryingToWalkRight)
-                viewOffsetX += Math.Abs(playerSprite.CurrentWalkingSpeed);
-            else
-                viewOffsetX -= Math.Abs(playerSprite.CurrentWalkingSpeed);*/
+            viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
+            viewOffsetY = Math.Min(viewOffsetY, maxViewOffsetY);
             #endregion
 
 
