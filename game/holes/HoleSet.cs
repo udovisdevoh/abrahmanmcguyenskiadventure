@@ -30,13 +30,32 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public HoleSet(Random random)
         {
-            cycleLength = 40.0;
+            cycleLength = 400.0;
             holeIntervals = new List<double>();
             holeIntervals.Add(0);
-            holeIntervals.Add(6.0);
+
+            double xPosition = 0;
+            while (true)
+            {
+                double groundSurfaceLength = random.NextDouble() * 4.0 * random.NextDouble() * 4.0 * random.NextDouble() * 4.0 + 1.0;
+                double holeLength = random.NextDouble() * 6.0 + 1.0;
+                xPosition += groundSurfaceLength + holeLength;
+
+                if (xPosition + groundSurfaceLength + holeLength >= cycleLength - 1.0)
+                    break;
+
+                xPosition += groundSurfaceLength;
+                holeIntervals.Add(xPosition);
+
+                xPosition += holeLength;
+                holeIntervals.Add(xPosition);
+            } 
+            
+
+            /*holeIntervals.Add(6.0);
             holeIntervals.Add(10.0);
             holeIntervals.Add(12.0);
-            holeIntervals.Add(14.0);
+            holeIntervals.Add(14.0);*/
         }
         #endregion
 
