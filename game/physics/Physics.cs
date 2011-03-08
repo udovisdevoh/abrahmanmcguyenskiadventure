@@ -102,6 +102,8 @@ namespace AbrahmanAdventure.physics
                         break;
                     else if (currentGround[sprite.XPosition] < sprite.YPosition)
                         return true;
+                    else if (currentGround[xDesiredPosition] < sprite.YPosition)
+                        return true;
                 }
             }
             return false;

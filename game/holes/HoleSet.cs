@@ -98,7 +98,8 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-                return BinarySearchValueGetKey(Math.Abs(xPosition) % cycleLength, holeIntervals, 0, holeIntervals.Count) % 2 == 1;
+                int key = BinarySearchValueGetKey(Math.Abs(xPosition) % cycleLength, holeIntervals, 0, holeIntervals.Count);
+                return key % 2 == 1 && ((int)(yPosition / 5.0) + key) % 2 == 1;
             }
         }
         #endregion
