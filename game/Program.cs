@@ -247,7 +247,7 @@ namespace AbrahmanAdventure
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
-            #warning GetFrontmostGroundHavingAccessibleWalkingHeightForSprite: must consider x sprite position as sprite's left or right bound depending on walking direction
+            #warning Fix bug of collision with changing ground (when sprite can walk on a ground which is in a more foreground layer, but there's a collision) Possibly by: GetFrontmostGroundHavingAccessibleWalkingHeightForSprite: must consider x sprite position as sprite's left or right bound depending on walking direction
             #warning must not allow to do a jump down when at lowest ground over a hole
             #warning fix vertical teleportation bug
             #warning Fix bug of collision when walking toward a small pothole followed by a stone
