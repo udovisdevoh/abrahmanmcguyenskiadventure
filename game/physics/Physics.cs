@@ -97,10 +97,10 @@ namespace AbrahmanAdventure.physics
                 Ground currentGround = level[groundId];
                 if (currentGround == referenceGround)
                     break;
-                else if (currentGround[sprite.XPosition] < sprite.YPosition)
+                else if (sprite.YPosition - currentGround[sprite.XPosition] >= sprite.MaximumWalkingHeight)
                     return true;
-                /*else if (currentGround[xDesiredPosition] < sprite.YPosition)
-                    return true;*/
+                else if (sprite.YPosition - currentGround[xDesiredPosition] >= sprite.MaximumWalkingHeight)
+                    return true;
             }
             return false;
         }
