@@ -283,9 +283,9 @@ namespace AbrahmanAdventure
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
-                    if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground)
+                    if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount)
                         playerSprite.Ground = null;
-                    else //Oops, we jumped from the lowest ground. Let's undo the falling
+                    else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
                         playerSprite.YPosition = playerSprite.Ground[playerSprite.XPosition];
                 }
                 else
