@@ -54,9 +54,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="xDesiredPosition">desired x position for sprite</param>
         /// <param name="level">level to look into</param>
-        /// <param name="isConsiderFallingCollision">whether we consider vertical (falling collisions</param>
         /// <returns>Whether collision was detected</returns>
-        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, bool isConsiderFallingCollision)
+        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level)
         {
             Ground referenceGround;
 
@@ -65,8 +64,8 @@ namespace AbrahmanAdventure.physics
                 referenceGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (referenceGround == null)
                     return false;
-                if (isConsiderFallingCollision)
-                    return referenceGround[xDesiredPosition] < sprite.YPosition;
+                //if (isConsiderFallingCollision)
+                return referenceGround[xDesiredPosition] < sprite.YPosition;
             }
             else
                 referenceGround = sprite.Ground;
@@ -93,18 +92,15 @@ namespace AbrahmanAdventure.physics
 
 
             //We check other grounds for ground collisions
-            if (isConsiderFallingCollision)
+            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
-                for (int groundId = level.Count - 1; groundId >= 0; groundId--)
-                {
-                    Ground currentGround = level[groundId];
-                    if (currentGround == referenceGround)
-                        break;
-                    else if (currentGround[sprite.XPosition] < sprite.YPosition)
-                        return true;
-                    /*else if (currentGround[xDesiredPosition] < sprite.YPosition)
-                        return true;*/
-                }
+                Ground currentGround = level[groundId];
+                if (currentGround == referenceGround)
+                    break;
+                else if (currentGround[sprite.XPosition] < sprite.YPosition)
+                    return true;
+                /*else if (currentGround[xDesiredPosition] < sprite.YPosition)
+                    return true;*/
             }
             return false;
         }
