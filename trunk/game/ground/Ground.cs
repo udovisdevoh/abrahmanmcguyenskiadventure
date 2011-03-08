@@ -36,6 +36,11 @@ namespace AbrahmanAdventure.level
         /// Whether we put a base texture
         /// </summary>
         private bool isUseBottomTexture;
+
+        /// <summary>
+        /// Represents wave modelization of holes in a level
+        /// </summary>
+        private HoleSet holeSet;
         #endregion
 
         #region Constructors
@@ -45,9 +50,10 @@ namespace AbrahmanAdventure.level
         /// <param name="terrainWave">wave to use for terrain</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
-        /// <param name="holeSet">hole set</param>
+        /// <param name="holeSet">represents wave modelization of holes in a level</param>
         public Ground(IWave terrainWave, Random random, Color color, HoleSet holeSet)
         {
+            this.holeSet = holeSet;
             topTexture = new Texture(random, color, 1.5, true);
 
             isUseBottomTexture = random.Next(0, 2) == 0;
@@ -89,7 +95,14 @@ namespace AbrahmanAdventure.level
         /// <returns>Y value at X position</returns>
         public double this[double xPosition]
         {
-            get { return terrainWave[xPosition]; }
+            get
+            {
+                double yValue = terrainWave[xPosition];
+                if (holeSet[xPosition, yValue])
+                    yValue = 100.0 - yValue;
+
+                return yValue;
+            }
         }
 
         /// <summary>

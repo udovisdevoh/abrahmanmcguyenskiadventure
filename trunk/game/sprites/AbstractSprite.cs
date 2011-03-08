@@ -68,6 +68,11 @@ namespace AbrahmanAdventure.sprites
 
         private bool isNeedToAttackAgain = false;
 
+        /// <summary>
+        /// Previous value of yPosition so we can know if the sprite is falling/jumping up or down
+        /// </summary>
+        private double yPositionPrevious;
+
         private double startingJumpAcceleration;
 
         private double maxWalkingSpeed;
@@ -184,10 +189,19 @@ namespace AbrahmanAdventure.sprites
             get { return yPosition; }
             set
             {
+                yPositionPrevious = yPosition;
                 parentSpriteCollection.RemoveSpatialHashing(this);
                 yPosition = value;
                 parentSpriteCollection.SetSpatialHashing(this);
             }
+        }
+
+        /// <summary>
+        /// Previous Y position (so we can know if the sprite is falling/jumping up or down
+        /// </summary>
+        public double YPositionPrevious
+        {
+            get { return yPositionPrevious; }
         }
 
         /// <summary>
