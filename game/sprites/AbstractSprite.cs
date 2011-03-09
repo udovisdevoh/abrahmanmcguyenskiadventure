@@ -88,6 +88,8 @@ namespace AbrahmanAdventure.sprites
         private bool isTryingToWalk = false;
 
         private bool isTryingToWalkRight = false;
+        
+        private bool isTryToWalkUp = false;
 
         private bool isTryingToJump = false;
 
@@ -289,7 +291,7 @@ namespace AbrahmanAdventure.sprites
 
         public double MaximumWalkingHeight
         {
-            get { return height / 5.0; }
+            get { return height / 4.0; }
         }
 
         public double MinimumFallingHeight
@@ -351,6 +353,12 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryingToJump; }
             set { isTryingToJump = value; }
+        }
+        
+        public bool IsTryToWalkUp
+        {
+        	get{return isTryToWalkUp;}
+        	set{isTryToWalkUp = value;}
         }
 
         public bool IsCrouch

@@ -134,5 +134,31 @@ namespace AbrahmanAdventure.physics
             }
             return null;
         }
+        
+        /// <summary>
+        /// Get highest ground having accessible walking height for sprite
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="ground">ground</param>
+        /// <param name="level">level</param>
+        /// <returns>highest ground having accessible walking height for sprite</returns>
+        internal static Ground GetHighestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, Ground ground, Level level)
+        {
+        	double groundHeight = ground[sprite.XPosition];
+            double highestHeight = double.PositiveInfinity;
+            Ground highestGround = null;
+
+            foreach (Ground currentGround in level)
+            {
+                double currentGroundHeight = currentGround[sprite.XPosition];
+
+                if (currentGroundHeight < highestHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
+                {
+                    highestGround = currentGround;
+                    highestHeight = currentGroundHeight;
+                }
+            }
+            return highestGround;
+        }
     }
 }
