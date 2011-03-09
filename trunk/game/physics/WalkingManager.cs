@@ -98,11 +98,15 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.Ground != null)
             {
-                Ground frontmostGroundHavingAccessibleWalkingHeightForSprite = GroundHelper.GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
+            	Ground frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
+            	if (sprite.IsTryToWalkUp)
+                	frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite = GroundHelper.GetHighestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
+            	else
+            		frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite = GroundHelper.GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
 
                 //If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
-                if (frontmostGroundHavingAccessibleWalkingHeightForSprite != null)
-                    sprite.Ground = frontmostGroundHavingAccessibleWalkingHeightForSprite;
+                if (frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite != null)
+                    sprite.Ground = frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
 
                 double groundHeight = sprite.Ground[sprite.XPosition];
 
