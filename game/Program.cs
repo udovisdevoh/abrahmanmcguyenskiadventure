@@ -249,13 +249,14 @@ namespace AbrahmanAdventure
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
-            #warning Fix main collision detection system (with anglex etc). When disabled, it fixes bug of hole collision
+        	#warning When going down a hill, then changing ground for ground closer to screen then walking torward the hill: try make code change so it goes back to hill. If not cool, try but only when pressing up        	
+            #warning ?Fix main collision detection system (with anglex etc). When disabled, it fixes bug of hole collision
         	#warning Texture: create "bump mapping" effect verticalLightnessWave and horizontalLightnessWave: use tangent of point instead of y value of point
-            #warning investigate the use of (in physics.cs): else if (currentGround[xDesiredPosition] < sprite.YPosition)
-            #warning Fix bug of collision with changing ground (when sprite can walk on a ground which is in a more foreground layer, but there's a collision) Possibly by: GetFrontmostGroundHavingAccessibleWalkingHeightForSprite: must consider x sprite position as sprite's left or right bound depending on walking direction
-            #warning fix vertical teleportation bug
-            #warning Fix bug of collision when walking toward a small pothole followed by a stone
-            #warning Must improve prevent sprite from accelerating while pushing on a collision
+            #warning ?investigate the use of (in physics.cs): else if (currentGround[xDesiredPosition] < sprite.YPosition)
+            #warning ?Fix bug of collision with changing ground (when sprite can walk on a ground which is in a more foreground layer, but there's a collision) Possibly by: GetFrontmostGroundHavingAccessibleWalkingHeightForSprite: must consider x sprite position as sprite's left or right bound depending on walking direction
+            #warning ?fix vertical teleportation bug
+            #warning ?Fix bug of collision when walking toward a small pothole followed by a stone
+            #warning ?Must improve prevent sprite from accelerating while pushing on a collision
             #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it
             #warning for transparent grounds and maybe for all grounds, must use texture's thickness for collision detection (should not block if player is under texture) (consider crouching height too)
