@@ -99,7 +99,7 @@ namespace AbrahmanAdventure.level
             {
                 double yValue = terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
-                    yValue = 100.0 - yValue;
+                    yValue = Program.holeHeight - yValue;
 
                 return yValue;
             }

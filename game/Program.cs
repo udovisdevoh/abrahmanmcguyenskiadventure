@@ -34,10 +34,6 @@ namespace AbrahmanAdventure
 
         public const int waveResolution = 1;
 
-        public const double zoneWidthScreenCount = 0.025;
-        
-        public const double collisionDetectionResolution = 0.0625;
-
         public const int zoneHeightScreenCount = 4;
 
         public const int bitDepth = 32;
@@ -45,6 +41,12 @@ namespace AbrahmanAdventure
         public const int maxCachedColumnCount = 100;
 
         public const int spatialHashingBucketWidth = 2;
+        
+        public const double zoneWidthScreenCount = 0.025;
+        
+        public const double collisionDetectionResolution = 0.0625;
+        
+        public const double holeHeight = 100.0;
 
         public static int tileSize = screenWidth / tileColumnCount;
 
