@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.physics
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
 
-            double angleY1 = referenceGround[angleX1];
+        	double angleY1 = Math.Min(referenceGround[angleX1], referenceGround[sprite.XPosition]);
             double angleY2 = referenceGround[angleX2];
             double slope = angleY1 - angleY2;
             if (slope >= sprite.MaximumWalkingHeight)
