@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.level
             isSaturationMultiply = random.Next(0, 3) == 0;
             isLightnessMultiply = random.Next(0, 3) == 0;
             
-            if (!isLightnessMultiply)
+            if (!isLightnessMultiply && Program.isUseBumpMapLightness)
                 isBumpMapLightness = random.Next(0, 3) == 0;
             else
                 isBumpMapLightness = false;

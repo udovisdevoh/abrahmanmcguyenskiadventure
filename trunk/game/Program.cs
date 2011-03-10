@@ -30,6 +30,8 @@ namespace AbrahmanAdventure
 
         public const bool isAlwaysUseBottomTexture = false;
 
+        public const bool isUseBumpMapLightness = false;
+
         public const bool isUseTopTextureThicknessScaling = true;
 
         public const int tileColumnCount = 20;
