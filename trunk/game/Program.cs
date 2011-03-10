@@ -252,7 +252,6 @@ namespace AbrahmanAdventure
             #warning ?Must prevent sprite to suicide by jumping torward the lowest ground under the ground, over the secondary texture or color
         	#warning Create decorations (columns, trees)
         	#warning Create paralax effect (rendered map, decorations)
-        	#warning When going down a hill, then changing ground for ground closer to screen then walking torward the hill: try make code change so it goes back to hill. If not cool, try but only when pressing up        	
             #warning ?Fix main collision detection system (with anglex etc). When disabled, it fixes bug of hole collision
             #warning ?investigate the use of (in physics.cs): else if (currentGround[xDesiredPosition] < sprite.YPosition)
             #warning ?Fix bug of collision with changing ground (when sprite can walk on a ground which is in a more foreground layer, but there's a collision) Possibly by: GetFrontmostGroundHavingAccessibleWalkingHeightForSprite: must consider x sprite position as sprite's left or right bound depending on walking direction

@@ -139,6 +139,8 @@ namespace AbrahmanAdventure.level
                             Ground nextCloserGround = ground.NextCloser;
                             if (nextCloserGround != null)
                                 desiredBottomSurfaceLowerBound = GetRelativeFloorHeight(nextCloserGround, x, startX);
+                            desiredBottomSurfaceLowerBound = Math.Min(desiredBottomSurfaceLowerBound, Program.totalZoneHeight);
+
 
                             do
                             {
