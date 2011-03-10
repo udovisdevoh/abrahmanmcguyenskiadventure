@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Terrain's wave
         /// </summary>
-        private IWave terrainWave;
+        private AbstractWave terrainWave;
 
         /// <summary>
         /// Top texture
@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
         /// <param name="holeSet">represents wave modelization of holes in a level</param>
-        public Ground(IWave terrainWave, Random random, Color color, HoleSet holeSet)
+        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet)
         {
             this.holeSet = holeSet;
             topTexture = new Texture(random, color, 1.5, true);

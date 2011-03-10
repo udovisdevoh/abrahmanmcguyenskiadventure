@@ -41,10 +41,10 @@ namespace AbrahmanAdventure.level
             saturation = random.Next(24, 224);
             lightness = random.Next(32, 256);
 
-            IWave horizontalWaveHue = BuildWave(random);
-            IWave horizontalWaveSaturation = BuildWave(random);
-            IWave horizontalWaveLightness = BuildWave(random);
-            IWave verticalWave = BuildWave(random);
+            AbstractWave horizontalWaveHue = BuildWave(random);
+            AbstractWave horizontalWaveSaturation = BuildWave(random);
+            AbstractWave horizontalWaveLightness = BuildWave(random);
+            AbstractWave verticalWave = BuildWave(random);
 
 
             surface = new Surface(skyWidth,skyHeight,Program.bitDepth);
@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Private Methods
-        private IWave BuildWave(Random random)
+        private AbstractWave BuildWave(Random random)
         {
             WavePack wavePack = new WavePack();
             for (int i = 1; i < 5; i++)

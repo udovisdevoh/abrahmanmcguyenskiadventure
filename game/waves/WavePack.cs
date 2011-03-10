@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.level
     /// <summary>
     /// Represents a wave pack
     /// </summary>
-    public class WavePack : IWave, IList<IWave>
+    public class WavePack : AbstractWave, IList<AbstractWave>
     {
         #region Const
         /// <summary>
@@ -26,17 +26,21 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Internal list of waves
         /// </summary>
-        private List<IWave> waveList = new List<IWave>();
+        private List<AbstractWave> waveList = new List<AbstractWave>();
 
         /// <summary>
-        /// Normalization multiplicator
+        /// Tangent normalization offset
         /// </summary>
-        private double normalizationMultiplicator = 1.0;
+        private double tangentNormalizationOffset = 0.0;
 
         /// <summary>
         /// Current junction type (to add or multiply waves)
         /// </summary>
         private int junctionType = JunctionAdd;
+
+        private double normalizationMultiplicator = 1.0;
+
+        private double normalizationOffset = 0;
         #endregion
 
         #region Constructor
@@ -60,7 +64,7 @@ namespace AbrahmanAdventure.level
         /// Create a wave pack from existing wave or wave pack
         /// </summary>
         /// <param name="wave">existing wave or wave pack</param>
-        public WavePack(IWave wave)
+        public WavePack(AbstractWave wave)
         {
             Add(wave);
         }
@@ -73,7 +77,7 @@ namespace AbrahmanAdventure.level
         /// <param name="wavePack1">wave[pack] 1</param>
         /// <param name="wave2">wave 2</param>
         /// <returns>joined wave pack</returns>
-        public static IWave operator +(WavePack wavePack1, IWave wave2)
+        public static AbstractWave operator +(WavePack wavePack1, AbstractWave wave2)
         {
             WavePack summ = new WavePack();
             summ.Add(wavePack1);
@@ -87,13 +91,13 @@ namespace AbrahmanAdventure.level
         /// Add component wave to pack
         /// </summary>
         /// <param name="item">component wave</param>
-        public void Add(IWave item)
+        public void Add(AbstractWave item)
         {
             if (item is Wave)
                 waveList.Add(item);
             else if (item is WavePack)
             {
-                foreach (IWave iWave in ((WavePack)item))
+                foreach (AbstractWave iWave in ((WavePack)item))
                 {
                     if (!this.Contains(iWave))
                     {
@@ -116,9 +120,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="item">specified component wave</param>
         /// <returns>Whether wave pack contains specified component wave</returns>
-        public bool Contains(IWave item)
+        public bool Contains(AbstractWave item)
         {
-            foreach (IWave child in waveList)
+            foreach (AbstractWave child in waveList)
                 if (child.Equals(item))
                     return true;
             return false;
@@ -129,7 +133,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="array">array of waves</param>
         /// <param name="arrayIndex">array index</param>
-        public void CopyTo(IWave[] array, int arrayIndex)
+        public void CopyTo(AbstractWave[] array, int arrayIndex)
         {
             waveList.CopyTo(array, arrayIndex);
         }
@@ -155,9 +159,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="item">component wave</param>
         /// <returns>if removal succeeded</returns>
-        public bool Remove(IWave item)
+        public bool Remove(AbstractWave item)
         {
-            foreach (IWave iWave in waveList)
+            foreach (AbstractWave iWave in waveList)
                 if (iWave.Equals(item))
                     return waveList.Remove(iWave);
             return false;
@@ -167,7 +171,7 @@ namespace AbrahmanAdventure.level
         /// Needed to do foreach iteration
         /// </summary>
         /// <returns>Wave iterator</returns>
-        public IEnumerator<IWave> GetEnumerator()
+        public IEnumerator<AbstractWave> GetEnumerator()
         {
             return waveList.GetEnumerator();
         }
@@ -186,10 +190,10 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="item">selected wave component</param>
         /// <returns>index of selected wave component</returns>
-        public int IndexOf(IWave item)
+        public int IndexOf(AbstractWave item)
         {
             int index = 0;
-            foreach (IWave iWave in waveList)
+            foreach (AbstractWave iWave in waveList)
             {
                 if (item.Equals(iWave))
                     return index;
@@ -204,7 +208,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="index">selected index</param>
         /// <param name="item">component wave[pack]</param>
-        public void Insert(int index, IWave item)
+        public void Insert(int index, AbstractWave item)
         {
             waveList.Insert(index, item);
         }
@@ -223,7 +227,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="index">index</param>
         /// <returns>component wave at index</returns>
-        public IWave this[int index]
+        public AbstractWave this[int index]
         {
             get
             {
@@ -236,43 +240,13 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region IEquatable<IWave> Members
-        /// <summary>
-        /// Whether wave or wavepack equals the other
-        /// </summary>
-        /// <param name="other">other wave</param>
-        /// <returns>Whether wave or wavepack equals the other</returns>
-        public bool Equals(IWave other)
-        {
-            if (other is WavePack)
-            {
-                WavePack otherWavePack = (WavePack)other;
-
-                foreach (IWave iWave in otherWavePack)
-                    if (this.Contains(iWave))
-                        return false;
-
-                foreach (IWave iWave in this)
-                    if (otherWavePack.Contains(iWave))
-                        return false;
-
-                return true;
-            }
-            else if (Count == 1 && other is Wave && this[0] is Wave)
-            {
-                return this[0].Equals(other);
-            }
-            return false;
-        }
-        #endregion
-
-        #region IWave Members
+        #region AbstractWave Overrides
         /// <summary>
         /// Get amplitude at position/time x
         /// </summary>
         /// <param name="x">x</param>
         /// <returns>amplitude at position/time x</returns>
-        public double this[double x]
+        public override double this[double x]
         {
             get
             {
@@ -291,7 +265,7 @@ namespace AbrahmanAdventure.level
                     value = 0.0;
 
 
-                foreach (IWave iWave in waveList)
+                foreach (AbstractWave iWave in waveList)
                 {
                     if (junctionType == JunctionMultiply)
                         value *= iWave[x];
@@ -310,7 +284,7 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public void Normalize()
+        public override void Normalize()
         {
             Normalize(1.0);
         }
@@ -319,7 +293,7 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public void Normalize(double maxValue)
+        public override void Normalize(double maxValue)
         {
             Normalize(maxValue, true);
         }
@@ -328,7 +302,7 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public void Normalize(double maxValue, bool isIncreaseToo)
+        public override void Normalize(double maxValue, bool isIncreaseToo)
         {
             double oldNormalizationMultiplicator = normalizationMultiplicator;
 
@@ -353,6 +327,34 @@ namespace AbrahmanAdventure.level
 
             if (!isIncreaseToo)
                 normalizationMultiplicator = Math.Min(oldNormalizationMultiplicator, normalizationMultiplicator);
+        }
+
+        /// <summary>
+        /// Whether wave or wavepack equals the other
+        /// </summary>
+        /// <param name="other">other wave</param>
+        /// <returns>Whether wave or wavepack equals the other</returns>
+        public override bool Equals(AbstractWave other)
+        {
+            if (other is WavePack)
+            {
+                WavePack otherWavePack = (WavePack)other;
+
+                foreach (AbstractWave iWave in otherWavePack)
+                    if (this.Contains(iWave))
+                        return false;
+
+                foreach (AbstractWave iWave in this)
+                    if (otherWavePack.Contains(iWave))
+                        return false;
+
+                return true;
+            }
+            else if (Count == 1 && other is Wave && this[0] is Wave)
+            {
+                return this[0].Equals(other);
+            }
+            return false;
         }
         #endregion
 

@@ -22,23 +22,23 @@ namespace AbrahmanAdventure.level
 
         private Surface surface;
 
-        private IWave horizontalHueWave;
+        private AbstractWave horizontalHueWave;
 
-        private IWave horizontalSaturationWave;
+        private AbstractWave horizontalSaturationWave;
 
-        private IWave horizontalLightnessWave;
+        private AbstractWave horizontalLightnessWave;
 
-        private IWave verticalHueWave;
+        private AbstractWave verticalHueWave;
 
-        private IWave verticalSaturationWave;
+        private AbstractWave verticalSaturationWave;
 
-        private IWave verticalLightnessWave;
+        private AbstractWave verticalLightnessWave;
 
-        private IWave horizontalThicknessWave;
+        private AbstractWave horizontalThicknessWave;
 
-        private IWave xOffsetInputWave;
+        private AbstractWave xOffsetInputWave;
 
-        private IWave yOffsetInputWave;
+        private AbstractWave yOffsetInputWave;
 
         private bool isHueMultiply;
 
@@ -53,6 +53,8 @@ namespace AbrahmanAdventure.level
         private bool isUseYOffsetInputWave;
 
         private bool isWaveHeightMultiplicator;
+
+        private bool isBumpMapLightness;
 
         private Dictionary<int, Surface> scalingCache = new Dictionary<int, Surface>();
         #endregion
@@ -91,6 +93,10 @@ namespace AbrahmanAdventure.level
             isSaturationMultiply = random.Next(0, 3) == 0;
             isLightnessMultiply = random.Next(0, 3) == 0;
             
+            if (!isLightnessMultiply)
+                isBumpMapLightness = random.Next(0, 2) == 0;
+            else
+                isBumpMapLightness = false;
 
             int surfaceWidth = Program.tileSize * 8;
             int surfaceHeight;
@@ -112,11 +118,22 @@ namespace AbrahmanAdventure.level
             verticalSaturationWave = BuildWave(random, waveHeightMultiplicator);
             verticalLightnessWave = BuildWave(random, waveHeightMultiplicator);
 
+            if (isBumpMapLightness)
+            {
+                horizontalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
+                verticalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
+            }
+
+            List<double> valueList = new List<double>();
+            for (double i = 0; i < 256; i++)
+            {
+                valueList.Add(horizontalLightnessWave.GetTangentValue(i, 1.0));
+            }
 
             if (isUseXOffsetInputWave)
             {
-                xOffsetInputWave = BuildWave(random,1);
-                xOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1,5));
+                xOffsetInputWave = BuildWave(random, 1);
+                xOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
             if (isUseYOffsetInputWave)
@@ -156,8 +173,19 @@ namespace AbrahmanAdventure.level
                     double horizontalSaturationContribution = horizontalSaturationWave[relativeX] * waveStrengthMultiplicator;
                     double verticalSaturationContribution = horizontalSaturationWave[relativeY] * waveStrengthMultiplicator;
 
-                    double horizontalLightnessContribution = horizontalLightnessWave[relativeX] * waveStrengthMultiplicator;
-                    double verticalLightnessContribution = verticalLightnessWave[relativeY] * waveStrengthMultiplicator;
+                    double horizontalLightnessContribution;
+                    double verticalLightnessContribution;
+
+                    if (isBumpMapLightness)
+                    {
+                        horizontalLightnessContribution = horizontalLightnessWave.GetTangentValue(relativeX,1.0) * waveStrengthMultiplicator;
+                        verticalLightnessContribution = verticalLightnessWave.GetTangentValue(relativeY, 1.0) * waveStrengthMultiplicator;
+                    }
+                    else
+                    {
+                        horizontalLightnessContribution = horizontalLightnessWave[relativeX] * waveStrengthMultiplicator;
+                        verticalLightnessContribution = verticalLightnessWave[relativeY] * waveStrengthMultiplicator;
+                    }
 
 
                     if (isHueMultiply)
@@ -215,7 +243,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="waveLengthMultiplicator">if -1, 0 or 1: ignored.</param>
         /// <returns>wave</returns>
-        private IWave BuildWave(Random random, int waveLengthMultiplicator)
+        private AbstractWave BuildWave(Random random, int waveLengthMultiplicator)
         {
             WavePack wavePack = new WavePack();
 
@@ -238,7 +266,7 @@ namespace AbrahmanAdventure.level
             return wavePack;
         }
 
-        private IWave BuildThicknessWave(Random random)
+        private AbstractWave BuildThicknessWave(Random random)
         {
             WavePack wavePack = new WavePack();
 
@@ -288,7 +316,7 @@ namespace AbrahmanAdventure.level
             get { return surface; }
         }
 
-        public IWave HorizontalThicknessWave
+        public AbstractWave HorizontalThicknessWave
         {
             get { return horizontalThicknessWave; }
         }

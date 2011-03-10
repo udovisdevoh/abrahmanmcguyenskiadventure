@@ -72,7 +72,7 @@
     <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
-    <Compile Include="game\waves\IWave.cs" />
+    <Compile Include="game\waves\AbstractWave.cs" />
     <Compile Include="game\waves\Wave.cs" />
     <Compile Include="game\waves\WaveBuilder.cs" />
     <Compile Include="game\waves\WaveFunctions.cs" />

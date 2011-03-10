@@ -48,7 +48,7 @@ namespace AbrahmanAdventure.level
             int waveCount = random.Next(3, 6);
             for (int i = 0; i < waveCount; i++)
             {
-                IWave wave;
+                AbstractWave wave;
                 if (random.Next(0, 4) != 0)
                     wave = WaveBuilder.BuildWavePack(random);
                 else
@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.level
         /// <param name="wave">wave</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">color</param>
-        private void BuildNewGround(IWave wave, Random random, Color color, HoleSet holeSet)
+        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet)
         {
             AddGround(new Ground(wave, random, color, holeSet));
         }
