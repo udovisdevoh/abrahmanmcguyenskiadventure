@@ -94,7 +94,7 @@ namespace AbrahmanAdventure.level
             isLightnessMultiply = random.Next(0, 3) == 0;
             
             if (!isLightnessMultiply)
-                isBumpMapLightness = random.Next(0, 2) == 0;
+                isBumpMapLightness = random.Next(0, 3) == 0;
             else
                 isBumpMapLightness = false;
 
@@ -290,6 +290,27 @@ namespace AbrahmanAdventure.level
         {
             return (int)(scaling * 20.0);
         }
+
+        /*private double GetWaveContribution(bool isMultiply, bool isUseTangent, double xInput, AbstractWave wave, double waveStrengthMultiplicator)
+        {
+            #warning Use this
+            double contributionValue;
+
+            if (isUseTangent)
+                contributionValue = wave.GetTangentValue(xInput, 1.0);
+            else
+                contributionValue = wave[xInput];
+
+            //if (isMultiply)
+            //{
+            //    contributionValue += 1.0;
+            //    contributionValue *= 0.5;
+            //}
+
+            contributionValue *= waveStrengthMultiplicator;
+
+            return contributionValue;
+        }*/
         #endregion
 
         #region Public Methods
