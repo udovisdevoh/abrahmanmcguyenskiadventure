@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.level
     /// <summary>
     /// Represents a binary tree of waves
     /// </summary>
-    internal class WaveTree : IWave
+    internal class WaveTree : AbstractWave
     {
         #region Fields and parts
         /// <summary>
@@ -61,8 +61,8 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region IWave Members
-        public void Normalize()
+        #region AbstractWave Members
+        public override void Normalize()
         {
             Normalize(1.0);
         }
@@ -71,7 +71,7 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public void Normalize(double maxValue)
+        public override void Normalize(double maxValue)
         {
             Normalize(maxValue, true);
         }
@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public void Normalize(double maxValue, bool isIncreaseToo)
+        public override void Normalize(double maxValue, bool isIncreaseToo)
         {
             double oldNormalizationMultiplicator = normalizationMultiplicator;
 
@@ -107,7 +107,7 @@ namespace AbrahmanAdventure.level
                 normalizationMultiplicator = Math.Min(oldNormalizationMultiplicator, normalizationMultiplicator);
         }
 
-        public double this[double x]
+        public override double this[double x]
         {
             get
             {
@@ -135,10 +135,8 @@ namespace AbrahmanAdventure.level
                 }
             }
         }
-        #endregion
 
-        #region IEquatable<IWave> Members
-        public bool Equals(IWave other)
+        public override bool Equals(AbstractWave other)
         {
             if (atomicWave != null && other is Wave)
             {
@@ -159,7 +157,7 @@ namespace AbrahmanAdventure.level
 
                 return true;
             }
-            
+
             return false;
         }
         #endregion

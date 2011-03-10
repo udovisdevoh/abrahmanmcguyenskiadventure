@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.level
     /// <summary>
     /// Represents a wave
     /// </summary>
-    public class Wave : IWave
+    public class Wave : AbstractWave
     {
         #region Fields
         /// <summary>
@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.level
         /// <param name="wave1">wave 1</param>
         /// <param name="wave2">wave 2</param>
         /// <returns>wave pack</returns>
-        public static IWave operator +(Wave wave1, IWave wave2)
+        public static AbstractWave operator +(Wave wave1, AbstractWave wave2)
         {
             WavePack wavePack = new WavePack();
             wavePack.Add(wave1);
@@ -79,34 +79,13 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region IEquatable<IWave> Members
-        /// <summary>
-        /// Whether waves are identical
-        /// </summary>
-        /// <param name="other">other wave</param>
-        /// <returns>Whether waves are identical</returns>
-        public bool Equals(IWave other)
-        {
-            if (other is Wave)
-            {
-                Wave otherWave = (Wave)other;
-                return phase == otherWave.phase && frequency == otherWave.frequency && amplitude == otherWave.amplitude && waveFunction == otherWave.waveFunction;
-            }
-            else if (other is WavePack)
-            {
-                return ((WavePack)other)[0].Equals(this);
-            }
-            return false;
-        }
-        #endregion
-
-        #region IWave Members
+        #region AbstractWave Members
         /// <summary>
         /// Get amplitude at position/time x
         /// </summary>
         /// <param name="x">x</param>
         /// <returns>amplitude at position/time x</returns>
-        public double this[double x]
+        public override double this[double x]
         {
             get
             {
@@ -119,7 +98,7 @@ namespace AbrahmanAdventure.level
             }
         }
 
-        public void Normalize()
+        public override void Normalize()
         {
             Normalize(1.0);
         }
@@ -128,7 +107,7 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave to amplitude 1
         /// </summary>
         /// <param name="maxValue">max value</param>
-        public void Normalize(double maxValue)
+        public override void Normalize(double maxValue)
         {
             Normalize(maxValue, true);
         }
@@ -138,12 +117,31 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="maxValue">max value</param>
         /// <param name="isIncreaseToo">true: we can increase amplitude, false: decrease only</param>
-        public void Normalize(double maxValue, bool isIncreaseToo)
+        public override void Normalize(double maxValue, bool isIncreaseToo)
         {
             if (isIncreaseToo)
                 amplitude = maxValue;
             else
                 amplitude = Math.Min(amplitude, maxValue);
+        }
+
+        /// <summary>
+        /// Whether waves are identical
+        /// </summary>
+        /// <param name="other">other wave</param>
+        /// <returns>Whether waves are identical</returns>
+        public override bool Equals(AbstractWave other)
+        {
+            if (other is Wave)
+            {
+                Wave otherWave = (Wave)other;
+                return phase == otherWave.phase && frequency == otherWave.frequency && amplitude == otherWave.amplitude && waveFunction == otherWave.waveFunction;
+            }
+            else if (other is WavePack)
+            {
+                return ((WavePack)other)[0].Equals(this);
+            }
+            return false;
         }
         #endregion
     }
