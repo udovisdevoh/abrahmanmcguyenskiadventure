@@ -249,6 +249,7 @@ namespace AbrahmanAdventure
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
+        	#warning Textures: make sure multiplied (x * y) doesn't multiply negative number with positive numbers
         	#warning for transparent grounds and maybe for all grounds, must use texture's thickness for collision detection (should not block if player is under texture) (consider crouching height too)
             #warning ?Must prevent sprite to suicide by jumping torward the lowest ground under the ground, over the secondary texture or color
         	#warning Create decorations (columns, trees)
