@@ -66,7 +66,10 @@ namespace AbrahmanAdventure.level
             this.holeSet = holeSet;
             topTexture = new Texture(random, color, 1.5, true);
 
-            isUseBottomTexture = random.Next(0, 2) == 0;
+            if (Program.isAlwaysUseBottomTexture)
+                isUseBottomTexture = true;
+            else
+                isUseBottomTexture = random.Next(0, 2) == 0;
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
                 bottomTexture = new Texture(random, color, 16, 0.75, false);
