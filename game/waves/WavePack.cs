@@ -29,18 +29,13 @@ namespace AbrahmanAdventure.level
         private List<AbstractWave> waveList = new List<AbstractWave>();
 
         /// <summary>
-        /// Tangent normalization offset
-        /// </summary>
-        private double tangentNormalizationOffset = 0.0;
-
-        /// <summary>
         /// Current junction type (to add or multiply waves)
         /// </summary>
         private int junctionType = JunctionAdd;
 
         private double normalizationMultiplicator = 1.0;
 
-        private double normalizationOffset = 0;
+        private double offsetForAverage = 0;
         #endregion
 
         #region Constructor
@@ -276,7 +271,7 @@ namespace AbrahmanAdventure.level
 
                 value *= normalizationMultiplicator;
 
-                return value;
+                return value + offsetForAverage;
             }
         }
 
@@ -367,6 +362,20 @@ namespace AbrahmanAdventure.level
         public static int GetRandomJunctionType(Random random)
         {
             return random.Next(0, 2);
+        }
+        #endregion
+
+        #region Public Methods
+        internal void AdjustAverage(double desiredAverage)
+        {
+            offsetForAverage = 0;
+            double sum = 0;
+            for (double x = -1024.0; x < 1024.0; x += 1)
+                sum += this[x];
+
+            double average = sum / 2048.0;
+
+            offsetForAverage = desiredAverage - average;
         }
         #endregion
     }
