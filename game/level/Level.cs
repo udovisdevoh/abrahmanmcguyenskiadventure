@@ -92,6 +92,16 @@ namespace AbrahmanAdventure.level
         /// <param name="ground">ground</param>
         internal void AddGround(Ground ground)
         {
+            Ground previousFurther = null;
+            if (groundList.Count > 0)
+                previousFurther = groundList[groundList.Count - 1];
+
+            if (previousFurther != null)
+            {
+                previousFurther.NextCloser = ground;
+                ground.PreviousFurther = previousFurther;
+            }
+
             groundList.Add(ground);
         }
         #endregion
@@ -105,7 +115,7 @@ namespace AbrahmanAdventure.level
         /// <param name="color">color</param>
         private void BuildNewGround(IWave wave, Random random, Color color, HoleSet holeSet)
         {
-            groundList.Add(new Ground(wave, random, color, holeSet));
+            AddGround(new Ground(wave, random, color, holeSet));
         }
         #endregion
 
