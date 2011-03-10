@@ -336,6 +336,17 @@ namespace AbrahmanAdventure.sprites
         {
             get { return walkingAcceleration; }
         }
+        
+        public double CurrentTopBound
+        {
+        	get
+        	{
+        		if (isCrouch)
+        			return yPosition - height / 2;
+        		else
+        			return yPosition - height;
+        	}
+        }
 
         public bool IsTryingToWalk
         {
