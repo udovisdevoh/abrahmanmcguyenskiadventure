@@ -164,7 +164,7 @@ namespace AbrahmanAdventure.physics
             {
                 double currentGroundHeight = currentGround[sprite.XPosition];
 
-                if (currentGroundHeight < highestHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
+                if (currentGroundHeight < highestHeight && Math.Abs(groundHeight - currentGroundHeight) <= sprite.MaximumWalkingHeight)
                 {
                     highestGround = currentGround;
                     highestHeight = currentGroundHeight;
