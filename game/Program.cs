@@ -249,6 +249,7 @@ namespace AbrahmanAdventure
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
+            #warning ?Must prevent sprite to suicide by jumping torward the lowest ground under the ground, over the secondary texture or color
         	#warning Create decorations (columns, trees)
         	#warning Create paralax effect (rendered map, decorations)
         	#warning When going down a hill, then changing ground for ground closer to screen then walking torward the hill: try make code change so it goes back to hill. If not cool, try but only when pressing up        	
