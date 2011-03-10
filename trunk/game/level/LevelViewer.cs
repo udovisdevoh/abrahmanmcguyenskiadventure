@@ -112,15 +112,9 @@ namespace AbrahmanAdventure.level
                 for (int x = 0; x < Program.totalZoneWidth; x += Program.waveResolution)
                 {
                     double waveInput = (double)(x + startX) / Program.tileSize;
-                    double waveOutput = ground[waveInput];
 
-                    //waveOutput *= Program.tileSize / 2.0;
-                    //int relativeFloorHeight = (int)(waveOutput *= Program.tileSize) + Program.totalZoneHeight;
 
-                    //waveOutput = Program.totalHeightTileCount / -2;
-                    //int relativeFloorHeight = (int)((waveOutput + (double)Program.totalHeightTileCount / 2.0) * Program.tileSize);
-
-                    int relativeFloorHeight = (int)((waveOutput + (double)Program.totalHeightTileCount / 2.0) * (double)Program.tileSize);
+                    int relativeFloorHeight = GetRelativeFloorHeight(ground, x, startX);
 
                     int textureInputX = absoluteXOffset + x;
                     textureInputX %= ground.TopTexture.Surface.Width;
@@ -141,7 +135,16 @@ namespace AbrahmanAdventure.level
                             int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.Height);
                             int bottomSurfacePositionY = (relativeFloorHeight + ground.TopTexture.Surface.Height) / bottomSurfaceAligment * bottomSurfaceAligment;
 
-                            zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
+                            int desiredBottomSurfaceLowerBound = Program.totalZoneHeight;
+                            Ground nextCloserGround = ground.NextCloser;
+                            if (nextCloserGround != null)
+                                desiredBottomSurfaceLowerBound = GetRelativeFloorHeight(nextCloserGround, x, startX);
+
+                            do
+                            {
+                                zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
+                                bottomSurfacePositionY += ground.BottomTexture.Surface.Height;
+                            } while (bottomSurfacePositionY - ground.BottomTexture.Surface.Height < Program.totalZoneHeight);
                         }
                         else
                         {
@@ -169,6 +172,20 @@ namespace AbrahmanAdventure.level
             }
 
             return zoneSurface;
+        }
+
+        /// <summary>
+        /// Get relative floor height
+        /// </summary>
+        /// <param name="ground">ground</param>
+        /// <param name="x">x position</param>
+        /// <param name="startX">starting x</param>
+        /// <returns>relative floor height</returns>
+        private int GetRelativeFloorHeight(Ground ground, int x, int startX)
+        {
+            double waveInput = (double)(x + startX) / Program.tileSize;
+            double waveOutput = ground[waveInput];
+            return (int)((waveOutput + (double)Program.totalHeightTileCount / 2.0) * (double)Program.tileSize);
         }
         #endregion
     }

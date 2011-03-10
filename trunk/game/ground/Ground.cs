@@ -41,6 +41,16 @@ namespace AbrahmanAdventure.level
         /// Represents wave modelization of holes in a level
         /// </summary>
         private HoleSet holeSet;
+
+        /// <summary>
+        /// Next ground
+        /// </summary>
+        private Ground nextCloser = null;
+
+        /// <summary>
+        /// Previous ground
+        /// </summary>
+        private Ground previousFurther = null;
         #endregion
 
         #region Constructors
@@ -143,6 +153,24 @@ namespace AbrahmanAdventure.level
         public bool IsUseTopTextureThicknessScaling
         {
             get { return topTexture.IsUseTopTextureThicknessScaling; }
+        }
+
+        /// <summary>
+        /// Next ground
+        /// </summary>
+        public Ground NextCloser
+        {
+            get { return nextCloser; }
+            set { nextCloser = value; }
+        }
+
+        /// <summary>
+        /// Previous ground
+        /// </summary>
+        public Ground PreviousFurther
+        {
+            get { return previousFurther; }
+            set { previousFurther = value; }
         }
         #endregion
     }
