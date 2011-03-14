@@ -57,6 +57,10 @@
     <Compile Include="game\level\Level.cs" />
     <Compile Include="game\level\LevelViewer.cs" />
     <Compile Include="game\level\LevelViewerCache.cs" />
+    <Compile Include="game\mathMesh\Caterpillar.cs" />
+    <Compile Include="game\mathMesh\Humanoid.cs" />
+    <Compile Include="game\mathMesh\MathFleshViewer.cs" />
+    <Compile Include="game\mathMesh\MathMesh.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
     <Compile Include="game\ground\GroundHelper.cs" />
     <Compile Include="game\physics\JumpingManager.cs" />
