@@ -48,8 +48,8 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
-        public PlayerSprite(double xPosition, double yPosition)
-            : base(xPosition, yPosition)
+        public PlayerSprite(double xPosition, double yPosition, Random random)
+            : base(xPosition, yPosition, random)
         {
         }
         #endregion
@@ -185,7 +185,7 @@ namespace AbrahmanAdventure.sprites
         /// Build width
         /// </summary>
         /// <returns>width</returns>
-        protected override double BuildWidth()
+        protected override double BuildWidth(Random random)
         {
             return 1.2;
         }
@@ -194,7 +194,7 @@ namespace AbrahmanAdventure.sprites
         /// Build height
         /// </summary>
         /// <returns>height</returns>
-        protected override double BuildHeight()
+        protected override double BuildHeight(Random random)
         {
             return 2.0;
         }
@@ -203,7 +203,7 @@ namespace AbrahmanAdventure.sprites
         /// Build mass
         /// </summary>
         /// <returns>mass</returns>
-        protected override double BuildMass()
+        protected override double BuildMass(Random random)
         {
             return 1.0;
         }
