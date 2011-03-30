@@ -162,6 +162,8 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>sprite's mass (1.0 = player's mass)</returns>
         protected abstract double BuildMass(Random random);
+        
+        public abstract Surface GetCurrentSurface();
         #endregion
 
         #region Properties

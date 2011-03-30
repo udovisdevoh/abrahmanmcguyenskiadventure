@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a player
     /// </summary>
-    internal class PlayerSprite : AbstractSprite, ISurfaceSprite
+    internal class PlayerSprite : AbstractSprite
     {
         #region Fields and parts
         private Surface walking1LeftSurface;
@@ -208,7 +208,7 @@ namespace AbrahmanAdventure.sprites
             return 1.0;
         }
 
-        public Surface GetCurrentSurface()
+        public override Surface GetCurrentSurface()
         {
             //If currently attacking
             if (AttackingCycle.GetCycleDivision(8) >= 1)
