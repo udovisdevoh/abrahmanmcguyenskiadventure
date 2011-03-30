@@ -6,9 +6,9 @@ using System.Text;
 namespace AbrahmanAdventure.mathMesh
 {
     /// <summary>
-    /// Representation of a caterpillar
+    /// Representation of a humanoid
     /// </summary>
-    class Caterpillar : MathMesh
+    class HumanoidMesh : MathMesh
     {
     }
 }
