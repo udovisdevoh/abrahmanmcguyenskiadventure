@@ -64,6 +64,14 @@ namespace AbrahmanAdventure.level
         /// Create a random texture
         /// </summary>
         /// <param name="random">random number generator</param>
+        public Texture(Random random) : this(random, Color.Empty, 1.0, true)
+        {
+        }
+
+        /// <summary>
+        /// Create a random texture
+        /// </summary>
+        /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
         public Texture(Random random, Color color, double waveStrengthMultiplicator, bool isTop)
             : this(random, color, -1, waveStrengthMultiplicator, isTop)
@@ -78,6 +86,9 @@ namespace AbrahmanAdventure.level
         /// <param name="defaultHeight">default height (how manu tiles)</param>
         public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, bool isTop)
         {
+            if (color == Color.Empty)
+                color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+
             this.color = color;
 
             isUseTopTextureThicknessScaling = random.Next(0, 3) == 0;
