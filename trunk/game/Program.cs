@@ -109,7 +109,7 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
 
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2);
+            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2,random);
             spritePopulation.Add(playerSprite);
 
             if (isFullScreen)

@@ -112,13 +112,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
-        public AbstractSprite(double xPosition, double yPosition)
+        public AbstractSprite(double xPosition, double yPosition, Random random)
         {
             this.xPosition = xPosition;
             this.yPosition = yPosition;
-            width = BuildWidth();
-            height = BuildHeight();
-            mass = BuildMass();
+            width = BuildWidth(random);
+            height = BuildHeight(random);
+            mass = BuildMass(random);
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
             maxWalkingSpeed = BuildMaxWalkingSpeed();
@@ -149,19 +149,19 @@ namespace AbrahmanAdventure.sprites
         /// sprite's width (1.5 = player's width)
         /// </summary>
         /// <returns>sprite's width (1.5 = player's width)</returns>
-        protected abstract double BuildWidth();
+        protected abstract double BuildWidth(Random random);
 
         /// <summary>
         /// sprite's height (2.0 = player's height)
         /// </summary>
         /// <returns>sprite's height (2.0 = player's height)</returns>
-        protected abstract double BuildHeight();
+        protected abstract double BuildHeight(Random random);
 
         /// <summary>
         /// sprite's mass (1.0 = player's mass)
         /// </summary>
         /// <returns>sprite's mass (1.0 = player's mass)</returns>
-        protected abstract double BuildMass();
+        protected abstract double BuildMass(Random random);
 
         /// <summary>
         /// Sprite's surface
