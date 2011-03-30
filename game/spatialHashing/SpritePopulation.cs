@@ -12,6 +12,8 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private Dictionary<int, Bucket> bucketList = new Dictionary<int,Bucket>();
+
+        private HashSet<AbstractSprite> visibleSpriteList = new HashSet<AbstractSprite>();
         #endregion
 
         #region Public Methods
@@ -59,6 +61,24 @@ namespace AbrahmanAdventure.sprites
             foreach (Bucket bucket in sprite.ParentBucketList)
                 bucket.Remove(sprite);
             sprite.ParentBucketList.Clear();
+        }
+
+        internal HashSet<AbstractSprite> GetVisibleSpriteList(double viewOffsetX, double viewOffsetY)
+        {
+            int leftMostViewableBucketId = ((int)Math.Floor(viewOffsetX)) / Program.spatialHashingBucketWidth;
+            int rightMostViewableBucketId = ((int)Math.Ceiling(viewOffsetX + Program.tileColumnCount)) / Program.spatialHashingBucketWidth;
+            visibleSpriteList.Clear();
+
+            for (int bucketId = leftMostViewableBucketId; bucketId <= rightMostViewableBucketId; bucketId++)
+            {
+                Bucket bucket = this[bucketId];
+                foreach (AbstractSprite sprite in bucket)
+                {
+                    visibleSpriteList.Add(sprite);
+                }
+            }
+
+            return visibleSpriteList;
         }
         #endregion
 

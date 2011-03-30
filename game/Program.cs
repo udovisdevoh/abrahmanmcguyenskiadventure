@@ -3,6 +3,7 @@ using SdlDotNet.Graphics;
 using SdlDotNet.Core;
 using SdlDotNet.Input;
 using SdlDotNet.Audio;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
@@ -111,6 +112,9 @@ namespace AbrahmanAdventure
             spritePopulation = new SpritePopulation();
             playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2,random);
             spritePopulation.Add(playerSprite);
+
+            #warning Remove test caterpillar sprite
+            spritePopulation.Add(new CaterpillarSprite(40, Program.totalHeightTileCount / -2, random));
 
             if (isFullScreen)
                 Cursor.Hide();
@@ -386,7 +390,13 @@ namespace AbrahmanAdventure
                 playerSprite.AttackingCycle.Reset();
             #endregion
 
+            HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY);
+
             physics.Update(playerSprite, level, timeDelta);
+
+            foreach (AbstractSprite sprite in visibleSpriteList)
+                if (sprite != playerSprite)
+                    physics.Update(sprite, level, timeDelta);
 
             #region We position the camera
             viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
@@ -397,7 +407,7 @@ namespace AbrahmanAdventure
 
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
-            spriteViewer.Update(viewOffsetX, viewOffsetY);
+            spriteViewer.Update(viewOffsetX, viewOffsetY, visibleSpriteList);
             mainSurface.Update();
             #endregion
         }

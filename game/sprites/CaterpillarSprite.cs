@@ -63,12 +63,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return random.NextDouble() * 3.5 + 0.5;
+            return random.NextDouble() * 2.5 + 1.5;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return random.NextDouble() * 0.5 + 1.5;
+            return random.NextDouble() * 3.0 + 0.5;
         }
 
         protected override double BuildMass(Random random)
