@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a monster
     /// </summary>
-    abstract class MonsterSprite : AbstractSprite
+    abstract class MonsterSprite : AbstractSprite, IMeshSprite
     {
         #region Constructors
         /// <summary>

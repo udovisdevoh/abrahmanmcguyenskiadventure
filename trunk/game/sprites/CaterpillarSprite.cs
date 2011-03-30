@@ -75,11 +75,6 @@ namespace AbrahmanAdventure.sprites
         {
             return random.NextDouble() * 0.5 + 1.0;
         }
-
-        public override Surface GetCurrentSurface()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }
