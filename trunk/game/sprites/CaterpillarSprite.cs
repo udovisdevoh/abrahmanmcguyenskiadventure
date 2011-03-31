@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
+using AbrahmanAdventure.mathMesh;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -12,6 +13,13 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     class CaterpillarSprite : MonsterSprite
     {
+        #region Fields and parts
+        /// <summary>
+        /// Sprite's math mesh
+        /// </summary>
+        private CaterpillarMesh catterpillarMesh;
+        #endregion
+
         #region Constructors
         /// <summary>
         /// Create caterpillar sprite
@@ -22,6 +30,7 @@ namespace AbrahmanAdventure.sprites
         public CaterpillarSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            catterpillarMesh = new CaterpillarMesh(random, Width, Height);
         }
         #endregion
 

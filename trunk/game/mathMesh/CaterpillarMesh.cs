@@ -28,9 +28,9 @@ namespace AbrahmanAdventure.mathMesh
         /// Builds a caterpillar's mesh
         /// </summary>
         /// <param name="random">random number generator</param>
-        public CaterpillarMesh(Random random)
+        public CaterpillarMesh(Random random, double width, double height)
         {
-            shapeWave = BuildShapeWave(random);
+            shapeWave = BuildShapeWave(random, width, height);
             texture = new Texture(random);
         }
 
@@ -39,14 +39,14 @@ namespace AbrahmanAdventure.mathMesh
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <returns>caterpillar's shape's wave</returns>
-        private AbstractWave BuildShapeWave(Random random)
+        private AbstractWave BuildShapeWave(Random random, double width, double height)
         {
             WavePack shapeWavePack = new WavePack();
             int waveCount = random.Next(1, 11);
             for (int i = 0; i < waveCount; i++)
             {
                 double amplitude = random.NextDouble();
-                double waveLength = random.NextDouble() * 3.5 + 0.5;
+                double waveLength = random.NextDouble() * (width * 0.7) + (width * 0.125);
                 double phase = random.NextDouble() * 2.0 - 1.0;
                 Wave currentWave = new Wave(amplitude, waveLength, phase, WaveFunctions.Sine);
                 shapeWavePack.Add(currentWave);
