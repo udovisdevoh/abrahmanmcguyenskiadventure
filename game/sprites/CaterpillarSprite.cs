@@ -18,6 +18,8 @@ namespace AbrahmanAdventure.sprites
         /// Sprite's math mesh
         /// </summary>
         private CaterpillarMesh catterpillarMesh;
+
+        private Surface defaultSurface;
         #endregion
 
         #region Constructors
@@ -87,7 +89,9 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface()
         {
-            return base.GetCurrentSurface();
+            if (defaultSurface == null)
+                defaultSurface = catterpillarMesh.BuildSpriteFrameAt(0,Width,Height);
+            return defaultSurface;
         }
         #endregion
     }

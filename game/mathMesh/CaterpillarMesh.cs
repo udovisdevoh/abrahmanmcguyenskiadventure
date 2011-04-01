@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
+using SdlDotNet.Graphics;
+using SdlDotNet.Core;
 using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.mathMesh
@@ -53,6 +56,46 @@ namespace AbrahmanAdventure.mathMesh
             }
             shapeWavePack.Normalize();
             return shapeWavePack;
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Texture
+        /// </summary>
+        public Texture Texture
+        {
+            get { return texture; }
+        }
+        #endregion
+
+        #region Public Methods
+        internal Surface BuildSpriteFrameAt(double xInput, double width, double height)
+        {
+            int surfaceWidth = (int)(width * Program.tileSize);
+            int surfaceHeight = (int)(height * Program.tileSize);
+
+            Surface surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
+
+            for (int x = 0; x < surfaceWidth; x++)
+            {
+                int destinationY = 0;
+                do
+                {
+                    int destinationHeight = texture.Surface.Height;
+
+                    if (destinationY + destinationHeight > surfaceHeight)
+                        destinationHeight -= (destinationY + destinationHeight) - surfaceHeight;
+
+                    Rectangle destinationRectangle = new Rectangle(x, destinationY, 1, texture.Surface.Height);
+                    Rectangle sourceRectangle = new Rectangle(x % texture.Surface.Width, 0, 1, texture.Surface.Height);
+                    surface.Blit(texture.Surface, destinationRectangle, sourceRectangle);
+                    
+                    destinationY += texture.Surface.Height;
+                } while (destinationY < surfaceHeight);
+            }
+
+            return surface;
         }
         #endregion
     }
