@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
-using AbrahmanAdventure.mathMesh;
 
 namespace AbrahmanAdventure.sprites
 {
-    /// <summary>
-    /// Represents a caterpillar
-    /// </summary>
-    class CaterpillarSprite : MonsterSprite
+    class BlobSprite : MonsterSprite
     {
         #region Fields and parts
         /// <summary>
         /// Sprite's math mesh
         /// </summary>
-        private CaterpillarMesh catterpillarMesh;
-
         private Surface defaultSurface;
         #endregion
 
@@ -29,10 +24,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public CaterpillarSprite(double xPosition, double yPosition, Random random)
+        public BlobSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            catterpillarMesh = new CaterpillarMesh(random, Width, Height);
         }
         #endregion
 
@@ -74,24 +68,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return random.NextDouble() * 2.5 + 1.5;
+            return 1.0;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return random.NextDouble() * 2.0 + 0.5;
+            return 1.0;
         }
 
         protected override double BuildMass(Random random)
         {
-            return random.NextDouble() * 0.5 + 1.0;
-        }
-
-        public override Surface GetCurrentSurface()
-        {
-            if (defaultSurface == null)
-                defaultSurface = catterpillarMesh.BuildSpriteFrameAt(0,Width,Height);
-            return defaultSurface;
+            return 0.5;
         }
         #endregion
     }

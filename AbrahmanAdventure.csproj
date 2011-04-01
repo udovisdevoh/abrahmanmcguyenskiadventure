@@ -57,10 +57,6 @@
     <Compile Include="game\level\Level.cs" />
     <Compile Include="game\level\LevelViewer.cs" />
     <Compile Include="game\level\LevelViewerCache.cs" />
-    <Compile Include="game\mathMesh\CaterpillarMesh.cs" />
-    <Compile Include="game\mathMesh\HumanoidMesh.cs" />
-    <Compile Include="game\mathMesh\MathFleshViewer.cs" />
-    <Compile Include="game\mathMesh\MathMesh.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
     <Compile Include="game\ground\GroundHelper.cs" />
     <Compile Include="game\physics\JumpingManager.cs" />
@@ -70,7 +66,7 @@
     <Compile Include="game\sky\Sky.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
-    <Compile Include="game\sprites\CaterpillarSprite.cs" />
+    <Compile Include="game\sprites\BlobSprite.cs" />
     <Compile Include="game\sprites\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
     <Compile Include="game\sprites\PlayerSprite.cs" />

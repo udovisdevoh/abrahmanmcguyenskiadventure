@@ -114,7 +114,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(playerSprite);
 
             #warning Remove test caterpillar sprite
-            spritePopulation.Add(new CaterpillarSprite(40, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
 
             if (isFullScreen)
                 Cursor.Hide();
