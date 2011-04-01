@@ -346,6 +346,7 @@ namespace AbrahmanAdventure.level
         public Surface Surface
         {
             get { return surface; }
+            set { surface = value; }
         }
 
         public AbstractWave HorizontalThicknessWave
