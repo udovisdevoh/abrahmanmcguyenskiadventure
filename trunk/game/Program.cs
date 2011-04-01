@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.physics;
+using AbrahmanAdventure.ai;
 
 namespace AbrahmanAdventure
 {
@@ -83,6 +84,8 @@ namespace AbrahmanAdventure
 
         private JoystickManager joystickManager;
 
+        private MonsterAi monsterAi;
+
         private DateTime previousDateTime = DateTime.Now;
 
         private Random random;
@@ -103,6 +106,7 @@ namespace AbrahmanAdventure
         {
             physics = new Physics();
             random = new Random();
+            monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
 
             level = new Level(random);
@@ -113,7 +117,7 @@ namespace AbrahmanAdventure
             playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2,random);
             spritePopulation.Add(playerSprite);
 
-            #warning Remove test caterpillar sprite
+            #warning Remove test blob sprite
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
 
             if (isFullScreen)
@@ -396,7 +400,11 @@ namespace AbrahmanAdventure
 
             foreach (AbstractSprite sprite in visibleSpriteList)
                 if (sprite != playerSprite)
+                {
                     physics.Update(sprite, level, timeDelta);
+                    if (sprite is MonsterSprite)
+                        monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
+                }
 
             #region We position the camera
             viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
