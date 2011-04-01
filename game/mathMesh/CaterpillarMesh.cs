@@ -76,9 +76,11 @@ namespace AbrahmanAdventure.mathMesh
             int surfaceHeight = (int)(height * Program.tileSize);
 
             Surface surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
+            surface.Transparent = true;
 
             for (int x = 0; x < surfaceWidth; x++)
             {
+                int bodyWaveOffsetY = (int)(shapeWave[(double)(x) / (double)Program.tileSize] * (double)Program.tileSize);
                 int destinationY = 0;
                 do
                 {
@@ -87,7 +89,7 @@ namespace AbrahmanAdventure.mathMesh
                     if (destinationY + destinationHeight > surfaceHeight)
                         destinationHeight -= (destinationY + destinationHeight) - surfaceHeight;
 
-                    Rectangle destinationRectangle = new Rectangle(x, destinationY, 1, texture.Surface.Height);
+                    Rectangle destinationRectangle = new Rectangle(x, destinationY + bodyWaveOffsetY, 1, texture.Surface.Height);
                     Rectangle sourceRectangle = new Rectangle(x % texture.Surface.Width, 0, 1, texture.Surface.Height);
                     surface.Blit(texture.Surface, destinationRectangle, sourceRectangle);
                     
