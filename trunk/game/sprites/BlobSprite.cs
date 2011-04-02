@@ -15,6 +15,14 @@ namespace AbrahmanAdventure.sprites
         /// Sprite's math mesh
         /// </summary>
         private Surface defaultSurface;
+
+        private Surface right1Surface;
+
+        private Surface left1Surface;
+
+        private Surface right2Surface;
+
+        private Surface left2Surface;
         #endregion
 
         #region Constructors
@@ -38,7 +46,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 50;
+            return 5;
         }
 
         protected override double BuildWalkingAcceleration()
@@ -79,6 +87,72 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildMass(Random random)
         {
             return 0.5;
+        }
+
+        /// <summary>
+        /// Get the sprite's current surface
+        /// </summary>
+        /// <returns>sprite's current surface</returns>
+        public override Surface GetCurrentSurface()
+        {
+            int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
+
+            if (cycleDivision == 1)
+            {
+                if (IsTryingToWalkRight)
+                {
+                    return GetRight1Surface();
+                }
+                else
+                {
+                    return GetLeft1Surface();
+                }
+            }
+            else
+            {
+                if (IsTryingToWalkRight)
+                {
+                    return GetRight2Surface();
+                }
+                else
+                {
+                    return GetLeft2Surface();
+                }
+            }
+        }
+        #endregion
+
+        #region Private Method
+        private Surface GetLeft1Surface()
+        {
+            if (left1Surface == null)
+                left1Surface = GetRight1Surface().CreateFlippedHorizontalSurface();
+
+            return left1Surface;
+        }
+
+        private Surface GetRight1Surface()
+        {
+            if (right1Surface == null)
+                right1Surface = BuildSpriteSurface("./assets/rendered/blob/blob1.png");
+
+            return right1Surface;
+        }
+
+        private Surface GetLeft2Surface()
+        {
+            if (left2Surface == null)
+                left2Surface = GetRight2Surface().CreateFlippedHorizontalSurface();
+
+            return left2Surface;
+        }
+
+        private Surface GetRight2Surface()
+        {
+            if (right2Surface == null)
+                right2Surface = BuildSpriteSurface("./assets/rendered/blob/blob2.png");
+
+            return right2Surface;
         }
         #endregion
     }

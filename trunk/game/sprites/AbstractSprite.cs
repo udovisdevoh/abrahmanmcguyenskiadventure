@@ -166,6 +166,21 @@ namespace AbrahmanAdventure.sprites
         public abstract Surface GetCurrentSurface();
         #endregion
 
+        #region Protected Methods
+        protected Surface BuildSpriteSurface(string fileName)
+        {
+            Surface spriteSurface = new Surface(fileName);
+
+            if (Program.screenHeight != 480)
+            {
+                double zoom = (double)Program.screenHeight / 480.0;
+                spriteSurface = spriteSurface.CreateScaledSurface(zoom);
+            }
+
+            return spriteSurface;
+        }
+        #endregion
+
         #region Properties
         /// <summary>
         /// X position
