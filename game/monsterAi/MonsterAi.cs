@@ -22,8 +22,6 @@ namespace AbrahmanAdventure.ai
 
 
             bool isFleeMode = player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width);
-                
-
 
             if (monster.XPosition < player.XPosition)
             {
