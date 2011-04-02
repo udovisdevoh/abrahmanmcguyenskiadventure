@@ -181,10 +181,10 @@
     <Content Include="assets\rendered\abrahman\walk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\blob\zlob1.png">
+    <Content Include="assets\rendered\blob\blob1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\blob\zlob2.png">
+    <Content Include="assets\rendered\blob\blob2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="jpeg.dll">
