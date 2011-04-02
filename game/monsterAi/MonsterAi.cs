@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.ai
                 monster.IsTryingToJump = (random.Next(0, 40) == 0);
 
 
-            bool isFleeMode = player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width);
+            bool isFleeMode = player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0);
 
             if (monster.XPosition < player.XPosition)
             {
