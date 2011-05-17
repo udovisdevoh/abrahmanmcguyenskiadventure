@@ -1,5 +1,11 @@
+fin de level
+{
+	Boss?
+	Fade out noir
+	Changement de level
+}
+
 Miniboss?
-Boss?
 Énergie perdable pour player et monstres
 Monstre doit crever en tombant dans un trou
 ?Arme de longe portée si powerup?
