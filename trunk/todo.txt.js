@@ -30,6 +30,11 @@ Monstres
 		Arme: une carabine
 	}
 	
+	Hindu
+	{
+		Lance des statuettes
+	}
+	
 	Pedo-priest
 	
 	Ronald mcdonalds
