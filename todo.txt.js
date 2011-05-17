@@ -1,3 +1,10 @@
+Miniboss?
+Boss?
+Énergie perdable pour player et monstres
+Monstre doit crever en tombant dans un trou
+?Arme de longe portée si powerup?
+?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
+
 Musique générative
 {
 	Theme pour chaque level
@@ -32,6 +39,6 @@ Musique générative
 		
 		Si sol haut et qu'on voit le background: beaucoup d'instruments, comme un gros orchestre
 		
-		Si on vient de battre un monstre difficile à battre: modulation de la tonalité par en haut
+		Si on vient de battre un monstre difficile à battre (mini boss): modulation de la tonalité par en haut
 	}
 }
