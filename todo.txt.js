@@ -5,6 +5,7 @@ fin de level
 	Changement de level
 }
 
+life powerup
 Miniboss?
 Énergie perdable pour player et monstres
 Monstre doit crever en tombant dans un trou
