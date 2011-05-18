@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D28254B5-E02D-4885-B91C-924220F45F7E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -190,8 +190,15 @@
     </Content>
     <Content Include="assets\rendered\eye\eye.png" />
     <Content Include="assets\rendered\projectiles\bible.png" />
+    <Content Include="assets\rendered\projectiles\bomb.png" />
     <Content Include="assets\rendered\projectiles\corn.png" />
+    <Content Include="assets\rendered\projectiles\fries.png" />
+    <Content Include="assets\rendered\projectiles\hamburger.png" />
     <Content Include="assets\rendered\projectiles\pill.png" />
+    <Content Include="assets\rendered\projectiles\pill2.png" />
+    <Content Include="assets\rendered\projectiles\pill3.png" />
+    <Content Include="assets\rendered\projectiles\pill4.png" />
+    <Content Include="assets\rendered\projectiles\soda.png" />
     <Content Include="assets\rendered\projectiles\syringe.png" />
     <Content Include="assets\rendered\snake\snake.png" />
     <Content Include="assets\rendered\snake\snake2.png" />
