@@ -46,7 +46,7 @@ Monstres
 	
 	Ronald mcdonalds
 	{
-		lance des bigmacs
+		lance des bigmacs, frites, coke, etc
 	}
 	
 	Docteur pharmaceutique
@@ -62,6 +62,11 @@ Monstres
 	Mormon
 	{
 		arme: bible
+	}
+	
+	Diseuse de bonne aventure
+	{
+		lance boule de crystal
 	}
 }
 
