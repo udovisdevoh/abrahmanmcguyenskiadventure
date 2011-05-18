@@ -192,6 +192,7 @@
     <Content Include="assets\rendered\projectiles\bible.png" />
     <Content Include="assets\rendered\projectiles\bomb.png" />
     <Content Include="assets\rendered\projectiles\corn.png" />
+    <Content Include="assets\rendered\projectiles\dynamite.png" />
     <Content Include="assets\rendered\projectiles\fries.png" />
     <Content Include="assets\rendered\projectiles\hamburger.png" />
     <Content Include="assets\rendered\projectiles\pill.png" />
