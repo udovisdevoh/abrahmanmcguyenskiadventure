@@ -189,6 +189,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\eye\eye.png" />
+    <Content Include="assets\rendered\projectiles\bible.png" />
+    <Content Include="assets\rendered\projectiles\corn.png" />
+    <Content Include="assets\rendered\projectiles\pill.png" />
+    <Content Include="assets\rendered\projectiles\syringe.png" />
     <Content Include="assets\rendered\snake\snake.png" />
     <Content Include="assets\rendered\snake\snake2.png" />
     <Content Include="jpeg.dll">
