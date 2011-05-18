@@ -198,6 +198,8 @@
     <Content Include="assets\rendered\projectiles\pill2.png" />
     <Content Include="assets\rendered\projectiles\pill3.png" />
     <Content Include="assets\rendered\projectiles\pill4.png" />
+    <Content Include="assets\rendered\projectiles\pills5.png" />
+    <Content Include="assets\rendered\projectiles\pills6.png" />
     <Content Include="assets\rendered\projectiles\soda.png" />
     <Content Include="assets\rendered\projectiles\syringe.png" />
     <Content Include="assets\rendered\snake\snake.png" />
