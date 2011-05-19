@@ -277,7 +277,7 @@ namespace AbrahmanAdventure
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
-            #region We manage the death logic
+            #region We manage the death logic for the player
             if (!playerSprite.IsAlive)
             {
                 //levelViewer.ClearCache();
@@ -404,6 +404,8 @@ namespace AbrahmanAdventure
                     physics.Update(sprite, level, timeDelta);
                     if (sprite is MonsterSprite)
                         monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
+                    if (!sprite.IsAlive)
+                        spritePopulation.Remove(sprite);
                 }
 
             #region We position the camera
