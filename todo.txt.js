@@ -5,12 +5,18 @@ fin de level
 	Changement de level
 }
 
+energie pour player
+voir energie pour player
+énergie perdable pour player
+mort du player si plus d'énergie, redonne énergie en réssussitant
+
 life powerup
 Miniboss?
 Énergie perdable pour player et monstres
-Monstre doit crever en tombant dans un trou
 ?Arme de longe portée si powerup?
 ?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
+certains monstres doivent avoir l'intelligence nécéssaire pour ne pas se garocher dans des trous
+certains monstres doivent marcher en ligne droite comme des Koopa vert et Rouge
 
 Monstres
 {
