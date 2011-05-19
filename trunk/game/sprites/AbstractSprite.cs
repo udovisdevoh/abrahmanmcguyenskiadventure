@@ -83,6 +83,10 @@ namespace AbrahmanAdventure.sprites
 
         private double maxRunningSpeed;
 
+        private double maxHealth;
+
+        private double health;
+
         private bool isRunning = false;
 
         private bool isTryingToWalk = false;
@@ -114,11 +118,13 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">y position</param>
         public AbstractSprite(double xPosition, double yPosition, Random random)
         {
+            maxHealth = BuildMaxHealth();
             this.xPosition = xPosition;
             this.yPosition = yPosition;
             width = BuildWidth(random);
             height = BuildHeight(random);
             mass = BuildMass(random);
+            health = maxHealth;
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
             maxWalkingSpeed = BuildMaxWalkingSpeed();
@@ -131,6 +137,8 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Abstract Methods
+        protected abstract double BuildMaxHealth();
+
         protected abstract double BuildJumpingTime();
 
         protected abstract double BuildWalkingCycleLength();
@@ -414,6 +422,11 @@ namespace AbrahmanAdventure.sprites
         public Cycle AttackingCycle
         {
             get { return attackingCycle; }
+        }
+
+        public double Health
+        {
+            get { return health; }
         }
         #endregion
     }

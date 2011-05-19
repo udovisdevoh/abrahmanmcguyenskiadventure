@@ -319,6 +319,11 @@ namespace AbrahmanAdventure.sprites
         {
             return 4;
         }
+
+        protected override double BuildMaxHealth()
+        {
+            return 1.0;
+        }
         #endregion
     }
 }
