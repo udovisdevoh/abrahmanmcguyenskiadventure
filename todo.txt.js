@@ -5,7 +5,6 @@ fin de level
 	Changement de level
 }
 
-must fix: voir energie pour player
 énergie perdable pour player
 énergie perdable pour monstre
 mort du player si plus d'énergie, redonne énergie en réssuscitant
