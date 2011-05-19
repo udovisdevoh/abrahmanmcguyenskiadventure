@@ -120,6 +120,11 @@ namespace AbrahmanAdventure.sprites
                 }
             }
         }
+        
+        protected override double BuildMaxHealth()
+        {
+            return 0.2;
+        }
         #endregion
 
         #region Private Method
