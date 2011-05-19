@@ -9,6 +9,7 @@ using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.physics;
 using AbrahmanAdventure.ai;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure
 {
@@ -82,6 +83,8 @@ namespace AbrahmanAdventure
 
         private SpriteViewer spriteViewer;
 
+        private HudViewer hudViewer;
+
         private JoystickManager joystickManager;
 
         private MonsterAi monsterAi;
@@ -127,6 +130,7 @@ namespace AbrahmanAdventure
 
             levelViewer = new LevelViewer(mainSurface);
             spriteViewer = new SpriteViewer(spritePopulation, mainSurface);
+            hudViewer = new HudViewer(mainSurface);
         }
         #endregion
 
@@ -418,6 +422,7 @@ namespace AbrahmanAdventure
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY, visibleSpriteList);
+            hudViewer.Update(playerSprite.Health);
             mainSurface.Update();
             #endregion
         }
