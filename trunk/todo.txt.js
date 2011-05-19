@@ -5,9 +5,9 @@ fin de level
 	Changement de level
 }
 
-energie pour player
 voir energie pour player
 énergie perdable pour player
+énergie perdable pour monstre
 mort du player si plus d'énergie, redonne énergie en réssussitant
 
 life powerup
