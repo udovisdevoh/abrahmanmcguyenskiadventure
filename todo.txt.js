@@ -1,3 +1,5 @@
+arranger offset de blit des sprite du player lorsqu'attaque
+
 fin de level
 {
 	Boss?
