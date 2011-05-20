@@ -406,7 +406,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsAlive
         {
             get { return isAlive; }
-            set { isAlive = value; }
+            set
+            {
+                isAlive = value;
+                if (isAlive)
+                    health = maxHealth;
+                else
+                    health = 0.0;
+            }
         }
 
         public Cycle WalkingCycle
@@ -427,6 +434,19 @@ namespace AbrahmanAdventure.sprites
         public double Health
         {
             get { return health; }
+            set
+            {
+                health = value;
+                if (health <= 0)
+                {
+                    health = 0.0;
+                    isAlive = false;
+                }
+                else
+                {
+                    isAlive = true;
+                }
+            }
         }
         #endregion
     }
