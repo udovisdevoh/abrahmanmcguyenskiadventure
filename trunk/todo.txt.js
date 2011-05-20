@@ -7,7 +7,6 @@ fin de level
 
 énergie perdable pour player
 énergie perdable pour monstre
-mort du player si plus d'énergie, redonne énergie en réssuscitant
 
 life powerup
 Miniboss?
