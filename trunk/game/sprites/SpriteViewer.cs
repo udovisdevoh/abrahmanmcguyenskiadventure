@@ -35,12 +35,13 @@ namespace AbrahmanAdventure.sprites
         /// <param name="viewOffsetY">Y offset</param>
         internal void Update(double viewOffsetX, double viewOffsetY, HashSet<AbstractSprite> visibleSpriteList)
         {
+            double specialOffsetX, specialOffsetY;
             foreach (AbstractSprite sprite in visibleSpriteList)
             {
-                Surface spriteSurface = sprite.GetCurrentSurface();
+                Surface spriteSurface = sprite.GetCurrentSurface(out specialOffsetX, out specialOffsetY);
 
-                int xBlitPosition = (int)Math.Round(((sprite.XPosition - ((double)spriteSurface.Width / (double)Program.tileSize) / 2.0 - viewOffsetX) * Program.tileSize));
-                int yBlitPosition = (int)((sprite.YPosition - viewOffsetY) * (double)Program.tileSize) - spriteSurface.Height;
+                int xBlitPosition = (int)Math.Round(((sprite.XPosition - ((double)spriteSurface.Width / (double)Program.tileSize) / 2.0 - viewOffsetX + specialOffsetX) * Program.tileSize));
+                int yBlitPosition = (int)((sprite.YPosition - viewOffsetY + specialOffsetY) * (double)Program.tileSize) - spriteSurface.Height;
 
                 mainSurface.Blit(spriteSurface, new Point(xBlitPosition, yBlitPosition));
             }
