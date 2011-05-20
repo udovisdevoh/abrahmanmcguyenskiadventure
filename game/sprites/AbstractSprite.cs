@@ -170,8 +170,14 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>sprite's mass (1.0 = player's mass)</returns>
         protected abstract double BuildMass(Random random);
-        
-        public abstract Surface GetCurrentSurface();
+
+        /// <summary>
+        /// Get sprite's surface
+        /// </summary>
+        /// <param name="xOffset">x Offset (1.0 = 1 tile)</param>
+        /// <param name="yOffset">y Offset (1.0 = 1 tile)</param>
+        /// <returns>Get current surface</returns>
+        public abstract Surface GetCurrentSurface(out double xOffset, out double yOffset);
         #endregion
 
         #region Protected Methods

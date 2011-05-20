@@ -195,8 +195,10 @@ namespace AbrahmanAdventure.sprites
             return 1.0;
         }
 
-        public override Surface GetCurrentSurface()
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
+            xOffset = 0;
+            yOffset = 0;
             //If currently attacking
             if (AttackingCycle.GetCycleDivision(8) >= 1)
             {
@@ -204,21 +206,26 @@ namespace AbrahmanAdventure.sprites
                 {
                     if (IsTryingToWalkRight)
                     {
+                        xOffset = 0.6;
                         return GetCrouchedAttackRightSurface();
                     }
                     else
                     {
+                        xOffset = -0.6;
                         return GetCrouchedAttackLeftSurface();
                     }
                 }
                 else if (Ground == null)
                 {
+                    yOffset = 0.2;
                     if (IsTryingToWalkRight)
                     {
+                        xOffset = 0.4;
                         return GetKickRightSurface();
                     }
                     else
                     {
+                        xOffset = -0.4;
                         return GetKickLeftSurface();
                     }
                 }
@@ -226,10 +233,12 @@ namespace AbrahmanAdventure.sprites
                 {
                     if (IsTryingToWalkRight)
                     {
+                        xOffset = 0.6;
                         return GetAttackRightSurface();
                     }
                     else
                     {
+                        xOffset = -0.6;
                         return GetAttackLeftSurface();
                     }
                 }

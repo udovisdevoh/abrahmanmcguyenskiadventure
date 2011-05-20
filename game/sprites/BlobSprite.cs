@@ -93,8 +93,10 @@ namespace AbrahmanAdventure.sprites
         /// Get the sprite's current surface
         /// </summary>
         /// <returns>sprite's current surface</returns>
-        public override Surface GetCurrentSurface()
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
+            xOffset = 0;
+            yOffset = 0;
             int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
 
             if (cycleDivision == 1)
