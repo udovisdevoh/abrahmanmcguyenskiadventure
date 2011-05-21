@@ -33,7 +33,9 @@ namespace AbrahmanAdventure.sprites
 
         private Surface attackFrame2RightSurface;
 
-        private Surface kickRightSurface;
+        private Surface kickFrame1RightSurface;
+
+        private Surface kickFrame2RightSurface;
 
         private Surface crouchedAttackFrame1RightSurface;
 
@@ -43,7 +45,9 @@ namespace AbrahmanAdventure.sprites
 
         private Surface attackFrame2LeftSurface;
 
-        private Surface kickLeftSurface;
+        private Surface kickFrame1LeftSurface;
+
+        private Surface kickFrame2LeftSurface;
 
         private Surface crouchedAttackFrame1LeftSurface;
 
@@ -190,20 +194,36 @@ namespace AbrahmanAdventure.sprites
             return crouchedAttackFrame1LeftSurface;
         }
 
-        private Surface GetKickLeftSurface()
+        private Surface GetKickFrame2LeftSurface()
         {
-            if (kickLeftSurface == null)
-                kickLeftSurface = GetKickRightSurface().CreateFlippedHorizontalSurface();
+            if (kickFrame2LeftSurface == null)
+                kickFrame2LeftSurface = GetKickFrame2RightSurface().CreateFlippedHorizontalSurface();
 
-            return kickLeftSurface;
+            return kickFrame2LeftSurface;
         }
 
-        private Surface GetKickRightSurface()
+        private Surface GetKickFrame2RightSurface()
         {
-            if (kickRightSurface == null)
-                kickRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick.png");
+            if (kickFrame2RightSurface == null)
+                kickFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick2.png");
 
-            return kickRightSurface;
+            return kickFrame2RightSurface;
+        }
+
+        private Surface GetKickFrame1LeftSurface()
+        {
+            if (kickFrame1LeftSurface == null)
+                kickFrame1LeftSurface = GetKickFrame1RightSurface().CreateFlippedHorizontalSurface();
+
+            return kickFrame1LeftSurface;
+        }
+
+        private Surface GetKickFrame1RightSurface()
+        {
+            if (kickFrame1RightSurface == null)
+                kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick1.png");
+
+            return kickFrame1RightSurface;
         }
         #endregion
 
@@ -274,16 +294,35 @@ namespace AbrahmanAdventure.sprites
                 }
                 else if (Ground == null)
                 {
-                    yOffset = 0.2;
                     if (IsTryingToWalkRight)
                     {
-                        xOffset = 0.4;
-                        return GetKickRightSurface();
+                        if (attackCycleDivision >= 4)
+                        {
+                            xOffset = 0.4;
+                            yOffset = 0.2;
+                            return GetKickFrame2RightSurface();
+                        }
+                        else
+                        {
+                            xOffset = 0.0;
+                            yOffset = 0.2;
+                            return GetKickFrame1RightSurface();
+                        }
                     }
                     else
                     {
-                        xOffset = -0.4;
-                        return GetKickLeftSurface();
+                        if (attackCycleDivision >= 4)
+                        {
+                            xOffset = -0.4;
+                            yOffset = 0.2;
+                            return GetKickFrame2LeftSurface();
+                        }
+                        else
+                        {
+                            xOffset = 0.0;
+                            yOffset = 0.2;
+                            return GetKickFrame1LeftSurface();
+                        }
                     }
                 }
                 else
@@ -399,7 +438,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackingTime()
         {
-            return 4;
+            return 8;
         }
 
         protected override double BuildMaxHealth()
