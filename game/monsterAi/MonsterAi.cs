@@ -36,7 +36,11 @@ namespace AbrahmanAdventure.ai
 
             bool isFleeMode = player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0);
 
-            if (monster.XPosition < player.XPosition)
+            if (Math.Abs(monster.XPosition - player.XPosition) < 0.75)
+            {
+                monster.IsTryingToWalk = false;//Too close, don't chase nor flee
+            }
+            else if (monster.XPosition < player.XPosition)
             {
                 monster.IsTryingToWalk = true;
                 if (isFleeMode)
