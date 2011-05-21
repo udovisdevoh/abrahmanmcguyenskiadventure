@@ -68,8 +68,6 @@ namespace AbrahmanAdventure.sprites
 
         private bool isNeedToAttackAgain = false;
 
-        private bool isCanJump;
-
         /// <summary>
         /// Previous value of yPosition so we can know if the sprite is falling/jumping up or down
         /// </summary>
@@ -126,7 +124,6 @@ namespace AbrahmanAdventure.sprites
             width = BuildWidth(random);
             height = BuildHeight(random);
             mass = BuildMass(random);
-            isCanJump = BuildIsCanJump();
             health = maxHealth;
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             parentBucketList = new HashSet<Bucket>();
@@ -140,8 +137,6 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Abstract Methods
-        protected abstract bool BuildIsCanJump();
-
         protected abstract double BuildMaxHealth();
 
         protected abstract double BuildJumpingTime();
@@ -458,11 +453,6 @@ namespace AbrahmanAdventure.sprites
                     isAlive = true;
                 }
             }
-        }
-
-        public bool IsCanJump
-        {
-            get { return isCanJump; }
         }
         #endregion
     }
