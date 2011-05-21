@@ -73,6 +73,7 @@
     <Compile Include="game\sprites\Cycle.cs" />
     <Compile Include="game\sprites\PlayerSprite.cs" />
     <Compile Include="game\spatialHashing\SpritePopulation.cs" />
+    <Compile Include="game\sprites\SnakeSprite.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
@@ -213,8 +214,12 @@
     <Content Include="assets\rendered\projectiles\pills6.png" />
     <Content Include="assets\rendered\projectiles\soda.png" />
     <Content Include="assets\rendered\projectiles\syringe.png" />
-    <Content Include="assets\rendered\snake\snake.png" />
-    <Content Include="assets\rendered\snake\snake2.png" />
+    <Content Include="assets\rendered\snake\snake1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\snake\snake2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="jpeg.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

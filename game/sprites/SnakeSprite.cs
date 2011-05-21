@@ -8,7 +8,7 @@ using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.sprites
 {
-    class BlobSprite : MonsterSprite
+    class SnakeSprite : MonsterSprite
     {
         #region Fields and parts
         /// <summary>
@@ -32,7 +32,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public BlobSprite(double xPosition, double yPosition, Random random)
+        public SnakeSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
         }
@@ -66,8 +66,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            //return 25.0;
-            return 5.0;
+            return 25.0;
         }
 
         protected override double BuildAttackingTime()
@@ -123,7 +122,7 @@ namespace AbrahmanAdventure.sprites
                 }
             }
         }
-        
+
         protected override double BuildMaxHealth()
         {
             return 0.2;
@@ -147,7 +146,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetRight1Surface()
         {
             if (right1Surface == null)
-                right1Surface = BuildSpriteSurface("./assets/rendered/blob/blob1.png");
+                right1Surface = BuildSpriteSurface("./assets/rendered/snake/snake1.png");
 
             return right1Surface;
         }
@@ -163,7 +162,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetRight2Surface()
         {
             if (right2Surface == null)
-                right2Surface = BuildSpriteSurface("./assets/rendered/blob/blob2.png");
+                right2Surface = BuildSpriteSurface("./assets/rendered/snake/snake2.png");
 
             return right2Surface;
         }
