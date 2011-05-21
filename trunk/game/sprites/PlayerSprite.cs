@@ -35,7 +35,9 @@ namespace AbrahmanAdventure.sprites
 
         private Surface kickRightSurface;
 
-        private Surface crouchedAttackRightSurface;
+        private Surface crouchedAttackFrame1RightSurface;
+
+        private Surface crouchedAttackFrame2RightSurface;
 
         private Surface attackFrame1LeftSurface;
 
@@ -43,7 +45,9 @@ namespace AbrahmanAdventure.sprites
 
         private Surface kickLeftSurface;
 
-        private Surface crouchedAttackLeftSurface;
+        private Surface crouchedAttackFrame1LeftSurface;
+
+        private Surface crouchedAttackFrame2LeftSurface;
         #endregion
 
         #region Constructors
@@ -138,12 +142,20 @@ namespace AbrahmanAdventure.sprites
             return attackFrame1RightSurface;
         }
 
-        private Surface GetCrouchedAttackRightSurface()
+        private Surface GetCrouchedAttackFrame1RightSurface()
         {
-            if (crouchedAttackRightSurface == null)
-                crouchedAttackRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch.png");
+            if (crouchedAttackFrame1RightSurface == null)
+                crouchedAttackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch1.png");
 
-            return crouchedAttackRightSurface;
+            return crouchedAttackFrame1RightSurface;
+        }
+
+        private Surface GetCrouchedAttackFrame2RightSurface()
+        {
+            if (crouchedAttackFrame2RightSurface == null)
+                crouchedAttackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch2.png");
+
+            return crouchedAttackFrame2RightSurface;
         }
 
         private Surface GetAttackFrame2LeftSurface()
@@ -162,12 +174,20 @@ namespace AbrahmanAdventure.sprites
             return attackFrame1LeftSurface;
         }
 
-        private Surface GetCrouchedAttackLeftSurface()
+        private Surface GetCrouchedAttackFrame2LeftSurface()
         {
-            if (crouchedAttackLeftSurface == null)
-                crouchedAttackLeftSurface = GetCrouchedAttackRightSurface().CreateFlippedHorizontalSurface();
+            if (crouchedAttackFrame2LeftSurface == null)
+                crouchedAttackFrame2LeftSurface = GetCrouchedAttackFrame2RightSurface().CreateFlippedHorizontalSurface();
 
-            return crouchedAttackLeftSurface;
+            return crouchedAttackFrame2LeftSurface;
+        }
+
+        private Surface GetCrouchedAttackFrame1LeftSurface()
+        {
+            if (crouchedAttackFrame1LeftSurface == null)
+                crouchedAttackFrame1LeftSurface = GetCrouchedAttackFrame1RightSurface().CreateFlippedHorizontalSurface();
+
+            return crouchedAttackFrame1LeftSurface;
         }
 
         private Surface GetKickLeftSurface()
@@ -227,13 +247,29 @@ namespace AbrahmanAdventure.sprites
                 {
                     if (IsTryingToWalkRight)
                     {
-                        xOffset = 0.6;
-                        return GetCrouchedAttackRightSurface();
+                        if (attackCycleDivision >= 4)
+                        {
+                            xOffset = 0.6;
+                            return GetCrouchedAttackFrame2RightSurface();
+                        }
+                        else
+                        {
+                            xOffset = 0.2;
+                            return GetCrouchedAttackFrame1RightSurface();
+                        }
                     }
                     else
                     {
-                        xOffset = -0.6;
-                        return GetCrouchedAttackLeftSurface();
+                        if (attackCycleDivision >= 4)
+                        {
+                            xOffset = -0.6;
+                            return GetCrouchedAttackFrame2LeftSurface();
+                        }
+                        else
+                        {
+                            xOffset = -0.2;
+                            return GetCrouchedAttackFrame1LeftSurface();
+                        }
                     }
                 }
                 else if (Ground == null)
