@@ -292,7 +292,7 @@ namespace AbrahmanAdventure.sprites
                         }
                     }
                 }
-                else if (Ground == null)
+                /*else if (Ground == null)
                 {
                     if (IsTryingToWalkRight)
                     {
@@ -324,7 +324,7 @@ namespace AbrahmanAdventure.sprites
                             return GetKickFrame1LeftSurface();
                         }
                     }
-                }
+                }*/
                 else
                 {
                     if (IsTryingToWalkRight)
@@ -438,7 +438,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackingTime()
         {
-            return 8;
+            return 4;
         }
 
         protected override double BuildMaxHealth()
