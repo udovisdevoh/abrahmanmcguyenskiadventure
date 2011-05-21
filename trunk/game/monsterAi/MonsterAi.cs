@@ -15,11 +15,13 @@ namespace AbrahmanAdventure.ai
 
             monster.IsNeedToJumpAgain = false;
 
-            if (monster.Ground == null)
-                monster.IsTryingToJump = (random.Next(0, 3) == 0);
-            else
-                monster.IsTryingToJump = (random.Next(0, 40) == 0);
-
+            if (monster.IsCanJump)
+            {
+                if (monster.Ground == null)
+                    monster.IsTryingToJump = (random.Next(0, 3) == 0);
+                else
+                    monster.IsTryingToJump = (random.Next(0, 40) == 0);
+            }
 
             bool isFleeMode = player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0);
 
