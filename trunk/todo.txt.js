@@ -74,6 +74,18 @@ Monstres
 	{
 		lance boule de crystal
 	}
+	
+	Obese (4*4 tile)
+	{
+		donne des coups de bedaine
+		en veston sans chemise avec un shaggy
+	}
+	
+	Trijambiste
+	{
+		3 jambes
+		marche en faisant comme s'il nageait
+	}
 }
 
 Musique générative
