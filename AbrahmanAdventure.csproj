@@ -162,7 +162,10 @@
     <Content Include="assets\rendered\abrahman\crouchedHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedPunch.png">
+    <Content Include="assets\rendered\abrahman\crouchedPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\abrahman\crouchedPunch2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\abrahman\hit.png">
