@@ -1,5 +1,3 @@
-arranger offset de blit des sprite du player lorsqu'attaque
-
 fin de level
 {
 	Boss?
@@ -17,6 +15,8 @@ Miniboss?
 ?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
 certains monstres doivent avoir l'intelligence nécéssaire pour ne pas se garocher dans des trous
 certains monstres doivent marcher en ligne droite comme des Koopa vert et Rouge
+certains monstres doivent automatiquement sauter par dessus les trous
+certains monstres doivent se spawner directement sur le sol (probablement la majorité)
 
 Monstres
 {
