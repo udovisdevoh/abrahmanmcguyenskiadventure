@@ -15,6 +15,10 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private Surface defaultUndefinedSurface;
+
+        private bool isCanJump;
+
+        private double jumpProbability;
         #endregion
 
         #region Constructors
@@ -28,7 +32,15 @@ namespace AbrahmanAdventure.sprites
         {
             defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
             defaultUndefinedSurface.Fill(Color.Red);
+            isCanJump = BuildIsCanJump();
+            jumpProbability = BuildJumpProbability();
         }
+        #endregion
+
+        #region Abstract methods
+        protected abstract bool BuildIsCanJump();
+
+        protected abstract double BuildJumpProbability();
         #endregion
 
         #region Override methods
@@ -41,6 +53,18 @@ namespace AbrahmanAdventure.sprites
             xOffset = 0;
             yOffset = 0;
             return defaultUndefinedSurface;
+        }
+        #endregion
+
+        #region Properties
+        public bool IsCanJump
+        {
+            get { return isCanJump; }
+        }
+
+        public double JumpProbability
+        {
+            get { return jumpProbability; }
         }
         #endregion
     }

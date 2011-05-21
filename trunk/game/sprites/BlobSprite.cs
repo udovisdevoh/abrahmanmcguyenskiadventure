@@ -56,12 +56,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.30;
+            return 0.25;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.60;
+            return 0.55;
         }
 
         protected override double BuildStartingJumpAcceleration()
@@ -132,6 +132,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsCanJump()
         {
             return true;
+        }
+
+        protected override double BuildJumpProbability()
+        {
+            return 1.0;
         }
         #endregion
 

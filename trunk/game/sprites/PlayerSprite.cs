@@ -445,11 +445,6 @@ namespace AbrahmanAdventure.sprites
         {
             return 1.0;
         }
-
-        protected override bool BuildIsCanJump()
-        {
-            return true;
-        }
         #endregion
     }
 }
