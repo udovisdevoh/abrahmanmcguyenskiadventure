@@ -21,6 +21,9 @@ namespace AbrahmanAdventure.ai
             {
                 if (monster.CurrentWalkingSpeed < 0.01)
                     monster.IsTryingToJump = true;
+
+                if (player.Ground != null && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
+                    monster.IsTryingToJump = true;
                 
                 if (monster.Ground == null)
                     monster.IsTryingToJump = (random.Next(0, 3) == 0);
