@@ -29,13 +29,17 @@ namespace AbrahmanAdventure.sprites
 
         private Surface crouchedLeftSurface;
 
-        private Surface attackRightSurface;
+        private Surface attackFrame1RightSurface;
+
+        private Surface attackFrame2RightSurface;
 
         private Surface kickRightSurface;
 
         private Surface crouchedAttackRightSurface;
 
-        private Surface attackLeftSurface;
+        private Surface attackFrame1LeftSurface;
+
+        private Surface attackFrame2LeftSurface;
 
         private Surface kickLeftSurface;
 
@@ -118,12 +122,20 @@ namespace AbrahmanAdventure.sprites
             return standingRightSurface;
         }
 
-        private Surface GetAttackRightSurface()
+        private Surface GetAttackFrame2RightSurface()
         {
-            if (attackRightSurface == null)
-                attackRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch.png");
+            if (attackFrame2RightSurface == null)
+                attackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch2.png");
 
-            return attackRightSurface;
+            return attackFrame2RightSurface;
+        }
+
+        private Surface GetAttackFrame1RightSurface()
+        {
+            if (attackFrame1RightSurface == null)
+                attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch1.png");
+
+            return attackFrame1RightSurface;
         }
 
         private Surface GetCrouchedAttackRightSurface()
@@ -134,12 +146,20 @@ namespace AbrahmanAdventure.sprites
             return crouchedAttackRightSurface;
         }
 
-        private Surface GetAttackLeftSurface()
+        private Surface GetAttackFrame2LeftSurface()
         {
-            if (attackLeftSurface == null)
-                attackLeftSurface = GetAttackRightSurface().CreateFlippedHorizontalSurface();
+            if (attackFrame2LeftSurface == null)
+                attackFrame2LeftSurface = GetAttackFrame2RightSurface().CreateFlippedHorizontalSurface();
 
-            return attackLeftSurface;
+            return attackFrame2LeftSurface;
+        }
+
+        private Surface GetAttackFrame1LeftSurface()
+        {
+            if (attackFrame1LeftSurface == null)
+                attackFrame1LeftSurface = GetAttackFrame1RightSurface().CreateFlippedHorizontalSurface();
+
+            return attackFrame1LeftSurface;
         }
 
         private Surface GetCrouchedAttackLeftSurface()
@@ -200,7 +220,8 @@ namespace AbrahmanAdventure.sprites
             xOffset = 0;
             yOffset = 0;
             //If currently attacking
-            if (AttackingCycle.GetCycleDivision(8) >= 1)
+            int attackCycleDivision = AttackingCycle.GetCycleDivision(8);
+            if (AttackingCycle.IsFired)
             {
                 if (IsCrouch)
                 {
@@ -233,13 +254,29 @@ namespace AbrahmanAdventure.sprites
                 {
                     if (IsTryingToWalkRight)
                     {
-                        xOffset = 0.6;
-                        return GetAttackRightSurface();
+                        if (attackCycleDivision >= 4)
+                        {
+                            xOffset = 0.6;
+                            return GetAttackFrame2RightSurface();
+                        }
+                        else
+                        {
+                            xOffset = 0.2;
+                            return GetAttackFrame1RightSurface();
+                        }
                     }
                     else
                     {
-                        xOffset = -0.6;
-                        return GetAttackLeftSurface();
+                        if (attackCycleDivision >= 4)
+                        {
+                            xOffset = -0.6;
+                            return GetAttackFrame2LeftSurface();
+                        }
+                        else
+                        {
+                            xOffset = -0.2;
+                            return GetAttackFrame1LeftSurface();
+                        }
                     }
                 }
             }
