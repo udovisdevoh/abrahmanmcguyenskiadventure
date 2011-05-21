@@ -292,20 +292,20 @@ namespace AbrahmanAdventure.sprites
                         }
                     }
                 }
-                /*else if (Ground == null)
+                else if (Ground == null)
                 {
                     if (IsTryingToWalkRight)
                     {
                         if (attackCycleDivision >= 4)
                         {
-                            xOffset = 0.4;
-                            yOffset = 0.2;
+                            xOffset = 0.35;
+                            yOffset = 0.1;
                             return GetKickFrame2RightSurface();
                         }
                         else
                         {
-                            xOffset = 0.0;
-                            yOffset = 0.2;
+                            xOffset = -0.2;
+                            yOffset = 0.0;
                             return GetKickFrame1RightSurface();
                         }
                     }
@@ -313,18 +313,18 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (attackCycleDivision >= 4)
                         {
-                            xOffset = -0.4;
-                            yOffset = 0.2;
+                            xOffset = -0.35;
+                            yOffset = 0.1;
                             return GetKickFrame2LeftSurface();
                         }
                         else
                         {
-                            xOffset = 0.0;
-                            yOffset = 0.2;
+                            xOffset = 0.2;
+                            yOffset = 0.0;
                             return GetKickFrame1LeftSurface();
                         }
                     }
-                }*/
+                }
                 else
                 {
                     if (IsTryingToWalkRight)
