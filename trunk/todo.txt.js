@@ -20,6 +20,8 @@ certains monstres doivent marcher en ligne droite comme des Koopa vert et Rouge
 
 Monstres
 {
+	Crocodile
+	
 	Musulman sunith
 	{
 		Lance des dynamites
@@ -84,7 +86,7 @@ Monstres
 	Trijambiste
 	{
 		3 jambes
-		marche en faisant comme s'il nageait
+		marche en faisant comme s'il nageait (avec ses bras)
 	}
 }
 
