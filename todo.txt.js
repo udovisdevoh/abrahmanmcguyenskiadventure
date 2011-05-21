@@ -25,6 +25,8 @@ Monstres
 		Pieds comme yoshi
 	}
 	
+	Mickey Mouse
+	
 	Musulman sunith
 	{
 		Lance des dynamites
