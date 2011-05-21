@@ -20,7 +20,10 @@ certains monstres doivent marcher en ligne droite comme des Koopa vert et Rouge
 
 Monstres
 {
-	Crocodile
+	Jesus raptor
+	{
+		Pieds comme yoshi
+	}
 	
 	Musulman sunith
 	{
