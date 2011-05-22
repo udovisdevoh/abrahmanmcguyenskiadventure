@@ -10,6 +10,7 @@ using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.physics;
 using AbrahmanAdventure.ai;
 using AbrahmanAdventure.hud;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure
 {
@@ -85,6 +86,8 @@ namespace AbrahmanAdventure
 
         private HudViewer hudViewer;
 
+        private SoundManager soundManager;
+
         private JoystickManager joystickManager;
 
         private MonsterAi monsterAi;
@@ -136,6 +139,7 @@ namespace AbrahmanAdventure
             levelViewer = new LevelViewer(mainSurface);
             spriteViewer = new SpriteViewer(spritePopulation, mainSurface);
             hudViewer = new HudViewer(mainSurface);
+            soundManager = new SoundManager();
         }
         #endregion
 
@@ -419,6 +423,7 @@ namespace AbrahmanAdventure
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY, visibleSpriteList, isOddFrame);
+            soundManager.PlaySounds(visibleSpriteList);
             hudViewer.Update(playerSprite.Health);
             mainSurface.Update();
             #endregion
