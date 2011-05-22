@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AbrahmanAdventure.sprites;
 
 namespace AbrahmanAdventure.physics
 {
@@ -15,8 +16,13 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">Sprite</param>
         /// <param name="timeDelta">Time delta</param>
-        internal void Update(AbrahmanAdventure.sprites.AbstractSprite sprite, double timeDelta)
+        internal void Update(AbstractSprite sprite, double timeDelta)
         {
+            if (sprite is MonsterSprite && sprite.Health < sprite.CurrentDamageReceiving)
+            {
+                sprite.IsAlive = false;
+            }
+
             sprite.HitCycle.Increment(timeDelta);
             
             if (sprite.IsAlive && sprite.HitCycle.IsFired)

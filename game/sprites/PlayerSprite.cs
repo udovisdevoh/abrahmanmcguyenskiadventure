@@ -13,53 +13,55 @@ namespace AbrahmanAdventure.sprites
     internal class PlayerSprite : AbstractSprite
     {
         #region Fields and parts
-        private Surface walking1LeftSurface;
+        private static Surface walking1LeftSurface;
 
-        private Surface walking1RightSurface;
+        private static Surface walking1RightSurface;
 
-        private Surface walking2LeftSurface;
+        private static Surface walking2LeftSurface;
 
-        private Surface walking2RightSurface;
+        private static Surface walking2RightSurface;
 
-        private Surface standingLeftSurface;
+        private static Surface standingLeftSurface;
 
-        private Surface standingRightSurface;
+        private static Surface standingRightSurface;
 
-        private Surface hitLeftSurface;
+        private static Surface hitLeftSurface;
 
-        private Surface hitRightSurface;
+        private static Surface hitRightSurface;
 
-        private Surface crouchedRightSurface;
+        private static Surface crouchedRightSurface;
 
-        private Surface crouchedLeftSurface;
-        
-        private Surface crouchedHitRightSurface;
+        private static Surface crouchedLeftSurface;
 
-        private Surface crouchedHitLeftSurface;
+        private static Surface crouchedHitRightSurface;
 
-        private Surface attackFrame1RightSurface;
+        private static Surface crouchedHitLeftSurface;
 
-        private Surface attackFrame2RightSurface;
+        private static Surface attackFrame1RightSurface;
 
-        private Surface kickFrame1RightSurface;
+        private static Surface attackFrame2RightSurface;
 
-        private Surface kickFrame2RightSurface;
+        private static Surface kickFrame1RightSurface;
 
-        private Surface crouchedAttackFrame1RightSurface;
+        private static Surface kickFrame2RightSurface;
 
-        private Surface crouchedAttackFrame2RightSurface;
+        private static Surface crouchedAttackFrame1RightSurface;
 
-        private Surface attackFrame1LeftSurface;
+        private static Surface crouchedAttackFrame2RightSurface;
 
-        private Surface attackFrame2LeftSurface;
+        private static Surface attackFrame1LeftSurface;
 
-        private Surface kickFrame1LeftSurface;
+        private static Surface attackFrame2LeftSurface;
 
-        private Surface kickFrame2LeftSurface;
+        private static Surface kickFrame1LeftSurface;
 
-        private Surface crouchedAttackFrame1LeftSurface;
+        private static Surface kickFrame2LeftSurface;
 
-        private Surface crouchedAttackFrame2LeftSurface;
+        private static Surface crouchedAttackFrame1LeftSurface;
+
+        private static Surface crouchedAttackFrame2LeftSurface;
+
+        private static Surface deadSurface;
         #endregion
 
         #region Constructors
@@ -265,6 +267,14 @@ namespace AbrahmanAdventure.sprites
 
             return kickFrame1RightSurface;
         }
+
+        private Surface GetDeadSurface()
+        {
+            if (deadSurface == null)
+                deadSurface = GetStandingRightSurface().CreateFlippedVerticalSurface();
+
+            return deadSurface;
+        }
         #endregion
 
         #region Overrides
@@ -352,6 +362,8 @@ namespace AbrahmanAdventure.sprites
             //If currently attacking
             int attackCycleDivision = AttackingCycle.GetCycleDivision(8);
 
+            if (!IsAlive)
+                return GetDeadSurface();
 
             if (AttackingCycle.IsFired)
             {

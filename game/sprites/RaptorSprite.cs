@@ -11,26 +11,23 @@ namespace AbrahmanAdventure.sprites
     class RaptorSprite : MonsterSprite
     {
         #region Fields and parts
-        /// <summary>
-        /// Sprite's math mesh
-        /// </summary>
-        private Surface defaultSurface;
+        private static Surface walking1LeftSurface;
 
-        private Surface walking1LeftSurface;
+        private static Surface walking1RightSurface;
 
-        private Surface walking1RightSurface;
+        private static Surface walking2LeftSurface;
 
-        private Surface walking2LeftSurface;
+        private static Surface walking2RightSurface;
 
-        private Surface walking2RightSurface;
+        private static Surface standingLeftSurface;
 
-        private Surface standingLeftSurface;
+        private static Surface standingRightSurface;
 
-        private Surface standingRightSurface;
+        private static Surface hitLeftSurface;
 
-        private Surface hitLeftSurface;
+        private static Surface hitRightSurface;
 
-        private Surface hitRightSurface;
+        private static Surface deadSurface;
         #endregion
 
         #region Constructors
@@ -108,6 +105,14 @@ namespace AbrahmanAdventure.sprites
                 hitLeftSurface = GetHitRightSurface().CreateFlippedHorizontalSurface();
 
             return hitLeftSurface;
+        }
+
+        private Surface GetDeadSurface()
+        {
+            if (deadSurface == null)
+                deadSurface = GetStandingRightSurface().CreateFlippedVerticalSurface();
+
+            return deadSurface;
         }
         #endregion
 
@@ -196,6 +201,8 @@ namespace AbrahmanAdventure.sprites
             xOffset = 0;
             yOffset = 0;
 
+            if (!IsAlive)
+                return GetDeadSurface();
             
             if (CurrentJumpAcceleration != 0)
             {

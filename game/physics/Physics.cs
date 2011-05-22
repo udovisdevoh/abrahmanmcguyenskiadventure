@@ -34,6 +34,11 @@ namespace AbrahmanAdventure.physics
         private DamageManager damageManager = new DamageManager();
 
         /// <summary>
+        /// Manages death logic
+        /// </summary>
+        private DeathManager deathManager = new DeathManager();
+
+        /// <summary>
         /// Manages sprite collision
         /// </summary>
         private SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
@@ -47,19 +52,16 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation)
         {
             walkingManager.Update(sprite, level, timeDelta);
         	gravityManager.Update(sprite, level, timeDelta);
             jumpingManager.Update(sprite, timeDelta);
-            
             damageManager.Update(sprite, timeDelta);
+            deathManager.Update(sprite, timeDelta, spritePopulation);
 
             if (sprite is PlayerSprite)
                 spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList);
-
-            if (sprite.YPosition > Program.totalHeightTileCount)
-                sprite.IsAlive = false;
         }
         #endregion
 

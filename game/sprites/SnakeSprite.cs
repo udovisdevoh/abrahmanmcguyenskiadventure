@@ -11,18 +11,15 @@ namespace AbrahmanAdventure.sprites
     class SnakeSprite : MonsterSprite
     {
         #region Fields and parts
-        /// <summary>
-        /// Sprite's math mesh
-        /// </summary>
-        private Surface defaultSurface;
+        private static Surface right1Surface;
 
-        private Surface right1Surface;
+        private static Surface left1Surface;
 
-        private Surface left1Surface;
+        private static Surface right2Surface;
 
-        private Surface right2Surface;
+        private static Surface left2Surface;
 
-        private Surface left2Surface;
+        private static Surface deadSurface;
         #endregion
 
         #region Constructors
@@ -124,6 +121,9 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0;
             int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
 
+            if (!IsAlive)
+                return GetDeadSurface();
+
             if (cycleDivision == 1)
             {
                 if (IsTryingToWalkRight)
@@ -180,6 +180,14 @@ namespace AbrahmanAdventure.sprites
                 right2Surface = BuildSpriteSurface("./assets/rendered/snake/snake2.png");
 
             return right2Surface;
+        }
+
+        private Surface GetDeadSurface()
+        {
+            if (deadSurface == null)
+                deadSurface = GetRight1Surface().CreateFlippedVerticalSurface();
+
+            return deadSurface;
         }
         #endregion
     }

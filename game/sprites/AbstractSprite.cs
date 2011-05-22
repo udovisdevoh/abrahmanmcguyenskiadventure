@@ -316,7 +316,13 @@ namespace AbrahmanAdventure.sprites
         public Ground Ground
         {
             get { return ground; }
-            set { ground = value; }
+            set
+            {
+                if (isAlive)
+                {
+                    ground = value;
+                }
+            }
         }
 
         public double RightBound
@@ -440,11 +446,15 @@ namespace AbrahmanAdventure.sprites
             get { return isAlive; }
             set
             {
+                currentDamageReceiving = 0.0;
                 isAlive = value;
                 if (isAlive)
                     health = maxHealth;
                 else
+                {
                     health = 0.0;
+                    ground = null;
+                }
             }
         }
 
@@ -477,7 +487,9 @@ namespace AbrahmanAdventure.sprites
                 if (health <= 0)
                 {
                     health = 0.0;
+                    currentDamageReceiving = 0.0;
                     isAlive = false;
+                    ground = null;
                 }
                 else
                 {

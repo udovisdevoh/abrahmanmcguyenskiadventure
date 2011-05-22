@@ -33,9 +33,12 @@ namespace AbrahmanAdventure.physics
                         Ground lowestVisibleGround = GroundHelper.GetLowestVisibleGround(sprite, level);
                         if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
                         {
-                            sprite.Ground = lowestVisibleGround;
-                            sprite.YPosition = sprite.Ground[sprite.XPosition];
-                            sprite.CurrentJumpAcceleration = 0;
+                            if (sprite.IsAlive)
+                            {
+                                sprite.Ground = lowestVisibleGround;
+                                sprite.YPosition = sprite.Ground[sprite.XPosition];
+                                sprite.CurrentJumpAcceleration = 0;
+                            }
                         }
                         else
                         {
@@ -61,8 +64,11 @@ namespace AbrahmanAdventure.physics
 
                     if (sprite.YPosition >= closestDownGroundHeight)
                     {
-                        sprite.YPosition = closestDownGroundHeight;
-                        sprite.Ground = closestDownGround;
+                        if (sprite.IsAlive)
+                        {
+                            sprite.YPosition = closestDownGroundHeight;
+                            sprite.Ground = closestDownGround;
+                        }
                     }
                 }
             }
