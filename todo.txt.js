@@ -21,6 +21,8 @@ cetrains monstres ne doivent pas avoir de flee mode
 
 Monstres
 {
+	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
+	
 	Jesus raptor
 	{
 		Pieds comme yoshi
@@ -57,6 +59,9 @@ Monstres
 	}
 	
 	Pedo-priest
+	{
+		En boxers du Canada et avec les jambes à l'air. Pencé par en avant avec les mains sorties comme pour faire un attouchement
+	}
 	
 	Ronald mcdonalds
 	{
