@@ -403,12 +403,12 @@ namespace AbrahmanAdventure
 
             HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY);
 
-            physics.Update(playerSprite, level, timeDelta);
+            physics.Update(playerSprite, level, timeDelta, visibleSpriteList);
 
             foreach (AbstractSprite sprite in visibleSpriteList)
                 if (sprite != playerSprite)
                 {
-                    physics.Update(sprite, level, timeDelta);
+                    physics.Update(sprite, level, timeDelta, visibleSpriteList);
                     if (sprite is MonsterSprite)
                         monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
                     if (!sprite.IsAlive)

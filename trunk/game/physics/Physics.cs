@@ -27,6 +27,11 @@ namespace AbrahmanAdventure.physics
         /// Manages walking logic
         /// </summary>
         private WalkingManager walkingManager = new WalkingManager();
+
+        /// <summary>
+        /// Manages sprite collision
+        /// </summary>
+        private SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
         #endregion
 
         #region Public Instance Methods
@@ -36,11 +41,14 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta)
+        /// <param name="visibleSpriteList">visible sprite list</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
             walkingManager.Update(sprite, level, timeDelta);
         	gravityManager.Update(sprite, level, timeDelta);
             jumpingManager.Update(sprite, timeDelta);
+            if (sprite is PlayerSprite)
+                spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList);
 
             if (sprite.YPosition > Program.totalHeightTileCount)
                 sprite.IsAlive = false;
@@ -118,6 +126,25 @@ namespace AbrahmanAdventure.physics
                 return ((ground[sprite.XPosition + walkingDistance] - ground[sprite.XPosition]) / walkingDistance) / 2.0;
             else
                 return ((ground[sprite.XPosition] - ground[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
+        }
+
+        /// <summary>
+        /// Whether sprites are in collision
+        /// </summary>
+        /// <param name="sprite1">sprite 1</param>
+        /// <param name="sprite2">sprite 2</param>
+        /// <returns></returns>
+        internal static bool IsDetectCollision(AbstractSprite sprite1, AbstractSprite sprite2)
+        {
+            bool isHorizontalCollision = (sprite1.RightBound > sprite2.LeftBound && sprite1.LeftBound < sprite1.LeftBound)
+                                      || (sprite2.LeftBound < sprite1.RightBound && sprite2.RightBound > sprite1.RightBound)
+                                      || (sprite2.RightBound > sprite1.LeftBound && sprite2.LeftBound < sprite2.LeftBound)
+                                      || (sprite1.LeftBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
+
+            bool isVerticalCollision =  (sprite1.YPosition > sprite2.TopBound && sprite1.YPosition < sprite2.YPosition)
+                                     || (sprite2.YPosition > sprite1.TopBound && sprite2.YPosition < sprite1.YPosition);
+            
+            return isHorizontalCollision && isVerticalCollision;
         }
         #endregion
     }
