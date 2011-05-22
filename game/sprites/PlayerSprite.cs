@@ -340,6 +340,11 @@ namespace AbrahmanAdventure.sprites
             return 32;
         }
 
+        protected override double BuildAttackStrengthCollision()
+        {
+            return 0.5;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;

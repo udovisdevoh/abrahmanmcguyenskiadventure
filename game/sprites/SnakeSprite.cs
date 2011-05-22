@@ -91,7 +91,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 0.2;
+            return 0.47;
         }
 
         protected override bool BuildIsCanJump()
@@ -107,6 +107,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildHitTime()
         {
             return 32;
+        }
+
+        protected override double BuildAttackStrengthCollision()
+        {
+            return 0.4;
         }
 
         /// <summary>
