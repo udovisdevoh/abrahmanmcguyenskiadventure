@@ -218,20 +218,48 @@
     <Content Include="assets\rendered\jew\walk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\bible.png" />
-    <Content Include="assets\rendered\projectiles\bomb.png" />
-    <Content Include="assets\rendered\projectiles\corn.png" />
-    <Content Include="assets\rendered\projectiles\dynamite.png" />
-    <Content Include="assets\rendered\projectiles\fries.png" />
-    <Content Include="assets\rendered\projectiles\hamburger.png" />
-    <Content Include="assets\rendered\projectiles\pill.png" />
-    <Content Include="assets\rendered\projectiles\pill2.png" />
-    <Content Include="assets\rendered\projectiles\pill3.png" />
-    <Content Include="assets\rendered\projectiles\pill4.png" />
-    <Content Include="assets\rendered\projectiles\pills5.png" />
-    <Content Include="assets\rendered\projectiles\pills6.png" />
-    <Content Include="assets\rendered\projectiles\soda.png" />
-    <Content Include="assets\rendered\projectiles\syringe.png" />
+    <Content Include="assets\rendered\projectiles\bible.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\bomb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\corn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\dynamite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\fries.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\hamburger.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\pill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\pill2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\pill3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\pill4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\pills5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\pills6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\soda.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\syringe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\raptor\hit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
