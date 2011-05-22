@@ -314,6 +314,11 @@ namespace AbrahmanAdventure.sprites
             get { return xPosition - width / 2.0; }
         }
 
+        public double TopBound
+        {
+            get { return yPosition - height; }
+        }
+
         public double MaximumWalkingHeight
         {
             get { return height / 4.0; }
