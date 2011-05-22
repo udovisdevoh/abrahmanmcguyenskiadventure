@@ -33,13 +33,18 @@ namespace AbrahmanAdventure.physics
                             {
                                 if (sprite.CurrentJumpAcceleration < 0) //if sprite is falling
                                 {
-                                    sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                                    sprite.JumpingCycle.Reset();
-                                    sprite.JumpingCycle.Fire();
-                                    sprite.IsTryingToJump = true;
+                                    if (!otherSprite.HitCycle.IsFired)
+                                    {
+                                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                                        sprite.JumpingCycle.Reset();
+                                        sprite.JumpingCycle.Fire();
+                                        sprite.IsTryingToJump = true;
 
-                                    if (sprite is PlayerSprite)
-                                        ((PlayerSprite)sprite).IsNeedToJumpAgain = true;
+                                        otherSprite.HitCycle.Fire();
+
+                                        if (sprite is PlayerSprite)
+                                            ((PlayerSprite)sprite).IsNeedToJumpAgain = true;
+                                    }
                                 }
                             }
                         }

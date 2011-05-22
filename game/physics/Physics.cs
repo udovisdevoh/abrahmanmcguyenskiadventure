@@ -47,6 +47,8 @@ namespace AbrahmanAdventure.physics
             walkingManager.Update(sprite, level, timeDelta);
         	gravityManager.Update(sprite, level, timeDelta);
             jumpingManager.Update(sprite, timeDelta);
+            sprite.HitCycle.Increment(timeDelta);
+
             if (sprite is PlayerSprite)
                 spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList);
 

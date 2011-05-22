@@ -255,6 +255,51 @@ namespace AbrahmanAdventure.sprites
             return 1.0;
         }
 
+        protected override double BuildStartingJumpAcceleration()
+        {
+            return 25.0;
+        }
+
+        protected override double BuildMaxWalkingSpeed()
+        {
+            return 0.45;
+        }
+
+        protected override double BuildWalkingAcceleration()
+        {
+            return 0.02;
+        }
+
+        protected override double BuildMaxRunningSpeed()
+        {
+            return 0.75;
+        }
+
+        protected override double BuildWalkingCycleLength()
+        {
+            return 10;
+        }
+
+        protected override double BuildJumpingTime()
+        {
+            return 10.0;
+        }
+
+        protected override double BuildAttackingTime()
+        {
+            return 4;
+        }
+
+        protected override double BuildMaxHealth()
+        {
+            return 1.0;
+        }
+
+        protected override double BuildHitTime()
+        {
+            return 128;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;
@@ -404,46 +449,6 @@ namespace AbrahmanAdventure.sprites
                 else
                     return GetStandingLeftSurface();
             }
-        }
-
-        protected override double BuildStartingJumpAcceleration()
-        {
-            return 25.0;
-        }
-
-        protected override double BuildMaxWalkingSpeed()
-        {
-            return 0.45;
-        }
-
-        protected override double BuildWalkingAcceleration()
-        {
-            return 0.02;
-        }
-
-        protected override double BuildMaxRunningSpeed()
-        {
-            return 0.75;
-        }
-
-        protected override double BuildWalkingCycleLength()
-        {
-            return 10;
-        }
-
-        protected override double BuildJumpingTime()
-        {
-            return 10.0;
-        }
-
-        protected override double BuildAttackingTime()
-        {
-            return 4;
-        }
-
-        protected override double BuildMaxHealth()
-        {
-            return 1.0;
         }
         #endregion
     }
