@@ -27,6 +27,10 @@ namespace AbrahmanAdventure.sprites
         private Surface standingLeftSurface;
 
         private Surface standingRightSurface;
+
+        private Surface hitRightSurface;
+
+        private Surface hitLeftSurface;
         #endregion
 
         #region Constructors
@@ -88,6 +92,22 @@ namespace AbrahmanAdventure.sprites
                 standingRightSurface = BuildSpriteSurface("./assets/rendered/jew/stand.png");
 
             return standingRightSurface;
+        }
+
+        private Surface GetHitRightSurface()
+        {
+            if (hitRightSurface == null)
+                hitRightSurface = BuildSpriteSurface("./assets/rendered/jew/hit.png");
+
+            return hitRightSurface;
+        }
+
+        private Surface GetHitLeftSurface()
+        {
+            if (hitLeftSurface == null)
+                hitLeftSurface = GetHitRightSurface().CreateFlippedHorizontalSurface();
+
+            return hitLeftSurface;
         }
         #endregion
 
@@ -174,7 +194,14 @@ namespace AbrahmanAdventure.sprites
                 xOffset = -0.1;
             yOffset = 0;
 
-            if (CurrentJumpAcceleration != 0)
+            if (HitCycle.IsFired)
+            {
+                if (IsTryingToWalkRight)
+                    return GetHitRightSurface();
+                else
+                    return GetHitLeftSurface();
+            }
+            else if (CurrentJumpAcceleration != 0)
             {
                 if (IsTryingToWalkRight)
                     return GetWalking1RightSurface();

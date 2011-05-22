@@ -341,7 +341,7 @@ namespace AbrahmanAdventure.sprites
                 {
                     if (IsTryingToWalkRight)
                     {
-                        if (attackCycleDivision >= 4)
+                        if (attackCycleDivision < 4)
                         {
                             xOffset = 0.35;
                             yOffset = 0.1;
@@ -356,7 +356,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     else
                     {
-                        if (attackCycleDivision >= 4)
+                        if (attackCycleDivision < 4)
                         {
                             xOffset = -0.35;
                             yOffset = 0.1;
