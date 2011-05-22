@@ -316,61 +316,64 @@ namespace AbrahmanAdventure
             playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown;
 
             #region We manage walking input logic
-            playerSprite.IsRunning = userInput.isPressAttack;
-            if (userInput.isPressLeft && !userInput.isPressRight && !userInput.isPressDown)
+            if (playerSprite.IsAlive)
             {
-                #region Walking left
-                if (playerSprite.IsTryingToWalkRight)
-                    playerSprite.CurrentWalkingSpeed = 0;
-
-                playerSprite.IsTryingToWalk = true;
-                playerSprite.IsTryingToWalkRight = false;
-                playerSprite.IsTryingToSlide = false;
-                #endregion
-            }
-            else if (!userInput.isPressLeft && userInput.isPressRight && !userInput.isPressDown)
-            {
-                #region Walking right
-                if (!playerSprite.IsTryingToWalkRight)
-                    playerSprite.CurrentWalkingSpeed = 0;
-
-                playerSprite.IsTryingToWalk = true;
-                playerSprite.IsTryingToWalkRight = true;
-                playerSprite.IsTryingToSlide = false;
-                #endregion
-            }
-            else if (userInput.isPressDown && userInput.isPressAttack)
-            {
-                #region Sliding
-                playerSprite.IsTryingToWalk = false;
-                if (playerSprite.Ground != null)
+                playerSprite.IsRunning = userInput.isPressAttack;
+                if (userInput.isPressLeft && !userInput.isPressRight && !userInput.isPressDown)
                 {
-                    double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution,true);
-                    if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
+                    #region Walking left
+                    if (playerSprite.IsTryingToWalkRight)
+                        playerSprite.CurrentWalkingSpeed = 0;
+
+                    playerSprite.IsTryingToWalk = true;
+                    playerSprite.IsTryingToWalkRight = false;
+                    playerSprite.IsTryingToSlide = false;
+                    #endregion
+                }
+                else if (!userInput.isPressLeft && userInput.isPressRight && !userInput.isPressDown)
+                {
+                    #region Walking right
+                    if (!playerSprite.IsTryingToWalkRight)
+                        playerSprite.CurrentWalkingSpeed = 0;
+
+                    playerSprite.IsTryingToWalk = true;
+                    playerSprite.IsTryingToWalkRight = true;
+                    playerSprite.IsTryingToSlide = false;
+                    #endregion
+                }
+                else if (userInput.isPressDown && userInput.isPressAttack)
+                {
+                    #region Sliding
+                    playerSprite.IsTryingToWalk = false;
+                    if (playerSprite.Ground != null)
                     {
-                        playerSprite.IsTryingToWalk = true;
-                        playerSprite.IsTryingToWalkRight = true;
-                        playerSprite.IsTryingToSlide = true;
-                    }
-                    else
-                    {
-                        double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, -Program.collisionDetectionResolution,false);
-                        if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
+                        double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution, true);
+                        if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
                         {
                             playerSprite.IsTryingToWalk = true;
-                            playerSprite.IsTryingToWalkRight = false;
+                            playerSprite.IsTryingToWalkRight = true;
                             playerSprite.IsTryingToSlide = true;
                         }
+                        else
+                        {
+                            double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, -Program.collisionDetectionResolution, false);
+                            if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
+                            {
+                                playerSprite.IsTryingToWalk = true;
+                                playerSprite.IsTryingToWalkRight = false;
+                                playerSprite.IsTryingToSlide = true;
+                            }
+                        }
                     }
+                    #endregion
                 }
-                #endregion
-            }
-            else
-            {
-                playerSprite.IsTryingToWalk = false;
-                playerSprite.IsTryingToSlide = false;
-                playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
-                playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
+                else
+                {
+                    playerSprite.IsTryingToWalk = false;
+                    playerSprite.IsTryingToSlide = false;
+                    playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
+                    playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
+                }
             }
             #endregion
 
@@ -402,7 +405,7 @@ namespace AbrahmanAdventure
                 if (sprite != playerSprite)
                 {
                     physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation);
-                    if (sprite is MonsterSprite)
+                    if (sprite is MonsterSprite && sprite.IsAlive)
                         monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
                 }
 
