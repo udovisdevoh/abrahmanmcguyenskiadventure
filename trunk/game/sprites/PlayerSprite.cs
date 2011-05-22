@@ -297,7 +297,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHitTime()
         {
-            return 128;
+            return 64;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)

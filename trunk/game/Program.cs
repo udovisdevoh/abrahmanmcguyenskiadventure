@@ -102,6 +102,8 @@ namespace AbrahmanAdventure
         private double viewOffsetX = -(Program.tileColumnCount / 2);
 
         private double viewOffsetY = 0.0;
+
+        private bool isOddFrame = true;
         #endregion
 
         #region Constructor
@@ -281,6 +283,8 @@ namespace AbrahmanAdventure
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
 
+            isOddFrame = !isOddFrame;
+
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
@@ -424,7 +428,7 @@ namespace AbrahmanAdventure
 
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
-            spriteViewer.Update(viewOffsetX, viewOffsetY, visibleSpriteList);
+            spriteViewer.Update(viewOffsetX, viewOffsetY, visibleSpriteList, isOddFrame);
             hudViewer.Update(playerSprite.Health);
             mainSurface.Update();
             #endregion
