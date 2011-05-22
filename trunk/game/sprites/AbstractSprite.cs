@@ -87,6 +87,12 @@ namespace AbrahmanAdventure.sprites
 
         private double health;
 
+        private double attackStrengthCollision;
+
+        private double currentDamageReceiving = 0.0;
+
+        private double totalHitTime;
+        
         private bool isRunning = false;
 
         private bool isTryingToWalk = false;
@@ -132,10 +138,12 @@ namespace AbrahmanAdventure.sprites
             maxWalkingSpeed = BuildMaxWalkingSpeed();
             maxRunningSpeed = BuildMaxRunningSpeed();
             walkingAcceleration = BuildWalkingAcceleration();
+            attackStrengthCollision = BuildAttackStrengthCollision();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
-            hitCycle = new Cycle(BuildHitTime(), false);
+            totalHitTime = BuildHitTime();
+            hitCycle = new Cycle(totalHitTime, false);
         }
         #endregion
 
@@ -157,6 +165,8 @@ namespace AbrahmanAdventure.sprites
         protected abstract double BuildAttackingTime();
 
         protected abstract double BuildHitTime();
+
+        protected abstract double BuildAttackStrengthCollision();
 
         /// <summary>
         /// sprite's width (1.5 = player's width)
@@ -474,6 +484,22 @@ namespace AbrahmanAdventure.sprites
                     isAlive = true;
                 }
             }
+        }
+
+        public double AttackStrengthCollision
+        {
+            get { return attackStrengthCollision; }
+        }
+
+        public double CurrentDamageReceiving
+        {
+            get { return currentDamageReceiving; }
+            set { currentDamageReceiving = value; }
+        }
+
+        public double TotalHitTime
+        {
+            get { return totalHitTime; }
         }
         #endregion
     }

@@ -29,6 +29,11 @@ namespace AbrahmanAdventure.physics
         private WalkingManager walkingManager = new WalkingManager();
 
         /// <summary>
+        /// Manages damage logic
+        /// </summary>
+        private DamageManager damageManager = new DamageManager();
+
+        /// <summary>
         /// Manages sprite collision
         /// </summary>
         private SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
@@ -47,7 +52,8 @@ namespace AbrahmanAdventure.physics
             walkingManager.Update(sprite, level, timeDelta);
         	gravityManager.Update(sprite, level, timeDelta);
             jumpingManager.Update(sprite, timeDelta);
-            sprite.HitCycle.Increment(timeDelta);
+            
+            damageManager.Update(sprite, timeDelta);
 
             if (sprite is PlayerSprite)
                 spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList);

@@ -44,7 +44,6 @@ namespace AbrahmanAdventure.hud
         /// <param name="playerHealth">player's health (1.0 = default max)</param>
         internal void Update(double playerHealth)
         {
-            playerHealth = 1.0;
             int yellowBarWidth = (int)((playerHealth * (double)(75)) * Program.screenWidth / 640);
 
             Rectangle yellowRectangle = new Rectangle(xYOffset, xYOffset, yellowBarWidth, barThickness);

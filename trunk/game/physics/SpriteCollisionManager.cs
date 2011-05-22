@@ -40,7 +40,11 @@ namespace AbrahmanAdventure.physics
                                         sprite.JumpingCycle.Fire();
                                         sprite.IsTryingToJump = true;
 
-                                        otherSprite.HitCycle.Fire();
+                                        if (otherSprite is MonsterSprite)
+                                        {
+                                            otherSprite.HitCycle.Fire();
+                                            otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                        }
 
                                         if (sprite is PlayerSprite)
                                             ((PlayerSprite)sprite).IsNeedToJumpAgain = true;
@@ -50,9 +54,10 @@ namespace AbrahmanAdventure.physics
                         }
                         else
                         {
-                            if (!sprite.HitCycle.IsFired)
+                            if (otherSprite is MonsterSprite && !sprite.HitCycle.IsFired)
                             {
                                 sprite.HitCycle.Fire();
+                                sprite.CurrentDamageReceiving = otherSprite.AttackStrengthCollision;
                             }
                         }
                     }
