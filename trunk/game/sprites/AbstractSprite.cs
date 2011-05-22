@@ -108,6 +108,8 @@ namespace AbrahmanAdventure.sprites
         private Cycle jumpingCycle;
 
         private Cycle attackingCycle;
+
+        private Cycle hitCycle;
         #endregion
 
         #region Constructor
@@ -133,6 +135,7 @@ namespace AbrahmanAdventure.sprites
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
+            hitCycle = new Cycle(BuildHitTime(), false);
         }
         #endregion
 
@@ -152,6 +155,8 @@ namespace AbrahmanAdventure.sprites
         protected abstract double BuildStartingJumpAcceleration();
 
         protected abstract double BuildAttackingTime();
+
+        protected abstract double BuildHitTime();
 
         /// <summary>
         /// sprite's width (1.5 = player's width)
@@ -440,6 +445,11 @@ namespace AbrahmanAdventure.sprites
         public Cycle AttackingCycle
         {
             get { return attackingCycle; }
+        }
+
+        public Cycle HitCycle
+        {
+            get { return hitCycle; }
         }
 
         public double Health

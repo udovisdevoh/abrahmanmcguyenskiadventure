@@ -89,6 +89,26 @@ namespace AbrahmanAdventure.sprites
             return 0.5;
         }
 
+        protected override double BuildMaxHealth()
+        {
+            return 0.2;
+        }
+
+        protected override bool BuildIsCanJump()
+        {
+            return true;
+        }
+
+        protected override double BuildJumpProbability()
+        {
+            return 1.2;
+        }
+
+        protected override double BuildHitTime()
+        {
+            return 32;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>
@@ -121,21 +141,6 @@ namespace AbrahmanAdventure.sprites
                     return GetLeft2Surface();
                 }
             }
-        }
-
-        protected override double BuildMaxHealth()
-        {
-            return 0.2;
-        }
-
-        protected override bool BuildIsCanJump()
-        {
-            return true;
-        }
-
-        protected override double BuildJumpProbability()
-        {
-            return 1.2;
         }
         #endregion
 
