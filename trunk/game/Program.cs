@@ -288,17 +288,6 @@ namespace AbrahmanAdventure
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
-            #region We manage the death logic for the player
-            if (!playerSprite.IsAlive)
-            {
-                //levelViewer.ClearCache();
-                //level = new Level(random);
-                playerSprite.XPosition = 0;
-                playerSprite.YPosition = Program.totalHeightTileCount / -2;
-                playerSprite.IsAlive = true;
-            }
-            #endregion
-
             #region We manage jumping input logic
             playerSprite.IsTryingToJump = false;
             if (userInput.isPressJump)
@@ -407,16 +396,14 @@ namespace AbrahmanAdventure
 
             HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY);
 
-            physics.Update(playerSprite, level, timeDelta, visibleSpriteList);
+            physics.Update(playerSprite, level, timeDelta, visibleSpriteList, spritePopulation);
 
             foreach (AbstractSprite sprite in visibleSpriteList)
                 if (sprite != playerSprite)
                 {
-                    physics.Update(sprite, level, timeDelta, visibleSpriteList);
+                    physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation);
                     if (sprite is MonsterSprite)
                         monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
-                    if (!sprite.IsAlive)
-                        spritePopulation.Remove(sprite);
                 }
 
             #region We position the camera
