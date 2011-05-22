@@ -48,6 +48,13 @@ namespace AbrahmanAdventure.physics
                                 }
                             }
                         }
+                        else
+                        {
+                            if (!sprite.HitCycle.IsFired)
+                            {
+                                sprite.HitCycle.Fire();
+                            }
+                        }
                     }
                 }
             }

@@ -25,9 +25,17 @@ namespace AbrahmanAdventure.sprites
 
         private Surface standingRightSurface;
 
+        private Surface hitLeftSurface;
+
+        private Surface hitRightSurface;
+
         private Surface crouchedRightSurface;
 
         private Surface crouchedLeftSurface;
+        
+        private Surface crouchedHitRightSurface;
+
+        private Surface crouchedHitLeftSurface;
 
         private Surface attackFrame1RightSurface;
 
@@ -120,6 +128,38 @@ namespace AbrahmanAdventure.sprites
                 crouchedLeftSurface = GetCrouchedRightSurface().CreateFlippedHorizontalSurface();
 
             return crouchedLeftSurface;
+        }
+
+        private Surface GetCrouchedHitRightSurface()
+        {
+            if (crouchedHitRightSurface == null)
+                crouchedHitRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHit.png");
+
+            return crouchedHitRightSurface;
+        }
+
+        private Surface GetCrouchedHitLeftSurface()
+        {
+            if (crouchedHitLeftSurface == null)
+                crouchedHitLeftSurface = GetCrouchedHitRightSurface().CreateFlippedHorizontalSurface();
+
+            return crouchedHitLeftSurface;
+        }
+
+        private Surface GetHitRightSurface()
+        {
+            if (hitRightSurface == null)
+                hitRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/hit.png");
+
+            return hitRightSurface;
+        }
+
+        private Surface GetHitLeftSurface()
+        {
+            if (hitLeftSurface == null)
+                hitLeftSurface = GetHitRightSurface().CreateFlippedHorizontalSurface();
+
+            return hitLeftSurface;
         }
 
         private Surface GetStandingRightSurface()
@@ -297,7 +337,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHitTime()
         {
-            return 64;
+            return 32;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
@@ -306,6 +346,8 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0;
             //If currently attacking
             int attackCycleDivision = AttackingCycle.GetCycleDivision(8);
+
+
             if (AttackingCycle.IsFired)
             {
                 if (IsCrouch)
@@ -403,14 +445,32 @@ namespace AbrahmanAdventure.sprites
 
             if (IsCrouch)
             {
-                if (IsTryingToWalkRight)
-                    return GetCrouchedRightSurface();
+                if (HitCycle.IsFired)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetCrouchedHitRightSurface();
+                    else
+                        return GetCrouchedHitLeftSurface();
+                }
                 else
-                    return GetCrouchedLeftSurface();
+                {
+                    if (IsTryingToWalkRight)
+                        return GetCrouchedRightSurface();
+                    else
+                        return GetCrouchedLeftSurface();
+                }
             }
 
             if (CurrentJumpAcceleration != 0)
             {
+                if (HitCycle.IsFired)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetHitRightSurface();
+                    else
+                        return GetHitLeftSurface();
+                }
+
                 if (IsTryingToWalkRight)
                     return GetWalking1RightSurface();
                 else
@@ -422,6 +482,14 @@ namespace AbrahmanAdventure.sprites
 
                 if (cycleDivision == 1)
                 {
+                    if (HitCycle.IsFired)
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetHitRightSurface();
+                        else
+                            return GetHitLeftSurface();
+                    }
+
                     if (IsTryingToWalkRight)
                         return GetWalking1RightSurface();
                     else
@@ -429,6 +497,14 @@ namespace AbrahmanAdventure.sprites
                 }
                 else if (cycleDivision == 3)
                 {
+                    if (HitCycle.IsFired)
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetHitRightSurface();
+                        else
+                            return GetHitLeftSurface();
+                    }
+
                     if (IsTryingToWalkRight)
                         return GetWalking2RightSurface();
                     else

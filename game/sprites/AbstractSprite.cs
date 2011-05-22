@@ -321,7 +321,13 @@ namespace AbrahmanAdventure.sprites
 
         public double TopBound
         {
-            get { return yPosition - height; }
+            get
+            {
+                if (isCrouch)
+                    return yPosition - (height / 2.0);
+                else
+                    return yPosition - height;
+            }
         }
 
         public double MaximumWalkingHeight

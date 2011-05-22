@@ -191,19 +191,21 @@ namespace AbrahmanAdventure.sprites
             xOffset = 0;
             yOffset = 0;
 
-            if (HitCycle.IsFired)
+            
+            if (CurrentJumpAcceleration != 0)
             {
+                if (HitCycle.IsFired)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetHitRightSurface();
+                    else
+                        return GetHitLeftSurface();
+                }
+
                 if (IsTryingToWalkRight)
-                    return GetHitRightSurface();
+                    return GetStandingRightSurface();
                 else
-                    return GetHitLeftSurface();
-            }
-            else if (CurrentJumpAcceleration != 0)
-            {
-                if (IsTryingToWalkRight)
-                    return GetWalking1RightSurface();
-                else
-                    return GetWalking1LeftSurface();
+                    return GetStandingLeftSurface();
             }
             else if (CurrentWalkingSpeed != 0)
             {
@@ -225,6 +227,14 @@ namespace AbrahmanAdventure.sprites
                 }
                 else
                 {
+                    if (HitCycle.IsFired)
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetHitRightSurface();
+                        else
+                            return GetHitLeftSurface();
+                    }
+
                     if (IsTryingToWalkRight)
                         return GetStandingRightSurface();
                     else
