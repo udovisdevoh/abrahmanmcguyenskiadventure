@@ -5,7 +5,6 @@ fin de level
 	Changement de level
 }
 
-rendre coups de poing et coups de pied effectifs
 life powerup
 Miniboss?
 ?Arme de longe portée si powerup?
@@ -19,6 +18,16 @@ cetrains monstres ne doivent pas avoir de flee mode
 Monstres
 {
 	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
+	
+	Hamburgers
+	{
+		Comportement d'un goomba
+	}
+	
+	Autre monste indéterminé
+	{
+		Comportement d'un koopa
+	}
 	
 	Jesus raptor
 	{
