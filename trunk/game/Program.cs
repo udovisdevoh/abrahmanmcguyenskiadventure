@@ -302,6 +302,9 @@ namespace AbrahmanAdventure
                         playerSprite.Ground = null;
                     else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
                         playerSprite.YPosition = playerSprite.Ground[playerSprite.XPosition];
+
+                    if (playerSprite.Ground == null) //play sound if jump down was a success
+                        SoundManager.PlayJumpDownSound();
                 }
                 else
                 {
