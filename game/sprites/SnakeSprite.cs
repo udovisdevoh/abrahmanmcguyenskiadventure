@@ -147,6 +147,11 @@ namespace AbrahmanAdventure.sprites
                 }
             }
         }
+
+        protected override bool BuildIsFleeWhenAttacked(Random random)
+        {
+            return false;
+        }
         #endregion
 
         #region Private Method

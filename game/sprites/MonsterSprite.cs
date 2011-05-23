@@ -19,6 +19,8 @@ namespace AbrahmanAdventure.sprites
         private bool isCanJump;
 
         private double jumpProbability;
+
+        private bool isFleeWhenAttacked;
         #endregion
 
         #region Constructors
@@ -34,6 +36,7 @@ namespace AbrahmanAdventure.sprites
             defaultUndefinedSurface.Fill(Color.Red);
             isCanJump = BuildIsCanJump();
             jumpProbability = BuildJumpProbability();
+            isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
         }
         #endregion
 
@@ -41,6 +44,12 @@ namespace AbrahmanAdventure.sprites
         protected abstract bool BuildIsCanJump();
 
         protected abstract double BuildJumpProbability();
+
+        /// <summary>
+        /// Whether sprites will flee just after getting attacked
+        /// </summary>
+        /// <returns></returns>
+        protected abstract bool BuildIsFleeWhenAttacked(Random random);
         #endregion
 
         #region Override methods
@@ -65,6 +74,11 @@ namespace AbrahmanAdventure.sprites
         public double JumpProbability
         {
             get { return jumpProbability; }
+        }
+
+        public bool IsFleeWhenAttacked
+        {
+            get { return isFleeWhenAttacked; }
         }
         #endregion
     }

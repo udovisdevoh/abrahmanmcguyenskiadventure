@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.ai
             }
             #endregion
 
-            bool isFleeMode = player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0);
+            bool isFleeMode = (monster.IsFleeWhenAttacked && monster.HitCycle.IsFired) || (player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0));
 
             if (Math.Abs(monster.XPosition - player.XPosition) < (0.75 * monster.Width))
             {
