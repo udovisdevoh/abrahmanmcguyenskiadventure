@@ -10,7 +10,6 @@ Miniboss?
 ?Arme de longe portée si powerup?
 ?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
 certains monstres doivent avoir l'intelligence nécéssaire pour ne pas se garocher dans des trous
-certains monstres doivent marcher en ligne droite comme des Koopa vert et Rouge
 certains monstres doivent automatiquement sauter par dessus les trous
 certains monstres doivent se spawner directement sur le sol (probablement la majorité)
 cetrains monstres ne doivent pas avoir de flee mode
@@ -18,12 +17,7 @@ cetrains monstres ne doivent pas avoir de flee mode
 Monstres
 {
 	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
-	
-	Hamburgers
-	{
-		Comportement d'un goomba
-	}
-	
+
 	Autre monste indéterminé
 	{
 		Comportement d'un koopa
