@@ -18,9 +18,9 @@ Monstres
 {
 	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
 
-	Autre monste indéterminé
+	Police d'escouade anti-émeute
 	{
-		Comportement d'un koopa
+		Comportement d'un koopa, le casque sera comme la carapace
 	}
 	
 	Jesus raptor
