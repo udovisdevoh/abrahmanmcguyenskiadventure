@@ -319,6 +319,27 @@ namespace AbrahmanAdventure
             
             playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown;
 
+            #region We manage attack input logic
+            //Attacking logic
+            if (userInput.isPressAttack)
+            {
+                if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
+                {
+                    SoundManager.PlayAttemptSound();
+                    playerSprite.AttackingCycle.Fire();
+                    playerSprite.IsNeedToAttackAgain = true;
+                }
+            }
+            else
+            {
+                playerSprite.IsNeedToAttackAgain = false;
+            }
+            if (playerSprite.AttackingCycle.IsFired)
+                playerSprite.AttackingCycle.Increment(timeDelta);
+            if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
+                playerSprite.AttackingCycle.Reset();
+            #endregion
+
             #region We manage walking input logic
             if (playerSprite.IsAlive)
             {
@@ -349,7 +370,7 @@ namespace AbrahmanAdventure
                 {
                     #region Sliding
                     playerSprite.IsTryingToWalk = false;
-                    if (playerSprite.Ground != null)
+                    if (playerSprite.Ground != null && !playerSprite.AttackingCycle.IsFired)
                     {
                         double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution, true);
                         if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
@@ -379,27 +400,6 @@ namespace AbrahmanAdventure
                     playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
                 }
             }
-            #endregion
-
-            #region We manage attack input logic
-            //Attacking logic
-            if (userInput.isPressAttack)
-            {
-                if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
-                {
-                    SoundManager.PlayAttemptSound();
-                    playerSprite.AttackingCycle.Fire();
-                    playerSprite.IsNeedToAttackAgain = true;
-                }
-            }
-            else
-            {
-                playerSprite.IsNeedToAttackAgain = false;
-            }
-            if (playerSprite.AttackingCycle.IsFired)
-                playerSprite.AttackingCycle.Increment(timeDelta);
-            if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
-                playerSprite.AttackingCycle.Reset();
             #endregion
 
             HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY);
