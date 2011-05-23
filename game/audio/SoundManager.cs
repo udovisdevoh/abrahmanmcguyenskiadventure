@@ -20,6 +20,27 @@ namespace AbrahmanAdventure.audio
         private static SoundPlayer koSound = new SoundPlayer("./assets/sounds/Ko.wav");
 
         private static SoundPlayer ko2Sound = new SoundPlayer("./assets/sounds/Ko2.wav");
+
+        private static SoundPlayer attemptSound = new SoundPlayer("./assets/sounds/Attempt.wav");
+        #endregion
+
+        #region Constructors
+        static SoundManager()
+        {
+            jumpingSound = LoadSound("./assets/sounds/Jump.wav");
+            hitSound = LoadSound("./assets/sounds/Hit.wav");
+            hit2Sound = LoadSound("./assets/sounds/Hit2.wav");
+            koSound = LoadSound("./assets/sounds/Ko.wav");
+            ko2Sound = LoadSound("./assets/sounds/Ko2.wav");
+            attemptSound = LoadSound("./assets/sounds/Attempt.wav");
+        }
+
+        private static SoundPlayer LoadSound(string fileName)
+        {
+            SoundPlayer soundPlayer = new SoundPlayer(fileName);
+            soundPlayer.Load();
+            return soundPlayer;
+        }
         #endregion
 
         #region Internal Methods
@@ -46,6 +67,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayKo2Sound()
         {
             ko2Sound.Play();
+        }
+
+        internal static void PlayAttemptSound()
+        {
+            attemptSound.Play();
         }
         #endregion
     }
