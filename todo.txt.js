@@ -1,12 +1,3 @@
-REMOVE HACKS:
-{
-	IsJustDied
-	and
-	IsFirstFrame
-	
-	Replace with events and put listener in sound manager
-}
-
 fin de level
 {
 	Boss?
