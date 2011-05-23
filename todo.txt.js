@@ -7,11 +7,6 @@ REMOVE HACKS:
 	Replace with events and put listener in sound manager
 }
 
-Add sound when player gets hurt
-{
-	Replace some sounds with sounds from doom
-}
-
 fin de level
 {
 	Boss?
@@ -19,12 +14,9 @@ fin de level
 	Changement de level
 }
 
-énergie perdable pour player
-énergie perdable pour monstre
-
+rendre coups de poing et coups de pied effectifs
 life powerup
 Miniboss?
-Énergie perdable pour player et monstres
 ?Arme de longe portée si powerup?
 ?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
 certains monstres doivent avoir l'intelligence nécéssaire pour ne pas se garocher dans des trous
