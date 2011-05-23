@@ -74,6 +74,7 @@
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\BlobSprite.cs" />
+    <Compile Include="game\sprites\HamburgerSprite.cs" />
     <Compile Include="game\sprites\JewSprite.cs" />
     <Compile Include="game\sprites\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
@@ -207,6 +208,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\eye\eye.png" />
+    <Content Include="assets\rendered\hamburger\hamburger1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\hamburger\hamburger2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\jew\attack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
