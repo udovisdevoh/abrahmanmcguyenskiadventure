@@ -25,6 +25,7 @@ namespace AbrahmanAdventure.physics
             }*/
 
             sprite.HitCycle.Increment(timeDelta);
+            sprite.PunchedCycle.Increment(timeDelta);
 
             if (sprite.IsAlive && sprite.HitCycle.IsFired && sprite.HitCycle.CurrentValue <= sprite.HitCycle.TotalTimeLength / 3.0)
             {

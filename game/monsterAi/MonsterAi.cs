@@ -39,6 +39,9 @@ namespace AbrahmanAdventure.ai
 
             bool isFleeMode = (monster.IsFleeWhenAttacked && monster.HitCycle.IsFired) || (player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0));
 
+            if (monster.PunchedCycle.IsFired) //always flee after a punch
+                isFleeMode = true;
+
             if (Math.Abs(monster.XPosition - player.XPosition) < (0.75 * monster.Width))
             {
                 monster.IsTryingToWalk = false;//Too close, don't chase nor flee

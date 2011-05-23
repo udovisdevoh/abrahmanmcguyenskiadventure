@@ -116,6 +116,8 @@ namespace AbrahmanAdventure.sprites
         private Cycle attackingCycle;
 
         private Cycle hitCycle;
+
+        private Cycle punchedCycle;
         #endregion
 
         #region Constructor
@@ -144,6 +146,7 @@ namespace AbrahmanAdventure.sprites
             attackingCycle = new Cycle(BuildAttackingTime(), false);
             totalHitTime = BuildHitTime();
             hitCycle = new Cycle(totalHitTime, false);
+            punchedCycle = new Cycle(totalHitTime, false);
         }
         #endregion
 
@@ -480,6 +483,11 @@ namespace AbrahmanAdventure.sprites
             get { return hitCycle; }
         }
 
+        public Cycle PunchedCycle
+        {
+            get { return punchedCycle; }
+        }
+
         public double Health
         {
             get { return health; }
@@ -514,6 +522,16 @@ namespace AbrahmanAdventure.sprites
         public double TotalHitTime
         {
             get { return totalHitTime; }
+        }
+
+        public double RightPunchBound
+        {
+            get { return RightBound + Math.Min(height, width); }
+        }
+
+        public double LeftPunchBound
+        {
+            get { return LeftBound - Math.Min(height,width); }
         }
         #endregion
     }
