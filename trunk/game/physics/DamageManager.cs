@@ -18,15 +18,15 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">Time delta</param>
         internal void Update(AbstractSprite sprite, double timeDelta)
         {
-            if (sprite is MonsterSprite && sprite.Health < sprite.CurrentDamageReceiving)
+            /*if (sprite is MonsterSprite && sprite.Health < sprite.CurrentDamageReceiving)
             {
                 sprite.IsAlive = false;
-            }
+            }*/
 
             sprite.HitCycle.Increment(timeDelta);
-            
-            if (sprite.IsAlive && sprite.HitCycle.IsFired)
-                sprite.Health -= sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime;
+
+            if (sprite.IsAlive && sprite.HitCycle.IsFired && sprite.HitCycle.CurrentValue <= sprite.HitCycle.TotalTimeLength / 3.0)
+                sprite.Health -= (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 3.0;
         }
     }
 }

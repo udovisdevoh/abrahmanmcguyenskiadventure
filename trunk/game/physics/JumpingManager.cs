@@ -43,10 +43,6 @@ namespace AbrahmanAdventure.physics
                     sprite.Ground = null;
                     sprite.JumpingCycle.IsFirstFrame = true;
                 }
-                else
-                {
-                    sprite.JumpingCycle.IsFirstFrame = false;
-                }
 
                 if (sprite.CurrentJumpAcceleration < 0)
                 {

@@ -11,6 +11,10 @@ namespace AbrahmanAdventure.audio
     {
         #region Fields and parts
         private SoundPlayer jumpingSound = new SoundPlayer("./assets/sounds/Jump.wav");
+
+        private SoundPlayer hitSound = new SoundPlayer("./assets/sounds/Hit.wav");
+        
+        private SoundPlayer koSound = new SoundPlayer("./assets/sounds/Ko.wav");
         #endregion
 
         #region Internal Methods
@@ -26,8 +30,19 @@ namespace AbrahmanAdventure.audio
         #region Public Methods
         private void PlaySounds(AbstractSprite sprite)
         {
-            if (sprite is PlayerSprite && sprite.JumpingCycle.IsFirstFrame)
+            if (!sprite.IsAlive && sprite.IsJustDied)
             {
+                sprite.IsJustDied = false;
+                koSound.Play();
+            }
+            else if (sprite is MonsterSprite && sprite.HitCycle.IsFirstFrame)
+            {
+                sprite.HitCycle.IsFirstFrame = false;
+                hitSound.Play();
+            }
+            else if (sprite is PlayerSprite && sprite.JumpingCycle.IsFirstFrame)
+            {
+                sprite.JumpingCycle.IsFirstFrame = false;
                 jumpingSound.Play();
             }
         }
