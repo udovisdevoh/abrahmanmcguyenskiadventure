@@ -42,6 +42,7 @@ namespace AbrahmanAdventure.physics
 
                                         if (otherSprite is MonsterSprite)
                                         {
+                                            otherSprite.HitCycle.IsFirstFrame = true;
                                             otherSprite.HitCycle.Fire();
                                             otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
                                         }
@@ -56,6 +57,7 @@ namespace AbrahmanAdventure.physics
                         {
                             if (otherSprite is MonsterSprite && !sprite.HitCycle.IsFired)
                             {
+                                sprite.HitCycle.IsFirstFrame = true;
                                 sprite.HitCycle.Fire();
                                 sprite.CurrentDamageReceiving = otherSprite.AttackStrengthCollision;
                             }

@@ -68,6 +68,8 @@ namespace AbrahmanAdventure.sprites
 
         private bool isNeedToAttackAgain = false;
 
+        private bool isJustDied = false;
+
         /// <summary>
         /// Previous value of yPosition so we can know if the sprite is falling/jumping up or down
         /// </summary>
@@ -449,7 +451,10 @@ namespace AbrahmanAdventure.sprites
                 currentDamageReceiving = 0.0;
                 isAlive = value;
                 if (isAlive)
+                {
                     health = maxHealth;
+                    isJustDied = false;
+                }
                 else
                 {
                     health = 0.0;
@@ -490,10 +495,12 @@ namespace AbrahmanAdventure.sprites
                     currentDamageReceiving = 0.0;
                     isAlive = false;
                     ground = null;
+                    isJustDied = true;
                 }
                 else
                 {
                     isAlive = true;
+                    isJustDied = false;
                 }
             }
         }
@@ -512,6 +519,15 @@ namespace AbrahmanAdventure.sprites
         public double TotalHitTime
         {
             get { return totalHitTime; }
+        }
+
+        /// <summary>
+        /// We set this manually
+        /// </summary>
+        public bool IsJustDied
+        {
+            get { return isJustDied; }
+            set { isJustDied = value; }
         }
         #endregion
     }

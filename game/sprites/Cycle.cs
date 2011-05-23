@@ -89,6 +89,11 @@ namespace AbrahmanAdventure.sprites
             get { return isFirstFrame; }
             set { isFirstFrame = value; }
         }
+
+        public double TotalTimeLength
+        {
+            get { return totalTimeLength; }
+        }
         #endregion
     }
 }
