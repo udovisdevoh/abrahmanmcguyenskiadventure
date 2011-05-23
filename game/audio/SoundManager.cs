@@ -11,7 +11,9 @@ namespace AbrahmanAdventure.audio
     internal static class SoundManager
     {
         #region Fields and parts
-        private static SoundPlayer jumpingSound = new SoundPlayer("./assets/sounds/Jump.wav");
+        private static SoundPlayer jumpSound = new SoundPlayer("./assets/sounds/Jump.wav");
+
+        private static SoundPlayer jumpDownSound = new SoundPlayer("./assets/sounds/JumpDown.wav");
 
         private static SoundPlayer hitSound = new SoundPlayer("./assets/sounds/Hit.wav");
 
@@ -29,7 +31,7 @@ namespace AbrahmanAdventure.audio
         #region Constructors
         static SoundManager()
         {
-            jumpingSound = LoadSound("./assets/sounds/Jump.wav");
+            jumpSound = LoadSound("./assets/sounds/Jump.wav");
             hitSound = LoadSound("./assets/sounds/Hit.wav");
             hit2Sound = LoadSound("./assets/sounds/Hit2.wav");
             koSound = LoadSound("./assets/sounds/Ko.wav");
@@ -48,7 +50,12 @@ namespace AbrahmanAdventure.audio
         #region Internal Methods
         internal static void PlayJumpSound()
         {
-            jumpingSound.Play();
+            jumpSound.Play();
+        }
+
+        internal static void PlayJumpDownSound()
+        {
+            jumpDownSound.Play();
         }
 
         internal static void PlayHitSound()
