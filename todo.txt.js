@@ -1,3 +1,17 @@
+REMOVE HACKS:
+{
+	IsJustDied
+	and
+	IsFirstFrame
+	
+	Replace with events and put listener in sound manager
+}
+
+Add sound when player gets hurt
+{
+	Replace some sounds with sounds from doom
+}
+
 fin de level
 {
 	Boss?
