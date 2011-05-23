@@ -192,6 +192,11 @@ namespace AbrahmanAdventure.sprites
             return 0.5;
         }
 
+        protected override bool BuildIsFleeWhenAttacked(Random random)
+        {
+            return random.Next(0, 3) == 1;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>
