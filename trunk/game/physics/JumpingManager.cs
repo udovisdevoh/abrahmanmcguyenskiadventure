@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -41,7 +42,8 @@ namespace AbrahmanAdventure.physics
                     sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                     sprite.Ground = null;
-                    sprite.JumpingCycle.IsFirstFrame = true;
+                    if (sprite is PlayerSprite)
+                        SoundManager.PlayJumpSound();
                 }
 
                 if (sprite.CurrentJumpAcceleration < 0)

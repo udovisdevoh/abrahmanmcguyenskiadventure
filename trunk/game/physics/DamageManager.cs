@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -26,7 +27,17 @@ namespace AbrahmanAdventure.physics
             sprite.HitCycle.Increment(timeDelta);
 
             if (sprite.IsAlive && sprite.HitCycle.IsFired && sprite.HitCycle.CurrentValue <= sprite.HitCycle.TotalTimeLength / 3.0)
+            {
                 sprite.Health -= (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 3.0;
+
+                if (!sprite.IsAlive)
+                {
+                    if (sprite is MonsterSprite)
+                        SoundManager.PlayKoSound();
+                    else if (sprite is PlayerSprite)
+                        SoundManager.PlayKo2Sound();
+                }
+            }
         }
     }
 }

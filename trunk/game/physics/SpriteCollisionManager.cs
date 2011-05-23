@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -42,7 +43,7 @@ namespace AbrahmanAdventure.physics
 
                                         if (otherSprite is MonsterSprite)
                                         {
-                                            otherSprite.HitCycle.IsFirstFrame = true;
+                                            SoundManager.PlayHitSound();
                                             otherSprite.HitCycle.Fire();
                                             otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
                                         }
@@ -57,7 +58,7 @@ namespace AbrahmanAdventure.physics
                         {
                             if (otherSprite is MonsterSprite && !sprite.HitCycle.IsFired)
                             {
-                                sprite.HitCycle.IsFirstFrame = true;
+                                SoundManager.PlayHit2Sound();
                                 sprite.HitCycle.Fire();
                                 sprite.CurrentDamageReceiving = otherSprite.AttackStrengthCollision;
                             }

@@ -15,8 +15,6 @@ namespace AbrahmanAdventure.sprites
         private bool isAutoReset;
 
         private bool isFired;
-
-        private bool isFirstFrame;
         #endregion
 
         #region Constructor
@@ -79,15 +77,6 @@ namespace AbrahmanAdventure.sprites
         public bool IsFired
         {
             get { return isFired; }
-        }
-
-        /// <summary>
-        /// We set this manually
-        /// </summary>
-        public bool IsFirstFrame
-        {
-            get { return isFirstFrame; }
-            set { isFirstFrame = value; }
         }
 
         public double TotalTimeLength
