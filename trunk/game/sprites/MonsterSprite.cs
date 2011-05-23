@@ -21,6 +21,10 @@ namespace AbrahmanAdventure.sprites
         private double jumpProbability;
 
         private bool isFleeWhenAttacked;
+
+        private bool isAiEnabled;
+
+        private bool isNoAiDefaultDirectionWalkingRight;
         #endregion
 
         #region Constructors
@@ -37,10 +41,14 @@ namespace AbrahmanAdventure.sprites
             isCanJump = BuildIsCanJump();
             jumpProbability = BuildJumpProbability();
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
+            isAiEnabled = BuildIsAiEnabled();
+            isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
         }
         #endregion
 
         #region Abstract methods
+        protected abstract bool BuildIsAiEnabled();
+
         protected abstract bool BuildIsCanJump();
 
         protected abstract double BuildJumpProbability();
@@ -79,6 +87,17 @@ namespace AbrahmanAdventure.sprites
         public bool IsFleeWhenAttacked
         {
             get { return isFleeWhenAttacked; }
+        }
+
+        public bool IsAiEnabled
+        {
+            get { return isAiEnabled; }
+        }
+
+        public bool IsNoAiDefaultDirectionWalkingRight
+        {
+            get { return isNoAiDefaultDirectionWalkingRight; }
+            set { isNoAiDefaultDirectionWalkingRight = value; }
         }
         #endregion
     }

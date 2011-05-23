@@ -111,6 +111,11 @@ namespace AbrahmanAdventure.sprites
             return 0.4;
         }
 
+        protected override bool BuildIsAiEnabled()
+        {
+            return true;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>
