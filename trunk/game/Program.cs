@@ -384,6 +384,7 @@ namespace AbrahmanAdventure
             {
                 if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
                 {
+                    SoundManager.PlayAttemptSound();
                     playerSprite.AttackingCycle.Fire();
                     playerSprite.IsNeedToAttackAgain = true;
                 }
