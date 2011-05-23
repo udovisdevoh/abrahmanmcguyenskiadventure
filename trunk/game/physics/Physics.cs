@@ -29,6 +29,11 @@ namespace AbrahmanAdventure.physics
         private WalkingManager walkingManager = new WalkingManager();
 
         /// <summary>
+        /// Manages fist/kick fight logic
+        /// </summary>
+        private BattleManager battleManager = new BattleManager();
+
+        /// <summary>
         /// Manages damage logic
         /// </summary>
         private DamageManager damageManager = new DamageManager();
@@ -61,7 +66,10 @@ namespace AbrahmanAdventure.physics
             deathManager.Update(sprite, timeDelta, spritePopulation);
 
             if (sprite is PlayerSprite)
+            {
                 spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList);
+                battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
+            }
         }
         #endregion
 
@@ -143,7 +151,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite1">sprite 1</param>
         /// <param name="sprite2">sprite 2</param>
-        /// <returns></returns>
+        /// <returns>Whether sprites are in collision</returns>
         internal static bool IsDetectCollision(AbstractSprite sprite1, AbstractSprite sprite2)
         {
             bool isHorizontalCollision = (sprite1.RightBound > sprite2.LeftBound && sprite1.LeftBound < sprite1.LeftBound)
@@ -155,6 +163,52 @@ namespace AbrahmanAdventure.physics
                                      || (sprite2.YPosition > sprite1.TopBound && sprite2.YPosition < sprite1.YPosition);
             
             return isHorizontalCollision && isVerticalCollision;
+        }
+
+        /// <summary>
+        /// Whether sprite 1 is punching or kicking sprite 2
+        /// </summary>
+        /// <param name="sprite1">sprite 1</param>
+        /// <param name="sprite2">sprite 2</param>
+        /// <returns>Whether sprite 1 is punching or kicking sprite 2</returns>
+        internal static bool IsDetectCollisionPunchOrKick(AbstractSprite sprite1, AbstractSprite sprite2)
+        {
+            if (sprite1.AttackingCycle.IsFired)
+            {
+                int attackCycleDivision = sprite1.AttackingCycle.GetCycleDivision(8);
+                if (attackCycleDivision >= 4)
+                {
+                    bool isHorizontalCollision, isVerticalCollision;
+
+                    if (sprite1.IsTryingToWalkRight)
+                    {
+                        isHorizontalCollision = (sprite1.RightPunchBound > sprite2.LeftBound && sprite1.LeftBound < sprite2.LeftBound);
+                    }
+                    else
+                    {
+                        isHorizontalCollision = (sprite1.LeftPunchBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
+                    }
+
+                    double sprite1TopBound, sprite1BottomBound;
+
+                    if (sprite1.Ground == null || sprite1.IsCrouch)
+                    {
+                        sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0;
+                        sprite1BottomBound = sprite1.YPosition;
+                    }
+                    else
+                    {
+                        sprite1TopBound = sprite1.TopBound;
+                        sprite1BottomBound = sprite1.YPosition - sprite1.Height / 2.0;
+                    }
+
+                    isVerticalCollision = (sprite1TopBound > sprite2.TopBound && sprite1.TopBound < sprite2.YPosition)
+                                        || (sprite1BottomBound > sprite2.TopBound && sprite1.TopBound < sprite2.YPosition);
+
+                    return isHorizontalCollision && isVerticalCollision;
+                }
+            }
+            return false;
         }
         #endregion
     }

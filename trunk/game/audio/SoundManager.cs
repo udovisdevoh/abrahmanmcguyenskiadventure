@@ -22,6 +22,8 @@ namespace AbrahmanAdventure.audio
         private static SoundPlayer ko2Sound = new SoundPlayer("./assets/sounds/Ko2.wav");
 
         private static SoundPlayer attemptSound = new SoundPlayer("./assets/sounds/Attempt.wav");
+
+        private static SoundPlayer punchSound = new SoundPlayer("./assets/sounds/Punch.wav");
         #endregion
 
         #region Constructors
@@ -72,6 +74,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayAttemptSound()
         {
             attemptSound.Play();
+        }
+
+        internal static void PlayPunchSound()
+        {
+            punchSound.Play();
         }
         #endregion
     }
