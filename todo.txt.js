@@ -1,4 +1,4 @@
-RiotControl: doivent avoir 2 couleurs. Une qui se garoche dans les trous, une que non.
+IsAvoidFall: si sprite est entrain de sauter, utilise ground le plus haut en dessous du sprite comme ground pour checker sa slope, comme ça, le sprite ne tombera pas dans le trou s'il saute déjà
 
 fin de level
 {
