@@ -1,3 +1,5 @@
+RiotControl: doivent avoir 2 couleurs. Une qui se garoche dans les trous, une que non.
+
 fin de level
 {
 	Boss?
@@ -9,7 +11,6 @@ life powerup
 Miniboss?
 ?Arme de longe portée si powerup?
 ?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
-certains monstres doivent avoir l'intelligence nécéssaire pour ne pas se garocher dans des trous
 certains monstres doivent automatiquement sauter par dessus les trous
 certains monstres doivent se spawner directement sur le sol (probablement la majorité)
 cetrains monstres ne doivent pas avoir de flee mode
