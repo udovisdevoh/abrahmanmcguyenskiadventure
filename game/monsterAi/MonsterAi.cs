@@ -86,7 +86,7 @@ namespace AbrahmanAdventure.ai
                         walkingDistance *= -1;
 
                     double slope = Physics.GetSlopeRatio(monster, groundToTestSlope, walkingDistance, monster.IsNoAiDefaultDirectionWalkingRight);
-                    if (slope > 1.9)//0.8)
+                    if (slope > 6)//0.8)
                     {
                         if (!monster.IsAiEnabled)
                             monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
