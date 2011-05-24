@@ -91,7 +91,7 @@ namespace AbrahmanAdventure.sprites
             return 0.47;
         }
 
-        protected override bool BuildIsCanJump()
+        protected override bool BuildIsCanJump(Random random)
         {
             return true;
         }

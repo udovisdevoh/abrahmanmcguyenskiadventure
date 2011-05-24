@@ -38,7 +38,7 @@ namespace AbrahmanAdventure.sprites
         {
             defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
             defaultUndefinedSurface.Fill(Color.Red);
-            isCanJump = BuildIsCanJump();
+            isCanJump = BuildIsCanJump(random);
             jumpProbability = BuildJumpProbability();
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.sprites
         #region Abstract methods
         protected abstract bool BuildIsAiEnabled();
 
-        protected abstract bool BuildIsCanJump();
+        protected abstract bool BuildIsCanJump(Random random);
 
         protected abstract double BuildJumpProbability();
 
