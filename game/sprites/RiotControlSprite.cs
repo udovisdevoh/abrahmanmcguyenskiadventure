@@ -8,12 +8,12 @@ using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.sprites
 {
-    class JewSprite : MonsterSprite
+    class RiotControlSprite : MonsterSprite
     {
         #region Fields and parts
-        private static Surface walking1LeftSurface;
+        private static Surface walkingLeftSurface;
 
-        private static Surface walking1RightSurface;
+        private static Surface walkingRightSurface;
 
         private static Surface walking2LeftSurface;
 
@@ -37,42 +37,26 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public JewSprite(double xPosition, double yPosition, Random random)
+        public RiotControlSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
         }
         #endregion
 
         #region Private Methods
-        private Surface GetWalking1RightSurface()
+        private Surface GetWalkingRightSurface()
         {
-            if (walking1RightSurface == null)
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/jew/walk1.png");
-            return walking1RightSurface;
+            if (walkingRightSurface == null)
+                walkingRightSurface = BuildSpriteSurface("./assets/rendered/riotControl/walk.png");
+            return walkingRightSurface;
         }
 
-        private Surface GetWalking1LeftSurface()
+        private Surface GetWalkingLeftSurface()
         {
-            if (walking1LeftSurface == null)
-                walking1LeftSurface = GetWalking1RightSurface().CreateFlippedHorizontalSurface();
+            if (walkingLeftSurface == null)
+                walkingLeftSurface = GetWalkingRightSurface().CreateFlippedHorizontalSurface();
 
-            return walking1LeftSurface;
-        }
-
-        private Surface GetWalking2LeftSurface()
-        {
-            if (walking2LeftSurface == null)
-                walking2LeftSurface = GetWalking2RightSurface().CreateFlippedHorizontalSurface();
-
-            return walking2LeftSurface;
-        }
-
-        private Surface GetWalking2RightSurface()
-        {
-            if (walking2RightSurface == null)
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/jew/walk2.png");
-
-            return walking2RightSurface;
+            return walkingLeftSurface;
         }
 
         private Surface GetStandingLeftSurface()
@@ -86,25 +70,9 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurface()
         {
             if (standingRightSurface == null)
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/jew/stand.png");
+                standingRightSurface = BuildSpriteSurface("./assets/rendered/riotControl/stand.png");
 
             return standingRightSurface;
-        }
-
-        private Surface GetHitRightSurface()
-        {
-            if (hitRightSurface == null)
-                hitRightSurface = BuildSpriteSurface("./assets/rendered/jew/hit.png");
-
-            return hitRightSurface;
-        }
-
-        private Surface GetHitLeftSurface()
-        {
-            if (hitLeftSurface == null)
-                hitLeftSurface = GetHitRightSurface().CreateFlippedHorizontalSurface();
-
-            return hitLeftSurface;
         }
 
         private Surface GetDeadSurface()
@@ -129,17 +97,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.3;
         }
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.35;
+            return 0.25;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.65;
+            return 0.55;
         }
 
         protected override double BuildStartingJumpAcceleration()
@@ -174,9 +142,9 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return true;
+            return random.Next(0, 2) == 1;
         }
-        
+
         protected override double BuildJumpProbability()
         {
             return 0.2;
@@ -194,12 +162,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
-            return random.Next(0, 2) == 1;
+            return false;
         }
 
         protected override bool BuildIsAiEnabled()
         {
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -208,21 +176,20 @@ namespace AbrahmanAdventure.sprites
         /// <returns>sprite's current surface</returns>
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            if (IsTryingToWalkRight)
-                xOffset = 0.1;
-            else
-                xOffset = -0.1;
-            yOffset = 0;
-
+            xOffset = 0;
+            yOffset = 0.24;
             if (!IsAlive)
+            {
                 return GetDeadSurface();
+            }
 
             if (CurrentJumpAcceleration != 0)
             {
+                yOffset = 0.4;
                 if (IsTryingToWalkRight)
-                    return GetWalking1RightSurface();
+                    return GetWalkingRightSurface();
                 else
-                    return GetWalking1LeftSurface();
+                    return GetWalkingLeftSurface();
             }
             else if (CurrentWalkingSpeed != 0)
             {
@@ -230,36 +197,23 @@ namespace AbrahmanAdventure.sprites
 
                 if (cycleDivision == 1)
                 {
-                    if (HitCycle.IsFired)
-                    {
-                        if (IsTryingToWalkRight)
-                            return GetHitRightSurface();
-                        else
-                            return GetHitLeftSurface();
-                    }
-
+                    yOffset = 0.4;
                     if (IsTryingToWalkRight)
-                        return GetWalking1RightSurface();
+                        return GetWalkingRightSurface();
                     else
-                        return GetWalking1LeftSurface();
+                        return GetWalkingLeftSurface();
                 }
                 else if (cycleDivision == 3)
                 {
-                    if (HitCycle.IsFired)
-                    {
-                        if (IsTryingToWalkRight)
-                            return GetHitRightSurface();
-                        else
-                            return GetHitLeftSurface();
-                    }
-
+                    yOffset = 0.4;
                     if (IsTryingToWalkRight)
-                        return GetWalking2RightSurface();
+                        return GetWalkingRightSurface();
                     else
-                        return GetWalking2LeftSurface();
+                        return GetWalkingLeftSurface();
                 }
                 else
                 {
+                    yOffset = 0.24;
                     if (IsTryingToWalkRight)
                         return GetStandingRightSurface();
                     else
@@ -268,6 +222,7 @@ namespace AbrahmanAdventure.sprites
             }
             else
             {
+                yOffset = 0.24;
                 if (IsTryingToWalkRight)
                     return GetStandingRightSurface();
                 else

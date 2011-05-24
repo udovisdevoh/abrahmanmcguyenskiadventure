@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.ai
             #region AI Jumping logic
             if (monster.IsCanJump)
             {
-                if (monster.CurrentWalkingSpeed < 0.01)
+                if (monster.CurrentWalkingSpeed < monster.WalkingAcceleration / 2.0)
                     monster.IsTryingToJump = true;
 
                 /*if (player.Ground != null && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
@@ -71,7 +71,7 @@ namespace AbrahmanAdventure.ai
             else
             {
                 #region Walking no AI
-                if (monster.CurrentWalkingSpeed < 0.01) //Change direction if can't move
+                if (monster.CurrentWalkingSpeed < monster.WalkingAcceleration / 2.0) //Change direction if can't move
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
 
                 monster.IsTryingToWalk = true;
