@@ -61,12 +61,35 @@ namespace AbrahmanAdventure.sprites
             return walkingLeftSurface;
         }
 
+        private Surface GetWalking2RightSurface()
+        {
+            if (walking2RightSurface == null)
+                walking2RightSurface = BuildSpriteSurface("./assets/rendered/riotControl/walk2.png");
+            return walking2RightSurface;
+        }
+
+        private Surface GetWalking2LeftSurface()
+        {
+            if (walking2LeftSurface == null)
+                walking2LeftSurface = GetWalking2RightSurface().CreateFlippedHorizontalSurface();
+
+            return walking2LeftSurface;
+        }
+
         private Surface GetStandingLeftSurface()
         {
             if (standingLeftSurface == null)
                 standingLeftSurface = GetStandingRightSurface().CreateFlippedHorizontalSurface();
 
             return standingLeftSurface;
+        }
+
+        private Surface GetStanding2LeftSurface()
+        {
+            if (standing2LeftSurface == null)
+                standing2LeftSurface = GetStanding2RightSurface().CreateFlippedHorizontalSurface();
+
+            return standing2LeftSurface;
         }
 
         private Surface GetStandingRightSurface()
@@ -120,7 +143,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.25;
+            return 0.17;
         }
 
         protected override double BuildMaxRunningSpeed()
@@ -212,47 +235,79 @@ namespace AbrahmanAdventure.sprites
             if (CurrentJumpAcceleration != 0)
             {
                 yOffset = 0.4;
-                if (IsTryingToWalkRight)
-                    return GetWalkingRightSurface();
+                if (IsAvoidFall)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalkingRightSurface();
+                    else
+                        return GetWalkingLeftSurface();
+                }
                 else
-                    return GetWalkingLeftSurface();
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking2RightSurface();
+                    else
+                        return GetWalking2LeftSurface();
+                }
             }
             else if (CurrentWalkingSpeed != 0)
             {
                 int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
-                if (cycleDivision == 1)
+                if (cycleDivision == 1 || cycleDivision == 3)
                 {
                     yOffset = 0.4;
-                    if (IsTryingToWalkRight)
-                        return GetWalkingRightSurface();
+                    if (IsAvoidFall)
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetWalkingRightSurface();
+                        else
+                            return GetWalkingLeftSurface();
+                    }
                     else
-                        return GetWalkingLeftSurface();
-                }
-                else if (cycleDivision == 3)
-                {
-                    yOffset = 0.4;
-                    if (IsTryingToWalkRight)
-                        return GetWalkingRightSurface();
-                    else
-                        return GetWalkingLeftSurface();
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetWalking2RightSurface();
+                        else
+                            return GetWalking2LeftSurface();
+                    }
                 }
                 else
                 {
                     yOffset = 0.24;
-                    if (IsTryingToWalkRight)
-                        return GetStandingRightSurface();
+                    if (IsAvoidFall)
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetStandingRightSurface();
+                        else
+                            return GetStandingLeftSurface();
+                    }
                     else
-                        return GetStandingLeftSurface();
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetStanding2RightSurface();
+                        else
+                            return GetStanding2LeftSurface();
+                    }
                 }
             }
             else
             {
                 yOffset = 0.24;
-                if (IsTryingToWalkRight)
-                    return GetStandingRightSurface();
+                if (IsAvoidFall)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetStandingRightSurface();
+                    else
+                        return GetStandingLeftSurface();
+                }
                 else
-                    return GetStandingLeftSurface();
+                {
+                    if (IsTryingToWalkRight)
+                        return GetStanding2RightSurface();
+                    else
+                        return GetStanding2LeftSurface();
+                }
             }
         }
         #endregion
