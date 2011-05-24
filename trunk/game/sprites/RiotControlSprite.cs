@@ -23,11 +23,13 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface standingRightSurface;
 
-        private static Surface hitRightSurface;
+        private static Surface standing2LeftSurface;
 
-        private static Surface hitLeftSurface;
+        private static Surface standing2RightSurface;
 
         private static Surface deadSurface;
+
+        private static Surface dead2Surface;
         #endregion
 
         #region Constructors
@@ -75,12 +77,28 @@ namespace AbrahmanAdventure.sprites
             return standingRightSurface;
         }
 
+        private Surface GetStanding2RightSurface()
+        {
+            if (standing2RightSurface == null)
+                standing2RightSurface = BuildSpriteSurface("./assets/rendered/riotControl/stand2.png");
+
+            return standing2RightSurface;
+        }
+
         private Surface GetDeadSurface()
         {
             if (deadSurface == null)
                 deadSurface = GetStandingRightSurface().CreateFlippedVerticalSurface();
 
             return deadSurface;
+        }
+
+        private Surface GetDeadSurface2()
+        {
+            if (dead2Surface == null)
+                dead2Surface = GetStanding2RightSurface().CreateFlippedVerticalSurface();
+
+            return dead2Surface;
         }
         #endregion
 
@@ -172,7 +190,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAvoidFall(Random random)
         {
-            return true;
+            return random.Next(0, 2) == 1;
         }
 
         /// <summary>
@@ -185,7 +203,10 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0.24;
             if (!IsAlive)
             {
-                return GetDeadSurface();
+                if (IsAvoidFall)
+                    return GetDeadSurface();
+                else
+                    return GetDeadSurface2();
             }
 
             if (CurrentJumpAcceleration != 0)
