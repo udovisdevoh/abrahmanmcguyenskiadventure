@@ -15,16 +15,18 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private Surface defaultUndefinedSurface;
+        
+        private double jumpProbability;
 
         private bool isCanJump;
-
-        private double jumpProbability;
 
         private bool isFleeWhenAttacked;
 
         private bool isAiEnabled;
 
         private bool isNoAiDefaultDirectionWalkingRight;
+
+        private bool isAvoidFall;
         #endregion
 
         #region Constructors
@@ -42,6 +44,7 @@ namespace AbrahmanAdventure.sprites
             jumpProbability = BuildJumpProbability();
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
+            isAvoidFall = BuildIsAvoidFall(random);
             isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
         }
         #endregion
@@ -50,6 +53,8 @@ namespace AbrahmanAdventure.sprites
         protected abstract bool BuildIsAiEnabled();
 
         protected abstract bool BuildIsCanJump(Random random);
+
+        protected abstract bool BuildIsAvoidFall(Random random);
 
         protected abstract double BuildJumpProbability();
 
@@ -98,6 +103,11 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isNoAiDefaultDirectionWalkingRight; }
             set { isNoAiDefaultDirectionWalkingRight = value; }
+        }
+
+        public bool IsAvoidFall
+        {
+            get { return isAvoidFall; }
         }
         #endregion
     }
