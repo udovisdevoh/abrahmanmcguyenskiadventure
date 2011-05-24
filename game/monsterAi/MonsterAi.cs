@@ -74,16 +74,19 @@ namespace AbrahmanAdventure.ai
                 if (monster.CurrentWalkingSpeed < monster.WalkingAcceleration / 2.0) //Change direction if can't move
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
 
-                #region Some monsters do not fall in holes, they change direction instead
-                if (monster.IsAvoidFall && monster.Ground != null)
+                #region Some monsters should not fall in holes, they change direction instead
+                Ground groundToTestSlope = monster.Ground;
+                if (groundToTestSlope == null)
+                    groundToTestSlope = GroundHelper.GetHighestVisibleGroundBelowSprite(monster, level);
+                if (monster.IsAvoidFall && groundToTestSlope != null)
                 {
                     double walkingDistance = timeDelta * monster.CurrentWalkingSpeed;
 
                     if (!monster.IsNoAiDefaultDirectionWalkingRight) //negative distance, (walking left)
                         walkingDistance *= -1;
 
-                    double slope = Physics.GetSlopeRatio(monster, monster.Ground, walkingDistance, monster.IsNoAiDefaultDirectionWalkingRight);
-                    if (slope > 0.8)
+                    double slope = Physics.GetSlopeRatio(monster, groundToTestSlope, walkingDistance, monster.IsNoAiDefaultDirectionWalkingRight);
+                    if (slope > 1.9)//0.8)
                     {
                         if (!monster.IsAiEnabled)
                             monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
