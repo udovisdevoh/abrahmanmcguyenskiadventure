@@ -1,4 +1,5 @@
-IsAvoidFall: si sprite est entrain de sauter, utilise ground le plus haut en dessous du sprite comme ground pour checker sa slope, comme ça, le sprite ne tombera pas dans le trou s'il saute déjà
+on doit pouvoir passer au travers des pics verticaux en sautant (pas coller dessus)
+on doit pouvoir grimper sur les parroies verticales
 
 fin de level
 {
