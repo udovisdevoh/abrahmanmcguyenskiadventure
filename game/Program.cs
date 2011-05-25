@@ -38,6 +38,8 @@ namespace AbrahmanAdventure
 
         public const bool isUseTopTextureThicknessScaling = true;
 
+        public const bool isBroadRangeUpdateSprite = true;
+
         public const int tileColumnCount = 20;
 
         public const int waveResolution = 1;
