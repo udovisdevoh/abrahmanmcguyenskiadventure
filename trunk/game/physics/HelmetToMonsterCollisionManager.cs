@@ -29,6 +29,8 @@ namespace AbrahmanAdventure.physics
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
+                        if (otherSprite is MonsterSprite)
+                            ((MonsterSprite)otherSprite).IsPlayKoSound = false;
                         otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision;
                     }
                 }
