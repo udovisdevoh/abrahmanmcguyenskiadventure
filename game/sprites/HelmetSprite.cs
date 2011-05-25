@@ -102,18 +102,18 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.1;
-            //return 0.3;
+            return 0.03;
+            //return 0.1;
         }
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.57;
+            return 0.60;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.77;
+            return 0.60;
         }
 
         protected override double BuildStartingJumpAcceleration()
