@@ -32,9 +32,12 @@ namespace AbrahmanAdventure.ai
                     monster.IsTryingToJump = (random.Next(0, 3) == 0);
                 else
                 {
-                    if (random.NextDouble() <= monster.JumpProbability)
+                    if (!monster.IsTryingToJump)
                     {
-                        monster.IsTryingToJump = (random.Next(0, 40) == 0);
+                        if (random.NextDouble() <= monster.JumpProbability)
+                        {
+                            monster.IsTryingToJump = (random.Next(0, 40) == 0);
+                        }
                     }
                 }
             }
