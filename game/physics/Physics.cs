@@ -47,6 +47,11 @@ namespace AbrahmanAdventure.physics
         /// Manages sprite collision
         /// </summary>
         private SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
+
+        /// <summary>
+        /// Manages collisions between helmet and monsters
+        /// </summary>
+        private HelmetToMonsterCollisionManager helmetToMonsterCollisionManager = new HelmetToMonsterCollisionManager();
         #endregion
 
         #region Public Instance Methods
@@ -57,7 +62,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation)
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="random">random number generator</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
             walkingManager.Update(sprite, level, timeDelta);
         	gravityManager.Update(sprite, level, timeDelta);
@@ -67,8 +74,12 @@ namespace AbrahmanAdventure.physics
 
             if (sprite is PlayerSprite)
             {
-                spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList);
+                spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
                 battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
+            }
+            else if (sprite is HelmetSprite)
+            {
+                helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList); 
             }
         }
         #endregion

@@ -1,4 +1,15 @@
 Comportement de koopa pour RiotControl
+{
+	Helmets must stop when jumped on if they move, or move if they don't
+	
+	When touching stopped helmet, don't lose energy, must start moving in direction getting pushed
+	
+	When jumping on helmet or RiotControl, the moving direction will be direction pushed
+	
+	shells must not be able to climb sharp slopes
+	
+	shells must make sound when hitting walls
+}
 
 Regler bug de zone de tile hyper repeté
 

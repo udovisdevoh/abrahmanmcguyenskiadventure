@@ -409,12 +409,12 @@ namespace AbrahmanAdventure
             HashSet<AbstractSprite> toUpdateSpriteList;
             HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
 
-            physics.Update(playerSprite, level, timeDelta, visibleSpriteList, spritePopulation);
+            physics.Update(playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
 
             foreach (AbstractSprite sprite in toUpdateSpriteList)
                 if (sprite != playerSprite)
                 {
-                    physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation);
+                    physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
                     if (sprite is MonsterSprite && sprite.IsAlive)
                         monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
                 }

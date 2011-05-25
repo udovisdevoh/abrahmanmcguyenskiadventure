@@ -27,6 +27,8 @@ namespace AbrahmanAdventure.sprites
         private bool isNoAiDefaultDirectionWalkingRight;
 
         private bool isAvoidFall;
+
+        private bool isPlayKoSound;
         #endregion
 
         #region Constructors
@@ -45,6 +47,7 @@ namespace AbrahmanAdventure.sprites
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
             isAvoidFall = BuildIsAvoidFall(random);
+            isPlayKoSound = true;
             isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
         }
         #endregion
@@ -61,8 +64,15 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Whether sprites will flee just after getting attacked
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Whether sprites will flee just after getting attacked</returns>
         protected abstract bool BuildIsFleeWhenAttacked(Random random);
+
+        /// <summary>
+        /// Sprite when converted to another sprite (default: null)
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>Sprite when converted to another sprite (default: null)</returns>
+        public abstract AbstractSprite GetConverstionSprite(Random random);
         #endregion
 
         #region Override methods
@@ -108,6 +118,12 @@ namespace AbrahmanAdventure.sprites
         public bool IsAvoidFall
         {
             get { return isAvoidFall; }
+        }
+
+        public bool IsPlayKoSound
+        {
+            get { return isPlayKoSound; }
+            set { isPlayKoSound = value; }
         }
         #endregion
     }

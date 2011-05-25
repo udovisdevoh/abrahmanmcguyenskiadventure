@@ -8,18 +8,22 @@ using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.sprites
 {
-    class BlobSprite : MonsterSprite
+    class HelmetSprite : MonsterSprite
     {
         #region Fields and parts
-        private static Surface right1Surface;
+        private static Surface walkingLeftSurface;
 
-        private static Surface left1Surface;
-
-        private static Surface right2Surface;
-
-        private static Surface left2Surface;
+        private static Surface walkingRightSurface;
 
         private static Surface deadSurface;
+
+        private static Surface walking2LeftSurface;
+
+        private static Surface walking2RightSurface;
+
+        private static Surface dead2Surface;
+
+        private bool isBlack;
         #endregion
 
         #region Constructors
@@ -29,9 +33,59 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public BlobSprite(double xPosition, double yPosition, Random random)
+        /// <param name="isBlack">is black</param>
+        public HelmetSprite(double xPosition, double yPosition, Random random, bool isBlack)
             : base(xPosition, yPosition, random)
         {
+            this.isBlack = isBlack;
+        }
+        #endregion
+
+        #region Private Methods
+        private Surface GetWalkingRightSurface()
+        {
+            if (walkingRightSurface == null)
+                walkingRightSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet.png");
+            return walkingRightSurface;
+        }
+
+        private Surface GetWalkingLeftSurface()
+        {
+            if (walkingLeftSurface == null)
+                walkingLeftSurface = GetWalkingRightSurface().CreateFlippedHorizontalSurface();
+
+            return walkingLeftSurface;
+        }
+
+        private Surface GetDeadSurface()
+        {
+            if (deadSurface == null)
+                deadSurface = GetWalkingRightSurface().CreateFlippedVerticalSurface();
+
+            return deadSurface;
+        }
+
+        private Surface GetWalking2RightSurface()
+        {
+            if (walking2RightSurface == null)
+                walking2RightSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2.png");
+            return walking2RightSurface;
+        }
+
+        private Surface GetWalking2LeftSurface()
+        {
+            if (walking2LeftSurface == null)
+                walking2LeftSurface = GetWalking2RightSurface().CreateFlippedHorizontalSurface();
+
+            return walking2LeftSurface;
+        }
+
+        private Surface GetDead2Surface()
+        {
+            if (dead2Surface == null)
+                dead2Surface = GetWalking2RightSurface().CreateFlippedVerticalSurface();
+
+            return dead2Surface;
         }
         #endregion
 
@@ -48,23 +102,23 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.1;
+            //return 0.3;
         }
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.25;
+            return 0.57;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.55;
+            return 0.77;
         }
 
         protected override double BuildStartingJumpAcceleration()
         {
-            //return 25.0;
-            return 5.0;
+            return 25.0;
         }
 
         protected override double BuildAttackingTime()
@@ -86,30 +140,30 @@ namespace AbrahmanAdventure.sprites
         {
             return 0.5;
         }
-        
+
         protected override double BuildMaxHealth()
         {
-            return 0.3;
+            return 0.4;
         }
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override double BuildJumpProbability()
         {
-            return 1.0;
+            return 0.0;
         }
 
         protected override double BuildHitTime()
         {
-            return 16;
+            return 32;
         }
 
         protected override double BuildAttackStrengthCollision()
         {
-            return 0.3;
+            return 1.0;
         }
 
         protected override bool BuildIsFleeWhenAttacked(Random random)
@@ -119,7 +173,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAiEnabled()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsAvoidFall(Random random)
@@ -140,75 +194,28 @@ namespace AbrahmanAdventure.sprites
         {
             xOffset = 0;
             yOffset = 0;
-            int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
-
             if (!IsAlive)
-                return GetDeadSurface();
+            {
+                if (isBlack)
+                    return GetDeadSurface();
+                else
+                    return GetDead2Surface();
+            }
 
-            if (cycleDivision == 1)
+            if (isBlack)
             {
                 if (IsTryingToWalkRight)
-                {
-                    return GetRight1Surface();
-                }
+                    return GetWalkingRightSurface();
                 else
-                {
-                    return GetLeft1Surface();
-                }
+                    return GetWalkingLeftSurface();
             }
             else
             {
                 if (IsTryingToWalkRight)
-                {
-                    return GetRight2Surface();
-                }
+                    return GetWalking2RightSurface();
                 else
-                {
-                    return GetLeft2Surface();
-                }
+                    return GetWalking2LeftSurface();
             }
-        }
-        #endregion
-
-        #region Private Method
-        private Surface GetLeft1Surface()
-        {
-            if (left1Surface == null)
-                left1Surface = GetRight1Surface().CreateFlippedHorizontalSurface();
-
-            return left1Surface;
-        }
-
-        private Surface GetRight1Surface()
-        {
-            if (right1Surface == null)
-                right1Surface = BuildSpriteSurface("./assets/rendered/blob/blob1.png");
-
-            return right1Surface;
-        }
-
-        private Surface GetLeft2Surface()
-        {
-            if (left2Surface == null)
-                left2Surface = GetRight2Surface().CreateFlippedHorizontalSurface();
-
-            return left2Surface;
-        }
-
-        private Surface GetRight2Surface()
-        {
-            if (right2Surface == null)
-                right2Surface = BuildSpriteSurface("./assets/rendered/blob/blob2.png");
-
-            return right2Surface;
-        }
-
-        private Surface GetDeadSurface()
-        {
-            if (deadSurface == null)
-                deadSurface = GetRight1Surface().CreateFlippedVerticalSurface();
-
-            return deadSurface;
         }
         #endregion
     }
