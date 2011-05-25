@@ -1,5 +1,7 @@
 Comportement de koopa pour RiotControl
 {
+	ajuster accélération des casques
+	
 	Helmets must stop when jumped on if they move, or move if they don't
 	
 	When touching stopped helmet, don't lose energy, must start moving in direction getting pushed
@@ -9,6 +11,12 @@ Comportement de koopa pour RiotControl
 	shells must not be able to climb sharp slopes
 	
 	shells must make sound when hitting walls
+}
+
+Audio
+{
+	?Remettre son SDL
+	regler bug de manque de channel
 }
 
 Regler bug de zone de tile hyper repeté
