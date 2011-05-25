@@ -14,6 +14,8 @@ namespace AbrahmanAdventure.sprites
         private Dictionary<int, Bucket> bucketList = new Dictionary<int,Bucket>();
 
         private HashSet<AbstractSprite> visibleSpriteList = new HashSet<AbstractSprite>();
+
+        private HashSet<AbstractSprite> __toUpdateSpriteList = new HashSet<AbstractSprite>();
         #endregion
 
         #region Public Methods
@@ -63,18 +65,14 @@ namespace AbrahmanAdventure.sprites
             sprite.ParentBucketList.Clear();
         }
 
-        internal HashSet<AbstractSprite> GetVisibleSpriteList(double viewOffsetX, double viewOffsetY)
+        internal HashSet<AbstractSprite> GetVisibleSpriteList(double viewOffsetX, double viewOffsetY, out HashSet<AbstractSprite> toUpdateSpriteList)
         {
             int leftMostViewableBucketId = ((int)Math.Floor(viewOffsetX)) / Program.spatialHashingBucketWidth;
             int rightMostViewableBucketId = ((int)Math.Ceiling(viewOffsetX + Program.tileColumnCount)) / Program.spatialHashingBucketWidth;
 
-            if (Program.isBroadRangeUpdateSprite)
-            {
-                leftMostViewableBucketId -= Program.tileColumnCount;
-                rightMostViewableBucketId += Program.tileColumnCount;
-            }
-
             visibleSpriteList.Clear();
+            if (Program.isBroadRangeUpdateSprite)
+                __toUpdateSpriteList.Clear();
 
             for (int bucketId = leftMostViewableBucketId; bucketId <= rightMostViewableBucketId; bucketId++)
             {
@@ -82,7 +80,41 @@ namespace AbrahmanAdventure.sprites
                 foreach (AbstractSprite sprite in bucket)
                 {
                     visibleSpriteList.Add(sprite);
+                    if (Program.isBroadRangeUpdateSprite)
+                        __toUpdateSpriteList.Add(sprite);
                 }
+            }
+
+            if (Program.isBroadRangeUpdateSprite)
+            {
+                #region We add buckets out of the screen (-1 screen to +1 screen to toUpdateSpriteList
+                toUpdateSpriteList = __toUpdateSpriteList;
+
+                int broadLeftBound = leftMostViewableBucketId - Program.tileColumnCount;
+                int broadRightBound = rightMostViewableBucketId + Program.tileColumnCount;
+
+                for (int bucketId = broadLeftBound; bucketId < leftMostViewableBucketId; bucketId++)
+                {
+                    Bucket bucket = this[bucketId];
+                    foreach (AbstractSprite sprite in bucket)
+                    {
+                        toUpdateSpriteList.Add(sprite);
+                    }
+                }
+
+                for (int bucketId = rightMostViewableBucketId + 1; bucketId <= broadRightBound; bucketId++)
+                {
+                    Bucket bucket = this[bucketId];
+                    foreach (AbstractSprite sprite in bucket)
+                    {
+                        toUpdateSpriteList.Add(sprite);
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                toUpdateSpriteList = visibleSpriteList;
             }
 
             return visibleSpriteList;
