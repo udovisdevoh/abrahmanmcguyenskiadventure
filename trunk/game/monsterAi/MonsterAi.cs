@@ -10,16 +10,19 @@ namespace AbrahmanAdventure.ai
 {
     class MonsterAi
     {
+        #region Internal Methods
         internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, Random random)
         {
+            double slope;
             monster.IsTryingToWalk = false;
-
             monster.IsNeedToJumpAgain = false;
 
             #region AI Jumping logic
             if (monster.IsCanJump || monster.HitCycle.IsFired)
             {
                 if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0)
+                    monster.IsTryingToJump = true;
+                else if (TryGetSlopeRatio(monster,level,timeDelta,monster.IsTryingToWalkRight, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
                     monster.IsTryingToJump = true;
 
                 /*if (player.Ground != null && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
@@ -79,23 +82,13 @@ namespace AbrahmanAdventure.ai
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
 
                 #region Some monsters should not fall in holes, they change direction instead
-                Ground groundToTestSlope = monster.Ground;
-                if (groundToTestSlope == null)
-                    groundToTestSlope = GroundHelper.GetHighestVisibleGroundBelowSprite(monster, level);
-                if (monster.IsAvoidFall && groundToTestSlope != null)
+                
+                
+                if (monster.IsAvoidFall && TryGetSlopeRatio(monster, level, timeDelta, monster.IsNoAiDefaultDirectionWalkingRight, out slope))
                 {
-                    double walkingDistance = timeDelta * monster.CurrentWalkingSpeed;
-
-                    if (!monster.IsNoAiDefaultDirectionWalkingRight) //negative distance, (walking left)
-                        walkingDistance *= -1;
-
-                    double slope = Physics.GetSlopeRatio(monster, groundToTestSlope, walkingDistance, monster.IsNoAiDefaultDirectionWalkingRight);
                     if (slope > 6)//0.8)
                     {
-                        if (!monster.IsAiEnabled)
-                            monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
-                        else if (monster.IsCanJump)
-                            monster.IsTryingToJump = true;
+                        monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
                     }
                 }
                 #endregion
@@ -105,5 +98,28 @@ namespace AbrahmanAdventure.ai
                 #endregion
             }
         }
+        #endregion
+
+        #region Private Methods
+        private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, out double slope)
+        {
+            slope = 0;
+            Ground groundToTestSlope = monster.Ground;
+            if (groundToTestSlope == null)
+                groundToTestSlope = GroundHelper.GetHighestVisibleGroundBelowSprite(monster, level);
+
+            if (groundToTestSlope == null)
+                return false;
+            
+            double walkingDistance = timeDelta * monster.CurrentWalkingSpeed;
+
+            if (!isWalkingRight) //negative distance, (walking left)
+                walkingDistance *= -1;
+
+            slope = Physics.GetSlopeRatio(monster, groundToTestSlope, walkingDistance, isWalkingRight);
+
+            return true;
+        }
+        #endregion
     }
 }
