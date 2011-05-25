@@ -1,3 +1,5 @@
+Comportement de koopa pour RiotControl
+
 Regler bug de zone de tile hyper repeté
 
 Éliminer ground avec régions cul de sac vertical, éliminer ground avec bosse à pic en loop toujours pareille
