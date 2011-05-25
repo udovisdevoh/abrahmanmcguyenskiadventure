@@ -2,7 +2,7 @@ Comportement de koopa pour RiotControl
 {
 	ajuster accélération des casques
 	
-	lorsque casque fonce dans monstre, si hitcycle de monstre fired, ne fait rien
+	si stomp un RiotControl, moitié de hauteur pour stomper
 	
 	Helmets must stop when jumped on if they move, or move if they don't
 	
@@ -14,6 +14,8 @@ Comportement de koopa pour RiotControl
 	
 	shells must make sound when hitting walls
 }
+
+meilleur son lorsque perd energie
 
 Audio
 {
