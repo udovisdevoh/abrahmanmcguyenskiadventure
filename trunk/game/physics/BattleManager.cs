@@ -26,19 +26,26 @@ namespace AbrahmanAdventure.physics
             {
                 if (otherSprite is MonsterSprite)
                 {
-                    if (sprite != otherSprite)
+                    MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
+                    if (sprite != monsterSprite)
                     {
-                        if (Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite))
+                        if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
                         {
                             SoundManager.PlayPunchSound();
-                            otherSprite.HitCycle.Fire();
-                            otherSprite.PunchedCycle.Fire();
-                            otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                            monsterSprite.HitCycle.Fire();
+                            monsterSprite.PunchedCycle.Fire();
+                            monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
 
-                            otherSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                            otherSprite.JumpingCycle.Reset();
-                            otherSprite.JumpingCycle.Fire();
-                            otherSprite.IsTryingToJump = true;
+                            monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                            monsterSprite.JumpingCycle.Reset();
+                            monsterSprite.JumpingCycle.Fire();
+
+                            if (monsterSprite.IsTryingToWalkRight)
+                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
+                            else
+                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
+
+                            monsterSprite.IsTryingToJump = true;
                         }
                     }
                 }

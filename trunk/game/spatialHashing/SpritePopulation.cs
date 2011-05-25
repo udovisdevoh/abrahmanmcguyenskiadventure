@@ -67,6 +67,13 @@ namespace AbrahmanAdventure.sprites
         {
             int leftMostViewableBucketId = ((int)Math.Floor(viewOffsetX)) / Program.spatialHashingBucketWidth;
             int rightMostViewableBucketId = ((int)Math.Ceiling(viewOffsetX + Program.tileColumnCount)) / Program.spatialHashingBucketWidth;
+
+            if (Program.isBroadRangeUpdateSprite)
+            {
+                leftMostViewableBucketId -= Program.tileColumnCount;
+                rightMostViewableBucketId += Program.tileColumnCount;
+            }
+
             visibleSpriteList.Clear();
 
             for (int bucketId = leftMostViewableBucketId; bucketId <= rightMostViewableBucketId; bucketId++)

@@ -17,14 +17,14 @@ namespace AbrahmanAdventure.ai
             monster.IsNeedToJumpAgain = false;
 
             #region AI Jumping logic
-            if (monster.IsCanJump)
+            if (monster.IsCanJump || monster.HitCycle.IsFired)
             {
-                if (monster.CurrentWalkingSpeed < monster.WalkingAcceleration / 2.0)
+                if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0)
                     monster.IsTryingToJump = true;
 
                 /*if (player.Ground != null && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
                     monster.IsTryingToJump = true;*/
-                
+
                 if (monster.Ground == null)
                     monster.IsTryingToJump = (random.Next(0, 3) == 0);
                 else
@@ -35,10 +35,14 @@ namespace AbrahmanAdventure.ai
                     }
                 }
             }
+            else
+            {
+                monster.IsTryingToJump = false;
+            }
             #endregion
 
 
-            if (monster.IsAiEnabled)
+            if (monster.IsAiEnabled || monster.PunchedCycle.IsFired)
             {
                 #region AI walking logic
                 bool isFleeMode = (monster.IsFleeWhenAttacked && monster.HitCycle.IsFired) || (player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0));
@@ -71,7 +75,7 @@ namespace AbrahmanAdventure.ai
             else
             {
                 #region Walking no AI
-                if (monster.CurrentWalkingSpeed < monster.WalkingAcceleration / 2.0) //Change direction if can't move
+                if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0) //Change direction if can't move
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
 
                 #region Some monsters should not fall in holes, they change direction instead
