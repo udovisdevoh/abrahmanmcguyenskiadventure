@@ -47,10 +47,10 @@ namespace AbrahmanAdventure.physics
                                         {
                                             SoundManager.PlayHitSound();
                                             AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
+                                            ((MonsterSprite)otherSprite).IsPlayKoSound = false;
 
                                             if (jumpedOnConvertedSprite != null) //If sprite is converted into another sprite when getting jumped on
                                             {
-                                                ((MonsterSprite)otherSprite).IsPlayKoSound = false;
                                                 ((MonsterSprite)jumpedOnConvertedSprite).IsPlayKoSound = false;
                                                 otherSprite.IsAlive = false;
                                                 otherSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down

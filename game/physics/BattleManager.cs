@@ -34,6 +34,7 @@ namespace AbrahmanAdventure.physics
                             SoundManager.PlayPunchSound();
                             monsterSprite.HitCycle.Fire();
                             monsterSprite.PunchedCycle.Fire();
+                            monsterSprite.IsPlayKoSound = true;
                             monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
 
                             monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
