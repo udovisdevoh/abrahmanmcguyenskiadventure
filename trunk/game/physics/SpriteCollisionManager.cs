@@ -20,7 +20,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="random">random number generator</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
@@ -28,7 +30,7 @@ namespace AbrahmanAdventure.physics
                 {
                     if (Physics.IsDetectCollision(sprite, otherSprite))
                     {
-                        if (sprite.Ground == null && sprite.YPosition < otherSprite.YPosition)
+                        if (sprite.Ground == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
                             if (sprite is PlayerSprite || (sprite is MonsterSprite && ((MonsterSprite)sprite).IsCanJump))
                             {
@@ -44,8 +46,21 @@ namespace AbrahmanAdventure.physics
                                         if (otherSprite is MonsterSprite)
                                         {
                                             SoundManager.PlayHitSound();
-                                            otherSprite.HitCycle.Fire();
-                                            otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                            AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
+
+                                            if (jumpedOnConvertedSprite != null) //If sprite is converted into another sprite when getting jumped on
+                                            {
+                                                ((MonsterSprite)otherSprite).IsPlayKoSound = false;
+                                                ((MonsterSprite)jumpedOnConvertedSprite).IsPlayKoSound = false;
+                                                otherSprite.IsAlive = false;
+                                                otherSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+                                                spritePopulation.Add(jumpedOnConvertedSprite);
+                                            }
+                                            else
+                                            {
+                                                otherSprite.HitCycle.Fire();
+                                                otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                            }
                                         }
 
                                         if (sprite is PlayerSprite)
@@ -54,7 +69,7 @@ namespace AbrahmanAdventure.physics
                                 }
                             }
                         }
-                        else
+                        else //Player is NOT jumping on the monster
                         {
                             if (otherSprite is MonsterSprite && !sprite.HitCycle.IsFired)
                             {

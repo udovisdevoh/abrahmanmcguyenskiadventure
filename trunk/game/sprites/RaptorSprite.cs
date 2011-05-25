@@ -208,6 +208,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return null;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>

@@ -17,6 +17,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">Sprite</param>
         /// <param name="timeDelta">Time delta</param>
+        /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, double timeDelta)
         {
             /*if (sprite is MonsterSprite && sprite.Health < sprite.CurrentDamageReceiving)
@@ -33,7 +34,7 @@ namespace AbrahmanAdventure.physics
 
                 if (!sprite.IsAlive)
                 {
-                    if (sprite is MonsterSprite)
+                    if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsPlayKoSound)
                         SoundManager.PlayKoSound();
                     else if (sprite is PlayerSprite)
                         SoundManager.PlayKo2Sound();
