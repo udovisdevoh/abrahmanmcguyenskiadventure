@@ -1,5 +1,11 @@
+Sprite de tampoline
+
 on doit pouvoir passer au travers des pics verticaux en sautant (pas coller dessus)
 on doit pouvoir grimper sur les parroies verticales
+
+séparer visible sprite de sprite à updater (3x plus large)
+
+glisser: doit attaquer monstrers (ne doit plus glisser sur pente trop douce)
 
 fin de level
 {
