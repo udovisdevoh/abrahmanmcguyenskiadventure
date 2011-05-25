@@ -34,9 +34,7 @@ namespace AbrahmanAdventure.physics
 
                 if (!sprite.IsAlive)
                 {
-                    if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsPlayKoSound)
-                        SoundManager.PlayKoSound();
-                    else if (sprite is PlayerSprite)
+                    if (sprite is PlayerSprite)
                         SoundManager.PlayKo2Sound();
                 }
             }

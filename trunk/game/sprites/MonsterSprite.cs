@@ -27,8 +27,6 @@ namespace AbrahmanAdventure.sprites
         private bool isNoAiDefaultDirectionWalkingRight;
 
         private bool isAvoidFall;
-
-        private bool isPlayKoSound;
         #endregion
 
         #region Constructors
@@ -47,7 +45,6 @@ namespace AbrahmanAdventure.sprites
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
             isAvoidFall = BuildIsAvoidFall(random);
-            isPlayKoSound = true;
             isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
         }
         #endregion
@@ -118,12 +115,6 @@ namespace AbrahmanAdventure.sprites
         public bool IsAvoidFall
         {
             get { return isAvoidFall; }
-        }
-
-        public bool IsPlayKoSound
-        {
-            get { return isPlayKoSound; }
-            set { isPlayKoSound = value; }
         }
         #endregion
     }
