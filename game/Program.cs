@@ -406,11 +406,12 @@ namespace AbrahmanAdventure
             }
             #endregion
 
-            HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY);
+            HashSet<AbstractSprite> toUpdateSpriteList;
+            HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
 
             physics.Update(playerSprite, level, timeDelta, visibleSpriteList, spritePopulation);
 
-            foreach (AbstractSprite sprite in visibleSpriteList)
+            foreach (AbstractSprite sprite in toUpdateSpriteList)
                 if (sprite != playerSprite)
                 {
                     physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation);
