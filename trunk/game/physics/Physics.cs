@@ -159,6 +159,9 @@ namespace AbrahmanAdventure.physics
                                       || (sprite2.RightBound > sprite1.LeftBound && sprite2.LeftBound < sprite2.LeftBound)
                                       || (sprite1.LeftBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
 
+            if (!isHorizontalCollision)
+                return false;
+
             bool isVerticalCollision =  (sprite1.YPosition > sprite2.TopBound && sprite1.YPosition < sprite2.YPosition)
                                      || (sprite2.YPosition > sprite1.TopBound && sprite2.YPosition < sprite1.YPosition);
             
