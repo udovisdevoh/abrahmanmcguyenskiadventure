@@ -2,6 +2,8 @@ Comportement de koopa pour RiotControl
 {
 	ajuster accélération des casques
 	
+	lorsque casque fonce dans monstre, si hitcycle de monstre fired, ne fait rien
+	
 	Helmets must stop when jumped on if they move, or move if they don't
 	
 	When touching stopped helmet, don't lose energy, must start moving in direction getting pushed
