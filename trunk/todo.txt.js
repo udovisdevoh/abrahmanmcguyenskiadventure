@@ -1,7 +1,10 @@
+after RiotControl is Koopa, clean the code, feature freeze
+{
+	Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
+}
+
 Comportement de koopa pour RiotControl
 {
-	When touching stopped helmet, must start moving in direction getting pushed. Neither player nor helmet must lose energy
-	
 	shells must not be able to climb sharp slopes
 }
 

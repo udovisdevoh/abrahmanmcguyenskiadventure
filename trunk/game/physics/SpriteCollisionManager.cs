@@ -13,6 +13,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class SpriteCollisionManager
     {
+        #region Internal Methods
         /// <summary>
         /// Manage sprite collisions
         /// </summary>
@@ -60,12 +61,7 @@ namespace AbrahmanAdventure.physics
                                             }
                                             else if (monsterSprite.IsToggleWalkWhenJumpedOn) //Start/stop (for helmets)
                                             {
-                                                monsterSprite.IsWalkEnabled = !monsterSprite.IsWalkEnabled;
-                                                if (monsterSprite.IsWalkEnabled)
-                                                {
-                                                    monsterSprite.IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < monsterSprite.XPosition; //default direction for helmet
-                                                    monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
-                                                }
+                                                KickOrStopHelmet(sprite, monsterSprite, level, timeDelta);
                                             }
                                             else //Other sprite will be damaged
                                             {
@@ -82,16 +78,46 @@ namespace AbrahmanAdventure.physics
                         }
                         else //Player is NOT jumping on the monster
                         {
-                            if (otherSprite is MonsterSprite && !sprite.HitCycle.IsFired)
+                            if (otherSprite is MonsterSprite)
                             {
-                                SoundManager.PlayHit2Sound();
-                                sprite.HitCycle.Fire();
-                                sprite.CurrentDamageReceiving = otherSprite.AttackStrengthCollision;
+                                MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
+
+                                if (monsterSprite.IsToggleWalkWhenJumpedOn && !monsterSprite.IsWalkEnabled) //Start/stop (for helmets)
+                                {
+                                    KickOrStopHelmet(sprite, monsterSprite, level, timeDelta);
+                                }
+                                else if (!sprite.HitCycle.IsFired && !monsterSprite.KickedHelmetCycle.IsFired) //Damage to player
+                                {
+                                    SoundManager.PlayHit2Sound();
+                                    sprite.HitCycle.Fire();
+                                    sprite.CurrentDamageReceiving = otherSprite.AttackStrengthCollision;
+                                }
                             }
                         }
                     }
                 }
             }
         }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Kick or stop helmet (if moving, stop, if not kick it)
+        /// </summary>
+        /// <param name="sprite">kicker</param>
+        /// <param name="monsterSprite">kicked</param>
+        /// <param name="level">level</param>
+        /// <param name="timeDelta">time delta</param>
+        private void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        {
+            monsterSprite.IsWalkEnabled = !monsterSprite.IsWalkEnabled;
+            if (monsterSprite.IsWalkEnabled)
+            {
+                monsterSprite.IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < monsterSprite.XPosition; //default direction for helmet
+                monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
+                monsterSprite.KickedHelmetCycle.Fire();    
+            }
+        }
+        #endregion
     }
 }
