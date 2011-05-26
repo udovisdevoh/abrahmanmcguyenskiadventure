@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
-                        otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision;
+                        otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
                     }
                 }
             }

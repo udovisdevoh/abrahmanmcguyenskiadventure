@@ -197,7 +197,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackStrengthCollision()
         {
-            return 1.0;
+            return 0.5;
         }
 
         protected override bool BuildIsFleeWhenAttacked(Random random)

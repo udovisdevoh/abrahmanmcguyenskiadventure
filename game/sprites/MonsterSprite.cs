@@ -15,6 +15,8 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private Surface defaultUndefinedSurface;
+
+        private Cycle kickedHelmetCycle;
         
         private double jumpProbability;
 
@@ -45,6 +47,7 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             isWalkEnabled = true;
+            kickedHelmetCycle = new Cycle(4.0,false);
             defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
             defaultUndefinedSurface.Fill(Color.Red);
             isCanJump = BuildIsCanJump(random);
@@ -144,6 +147,11 @@ namespace AbrahmanAdventure.sprites
         public bool IsToggleWalkWhenJumpedOn
         {
             get { return isToggleWalkWhenJumpedOn; }
+        }
+
+        public Cycle KickedHelmetCycle
+        {
+            get { return kickedHelmetCycle; }
         }
         #endregion
     }
