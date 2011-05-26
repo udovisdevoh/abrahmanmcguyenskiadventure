@@ -53,6 +53,8 @@ namespace AbrahmanAdventure.physics
                                                 otherSprite.IsAlive = false;
                                                 otherSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
                                                 spritePopulation.Add(jumpedOnConvertedSprite);
+                                                ((MonsterSprite)jumpedOnConvertedSprite).IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < otherSprite.XPosition; //default direction for helmet
+                                                jumpedOnConvertedSprite.CurrentWalkingSpeed = jumpedOnConvertedSprite.WalkingAcceleration;
                                             }
                                             else
                                             {
