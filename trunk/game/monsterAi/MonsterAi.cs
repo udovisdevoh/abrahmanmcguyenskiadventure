@@ -51,6 +51,8 @@ namespace AbrahmanAdventure.ai
             if (monster.IsAiEnabled || monster.PunchedCycle.IsFired)
             {
                 #region AI walking logic
+                bool wasTryingToWalkRight = monster.IsTryingToWalkRight;
+
                 bool isFleeMode = (monster.IsFleeWhenAttacked && monster.HitCycle.IsFired) || (player.YPosition < monster.YPosition && (Math.Abs(monster.XPosition - player.XPosition) < player.Width / 2.0));
 
                 if (monster.PunchedCycle.IsFired) //always flee after a punch
@@ -82,7 +84,9 @@ namespace AbrahmanAdventure.ai
             {
                 #region Walking no AI
                 if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0) //Change direction if can't move
+                {
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
+                }
 
                 #region Some monsters should not fall in holes, they change direction instead
                 
