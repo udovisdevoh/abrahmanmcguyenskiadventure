@@ -45,6 +45,8 @@ namespace AbrahmanAdventure.physics
 
                                         if (otherSprite is MonsterSprite)
                                         {
+                                            MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
+
                                             SoundManager.PlayHitSound();
                                             AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
 
@@ -56,7 +58,16 @@ namespace AbrahmanAdventure.physics
                                                 ((MonsterSprite)jumpedOnConvertedSprite).IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < otherSprite.XPosition; //default direction for helmet
                                                 jumpedOnConvertedSprite.CurrentWalkingSpeed = jumpedOnConvertedSprite.WalkingAcceleration;
                                             }
-                                            else
+                                            else if (monsterSprite.IsToggleWalkWhenJumpedOn) //Start/stop (for helmets)
+                                            {
+                                                monsterSprite.IsWalkEnabled = !monsterSprite.IsWalkEnabled;
+                                                if (monsterSprite.IsWalkEnabled)
+                                                {
+                                                    monsterSprite.IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < monsterSprite.XPosition; //default direction for helmet
+                                                    monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
+                                                }
+                                            }
+                                            else //Other sprite will be damaged
                                             {
                                                 otherSprite.HitCycle.Fire();
                                                 otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;

@@ -207,14 +207,19 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
-        public override AbstractSprite GetConverstionSprite(Random random)
-        {
-            return null;
-        }
-
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
             return false;
+        }
+
+        protected override bool BuildIsToggleWalkWhenJumpedOn()
+        {
+            return false;
+        }
+
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return null;
         }
 
         /// <summary>

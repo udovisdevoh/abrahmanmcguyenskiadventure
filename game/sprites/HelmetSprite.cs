@@ -225,6 +225,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsToggleWalkWhenJumpedOn()
+        {
+            return true;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>

@@ -20,9 +20,9 @@ namespace AbrahmanAdventure
 	internal sealed class Program
 	{
         #region Constants and static variables
-        public const int screenWidth = 320;
+        public const int screenWidth = 640;
 
-        public const int screenHeight = 240;
+        public const int screenHeight = 480;
        
         public const bool isBindViewOffsetToPlayer = true;
         

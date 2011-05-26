@@ -29,6 +29,10 @@ namespace AbrahmanAdventure.sprites
         private bool isAvoidFall;
 
         private bool isFullSpeedAfterBounceNoAi;
+
+        private bool isWalkEnabled;
+
+        private bool isToggleWalkWhenJumpedOn;
         #endregion
 
         #region Constructors
@@ -40,6 +44,7 @@ namespace AbrahmanAdventure.sprites
         public MonsterSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            isWalkEnabled = true;
             defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
             defaultUndefinedSurface.Fill(Color.Red);
             isCanJump = BuildIsCanJump(random);
@@ -49,6 +54,7 @@ namespace AbrahmanAdventure.sprites
             isAvoidFall = BuildIsAvoidFall(random);
             isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
             isFullSpeedAfterBounceNoAi = BuildIsFullSpeedAfterBounceNoAi();
+            isToggleWalkWhenJumpedOn = BuildIsToggleWalkWhenJumpedOn();
         }
         #endregion
 
@@ -58,6 +64,8 @@ namespace AbrahmanAdventure.sprites
         protected abstract bool BuildIsCanJump(Random random);
 
         protected abstract bool BuildIsAvoidFall(Random random);
+
+        protected abstract bool BuildIsToggleWalkWhenJumpedOn();
 
         protected abstract double BuildJumpProbability();
 
@@ -125,6 +133,17 @@ namespace AbrahmanAdventure.sprites
         public bool IsFullSpeedAfterBounceNoAi
         {
             get { return isFullSpeedAfterBounceNoAi; }
+        }
+
+        public bool IsWalkEnabled
+        {
+            get { return isWalkEnabled; }
+            set { isWalkEnabled = value; }
+        }
+
+        public bool IsToggleWalkWhenJumpedOn
+        {
+            get { return isToggleWalkWhenJumpedOn; }
         }
         #endregion
     }
