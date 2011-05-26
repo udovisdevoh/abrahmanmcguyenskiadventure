@@ -11,15 +11,23 @@ namespace AbrahmanAdventure.sprites
     class HelmetSprite : MonsterSprite
     {
         #region Fields and parts
-        private static Surface walkingLeftSurface;
+        private static Surface walking1aSurface;
 
-        private static Surface walkingRightSurface;
+        private static Surface walking1bSurface;
+
+        private static Surface walking1cSurface;
+
+        private static Surface walking1dSurface;
 
         private static Surface deadSurface;
 
-        private static Surface walking2LeftSurface;
+        private static Surface walking2aSurface;
 
-        private static Surface walking2RightSurface;
+        private static Surface walking2bSurface;
+
+        private static Surface walking2cSurface;
+
+        private static Surface walking2dSurface;
 
         private static Surface dead2Surface;
 
@@ -42,48 +50,74 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Private Methods
-        private Surface GetWalkingRightSurface()
+        private Surface GetWalking1aSurface()
         {
-            if (walkingRightSurface == null)
-                walkingRightSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet.png");
-            return walkingRightSurface;
+            if (walking1aSurface == null)
+                walking1aSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet.png");
+            return walking1aSurface;
         }
 
-        private Surface GetWalkingLeftSurface()
+        private Surface GetWalking1bSurface()
         {
-            if (walkingLeftSurface == null)
-                walkingLeftSurface = GetWalkingRightSurface().CreateFlippedHorizontalSurface();
-
-            return walkingLeftSurface;
+            if (walking1bSurface == null)
+                walking1bSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmetb.png");
+            return walking1bSurface;
         }
 
+        private Surface GetWalking1cSurface()
+        {
+            if (walking1cSurface == null)
+                walking1cSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmetc.png");
+            return walking1cSurface;
+        }
+
+        private Surface GetWalking1dSurface()
+        {
+            if (walking1dSurface == null)
+                walking1dSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmetd.png");
+            return walking1dSurface;
+        }
+
+        private Surface GetWalking2aSurface()
+        {
+            if (walking2aSurface == null)
+                walking2aSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2.png");
+            return walking2aSurface;
+        }
+
+        private Surface GetWalking2bSurface()
+        {
+            if (walking2bSurface == null)
+                walking2bSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2b.png");
+            return walking2bSurface;
+        }
+
+        private Surface GetWalking2cSurface()
+        {
+            if (walking2cSurface == null)
+                walking2cSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2c.png");
+            return walking2cSurface;
+        }
+
+        private Surface GetWalking2dSurface()
+        {
+            if (walking2dSurface == null)
+                walking2dSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2d.png");
+            return walking2dSurface;
+        }
+        
         private Surface GetDeadSurface()
         {
             if (deadSurface == null)
-                deadSurface = GetWalkingRightSurface().CreateFlippedVerticalSurface();
+                deadSurface = GetWalking1aSurface().CreateFlippedVerticalSurface();
 
             return deadSurface;
-        }
-
-        private Surface GetWalking2RightSurface()
-        {
-            if (walking2RightSurface == null)
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2.png");
-            return walking2RightSurface;
-        }
-
-        private Surface GetWalking2LeftSurface()
-        {
-            if (walking2LeftSurface == null)
-                walking2LeftSurface = GetWalking2RightSurface().CreateFlippedHorizontalSurface();
-
-            return walking2LeftSurface;
         }
 
         private Surface GetDead2Surface()
         {
             if (dead2Surface == null)
-                dead2Surface = GetWalking2RightSurface().CreateFlippedVerticalSurface();
+                dead2Surface = GetWalking2aSurface().CreateFlippedVerticalSurface();
 
             return dead2Surface;
         }
@@ -133,7 +167,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHeight(Random random)
         {
-            return 1.0;
+            return 0.9;
         }
 
         protected override double BuildMass(Random random)
@@ -202,19 +236,29 @@ namespace AbrahmanAdventure.sprites
                     return GetDead2Surface();
             }
 
+            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+
             if (isBlack)
             {
-                if (IsTryingToWalkRight)
-                    return GetWalkingRightSurface();
+                if (cycleDivision == 0/* || CurrentWalkingSpeed == 0*/)
+                    return GetWalking1aSurface();
+                else if (cycleDivision == 1)
+                    return GetWalking1bSurface();
+                else if (cycleDivision == 2)
+                    return GetWalking1cSurface();
                 else
-                    return GetWalkingLeftSurface();
+                    return GetWalking1dSurface();
             }
             else
             {
-                if (IsTryingToWalkRight)
-                    return GetWalking2RightSurface();
+              if (cycleDivision == 0/* || CurrentWalkingSpeed == 0*/)
+                    return GetWalking2aSurface();
+                else if (cycleDivision == 1)
+                    return GetWalking2bSurface();
+                else if (cycleDivision == 2)
+                    return GetWalking2cSurface();
                 else
-                    return GetWalking2LeftSurface();
+                    return GetWalking2dSurface();
             }
         }
         #endregion
