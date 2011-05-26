@@ -11,6 +11,15 @@ Comportement de koopa pour RiotControl
 	shells must not be able to climb sharp slopes
 }
 
+remove running speed for non-player, tester si tout est correct
+
+add walkable blocks
+add bouncing notes / trampoline
+add ? blocks and brick blocks
+
+
+vérifier si les sprites, notamment raptor et jew, garde leur speed en changeant de direction par AI, voir si c'est souhaitable
+
 Audio
 {
 	?Remettre son SDL
@@ -20,8 +29,6 @@ Audio
 Regler bug de zone de tile hyper repeté
 
 Éliminer ground avec régions cul de sac vertical, éliminer ground avec bosse à pic en loop toujours pareille
-
-Sprite de tampoline
 
 on doit pouvoir passer au travers des pics verticaux en sautant (pas coller dessus)
 on doit pouvoir grimper sur les parroies verticales

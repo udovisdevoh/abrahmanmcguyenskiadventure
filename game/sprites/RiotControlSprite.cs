@@ -221,6 +221,11 @@ namespace AbrahmanAdventure.sprites
             return new HelmetSprite(XPosition, YPosition, random, IsAvoidFall);
         }
 
+        protected override bool BuildIsFullSpeedAfterBounceNoAi()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>

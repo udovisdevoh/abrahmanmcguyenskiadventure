@@ -220,6 +220,11 @@ namespace AbrahmanAdventure.sprites
             return null;
         }
 
+        protected override bool BuildIsFullSpeedAfterBounceNoAi()
+        {
+            return true;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>
