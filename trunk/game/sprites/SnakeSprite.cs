@@ -141,6 +141,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsInstantKickConvertedSprite()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>
