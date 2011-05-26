@@ -1,5 +1,6 @@
-after RiotControl is Koopa, clean the code, feature freeze
+clean the code, feature freeze
 {
+	remove running speed for non-player, tester si tout est correct
 	Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
 }
 
@@ -8,7 +9,10 @@ Comportement de koopa pour RiotControl
 	shells must not be able to climb sharp slopes
 }
 
-remove running speed for non-player, tester si tout est correct
+mettre décorations anarchiques
+{
+	drapeaux etc
+}
 
 add walkable blocks
 add bouncing notes / trampoline

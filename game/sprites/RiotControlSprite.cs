@@ -216,9 +216,9 @@ namespace AbrahmanAdventure.sprites
             return random.Next(0, 2) == 1;
         }
 
-        public override AbstractSprite GetConverstionSprite(Random random)
+        protected override bool BuildIsInstantKickConvertedSprite()
         {
-            return new HelmetSprite(XPosition, YPosition, random, IsAvoidFall);
+            return false;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
@@ -229,6 +229,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsToggleWalkWhenJumpedOn()
         {
             return false;
+        }
+
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return new HelmetSprite(XPosition, YPosition, random, IsAvoidFall);
         }
 
         /// <summary>

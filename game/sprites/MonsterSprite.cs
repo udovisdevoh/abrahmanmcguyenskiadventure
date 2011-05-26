@@ -35,6 +35,8 @@ namespace AbrahmanAdventure.sprites
         private bool isWalkEnabled;
 
         private bool isToggleWalkWhenJumpedOn;
+
+        private bool isInstantKickConvertedSprite;
         #endregion
 
         #region Constructors
@@ -47,7 +49,7 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             isWalkEnabled = true;
-            kickedHelmetCycle = new Cycle(4.0,false);
+            kickedHelmetCycle = new Cycle(16.0,false);
             defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
             defaultUndefinedSurface.Fill(Color.Red);
             isCanJump = BuildIsCanJump(random);
@@ -58,6 +60,7 @@ namespace AbrahmanAdventure.sprites
             isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
             isFullSpeedAfterBounceNoAi = BuildIsFullSpeedAfterBounceNoAi();
             isToggleWalkWhenJumpedOn = BuildIsToggleWalkWhenJumpedOn();
+            isInstantKickConvertedSprite = BuildIsInstantKickConvertedSprite();
         }
         #endregion
 
@@ -79,6 +82,8 @@ namespace AbrahmanAdventure.sprites
         protected abstract bool BuildIsFleeWhenAttacked(Random random);
 
         protected abstract bool BuildIsFullSpeedAfterBounceNoAi();
+
+        protected abstract bool BuildIsInstantKickConvertedSprite();
 
         /// <summary>
         /// Sprite when converted to another sprite (default: null)
@@ -147,6 +152,11 @@ namespace AbrahmanAdventure.sprites
         public bool IsToggleWalkWhenJumpedOn
         {
             get { return isToggleWalkWhenJumpedOn; }
+        }
+
+        public bool IsInstantKickConvertedSprite
+        {
+            get { return isInstantKickConvertedSprite; }
         }
 
         public Cycle KickedHelmetCycle

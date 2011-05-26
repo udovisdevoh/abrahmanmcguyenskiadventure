@@ -122,14 +122,14 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override bool BuildIsAvoidFall(Random random)
+        protected override bool BuildIsInstantKickConvertedSprite()
         {
             return false;
         }
 
-        public override AbstractSprite GetConverstionSprite(Random random)
+        protected override bool BuildIsAvoidFall(Random random)
         {
-            return null;
+            return false;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
@@ -140,6 +140,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsToggleWalkWhenJumpedOn()
         {
             return false;
+        }
+
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return null;
         }
 
         /// <summary>
