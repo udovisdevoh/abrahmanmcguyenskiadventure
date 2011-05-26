@@ -15,26 +15,54 @@ namespace AbrahmanAdventure.level
     internal class Sky
     {
         #region Constants
+        /// <summary>
+        /// Width of how many screens
+        /// </summary>
         private const int screenColumnCount = 1;
 
+        /// <summary>
+        /// Height of how many screens
+        /// </summary>
         private const int screenRowCount = 2;
         #endregion
 
         #region Fields and parts
+        /// <summary>
+        /// Sky surface to blit
+        /// </summary>
         private Surface surface;
 
+        /// <summary>
+        /// Hue
+        /// </summary>
         private int hue;
 
+        /// <summary>
+        /// Saturation
+        /// </summary>
         private int saturation;
 
+        /// <summary>
+        /// Lightness
+        /// </summary>
         private int lightness;
         
+        /// <summary>
+        /// Height of the sky (in pixels)
+        /// </summary>
         public static int skyHeight = Program.screenHeight * screenRowCount;
-        
+
+        /// <summary>
+        /// Width of the sky (in pixels)
+        /// </summary>
         private static int skyWidth = Program.screenWidth * screenColumnCount;
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Build new sky
+        /// </summary>
+        /// <param name="random">random number generator</param>
         public Sky(Random random)
         {
             hue = random.Next(0, 256);
@@ -89,6 +117,11 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Build wave
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave</returns>
         private AbstractWave BuildWave(Random random)
         {
             WavePack wavePack = new WavePack();
@@ -104,6 +137,9 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Get surface to blit
+        /// </summary>
         public Surface Surface
         {
             get { return surface; }

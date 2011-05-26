@@ -15,6 +15,101 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         /// <summary>
+        /// Walking cycle
+        /// </summary>
+        private Cycle walkingCycle;
+
+        /// <summary>
+        /// Jumping cycle
+        /// </summary>
+        private Cycle jumpingCycle;
+
+        /// <summary>
+        /// Attacking cycle
+        /// </summary>
+        private Cycle attackingCycle;
+
+        /// <summary>
+        /// "Getting hit / slammed, jumped on, touched and harmed" cycle
+        /// </summary>
+        private Cycle hitCycle;
+
+        /// <summary>
+        /// "Getting punched" cycle
+        /// </summary>
+        private Cycle punchedCycle;
+
+        /// <summary>
+        /// To which sprite collection the sprite belongs
+        /// </summary>
+        private SpritePopulation __parentSpriteCollection;
+
+        /// <summary>
+        /// List of bucket that contain this sprite
+        /// </summary>
+        private HashSet<Bucket> __parentBucketList;
+
+        /// <summary>
+        /// Current ground attached to sprite
+        /// </summary>
+        private Ground ground;
+
+        /// <summary>
+        /// True: face left, False: face right
+        /// </summary>
+        private bool isPointingLeft;
+
+        /// <summary>
+        /// Whether player currently needs to release and press jump to jump again
+        /// </summary>
+        private bool isNeedToJumpAgain = false;
+
+        /// <summary>
+        /// Whether player currently needs to release and press attack to attack again
+        /// </summary>
+        private bool isNeedToAttackAgain = false;
+
+        /// <summary>
+        /// Whether sprite is currently running
+        /// </summary>
+        private bool isRunning = false;
+
+        /// <summary>
+        /// Whether sprite is currently trying to walk
+        /// </summary>
+        private bool isTryingToWalk = false;
+
+        /// <summary>
+        /// Whether sprite's walking direction is "right"
+        /// </summary>
+        private bool isTryingToWalkRight = false;
+
+        /// <summary>
+        /// Whether sprite is currently trying to move up (like entering door or pipe going up)
+        /// </summary>
+        private bool isTryToWalkUp = false;
+
+        /// <summary>
+        /// Whether sprite is currently trying to jump
+        /// </summary>
+        private bool isTryingToJump = false;
+
+        /// <summary>
+        /// Whether sprite is currently crouching
+        /// </summary>
+        private bool isCrouch = false;
+
+        /// <summary>
+        /// Whether sprite is currntly trying to slide
+        /// </summary>
+        private bool isTryingToSlide = false;
+
+        /// <summary>
+        /// Whether sprite is currntly alive
+        /// </summary>
+        private bool isAlive = true;
+
+        /// <summary>
         /// X position
         /// </summary>
         private double xPosition;
@@ -45,79 +140,59 @@ namespace AbrahmanAdventure.sprites
         private double currentJumpAcceleration;
 
         /// <summary>
-        /// To which sprite collection the sprite belongs
-        /// </summary>
-        private SpritePopulation parentSpriteCollection;
-
-        /// <summary>
-        /// List of bucket that contain this sprite
-        /// </summary>
-        private HashSet<Bucket> parentBucketList;
-
-        /// <summary>
-        /// True: face left, False: face right
-        /// </summary>
-        private bool isPointingLeft;
-
-        /// <summary>
-        /// Current ground attached to sprite
-        /// </summary>
-        private Ground ground;
-
-        private bool isNeedToJumpAgain = false;
-
-        private bool isNeedToAttackAgain = false;
-
-        /// <summary>
         /// Previous value of yPosition so we can know if the sprite is falling/jumping up or down
         /// </summary>
         private double yPositionPrevious;
 
+        /// <summary>
+        /// Jumping acceleration at begining of jump
+        /// </summary>
         private double startingJumpAcceleration;
 
+        /// <summary>
+        /// Maximum walking speed
+        /// </summary>
         private double maxWalkingSpeed;
 
-        private double currentWalkingSpeed = 0;
-
+        /// <summary>
+        /// Walking acceleration (incrementation of speed when walking)
+        /// </summary>
         private double walkingAcceleration;
 
+        /// <summary>
+        /// Maximum running speed
+        /// </summary>
         private double maxRunningSpeed;
 
+        /// <summary>
+        /// Maximum health
+        /// </summary>
         private double maxHealth;
 
+        /// <summary>
+        /// Current health
+        /// </summary>
         private double health;
 
+        /// <summary>
+        /// Giving damage to other sprite on collision
+        /// </summary>
         private double attackStrengthCollision;
 
-        private double currentDamageReceiving = 0.0;
-
+        /// <summary>
+        /// Time during which a sprite is blinking with invulneability after getting hit
+        /// </summary>
         private double totalHitTime;
-        
-        private bool isRunning = false;
 
-        private bool isTryingToWalk = false;
+        /// <summary>
+        /// Current walking speed
+        /// </summary>
+        private double currentWalkingSpeed = 0;
 
-        private bool isTryingToWalkRight = false;
-        
-        private bool isTryToWalkUp = false;
-
-        private bool isTryingToJump = false;
-
-        private bool isCrouch = false;
-
-        private bool isTryingToSlide = false;
-
-        private bool isAlive = true;
-
-        private Cycle walkingCycle;
-
-        private Cycle jumpingCycle;
-
-        private Cycle attackingCycle;
-
-        private Cycle hitCycle;
-
-        private Cycle punchedCycle;
+        /// <summary>
+        /// Damage currently receiving
+        /// </summary>
+        private double currentDamageReceiving = 0.0;
         #endregion
 
         #region Constructor
@@ -136,7 +211,7 @@ namespace AbrahmanAdventure.sprites
             mass = BuildMass(random);
             health = maxHealth;
             startingJumpAcceleration = BuildStartingJumpAcceleration();
-            parentBucketList = new HashSet<Bucket>();
+            __parentBucketList = new HashSet<Bucket>();
             maxWalkingSpeed = BuildMaxWalkingSpeed();
             maxRunningSpeed = BuildMaxRunningSpeed();
             walkingAcceleration = BuildWalkingAcceleration();
@@ -150,25 +225,65 @@ namespace AbrahmanAdventure.sprites
         }
         #endregion
 
-        #region Abstract Methods
+        #region Protected Abstract Methods
+        /// <summary>
+        /// Maximum health
+        /// </summary>
+        /// <returns>Maximum health</returns>
         protected abstract double BuildMaxHealth();
 
+        /// <summary>
+        /// Jumping time
+        /// </summary>
+        /// <returns>Jumping time</returns>
         protected abstract double BuildJumpingTime();
 
+        /// <summary>
+        /// Walking animation cycle length (time)
+        /// </summary>
+        /// <returns>Walking animation cycle length (time)</returns>
         protected abstract double BuildWalkingCycleLength();
 
+        /// <summary>
+        /// Walking acceleration (speed incrementation when walking)
+        /// </summary>
+        /// <returns>Walking acceleration (speed incrementation when walking)</returns>
         protected abstract double BuildWalkingAcceleration();
 
+        /// <summary>
+        /// Maximum walking speed
+        /// </summary>
+        /// <returns>Maximum walking speed</returns>
         protected abstract double BuildMaxWalkingSpeed();
 
+        /// <summary>
+        /// Maximum running speed
+        /// </summary>
+        /// <returns>Maximum running speed</returns>
         protected abstract double BuildMaxRunningSpeed();
 
+        /// <summary>
+        /// Jump acceleration at begining of jump
+        /// </summary>
+        /// <returns>Jump acceleration at begining of jump</returns>
         protected abstract double BuildStartingJumpAcceleration();
 
+        /// <summary>
+        /// Timespan of attack
+        /// </summary>
+        /// <returns></returns>
         protected abstract double BuildAttackingTime();
 
+        /// <summary>
+        /// Timespan of getting hit
+        /// </summary>
+        /// <returns>Timespan of getting hit</returns>
         protected abstract double BuildHitTime();
 
+        /// <summary>
+        /// Damage giving to other sprite on collision
+        /// </summary>
+        /// <returns>Damage giving to other sprite on collision</returns>
         protected abstract double BuildAttackStrengthCollision();
 
         /// <summary>
@@ -188,7 +303,9 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>sprite's mass (1.0 = player's mass)</returns>
         protected abstract double BuildMass(Random random);
+        #endregion
 
+        #region Public Abstract Methods
         /// <summary>
         /// Get sprite's surface
         /// </summary>
@@ -199,6 +316,11 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Protected Methods
+        /// <summary>
+        /// Build sprite's surface from file name
+        /// </summary>
+        /// <param name="fileName">file name</param>
+        /// <returns>sprite's surface</returns>
         protected Surface BuildSpriteSurface(string fileName)
         {
             Surface spriteSurface = new Surface(fileName);
@@ -222,9 +344,9 @@ namespace AbrahmanAdventure.sprites
             get { return xPosition; }
             set
             {
-                parentSpriteCollection.RemoveSpatialHashing(this);
+                __parentSpriteCollection.RemoveSpatialHashing(this);
                 xPosition = value;
-                parentSpriteCollection.SetSpatialHashing(this);
+                __parentSpriteCollection.SetSpatialHashing(this);
             }
         }
 
@@ -237,9 +359,9 @@ namespace AbrahmanAdventure.sprites
             set
             {
                 yPositionPrevious = yPosition;
-                parentSpriteCollection.RemoveSpatialHashing(this);
+                __parentSpriteCollection.RemoveSpatialHashing(this);
                 yPosition = value;
-                parentSpriteCollection.SetSpatialHashing(this);
+                __parentSpriteCollection.SetSpatialHashing(this);
             }
         }
 
@@ -275,6 +397,9 @@ namespace AbrahmanAdventure.sprites
             get { return height; }
         }
 
+        /// <summary>
+        /// Whether sprite is currently running
+        /// </summary>
         public bool IsRunning
         {
             get { return isRunning; }
@@ -286,13 +411,16 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public SpritePopulation ParentSpriteCollection
         {
-            get { return parentSpriteCollection; }
-            set { parentSpriteCollection = value; }
+            get { return __parentSpriteCollection; }
+            set { __parentSpriteCollection = value; }
         }
 
+        /// <summary>
+        /// List of buckets that contain sprite
+        /// </summary>
         public HashSet<Bucket> ParentBucketList
         {
-            get { return parentBucketList; }
+            get { return __parentBucketList; }
         }
 
         /// <summary>
@@ -328,122 +456,121 @@ namespace AbrahmanAdventure.sprites
             }
         }
 
-        public double RightBound
+        /// <summary>
+        /// Walking animation cycle
+        /// </summary>
+        public Cycle WalkingCycle
         {
-            get { return xPosition + width / 2.0; }
+            get { return walkingCycle; }
         }
 
-        public double LeftBound
+        /// <summary>
+        /// Jumping cycle
+        /// </summary>
+        public Cycle JumpingCycle
         {
-            get { return xPosition - width / 2.0; }
+            get { return jumpingCycle; }
         }
 
-        public double TopBound
+        /// <summary>
+        /// Attacking cycle
+        /// </summary>
+        public Cycle AttackingCycle
         {
-            get
-            {
-                if (isCrouch)
-                    return yPosition - (height / 2.0);
-                else
-                    return yPosition - height;
-            }
+            get { return attackingCycle; }
         }
 
-        public double MaximumWalkingHeight
+        /// <summary>
+        /// "Getting hit" cycle
+        /// </summary>
+        public Cycle HitCycle
         {
-            get { return height / 4.0; }
+            get { return hitCycle; }
         }
 
-        public double MinimumFallingHeight
+        /// <summary>
+        /// "Getting punched" cycle
+        /// </summary>
+        public Cycle PunchedCycle
         {
-            get { return height / 3.0; }
+            get { return punchedCycle; }
         }
 
+        /// <summary>
+        /// Whether need to release and press jump again to jump
+        /// </summary>
         public bool IsNeedToJumpAgain
         {
             get { return isNeedToJumpAgain; }
             set { isNeedToJumpAgain = value; }
         }
 
+        /// <summary>
+        /// Whether need to release and press attack again to attack
+        /// </summary>
         public bool IsNeedToAttackAgain
         {
             get { return isNeedToAttackAgain; }
             set { isNeedToAttackAgain = value; }
         }
 
-        public double StartingJumpAcceleration
-        {
-            get { return startingJumpAcceleration; }
-        }
-
-        public double MaxWalkingSpeed
-        {
-            get { return maxWalkingSpeed; }
-        }
-
-        public double MaxRunningSpeed
-        {
-            get { return maxRunningSpeed; }
-        }
-
-        public double CurrentWalkingSpeed
-        {
-            get { return currentWalkingSpeed; }
-            set { currentWalkingSpeed = value; }
-        }
-
-        public double WalkingAcceleration
-        {
-            get { return walkingAcceleration; }
-        }
-        
-        public double CurrentTopBound
-        {
-        	get
-        	{
-        		if (isCrouch)
-        			return yPosition - height / 2;
-        		else
-        			return yPosition - height;
-        	}
-        }
-
+        /// <summary>
+        /// Whether is currently trying to walk
+        /// </summary>
         public bool IsTryingToWalk
         {
             get { return isTryingToWalk; }
             set { isTryingToWalk = value; }
         }
 
+        /// <summary>
+        /// Whether current walking direction is "right", not "left"
+        /// </summary>
         public bool IsTryingToWalkRight
         {
             get { return isTryingToWalkRight; }
             set { isTryingToWalkRight = value; }
         }
 
+        /// <summary>
+        /// Whether sprite is currently trying to jump
+        /// </summary>
         public bool IsTryingToJump
         {
             get { return isTryingToJump; }
             set { isTryingToJump = value; }
         }
-        
+
+        /// <summary>
+        /// Whether sprite is currently trying to move up (to enter a door or a pipe going up)
+        /// </summary>
         public bool IsTryToWalkUp
         {
-        	get{return isTryToWalkUp;}
-        	set{isTryToWalkUp = value;}
+            get { return isTryToWalkUp; }
+            set { isTryToWalkUp = value; }
         }
 
+        /// <summary>
+        /// Whether sprite is currently crouched
+        /// </summary>
         public bool IsCrouch
         {
             get { return isCrouch; }
             set { isCrouch = value; }
         }
 
+        /// <summary>
+        /// Whether sprite is currently trying to slide
+        /// </summary>
         public bool IsTryingToSlide
         {
             get { return isTryingToSlide; }
             set { isTryingToSlide = value; }
         }
 
+        /// <summary>
+        /// Whether sprite is currently alive
+        /// </summary>
         public bool IsAlive
         {
             get { return isAlive; }
@@ -463,31 +590,96 @@ namespace AbrahmanAdventure.sprites
             }
         }
 
-        public Cycle WalkingCycle
+        /// <summary>
+        /// Acceleration at begining of jump
+        /// </summary>
+        public double StartingJumpAcceleration
         {
-            get { return walkingCycle; }
+            get { return startingJumpAcceleration; }
         }
 
-        public Cycle JumpingCycle
+        /// <summary>
+        /// Maximum walking speed
+        /// </summary>
+        public double MaxWalkingSpeed
         {
-            get { return jumpingCycle; }
+            get { return maxWalkingSpeed; }
         }
 
-        public Cycle AttackingCycle
+        /// <summary>
+        /// Maximum running speed
+        /// </summary>
+        public double MaxRunningSpeed
         {
-            get { return attackingCycle; }
+            get { return maxRunningSpeed; }
         }
 
-        public Cycle HitCycle
+        /// <summary>
+        /// Current walking speed
+        /// </summary>
+        public double CurrentWalkingSpeed
         {
-            get { return hitCycle; }
+            get { return currentWalkingSpeed; }
+            set { currentWalkingSpeed = value; }
         }
 
-        public Cycle PunchedCycle
+        /// <summary>
+        /// Speed incrementation when walking
+        /// </summary>
+        public double WalkingAcceleration
         {
-            get { return punchedCycle; }
+            get { return walkingAcceleration; }
         }
 
+        /// <summary>
+        /// Sprite's top bound
+        /// </summary>
+        public double TopBound
+        {
+        	get
+        	{
+        		if (isCrouch)
+        			return yPosition - height / 2;
+        		else
+        			return yPosition - height;
+        	}
+        }
+
+        /// <summary>
+        /// Sprite's right bound
+        /// </summary>
+        public double RightBound
+        {
+            get { return xPosition + width / 2.0; }
+        }
+
+        /// <summary>
+        /// Sprite's left bound
+        /// </summary>
+        public double LeftBound
+        {
+            get { return xPosition - width / 2.0; }
+        }
+
+        /// <summary>
+        /// Maximum height of step to climb
+        /// </summary>
+        public double MaximumWalkingHeight
+        {
+            get { return height / 4.0; }
+        }
+
+        /// <summary>
+        /// Minimum height of step to fall
+        /// </summary>
+        public double MinimumFallingHeight
+        {
+            get { return height / 3.0; }
+        }
+
+        /// <summary>
+        /// Current health
+        /// </summary>
         public double Health
         {
             get { return health; }
@@ -508,31 +700,46 @@ namespace AbrahmanAdventure.sprites
             }
         }
 
+        /// <summary>
+        /// Damage giving to other sprite when collisions occur
+        /// </summary>
         public double AttackStrengthCollision
         {
             get { return attackStrengthCollision; }
         }
 
+        /// <summary>
+        /// Current damage receiving (progressive decrease of health bar)
+        /// </summary>
         public double CurrentDamageReceiving
         {
             get { return currentDamageReceiving; }
             set { currentDamageReceiving = value; }
         }
 
+        /// <summary>
+        /// Timespan of blinking with invulnerability after getting hit
+        /// </summary>
         public double TotalHitTime
         {
             get { return totalHitTime; }
         }
 
+        /// <summary>
+        /// Right bound when punching right
+        /// </summary>
         public double RightPunchBound
         {
             get { return RightBound + Math.Min(height, width); }
         }
 
+        /// <summary>
+        /// Left bound when punching left
+        /// </summary>
         public double LeftPunchBound
         {
-            get { return LeftBound - Math.Min(height,width); }
-        }
+            get { return LeftBound - Math.Min(height, width); }
+        }       
         #endregion
     }
 }

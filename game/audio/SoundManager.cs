@@ -8,6 +8,9 @@ using System.Media;
 
 namespace AbrahmanAdventure.audio
 {
+    /// <summary>
+    /// Manages sound effects
+    /// </summary>
     internal static class SoundManager
     {
         #region Fields and parts
@@ -18,8 +21,6 @@ namespace AbrahmanAdventure.audio
         private static SoundPlayer hitSound;
 
         private static SoundPlayer hit2Sound;
-
-        //private static SoundPlayer koSound;
 
         private static SoundPlayer ko2Sound;
 
@@ -37,13 +38,17 @@ namespace AbrahmanAdventure.audio
             jumpDownSound = LoadSound("./assets/sounds/JumpDown.wav");
             hitSound = LoadSound("./assets/sounds/Hit.wav");
             hit2Sound = LoadSound("./assets/sounds/Hit2.wav");
-            //koSound = LoadSound("./assets/sounds/Ko.wav");
             ko2Sound = LoadSound("./assets/sounds/Ko2.wav");
             attemptSound = LoadSound("./assets/sounds/Attempt.wav");
             punchSound = LoadSound("./assets/sounds/Punch.wav");
             helmetBumpSound = LoadSound("./assets/sounds/HelmetBump.wav");
         }
 
+        /// <summary>
+        /// Load sound in memory so it can be played later
+        /// </summary>
+        /// <param name="fileName">file</param>
+        /// <returns>Loaded sound</returns>
         private static SoundPlayer LoadSound(string fileName)
         {
             SoundPlayer soundPlayer = new SoundPlayer(fileName);
@@ -72,11 +77,6 @@ namespace AbrahmanAdventure.audio
         {
             hit2Sound.Play();
         }
-
-        /*internal static void PlayKoSound()
-        {
-            koSound.Play();
-        }*/
 
         internal static void PlayKo2Sound()
         {
