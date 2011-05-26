@@ -1,6 +1,6 @@
 Comportement de koopa pour RiotControl
 {
-	shells must make sound when hitting walls
+	helmet: invert animation sequence if walking left
 
 	Helmets must stop when jumped on if they move, or move if they don't
 	
