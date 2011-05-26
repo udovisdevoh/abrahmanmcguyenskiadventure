@@ -89,6 +89,8 @@ namespace AbrahmanAdventure.ai
                     if (monster is HelmetSprite)
                         SoundManager.PlayHelmetBumpSound();
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
+                    if (monster.IsFullSpeedAfterBounceNoAi)
+                        monster.CurrentWalkingSpeed = monster.MaxWalkingSpeed;
                 }
 
                 #region Some monsters should not fall in holes, they change direction instead

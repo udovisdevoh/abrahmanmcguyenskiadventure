@@ -27,6 +27,8 @@ namespace AbrahmanAdventure.sprites
         private bool isNoAiDefaultDirectionWalkingRight;
 
         private bool isAvoidFall;
+
+        private bool isFullSpeedAfterBounceNoAi;
         #endregion
 
         #region Constructors
@@ -46,6 +48,7 @@ namespace AbrahmanAdventure.sprites
             isAiEnabled = BuildIsAiEnabled();
             isAvoidFall = BuildIsAvoidFall(random);
             isNoAiDefaultDirectionWalkingRight = random.Next(0, 2) == 1;
+            isFullSpeedAfterBounceNoAi = BuildIsFullSpeedAfterBounceNoAi();
         }
         #endregion
 
@@ -63,6 +66,8 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprites will flee just after getting attacked</returns>
         protected abstract bool BuildIsFleeWhenAttacked(Random random);
+
+        protected abstract bool BuildIsFullSpeedAfterBounceNoAi();
 
         /// <summary>
         /// Sprite when converted to another sprite (default: null)
@@ -115,6 +120,11 @@ namespace AbrahmanAdventure.sprites
         public bool IsAvoidFall
         {
             get { return isAvoidFall; }
+        }
+
+        public bool IsFullSpeedAfterBounceNoAi
+        {
+            get { return isFullSpeedAfterBounceNoAi; }
         }
         #endregion
     }
