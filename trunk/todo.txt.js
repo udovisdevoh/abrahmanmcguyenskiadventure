@@ -1,8 +1,8 @@
 Comportement de koopa pour RiotControl
 {
+	faire spinner le casque
+
 	ajuster accélération des casques
-	
-	si stomp un RiotControl, moitié de hauteur pour stomper
 	
 	Helmets must stop when jumped on if they move, or move if they don't
 	
@@ -14,8 +14,6 @@ Comportement de koopa pour RiotControl
 	
 	shells must make sound when hitting walls
 }
-
-meilleur son lorsque perd energie
 
 Audio
 {
