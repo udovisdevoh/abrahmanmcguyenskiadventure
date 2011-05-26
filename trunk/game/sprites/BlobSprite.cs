@@ -132,6 +132,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsToggleWalkWhenJumpedOn()
+        {
+            return false;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;

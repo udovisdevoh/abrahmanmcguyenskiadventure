@@ -35,6 +35,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         private void TryMakeWalk(AbstractSprite sprite, double timeDelta, Level level)
         {
+            if (sprite is MonsterSprite && !((MonsterSprite)sprite).IsWalkEnabled)
+                return;
+
             double desiredWalkingDistance;
             double walkingDistance;
             double previousWalkingSpeed = sprite.CurrentWalkingSpeed;
