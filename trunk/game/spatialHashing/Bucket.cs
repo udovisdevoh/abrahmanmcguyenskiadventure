@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AbrahmanAdventure.sprites
 {
+    /// <summary>
+    /// Represents a spatial hashing bucket
+    /// </summary>
     internal class Bucket : HashSet<AbstractSprite>
     {
     }

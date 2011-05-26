@@ -19,31 +19,26 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
-            if (sprite.Ground != null)
+            if (sprite.Ground != null) //No gravity, sprite is on a ground
             {
                 sprite.CurrentJumpAcceleration = 0;
+                return;
             }
-            else
+
+
+            Ground closestDownGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
+            if (closestDownGround == null)
             {
-                Ground closestDownGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
-                if (closestDownGround == null)
+                if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
                 {
-                    if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
+                    Ground lowestVisibleGround = GroundHelper.GetLowestVisibleGround(sprite, level);
+                    if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
                     {
-                        Ground lowestVisibleGround = GroundHelper.GetLowestVisibleGround(sprite, level);
-                        if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
+                        if (sprite.IsAlive)
                         {
-                            if (sprite.IsAlive)
-                            {
-                                sprite.Ground = lowestVisibleGround;
-                                sprite.YPosition = sprite.Ground[sprite.XPosition];
-                                sprite.CurrentJumpAcceleration = 0;
-                            }
-                        }
-                        else
-                        {
-                            ApplyGravityMovement(sprite, timeDelta);
-                            ApplyGravityAcceleration(sprite, timeDelta);
+                            sprite.Ground = lowestVisibleGround;
+                            sprite.YPosition = sprite.Ground[sprite.XPosition];
+                            sprite.CurrentJumpAcceleration = 0;
                         }
                     }
                     else
@@ -54,22 +49,24 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
-                    double closestDownGroundHeight = closestDownGround[sprite.XPosition];
                     ApplyGravityMovement(sprite, timeDelta);
+                    ApplyGravityAcceleration(sprite, timeDelta);
+                }
+            }
+            else
+            {
+                double closestDownGroundHeight = closestDownGround[sprite.XPosition];
+                ApplyGravityMovement(sprite, timeDelta);
 
-                    if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
-                    {
-                        ApplyGravityAcceleration(sprite, timeDelta);
-                    }
+                if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
+                {
+                    ApplyGravityAcceleration(sprite, timeDelta);
+                }
 
-                    if (sprite.YPosition >= closestDownGroundHeight)
-                    {
-                        if (sprite.IsAlive)
-                        {
-                            sprite.YPosition = closestDownGroundHeight;
-                            sprite.Ground = closestDownGround;
-                        }
-                    }
+                if (sprite.YPosition >= closestDownGroundHeight && sprite.IsAlive)
+                {
+                    sprite.YPosition = closestDownGroundHeight;
+                    sprite.Ground = closestDownGround;
                 }
             }
         }

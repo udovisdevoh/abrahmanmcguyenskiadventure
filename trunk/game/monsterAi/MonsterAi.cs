@@ -9,9 +9,20 @@ using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.ai
 {
-    class MonsterAi
+    /// <summary>
+    /// Manages monster's AI
+    /// </summary>
+    internal class MonsterAi
     {
         #region Internal Methods
+        /// <summary>
+        /// Update monster from AI
+        /// </summary>
+        /// <param name="monster">monster</param>
+        /// <param name="player">player</param>
+        /// <param name="level">level</param>
+        /// <param name="timeDelta">time delta</param>
+        /// <param name="random">random number generator</param>
         internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, Random random)
         {
             double slope;
@@ -47,7 +58,6 @@ namespace AbrahmanAdventure.ai
                 monster.IsTryingToJump = false;
             }
             #endregion
-
 
             if (monster.IsAiEnabled || monster.PunchedCycle.IsFired)
             {
@@ -98,8 +108,6 @@ namespace AbrahmanAdventure.ai
                 }
 
                 #region Some monsters should not fall in holes, they change direction instead
-                
-                
                 if (monster.IsAvoidFall && TryGetSlopeRatio(monster, level, timeDelta, monster.IsNoAiDefaultDirectionWalkingRight, out slope))
                 {
                     if (slope > 6)//0.8)
@@ -117,6 +125,15 @@ namespace AbrahmanAdventure.ai
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Try get slope ratio for monster
+        /// </summary>
+        /// <param name="monster">monster</param>
+        /// <param name="level">level</param>
+        /// <param name="timeDelta">time delta</param>
+        /// <param name="isWalkingRight">whether spirte is walking right</param>
+        /// <param name="slope">slope ratio</param>
+        /// <returns>whether could get slope ratio or not</returns>
         private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, out double slope)
         {
             slope = 0;

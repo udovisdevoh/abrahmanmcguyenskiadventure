@@ -8,7 +8,10 @@ using System.Drawing;
 
 namespace AbrahmanAdventure.hud
 {
-    class HudViewer
+    /// <summary>
+    /// To view hud (energy, how many lives, current level, time left, score)
+    /// </summary>
+    internal class HudViewer
     {
         #region Fields and parts
         /// <summary>
@@ -16,11 +19,20 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private Surface surface;
 
-        private int maxBarWidth;
+        /// <summary>
+        /// Maximum width of energy bar (in pixels)
+        /// </summary>
+        private int maxEnergyBarWidth;
 
-        private int xYOffset;
+        /// <summary>
+        /// Both X and Y (they are the same) offset (in pixels) for energy bar position
+        /// </summary>
+        private int xYOffsetEnergyBar;
 
-        private int barThickness;
+        /// <summary>
+        /// Thickness of energy bar
+        /// </summary>
+        private int energyBarThickness;
         #endregion
 
         #region Constructor
@@ -31,9 +43,9 @@ namespace AbrahmanAdventure.hud
         public HudViewer(Surface surface)
         {
             this.surface = surface;
-            maxBarWidth = (int)(75 * Program.screenWidth / 640);
-            xYOffset = (int)(16 * Program.screenWidth / 640);
-            barThickness = (int)(8 * Program.screenWidth / 640);
+            maxEnergyBarWidth = (int)(75 * Program.screenWidth / 640);
+            xYOffsetEnergyBar = (int)(16 * Program.screenWidth / 640);
+            energyBarThickness = (int)(8 * Program.screenWidth / 640);
         }
         #endregion
 
@@ -46,8 +58,8 @@ namespace AbrahmanAdventure.hud
         {
             int yellowBarWidth = (int)((playerHealth * (double)(75)) * Program.screenWidth / 640);
 
-            Rectangle yellowRectangle = new Rectangle(xYOffset, xYOffset, yellowBarWidth, barThickness);
-            Rectangle redRectangle = new Rectangle(yellowBarWidth + xYOffset, xYOffset, maxBarWidth - yellowBarWidth, barThickness);
+            Rectangle yellowRectangle = new Rectangle(xYOffsetEnergyBar, xYOffsetEnergyBar, yellowBarWidth, energyBarThickness);
+            Rectangle redRectangle = new Rectangle(yellowBarWidth + xYOffsetEnergyBar, xYOffsetEnergyBar, maxEnergyBarWidth - yellowBarWidth, energyBarThickness);
             
             surface.Fill(yellowRectangle, Color.Yellow);
             surface.Fill(redRectangle, Color.Red);

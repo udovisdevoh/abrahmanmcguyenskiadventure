@@ -20,11 +20,6 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, double timeDelta)
         {
-            /*if (sprite is MonsterSprite && sprite.Health < sprite.CurrentDamageReceiving)
-            {
-                sprite.IsAlive = false;
-            }*/
-
             sprite.HitCycle.Increment(timeDelta);
             sprite.PunchedCycle.Increment(timeDelta);
             if (sprite is MonsterSprite)
@@ -34,11 +29,8 @@ namespace AbrahmanAdventure.physics
             {
                 sprite.Health -= (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 3.0;
 
-                if (!sprite.IsAlive)
-                {
-                    if (sprite is PlayerSprite)
-                        SoundManager.PlayKo2Sound();
-                }
+                if (!sprite.IsAlive && sprite is PlayerSprite)
+                    SoundManager.PlayKo2Sound();
             }
         }
     }
