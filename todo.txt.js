@@ -1,12 +1,10 @@
 Comportement de koopa pour RiotControl
 {
-	helmet: invert animation sequence if walking left
-
-	Helmets must stop when jumped on if they move, or move if they don't
-	
-	When touching stopped helmet, don't lose energy, must start moving in direction getting pushed
-	
 	When jumping on helmet or RiotControl, the moving direction will be direction pushed
+
+	Helmets must stop when jumped on if they move, or move if they don't. Neither player nor helmet must lose energy
+	
+	When touching stopped helmet, must start moving in direction getting pushed. Neither player nor helmet must lose energy
 	
 	shells must not be able to climb sharp slopes
 }
