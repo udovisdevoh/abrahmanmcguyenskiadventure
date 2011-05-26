@@ -365,10 +365,12 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return GetDeadSurface();
 
+            #region Attacking
             if (AttackingCycle.IsFired)
             {
                 if (IsCrouch)
                 {
+                    #region Crouched
                     if (IsTryingToWalkRight)
                     {
                         if (attackCycleDivision >= 4)
@@ -395,9 +397,11 @@ namespace AbrahmanAdventure.sprites
                             return GetCrouchedAttackFrame1LeftSurface();
                         }
                     }
+                    #endregion
                 }
                 else if (Ground == null)
                 {
+                    #region In air
                     if (IsTryingToWalkRight)
                     {
                         if (attackCycleDivision < 4)
@@ -428,6 +432,7 @@ namespace AbrahmanAdventure.sprites
                             return GetKickFrame1LeftSurface();
                         }
                     }
+                    #endregion
                 }
                 else
                 {
@@ -459,6 +464,7 @@ namespace AbrahmanAdventure.sprites
                     }
                 }
             }
+            #endregion
 
             if (IsCrouch)
             {
