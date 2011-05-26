@@ -5,10 +5,7 @@ Damage
 	Max health and default damage must be adjusted to more precise values
 }
 
-clean the code, feature freeze
-{
-	Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
-}
+Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
 
 Comportement de koopa pour RiotControl
 {
