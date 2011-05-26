@@ -1,6 +1,5 @@
 clean the code, feature freeze
 {
-	remove running speed for non-player, tester si tout est correct
 	Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
 }
 
@@ -18,8 +17,6 @@ add walkable blocks
 add bouncing notes / trampoline
 add ? blocks and brick blocks
 
-
-vérifier si les sprites, notamment raptor et jew, garde leur speed en changeant de direction par AI, voir si c'est souhaitable
 
 Audio
 {

@@ -79,6 +79,10 @@ namespace AbrahmanAdventure.ai
                     else
                         monster.IsTryingToWalkRight = false;
                 }
+
+                if (wasTryingToWalkRight != monster.IsTryingToWalkRight)
+                    monster.CurrentWalkingSpeed = 0.0;
+
                 #endregion
             }
             else
