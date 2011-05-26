@@ -20,7 +20,13 @@ mettre décorations anarchiques
 add walkable blocks
 add bouncing notes / trampoline
 add ? blocks and brick blocks
-
+add mushroom, flower, stars
+?add pipes or equivalent, must think about it first?
+{
+	could just be a teleporter to another level. You walk in it, and you go to another level, the game will remember the current level, so you can come back
+	//some levels could be inside a cave instead of being outside
+	//could maybe add some moutains in the background of some levels
+}
 
 Audio
 {
