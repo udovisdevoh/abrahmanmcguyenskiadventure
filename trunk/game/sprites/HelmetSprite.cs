@@ -241,22 +241,42 @@ namespace AbrahmanAdventure.sprites
             if (isBlack)
             {
                 if (cycleDivision == 0/* || CurrentWalkingSpeed == 0*/)
-                    return GetWalking1aSurface();
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking1aSurface();
+                    else
+                        return GetWalking1cSurface();
+                }
                 else if (cycleDivision == 1)
                     return GetWalking1bSurface();
                 else if (cycleDivision == 2)
-                    return GetWalking1cSurface();
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking1cSurface();
+                    else
+                        return GetWalking1aSurface();
+                }
                 else
                     return GetWalking1dSurface();
             }
             else
             {
-              if (cycleDivision == 0/* || CurrentWalkingSpeed == 0*/)
-                    return GetWalking2aSurface();
+                if (cycleDivision == 0/* || CurrentWalkingSpeed == 0*/)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking2aSurface();
+                    else
+                        return GetWalking2cSurface();
+                }
                 else if (cycleDivision == 1)
                     return GetWalking2bSurface();
                 else if (cycleDivision == 2)
-                    return GetWalking2cSurface();
+                {
+                    if (IsTryingToWalkRight)
+                        return GetWalking2cSurface();
+                    else
+                        return GetWalking2aSurface();
+                }
                 else
                     return GetWalking2dSurface();
             }
