@@ -5,6 +5,7 @@ using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.physics;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.ai
 {
@@ -85,6 +86,8 @@ namespace AbrahmanAdventure.ai
                 #region Walking no AI
                 if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0) //Change direction if can't move
                 {
+                    if (monster is HelmetSprite)
+                        SoundManager.PlayHelmetBumpSound();
                     monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
                 }
 
