@@ -1,3 +1,5 @@
+jump: smb1 nes sound
+
 Faire gestion automatique de la population de sprite
 
 Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
