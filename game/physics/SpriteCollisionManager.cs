@@ -156,6 +156,7 @@ namespace AbrahmanAdventure.physics
             monsterSprite.IsWalkEnabled = !monsterSprite.IsWalkEnabled;
             if (monsterSprite.IsWalkEnabled)
             {
+                SoundManager.PlayHelmetKickSound();
                 monsterSprite.IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < monsterSprite.XPosition; //default direction for helmet
                 monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
                 monsterSprite.KickedHelmetCycle.Fire();    
