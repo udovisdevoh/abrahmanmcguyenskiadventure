@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 0.3;
+            return 0.5;
         }
 
         protected override bool BuildIsCanJump(Random random)
@@ -109,7 +109,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackStrengthCollision()
         {
-            return 0.3;
+            return 0.5;
         }
 
         protected override bool BuildIsFleeWhenAttacked(Random random)

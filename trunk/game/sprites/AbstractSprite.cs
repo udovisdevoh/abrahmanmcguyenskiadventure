@@ -686,6 +686,10 @@ namespace AbrahmanAdventure.sprites
             set
             {
                 health = value;
+
+                if (health < 0.05)
+                    health = 0.0;
+
                 if (health <= 0)
                 {
                     health = 0.0;

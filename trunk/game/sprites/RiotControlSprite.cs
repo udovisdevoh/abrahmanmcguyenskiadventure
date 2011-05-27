@@ -178,7 +178,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 0.8;
+            return 1.0;
         }
 
         protected override bool BuildIsCanJump(Random random)
