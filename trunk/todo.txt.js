@@ -1,10 +1,3 @@
-Damage
-{
-	//Blinking time is regardless of that, but must be greater than damage time
-	Current damage receiving should be decremented
-	Max health and default damage must be adjusted to more precise values
-}
-
 Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
 
 Comportement de koopa pour RiotControl
@@ -28,11 +21,7 @@ add mushroom, flower, star, something to fly (leaf/feather/wings)
 	//could maybe add some moutains in the background of some levels
 }
 
-Audio
-{
-	?Remettre son SDL
-	regler bug de manque de channel
-}
+add some water, lava etc
 
 Regler bug de zone de tile hyper repeté
 
