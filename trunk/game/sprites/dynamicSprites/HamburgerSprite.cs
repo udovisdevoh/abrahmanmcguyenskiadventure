@@ -142,6 +142,16 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsEnableSpontaneousConversion()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsEnableJumpOnConversion()
+        {
+            return false;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;

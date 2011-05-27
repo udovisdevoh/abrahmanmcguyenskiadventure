@@ -53,6 +53,12 @@ namespace AbrahmanAdventure.sprites
             isFired = true;
             currentValue = 0;
         }
+
+        internal void StopAndReset()
+        {
+            isFired = false;
+            currentValue = 0;
+        }
         #endregion
 
         #region Properties

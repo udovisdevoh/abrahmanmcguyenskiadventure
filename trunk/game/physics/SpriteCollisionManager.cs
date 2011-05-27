@@ -95,11 +95,12 @@ namespace AbrahmanAdventure.physics
                         {
                             MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
                             SoundManager.PlayHitSound();
-                            AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
 
-                            if (jumpedOnConvertedSprite != null) //If sprite is converted into another sprite when getting jumped on
+                            if (((MonsterSprite)otherSprite).IsEnableJumpOnConversion) //If sprite is converted into another sprite when getting jumped on
                             {
-                                PerformSpriteConversion(sprite, otherSprite, jumpedOnConvertedSprite, spritePopulation);                                
+                                AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
+                                if (jumpedOnConvertedSprite != null)
+                                    PerformSpriteConversion(sprite, otherSprite, jumpedOnConvertedSprite, spritePopulation);                                
                             }
                             else if (monsterSprite.IsToggleWalkWhenJumpedOn) //Start/stop (for helmets)
                             {
@@ -140,7 +141,11 @@ namespace AbrahmanAdventure.physics
                     newSprite.CurrentWalkingSpeed = newSprite.WalkingAcceleration;
                 }
                 else
+                {
                     ((MonsterSprite)newSprite).IsWalkEnabled = false;
+                    if (((MonsterSprite)newSprite).IsEnableSpontaneousConversion)
+                        ((MonsterSprite)newSprite).SpontaneousTransformationCycle.Fire(); //We schedule an eventual transformation from helmet to monster
+                }
             }
         }
 
@@ -159,7 +164,12 @@ namespace AbrahmanAdventure.physics
                 SoundManager.PlayHelmetKickSound();
                 monsterSprite.IsNoAiDefaultDirectionWalkingRight = sprite.XPosition < monsterSprite.XPosition; //default direction for helmet
                 monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
-                monsterSprite.KickedHelmetCycle.Fire();    
+                monsterSprite.KickedHelmetCycle.Fire();
+                monsterSprite.SpontaneousTransformationCycle.StopAndReset();
+            }
+            else if (monsterSprite.IsEnableSpontaneousConversion)
+            {
+                monsterSprite.SpontaneousTransformationCycle.Fire(); //We schedule an eventual transformation from helmet to monster
             }
         }
         #endregion
