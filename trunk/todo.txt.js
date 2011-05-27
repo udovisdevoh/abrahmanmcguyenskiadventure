@@ -1,14 +1,6 @@
+Faire gestion automatique de la population de sprite
+
 Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
-
-Comportement de koopa pour RiotControl
-{
-	shells must not be able to climb sharp slopes
-}
-
-mettre décorations anarchiques
-{
-	drapeaux etc
-}
 
 add walkable blocks
 add bouncing notes / trampoline
@@ -19,6 +11,11 @@ add mushroom, flower, star, something to fly (leaf/feather/wings)
 	could just be a teleporter to another level. You walk in it, and you go to another level, the game will remember the current level, so you can come back
 	//some levels could be inside a cave instead of being outside
 	//could maybe add some moutains in the background of some levels
+}
+
+mettre décorations anarchiques
+{
+	drapeaux etc
 }
 
 add some water, lava etc
@@ -51,14 +48,12 @@ Monstres
 {
 	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
 
-	Police d'escouade anti-émeute
-	{
-		Comportement d'un koopa, le casque sera comme la carapace
-	}
-	
 	Jesus raptor
 	{
-		Pieds comme yoshi
+		améliorer la texture du raptor (+d'ombrages)
+		mettre courone d'épine et/ou auréole
+		doit tenir une croix dans sa main
+		mettre genre de couche
 	}
 	
 	Mickey Mouse
