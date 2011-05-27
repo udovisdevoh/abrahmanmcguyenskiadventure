@@ -25,9 +25,15 @@ namespace AbrahmanAdventure.physics
             if (sprite is MonsterSprite)
             ((MonsterSprite)sprite).KickedHelmetCycle.Increment(timeDelta);
 
-            if (sprite.IsAlive && sprite.HitCycle.IsFired && sprite.HitCycle.CurrentValue <= sprite.HitCycle.TotalTimeLength / 3.0)
+            if (sprite.IsAlive && sprite.HitCycle.IsFired && sprite.CurrentDamageReceiving > 0)
             {
-                sprite.Health -= (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 3.0;
+                double decrease = (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 5.0;
+
+                if (sprite.CurrentDamageReceiving - decrease < 0)
+                    decrease -= Math.Abs(sprite.CurrentDamageReceiving - decrease);
+
+                sprite.Health -= decrease;
+                sprite.CurrentDamageReceiving -= decrease;
 
                 if (!sprite.IsAlive && sprite is PlayerSprite)
                     SoundManager.PlayKo2Sound();
