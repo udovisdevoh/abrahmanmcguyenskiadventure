@@ -215,11 +215,6 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        public override AbstractSprite GetConverstionSprite(Random random)
-        {
-            return null;
-        }
-
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
             return true;
@@ -233,6 +228,21 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsInstantKickConvertedSprite()
         {
             return false;
+        }
+
+        protected override bool BuildIsEnableSpontaneousConversion()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsEnableJumpOnConversion()
+        {
+            return false;
+        }
+
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return new RiotControlSprite(XPosition, YPosition, random, isBlack);
         }
 
         /// <summary>

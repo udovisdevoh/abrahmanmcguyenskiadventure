@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.sprites
 
         #region Constructors
         /// <summary>
-        /// Create caterpillar sprite
+        /// Create sprite
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
@@ -42,6 +42,19 @@ namespace AbrahmanAdventure.sprites
         public RiotControlSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+        }
+
+        /// <summary>
+        /// Create sprite
+        /// </summary>
+        /// <param name="xPosition">x position</param>
+        /// <param name="yPosition">y position</param>
+        /// <param name="random">random number generator</param>
+        /// <param name="isAvoidFall">is avoid fall</param>
+        public RiotControlSprite(double xPosition, double yPosition, Random random, bool isAvoidFall)
+            : base(xPosition, yPosition, random)
+        {
+            this.IsAvoidFall = isAvoidFall;
         }
         #endregion
 
@@ -229,6 +242,16 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsToggleWalkWhenJumpedOn()
         {
             return false;
+        }
+
+        protected override bool BuildIsEnableSpontaneousConversion()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsEnableJumpOnConversion()
+        {
+            return true;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)

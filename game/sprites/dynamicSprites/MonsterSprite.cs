@@ -24,6 +24,12 @@ namespace AbrahmanAdventure.sprites
         /// When cycle is fired, no damage is given from touching this sprite
         /// </summary>
         private Cycle kickedHelmetCycle;
+
+        /// <summary>
+        /// At the end of the cycle, the sprite will start shaking (if fired)
+        /// At the very end, the sprite will be transformed into another sprite (if fired)
+        /// </summary>
+        private Cycle spontaneousTransformationCycle;
         
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -75,6 +81,16 @@ namespace AbrahmanAdventure.sprites
         /// False: when jumping on this sprite, will be converted to something that doesn't move yet, but waits to be touched or jumped on
         /// </summary>
         private bool isInstantKickConvertedSprite;
+
+        /// <summary>
+        /// Whether this sprite can be spontaneously transformed into another one when not walking for too long
+        /// </summary>
+        private bool isEnableSpontaneousConversion;
+
+        /// <summary>
+        /// Whether sprite can be converted to another sprite when getting jumped on
+        /// </summary>
+        private bool isEnableJumpOnConversion;
         #endregion
 
         #region Constructors
@@ -89,6 +105,7 @@ namespace AbrahmanAdventure.sprites
         {
             isWalkEnabled = true;
             kickedHelmetCycle = new Cycle(16.0,false);
+            spontaneousTransformationCycle = new Cycle(256, false);
             defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
             defaultUndefinedSurface.Fill(Color.Red);
             isCanJump = BuildIsCanJump(random);
@@ -100,6 +117,8 @@ namespace AbrahmanAdventure.sprites
             isFullSpeedAfterBounceNoAi = BuildIsFullSpeedAfterBounceNoAi();
             isToggleWalkWhenJumpedOn = BuildIsToggleWalkWhenJumpedOn();
             isInstantKickConvertedSprite = BuildIsInstantKickConvertedSprite();
+            isEnableSpontaneousConversion = BuildIsEnableSpontaneousConversion();
+            isEnableJumpOnConversion = BuildIsEnableJumpOnConversion();
         }
         #endregion
 
@@ -131,12 +150,6 @@ namespace AbrahmanAdventure.sprites
         protected abstract bool BuildIsToggleWalkWhenJumpedOn();
 
         /// <summary>
-        /// Probability of jumping (from 0 to 1)
-        /// </summary>
-        /// <returns>Probability of jumping (from 0 to 1)</returns>
-        protected abstract double BuildJumpProbability();
-
-        /// <summary>
         /// Whether sprite will flee just after getting attacked
         /// </summary>
         /// <returns>Whether sprite will flee just after getting attacked</returns>
@@ -157,6 +170,24 @@ namespace AbrahmanAdventure.sprites
         /// False: when jumping on this sprite, will be converted to something that doesn't move yet, but waits to be touched or jumped on
         /// </returns>
         protected abstract bool BuildIsInstantKickConvertedSprite();
+
+        /// <summary>
+        /// Whether this sprite can be spontaneously transformed into another one when not walking for too long
+        /// </summary>
+        /// <returns>Whether this sprite can be spontaneously transformed into another one when not walking for too long</returns>
+        protected abstract bool BuildIsEnableSpontaneousConversion();
+
+        /// <summary>
+        /// Whether sprite can be converted to another sprite when getting jumped on
+        /// </summary>
+        /// <returns>Whether sprite can be converted to another sprite when getting jumped on</returns>
+        protected abstract bool BuildIsEnableJumpOnConversion();
+
+        /// <summary>
+        /// Probability of jumping (from 0 to 1)
+        /// </summary>
+        /// <returns>Probability of jumping (from 0 to 1)</returns>
+        protected abstract double BuildJumpProbability();
 
         /// <summary>
         /// Sprite when converted to another sprite (default: null)
@@ -192,19 +223,20 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// At the end of the cycle, the sprite will start shaking (if fired)
+        /// At the very end, the sprite will be transformed into another sprite (if fired)
+        /// </summary>
+        public Cycle SpontaneousTransformationCycle
+        {
+            get { return spontaneousTransformationCycle; }
+        }
+
+        /// <summary>
         /// Whether monster can jump
         /// </summary>
         public bool IsCanJump
         {
             get { return isCanJump; }
-        }
-
-        /// <summary>
-        /// Probability of jumping (from 0 to 1)
-        /// </summary>
-        public double JumpProbability
-        {
-            get { return jumpProbability; }
         }
 
         /// <summary>
@@ -238,6 +270,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsAvoidFall
         {
             get { return isAvoidFall; }
+            set { isAvoidFall = value; }
         }
 
         /// <summary>
@@ -272,6 +305,30 @@ namespace AbrahmanAdventure.sprites
         public bool IsInstantKickConvertedSprite
         {
             get { return isInstantKickConvertedSprite; }
+        }
+
+        /// <summary>
+        /// Whether this sprite can be spontaneously transformed into another one when not walking for too long
+        /// </summary>
+        public bool IsEnableSpontaneousConversion
+        {
+            get { return isEnableSpontaneousConversion; }
+        }
+
+        /// <summary>
+        /// Whether sprite can be converted to another sprite when getting jumped on
+        /// </summary>
+        public bool IsEnableJumpOnConversion
+        {
+            get { return isEnableJumpOnConversion; }
+        }
+
+        /// <summary>
+        /// Probability of jumping (from 0 to 1)
+        /// </summary>
+        public double JumpProbability
+        {
+            get { return jumpProbability; }
         }
         #endregion
     }

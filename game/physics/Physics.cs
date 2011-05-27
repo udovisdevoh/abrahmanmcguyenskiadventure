@@ -44,6 +44,11 @@ namespace AbrahmanAdventure.physics
         private DeathManager deathManager = new DeathManager();
 
         /// <summary>
+        /// Manages cases where sprites are spontaneously converted when they have stoped moving for too long
+        /// </summary>
+        private SpontaneousConversionManager spontaneousConversionManager = new SpontaneousConversionManager();
+
+        /// <summary>
         /// Manages sprite collision
         /// </summary>
         private SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
@@ -85,6 +90,9 @@ namespace AbrahmanAdventure.physics
             {
                 helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList); 
             }
+
+            if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsEnableSpontaneousConversion)
+                spontaneousConversionManager.Update((MonsterSprite)sprite, spritePopulation, timeDelta, random);
         }
         #endregion
 
