@@ -26,26 +26,29 @@ namespace AbrahmanAdventure.physics
             {
                 if (otherSprite is MonsterSprite)
                 {
-                    MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
-                    if (sprite != monsterSprite)
+                    if (!otherSprite.PunchedCycle.IsFired)
                     {
-                        if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
+                        MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
+                        if (sprite != monsterSprite)
                         {
-                            SoundManager.PlayPunchSound();
-                            monsterSprite.HitCycle.Fire();
-                            monsterSprite.PunchedCycle.Fire();
-                            monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                            if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
+                            {
+                                SoundManager.PlayPunchSound();
+                                monsterSprite.HitCycle.Fire();
+                                monsterSprite.PunchedCycle.Fire();
+                                monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
 
-                            monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                            monsterSprite.JumpingCycle.Reset();
-                            monsterSprite.JumpingCycle.Fire();
+                                monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                                monsterSprite.JumpingCycle.Reset();
+                                monsterSprite.JumpingCycle.Fire();
 
-                            if (monsterSprite.IsTryingToWalkRight)
-                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
-                            else
-                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
+                                if (monsterSprite.IsTryingToWalkRight)
+                                    monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
+                                else
+                                    monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
 
-                            monsterSprite.IsTryingToJump = true;
+                                monsterSprite.IsTryingToJump = true;
+                            }
                         }
                     }
                 }

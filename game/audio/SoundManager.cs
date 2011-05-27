@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
-using System.Media;
-//using SdlDotNet.Audio;
+//using System.Media;
+using SdlDotNet.Audio;
 
 namespace AbrahmanAdventure.audio
 {
@@ -14,37 +14,38 @@ namespace AbrahmanAdventure.audio
     internal static class SoundManager
     {
         #region Fields and parts
-        private static SoundPlayer jumpSound;
+        private static Sound jumpSound;
 
-        private static SoundPlayer jumpDownSound;
+        private static Sound jumpDownSound;
 
-        private static SoundPlayer hitSound;
+        private static Sound hitSound;
 
-        private static SoundPlayer hit2Sound;
+        private static Sound hit2Sound;
 
-        private static SoundPlayer ko2Sound;
+        private static Sound ko2Sound;
 
-        private static SoundPlayer attemptSound;
+        private static Sound attemptSound;
 
-        private static SoundPlayer punchSound;
+        private static Sound punchSound;
 
-        private static SoundPlayer helmetBumpSound;
+        private static Sound helmetBumpSound;
 
-        private static SoundPlayer helmetKickSound;
+        private static Sound helmetKickSound;
         #endregion
 
         #region Constructors
         static SoundManager()
         {
-            jumpSound = LoadSound("./assets/sounds/Jump.wav");
-            jumpDownSound = LoadSound("./assets/sounds/JumpDown.wav");
-            hitSound = LoadSound("./assets/sounds/Hit.wav");
-            hit2Sound = LoadSound("./assets/sounds/Hit2.wav");
-            ko2Sound = LoadSound("./assets/sounds/Ko2.wav");
-            attemptSound = LoadSound("./assets/sounds/Attempt.wav");
-            punchSound = LoadSound("./assets/sounds/Punch.wav");
-            helmetBumpSound = LoadSound("./assets/sounds/HelmetBump.wav");
-            helmetKickSound = LoadSound("./assets/sounds/HelmetKick.wav");
+            Mixer.ChannelsAllocated = 64;
+            jumpSound = LoadSound("./assets/sounds/Jump.ogg");
+            jumpDownSound = LoadSound("./assets/sounds/JumpDown.ogg");
+            hitSound = LoadSound("./assets/sounds/Hit.ogg");
+            hit2Sound = LoadSound("./assets/sounds/Hit2.ogg");
+            ko2Sound = LoadSound("./assets/sounds/Ko2.ogg");
+            attemptSound = LoadSound("./assets/sounds/Attempt.ogg");
+            punchSound = LoadSound("./assets/sounds/Punch.ogg");
+            helmetBumpSound = LoadSound("./assets/sounds/HelmetBump.ogg");
+            helmetKickSound = LoadSound("./assets/sounds/HelmetKick.ogg");
         }
 
         /// <summary>
@@ -52,10 +53,10 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         /// <param name="fileName">file</param>
         /// <returns>Loaded sound</returns>
-        private static SoundPlayer LoadSound(string fileName)
+        private static Sound LoadSound(string fileName)
         {
-            SoundPlayer soundPlayer = new SoundPlayer(fileName);
-            soundPlayer.Load();
+            Sound soundPlayer = new Sound(fileName);
+            //soundPlayer.Load();
             return soundPlayer;
         }
         #endregion
