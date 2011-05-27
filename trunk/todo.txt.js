@@ -58,6 +58,17 @@ Monstres
 		mettre genre de couche
 	}
 	
+	Mormon
+	{
+		arme: bible
+	}
+	
+	Trijambiste
+	{
+		3 jambes
+		marche en faisant comme s'il nageait (avec ses bras)
+	}
+	
 	Mickey Mouse
 	
 	Musulman sunith
@@ -108,11 +119,6 @@ Monstres
 		lance des maïs monsanto
 	}
 	
-	Mormon
-	{
-		arme: bible
-	}
-	
 	Diseuse de bonne aventure
 	{
 		lance boule de crystal
@@ -122,12 +128,6 @@ Monstres
 	{
 		donne des coups de bedaine
 		en veston sans chemise avec un shaggy
-	}
-	
-	Trijambiste
-	{
-		3 jambes
-		marche en faisant comme s'il nageait (avec ses bras)
 	}
 }
 
