@@ -4,6 +4,9 @@ Faire gestion automatique de la population de sprite
 
 Make sure we test whether sprite is jumping/in the air in a centralized place (remove ground == null test), so we can test whether sprite is walking on another sprite
 
+some static sprites should be impassable
+some static sprites should be affeted by gravity
+
 add walkable blocks
 add bouncing notes / trampoline
 add ? blocks and brick blocks

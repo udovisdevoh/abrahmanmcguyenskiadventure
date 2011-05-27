@@ -162,11 +162,6 @@ namespace AbrahmanAdventure.sprites
             return 2.0;
         }
 
-        protected override double BuildMass(Random random)
-        {
-            return 1.0;
-        }
-
         protected override double BuildMaxHealth()
         {
             return 1.0;

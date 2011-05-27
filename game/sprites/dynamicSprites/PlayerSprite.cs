@@ -296,15 +296,6 @@ namespace AbrahmanAdventure.sprites
             return 2.0;
         }
 
-        /// <summary>
-        /// Build mass
-        /// </summary>
-        /// <returns>mass</returns>
-        protected override double BuildMass(Random random)
-        {
-            return 1.0;
-        }
-
         protected override double BuildStartingJumpAcceleration()
         {
             return 25.0;

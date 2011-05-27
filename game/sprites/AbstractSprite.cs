@@ -120,11 +120,6 @@ namespace AbrahmanAdventure.sprites
         private double yPosition;
 
         /// <summary>
-        /// Mass
-        /// </summary>
-        private double mass;
-
-        /// <summary>
         /// Height
         /// </summary>
         private double height;
@@ -208,7 +203,6 @@ namespace AbrahmanAdventure.sprites
             this.yPosition = yPosition;
             width = BuildWidth(random);
             height = BuildHeight(random);
-            mass = BuildMass(random);
             health = maxHealth;
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             __parentBucketList = new HashSet<Bucket>();
@@ -297,12 +291,6 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>sprite's height (2.0 = player's height)</returns>
         protected abstract double BuildHeight(Random random);
-
-        /// <summary>
-        /// sprite's mass (1.0 = player's mass)
-        /// </summary>
-        /// <returns>sprite's mass (1.0 = player's mass)</returns>
-        protected abstract double BuildMass(Random random);
         #endregion
 
         #region Public Abstract Methods
@@ -371,14 +359,6 @@ namespace AbrahmanAdventure.sprites
         public double YPositionPrevious
         {
             get { return yPositionPrevious; }
-        }
-
-        /// <summary>
-        /// Mass
-        /// </summary>
-        public double Mass
-        {
-            get { return mass; }
         }
 
         /// <summary>
