@@ -87,6 +87,7 @@
     <Compile Include="game\sprites\dynamicSprites\RiotControlSprite.cs" />
     <Compile Include="game\sprites\dynamicSprites\SnakeSprite.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
+    <Compile Include="game\sprites\staticSprites\BrickSprite.cs" />
     <Compile Include="game\sprites\staticSprites\StaticSprite.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
