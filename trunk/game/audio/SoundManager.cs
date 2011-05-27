@@ -29,6 +29,8 @@ namespace AbrahmanAdventure.audio
         private static SoundPlayer punchSound;
 
         private static SoundPlayer helmetBumpSound;
+
+        private static SoundPlayer helmetKickSound;
         #endregion
 
         #region Constructors
@@ -42,6 +44,7 @@ namespace AbrahmanAdventure.audio
             attemptSound = LoadSound("./assets/sounds/Attempt.wav");
             punchSound = LoadSound("./assets/sounds/Punch.wav");
             helmetBumpSound = LoadSound("./assets/sounds/HelmetBump.wav");
+            helmetKickSound = LoadSound("./assets/sounds/HelmetKick.wav");
         }
 
         /// <summary>
@@ -96,6 +99,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayHelmetBumpSound()
         {
             helmetBumpSound.Play();
+        }
+
+        internal static void PlayHelmetKickSound()
+        {
+            helmetKickSound.Play();
         }
         #endregion
     }
