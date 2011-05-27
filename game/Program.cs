@@ -25,7 +25,7 @@ namespace AbrahmanAdventure
         public const int screenHeight = 480;
        
         public const bool isBindViewOffsetToPlayer = true;
-        
+
         public const bool isFullScreen = false;
 
         public const bool isHardwareSurface = true;
