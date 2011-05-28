@@ -110,7 +110,7 @@ namespace AbrahmanAdventure.physics
         {
             Ground referenceGround;
 
-            if (sprite.Ground == null)
+            if (!sprite.IsGrounded)
             {
                 referenceGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (referenceGround == null)
@@ -219,7 +219,7 @@ namespace AbrahmanAdventure.physics
 
                     double sprite1TopBound, sprite1BottomBound;
 
-                    if (sprite1.Ground == null || sprite1.IsCrouch)
+                    if (!sprite1.IsGrounded || sprite1.IsCrouch)
                     {
                         sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0;
                         sprite1BottomBound = sprite1.YPosition;

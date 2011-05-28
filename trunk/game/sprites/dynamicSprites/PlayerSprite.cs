@@ -404,7 +404,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     #endregion
                 }
-                else if (Ground == null)
+                else if (!IsGrounded)
                 {
                     #region In air
                     if (IsTryingToWalkRight)

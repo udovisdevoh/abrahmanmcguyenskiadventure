@@ -31,7 +31,7 @@ namespace AbrahmanAdventure.physics
                 {
                     if (Physics.IsDetectCollision(sprite, otherSprite))
                     {
-                        if (sprite.Ground == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
+                        if (!sprite.IsGrounded && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
                             UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                         }

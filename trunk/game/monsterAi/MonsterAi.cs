@@ -37,10 +37,10 @@ namespace AbrahmanAdventure.ai
                 else if (TryGetSlopeRatio(monster,level,timeDelta,monster.IsTryingToWalkRight, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
                     monster.IsTryingToJump = true;
 
-                /*if (player.Ground != null && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
+                /*if (player.IsGrounded && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
                     monster.IsTryingToJump = true;*/
 
-                if (monster.Ground == null)
+                if (!monster.IsGrounded)
                     monster.IsTryingToJump = (random.Next(0, 3) == 0);
                 else
                 {
