@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.physics
                     {
                         if (sprite.Ground == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
-                            UpdateJumpOnMonster(sprite, otherSprite, level, spritePopulation, timeDelta, random);
+                            UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                         }
                         else if (otherSprite is MonsterSprite && otherSprite.IsAlive)
                         {
@@ -76,7 +76,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpOnMonster(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
+        private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
         {
             if (sprite is PlayerSprite || (sprite is MonsterSprite && ((MonsterSprite)sprite).IsCanJump))
             {
@@ -85,10 +85,15 @@ namespace AbrahmanAdventure.physics
                     if (!otherSprite.HitCycle.IsFired) //if other sprite is not being hit already
                     {
                         #region Jumper sprite bounces
-                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                        sprite.JumpingCycle.Reset();
-                        sprite.JumpingCycle.Fire();
-                        sprite.IsTryingToJump = true;
+                        if (sprite.CurrentJumpAcceleration <= 0)
+                        {
+                            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration * otherSprite.Bounciness;
+                            sprite.JumpingCycle.Reset();
+                            sprite.JumpingCycle.Fire();
+                            sprite.IsTryingToJump = true;
+                            if (otherSprite.Bounciness > 1.0)
+                                SoundManager.PlayTrampolineSound();
+                        }
                         #endregion
 
                         if (otherSprite is MonsterSprite)

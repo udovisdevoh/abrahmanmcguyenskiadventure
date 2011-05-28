@@ -89,6 +89,7 @@
     <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\sprites\staticSprites\BrickSprite.cs" />
     <Compile Include="game\sprites\staticSprites\StaticSprite.cs" />
+    <Compile Include="game\sprites\staticSprites\Trampoline.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\AbstractWave.cs" />
@@ -343,6 +344,9 @@
     <Content Include="assets\rendered\snake\snake2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\staticSprites\trampoline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\sounds\Attempt.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -371,6 +375,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Punch.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\Trampoline.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="jpeg.dll">
