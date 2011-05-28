@@ -605,6 +605,14 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Whether sprite is on ground OR walking on a static sprite
+        /// </summary>
+        public bool IsGrounded
+        {
+            get { return ground != null; }
+        }
+
+        /// <summary>
         /// Acceleration at begining of jump
         /// </summary>
         public double StartingJumpAcceleration

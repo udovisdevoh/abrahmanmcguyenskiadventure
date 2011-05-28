@@ -308,7 +308,7 @@ namespace AbrahmanAdventure
             if (userInput.isPressJump)
             {
                 //We manage jumping from one ground to a lower ground
-                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
+                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IsGrounded && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
@@ -317,7 +317,7 @@ namespace AbrahmanAdventure
                     else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
                         playerSprite.YPosition = playerSprite.Ground[playerSprite.XPosition];
 
-                    if (playerSprite.Ground == null) //play sound if jump down was a success
+                    if (!playerSprite.IsGrounded) //play sound if jump down was a success
                         SoundManager.PlayJumpDownSound();
                 }
                 else
@@ -350,7 +350,7 @@ namespace AbrahmanAdventure
             }
             if (playerSprite.AttackingCycle.IsFired)
                 playerSprite.AttackingCycle.Increment(timeDelta);
-            if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
+            if (playerSprite.AttackingCycle.IsFinished && playerSprite.IsGrounded)
                 playerSprite.AttackingCycle.Reset();
             #endregion
 
@@ -384,7 +384,7 @@ namespace AbrahmanAdventure
                 {
                     #region Sliding
                     playerSprite.IsTryingToWalk = false;
-                    if (playerSprite.Ground != null && !playerSprite.AttackingCycle.IsFired)
+                    if (playerSprite.IsGrounded && !playerSprite.AttackingCycle.IsFired)
                     {
                         double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution, true);
                         if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
