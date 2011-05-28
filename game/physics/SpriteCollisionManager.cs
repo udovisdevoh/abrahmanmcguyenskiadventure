@@ -63,6 +63,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         private void UpdateOpenAnarchyBlock(PlayerSprite playerSprite, AnarchyBlockSprite anarchyBlockSprite, SpritePopulation spritePopulation, Random random)
         {
+            if (playerSprite.YPosition >= playerSprite.YPositionPrevious)
+                return;
+
             playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration / -4.0;
             playerSprite.TopBound = anarchyBlockSprite.YPosition;
             playerSprite.IsNeedToJumpAgain = true;
