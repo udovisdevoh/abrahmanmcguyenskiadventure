@@ -35,6 +35,10 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                         }
+                        else if (otherSprite is AnarchyBlockSprite && !sprite.IsGrounded && sprite.YPosition > otherSprite.YPosition)
+                        {
+                            UpdateOpenAnarchyBlock((PlayerSprite)sprite, (AnarchyBlockSprite)otherSprite, spritePopulation,random);
+                        }
                         else if (!sprite.IsGrounded && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
                             UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
@@ -50,6 +54,33 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Player jumps under anarchy block. It may output something from it (mushroom, flower, etc)
+        /// </summary>
+        /// <param name="playerSprite">player</param>
+        /// <param name="anarchyBlockSprite">block</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="random">random number generator</param>
+        private void UpdateOpenAnarchyBlock(PlayerSprite playerSprite, AnarchyBlockSprite anarchyBlockSprite, SpritePopulation spritePopulation, Random random)
+        {
+            playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration / -4.0;
+            playerSprite.TopBound = anarchyBlockSprite.YPosition;
+            playerSprite.IsNeedToJumpAgain = true;
+            if (!anarchyBlockSprite.IsFinalized)
+            {
+                //SoundManager.PlayBlockOpenSound();
+                anarchyBlockSprite.BumpCycle.Fire();
+                anarchyBlockSprite.IsFinalized = true;
+
+                AbstractSprite powerUpSprite = anarchyBlockSprite.GetPowerUpSprite(playerSprite, random);
+                spritePopulation.Add(powerUpSprite);
+            }
+            else
+            {
+                SoundManager.PlayHelmetBumpSound();
+            }
+        }
+
         /// <summary>
         /// Player touches mushroom and get health
         /// </summary>

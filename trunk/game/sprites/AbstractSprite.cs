@@ -661,10 +661,17 @@ namespace AbrahmanAdventure.sprites
         	get
         	{
         		if (isCrouch)
-        			return yPosition - height / 2;
+        			return yPosition - height / 2.0;
         		else
         			return yPosition - height;
         	}
+            set
+            {
+                if (isCrouch)
+                    yPosition = value + height / 2.0;
+                else
+                    yPosition = value + height;
+            }
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.physics
             {
                 if (helmet != otherSprite && !(otherSprite is PlayerSprite) && !otherSprite.HitCycle.IsFired)
                 {
-                    if (Physics.IsDetectCollision(helmet, otherSprite))
+                    if (otherSprite is MonsterSprite && Physics.IsDetectCollision(helmet, otherSprite))
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
