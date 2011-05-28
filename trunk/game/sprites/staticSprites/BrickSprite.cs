@@ -82,7 +82,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildBounciness()
         {
-            return 0.0;
+            return 0;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
