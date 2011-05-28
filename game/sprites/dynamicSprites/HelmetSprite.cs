@@ -19,6 +19,10 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface walking1dSurface;
 
+        private static Surface walking1eSurface;
+
+        private static Surface walking1fSurface;
+
         private static Surface deadSurface;
 
         private static Surface walking2aSurface;
@@ -28,6 +32,10 @@ namespace AbrahmanAdventure.sprites
         private static Surface walking2cSurface;
 
         private static Surface walking2dSurface;
+
+        private static Surface walking2eSurface;
+
+        private static Surface walking2fSurface;
 
         private static Surface dead2Surface;
 
@@ -78,6 +86,20 @@ namespace AbrahmanAdventure.sprites
             return walking1dSurface;
         }
 
+        private Surface GetWalking1eSurface()
+        {
+            if (walking1eSurface == null)
+                walking1eSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet1e.png");
+            return walking1eSurface;
+        }
+
+        private Surface GetWalking1fSurface()
+        {
+            if (walking1fSurface == null)
+                walking1fSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet1f.png");
+            return walking1fSurface;
+        }
+
         private Surface GetWalking2aSurface()
         {
             if (walking2aSurface == null)
@@ -105,7 +127,21 @@ namespace AbrahmanAdventure.sprites
                 walking2dSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2d.png");
             return walking2dSurface;
         }
-        
+
+        private Surface GetWalking2eSurface()
+        {
+            if (walking2eSurface == null)
+                walking2eSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2e.png");
+            return walking2eSurface;
+        }
+
+        private Surface GetWalking2fSurface()
+        {
+            if (walking2fSurface == null)
+                walking2fSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2f.png");
+            return walking2fSurface;
+        }
+   
         private Surface GetDeadSurface()
         {
             if (deadSurface == null)
@@ -259,28 +295,20 @@ namespace AbrahmanAdventure.sprites
             #region When the helmet will soon be revived into a riot control
             if (!IsWalkEnabled && SpontaneousTransformationCycle.IsFired && SpontaneousTransformationCycle.GetCycleDivision(7) == 6)
             {
-                int shakingFrameId = SpontaneousTransformationCycle.GetCycleDivision(200) % 4;
+                int shakingFrameId = SpontaneousTransformationCycle.GetCycleDivision(200) % 2;
                 if (isBlack)
                 {
                     if (shakingFrameId == 0)
-                        return GetWalking1aSurface();
-                    else if (shakingFrameId == 1)
-                        return GetWalking1bSurface();
-                    else if (shakingFrameId == 1)
-                        return GetWalking1cSurface();
+                        return GetWalking1eSurface();
                     else
-                        return GetWalking1dSurface();
+                        return GetWalking1fSurface();
                 }
                 else
                 {
                     if (shakingFrameId == 0)
-                        return GetWalking2aSurface();
-                    else if (shakingFrameId == 1)
-                        return GetWalking2bSurface();
-                    else if (shakingFrameId == 1)
-                        return GetWalking2cSurface();
+                        return GetWalking2eSurface();
                     else
-                        return GetWalking2dSurface();
+                        return GetWalking2fSurface();
                 }
             }
             #endregion
