@@ -115,6 +115,12 @@ namespace AbrahmanAdventure.sprites
         private bool isAffectedByGravity;
 
         /// <summary>
+        /// When bouncing on this sprite
+        /// 0: nothing, 1: regular jump
+        /// </summary>
+        private double bounciness;
+
+        /// <summary>
         /// X position
         /// </summary>
         private double xPosition;
@@ -216,6 +222,7 @@ namespace AbrahmanAdventure.sprites
             walkingAcceleration = BuildWalkingAcceleration();
             attackStrengthCollision = BuildAttackStrengthCollision();
             isAffectedByGravity = BuildIsAffectedByGravity();
+            bounciness = BuildBounciness();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -303,6 +310,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>sprite's height (2.0 = player's height)</returns>
         protected abstract double BuildHeight(Random random);
+
+        /// <summary>
+        /// When bouncing on this sprite
+        /// 0: nothing, 1: regular jump
+        /// </summary>
+        protected abstract double BuildBounciness();
         #endregion
 
         #region Public Abstract Methods
@@ -744,7 +757,16 @@ namespace AbrahmanAdventure.sprites
         public double LeftPunchBound
         {
             get { return LeftBound - Math.Min(height, width); }
-        }       
+        }
+
+        /// <summary>
+        /// When bouncing on this sprite
+        /// 0: nothing, 1: regular jump
+        /// </summary>
+        public double Bounciness
+        {
+            get { return bounciness; }
+        }
         #endregion
     }
 }

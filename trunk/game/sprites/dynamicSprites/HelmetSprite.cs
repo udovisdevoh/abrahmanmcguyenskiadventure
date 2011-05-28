@@ -295,20 +295,24 @@ namespace AbrahmanAdventure.sprites
             #region When the helmet will soon be revived into a riot control
             if (!IsWalkEnabled && SpontaneousTransformationCycle.IsFired && SpontaneousTransformationCycle.GetCycleDivision(7) == 6)
             {
-                int shakingFrameId = SpontaneousTransformationCycle.GetCycleDivision(200) % 2;
+                int shakingFrameId = SpontaneousTransformationCycle.GetCycleDivision(200) % 4;
                 if (isBlack)
                 {
                     if (shakingFrameId == 0)
                         return GetWalking1eSurface();
-                    else
+                    else if (shakingFrameId == 2)
                         return GetWalking1fSurface();
+                    else
+                        return GetWalking1aSurface();
                 }
                 else
                 {
                     if (shakingFrameId == 0)
                         return GetWalking2eSurface();
-                    else
+                    else if (shakingFrameId == 2)
                         return GetWalking2fSurface();
+                    else
+                        return GetWalking2aSurface();
                 }
             }
             #endregion

@@ -215,6 +215,11 @@ namespace AbrahmanAdventure.sprites
         {
             return true;
         }
+
+        protected override double BuildBounciness()
+        {
+            return 1.0;
+        }
         #endregion
 
         #region Properties

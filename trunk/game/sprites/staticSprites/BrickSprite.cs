@@ -80,6 +80,11 @@ namespace AbrahmanAdventure.sprites
             return 1.0;
         }
 
+        protected override double BuildBounciness()
+        {
+            return 0.0;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
@@ -88,9 +93,6 @@ namespace AbrahmanAdventure.sprites
             else
                 return indestructibleSurface;
         }
-        #endregion
-
-        #region Private Methods
         #endregion
     }
 }
