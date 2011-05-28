@@ -104,9 +104,17 @@ namespace AbrahmanAdventure.sprites
         #region Internal Methods
         internal AbstractSprite GetPowerUpSprite(AbstractSprite playerSprite, Random random)
         {
-            MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
-            mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-            return mushroomSprite;
+            if (playerSprite.Health == playerSprite.MaxHealth)
+            {
+                ShishaSprite shishaSprite = new ShishaSprite(XPosition, TopBound, random);
+                return shishaSprite;
+            }
+            else
+            {
+                MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
+                mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                return mushroomSprite;
+            }
         }
         #endregion
 
