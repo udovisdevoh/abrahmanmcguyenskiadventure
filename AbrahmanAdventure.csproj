@@ -87,6 +87,7 @@
     <Compile Include="game\sprites\dynamicSprites\RiotControlSprite.cs" />
     <Compile Include="game\sprites\dynamicSprites\SnakeSprite.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
+    <Compile Include="game\sprites\staticSprites\AnarchyBlockSprite.cs" />
     <Compile Include="game\sprites\staticSprites\BrickSprite.cs" />
     <Compile Include="game\sprites\staticSprites\StaticSprite.cs" />
     <Compile Include="game\sprites\staticSprites\Trampoline.cs" />
@@ -342,6 +343,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\snake\snake2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\staticSprites\anarchyBlock1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\staticSprites\anarchyBlock2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\staticSprites\anarchyBlock3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\staticSprites\trampoline.png">
