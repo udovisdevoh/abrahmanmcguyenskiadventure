@@ -145,11 +145,6 @@ namespace AbrahmanAdventure.physics
                                     SoundManager.PlayTrampolineSound();
                                 #endregion
                             }
-                            else
-                            {
-                                sprite.YPosition = otherSprite.TopBound;
-                                sprite.CurrentJumpAcceleration = 0;
-                            }
                         }
 
                         if (otherSprite is MonsterSprite)
