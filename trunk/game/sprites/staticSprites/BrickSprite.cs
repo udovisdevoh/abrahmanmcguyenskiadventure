@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Overrides
+        protected override bool BuildIsAffectedByGravity()
+        {
+            return false;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 1.0;

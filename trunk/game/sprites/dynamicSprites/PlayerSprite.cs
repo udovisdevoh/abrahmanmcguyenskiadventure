@@ -279,6 +279,15 @@ namespace AbrahmanAdventure.sprites
 
         #region Overrides
         /// <summary>
+        /// Whether sprite is affected by gravity
+        /// </summary>
+        /// <returns>Whether sprite is affected by gravity</returns>
+        protected override bool BuildIsAffectedByGravity()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Build width
         /// </summary>
         /// <returns>width</returns>

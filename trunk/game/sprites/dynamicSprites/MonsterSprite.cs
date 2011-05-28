@@ -210,6 +210,11 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0;
             return defaultUndefinedSurface;
         }
+
+        protected override bool BuildIsAffectedByGravity()
+        {
+            return true;
+        }
         #endregion
 
         #region Properties

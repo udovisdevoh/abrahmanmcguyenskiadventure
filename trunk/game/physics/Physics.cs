@@ -72,11 +72,13 @@ namespace AbrahmanAdventure.physics
         internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
             if (!(sprite is StaticSprite))
-            {
                 walkingManager.Update(sprite, level, timeDelta);
+
+            if (sprite.IsAffectedByGravity)
                 gravityManager.Update(sprite, level, timeDelta);
+
+            if (!(sprite is StaticSprite))
                 jumpingManager.Update(sprite, timeDelta);
-            }
 
             damageManager.Update(sprite, timeDelta);
             deathManager.Update(sprite, timeDelta, spritePopulation);

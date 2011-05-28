@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.sprites
         public StaticSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            this.isDestructible = false;
+            isDestructible = false;
         }
 
         /// <summary>

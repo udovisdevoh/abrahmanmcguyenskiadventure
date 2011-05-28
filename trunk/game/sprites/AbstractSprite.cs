@@ -110,6 +110,11 @@ namespace AbrahmanAdventure.sprites
         private bool isAlive = true;
 
         /// <summary>
+        /// Whether sprite is affected by gravity
+        /// </summary>
+        private bool isAffectedByGravity;
+
+        /// <summary>
         /// X position
         /// </summary>
         private double xPosition;
@@ -210,6 +215,7 @@ namespace AbrahmanAdventure.sprites
             maxRunningSpeed = BuildMaxRunningSpeed();
             walkingAcceleration = BuildWalkingAcceleration();
             attackStrengthCollision = BuildAttackStrengthCollision();
+            isAffectedByGravity = BuildIsAffectedByGravity();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -220,6 +226,12 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Protected Abstract Methods
+        /// <summary>
+        /// Whether sprite is affected by gravity
+        /// </summary>
+        /// <returns>Whether sprite is affected by gravity</returns>
+        protected abstract bool BuildIsAffectedByGravity();
+
         /// <summary>
         /// Maximum health
         /// </summary>
@@ -568,6 +580,15 @@ namespace AbrahmanAdventure.sprites
                     ground = null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Whether sprite is affected by gravity
+        /// </summary>
+        public bool IsAffectedByGravity
+        {
+            get { return isAffectedByGravity; }
+            set { isAffectedByGravity = value; }
         }
 
         /// <summary>

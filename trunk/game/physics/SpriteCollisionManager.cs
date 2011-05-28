@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateJumpOnMonster(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                         }
-                        else if (otherSprite is MonsterSprite)
+                        else if (otherSprite is MonsterSprite && otherSprite.IsAlive)
                         {
                             UpdateDirectCollision(sprite, (MonsterSprite)otherSprite, level, timeDelta);
                         }
