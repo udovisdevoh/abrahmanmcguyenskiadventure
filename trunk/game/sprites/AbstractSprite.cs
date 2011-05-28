@@ -737,6 +737,14 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Maximum health
+        /// </summary>
+        public double MaxHealth
+        {
+            get { return maxHealth; }
+        }
+
+        /// <summary>
         /// Damage giving to other sprite when collisions occur
         /// </summary>
         public double AttackStrengthCollision

@@ -62,6 +62,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface crouchedAttackFrame2LeftSurface;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Whether sprite can throw fire balls
+        /// </summary>
+        private bool isDoped = false;
         #endregion
 
         #region Constructors
@@ -553,6 +558,17 @@ namespace AbrahmanAdventure.sprites
                 else
                     return GetStandingLeftSurface();
             }
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Whether sprite can throw fire balls
+        /// </summary>
+        public bool IsDoped
+        {
+            get { return isDoped; }
+            set { isDoped = value; }
         }
         #endregion
     }

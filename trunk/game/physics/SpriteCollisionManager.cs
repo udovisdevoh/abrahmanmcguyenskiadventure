@@ -35,6 +35,10 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                         }
+                        else if (sprite is PlayerSprite && otherSprite is ShishaSprite && otherSprite.IsAlive)
+                        {
+                            UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
+                        }
                         else if (otherSprite is AnarchyBlockSprite && !sprite.IsGrounded && sprite.YPosition > otherSprite.YPosition)
                         {
                             UpdateOpenAnarchyBlock((PlayerSprite)sprite, (AnarchyBlockSprite)otherSprite, spritePopulation,random);
@@ -67,7 +71,7 @@ namespace AbrahmanAdventure.physics
                 return;
 
             playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration / -4.0;
-            playerSprite.TopBound = anarchyBlockSprite.YPosition;
+            //playerSprite.TopBound = anarchyBlockSprite.YPosition;
             playerSprite.IsNeedToJumpAgain = true;
             if (!anarchyBlockSprite.IsFinalized)
             {
@@ -98,6 +102,19 @@ namespace AbrahmanAdventure.physics
         }
 
         /// <summary>
+        /// Sprite touches shisha
+        /// </summary>
+        /// <param name="playerSprite">player sprite</param>
+        /// <param name="shishaSprite">shisha sprite</param>
+        private void UpdateTouchShisha(PlayerSprite playerSprite, ShishaSprite shishaSprite)
+        {
+            SoundManager.PlayPowerUpSound();
+            playerSprite.IsDoped = true;
+            shishaSprite.IsAlive = false;
+            shishaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
+        /// <summary>
         /// Direct collision between player and monster (player will receive damage unless it's a newly kicked helmet)
         /// </summary>
         /// <param name="sprite">player (normally)</param>
@@ -114,6 +131,8 @@ namespace AbrahmanAdventure.physics
             {
                 SoundManager.PlayHit2Sound();
                 sprite.HitCycle.Fire();
+                if (sprite is PlayerSprite)
+                    ((PlayerSprite)sprite).IsDoped = false;
                 sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
             }
         }
