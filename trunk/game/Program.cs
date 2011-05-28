@@ -143,6 +143,9 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new BrickSprite(7, -10, random));
             spritePopulation.Add(new BrickSprite(8, -10, random));
 
+            spritePopulation.Add(new AnarchyBlockSprite(15, -15, random));
+            spritePopulation.Add(new AnarchyBlockSprite(16, -15, random));
+
             if (isFullScreen)
                 Cursor.Hide();
 
