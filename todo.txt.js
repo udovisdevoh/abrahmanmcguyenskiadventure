@@ -1,7 +1,22 @@
+should do collision detection on multiple sprites (i.e. anarchy blocks)
+
+
 Faire gestion automatique de la population de sprite
 
+implement growth (for mushrooms and other powerups)
+
+gravity: must detect sprites when falling
+
 some static sprites should be impassable
-some static sprites should be affeted by gravity
+
+collision detection
+{
+	Make sure there are no duplicate of horizontal collision test
+}
+
+
+always blit player sprite over all sprites
+
 
 add walkable blocks
 ?add bouncing notes?
@@ -145,6 +160,8 @@ Musique générative
 	
 	Ce qui influence la musique
 	{
+		si le joueur est "dopé"
+	
 		Lorsqu'on saute et qu'on est en train de retomber
 		{
 			Ça fait des descente de notes
