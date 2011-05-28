@@ -75,21 +75,22 @@
     <Compile Include="game\sky\Sky.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
-    <Compile Include="game\sprites\dynamicSprites\BlobSprite.cs" />
-    <Compile Include="game\sprites\dynamicSprites\HamburgerSprite.cs" />
-    <Compile Include="game\sprites\dynamicSprites\HelmetSprite.cs" />
-    <Compile Include="game\sprites\dynamicSprites\JewSprite.cs" />
-    <Compile Include="game\sprites\dynamicSprites\MonsterSprite.cs" />
+    <Compile Include="game\sprites\monsters\BlobSprite.cs" />
+    <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
+    <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
+    <Compile Include="game\sprites\monsters\JewSprite.cs" />
+    <Compile Include="game\sprites\monsters\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
-    <Compile Include="game\sprites\dynamicSprites\PlayerSprite.cs" />
+    <Compile Include="game\sprites\PlayerSprite.cs" />
     <Compile Include="game\spatialHashing\SpritePopulation.cs" />
-    <Compile Include="game\sprites\dynamicSprites\RaptorSprite.cs" />
-    <Compile Include="game\sprites\dynamicSprites\RiotControlSprite.cs" />
-    <Compile Include="game\sprites\dynamicSprites\SnakeSprite.cs" />
+    <Compile Include="game\sprites\monsters\RaptorSprite.cs" />
+    <Compile Include="game\sprites\monsters\RiotControlSprite.cs" />
+    <Compile Include="game\sprites\monsters\SnakeSprite.cs" />
+    <Compile Include="game\sprites\powerups\MushroomSprite.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\sprites\staticSprites\AnarchyBlockSprite.cs" />
     <Compile Include="game\sprites\staticSprites\BrickSprite.cs" />
-    <Compile Include="game\sprites\staticSprites\StaticSprite.cs" />
+    <Compile Include="game\sprites\StaticSprite.cs" />
     <Compile Include="game\sprites\staticSprites\Trampoline.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
@@ -183,6 +184,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\abrahman\crouchedPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\powerups\mushroom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\riotControl\helmet1e.png">
@@ -382,6 +386,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Ko2.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\PowerUp.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Punch.ogg">

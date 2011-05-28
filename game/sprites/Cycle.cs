@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.sprites
         public void Increment(double incrementTime)
         {
             currentValue += incrementTime;
-            if (isAutoReset)
+            if (isAutoReset && totalTimeLength != 0)
                 while (currentValue > totalTimeLength)
                     currentValue -= totalTimeLength;
             else if (currentValue >= totalTimeLength)

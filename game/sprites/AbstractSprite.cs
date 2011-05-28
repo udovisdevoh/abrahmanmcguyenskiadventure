@@ -454,7 +454,7 @@ namespace AbrahmanAdventure.sprites
             get { return ground; }
             set
             {
-                if (isAlive)
+                if (isAlive || value == null)
                 {
                     ground = value;
                 }
@@ -711,6 +711,9 @@ namespace AbrahmanAdventure.sprites
 
                 if (health < 0.05)
                     health = 0.0;
+
+                if (health > maxHealth)
+                    health = maxHealth;
 
                 if (health <= 0)
                 {
