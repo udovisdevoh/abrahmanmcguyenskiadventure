@@ -31,7 +31,11 @@ namespace AbrahmanAdventure.physics
                 {
                     if (Physics.IsDetectCollision(sprite, otherSprite))
                     {
-                        if (!sprite.IsGrounded && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
+                        if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
+                        {
+                            UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                        }
+                        else if (!sprite.IsGrounded && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
                             UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                         }
@@ -46,6 +50,19 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Player touches mushroom and get health
+        /// </summary>
+        /// <param name="playerSprite">player</param>
+        /// <param name="mushroomSprite">mushroom</param>
+        private void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
+        {
+            SoundManager.PlayPowerUpSound();
+            playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
+            mushroomSprite.IsAlive = false;
+            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
         /// <summary>
         /// Direct collision between player and monster (player will receive damage unless it's a newly kicked helmet)
         /// </summary>

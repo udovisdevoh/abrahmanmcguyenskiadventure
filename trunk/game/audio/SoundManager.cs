@@ -33,6 +33,8 @@ namespace AbrahmanAdventure.audio
         private static Sound helmetKickSound;
 
         private static Sound trampolineSound;
+
+        private static Sound powerUpSound;
         #endregion
 
         #region Constructors
@@ -49,6 +51,7 @@ namespace AbrahmanAdventure.audio
             helmetBumpSound = LoadSound("./assets/sounds/HelmetBump.ogg");
             helmetKickSound = LoadSound("./assets/sounds/HelmetKick.ogg");
             trampolineSound = LoadSound("./assets/sounds/Trampoline.ogg");
+            powerUpSound = LoadSound("./assets/sounds/PowerUp.ogg");
         }
 
         /// <summary>
@@ -113,6 +116,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayTrampolineSound()
         {
             trampolineSound.Play();
+        }
+
+        internal static void PlayPowerUpSound()
+        {
+            powerUpSound.Play();
         }
         #endregion
     }
