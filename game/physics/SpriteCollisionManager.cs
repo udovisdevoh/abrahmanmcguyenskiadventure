@@ -68,7 +68,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsNeedToJumpAgain = true;
             if (!anarchyBlockSprite.IsFinalized)
             {
-                //SoundManager.PlayBlockOpenSound();
+                SoundManager.PlayGrowSound();
                 anarchyBlockSprite.BumpCycle.Fire();
                 anarchyBlockSprite.IsFinalized = true;
 
