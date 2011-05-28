@@ -29,11 +29,19 @@ namespace AbrahmanAdventure.physics
             {
                 double decrease = (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 5.0;
 
-                if (sprite.CurrentDamageReceiving - decrease < 0)
-                    decrease -= Math.Abs(sprite.CurrentDamageReceiving - decrease);
+                if (sprite.Health - sprite.CurrentDamageReceiving < 0.05)
+                {
+                    //Instant death, no progressive decrease of health because health < damage
+                    sprite.IsAlive = false;
+                }
+                else
+                {
+                    if (sprite.CurrentDamageReceiving - decrease < 0)
+                        decrease -= Math.Abs(sprite.CurrentDamageReceiving - decrease);
 
-                sprite.Health -= decrease;
-                sprite.CurrentDamageReceiving -= decrease;
+                    sprite.Health -= decrease;
+                    sprite.CurrentDamageReceiving -= decrease;
+                }
 
                 if (!sprite.IsAlive && sprite is PlayerSprite)
                     SoundManager.PlayKo2Sound();
