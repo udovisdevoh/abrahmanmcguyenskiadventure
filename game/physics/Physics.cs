@@ -90,7 +90,7 @@ namespace AbrahmanAdventure.physics
             }
             else if (sprite is HelmetSprite)
             {
-                helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList); 
+                helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList);
             }
 
             if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsEnableSpontaneousConversion)

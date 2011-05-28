@@ -126,7 +126,6 @@ namespace AbrahmanAdventure
             spritePopulation.Add(playerSprite);
 
             #warning Eventually remove test monster sprites
-            spritePopulation.Add(new MushroomSprite(-10, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
@@ -144,8 +143,14 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new BrickSprite(7, -10, random));
             spritePopulation.Add(new BrickSprite(8, -10, random));
 
+            spritePopulation.Add(new AnarchyBlockSprite(13, -20, random));
+            spritePopulation.Add(new AnarchyBlockSprite(14, -20, random));
             spritePopulation.Add(new AnarchyBlockSprite(15, -15, random));
             spritePopulation.Add(new AnarchyBlockSprite(16, -15, random));
+            spritePopulation.Add(new AnarchyBlockSprite(17, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(18, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(19, -5, random));
+            spritePopulation.Add(new AnarchyBlockSprite(20, -5, random));
 
             if (isFullScreen)
                 Cursor.Hide();
