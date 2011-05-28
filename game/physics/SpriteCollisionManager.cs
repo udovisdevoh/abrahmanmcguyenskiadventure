@@ -83,18 +83,26 @@ namespace AbrahmanAdventure.physics
                 if (sprite.CurrentJumpAcceleration < 0) //if sprite is falling
                 {
                     if (!otherSprite.HitCycle.IsFired) //if other sprite is not being hit already
-                    {
-                        #region Jumper sprite bounces
+                    {   
                         if (sprite.CurrentJumpAcceleration <= 0)
                         {
-                            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration * otherSprite.Bounciness;
-                            sprite.JumpingCycle.Reset();
-                            sprite.JumpingCycle.Fire();
-                            sprite.IsTryingToJump = true;
-                            if (otherSprite.Bounciness > 1.0)
-                                SoundManager.PlayTrampolineSound();
+                            if (otherSprite.Bounciness > 0)
+                            {
+                                #region Jumper sprite bounces
+                                sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration * otherSprite.Bounciness;
+                                sprite.JumpingCycle.Reset();
+                                sprite.JumpingCycle.Fire();
+                                sprite.IsTryingToJump = true;
+                                if (otherSprite.Bounciness > 1.0)
+                                    SoundManager.PlayTrampolineSound();
+                                #endregion
+                            }
+                            else
+                            {
+                                sprite.YPosition = otherSprite.TopBound;
+                                sprite.CurrentJumpAcceleration = 0;
+                            }
                         }
-                        #endregion
 
                         if (otherSprite is MonsterSprite)
                         {
