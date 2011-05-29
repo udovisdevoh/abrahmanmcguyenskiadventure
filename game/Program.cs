@@ -305,6 +305,9 @@ namespace AbrahmanAdventure
             #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it            
 
+            HashSet<AbstractSprite> toUpdateSpriteList;
+            HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
+
             //We process the time multiplicator
             double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
             previousDateTime = DateTime.Now;
@@ -322,7 +325,7 @@ namespace AbrahmanAdventure
                 if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
-                    Ground highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
+                    IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level, visibleSpriteList);
                     if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount)
                         playerSprite.IGround = null;
                     else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
@@ -427,9 +430,6 @@ namespace AbrahmanAdventure
             }
             #endregion
 
-            HashSet<AbstractSprite> toUpdateSpriteList;
-            HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
-
             physics.Update(playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
 
             foreach (AbstractSprite sprite in toUpdateSpriteList)
@@ -437,7 +437,7 @@ namespace AbrahmanAdventure
                 {
                     physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
                     if (sprite is MonsterSprite && sprite.IsAlive)
-                        monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta,random);
+                        monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, random);
                 }
 
             #region We position the camera

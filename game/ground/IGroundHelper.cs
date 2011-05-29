@@ -17,8 +17,9 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">List of visible sprites</param>
         /// <returns>Highest ground below sprite</returns>
-        internal static Ground GetHighestVisibleGroundBelowSprite(AbstractSprite sprite, Level level)
+        internal static IGround GetHighestVisibleGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             Ground highestGroundBelowSprite = null;
             double highestHeight = -1;

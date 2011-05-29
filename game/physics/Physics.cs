@@ -71,8 +71,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
-            walkingManager.Update(sprite, level, timeDelta);
-            gravityManager.Update(sprite, level, timeDelta);
+            walkingManager.Update(sprite, level, timeDelta, visibleSpriteList);
+            gravityManager.Update(sprite, level, timeDelta, visibleSpriteList);
             jumpingManager.Update(sprite, timeDelta);
             damageManager.Update(sprite, timeDelta);
             deathManager.Update(sprite, timeDelta, spritePopulation);
@@ -105,13 +105,13 @@ namespace AbrahmanAdventure.physics
         /// <param name="xDesiredPosition">desired x position for sprite</param>
         /// <param name="level">level to look into</param>
         /// <returns>Whether collision was detected</returns>
-        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level)
+        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             IGround referenceGround;
 
             if (sprite.IGround == null)
             {
-                referenceGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
+                referenceGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level, visibleSpriteList);
                 if (referenceGround == null)
                     return false;
                 //if (isConsiderFallingCollision)
