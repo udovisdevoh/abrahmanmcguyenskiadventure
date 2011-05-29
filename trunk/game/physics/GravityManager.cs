@@ -19,6 +19,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
+            if (!sprite.IsAffectedByGravity)
+                return;
+
             if (sprite.Ground != null) //No gravity, sprite is on a ground
             {
                 sprite.CurrentJumpAcceleration = 0;
