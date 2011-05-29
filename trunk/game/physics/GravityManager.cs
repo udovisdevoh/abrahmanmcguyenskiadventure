@@ -17,7 +17,10 @@ namespace AbrahmanAdventure.physics
         /// Apply gravity to sprite
         /// </summary>
         /// <param name="sprite">sprite</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta)
+        /// <param name="timeDelta">time delta</param>
+        /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">visible sprite list</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
             if (!sprite.IsAffectedByGravity)
                 return;
@@ -32,7 +35,7 @@ namespace AbrahmanAdventure.physics
                 return;
 
 
-            Ground closestDownGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
+            IGround closestDownGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level, visibleSpriteList);
             if (closestDownGround == null)
             {
                 if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down

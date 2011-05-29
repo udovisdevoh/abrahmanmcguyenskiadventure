@@ -23,7 +23,7 @@ namespace AbrahmanAdventure.ai
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, Random random)
+        internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             double slope;
             monster.IsTryingToWalk = false;
@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.ai
             {
                 if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0)
                     monster.IsTryingToJump = true;
-                else if (TryGetSlopeRatio(monster,level,timeDelta,monster.IsTryingToWalkRight, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
+                else if (TryGetSlopeRatio(monster,level,timeDelta,monster.IsTryingToWalkRight, visibleSpriteList, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
                     monster.IsTryingToJump = true;
 
                 /*if (player.IsGrounded && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
@@ -114,7 +114,7 @@ namespace AbrahmanAdventure.ai
                 }
 
                 #region Some monsters should not fall in holes, they change direction instead
-                if (monster.IsAvoidFall && TryGetSlopeRatio(monster, level, timeDelta, monster.IsNoAiDefaultDirectionWalkingRight, out slope))
+                if (monster.IsAvoidFall && TryGetSlopeRatio(monster, level, timeDelta, monster.IsNoAiDefaultDirectionWalkingRight, visibleSpriteList, out slope))
                 {
                     if (slope > 6)//0.8)
                     {
@@ -139,13 +139,14 @@ namespace AbrahmanAdventure.ai
         /// <param name="timeDelta">time delta</param>
         /// <param name="isWalkingRight">whether spirte is walking right</param>
         /// <param name="slope">slope ratio</param>
+        /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <returns>whether could get slope ratio or not</returns>
-        private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, out double slope)
+        private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, HashSet<AbstractSprite> visibleSpriteList, out double slope)
         {
             slope = 0;
             IGround groundToTestSlope = monster.IGround;
             if (groundToTestSlope == null)
-                groundToTestSlope = IGroundHelper.GetHighestVisibleGroundBelowSprite(monster, level);
+                groundToTestSlope = IGroundHelper.GetHighestVisibleGroundBelowSprite(monster, level, visibleSpriteList);
 
             if (groundToTestSlope == null)
                 return false;
