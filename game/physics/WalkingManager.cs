@@ -21,6 +21,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta)
         {
+            if (sprite is StaticSprite)
+                return;
+
             if (sprite.IsTryingToWalk || sprite.CurrentWalkingSpeed > 0)
                 TryMakeWalk(sprite, timeDelta, level);
         }

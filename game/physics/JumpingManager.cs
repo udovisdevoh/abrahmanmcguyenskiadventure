@@ -20,6 +20,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         internal void Update(AbstractSprite sprite, double timeDelta)
         {
+            if (sprite is StaticSprite)
+                return;
+
             if (sprite.IsTryingToJump)
                 StartOrContinueJump(sprite, timeDelta);
 
