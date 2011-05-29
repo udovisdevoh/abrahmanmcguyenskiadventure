@@ -24,23 +24,9 @@ namespace AbrahmanAdventure.physics
         {
             if (sprite is StaticSprite)
                 return;
-
-            if (sprite.IsTryingToWalk || sprite.CurrentWalkingSpeed > 0)
-                TryMakeWalk(sprite, timeDelta, level, visibleSpriteList);
-        }
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Try to make walk the sprice if there are no collisions
-        /// </summary>
-        /// <param name="sprite">sprite</param>
-        /// <param name="timeDelta">time delta</param>
-        /// <param name="level">level</param>
-        /// <param name="visibleSpriteList">visible sprite list</param>
-        private void TryMakeWalk(AbstractSprite sprite, double timeDelta, Level level, HashSet<AbstractSprite> visibleSpriteList)
-        {
-            if (sprite is MonsterSprite && !((MonsterSprite)sprite).IsWalkEnabled)
+            else if (!sprite.IsTryingToWalk && sprite.CurrentWalkingSpeed <= 0)
+                return;
+            else if (sprite is MonsterSprite && !((MonsterSprite)sprite).IsWalkEnabled)
                 return;
 
             double desiredWalkingDistance;
