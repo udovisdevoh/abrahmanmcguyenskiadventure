@@ -96,6 +96,7 @@ namespace AbrahmanAdventure.physics
         private void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
         {
             SoundManager.PlayPowerUpSound();
+            playerSprite.PowerUpAnimationCycle.Fire();
             playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
             mushroomSprite.IsAlive = false;
             mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
@@ -109,6 +110,7 @@ namespace AbrahmanAdventure.physics
         private void UpdateTouchShisha(PlayerSprite playerSprite, ShishaSprite shishaSprite)
         {
             SoundManager.PlayPowerUpSound();
+            playerSprite.PowerUpAnimationCycle.Fire();
             playerSprite.IsDoped = true;
             shishaSprite.IsAlive = false;
             shishaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
