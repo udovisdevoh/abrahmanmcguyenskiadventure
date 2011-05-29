@@ -40,11 +40,11 @@ namespace AbrahmanAdventure.physics
         {
             if (!sprite.IsNeedToJumpAgain)
             {
-                if (sprite.Ground != null)
+                if (sprite.IGround != null)
                 {
                     sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                    sprite.Ground = null;
+                    sprite.IGround = null;
                     if (sprite is PlayerSprite)
                         SoundManager.PlayJumpSound();
                 }

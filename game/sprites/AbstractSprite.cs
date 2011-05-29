@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a sprite
     /// </summary>
-    internal abstract class AbstractSprite
+    internal abstract class AbstractSprite : IGround
     {
         #region Fields and parts
         /// <summary>
@@ -50,9 +50,9 @@ namespace AbrahmanAdventure.sprites
         private HashSet<Bucket> __parentBucketList;
 
         /// <summary>
-        /// Current ground attached to sprite
+        /// Current IGround attached to sprite
         /// </summary>
-        private Ground ground;
+        private IGround iGround;
 
         /// <summary>
         /// True: face left, False: face right
@@ -449,14 +449,14 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Current ground attached to sprite
         /// </summary>
-        public Ground Ground
+        public IGround IGround
         {
-            get { return ground; }
+            get { return iGround; }
             set
             {
                 if (isAlive || value == null)
                 {
-                    ground = value;
+                    iGround = value;
                 }
             }
         }
@@ -590,7 +590,7 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     health = 0.0;
-                    ground = null;
+                    iGround = null;
                 }
             }
         }
@@ -719,7 +719,7 @@ namespace AbrahmanAdventure.sprites
                     health = 0.0;
                     currentDamageReceiving = 0.0;
                     isAlive = false;
-                    ground = null;
+                    iGround = null;
                 }
                 else
                 {
@@ -784,6 +784,16 @@ namespace AbrahmanAdventure.sprites
         public double Bounciness
         {
             get { return bounciness; }
+        }
+
+        /// <summary>
+        /// Y Position
+        /// </summary>
+        /// <param name="xPosition">X Position</param>
+        /// <returns>Y Position</returns>
+        public double this[double xPosition]
+        {
+            get { return yPosition; }
         }
         #endregion
     }

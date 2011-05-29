@@ -733,7 +733,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     #endregion
                 }
-                else if (Ground == null)
+                else if (IGround == null)
                 {
                     #region In air
                     if (IsTryingToWalkRight)

@@ -71,9 +71,9 @@ namespace AbrahmanAdventure.physics
             if (walkingDistance != 0)
             {
                 #region Slope logic (slowing down when escalating, falling off a cliff
-                if (sprite.Ground != null)
+                if (sprite.IGround != null)
                 {
-                    double slope = Physics.GetSlopeRatio(sprite, sprite.Ground, walkingDistance, sprite.IsTryingToWalkRight);
+                    double slope = Physics.GetSlopeRatio(sprite, sprite.IGround, walkingDistance, sprite.IsTryingToWalkRight);
                     
                     double adjustedEffectFromSlope = Math.Sqrt(Math.Abs(slope)) * 0.75;
                     
@@ -90,7 +90,7 @@ namespace AbrahmanAdventure.physics
 
                         //We sometimes make fall the sprite
                         if ((!sprite.IsCrouch && slope > 0.8) || (sprite.IsCrouch && slope > 3))
-                            sprite.Ground = null;
+                            sprite.IGround = null;
                     }
                 }
                 #endregion
@@ -99,22 +99,22 @@ namespace AbrahmanAdventure.physics
             }
 
             //Must prevent sprite from accelerating while pushing on a collision
-            if (sprite.Ground != null && walkingDistance == 0 && previousWalkingSpeed > 0.1)
+            if (sprite.IGround != null && walkingDistance == 0 && previousWalkingSpeed > 0.1)
                 sprite.CurrentWalkingSpeed = 0;
 
-            if (sprite.Ground != null)
+            if (sprite.IGround != null)
             {
-            	Ground frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
+            	IGround frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
             	if (sprite.IsTryToWalkUp)
-                	frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite = GroundHelper.GetHighestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
+                	frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite = IGroundHelper.GetHighestGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.IGround, level);
             	else
-            		frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite = GroundHelper.GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.Ground, level);
+            		frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite = IGroundHelper.GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(sprite, sprite.IGround, level);
 
                 //If a ground is obstructing current ground, and it is accessible for sprite, use that ground instead
                 if (frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite != null)
-                    sprite.Ground = frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
+                    sprite.IGround = frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
 
-                double groundHeight = sprite.Ground[sprite.XPosition];
+                double groundHeight = sprite.IGround[sprite.XPosition];
 
                 sprite.YPosition = groundHeight;
             }
