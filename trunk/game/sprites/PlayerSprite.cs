@@ -63,6 +63,56 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface deadSurface;
 
+        private static Surface walking1LeftSurfaceDoped;
+
+        private static Surface walking1RightSurfaceDoped;
+
+        private static Surface walking2LeftSurfaceDoped;
+
+        private static Surface walking2RightSurfaceDoped;
+
+        private static Surface standingLeftSurfaceDoped;
+
+        private static Surface standingRightSurfaceDoped;
+
+        private static Surface hitLeftSurfaceDoped;
+
+        private static Surface hitRightSurfaceDoped;
+
+        private static Surface crouchedRightSurfaceDoped;
+
+        private static Surface crouchedLeftSurfaceDoped;
+
+        private static Surface crouchedHitRightSurfaceDoped;
+
+        private static Surface crouchedHitLeftSurfaceDoped;
+
+        private static Surface attackFrame1RightSurfaceDoped;
+
+        private static Surface attackFrame2RightSurfaceDoped;
+
+        private static Surface kickFrame1RightSurfaceDoped;
+
+        private static Surface kickFrame2RightSurfaceDoped;
+
+        private static Surface crouchedAttackFrame1RightSurfaceDoped;
+
+        private static Surface crouchedAttackFrame2RightSurfaceDoped;
+
+        private static Surface attackFrame1LeftSurfaceDoped;
+
+        private static Surface attackFrame2LeftSurfaceDoped;
+
+        private static Surface kickFrame1LeftSurfaceDoped;
+
+        private static Surface kickFrame2LeftSurfaceDoped;
+
+        private static Surface crouchedAttackFrame1LeftSurfaceDoped;
+
+        private static Surface crouchedAttackFrame2LeftSurfaceDoped;
+
+        private Cycle powerUpAnimationCycle;
+
         /// <summary>
         /// Whether sprite can throw fire balls
         /// </summary>
@@ -78,205 +128,469 @@ namespace AbrahmanAdventure.sprites
         public PlayerSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            powerUpAnimationCycle = new Cycle(60, false);
         }
         #endregion
 
         #region Private Methods
-        private Surface GetWalking1RightSurface()
+        private Surface GetWalking1RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetWalking1RightSurfaceDoped();
+
             if (walking1RightSurface == null)
                 walking1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1.png");
             return walking1RightSurface;
         }
 
-        private Surface GetWalking1LeftSurface()
+        private Surface GetWalking1LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetWalking1LeftSurfaceDoped();
+
             if (walking1LeftSurface == null)
-                walking1LeftSurface = GetWalking1RightSurface().CreateFlippedHorizontalSurface();
+                walking1LeftSurface = GetWalking1RightSurface(false).CreateFlippedHorizontalSurface();
 
             return walking1LeftSurface;
         }
 
-        private Surface GetWalking2LeftSurface()
+        private Surface GetWalking2LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetWalking2LeftSurfaceDoped();
+
             if (walking2LeftSurface == null)
-                walking2LeftSurface = GetWalking2RightSurface().CreateFlippedHorizontalSurface();
+                walking2LeftSurface = GetWalking2RightSurface(false).CreateFlippedHorizontalSurface();
 
             return walking2LeftSurface;
         }
 
-        private Surface GetWalking2RightSurface()
+        private Surface GetWalking2RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetWalking2RightSurfaceDoped();
+
             if (walking2RightSurface == null)
                 walking2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2.png");
 
             return walking2RightSurface;
         }
 
-        private Surface GetStandingLeftSurface()
+        private Surface GetStandingLeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetStandingLeftSurfaceDoped();
+
             if (standingLeftSurface == null)
-                standingLeftSurface = GetStandingRightSurface().CreateFlippedHorizontalSurface();
+                standingLeftSurface = GetStandingRightSurface(false).CreateFlippedHorizontalSurface();
 
             return standingLeftSurface;
         }
 
-        private Surface GetCrouchedRightSurface()
+        private Surface GetCrouchedRightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedRightSurfaceDoped();
+
             if (crouchedRightSurface == null)
                 crouchedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouched.png");
 
             return crouchedRightSurface;
         }
 
-        private Surface GetCrouchedLeftSurface()
+        private Surface GetCrouchedLeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedLeftSurfaceDoped();
+
             if (crouchedLeftSurface == null)
-                crouchedLeftSurface = GetCrouchedRightSurface().CreateFlippedHorizontalSurface();
+                crouchedLeftSurface = GetCrouchedRightSurface(false).CreateFlippedHorizontalSurface();
 
             return crouchedLeftSurface;
         }
 
-        private Surface GetCrouchedHitRightSurface()
+        private Surface GetCrouchedHitRightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedHitRightSurfaceDoped();
+
             if (crouchedHitRightSurface == null)
                 crouchedHitRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHit.png");
 
             return crouchedHitRightSurface;
         }
 
-        private Surface GetCrouchedHitLeftSurface()
+        private Surface GetCrouchedHitLeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedHitLeftSurfaceDoped();
+
             if (crouchedHitLeftSurface == null)
-                crouchedHitLeftSurface = GetCrouchedHitRightSurface().CreateFlippedHorizontalSurface();
+                crouchedHitLeftSurface = GetCrouchedHitRightSurface(false).CreateFlippedHorizontalSurface();
 
             return crouchedHitLeftSurface;
         }
 
-        private Surface GetHitRightSurface()
+        private Surface GetHitRightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetHitRightSurfaceDoped();
+
             if (hitRightSurface == null)
                 hitRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/hit.png");
 
             return hitRightSurface;
         }
 
-        private Surface GetHitLeftSurface()
+        private Surface GetHitLeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetHitLeftSurfaceDoped();
+
             if (hitLeftSurface == null)
-                hitLeftSurface = GetHitRightSurface().CreateFlippedHorizontalSurface();
+                hitLeftSurface = GetHitRightSurface(false).CreateFlippedHorizontalSurface();
 
             return hitLeftSurface;
         }
 
-        private Surface GetStandingRightSurface()
+        private Surface GetStandingRightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetStandingRightSurfaceDoped();
+
             if (standingRightSurface == null)
                 standingRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/stand.png");
 
             return standingRightSurface;
         }
 
-        private Surface GetAttackFrame2RightSurface()
+        private Surface GetAttackFrame2RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetAttackFrame2RightSurfaceDoped();
+
             if (attackFrame2RightSurface == null)
                 attackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch2.png");
 
             return attackFrame2RightSurface;
         }
 
-        private Surface GetAttackFrame1RightSurface()
+        private Surface GetAttackFrame1RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetAttackFrame1RightSurfaceDoped();
+
             if (attackFrame1RightSurface == null)
                 attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch1.png");
 
             return attackFrame1RightSurface;
         }
 
-        private Surface GetCrouchedAttackFrame1RightSurface()
+        private Surface GetCrouchedAttackFrame1RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedAttackFrame1RightSurfaceDoped();
+
             if (crouchedAttackFrame1RightSurface == null)
                 crouchedAttackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch1.png");
 
             return crouchedAttackFrame1RightSurface;
         }
 
-        private Surface GetCrouchedAttackFrame2RightSurface()
+        private Surface GetCrouchedAttackFrame2RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedAttackFrame2RightSurfaceDoped();
+
             if (crouchedAttackFrame2RightSurface == null)
                 crouchedAttackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch2.png");
 
             return crouchedAttackFrame2RightSurface;
         }
 
-        private Surface GetAttackFrame2LeftSurface()
+        private Surface GetAttackFrame2LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetAttackFrame2LeftSurfaceDoped();
+
             if (attackFrame2LeftSurface == null)
-                attackFrame2LeftSurface = GetAttackFrame2RightSurface().CreateFlippedHorizontalSurface();
+                attackFrame2LeftSurface = GetAttackFrame2RightSurface(false).CreateFlippedHorizontalSurface();
 
             return attackFrame2LeftSurface;
         }
 
-        private Surface GetAttackFrame1LeftSurface()
+        private Surface GetAttackFrame1LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetAttackFrame1LeftSurfaceDoped();
+
             if (attackFrame1LeftSurface == null)
-                attackFrame1LeftSurface = GetAttackFrame1RightSurface().CreateFlippedHorizontalSurface();
+                attackFrame1LeftSurface = GetAttackFrame1RightSurface(false).CreateFlippedHorizontalSurface();
 
             return attackFrame1LeftSurface;
         }
 
-        private Surface GetCrouchedAttackFrame2LeftSurface()
+        private Surface GetCrouchedAttackFrame2LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedAttackFrame2LeftSurfaceDoped();
+
             if (crouchedAttackFrame2LeftSurface == null)
-                crouchedAttackFrame2LeftSurface = GetCrouchedAttackFrame2RightSurface().CreateFlippedHorizontalSurface();
+                crouchedAttackFrame2LeftSurface = GetCrouchedAttackFrame2RightSurface(false).CreateFlippedHorizontalSurface();
 
             return crouchedAttackFrame2LeftSurface;
         }
 
-        private Surface GetCrouchedAttackFrame1LeftSurface()
+        private Surface GetCrouchedAttackFrame1LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetCrouchedAttackFrame1LeftSurfaceDoped();
+
             if (crouchedAttackFrame1LeftSurface == null)
-                crouchedAttackFrame1LeftSurface = GetCrouchedAttackFrame1RightSurface().CreateFlippedHorizontalSurface();
+                crouchedAttackFrame1LeftSurface = GetCrouchedAttackFrame1RightSurface(false).CreateFlippedHorizontalSurface();
 
             return crouchedAttackFrame1LeftSurface;
         }
 
-        private Surface GetKickFrame2LeftSurface()
+        private Surface GetKickFrame2LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetKickFrame2LeftSurfaceDoped();
+
             if (kickFrame2LeftSurface == null)
-                kickFrame2LeftSurface = GetKickFrame2RightSurface().CreateFlippedHorizontalSurface();
+                kickFrame2LeftSurface = GetKickFrame2RightSurface(false).CreateFlippedHorizontalSurface();
 
             return kickFrame2LeftSurface;
         }
 
-        private Surface GetKickFrame2RightSurface()
+        private Surface GetKickFrame2RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetKickFrame2RightSurfaceDoped();
+
             if (kickFrame2RightSurface == null)
                 kickFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick2.png");
 
             return kickFrame2RightSurface;
         }
 
-        private Surface GetKickFrame1LeftSurface()
+        private Surface GetKickFrame1LeftSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetKickFrame1LeftSurfaceDoped();
+
             if (kickFrame1LeftSurface == null)
-                kickFrame1LeftSurface = GetKickFrame1RightSurface().CreateFlippedHorizontalSurface();
+                kickFrame1LeftSurface = GetKickFrame1RightSurface(false).CreateFlippedHorizontalSurface();
 
             return kickFrame1LeftSurface;
         }
 
-        private Surface GetKickFrame1RightSurface()
+        private Surface GetKickFrame1RightSurface(bool isDoped)
         {
+            if (isDoped)
+                return GetKickFrame1RightSurfaceDoped();
+
             if (kickFrame1RightSurface == null)
                 kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick1.png");
 
             return kickFrame1RightSurface;
         }
 
+        private Surface GetWalking1RightSurfaceDoped()
+        {
+            if (walking1RightSurfaceDoped == null)
+                walking1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/walk1doped.png");
+            return walking1RightSurfaceDoped;
+        }
+
+        private Surface GetWalking1LeftSurfaceDoped()
+        {
+            if (walking1LeftSurfaceDoped == null)
+                walking1LeftSurfaceDoped = GetWalking1RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return walking1LeftSurfaceDoped;
+        }
+
+        private Surface GetWalking2LeftSurfaceDoped()
+        {
+            if (walking2LeftSurfaceDoped == null)
+                walking2LeftSurfaceDoped = GetWalking2RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return walking2LeftSurfaceDoped;
+        }
+
+        private Surface GetWalking2RightSurfaceDoped()
+        {
+            if (walking2RightSurfaceDoped == null)
+                walking2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/walk2doped.png");
+
+            return walking2RightSurfaceDoped;
+        }
+
+        private Surface GetStandingLeftSurfaceDoped()
+        {
+            if (standingLeftSurfaceDoped == null)
+                standingLeftSurfaceDoped = GetStandingRightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return standingLeftSurfaceDoped;
+        }
+
+        private Surface GetCrouchedRightSurfaceDoped()
+        {
+            if (crouchedRightSurfaceDoped == null)
+                crouchedRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/croucheddoped.png");
+
+            return crouchedRightSurfaceDoped;
+        }
+
+        private Surface GetCrouchedLeftSurfaceDoped()
+        {
+            if (crouchedLeftSurfaceDoped == null)
+                crouchedLeftSurfaceDoped = GetCrouchedRightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return crouchedLeftSurfaceDoped;
+        }
+
+        private Surface GetCrouchedHitRightSurfaceDoped()
+        {
+            if (crouchedHitRightSurfaceDoped == null)
+                crouchedHitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitdoped.png");
+
+            return crouchedHitRightSurfaceDoped;
+        }
+
+        private Surface GetCrouchedHitLeftSurfaceDoped()
+        {
+            if (crouchedHitLeftSurfaceDoped == null)
+                crouchedHitLeftSurfaceDoped = GetCrouchedHitRightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return crouchedHitLeftSurfaceDoped;
+        }
+
+        private Surface GetHitRightSurfaceDoped()
+        {
+            if (hitRightSurfaceDoped == null)
+                hitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/hitdoped.png");
+
+            return hitRightSurfaceDoped;
+        }
+
+        private Surface GetHitLeftSurfaceDoped()
+        {
+            if (hitLeftSurfaceDoped == null)
+                hitLeftSurfaceDoped = GetHitRightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return hitLeftSurfaceDoped;
+        }
+
+        private Surface GetStandingRightSurfaceDoped()
+        {
+            if (standingRightSurfaceDoped == null)
+                standingRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/standdoped.png");
+
+            return standingRightSurfaceDoped;
+        }
+
+        private Surface GetAttackFrame2RightSurfaceDoped()
+        {
+            if (attackFrame2RightSurfaceDoped == null)
+                attackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/punch2doped.png");
+
+            return attackFrame2RightSurfaceDoped;
+        }
+
+        private Surface GetAttackFrame1RightSurfaceDoped()
+        {
+            if (attackFrame1RightSurfaceDoped == null)
+                attackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/punch1doped.png");
+
+            return attackFrame1RightSurfaceDoped;
+        }
+
+        private Surface GetCrouchedAttackFrame1RightSurfaceDoped()
+        {
+            if (crouchedAttackFrame1RightSurfaceDoped == null)
+                crouchedAttackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch1doped.png");
+
+            return crouchedAttackFrame1RightSurfaceDoped;
+        }
+
+        private Surface GetCrouchedAttackFrame2RightSurfaceDoped()
+        {
+            if (crouchedAttackFrame2RightSurfaceDoped == null)
+                crouchedAttackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch2doped.png");
+
+            return crouchedAttackFrame2RightSurfaceDoped;
+        }
+
+        private Surface GetAttackFrame2LeftSurfaceDoped()
+        {
+            if (attackFrame2LeftSurfaceDoped == null)
+                attackFrame2LeftSurfaceDoped = GetAttackFrame2RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return attackFrame2LeftSurfaceDoped;
+        }
+
+        private Surface GetAttackFrame1LeftSurfaceDoped()
+        {
+            if (attackFrame1LeftSurfaceDoped == null)
+                attackFrame1LeftSurfaceDoped = GetAttackFrame1RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return attackFrame1LeftSurfaceDoped;
+        }
+
+        private Surface GetCrouchedAttackFrame2LeftSurfaceDoped()
+        {
+            if (crouchedAttackFrame2LeftSurfaceDoped == null)
+                crouchedAttackFrame2LeftSurfaceDoped = GetCrouchedAttackFrame2RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return crouchedAttackFrame2LeftSurfaceDoped;
+        }
+
+        private Surface GetCrouchedAttackFrame1LeftSurfaceDoped()
+        {
+            if (crouchedAttackFrame1LeftSurfaceDoped == null)
+                crouchedAttackFrame1LeftSurfaceDoped = GetCrouchedAttackFrame1RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return crouchedAttackFrame1LeftSurfaceDoped;
+        }
+
+        private Surface GetKickFrame2LeftSurfaceDoped()
+        {
+            if (kickFrame2LeftSurfaceDoped == null)
+                kickFrame2LeftSurfaceDoped = GetKickFrame2RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return kickFrame2LeftSurfaceDoped;
+        }
+
+        private Surface GetKickFrame2RightSurfaceDoped()
+        {
+            if (kickFrame2RightSurfaceDoped == null)
+                kickFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/kick2doped.png");
+
+            return kickFrame2RightSurfaceDoped;
+        }
+
+        private Surface GetKickFrame1LeftSurfaceDoped()
+        {
+            if (kickFrame1LeftSurfaceDoped == null)
+                kickFrame1LeftSurfaceDoped = GetKickFrame1RightSurfaceDoped().CreateFlippedHorizontalSurface();
+
+            return kickFrame1LeftSurfaceDoped;
+        }
+
+        private Surface GetKickFrame1RightSurfaceDoped()
+        {
+            if (kickFrame1RightSurfaceDoped == null)
+                kickFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/kick1doped.png");
+
+            return kickFrame1RightSurfaceDoped;
+        }
+
         private Surface GetDeadSurface()
         {
             if (deadSurface == null)
-                deadSurface = GetStandingRightSurface().CreateFlippedVerticalSurface();
+                deadSurface = GetStandingRightSurface(false).CreateFlippedVerticalSurface();
 
             return deadSurface;
         }
@@ -375,6 +689,17 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return GetDeadSurface();
 
+            bool isShowDopedColor;
+            if (powerUpAnimationCycle.IsFired)
+            {
+                powerUpAnimationCycle.Increment(1.0);
+                isShowDopedColor = ((int)(powerUpAnimationCycle.CurrentValue) % 4 >= 2);
+            }
+            else
+            {
+                isShowDopedColor = isDoped;
+            }
+
             #region Attacking
             if (AttackingCycle.IsFired)
             {
@@ -386,12 +711,12 @@ namespace AbrahmanAdventure.sprites
                         if (attackCycleDivision >= 4)
                         {
                             xOffset = 0.6;
-                            return GetCrouchedAttackFrame2RightSurface();
+                            return GetCrouchedAttackFrame2RightSurface(isShowDopedColor);
                         }
                         else
                         {
                             xOffset = 0.2;
-                            return GetCrouchedAttackFrame1RightSurface();
+                            return GetCrouchedAttackFrame1RightSurface(isShowDopedColor);
                         }
                     }
                     else
@@ -399,12 +724,12 @@ namespace AbrahmanAdventure.sprites
                         if (attackCycleDivision >= 4)
                         {
                             xOffset = -0.6;
-                            return GetCrouchedAttackFrame2LeftSurface();
+                            return GetCrouchedAttackFrame2LeftSurface(isShowDopedColor);
                         }
                         else
                         {
                             xOffset = -0.2;
-                            return GetCrouchedAttackFrame1LeftSurface();
+                            return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor);
                         }
                     }
                     #endregion
@@ -418,13 +743,13 @@ namespace AbrahmanAdventure.sprites
                         {
                             xOffset = 0.35;
                             yOffset = 0.1;
-                            return GetKickFrame2RightSurface();
+                            return GetKickFrame2RightSurface(isShowDopedColor);
                         }
                         else
                         {
                             xOffset = -0.2;
                             yOffset = 0.0;
-                            return GetKickFrame1RightSurface();
+                            return GetKickFrame1RightSurface(isShowDopedColor);
                         }
                     }
                     else
@@ -433,13 +758,13 @@ namespace AbrahmanAdventure.sprites
                         {
                             xOffset = -0.35;
                             yOffset = 0.1;
-                            return GetKickFrame2LeftSurface();
+                            return GetKickFrame2LeftSurface(isShowDopedColor);
                         }
                         else
                         {
                             xOffset = 0.2;
                             yOffset = 0.0;
-                            return GetKickFrame1LeftSurface();
+                            return GetKickFrame1LeftSurface(isShowDopedColor);
                         }
                     }
                     #endregion
@@ -451,12 +776,12 @@ namespace AbrahmanAdventure.sprites
                         if (attackCycleDivision >= 4)
                         {
                             xOffset = 0.6;
-                            return GetAttackFrame2RightSurface();
+                            return GetAttackFrame2RightSurface(isShowDopedColor);
                         }
                         else
                         {
                             xOffset = 0.2;
-                            return GetAttackFrame1RightSurface();
+                            return GetAttackFrame1RightSurface(isShowDopedColor);
                         }
                     }
                     else
@@ -464,12 +789,12 @@ namespace AbrahmanAdventure.sprites
                         if (attackCycleDivision >= 4)
                         {
                             xOffset = -0.6;
-                            return GetAttackFrame2LeftSurface();
+                            return GetAttackFrame2LeftSurface(isShowDopedColor);
                         }
                         else
                         {
                             xOffset = -0.2;
-                            return GetAttackFrame1LeftSurface();
+                            return GetAttackFrame1LeftSurface(isShowDopedColor);
                         }
                     }
                 }
@@ -481,16 +806,16 @@ namespace AbrahmanAdventure.sprites
                 if (HitCycle.IsFired)
                 {
                     if (IsTryingToWalkRight)
-                        return GetCrouchedHitRightSurface();
+                        return GetCrouchedHitRightSurface(isShowDopedColor);
                     else
-                        return GetCrouchedHitLeftSurface();
+                        return GetCrouchedHitLeftSurface(isShowDopedColor);
                 }
                 else
                 {
                     if (IsTryingToWalkRight)
-                        return GetCrouchedRightSurface();
+                        return GetCrouchedRightSurface(isShowDopedColor);
                     else
-                        return GetCrouchedLeftSurface();
+                        return GetCrouchedLeftSurface(isShowDopedColor);
                 }
             }
 
@@ -499,15 +824,15 @@ namespace AbrahmanAdventure.sprites
                 if (HitCycle.IsFired)
                 {
                     if (IsTryingToWalkRight)
-                        return GetHitRightSurface();
+                        return GetHitRightSurface(isShowDopedColor);
                     else
-                        return GetHitLeftSurface();
+                        return GetHitLeftSurface(isShowDopedColor);
                 }
 
                 if (IsTryingToWalkRight)
-                    return GetWalking1RightSurface();
+                    return GetWalking1RightSurface(isShowDopedColor);
                 else
-                    return GetWalking1LeftSurface();
+                    return GetWalking1LeftSurface(isShowDopedColor);
             }
             else if (/*IsTryingToWalk || */CurrentWalkingSpeed != 0)
             {
@@ -518,45 +843,45 @@ namespace AbrahmanAdventure.sprites
                     if (HitCycle.IsFired)
                     {
                         if (IsTryingToWalkRight)
-                            return GetHitRightSurface();
+                            return GetHitRightSurface(isShowDopedColor);
                         else
-                            return GetHitLeftSurface();
+                            return GetHitLeftSurface(isShowDopedColor);
                     }
 
                     if (IsTryingToWalkRight)
-                        return GetWalking1RightSurface();
+                        return GetWalking1RightSurface(isShowDopedColor);
                     else
-                        return GetWalking1LeftSurface();
+                        return GetWalking1LeftSurface(isShowDopedColor);
                 }
                 else if (cycleDivision == 3)
                 {
                     if (HitCycle.IsFired)
                     {
                         if (IsTryingToWalkRight)
-                            return GetHitRightSurface();
+                            return GetHitRightSurface(isShowDopedColor);
                         else
-                            return GetHitLeftSurface();
+                            return GetHitLeftSurface(isShowDopedColor);
                     }
 
                     if (IsTryingToWalkRight)
-                        return GetWalking2RightSurface();
+                        return GetWalking2RightSurface(isShowDopedColor);
                     else
-                        return GetWalking2LeftSurface();
+                        return GetWalking2LeftSurface(isShowDopedColor);
                 }
                 else
                 {
                     if (IsTryingToWalkRight)
-                        return GetStandingRightSurface();
+                        return GetStandingRightSurface(isShowDopedColor);
                     else
-                        return GetStandingLeftSurface();
+                        return GetStandingLeftSurface(isShowDopedColor);
                 }
             }
             else
             {
                 if (IsTryingToWalkRight)
-                    return GetStandingRightSurface();
+                    return GetStandingRightSurface(isShowDopedColor);
                 else
-                    return GetStandingLeftSurface();
+                    return GetStandingLeftSurface(isShowDopedColor);
             }
         }
         #endregion
@@ -569,6 +894,11 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isDoped; }
             set { isDoped = value; }
+        }
+
+        public Cycle PowerUpAnimationCycle
+        {
+            get { return powerUpAnimationCycle; }
         }
         #endregion
     }
