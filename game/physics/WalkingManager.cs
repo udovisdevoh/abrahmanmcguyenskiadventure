@@ -80,6 +80,14 @@ namespace AbrahmanAdventure.physics
                         if ((!sprite.IsCrouch && slope > 0.8) || (sprite.IsCrouch && slope > 3))
                             sprite.IGround = null;
                     }
+
+                    //We sometimes make fall the sprite
+                    if (sprite.IGround is AbstractSprite)
+                    {
+                        AbstractSprite spriteGround = (AbstractSprite)sprite.IGround;
+                        if (sprite.RightBound < spriteGround.LeftBound || sprite.LeftBound > spriteGround.RightBound)
+                            sprite.IGround = null;
+                    }
                 }
                 #endregion
 
@@ -109,7 +117,9 @@ namespace AbrahmanAdventure.physics
 
             sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed);
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Get farthest walking distance without collision
         /// </summary>
