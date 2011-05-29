@@ -1,9 +1,4 @@
-should do collision detection on multiple sprites (i.e. anarchy blocks)
-
-
 Faire gestion automatique de la population de sprite
-
-implement growth (for mushrooms and other powerups)
 
 gravity: must detect sprites when falling
 
