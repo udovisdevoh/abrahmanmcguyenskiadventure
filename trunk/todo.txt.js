@@ -1,3 +1,5 @@
+Add common interface for Ground and Sprite
+
 Faire gestion automatique de la population de sprite
 
 gravity: must detect sprites when falling
