@@ -71,8 +71,12 @@ namespace AbrahmanAdventure.physics
                 return;
 
             playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration / -4.0;
-            //playerSprite.TopBound = anarchyBlockSprite.YPosition;
             playerSprite.IsNeedToJumpAgain = true;
+
+            //Must be well centered, or else, don't open the block
+            if (Math.Abs(playerSprite.XPosition - anarchyBlockSprite.XPosition) > anarchyBlockSprite.Width / 2.5)
+                return;
+
             if (!anarchyBlockSprite.IsFinalized)
             {
                 SoundManager.PlayGrowSound();
