@@ -149,11 +149,13 @@ namespace AbrahmanAdventure.physics
         /// Get frontmost ground having accessible walking height for sprite
         /// </summary>
         /// <param name="sprite">sprite</param>
-        /// <param name="ground">ground</param>
+        /// <param name="iGround">iGround</param>
         /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <returns>frontmost ground having accessible walking height for sprite</returns>
-        internal static IGround GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level)
+        internal static IGround GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
+            IGround frontMostGroundHavingAccessibleWalkingHeightForSprite = null;
             double groundHeight = iGround[sprite.XPosition];
 
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
@@ -166,23 +168,47 @@ namespace AbrahmanAdventure.physics
                 double currentGroundHeight = currentGround[sprite.XPosition];
 
                 if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
-                    return currentGround;
+                {
+                    frontMostGroundHavingAccessibleWalkingHeightForSprite = currentGround;
+                    break;
+                }
             }
-            return null;
+
+            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            {
+                if (otherSprite.IsImpassable)
+                {
+                    if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
+                    {
+                        double currentHeight = otherSprite.TopBound;
+                        if (sprite.YPosition <= currentHeight)
+                        {
+                            if (Math.Abs(groundHeight - currentHeight) <= sprite.MaximumWalkingHeight)
+                            {
+                                frontMostGroundHavingAccessibleWalkingHeightForSprite = otherSprite;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            return frontMostGroundHavingAccessibleWalkingHeightForSprite;
         }
         
         /// <summary>
         /// Get highest ground having accessible walking height for sprite
         /// </summary>
         /// <param name="sprite">sprite</param>
-        /// <param name="ground">ground</param>
+        /// <param name="iGround">iGround</param>
         /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">visible sprite list</param>
         /// <returns>highest ground having accessible walking height for sprite</returns>
-        internal static IGround GetHighestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level)
+        internal static IGround GetHighestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
         	double groundHeight = iGround[sprite.XPosition];
             double highestHeight = double.PositiveInfinity;
-            Ground highestGround = null;
+            IGround highestGround = null;
 
             foreach (Ground currentGround in level)
             {
@@ -192,6 +218,31 @@ namespace AbrahmanAdventure.physics
                 {
                     highestGround = currentGround;
                     highestHeight = currentGroundHeight;
+                }
+            }
+
+            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            {
+                if (otherSprite.IsImpassable)
+                {
+                    if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
+                    {
+                        double currentHeight = otherSprite.TopBound;
+                        if (sprite.YPosition <= currentHeight)
+                        {
+                            if (otherSprite.TopBound <= currentHeight)
+                            {
+                                if (highestHeight == -1 || currentHeight < highestHeight)
+                                {
+                                    if (currentHeight < highestHeight && Math.Abs(groundHeight - currentHeight) <= sprite.MaximumWalkingHeight)
+                                    {
+                                        highestHeight = currentHeight;
+                                        highestGround = otherSprite;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             return highestGround;
