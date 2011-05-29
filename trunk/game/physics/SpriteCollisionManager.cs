@@ -74,7 +74,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(playerSprite.XPosition - anarchyBlockSprite.XPosition) > anarchyBlockSprite.Width / 2.5)
+            if (Math.Abs(playerSprite.XPosition - anarchyBlockSprite.XPosition) > anarchyBlockSprite.Width / 2.25)
                 return;
 
             if (!anarchyBlockSprite.IsFinalized)

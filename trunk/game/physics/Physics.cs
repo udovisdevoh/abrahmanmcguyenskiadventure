@@ -140,6 +140,9 @@ namespace AbrahmanAdventure.physics
             if (slope >= sprite.MaximumWalkingHeight)
                 return true;
 
+            if (sprite.IGround is AbstractSprite)
+                return false;
+
 
             //We check other grounds for ground collisions
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
