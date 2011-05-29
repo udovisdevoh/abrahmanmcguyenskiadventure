@@ -25,6 +25,11 @@ namespace AbrahmanAdventure.sprites
         /// List of currently visible sprites + some other sprites that are not visible yet but close
         /// </summary>
         private HashSet<AbstractSprite> __toUpdateSpriteList = new HashSet<AbstractSprite>();
+
+        /// <summary>
+        /// List of all the sprites
+        /// </summary>
+        private HashSet<AbstractSprite> __allSpriteList = new HashSet<AbstractSprite>();
         #endregion
 
         #region Public Methods
@@ -184,6 +189,18 @@ namespace AbrahmanAdventure.sprites
                     bucketList.Add(bucketId, bucket);
                 }
                 return bucket;
+            }
+        }
+
+        public HashSet<AbstractSprite> AllSpriteList
+        {
+            get
+            {
+                __allSpriteList.Clear();
+                foreach (Bucket bucket in bucketList.Values)
+                    foreach (AbstractSprite sprite in bucket)
+                        __allSpriteList.Add(sprite);
+                return __allSpriteList;
             }
         }
         #endregion

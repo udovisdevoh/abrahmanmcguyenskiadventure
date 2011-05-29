@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.sprites
         public AnarchyBlockSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            isFinalized = random.Next(0, 2) == 1;
+            isFinalized = false;
 
             if (surface1 == null || surface2 == null)
             {
