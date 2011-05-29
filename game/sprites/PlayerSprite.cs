@@ -733,7 +733,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     #endregion
                 }
-                else if (!IsGrounded)
+                else if (Ground == null)
                 {
                     #region In air
                     if (IsTryingToWalkRight)
@@ -895,6 +895,9 @@ namespace AbrahmanAdventure.sprites
             set { isDoped = value; }
         }
 
+        /// <summary>
+        /// Power up animation cycle
+        /// </summary>
         public Cycle PowerUpAnimationCycle
         {
             get { return powerUpAnimationCycle; }

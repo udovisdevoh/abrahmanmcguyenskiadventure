@@ -40,7 +40,7 @@ namespace AbrahmanAdventure.ai
                 /*if (player.IsGrounded && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
                     monster.IsTryingToJump = true;*/
 
-                if (!monster.IsGrounded)
+                if (monster.Ground == null)
                     monster.IsTryingToJump = (random.Next(0, 3) == 0);
                 else
                 {

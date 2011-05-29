@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.physics
         {
             if (!sprite.IsNeedToJumpAgain)
             {
-                if (sprite.IsGrounded)
+                if (sprite.Ground != null)
                 {
                     sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;

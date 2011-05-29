@@ -39,11 +39,11 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
                         }
-                        else if (otherSprite is AnarchyBlockSprite && !sprite.IsGrounded && sprite.YPosition > otherSprite.YPosition)
+                        else if (otherSprite is AnarchyBlockSprite && sprite.Ground == null && sprite.YPosition > otherSprite.YPosition)
                         {
                             UpdateOpenAnarchyBlock((PlayerSprite)sprite, (AnarchyBlockSprite)otherSprite, spritePopulation,random);
                         }
-                        else if (!sprite.IsGrounded && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
+                        else if (sprite.Ground == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
                             UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                         }

@@ -68,7 +68,7 @@ namespace AbrahmanAdventure.physics
             if (walkingDistance != 0)
             {
                 #region Slope logic (slowing down when escalating, falling off a cliff
-                if (sprite.IsGrounded)
+                if (sprite.Ground != null)
                 {
                     double slope = Physics.GetSlopeRatio(sprite, sprite.Ground, walkingDistance, sprite.IsTryingToWalkRight);
                     
@@ -96,10 +96,10 @@ namespace AbrahmanAdventure.physics
             }
 
             //Must prevent sprite from accelerating while pushing on a collision
-            if (sprite.IsGrounded && walkingDistance == 0 && previousWalkingSpeed > 0.1)
+            if (sprite.Ground != null && walkingDistance == 0 && previousWalkingSpeed > 0.1)
                 sprite.CurrentWalkingSpeed = 0;
 
-            if (sprite.IsGrounded)
+            if (sprite.Ground != null)
             {
             	Ground frontmostOrHighestGroundHavingAccessibleWalkingHeightForSprite;
             	if (sprite.IsTryToWalkUp)
