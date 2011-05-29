@@ -12,6 +12,14 @@ collision detection
 }
 
 
+faire sprites volants
+faire sprites volants qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
+faire plateformes qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
+si rond, mettre sprite au centre et bras qui font tourner
+afficher path, ou pas, dépendant de la situation
+plateformes de largeur diverse
+
+
 always blit player sprite over all sprites
 
 
