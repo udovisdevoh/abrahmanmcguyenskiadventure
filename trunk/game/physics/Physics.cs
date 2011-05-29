@@ -107,18 +107,18 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether collision was detected</returns>
         internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level)
         {
-            Ground referenceGround;
+            IGround referenceGround;
 
-            if (sprite.Ground == null)
+            if (sprite.IGround == null)
             {
-                referenceGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
+                referenceGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
                 if (referenceGround == null)
                     return false;
                 //if (isConsiderFallingCollision)
                 return referenceGround[xDesiredPosition] < sprite.YPosition;
             }
             else
-                referenceGround = sprite.Ground;
+                referenceGround = sprite.IGround;
         	
         	double angleX1;
         	double angleX2;
@@ -162,8 +162,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="ground">ground</param>
         /// <param name="walkingDistance">walking distance (could be negative)</param>
         /// <returns>ratio of a slope at sprite's position going in sprite's current direction. 0: flat, 1: 45% going down, -1: -45% going up</returns>
-        internal static double GetSlopeRatio(AbstractSprite sprite, Ground ground, double walkingDistance, bool isRight)
+        internal static double GetSlopeRatio(AbstractSprite sprite, IGround ground, double walkingDistance, bool isRight)
         {
+            if (ground is AbstractSprite)
+                return 0.0;
+
             if (isRight)
                 return ((ground[sprite.XPosition + walkingDistance] - ground[sprite.XPosition]) / walkingDistance) / 2.0;
             else
@@ -218,7 +221,7 @@ namespace AbrahmanAdventure.physics
 
                     double sprite1TopBound, sprite1BottomBound;
 
-                    if (sprite1.Ground == null || sprite1.IsCrouch)
+                    if (sprite1.IGround == null || sprite1.IsCrouch)
                     {
                         sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0;
                         sprite1BottomBound = sprite1.YPosition;

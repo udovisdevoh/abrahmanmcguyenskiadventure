@@ -40,7 +40,7 @@ namespace AbrahmanAdventure.ai
                 /*if (player.IsGrounded && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
                     monster.IsTryingToJump = true;*/
 
-                if (monster.Ground == null)
+                if (monster.IGround == null)
                     monster.IsTryingToJump = (random.Next(0, 3) == 0);
                 else
                 {
@@ -143,12 +143,18 @@ namespace AbrahmanAdventure.ai
         private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, out double slope)
         {
             slope = 0;
-            Ground groundToTestSlope = monster.Ground;
+            IGround groundToTestSlope = monster.IGround;
             if (groundToTestSlope == null)
-                groundToTestSlope = GroundHelper.GetHighestVisibleGroundBelowSprite(monster, level);
+                groundToTestSlope = IGroundHelper.GetHighestVisibleGroundBelowSprite(monster, level);
 
             if (groundToTestSlope == null)
                 return false;
+
+            if (groundToTestSlope is AbstractSprite)
+            {
+                slope = 0.0;
+                return true;
+            }
             
             double walkingDistance = timeDelta * monster.CurrentWalkingSpeed;
 

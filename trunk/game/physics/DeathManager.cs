@@ -45,7 +45,7 @@ namespace AbrahmanAdventure.physics
             }
             else
             {
-                sprite.Ground = null;
+                sprite.IGround = null;
                 sprite.YPosition += 0.25;//we make it fall even faster so it doesn't get stucked by falling on grounds
             }
         }

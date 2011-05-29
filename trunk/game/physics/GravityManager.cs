@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.physics
             if (!sprite.IsAffectedByGravity)
                 return;
 
-            if (sprite.Ground != null) //No gravity, sprite is on a ground
+            if (sprite.IGround != null) //No gravity, sprite is on a ground
             {
                 sprite.CurrentJumpAcceleration = 0;
                 return;
@@ -32,18 +32,18 @@ namespace AbrahmanAdventure.physics
                 return;
 
 
-            Ground closestDownGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
+            Ground closestDownGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
             if (closestDownGround == null)
             {
                 if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
                 {
-                    Ground lowestVisibleGround = GroundHelper.GetLowestVisibleGround(sprite, level);
+                    Ground lowestVisibleGround = IGroundHelper.GetLowestVisibleGround(sprite, level);
                     if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
                     {
                         if (sprite.IsAlive)
                         {
-                            sprite.Ground = lowestVisibleGround;
-                            sprite.YPosition = sprite.Ground[sprite.XPosition];
+                            sprite.IGround = lowestVisibleGround;
+                            sprite.YPosition = sprite.IGround[sprite.XPosition];
                             sprite.CurrentJumpAcceleration = 0;
                         }
                     }
@@ -72,7 +72,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite.YPosition >= closestDownGroundHeight && sprite.IsAlive)
                 {
                     sprite.YPosition = closestDownGroundHeight;
-                    sprite.Ground = closestDownGround;
+                    sprite.IGround = closestDownGround;
                 }
             }
         }

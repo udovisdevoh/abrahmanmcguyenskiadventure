@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.level
     /// <summary>
     /// Represents a surface on which a sprite can walk
     /// </summary>
-    internal class Ground
+    internal class Ground : IGround
     {
         #region Fields and parts
         /// <summary>

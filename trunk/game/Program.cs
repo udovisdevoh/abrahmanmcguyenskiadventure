@@ -319,16 +319,16 @@ namespace AbrahmanAdventure
             if (userInput.isPressJump)
             {
                 //We manage jumping from one ground to a lower ground
-                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.Ground != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
+                if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
-                    Ground highestVisibleGroundBelowSprite = GroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
-                    if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.Ground && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount)
-                        playerSprite.Ground = null;
+                    Ground highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level);
+                    if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount)
+                        playerSprite.IGround = null;
                     else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
-                        playerSprite.YPosition = playerSprite.Ground[playerSprite.XPosition];
+                        playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];
 
-                    if (playerSprite.Ground == null) //play sound if jump down was a success
+                    if (playerSprite.IGround == null) //play sound if jump down was a success
                         SoundManager.PlayJumpDownSound();
                 }
                 else
@@ -361,7 +361,7 @@ namespace AbrahmanAdventure
             }
             if (playerSprite.AttackingCycle.IsFired)
                 playerSprite.AttackingCycle.Increment(timeDelta);
-            if (playerSprite.AttackingCycle.IsFinished && playerSprite.Ground != null)
+            if (playerSprite.AttackingCycle.IsFinished && playerSprite.IGround != null)
                 playerSprite.AttackingCycle.Reset();
             #endregion
 
@@ -395,9 +395,9 @@ namespace AbrahmanAdventure
                 {
                     #region Sliding
                     playerSprite.IsTryingToWalk = false;
-                    if (playerSprite.Ground != null && !playerSprite.AttackingCycle.IsFired)
+                    if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired)
                     {
-                        double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, Program.collisionDetectionResolution, true);
+                        double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
                         if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
                         {
                             playerSprite.IsTryingToWalk = true;
@@ -406,7 +406,7 @@ namespace AbrahmanAdventure
                         }
                         else
                         {
-                            double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.Ground, -Program.collisionDetectionResolution, false);
+                            double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, -Program.collisionDetectionResolution, false);
                             if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
                             {
                                 playerSprite.IsTryingToWalk = true;

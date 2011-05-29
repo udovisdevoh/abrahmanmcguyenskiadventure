@@ -53,6 +53,7 @@
     <Compile Include="game\audio\SoundManager.cs" />
     <Compile Include="game\colorTheme\ColorTheme.cs" />
     <Compile Include="game\ground\Ground.cs" />
+    <Compile Include="game\ground\IGround.cs" />
     <Compile Include="game\holes\HoleSet.cs" />
     <Compile Include="game\hud\HudViewer.cs" />
     <Compile Include="game\joystick\JoystickManager.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
-    <Compile Include="game\ground\GroundHelper.cs" />
+    <Compile Include="game\ground\IGroundHelper.cs" />
     <Compile Include="game\physics\HelmetToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\JumpingManager.cs" />
     <Compile Include="game\physics\Physics.cs" />

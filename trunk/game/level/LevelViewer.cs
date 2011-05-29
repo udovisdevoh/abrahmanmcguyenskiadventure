@@ -123,7 +123,7 @@ namespace AbrahmanAdventure.level
                     while (textureInputX < 0)
                         textureInputX += ground.TopTexture.Surface.Width;
 
-                    if (GroundHelper.IsTransparentAt(ground, level, waveInput))
+                    if (IGroundHelper.IsTransparentAt(ground, level, waveInput))
                     {
                         rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                         zoneSurface.Fill(rectangle, transparentColor);
