@@ -87,6 +87,8 @@ namespace AbrahmanAdventure.physics
             {
                 spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
                 battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
+                if (((PlayerSprite)sprite).PowerUpAnimationCycle.IsFired)
+                    ((PlayerSprite)sprite).PowerUpAnimationCycle.Increment(timeDelta);
             }
             else if (sprite is HelmetSprite)
             {

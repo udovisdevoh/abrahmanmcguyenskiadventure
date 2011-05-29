@@ -128,7 +128,7 @@ namespace AbrahmanAdventure.sprites
         public PlayerSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            powerUpAnimationCycle = new Cycle(60, false);
+            powerUpAnimationCycle = new Cycle(30, false);
         }
         #endregion
 
@@ -692,7 +692,6 @@ namespace AbrahmanAdventure.sprites
             bool isShowDopedColor;
             if (powerUpAnimationCycle.IsFired)
             {
-                powerUpAnimationCycle.Increment(1.0);
                 isShowDopedColor = ((int)(powerUpAnimationCycle.CurrentValue) % 4 >= 2);
             }
             else
