@@ -32,6 +32,7 @@ namespace AbrahmanAdventure.physics
                     sprite.XPosition = 0;
                     sprite.YPosition = Program.totalHeightTileCount / -2;
                     sprite.IsAlive = true;
+                    ((PlayerSprite)sprite).IsDoped = false;
                 }
                 else
                 {

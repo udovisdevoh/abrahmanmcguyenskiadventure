@@ -80,6 +80,8 @@ namespace AbrahmanAdventure.physics
                 anarchyBlockSprite.IsFinalized = true;
 
                 AbstractSprite powerUpSprite = anarchyBlockSprite.GetPowerUpSprite(playerSprite, random);
+                if (powerUpSprite is IGrowable)
+                    ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                 spritePopulation.Add(powerUpSprite);
             }
             else

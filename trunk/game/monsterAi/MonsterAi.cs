@@ -98,6 +98,12 @@ namespace AbrahmanAdventure.ai
             else
             {
                 #region Walking no AI
+                if (monster is IGrowable && ((IGrowable)monster).GrowthCycle.IsFired)
+                {
+                    monster.IsTryingToWalk = false;
+                    return;
+                }
+
                 if (monster.IsWalkEnabled && Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0) //Change direction if can't move
                 {
                     if (monster is HelmetSprite)

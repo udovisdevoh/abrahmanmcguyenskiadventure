@@ -95,6 +95,9 @@ namespace AbrahmanAdventure.physics
 
             if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsEnableSpontaneousConversion)
                 spontaneousConversionManager.Update((MonsterSprite)sprite, spritePopulation, timeDelta, random);
+
+            if (sprite is IGrowable && ((IGrowable)sprite).GrowthCycle.IsFired)
+                ((IGrowable)sprite).GrowthCycle.Increment(timeDelta);
         }
         #endregion
 

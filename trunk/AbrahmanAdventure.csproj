@@ -86,6 +86,7 @@
     <Compile Include="game\sprites\monsters\RaptorSprite.cs" />
     <Compile Include="game\sprites\monsters\RiotControlSprite.cs" />
     <Compile Include="game\sprites\monsters\SnakeSprite.cs" />
+    <Compile Include="game\sprites\powerups\IGrowable.cs" />
     <Compile Include="game\sprites\powerups\MushroomSprite.cs" />
     <Compile Include="game\sprites\powerups\ShishaSprite.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
