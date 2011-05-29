@@ -6,10 +6,15 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    internal class ShishaSprite : StaticSprite
+    internal class ShishaSprite : StaticSprite, IGrowable
     {
         #region Fields and parts
         private static Surface surface;
+
+        /// <summary>
+        /// Cycle of growth
+        /// </summary>
+        private Cycle growthCycle;
         #endregion
 
         #region Constructor
@@ -22,6 +27,7 @@ namespace AbrahmanAdventure.sprites
         public ShishaSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
                 surface = BuildSpriteSurface("./assets/rendered/powerups/shisha.png");
         }
@@ -62,6 +68,16 @@ namespace AbrahmanAdventure.sprites
         {
             xOffset = yOffset = 0;
             return surface;
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Cycle of growth
+        /// </summary>
+        public Cycle GrowthCycle
+        {
+            get { return growthCycle; }
         }
         #endregion
     }

@@ -25,6 +25,9 @@ namespace AbrahmanAdventure.physics
                 return;
             }
 
+            if (sprite is IGrowable && ((IGrowable)sprite).GrowthCycle.IsFired)
+                return;
+
 
             Ground closestDownGround = GroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level);
             if (closestDownGround == null)

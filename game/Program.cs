@@ -58,6 +58,8 @@ namespace AbrahmanAdventure
         
         public const double holeHeight = 100.0;
 
+        public const double powerUpGrowthTime = 6.0;
+
         public static int tileSize = screenWidth / tileColumnCount;
 
         public static int totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
