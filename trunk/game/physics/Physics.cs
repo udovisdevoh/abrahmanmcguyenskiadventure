@@ -140,20 +140,28 @@ namespace AbrahmanAdventure.physics
             if (slope >= sprite.MaximumWalkingHeight)
                 return true;
 
-            if (sprite.IGround is AbstractSprite)
-                return false;
 
+            #region We test collision with impassable sprites
+            double yDesiredPosition = referenceGround[xDesiredPosition];
+            foreach (AbstractSprite otherSprite in visibleSpriteList)
+                if (otherSprite.IsImpassable)
+                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, otherSprite))
+                        return true;
+            #endregion
 
-            //We check other grounds for ground collisions
-            for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+            if (sprite.IGround is Ground)
             {
-                Ground currentGround = level[groundId];
-                if (currentGround == referenceGround)
-                    break;
-                else if (sprite.YPosition - currentGround[sprite.XPosition] >= sprite.MaximumWalkingHeight)
-                    return true;
-                else if (sprite.YPosition - currentGround[xDesiredPosition] >= sprite.MaximumWalkingHeight)
-                    return true;
+                //We check other grounds for ground collisions
+                for (int groundId = level.Count - 1; groundId >= 0; groundId--)
+                {
+                    Ground currentGround = level[groundId];
+                    if (currentGround == referenceGround)
+                        break;
+                    else if (sprite.YPosition - currentGround[sprite.XPosition] >= sprite.MaximumWalkingHeight)
+                        return true;
+                    else if (sprite.YPosition - currentGround[xDesiredPosition] >= sprite.MaximumWalkingHeight)
+                        return true;
+                }
             }
             return false;
         }
@@ -184,7 +192,7 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether sprites are in collision</returns>
         internal static bool IsDetectCollision(AbstractSprite sprite1, AbstractSprite sprite2)
         {
-            bool isHorizontalCollision = (sprite1.RightBound > sprite2.LeftBound && sprite1.LeftBound < sprite1.LeftBound)
+            bool isHorizontalCollision = (sprite1.RightBound > sprite2.LeftBound && sprite1.LeftBound < sprite2.LeftBound)
                                       || (sprite2.LeftBound < sprite1.RightBound && sprite2.RightBound > sprite1.RightBound)
                                       || (sprite2.RightBound > sprite1.LeftBound && sprite2.LeftBound < sprite2.LeftBound)
                                       || (sprite1.LeftBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
@@ -195,6 +203,35 @@ namespace AbrahmanAdventure.physics
             bool isVerticalCollision =  (sprite1.YPosition > sprite2.TopBound && sprite1.YPosition < sprite2.YPosition)
                                      || (sprite2.YPosition > sprite1.TopBound && sprite2.YPosition < sprite1.YPosition);
             
+            return isHorizontalCollision && isVerticalCollision;
+        }
+
+        /// <summary>
+        /// Detect collision from sprite with virtual position to other sprite with real position
+        /// </summary>
+        /// <param name="sprite1">sprite 1</param>
+        /// <param name="virtualX">virtual X</param>
+        /// <param name="virtualY">virtual Y</param>
+        /// <param name="sprite2">sprite 2</param>
+        /// <returns>Whether there is collision from sprite with virtual position to other sprite with real position</returns>
+        internal static bool IsDetectCollision(AbstractSprite sprite1, double virtualX, double virtualY, AbstractSprite sprite2)
+        {
+            double sprite1RightBound = virtualX + sprite1.Width / 2.0;
+            double sprite1LeftBound = virtualX - sprite1.Width / 2.0;
+            double sprite1YPosition = virtualY;
+            double sprite1TopBound = sprite1.TopBound - sprite1.YPosition + virtualY;
+
+            bool isHorizontalCollision =    (sprite1RightBound > sprite2.LeftBound && sprite1LeftBound < sprite2.LeftBound)
+                                     ||     (sprite2.LeftBound < sprite1RightBound && sprite2.RightBound > sprite1RightBound)
+                                     ||     (sprite2.RightBound > sprite1LeftBound && sprite2.LeftBound < sprite2.LeftBound)
+                                     ||     (sprite1LeftBound < sprite2.RightBound && sprite1RightBound > sprite2.RightBound);
+
+            if (!isHorizontalCollision)
+                return false;
+
+            bool isVerticalCollision = (sprite1YPosition > sprite2.TopBound && sprite1YPosition < sprite2.YPosition)
+                                     || (sprite2.YPosition > sprite1TopBound && sprite2.YPosition < sprite1YPosition);
+
             return isHorizontalCollision && isVerticalCollision;
         }
 
