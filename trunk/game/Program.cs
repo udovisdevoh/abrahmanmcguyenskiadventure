@@ -325,7 +325,7 @@ namespace AbrahmanAdventure
                 if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
-                    IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleGroundBelowSprite(playerSprite, level, visibleSpriteList);
+                    IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
                     if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount)
                         playerSprite.IGround = null;
                     else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling

@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.physics
                 return;
 
 
-            IGround closestDownGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level, visibleSpriteList);
+            IGround closestDownGround = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
             if (closestDownGround == null)
             {
                 if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
