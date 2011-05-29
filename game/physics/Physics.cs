@@ -111,7 +111,7 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.IGround == null)
             {
-                referenceGround = IGroundHelper.GetHighestVisibleGroundBelowSprite(sprite, level, visibleSpriteList);
+                referenceGround = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
                 if (referenceGround == null)
                     return false;
                 //if (isConsiderFallingCollision)

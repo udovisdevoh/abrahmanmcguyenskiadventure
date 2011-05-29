@@ -85,6 +85,11 @@ namespace AbrahmanAdventure.sprites
             return 0;
         }
 
+        protected override bool BuildIsImpassable()
+        {
+            return true;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;

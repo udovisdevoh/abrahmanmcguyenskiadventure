@@ -146,7 +146,7 @@ namespace AbrahmanAdventure.ai
             slope = 0;
             IGround groundToTestSlope = monster.IGround;
             if (groundToTestSlope == null)
-                groundToTestSlope = IGroundHelper.GetHighestVisibleGroundBelowSprite(monster, level, visibleSpriteList);
+                groundToTestSlope = IGroundHelper.GetHighestVisibleIGroundBelowSprite(monster, level, visibleSpriteList);
 
             if (groundToTestSlope == null)
                 return false;

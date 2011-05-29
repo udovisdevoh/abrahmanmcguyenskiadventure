@@ -19,9 +19,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">List of visible sprites</param>
         /// <returns>Highest ground below sprite</returns>
-        internal static IGround GetHighestVisibleGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal static IGround GetHighestVisibleIGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
-            Ground highestGroundBelowSprite = null;
+            IGround highestIGroundBelowSprite = null;
             double highestHeight = -1;
 
             foreach (Ground ground in level)
@@ -35,12 +35,35 @@ namespace AbrahmanAdventure.physics
                         if (IsGroundVisible(ground, level, sprite.XPosition))
                         {
                             highestHeight = currentHeight;
-                            highestGroundBelowSprite = ground;
+                            highestIGroundBelowSprite = ground;
                         }
                     }
                 }
             }
-            return highestGroundBelowSprite;
+
+            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            {
+                if (otherSprite.IsImpassable)
+                {
+                    if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
+                    {
+                        double currentHeight = otherSprite.TopBound;
+                        if (sprite.YPosition <= currentHeight)
+                        {
+                            if (otherSprite.TopBound <= currentHeight)
+                            {
+                                if (highestHeight == -1 || currentHeight < highestHeight)
+                                {
+                                    highestHeight = currentHeight;
+                                    highestIGroundBelowSprite = otherSprite;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return highestIGroundBelowSprite;
         }
 
         /// <summary>

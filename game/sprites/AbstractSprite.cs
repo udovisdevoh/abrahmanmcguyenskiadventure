@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.sprites
         private IGround iGround;
 
         /// <summary>
+        /// Whether sprite is impassable
+        /// </summary>
+        private bool isImpassable;
+
+        /// <summary>
         /// True: face left, False: face right
         /// </summary>
         private bool isPointingLeft;
@@ -223,6 +228,7 @@ namespace AbrahmanAdventure.sprites
             attackStrengthCollision = BuildAttackStrengthCollision();
             isAffectedByGravity = BuildIsAffectedByGravity();
             bounciness = BuildBounciness();
+            isImpassable = BuildIsImpassable();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -233,6 +239,12 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Protected Abstract Methods
+        /// <summary>
+        /// Whether sprite is impassable
+        /// </summary>
+        /// <returns>Whether sprite is impassable</returns>
+        protected abstract bool BuildIsImpassable();
+
         /// <summary>
         /// Whether sprite is affected by gravity
         /// </summary>
@@ -605,6 +617,14 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Whether sprite is impassible
+        /// </summary>
+        public bool IsImpassable
+        {
+            get { return isImpassable; }
+        }
+
+        /// <summary>
         /// Acceleration at begining of jump
         /// </summary>
         public double StartingJumpAcceleration
@@ -787,13 +807,13 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// Y Position
+        /// Top bound
         /// </summary>
         /// <param name="xPosition">X Position</param>
-        /// <returns>Y Position</returns>
+        /// <returns>Top bound</returns>
         public double this[double xPosition]
         {
-            get { return yPosition; }
+            get { return TopBound; }
         }
         #endregion
     }

@@ -39,6 +39,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsImpassable()
+        {
+            return false;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 100;
