@@ -197,6 +197,8 @@ namespace AbrahmanAdventure.physics
                                       || (sprite2.RightBound > sprite1.LeftBound && sprite2.LeftBound < sprite2.LeftBound)
                                       || (sprite1.LeftBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
             isHorizontalCollision |= sprite1.RightBound == sprite2.RightBound || sprite1.LeftBound == sprite2.LeftBound;
+            isHorizontalCollision |= sprite1.LeftBound <= sprite2.LeftBound && sprite1.RightBound >= sprite2.RightBound;
+            isHorizontalCollision |= sprite2.LeftBound <= sprite1.LeftBound && sprite2.RightBound >= sprite1.RightBound;
 
             if (!isHorizontalCollision)
                 return false;
@@ -204,7 +206,9 @@ namespace AbrahmanAdventure.physics
             bool isVerticalCollision =  (sprite1.YPosition > sprite2.TopBound && sprite1.YPosition < sprite2.YPosition)
                                      || (sprite2.YPosition > sprite1.TopBound && sprite2.YPosition < sprite1.YPosition);
             isVerticalCollision |= (sprite1.YPosition == sprite2.YPosition || sprite1.TopBound == sprite2.TopBound);
-            
+            isVerticalCollision |= (sprite1.YPosition >= sprite2.YPosition && sprite1.TopBound <= sprite2.TopBound);
+            isVerticalCollision |= (sprite2.YPosition >= sprite1.YPosition && sprite2.TopBound <= sprite1.TopBound);
+
             return isHorizontalCollision && isVerticalCollision;
         }
 
@@ -229,6 +233,8 @@ namespace AbrahmanAdventure.physics
                                      ||     (sprite2.RightBound > sprite1LeftBound && sprite2.LeftBound < sprite2.LeftBound)
                                      ||     (sprite1LeftBound < sprite2.RightBound && sprite1RightBound > sprite2.RightBound);
             isHorizontalCollision |= sprite1RightBound == sprite2.RightBound || sprite1LeftBound == sprite2.LeftBound;
+            isHorizontalCollision |= sprite1LeftBound <= sprite2.LeftBound && sprite1RightBound >= sprite2.RightBound;
+            isHorizontalCollision |= sprite2.LeftBound <= sprite1LeftBound && sprite2.RightBound >= sprite1RightBound;
 
             if (!isHorizontalCollision)
                 return false;
@@ -236,6 +242,8 @@ namespace AbrahmanAdventure.physics
             bool isVerticalCollision = (sprite1YPosition > sprite2.TopBound && sprite1YPosition < sprite2.YPosition)
                                      || (sprite2.YPosition > sprite1TopBound && sprite2.YPosition < sprite1YPosition);
             isVerticalCollision |= (sprite1YPosition == sprite2.YPosition || sprite1TopBound == sprite2.TopBound);
+            isVerticalCollision |= (sprite1.YPosition >= sprite2.YPosition && sprite1.TopBound <= sprite2.TopBound);
+            isVerticalCollision |= (sprite2.YPosition >= sprite1.YPosition && sprite2.TopBound <= sprite1.TopBound);
 
             return isHorizontalCollision && isVerticalCollision;
         }

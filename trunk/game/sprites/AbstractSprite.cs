@@ -413,6 +413,22 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Last X distance of sprite move
+        /// </summary>
+        public double LastDistanceX
+        {
+            get{return xPosition - xPositionPrevious;}
+        }
+
+        /// <summary>
+        /// Last Y distance of sprite move
+        /// </summary>
+        public double LastDistanceY
+        {
+            get { return yPosition - yPositionPrevious; }
+        }
+
+        /// <summary>
         /// Width
         /// </summary>
         public double Width

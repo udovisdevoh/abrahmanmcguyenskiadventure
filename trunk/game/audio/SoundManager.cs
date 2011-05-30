@@ -57,6 +57,7 @@ namespace AbrahmanAdventure.audio
             trampolineSound = LoadSound("./assets/sounds/Trampoline.ogg");
             powerUpSound = LoadSound("./assets/sounds/PowerUp.ogg");
             growSound = LoadSound("./assets/sounds/Grow.ogg");
+            fireBallSound = LoadSound("./assets/sounds/FireBall.ogg");
         }
 
         /// <summary>
