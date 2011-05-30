@@ -156,6 +156,11 @@ namespace AbrahmanAdventure.sprites
         private double yPositionPrevious;
 
         /// <summary>
+        /// Previous value of xPosition so we can know if the sprite moved left or right
+        /// </summary>
+        private double xPositionPrevious;
+
+        /// <summary>
         /// Jumping acceleration at begining of jump
         /// </summary>
         private double startingJumpAcceleration;
@@ -369,6 +374,7 @@ namespace AbrahmanAdventure.sprites
             get { return xPosition; }
             set
             {
+                xPositionPrevious = xPosition;
                 __parentSpriteCollection.RemoveSpatialHashing(this);
                 xPosition = value;
                 __parentSpriteCollection.SetSpatialHashing(this);
@@ -396,6 +402,14 @@ namespace AbrahmanAdventure.sprites
         public double YPositionPrevious
         {
             get { return yPositionPrevious; }
+        }
+
+        /// <summary>
+        /// Previous X position (so we can know if the sprite is moving left or right)
+        /// </summary>
+        public double XPositionPrevious
+        {
+            get { return xPositionPrevious; }
         }
 
         /// <summary>
