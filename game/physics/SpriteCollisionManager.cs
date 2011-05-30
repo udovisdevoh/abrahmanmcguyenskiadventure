@@ -47,6 +47,10 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                         }
+                        else if (otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
+                        {
+                            KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                        }
                         else if (otherSprite is MonsterSprite && otherSprite.IsAlive)
                         {
                             UpdateDirectCollision(sprite, (MonsterSprite)otherSprite, level, timeDelta);
@@ -74,7 +78,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(playerSprite.XPosition - block.XPosition) > block.Width / 2.25)
+            if (Math.Abs(playerSprite.XPosition - block.XPosition) > block.Width / 2.0)
                 return;
 
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
@@ -131,18 +135,14 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         private void UpdateDirectCollision(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
         {
-            if (monsterSprite.IsToggleWalkWhenJumpedOn && !monsterSprite.IsWalkEnabled) //Start/stop (for helmets)
-            {
-                KickOrStopHelmet(sprite, monsterSprite, level, timeDelta);
-            }
-            else if (!sprite.HitCycle.IsFired && !monsterSprite.KickedHelmetCycle.IsFired) //Damage to player
-            {
-                SoundManager.PlayHit2Sound();
-                sprite.HitCycle.Fire();
-                if (sprite is PlayerSprite)
-                    ((PlayerSprite)sprite).IsDoped = false;
-                sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
-            }
+            if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired)
+                return;
+
+            SoundManager.PlayHit2Sound();
+            sprite.HitCycle.Fire();
+            if (sprite is PlayerSprite)
+                ((PlayerSprite)sprite).IsDoped = false;
+            sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
         }
 
         /// <summary>
