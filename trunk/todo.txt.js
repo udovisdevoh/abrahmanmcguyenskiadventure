@@ -1,5 +1,3 @@
-Add common interface for Ground and Sprite
-
 Faire gestion automatique de la population de sprite
 
 gravity: must detect sprites when falling
@@ -11,6 +9,11 @@ collision detection
 	Make sure there are no duplicate of horizontal collision test
 }
 
+force sprite to crouch if under block and 1 tile space only
+
+faire des grands trous
+si grand trou, mettre plateforme qui suit fonction mathématique ou onde
+
 
 faire sprites volants
 faire sprites volants qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
@@ -18,6 +21,13 @@ faire plateformes qui suivent des path de wave ou de fonction mathématiques (ro
 si rond, mettre sprite au centre et bras qui font tourner
 afficher path, ou pas, dépendant de la situation
 plateformes de largeur diverse
+
+
+show smaller abrahman mcguyenski when not grown by mushroom
+
+
+
+shells must open anarchy blocks
 
 
 always blit player sprite over all sprites
@@ -166,6 +176,10 @@ Musique générative
 	Ce qui influence la musique
 	{
 		si le joueur est "dopé"
+		
+		si invincible (sera autre chose, genre une sorte de dopage)
+		
+		si level est fini (genre de musique à la fin des level de smb1)
 	
 		Lorsqu'on saute et qu'on est en train de retomber
 		{
