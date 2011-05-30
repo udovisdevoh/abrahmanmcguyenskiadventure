@@ -51,11 +51,11 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                 }
-                else if (otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
+                else if (sprite is PlayerSprite && otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
                 {
                     KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
-                else if (otherSprite is MonsterSprite && otherSprite.IsAlive)
+                else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
                     UpdateDirectCollision(sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
@@ -77,6 +77,10 @@ namespace AbrahmanAdventure.physics
                 return;
 
             sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
+
+            if (!(sprite is PlayerSprite))
+                return;
+
             sprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
@@ -178,6 +182,10 @@ namespace AbrahmanAdventure.physics
                                 #endregion
                             }
                         }
+
+                        if (!(sprite is PlayerSprite))
+                            return;
+
 
                         if (otherSprite is MonsterSprite)
                         {
