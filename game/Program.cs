@@ -134,6 +134,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new SnakeSprite(80, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new JewSprite(120, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RaptorSprite(160, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new JewSprite(-10, Program.totalHeightTileCount / -2, random));
 
             spritePopulation.Add(new Trampoline(10, Program.totalHeightTileCount / -2, random));
 

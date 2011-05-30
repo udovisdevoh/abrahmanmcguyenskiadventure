@@ -27,35 +27,37 @@ namespace AbrahmanAdventure.physics
         {
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (sprite != otherSprite)
+                if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
+                    continue;
+
+                if (otherSprite.IsImpassable && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
                 {
-                    if (Physics.IsDetectCollision(sprite, otherSprite))
-                    {
-                        if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
-                        {
-                            UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
-                        }
-                        else if (sprite is PlayerSprite && otherSprite is ShishaSprite && otherSprite.IsAlive)
-                        {
-                            UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
-                        }
-                        else if (otherSprite is StaticSprite && otherSprite.IsImpassable && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
-                        {
-                            UpdateJumpUnderBlock((PlayerSprite)sprite, (StaticSprite)otherSprite, spritePopulation,random);
-                        }
-                        else if (sprite.IGround == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
-                        {
-                            UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
-                        }
-                        else if (otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
-                        {
-                            KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
-                        }
-                        else if (otherSprite is MonsterSprite && otherSprite.IsAlive)
-                        {
-                            UpdateDirectCollision(sprite, (MonsterSprite)otherSprite, level, timeDelta);
-                        }
-                    }
+                    sprite.CurrentWalkingSpeed = 0;
+                    sprite.XPosition = sprite.XPositionPrevious;
+                }
+                else if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
+                {
+                    UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                }
+                else if (sprite is PlayerSprite && otherSprite is ShishaSprite && otherSprite.IsAlive)
+                {
+                    UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
+                }
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
+                {
+                    UpdateJumpUnderBlock(sprite, (StaticSprite)otherSprite, spritePopulation,random);
+                }
+                else if (sprite.IGround == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
+                {
+                    UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
+                }
+                else if (otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
+                {
+                    KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                }
+                else if (otherSprite is MonsterSprite && otherSprite.IsAlive)
+                {
+                    UpdateDirectCollision(sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
             }
         }
@@ -65,20 +67,20 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// Player jumps under anarchy block. It may output something from it (mushroom, flower, etc)
         /// </summary>
-        /// <param name="playerSprite">player</param>
+        /// <param name="sprite">jumper</param>
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpUnderBlock(PlayerSprite playerSprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
+        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
-            if (playerSprite.YPosition >= playerSprite.YPositionPrevious)
+            if (sprite.YPosition >= sprite.YPositionPrevious)
                 return;
 
-            playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration / -4.0;
-            playerSprite.IsNeedToJumpAgain = true;
+            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
+            sprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(playerSprite.XPosition - block.XPosition) > block.Width / 2.0)
+            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 2.0)
                 return;
 
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
@@ -87,7 +89,7 @@ namespace AbrahmanAdventure.physics
                 ((AnarchyBlockSprite)block).BumpCycle.Fire();
                 ((AnarchyBlockSprite)block).IsFinalized = true;
 
-                AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(playerSprite, random);
+                AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
                 if (powerUpSprite is IGrowable)
                     ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                 spritePopulation.Add(powerUpSprite);
