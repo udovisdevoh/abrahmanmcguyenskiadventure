@@ -37,6 +37,8 @@ namespace AbrahmanAdventure.audio
         private static Sound powerUpSound;
 
         private static Sound growSound;
+
+        private static Sound fireBallSound;
         #endregion
 
         #region Constructors
@@ -129,6 +131,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayGrowSound()
         {
             growSound.Play();
+        }
+
+        internal static void PlayFireBallSound()
+        {
+            fireBallSound.Play();
         }
         #endregion
     }
