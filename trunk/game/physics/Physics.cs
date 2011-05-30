@@ -77,12 +77,16 @@ namespace AbrahmanAdventure.physics
             damageManager.Update(sprite, timeDelta);
             deathManager.Update(sprite, timeDelta, spritePopulation);
 
-            if (sprite is PlayerSprite)
+            if (sprite is PlayerSprite || sprite is MonsterSprite)
             {
                 spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
-                battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
-                if (((PlayerSprite)sprite).PowerUpAnimationCycle.IsFired)
-                    ((PlayerSprite)sprite).PowerUpAnimationCycle.Increment(timeDelta);
+
+                if (sprite is PlayerSprite)
+                {
+                    battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
+                    if (((PlayerSprite)sprite).PowerUpAnimationCycle.IsFired)
+                        ((PlayerSprite)sprite).PowerUpAnimationCycle.Increment(timeDelta);
+                }
             }
             else if (sprite is HelmetSprite)
             {
