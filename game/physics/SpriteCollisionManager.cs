@@ -39,9 +39,9 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
                         }
-                        else if (otherSprite is AnarchyBlockSprite && sprite.IGround == null && sprite.YPosition > otherSprite.YPosition)
+                        else if (otherSprite is StaticSprite && otherSprite.IsImpassable && sprite.IGround == null && sprite.YPosition > otherSprite.YPosition)
                         {
-                            UpdateOpenAnarchyBlock((PlayerSprite)sprite, (AnarchyBlockSprite)otherSprite, spritePopulation,random);
+                            UpdateJumpUnderBlock((PlayerSprite)sprite, (StaticSprite)otherSprite, spritePopulation,random);
                         }
                         else if (sprite.IGround == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                         {
@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        private void UpdateOpenAnarchyBlock(PlayerSprite playerSprite, AnarchyBlockSprite anarchyBlockSprite, SpritePopulation spritePopulation, Random random)
+        private void UpdateJumpUnderBlock(PlayerSprite playerSprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
             if (playerSprite.YPosition >= playerSprite.YPositionPrevious)
                 return;
@@ -74,16 +74,16 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(playerSprite.XPosition - anarchyBlockSprite.XPosition) > anarchyBlockSprite.Width / 2.25)
+            if (Math.Abs(playerSprite.XPosition - block.XPosition) > block.Width / 2.25)
                 return;
 
-            if (!anarchyBlockSprite.IsFinalized)
+            if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
             {
                 SoundManager.PlayGrowSound();
-                anarchyBlockSprite.BumpCycle.Fire();
-                anarchyBlockSprite.IsFinalized = true;
+                ((AnarchyBlockSprite)block).BumpCycle.Fire();
+                ((AnarchyBlockSprite)block).IsFinalized = true;
 
-                AbstractSprite powerUpSprite = anarchyBlockSprite.GetPowerUpSprite(playerSprite, random);
+                AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(playerSprite, random);
                 if (powerUpSprite is IGrowable)
                     ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                 spritePopulation.Add(powerUpSprite);
