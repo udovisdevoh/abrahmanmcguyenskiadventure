@@ -1,3 +1,8 @@
+get frontmost walkable ground
+{
+	must not take sprite ground if it's lower than current ground
+}
+
 Faire gestion automatique de la population de sprite
 
 gravity: must detect sprites when falling
