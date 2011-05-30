@@ -455,7 +455,7 @@ namespace AbrahmanAdventure
 
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
-            spriteViewer.Update(viewOffsetX, viewOffsetY, visibleSpriteList, isOddFrame);
+            spriteViewer.Update(viewOffsetX, viewOffsetY, playerSprite, visibleSpriteList, isOddFrame);
             hudViewer.Update(playerSprite.Health);
             mainSurface.Update();
             #endregion

@@ -39,7 +39,7 @@ namespace AbrahmanAdventure.physics
                         {
                             UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
                         }
-                        else if (otherSprite is StaticSprite && otherSprite.IsImpassable && sprite.IGround == null && sprite.YPosition > otherSprite.YPosition)
+                        else if (otherSprite is StaticSprite && otherSprite.IsImpassable && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
                         {
                             UpdateJumpUnderBlock((PlayerSprite)sprite, (StaticSprite)otherSprite, spritePopulation,random);
                         }
