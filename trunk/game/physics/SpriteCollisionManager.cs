@@ -30,12 +30,12 @@ namespace AbrahmanAdventure.physics
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
                     continue;
 
-                if (otherSprite.IsImpassable && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
+                /*if (otherSprite.IsImpassable && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
                 {
                     sprite.CurrentWalkingSpeed = 0;
                     sprite.XPosition = sprite.XPositionPrevious;
                 }
-                else if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
+                else */if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {
                     UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                 }
