@@ -145,7 +145,7 @@ namespace AbrahmanAdventure.physics
             double yDesiredPosition = referenceGround[xDesiredPosition];
             foreach (AbstractSprite otherSprite in visibleSpriteList)
                 if (otherSprite.IsImpassable)
-                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, otherSprite))
+                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, 0.27, otherSprite))
                         return true;
             #endregion
 
@@ -202,6 +202,7 @@ namespace AbrahmanAdventure.physics
 
             bool isVerticalCollision =  (sprite1.YPosition > sprite2.TopBound && sprite1.YPosition < sprite2.YPosition)
                                      || (sprite2.YPosition > sprite1.TopBound && sprite2.YPosition < sprite1.YPosition);
+            isVerticalCollision |= (sprite1.YPosition == sprite2.YPosition || sprite1.TopBound == sprite2.TopBound);
             
             return isHorizontalCollision && isVerticalCollision;
         }
@@ -212,12 +213,13 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite1">sprite 1</param>
         /// <param name="virtualX">virtual X</param>
         /// <param name="virtualY">virtual Y</param>
+        /// <param name="sprite1WidthMultiplicator">virtual width multiplicator for sprite 1 (we simulate a different width</param>
         /// <param name="sprite2">sprite 2</param>
         /// <returns>Whether there is collision from sprite with virtual position to other sprite with real position</returns>
-        internal static bool IsDetectCollision(AbstractSprite sprite1, double virtualX, double virtualY, AbstractSprite sprite2)
+        internal static bool IsDetectCollision(AbstractSprite sprite1, double virtualX, double virtualY, double sprite1WidthMultiplicator, AbstractSprite sprite2)
         {
-            double sprite1RightBound = virtualX + sprite1.Width / 2.0;
-            double sprite1LeftBound = virtualX - sprite1.Width / 2.0;
+            double sprite1RightBound = virtualX + sprite1.Width / 2.0 * sprite1WidthMultiplicator;
+            double sprite1LeftBound = virtualX - sprite1.Width / 2.0 * sprite1WidthMultiplicator;
             double sprite1YPosition = virtualY;
             double sprite1TopBound = sprite1.TopBound - sprite1.YPosition + virtualY;
 
@@ -231,6 +233,7 @@ namespace AbrahmanAdventure.physics
 
             bool isVerticalCollision = (sprite1YPosition > sprite2.TopBound && sprite1YPosition < sprite2.YPosition)
                                      || (sprite2.YPosition > sprite1TopBound && sprite2.YPosition < sprite1YPosition);
+            isVerticalCollision |= (sprite1YPosition == sprite2.YPosition || sprite1TopBound == sprite2.TopBound);
 
             return isHorizontalCollision && isVerticalCollision;
         }

@@ -247,5 +247,22 @@ namespace AbrahmanAdventure.physics
             }
             return highestGround;
         }
+
+        /// <summary>
+        /// Whether topGround's height is stacked on bottomGround's height
+        /// </summary>
+        /// <param name="topGround">topGround</param>
+        /// <param name="bottomGround">bottomGround</param>
+        /// <returns>Whether topGround's height is stacked on bottomGround's height</returns>
+        internal static bool IsSpriteIGroundHeightStackedOn(IGround topGround, IGround bottomGround)
+        {
+            if (!(topGround is AbstractSprite) || !(bottomGround is AbstractSprite))
+                return false;
+
+            AbstractSprite topSprite = (AbstractSprite)topGround;
+            AbstractSprite bottomSprite = (AbstractSprite)bottomGround;
+
+            return bottomSprite.TopBound - topSprite.YPosition < 0.1;
+        }
     }
 }

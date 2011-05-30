@@ -137,9 +137,14 @@ namespace AbrahmanAdventure
 
             spritePopulation.Add(new Trampoline(10, Program.totalHeightTileCount / -2, random));
 
+            spritePopulation.Add(new BrickSprite(-10, -10, random, true));
+            spritePopulation.Add(new BrickSprite(-11, -10, random, true));
+            spritePopulation.Add(new BrickSprite(-11, -11, random, true));
+
             spritePopulation.Add(new BrickSprite(5, -10, random,true));
             spritePopulation.Add(new BrickSprite(5, -11, random,true));
             spritePopulation.Add(new BrickSprite(5, -12, random));
+            spritePopulation.Add(new BrickSprite(6, -12, random));
             spritePopulation.Add(new BrickSprite(5, -13, random));
             spritePopulation.Add(new BrickSprite(6, -10, random));
             spritePopulation.Add(new BrickSprite(7, -10, random));
@@ -326,7 +331,8 @@ namespace AbrahmanAdventure
                 {
                     playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                     IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
-                    if (highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount)
+
+                    if (playerSprite.IGround is Ground && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
                         playerSprite.IGround = null;
                     else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
                         playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];
