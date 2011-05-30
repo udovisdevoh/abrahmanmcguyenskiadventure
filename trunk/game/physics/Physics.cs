@@ -196,6 +196,7 @@ namespace AbrahmanAdventure.physics
                                       || (sprite2.LeftBound < sprite1.RightBound && sprite2.RightBound > sprite1.RightBound)
                                       || (sprite2.RightBound > sprite1.LeftBound && sprite2.LeftBound < sprite2.LeftBound)
                                       || (sprite1.LeftBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
+            isHorizontalCollision |= sprite1.RightBound == sprite2.RightBound || sprite1.LeftBound == sprite2.LeftBound;
 
             if (!isHorizontalCollision)
                 return false;
@@ -227,6 +228,7 @@ namespace AbrahmanAdventure.physics
                                      ||     (sprite2.LeftBound < sprite1RightBound && sprite2.RightBound > sprite1RightBound)
                                      ||     (sprite2.RightBound > sprite1LeftBound && sprite2.LeftBound < sprite2.LeftBound)
                                      ||     (sprite1LeftBound < sprite2.RightBound && sprite1RightBound > sprite2.RightBound);
+            isHorizontalCollision |= sprite1RightBound == sprite2.RightBound || sprite1LeftBound == sprite2.LeftBound;
 
             if (!isHorizontalCollision)
                 return false;
