@@ -31,8 +31,8 @@ namespace AbrahmanAdventure.sprites
         {
             if (destructibleSurface == null || indestructibleSurface == null)
             {
-                indestructibleSurface = new Texture(random).Surface.CreateResizedSurface(new Size((int)(Program.tileSize * Width), (int)(Program.tileSize * Height)));
-                destructibleSurface = new Texture(random).Surface.CreateResizedSurface(new Size((int)(Program.tileSize * Width), (int)(Program.tileSize * Height)));
+                indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
+                destructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
             }
         }
 
@@ -48,8 +48,8 @@ namespace AbrahmanAdventure.sprites
         {
             if (destructibleSurface == null || indestructibleSurface == null)
             {
-                indestructibleSurface = new Texture(random).Surface.CreateResizedSurface(new Size((int)(Program.tileSize * Width), (int)(Program.tileSize * Height)));
-                destructibleSurface = new Texture(random).Surface.CreateResizedSurface(new Size((int)(Program.tileSize * Width), (int)(Program.tileSize * Height)));
+                indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
+                destructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
             }
         }
         #endregion
