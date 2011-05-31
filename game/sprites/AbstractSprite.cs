@@ -652,6 +652,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsImpassable
         {
             get { return isImpassable; }
+            set { isImpassable = value; }
         }
 
         /// <summary>

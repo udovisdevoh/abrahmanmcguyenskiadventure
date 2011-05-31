@@ -17,6 +17,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface destructibleSurface;
 
         private static Surface indestructibleSurface;
+
+        private static Surface destroyedSurface;
         #endregion
 
         #region Constructors
@@ -33,6 +35,7 @@ namespace AbrahmanAdventure.sprites
             {
                 indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
                 destructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
+                destroyedSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock3.png");
             }
         }
 
@@ -50,6 +53,7 @@ namespace AbrahmanAdventure.sprites
             {
                 indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
                 destructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
+                destroyedSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock3.png");
             }
         }
         #endregion
@@ -93,7 +97,9 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            if (IsDestructible)
+            if (!IsAlive)
+                return destroyedSurface;
+            else if (IsDestructible)
                 return destructibleSurface;
             else
                 return indestructibleSurface;

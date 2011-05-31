@@ -43,7 +43,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (otherSprite.IsImpassable)
+                if (otherSprite.IsImpassable && otherSprite.IsAlive)
                 {
                     if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
                     {
@@ -176,7 +176,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (otherSprite.IsImpassable)
+                if (otherSprite.IsImpassable && otherSprite.IsAlive)
                 {
                     if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
                     {
@@ -223,7 +223,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (otherSprite.IsImpassable)
+                if (otherSprite.IsImpassable && otherSprite.IsAlive)
                 {
                     if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
                     {
