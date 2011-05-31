@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
                     continue;
 
-                /*if (otherSprite.IsImpassable && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
+                /*if (otherSprite.IsImpassable && otherSprite.IsAlive && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
                 {
                     sprite.CurrentWalkingSpeed = 0;
                     sprite.XPosition = sprite.XPositionPrevious;
@@ -43,7 +43,7 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
                 }
-                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
                 {
                     UpdateJumpUnderBlock(sprite, (StaticSprite)otherSprite, spritePopulation,random);
                 }
@@ -97,6 +97,13 @@ namespace AbrahmanAdventure.physics
                 if (powerUpSprite is IGrowable)
                     ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                 spritePopulation.Add(powerUpSprite);
+            }
+            else if (block.IsDestructible)
+            {
+                SoundManager.PlayBricksSound();
+                block.HitCycle.Fire();
+                block.IsAlive = false;
+                block.IsAffectedByGravity = false;
             }
             else
             {

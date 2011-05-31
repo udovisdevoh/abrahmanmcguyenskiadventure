@@ -82,7 +82,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHitTime()
         {
-            return 0;
+            return 16;
         }
         #endregion
 
