@@ -40,6 +40,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsAnnihilateOnExitScreen()
+        {
+            return false;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 1.0;

@@ -102,6 +102,11 @@ namespace AbrahmanAdventure.sprites
             return 0;
         }
 
+        protected override bool BuildIsAnnihilateOnExitScreen()
+        {
+            return true;
+        }
+
         protected override bool BuildIsAiEnabled()
         {
             return false;

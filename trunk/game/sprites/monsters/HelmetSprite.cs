@@ -270,6 +270,11 @@ namespace AbrahmanAdventure.sprites
         {
             return false;
         }
+
+        protected override bool BuildIsAnnihilateOnExitScreen()
+        {
+            return false;
+        }
         
         public override AbstractSprite GetConverstionSprite(Random random)
         {
