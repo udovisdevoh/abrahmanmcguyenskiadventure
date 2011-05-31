@@ -611,6 +611,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsAnnihilateOnExitScreen()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Build width
         /// </summary>

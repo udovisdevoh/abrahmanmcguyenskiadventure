@@ -75,7 +75,7 @@ namespace AbrahmanAdventure.physics
             gravityManager.Update(sprite, level, timeDelta, visibleSpriteList);
             jumpingManager.Update(sprite, timeDelta);
             damageManager.Update(sprite, timeDelta);
-            deathManager.Update(sprite, timeDelta, spritePopulation);
+            deathManager.Update(sprite, timeDelta, spritePopulation, visibleSpriteList);
 
             if (sprite is PlayerSprite || sprite is MonsterSprite)
             {

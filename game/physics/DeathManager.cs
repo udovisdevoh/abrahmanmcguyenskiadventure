@@ -17,10 +17,13 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta"></param>
         /// <param name="spritePopulation"></param>
-        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation)
+        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList)
         {
             if (sprite.YPosition > Program.totalHeightTileCount)
                 sprite.IsAlive = false;
+
+            if (sprite.IsAnnihilateOnExitScreen && !visibleSpriteList.Contains(sprite))
+                spritePopulation.Remove(sprite);
 
             if (sprite.IsAlive)
                 return;

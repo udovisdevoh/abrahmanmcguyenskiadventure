@@ -166,11 +166,6 @@ namespace AbrahmanAdventure.sprites
         {
             return 1.0;
         }
-
-        protected override bool BuildIsCanJump(Random random)
-        {
-            return true;
-        }
         
         protected override double BuildJumpProbability()
         {
@@ -185,6 +180,16 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildAttackStrengthCollision()
         {
             return 0.5;
+        }
+
+        protected override bool BuildIsCanJump(Random random)
+        {
+            return true;
+        }
+
+        protected override bool BuildIsAnnihilateOnExitScreen()
+        {
+            return false;
         }
 
         protected override bool BuildIsFleeWhenAttacked(Random random)

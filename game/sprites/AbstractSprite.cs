@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.sprites
         private IGround iGround;
 
         /// <summary>
+        /// Whether sprite annihilate on exit screen
+        /// </summary>
+        private bool isAnnihilateOnExitScreen;
+
+        /// <summary>
         /// Whether sprite is impassable
         /// </summary>
         private bool isImpassable;
@@ -234,6 +239,7 @@ namespace AbrahmanAdventure.sprites
             isAffectedByGravity = BuildIsAffectedByGravity();
             bounciness = BuildBounciness();
             isImpassable = BuildIsImpassable();
+            isAnnihilateOnExitScreen = BuildIsAnnihilateOnExitScreen();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -255,6 +261,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite is affected by gravity</returns>
         protected abstract bool BuildIsAffectedByGravity();
+
+        /// <summary>
+        /// Whether sprite will be annihilated when exiting screen
+        /// </summary>
+        /// <returns>Whether sprite will be annihilated when exiting screen</returns>
+        protected abstract bool BuildIsAnnihilateOnExitScreen();
 
         /// <summary>
         /// Maximum health
@@ -653,6 +665,14 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isImpassable; }
             set { isImpassable = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite annihilate on exit screen
+        /// </summary>
+        public bool IsAnnihilateOnExitScreen
+        {
+            get { return isAnnihilateOnExitScreen; }
         }
 
         /// <summary>
