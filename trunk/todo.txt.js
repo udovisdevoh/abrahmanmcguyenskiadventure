@@ -5,9 +5,7 @@ get frontmost walkable ground
 
 Faire gestion automatique de la population de sprite
 
-gravity: must detect sprites when falling
-
-some static sprites should be impassable
+sprite dispatcher must not put anarchy block on a ambiguous height (too low to pass under, but it looks like not)
 
 collision detection
 {
@@ -16,8 +14,10 @@ collision detection
 
 force sprite to crouch if under block and 1 tile space only
 
+?powerups must disappear when out of screen?
+
 faire des grands trous
-si grand trou, mettre plateforme qui suit fonction mathématique ou onde
+si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
 
 
 faire sprites volants
