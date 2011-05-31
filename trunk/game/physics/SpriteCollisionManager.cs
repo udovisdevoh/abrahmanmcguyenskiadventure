@@ -177,7 +177,7 @@ namespace AbrahmanAdventure.physics
                                 sprite.JumpingCycle.Reset();
                                 sprite.JumpingCycle.Fire();
                                 sprite.IsTryingToJump = true;
-                                if (otherSprite.Bounciness > 1.0)
+                                if (otherSprite.Bounciness > 1.0 && sprite is PlayerSprite)
                                     SoundManager.PlayTrampolineSound();
                                 #endregion
                             }

@@ -146,10 +146,9 @@ namespace AbrahmanAdventure.physics
 
 
             #region We test collision with impassable sprites
-            double yDesiredPosition = referenceGround[xDesiredPosition];
             foreach (AbstractSprite otherSprite in visibleSpriteList)
                 if (sprite != otherSprite && otherSprite.IsImpassable)
-                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, 0.27, otherSprite))
+                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, sprite.YPosition, 0.27, otherSprite))
                         return true;
             #endregion
 
