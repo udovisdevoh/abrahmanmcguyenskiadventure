@@ -1,3 +1,7 @@
+when jump under block, only eject sprite if highest ground below sprite is under ejection position
+eject sprites that are stucked under a block
+force sprite to crouch if under block and 1 tile space only
+
 get frontmost walkable ground
 {
 	must not take sprite ground if it's lower than current ground
@@ -11,8 +15,6 @@ collision detection
 {
 	Make sure there are no duplicate of horizontal collision test
 }
-
-force sprite to crouch if under block and 1 tile space only
 
 ?powerups must disappear when out of screen?
 
