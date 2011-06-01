@@ -43,9 +43,9 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
                 }
-                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
-                    UpdateJumpUnderBlock(sprite, (StaticSprite)otherSprite, spritePopulation,random);
+                    UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation,random);
                 }
                 else if (sprite.IGround == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
@@ -65,15 +65,18 @@ namespace AbrahmanAdventure.physics
 
         #region Private Methods
         /// <summary>
-        /// Player jumps under anarchy block. It may output something from it (mushroom, flower, etc)
+        /// Player jumps towards impassable block. It may output something from it (mushroom, flower, etc)
         /// </summary>
         /// <param name="sprite">jumper</param>
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
+        private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
             if (sprite.YPosition >= sprite.YPositionPrevious)
+                return;
+
+            if (sprite.YPosition < block.YPosition)
                 return;
 
             sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
@@ -98,12 +101,12 @@ namespace AbrahmanAdventure.physics
                     ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                 spritePopulation.Add(powerUpSprite);
             }
-            else if (block.IsDestructible)
+            else if (block.IsDestructible && block.IsAlive)
             {
                 SoundManager.PlayBricksSound();
                 block.HitCycle.Fire();
                 block.IsAlive = false;
-                block.IsAffectedByGravity = false;
+                block.IsAffectedByGravity = true;
             }
             else
             {
