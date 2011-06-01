@@ -68,58 +68,82 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
-            if (Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
+            if (sprite.XPosition > block.LeftBound + 0.05 && sprite.XPosition < block.RightBound - 0.05 && sprite.TopBound > block.YPosition - 0.25)
             {
-                //Side collision
-                if (sprite.LastDistanceX > 0)
-                    sprite.XPositionKeepPrevious = sprite.XPositionPrevious - 0.05;
-                else if (sprite.LastDistanceX < 0)
-                    sprite.XPositionKeepPrevious = sprite.XPositionPrevious + 0.05;
-
-                sprite.XPositionKeepPrevious = sprite.XPositionPrevious;
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
             }
             else
             {
-                if (sprite.YPosition >= sprite.YPositionPrevious)
-                    return;
-
-                if (sprite.YPosition < block.YPosition)
-                    return;
-
-                sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
-
-                if (!(sprite is PlayerSprite))
-                    return;
-
-                sprite.IsNeedToJumpAgain = true;
-
-                //Must be well centered, or else, don't open the block
-                if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 2.0)
-                    return;
-
-                if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
-                {
-                    SoundManager.PlayGrowSound();
-                    ((AnarchyBlockSprite)block).BumpCycle.Fire();
-                    ((AnarchyBlockSprite)block).IsFinalized = true;
-
-                    AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
-                    if (powerUpSprite is IGrowable)
-                        ((IGrowable)powerUpSprite).GrowthCycle.Fire();
-                    spritePopulation.Add(powerUpSprite);
-                }
-                else if (block.IsDestructible && block.IsAlive)
-                {
-                    SoundManager.PlayBricksSound();
-                    block.HitCycle.Fire();
-                    block.IsAlive = false;
-                    block.IsAffectedByGravity = true;
-                }
-                else
-                {
-                    SoundManager.PlayHelmetBumpSound();
-                }
+                UpdateJumpOnBlockSide(sprite, block);
             }
+            
+            /*if (Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
+            {
+                UpdateJumpOnBlockSide(sprite, block);
+            }
+            else
+            {
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
+            }*/
+        }
+
+        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
+        {
+            if (sprite.YPosition >= sprite.YPositionPrevious)
+                return;
+
+            if (sprite.YPosition < block.YPosition)
+                return;
+
+            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
+
+            sprite.YPositionKeepPrevious += 0.01;
+
+            if (!(sprite is PlayerSprite))
+                return;
+
+            sprite.IsNeedToJumpAgain = true;
+
+            //Must be well centered, or else, don't open the block
+            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 2.0)
+                return;
+
+            if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
+            {
+                SoundManager.PlayGrowSound();
+                ((AnarchyBlockSprite)block).BumpCycle.Fire();
+                ((AnarchyBlockSprite)block).IsFinalized = true;
+
+                AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
+                if (powerUpSprite is IGrowable)
+                    ((IGrowable)powerUpSprite).GrowthCycle.Fire();
+                spritePopulation.Add(powerUpSprite);
+            }
+            else if (block.IsDestructible && block.IsAlive)
+            {
+                SoundManager.PlayBricksSound();
+                block.HitCycle.Fire();
+                block.IsAlive = false;
+                block.IsAffectedByGravity = true;
+            }
+            else
+            {
+                SoundManager.PlayHelmetBumpSound();
+            }
+        }
+
+        /// <summary>
+        /// Spirte jumps on block's side
+        /// </summary>
+        /// <param name="sprite">jumper sprite</param>
+        /// <param name="block">block</param>
+        private void UpdateJumpOnBlockSide(AbstractSprite sprite, StaticSprite block)
+        {
+            //Side collision
+            if (sprite.XPosition < block.XPosition)
+                sprite.RightBoundKeepPrevious = block.LeftBound - 0.01;
+            else if (sprite.XPosition > block.XPosition)
+                sprite.LeftBoundKeepPrevious = block.RightBound + 0.01;
         }
 
         /// <summary>
