@@ -394,6 +394,20 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// X position, keep previous position when setting this value
+        /// </summary>
+        public double XPositionKeepPrevious
+        {
+            get { return xPosition; }
+            set
+            {
+                __parentSpriteCollection.RemoveSpatialHashing(this);
+                xPosition = value;
+                __parentSpriteCollection.SetSpatialHashing(this);
+            }
+        }
+
+        /// <summary>
         /// Y position
         /// </summary>
         public double YPosition

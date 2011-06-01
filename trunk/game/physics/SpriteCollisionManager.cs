@@ -30,12 +30,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
                     continue;
 
-                /*if (otherSprite.IsImpassable && otherSprite.IsAlive && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
-                {
-                    sprite.CurrentWalkingSpeed = 0;
-                    sprite.XPosition = sprite.XPositionPrevious;
-                }
-                else */if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
+                if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {
                     UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                 }
@@ -73,44 +68,57 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
-            if (sprite.YPosition >= sprite.YPositionPrevious)
-                return;
-
-            if (sprite.YPosition < block.YPosition)
-                return;
-
-            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
-
-            if (!(sprite is PlayerSprite))
-                return;
-
-            sprite.IsNeedToJumpAgain = true;
-
-            //Must be well centered, or else, don't open the block
-            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 2.0)
-                return;
-
-            if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
+            if (Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
             {
-                SoundManager.PlayGrowSound();
-                ((AnarchyBlockSprite)block).BumpCycle.Fire();
-                ((AnarchyBlockSprite)block).IsFinalized = true;
+                //Side collision
+                if (sprite.LastDistanceX > 0)
+                    sprite.XPositionKeepPrevious = sprite.XPositionPrevious - 0.05;
+                else if (sprite.LastDistanceX < 0)
+                    sprite.XPositionKeepPrevious = sprite.XPositionPrevious + 0.05;
 
-                AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
-                if (powerUpSprite is IGrowable)
-                    ((IGrowable)powerUpSprite).GrowthCycle.Fire();
-                spritePopulation.Add(powerUpSprite);
-            }
-            else if (block.IsDestructible && block.IsAlive)
-            {
-                SoundManager.PlayBricksSound();
-                block.HitCycle.Fire();
-                block.IsAlive = false;
-                block.IsAffectedByGravity = true;
+                sprite.XPositionKeepPrevious = sprite.XPositionPrevious;
             }
             else
             {
-                SoundManager.PlayHelmetBumpSound();
+                if (sprite.YPosition >= sprite.YPositionPrevious)
+                    return;
+
+                if (sprite.YPosition < block.YPosition)
+                    return;
+
+                sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
+
+                if (!(sprite is PlayerSprite))
+                    return;
+
+                sprite.IsNeedToJumpAgain = true;
+
+                //Must be well centered, or else, don't open the block
+                if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 2.0)
+                    return;
+
+                if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
+                {
+                    SoundManager.PlayGrowSound();
+                    ((AnarchyBlockSprite)block).BumpCycle.Fire();
+                    ((AnarchyBlockSprite)block).IsFinalized = true;
+
+                    AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
+                    if (powerUpSprite is IGrowable)
+                        ((IGrowable)powerUpSprite).GrowthCycle.Fire();
+                    spritePopulation.Add(powerUpSprite);
+                }
+                else if (block.IsDestructible && block.IsAlive)
+                {
+                    SoundManager.PlayBricksSound();
+                    block.HitCycle.Fire();
+                    block.IsAlive = false;
+                    block.IsAffectedByGravity = true;
+                }
+                else
+                {
+                    SoundManager.PlayHelmetBumpSound();
+                }
             }
         }
 
