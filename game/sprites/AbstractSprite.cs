@@ -767,6 +767,20 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Sprite's previous top bound
+        /// </summary>
+        public double TopBoundPrevious
+        {
+            get
+            {
+                if (isCrouch)
+                    return yPositionPrevious - height / 2.0;
+                else
+                    return yPositionPrevious - height;
+            }
+        }
+
+        /// <summary>
         /// Sprite's top bound
         /// </summary>
         public double TopBoundKeepPrevious

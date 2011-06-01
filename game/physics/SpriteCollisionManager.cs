@@ -68,7 +68,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
-            bool wasInHorizontalCollision = sprite.RightBoundPrevious >= block.LeftBound && sprite.LeftBoundPrevious <= block.LeftBound;
+            /*bool wasInHorizontalCollision = sprite.RightBoundPrevious >= block.LeftBound && sprite.LeftBoundPrevious <= block.LeftBound;
             wasInHorizontalCollision |= sprite.LeftBoundPrevious <= block.RightBound && sprite.RightBoundPrevious >= block.RightBound;
             wasInHorizontalCollision |= sprite.LeftBoundPrevious == block.LeftBound;
             wasInHorizontalCollision |= sprite.RightBoundPrevious == block.RightBound;
@@ -80,9 +80,21 @@ namespace AbrahmanAdventure.physics
             isInHorizontalCollision |= sprite.LeftBound == block.LeftBound;
             isInHorizontalCollision |= sprite.RightBound == block.RightBound;
             isInHorizontalCollision |= sprite.RightBound < block.RightBound && sprite.LeftBound > block.LeftBound;
-            isInHorizontalCollision |= sprite.RightBound > block.RightBound && sprite.LeftBound < block.LeftBound;
+            isInHorizontalCollision |= sprite.RightBound > block.RightBound && sprite.LeftBound < block.LeftBound;*/
 
-            if (wasInHorizontalCollision == isInHorizontalCollision)
+            double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
+
+            if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
+            {
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
+            }
+            else
+            {
+                UpdateJumpOnBlockSide(sprite, block);
+            }
+
+
+            /*if (wasInHorizontalCollision == isInHorizontalCollision && sprite.YPosition < sprite.YPositionPrevious)
             {
                 UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
             }
@@ -101,7 +113,7 @@ namespace AbrahmanAdventure.physics
             else
             {
                 UpdateJumpOnBlockSide(sprite, block);
-            }
+            }*/
             
             /*if (Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
             {
@@ -115,9 +127,6 @@ namespace AbrahmanAdventure.physics
 
         private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
-            if (sprite.YPosition >= sprite.YPositionPrevious)
-                return;
-
             if (sprite.YPosition < block.YPosition)
                 return;
 

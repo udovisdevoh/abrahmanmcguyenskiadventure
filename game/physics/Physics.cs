@@ -296,6 +296,24 @@ namespace AbrahmanAdventure.physics
             }
             return false;
         }
+
+        /// <summary>
+        /// Get angle between two points (in degrees)
+        /// </summary>
+        /// <param name="x1">x1</param>
+        /// <param name="y1">y1</param>
+        /// <param name="x2">x2</param>
+        /// <param name="y2">y2</param>
+        /// <returns>angle between two points (in degrees)</returns>
+        internal static double GetAngleDegree(double x1, double y1, double x2, double y2)
+        {
+            double angle = Math.Atan2(y1 - y2, x1 - x2) * 180 / Math.PI;
+            while (angle < 0)
+                angle += 360;
+            while (angle > 360)
+                angle -= 360;
+            return angle;
+        }
         #endregion
     }
 }
