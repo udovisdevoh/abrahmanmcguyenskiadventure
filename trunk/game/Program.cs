@@ -40,6 +40,8 @@ namespace AbrahmanAdventure
 
         public const bool isBroadRangeUpdateSprite = true;
 
+        public const bool isEnableCrouchedWalk = true;
+
         public const int tileColumnCount = 20;
 
         public const int waveResolution = 1;
@@ -380,7 +382,7 @@ namespace AbrahmanAdventure
             if (playerSprite.IsAlive)
             {
                 playerSprite.IsRunning = userInput.isPressAttack;
-                if (userInput.isPressLeft && !userInput.isPressRight && !userInput.isPressDown)
+                if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
                 {
                     #region Walking left
                     if (playerSprite.IsTryingToWalkRight)
@@ -391,7 +393,7 @@ namespace AbrahmanAdventure
                     playerSprite.IsTryingToSlide = false;
                     #endregion
                 }
-                else if (!userInput.isPressLeft && userInput.isPressRight && !userInput.isPressDown)
+                else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
                 {
                     #region Walking right
                     if (!playerSprite.IsTryingToWalkRight)
