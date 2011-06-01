@@ -758,6 +758,28 @@ namespace AbrahmanAdventure.sprites
         	}
             set
             {
+                yPositionPrevious = yPosition;
+                if (isCrouch)
+                    yPosition = value + height / 2.0;
+                else
+                    yPosition = value + height;
+            }
+        }
+
+        /// <summary>
+        /// Sprite's top bound
+        /// </summary>
+        public double TopBoundKeepPrevious
+        {
+            get
+            {
+                if (isCrouch)
+                    return yPosition - height / 2.0;
+                else
+                    return yPosition - height;
+            }
+            set
+            {
                 if (isCrouch)
                     yPosition = value + height / 2.0;
                 else
@@ -771,6 +793,14 @@ namespace AbrahmanAdventure.sprites
         public double RightBound
         {
             get { return xPosition + width / 2.0; }
+        }
+
+        /// <summary>
+        /// Sprite's previous right bound
+        /// </summary>
+        public double RightBoundPrevious
+        {
+            get { return xPositionPrevious + width / 2.0; }
         }
 
         /// <summary>
@@ -788,6 +818,14 @@ namespace AbrahmanAdventure.sprites
         public double LeftBound
         {
             get { return xPosition - width / 2.0; }
+        }
+
+        /// <summary>
+        /// Sprite's left bound
+        /// </summary>
+        public double LeftBoundPrevious
+        {
+            get { return xPositionPrevious - width / 2.0; }
         }
 
         /// <summary>
