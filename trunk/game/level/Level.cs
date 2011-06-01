@@ -49,10 +49,10 @@ namespace AbrahmanAdventure.level
             for (int i = 0; i < waveCount; i++)
             {
                 AbstractWave wave;
-                if (random.Next(0, 4) != 0)
+                //if (random.Next(0, 4) != 0)
                     wave = WaveBuilder.BuildWavePack(random);
-                else
-                    wave = WaveBuilder.BuildWaveTree(random, 16);
+                //else
+                //    wave = WaveBuilder.BuildWaveTree(random, 16);
 
                 //wave = new Wave(10, 10, 0, WaveFunctions.AbsSin);
 
