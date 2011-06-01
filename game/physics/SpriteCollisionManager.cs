@@ -72,6 +72,10 @@ namespace AbrahmanAdventure.physics
             {
                 UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
             }
+            else if (sprite.XPosition > block.LeftBound + 0.1 && sprite.XPosition < block.RightBound - 0.1 && sprite.TopBound > block.YPosition - 0.5)
+            {
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
+            }
             else
             {
                 UpdateJumpOnBlockSide(sprite, block);
@@ -141,9 +145,11 @@ namespace AbrahmanAdventure.physics
         {
             //Side collision
             if (sprite.XPosition < block.XPosition)
-                sprite.RightBoundKeepPrevious = block.LeftBound - 0.01;
+                sprite.RightBoundKeepPrevious = block.LeftBound - 0.1;
             else if (sprite.XPosition > block.XPosition)
-                sprite.LeftBoundKeepPrevious = block.RightBound + 0.01;
+                sprite.LeftBoundKeepPrevious = block.RightBound + 0.1;
+            sprite.CurrentWalkingSpeed = 0;
+            sprite.IGround = null;
         }
 
         /// <summary>
