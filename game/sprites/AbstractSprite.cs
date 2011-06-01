@@ -423,6 +423,20 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Y position
+        /// </summary>
+        public double YPositionKeepPrevious
+        {
+            get { return yPosition; }
+            set
+            {
+                __parentSpriteCollection.RemoveSpatialHashing(this);
+                yPosition = value;
+                __parentSpriteCollection.SetSpatialHashing(this);
+            }
+        }
+
+        /// <summary>
         /// Previous Y position (so we can know if the sprite is falling/jumping up or down
         /// </summary>
         public double YPositionPrevious
@@ -760,11 +774,29 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Sprite's right bound
+        /// </summary>
+        public double RightBoundKeepPrevious
+        {
+            get { return xPosition + width / 2.0; }
+            set { xPosition = value - width / 2.0; }
+        }
+
+        /// <summary>
         /// Sprite's left bound
         /// </summary>
         public double LeftBound
         {
             get { return xPosition - width / 2.0; }
+        }
+
+        /// <summary>
+        /// Sprite's left bound
+        /// </summary>
+        public double LeftBoundKeepPrevious
+        {
+            get { return xPosition - width / 2.0; }
+            set { xPosition = value + width / 2.0; }
         }
 
         /// <summary>
