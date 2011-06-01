@@ -5,6 +5,7 @@ using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.audio;
+using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.physics
 {
@@ -40,7 +41,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
-                    UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation,random);
+                    UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
                 }
                 else if (sprite.IGround == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
@@ -66,13 +67,13 @@ namespace AbrahmanAdventure.physics
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
+        private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
 
             if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
             {
-                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);
             }
             else
             {
@@ -80,16 +81,20 @@ namespace AbrahmanAdventure.physics
             }
         }
 
-        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
+        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             if (sprite.YPosition < block.YPosition)
                 return;
 
             sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
 
-            //sprite.YPositionKeepPrevious += 0.01;
+                        
 
-            sprite.TopBoundKeepPrevious = block.YPosition + 0.01;
+            //Only expell the sprite if it doesn't make force the sprite to go lower than the ground
+            IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
+            if (highestVisibleGroundBelowSprite == null || highestVisibleGroundBelowSprite[sprite.XPosition] > block.YPosition + sprite.Height + 0.01)
+                sprite.TopBoundKeepPrevious = block.YPosition + 0.01;
+
 
             if (!(sprite is PlayerSprite))
                 return;
@@ -97,7 +102,7 @@ namespace AbrahmanAdventure.physics
             sprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 2.0)
+            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 1.0)
                 return;
 
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
