@@ -88,7 +88,8 @@ namespace AbrahmanAdventure.physics
                         ((PlayerSprite)sprite).PowerUpAnimationCycle.Increment(timeDelta);
                 }
             }
-            else if (sprite is HelmetSprite)
+            
+            if (sprite is HelmetSprite)
             {
                 helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList);
             }
