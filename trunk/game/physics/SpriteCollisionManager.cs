@@ -30,12 +30,6 @@ namespace AbrahmanAdventure.physics
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
                     continue;
 
-                /*if (otherSprite.IsImpassable && otherSprite.IsAlive && Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
-                {
-                    sprite.CurrentWalkingSpeed = 0;
-                    sprite.XPosition = sprite.XPositionPrevious;
-                }
-                else */
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {
                     UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
@@ -44,9 +38,9 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
                 }
-                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && sprite.YPosition >= otherSprite.YPosition)
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
-                    UpdateJumpUnderBlock(sprite, (StaticSprite)otherSprite, spritePopulation, random);
+                    UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation,random);
                 }
                 else if (sprite.IGround == null && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
@@ -66,18 +60,44 @@ namespace AbrahmanAdventure.physics
 
         #region Private Methods
         /// <summary>
-        /// Player jumps under anarchy block. It may output something from it (mushroom, flower, etc)
+        /// Player jumps towards impassable block. It may output something from it (mushroom, flower, etc)
         /// </summary>
         /// <param name="sprite">jumper</param>
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
+        private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
+        {
+            if (sprite.XPosition > block.LeftBound + 0.05 && sprite.XPosition < block.RightBound - 0.05 && sprite.TopBound > block.YPosition - 0.25)
+            {
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
+            }
+            else
+            {
+                UpdateJumpOnBlockSide(sprite, block);
+            }
+            
+            /*if (Math.Abs(sprite.LastDistanceX) > Math.Abs(sprite.LastDistanceY))
+            {
+                UpdateJumpOnBlockSide(sprite, block);
+            }
+            else
+            {
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, random);
+            }*/
+        }
+
         private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Random random)
         {
             if (sprite.YPosition >= sprite.YPositionPrevious)
                 return;
 
+            if (sprite.YPosition < block.YPosition)
+                return;
+
             sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
+
+            sprite.YPositionKeepPrevious += 0.01;
 
             if (!(sprite is PlayerSprite))
                 return;
@@ -99,17 +119,31 @@ namespace AbrahmanAdventure.physics
                     ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                 spritePopulation.Add(powerUpSprite);
             }
-            else if (block.IsDestructible)
+            else if (block.IsDestructible && block.IsAlive)
             {
                 SoundManager.PlayBricksSound();
                 block.HitCycle.Fire();
                 block.IsAlive = false;
-                block.IsAffectedByGravity = false;
+                block.IsAffectedByGravity = true;
             }
             else
             {
                 SoundManager.PlayHelmetBumpSound();
             }
+        }
+
+        /// <summary>
+        /// Spirte jumps on block's side
+        /// </summary>
+        /// <param name="sprite">jumper sprite</param>
+        /// <param name="block">block</param>
+        private void UpdateJumpOnBlockSide(AbstractSprite sprite, StaticSprite block)
+        {
+            //Side collision
+            if (sprite.XPosition < block.XPosition)
+                sprite.RightBoundKeepPrevious = block.LeftBound - 0.01;
+            else if (sprite.XPosition > block.XPosition)
+                sprite.LeftBoundKeepPrevious = block.RightBound + 0.01;
         }
 
         /// <summary>
@@ -175,7 +209,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite.CurrentJumpAcceleration < 0) //if sprite is falling
                 {
                     if (!otherSprite.HitCycle.IsFired) //if other sprite is not being hit already
-                    {
+                    {   
                         if (sprite.CurrentJumpAcceleration <= 0)
                         {
                             if (otherSprite.Bounciness > 0)
@@ -204,7 +238,7 @@ namespace AbrahmanAdventure.physics
                             {
                                 AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
                                 if (jumpedOnConvertedSprite != null)
-                                    PerformSpriteConversion(sprite, otherSprite, jumpedOnConvertedSprite, spritePopulation);
+                                    PerformSpriteConversion(sprite, otherSprite, jumpedOnConvertedSprite, spritePopulation);                                
                             }
                             else if (monsterSprite.IsToggleWalkWhenJumpedOn) //Start/stop (for helmets)
                             {
