@@ -134,7 +134,7 @@ namespace AbrahmanAdventure.physics
 
             //sprite.YPositionKeepPrevious += 0.01;
 
-            sprite.TopBoundKeepPrevious = block.YPosition + 0.1;
+            //sprite.TopBoundKeepPrevious = block.YPosition + 0.1;
 
             if (!(sprite is PlayerSprite))
                 return;
