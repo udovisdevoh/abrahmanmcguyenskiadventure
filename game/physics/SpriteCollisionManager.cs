@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
-            IOrderedEnumerable<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
+            List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {

@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a sprite
     /// </summary>
-    internal abstract class AbstractSprite : IGround
+    internal abstract class AbstractSprite : IGround,  IComparable<AbstractSprite>
     {
         #region Fields and parts
         /// <summary>
@@ -219,6 +219,11 @@ namespace AbrahmanAdventure.sprites
         /// Damage currently receiving
         /// </summary>
         private double currentDamageReceiving = 0.0;
+
+        /// <summary>
+        /// Distance to reference sprite
+        /// </summary>
+        private double distanceToReferenceSprite;
         #endregion
 
         #region Constructor
@@ -946,7 +951,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double RightPunchBound
         {
-            get { return RightBound + Math.Min(height, width); }
+            get { return RightBound + 1.2; }
         }
 
         /// <summary>
@@ -954,7 +959,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double LeftPunchBound
         {
-            get { return LeftBound - Math.Min(height, width); }
+            get { return LeftBound - 1.2; }
         }
 
         /// <summary>
@@ -964,6 +969,15 @@ namespace AbrahmanAdventure.sprites
         public double Bounciness
         {
             get { return bounciness; }
+        }
+
+        /// <summary>
+        /// Distance to reference sprite
+        /// </summary>
+        public double DistanceToReferenceSprite
+        {
+            get { return distanceToReferenceSprite; }
+            set { distanceToReferenceSprite = value; }
         }
 
         /// <summary>
@@ -983,6 +997,13 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTiny; }
             set { isTiny = value; }
+        }
+        #endregion
+
+        #region IComparable<AbstractSprite> Membres
+        public int CompareTo(AbstractSprite other)
+        {
+            return (int)(distanceToReferenceSprite * 100 - other.distanceToReferenceSprite * 100);
         }
         #endregion
     }

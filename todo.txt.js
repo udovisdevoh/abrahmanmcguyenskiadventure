@@ -1,15 +1,13 @@
-Optimize SpriteDistanceSorter performance. Remove linq. Must not do dynamic allocation
+si tiny
 {
-	Faire comme CVMFight>SpritePool.cs
+	?son différent si jump?
+	?briques ne sont pas détruites?
 }
 
-change mathematical width of grown up sprite to 1.0
-remove permisive side collision detection
-
-get frontmost walkable ground
+?get frontmost walkable ground
 {
-	must not take sprite ground if it's lower than current ground
-}
+	?must not take sprite ground if it's lower than current ground?
+}?
 
 Faire gestion automatique de la population de sprite
 
@@ -22,7 +20,6 @@ collision detection
 	Make sure there are no duplicate of horizontal collision test
 }
 
-?powerups must disappear when out of screen?
 
 faire des grands trous
 si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2

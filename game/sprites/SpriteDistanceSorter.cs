@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// List of sprites sorted by distance to last used sprite
         /// </summary>
-        private static IOrderedEnumerable<AbstractSprite> __sortedIOrderedEnumerableListSprite;
+        private static List<AbstractSprite> __sortedListSprite = new List<AbstractSprite>();
         #endregion
 
         #region Internal Methods
@@ -23,14 +23,24 @@ namespace AbrahmanAdventure.physics
         /// Get list of visible sprites sorted by distance from sprite (closest to farthest)
         /// </summary>
         /// <param name="sprite">sprite</param>
-        /// <param name="spritePopulation">unsortedSpriteList</param>
+        /// <param name="unsortedSpriteList">unsorted list of sprites</param>
         /// <returns></returns>
-        internal static IOrderedEnumerable<AbstractSprite> Sort(AbstractSprite sprite, HashSet<AbstractSprite> unsortedSpriteList)
+        internal static List<AbstractSprite> Sort(AbstractSprite sprite, HashSet<AbstractSprite> unsortedSpriteList)
         {
-            __sortedIOrderedEnumerableListSprite = from otherSprite in unsortedSpriteList orderby GetApproximateDistance(sprite, otherSprite) descending select otherSprite;
-            return __sortedIOrderedEnumerableListSprite;
-        }
+            __sortedListSprite.Clear();
 
+            foreach (AbstractSprite otherSprite in unsortedSpriteList)
+            {
+                otherSprite.DistanceToReferenceSprite = GetApproximateDistance(sprite, otherSprite);
+                __sortedListSprite.Add(otherSprite);
+            }
+            __sortedListSprite.Sort();
+
+            return __sortedListSprite;
+        }
+        #endregion
+
+        #region Private Methods
         private static double GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Max(Math.Abs(sprite.XPosition - otherSprite.XPosition), Math.Abs(sprite.YPosition - otherSprite.YPosition));
