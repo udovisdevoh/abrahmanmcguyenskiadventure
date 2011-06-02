@@ -35,7 +35,9 @@ namespace AbrahmanAdventure.physics
                     sprite.XPosition = 0;
                     sprite.YPosition = Program.totalHeightTileCount / -2;
                     sprite.IsAlive = true;
+                    sprite.Health = ((PlayerSprite)sprite).DefaultHealth;
                     ((PlayerSprite)sprite).IsDoped = false;
+                    ((PlayerSprite)sprite).IsTiny = true;
 
                     foreach (AbstractSprite anarchyBlockSprite in spritePopulation.AllSpriteList)
                         if (anarchyBlockSprite is AnarchyBlockSprite)

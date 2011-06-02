@@ -353,7 +353,7 @@ namespace AbrahmanAdventure
                 playerSprite.IsNeedToJumpAgain = false;
             #endregion
 
-            playerSprite.IsCrouch = userInput.isPressDown && !userInput.isPressUp;
+            playerSprite.IsCrouch = userInput.isPressDown && !userInput.isPressUp && !playerSprite.IsTiny;
             
             playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown;
 

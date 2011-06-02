@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.sprites
         private IGround iGround;
 
         /// <summary>
+        /// Whether sprite is currently tiny
+        /// </summary>
+        private bool isTiny = false;
+
+        /// <summary>
         /// Whether sprite annihilate on exit screen
         /// </summary>
         private bool isAnnihilateOnExitScreen;
@@ -481,7 +486,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double Height
         {
-            get { return height; }
+            get
+            {
+                if (isTiny)
+                    return height / 2.0;
+                else
+                    return height;
+            }
         }
 
         /// <summary>
@@ -751,7 +762,7 @@ namespace AbrahmanAdventure.sprites
         {
         	get
         	{
-        		if (isCrouch)
+        		if (isCrouch || isTiny)
         			return yPosition - height / 2.0;
         		else
         			return yPosition - height;
@@ -759,7 +770,7 @@ namespace AbrahmanAdventure.sprites
             set
             {
                 yPositionPrevious = yPosition;
-                if (isCrouch)
+                if (isCrouch || isTiny)
                     yPosition = value + height / 2.0;
                 else
                     yPosition = value + height;
@@ -773,7 +784,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (isCrouch)
+                if (isCrouch || isTiny)
                     return yPositionPrevious - height / 2.0;
                 else
                     return yPositionPrevious - height;
@@ -787,14 +798,14 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (isCrouch)
+                if (isCrouch || isTiny)
                     return yPosition - height / 2.0;
                 else
                     return yPosition - height;
             }
             set
             {
-                if (isCrouch)
+                if (isCrouch || isTiny)
                     yPosition = value + height / 2.0;
                 else
                     yPosition = value + height;
@@ -963,6 +974,15 @@ namespace AbrahmanAdventure.sprites
         public double this[double xPosition]
         {
             get { return TopBound; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently tiny
+        /// </summary>
+        public bool IsTiny
+        {
+            get { return isTiny; }
+            set { isTiny = value; }
         }
         #endregion
     }

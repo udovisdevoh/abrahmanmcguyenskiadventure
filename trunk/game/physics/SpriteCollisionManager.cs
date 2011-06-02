@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
-                    UpdateDirectCollision(sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                    UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
             }
         }
@@ -164,6 +164,7 @@ namespace AbrahmanAdventure.physics
             SoundManager.PlayPowerUpSound();
             playerSprite.PowerUpAnimationCycle.Fire();
             playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
+            playerSprite.IsTiny = false;
             mushroomSprite.IsAlive = false;
             mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
@@ -177,6 +178,7 @@ namespace AbrahmanAdventure.physics
         {
             SoundManager.PlayPowerUpSound();
             playerSprite.PowerUpAnimationCycle.Fire();
+            playerSprite.IsTiny = false;
             playerSprite.IsDoped = true;
             shishaSprite.IsAlive = false;
             shishaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
@@ -189,15 +191,18 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">monster</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        private void UpdateDirectCollision(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
         {
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired)
                 return;
 
             SoundManager.PlayHit2Sound();
             sprite.HitCycle.Fire();
-            if (sprite is PlayerSprite)
-                ((PlayerSprite)sprite).IsDoped = false;
+
+            if (sprite.IsDoped)
+                sprite.IsDoped = false;
+            sprite.IsTiny = true;
+
             sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
         }
 
