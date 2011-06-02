@@ -162,7 +162,10 @@ namespace AbrahmanAdventure.physics
         private void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
         {
             SoundManager.PlayPowerUpSound();
-            playerSprite.PowerUpAnimationCycle.Fire();
+            if (playerSprite.IsTiny)
+                playerSprite.ChangingSizeAnimationCycle.Fire();
+            else
+                playerSprite.PowerUpAnimationCycle.Fire();
             playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
             playerSprite.IsTiny = false;
             mushroomSprite.IsAlive = false;
@@ -178,6 +181,8 @@ namespace AbrahmanAdventure.physics
         {
             SoundManager.PlayPowerUpSound();
             playerSprite.PowerUpAnimationCycle.Fire();
+            if (playerSprite.IsTiny)
+                playerSprite.ChangingSizeAnimationCycle.Fire();
             playerSprite.IsTiny = false;
             playerSprite.IsDoped = true;
             shishaSprite.IsAlive = false;
@@ -198,6 +203,8 @@ namespace AbrahmanAdventure.physics
 
             SoundManager.PlayHit2Sound();
             sprite.HitCycle.Fire();
+            if (sprite is PlayerSprite && !sprite.IsTiny)
+                ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
 
             if (sprite.IsDoped)
                 sprite.IsDoped = false;
