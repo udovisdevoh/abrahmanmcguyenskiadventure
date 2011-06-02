@@ -26,6 +26,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
+            IOrderedEnumerable<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
+
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
@@ -111,8 +113,8 @@ namespace AbrahmanAdventure.physics
             sprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 1.5)
-                return;
+            /*if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 1.5)
+                return;*/
 
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
             {
