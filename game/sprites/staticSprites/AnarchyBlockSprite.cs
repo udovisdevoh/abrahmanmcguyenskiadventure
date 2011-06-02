@@ -116,8 +116,8 @@ namespace AbrahmanAdventure.sprites
         {
             if (playerSprite.Health == playerSprite.MaxHealth)
             {
-                ShishaSprite shishaSprite = new ShishaSprite(XPosition, TopBound, random);
-                return shishaSprite;
+                PeyoteSprite peyoteSprite = new PeyoteSprite(XPosition, TopBound, random);
+                return peyoteSprite;
             }
             else
             {
