@@ -117,6 +117,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite can throw fire balls
         /// </summary>
         private bool isDoped = false;
+
+        /// <summary>
+        /// Default health
+        /// </summary>
+        private double defaultHealth = 0.5;
         #endregion
 
         #region Constructors
@@ -128,6 +133,8 @@ namespace AbrahmanAdventure.sprites
         public PlayerSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            IsTiny = true;
+            Health = defaultHealth;
             powerUpAnimationCycle = new Cycle(30, false);
         }
         #endregion
@@ -903,6 +910,14 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isDoped; }
             set { isDoped = value; }
+        }
+
+        /// <summary>
+        /// Health when starting a level or after death
+        /// </summary>
+        public double DefaultHealth
+        {
+            get { return defaultHealth; }
         }
 
         /// <summary>
