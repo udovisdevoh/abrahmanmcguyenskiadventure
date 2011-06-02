@@ -1,6 +1,4 @@
-when jump under block, only eject sprite if highest ground below sprite is under ejection position
-eject sprites that are stucked under a block
-force sprite to crouch if under block and 1 tile space only
+create tiny abrahman gfx
 
 get frontmost walkable ground
 {
