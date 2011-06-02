@@ -111,6 +111,26 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface crouchedAttackFrame2LeftSurfaceDoped;
 
+        private static Surface kickFrame1RightSurfaceTiny;
+
+        private static Surface kickFrame2RightSurfaceTiny;
+
+        private static Surface kickFrame1LeftSurfaceTiny;
+
+        private static Surface kickFrame2LeftSurfaceTiny;
+
+        private static Surface standingRightSurfaceTiny;
+
+        private static Surface standingLeftSurfaceTiny;
+
+        private static Surface attackFrame1RightSurfaceTiny;
+
+        private static Surface attackFrame2RightSurfaceTiny;
+
+        private static Surface attackFrame1LeftSurfaceTiny;
+
+        private static Surface attackFrame2LeftSurfaceTiny;
+
         private Cycle powerUpAnimationCycle;
 
         /// <summary>
@@ -594,12 +614,92 @@ namespace AbrahmanAdventure.sprites
             return kickFrame1RightSurfaceDoped;
         }
 
+        private Surface GetKickFrame1LeftSurfaceTiny()
+        {
+            if (kickFrame1LeftSurfaceTiny == null)
+                kickFrame1LeftSurfaceTiny = GetKickFrame1RightSurfaceTiny().CreateFlippedHorizontalSurface();
+
+            return kickFrame1LeftSurfaceTiny;
+        }
+
+        private Surface GetKickFrame2LeftSurfaceTiny()
+        {
+            if (kickFrame2LeftSurfaceTiny == null)
+                kickFrame2LeftSurfaceTiny = GetKickFrame2RightSurfaceTiny().CreateFlippedHorizontalSurface();
+
+            return kickFrame2LeftSurfaceTiny;
+        }
+
+        private Surface GetStandingRightSurfaceTiny()
+        {
+            if (standingRightSurfaceTiny == null)
+                standingRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyStand.png");
+
+            return standingRightSurfaceTiny;
+        }
+
+        private Surface GetStandingLeftSurfaceTiny()
+        {
+            if (standingLeftSurfaceTiny == null)
+                standingLeftSurfaceTiny = GetStandingRightSurfaceTiny().CreateFlippedHorizontalSurface();
+
+            return standingLeftSurfaceTiny;
+        }
+
+        private Surface GetKickFrame1RightSurfaceTiny()
+        {
+            if (kickFrame1RightSurfaceTiny == null)
+                kickFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyKick1.png");
+
+            return kickFrame1RightSurfaceTiny;
+        }
+
+        private Surface GetKickFrame2RightSurfaceTiny()
+        {
+            if (kickFrame2RightSurfaceTiny == null)
+                kickFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyKick2.png");
+
+            return kickFrame2RightSurfaceTiny;
+        }
+
         private Surface GetDeadSurface()
         {
             if (deadSurface == null)
-                deadSurface = GetStandingRightSurface(false).CreateFlippedVerticalSurface();
+                deadSurface = GetStandingRightSurfaceTiny().CreateFlippedVerticalSurface();
 
             return deadSurface;
+        }
+
+        private Surface GetAttackFrame1LeftSurfaceTiny()
+        {
+            if (attackFrame1LeftSurfaceTiny == null)
+                attackFrame1LeftSurfaceTiny = GetAttackFrame1RightSurfaceTiny().CreateFlippedHorizontalSurface();
+
+            return attackFrame1LeftSurfaceTiny;
+        }
+
+        private Surface GetAttackFrame2LeftSurfaceTiny()
+        {
+            if (attackFrame2LeftSurfaceTiny == null)
+                attackFrame2LeftSurfaceTiny = GetAttackFrame2RightSurfaceTiny().CreateFlippedHorizontalSurface();
+
+            return attackFrame2LeftSurfaceTiny;
+        }
+
+        private Surface GetAttackFrame1RightSurfaceTiny()
+        {
+            if (attackFrame1RightSurfaceTiny == null)
+                attackFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch1.png");
+
+            return attackFrame1RightSurfaceTiny;
+        }
+
+        private Surface GetAttackFrame2RightSurfaceTiny()
+        {
+            if (attackFrame2RightSurfaceTiny == null)
+                attackFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch2.png");
+
+            return attackFrame2RightSurfaceTiny;
         }
         #endregion
 
@@ -753,70 +853,147 @@ namespace AbrahmanAdventure.sprites
                 else if (IGround == null)
                 {
                     #region In air
-                    if (IsTryingToWalkRight)
+                    if (IsTiny)
                     {
-                        if (attackCycleDivision < 4)
+                        #region Tiny
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = 0.35;
-                            yOffset = 0.1;
-                            return GetKickFrame2RightSurface(isShowDopedColor);
+                            if (attackCycleDivision < 4)
+                            {
+                                xOffset = 0.35;
+                                yOffset = 0.1;
+                                return GetKickFrame2RightSurfaceTiny();
+                            }
+                            else
+                            {
+                                xOffset = -0.2;
+                                yOffset = 0.0;
+                                return GetKickFrame1RightSurfaceTiny();
+                            }
                         }
                         else
                         {
-                            xOffset = -0.2;
-                            yOffset = 0.0;
-                            return GetKickFrame1RightSurface(isShowDopedColor);
+                            if (attackCycleDivision < 4)
+                            {
+                                xOffset = -0.35;
+                                yOffset = 0.1;
+                                return GetKickFrame2LeftSurfaceTiny();
+                            }
+                            else
+                            {
+                                xOffset = 0.2;
+                                yOffset = 0.0;
+                                return GetKickFrame1LeftSurfaceTiny();
+                            }
                         }
+                        #endregion
                     }
                     else
                     {
-                        if (attackCycleDivision < 4)
+                        #region Not tiny
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = -0.35;
-                            yOffset = 0.1;
-                            return GetKickFrame2LeftSurface(isShowDopedColor);
+                            if (attackCycleDivision < 4)
+                            {
+                                xOffset = 0.35;
+                                yOffset = 0.1;
+                                return GetKickFrame2RightSurface(isShowDopedColor);
+                            }
+                            else
+                            {
+                                xOffset = -0.2;
+                                yOffset = 0.0;
+                                return GetKickFrame1RightSurface(isShowDopedColor);
+                            }
                         }
                         else
                         {
-                            xOffset = 0.2;
-                            yOffset = 0.0;
-                            return GetKickFrame1LeftSurface(isShowDopedColor);
+                            if (attackCycleDivision < 4)
+                            {
+                                xOffset = -0.35;
+                                yOffset = 0.1;
+                                return GetKickFrame2LeftSurface(isShowDopedColor);
+                            }
+                            else
+                            {
+                                xOffset = 0.2;
+                                yOffset = 0.0;
+                                return GetKickFrame1LeftSurface(isShowDopedColor);
+                            }
                         }
+                        #endregion
                     }
                     #endregion
                 }
                 else
                 {
-                    if (IsTryingToWalkRight)
+                    if (IsTiny)
                     {
-                        if (attackCycleDivision >= 4)
+                        #region Tiny
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = 0.6;
-                            return GetAttackFrame2RightSurface(isShowDopedColor);
+                            if (attackCycleDivision >= 4)
+                            {
+                                xOffset = 0.6;
+                                return GetAttackFrame2RightSurfaceTiny();
+                            }
+                            else
+                            {
+                                xOffset = 0.2;
+                                return GetAttackFrame1RightSurfaceTiny();
+                            }
                         }
                         else
                         {
-                            xOffset = 0.2;
-                            return GetAttackFrame1RightSurface(isShowDopedColor);
+                            if (attackCycleDivision >= 4)
+                            {
+                                xOffset = -0.6;
+                                return GetAttackFrame2LeftSurfaceTiny();
+                            }
+                            else
+                            {
+                                xOffset = -0.2;
+                                return GetAttackFrame1LeftSurfaceTiny();
+                            }
                         }
+                        #endregion
                     }
                     else
                     {
-                        if (attackCycleDivision >= 4)
+                        #region Not tiny
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = -0.6;
-                            return GetAttackFrame2LeftSurface(isShowDopedColor);
+                            if (attackCycleDivision >= 4)
+                            {
+                                xOffset = 0.6;
+                                return GetAttackFrame2RightSurface(isShowDopedColor);
+                            }
+                            else
+                            {
+                                xOffset = 0.2;
+                                return GetAttackFrame1RightSurface(isShowDopedColor);
+                            }
                         }
                         else
                         {
-                            xOffset = -0.2;
-                            return GetAttackFrame1LeftSurface(isShowDopedColor);
+                            if (attackCycleDivision >= 4)
+                            {
+                                xOffset = -0.6;
+                                return GetAttackFrame2LeftSurface(isShowDopedColor);
+                            }
+                            else
+                            {
+                                xOffset = -0.2;
+                                return GetAttackFrame1LeftSurface(isShowDopedColor);
+                            }
                         }
+                        #endregion
                     }
                 }
             }
             #endregion
 
+            #region Crouched and not attacking
             if (IsCrouch)
             {
                 if (HitCycle.IsFired)
@@ -834,9 +1011,11 @@ namespace AbrahmanAdventure.sprites
                         return GetCrouchedLeftSurface(isShowDopedColor);
                 }
             }
+            #endregion
 
             if (CurrentJumpAcceleration != 0)
             {
+                #region Jumping or falling while being hit
                 if (HitCycle.IsFired)
                 {
                     if (IsTryingToWalkRight)
@@ -844,16 +1023,20 @@ namespace AbrahmanAdventure.sprites
                     else
                         return GetHitLeftSurface(isShowDopedColor);
                 }
+                #endregion
 
+                #region Jumping or falling
                 if (IsTryingToWalkRight)
                     return GetWalking1RightSurface(isShowDopedColor);
                 else
                     return GetWalking1LeftSurface(isShowDopedColor);
+                #endregion
             }
-            else if (/*IsTryingToWalk || */CurrentWalkingSpeed != 0)
+            else if (CurrentWalkingSpeed != 0)
             {
                 int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
+                #region Walking
                 if (cycleDivision == 1)
                 {
                     if (HitCycle.IsFired)
@@ -891,13 +1074,26 @@ namespace AbrahmanAdventure.sprites
                     else
                         return GetStandingLeftSurface(isShowDopedColor);
                 }
+                #endregion
             }
             else
             {
-                if (IsTryingToWalkRight)
-                    return GetStandingRightSurface(isShowDopedColor);
+                #region Standing
+                if (IsTiny)
+                {
+                    if (IsTryingToWalkRight)
+                        return GetStandingRightSurfaceTiny();
+                    else
+                        return GetStandingLeftSurfaceTiny();
+                }
                 else
-                    return GetStandingLeftSurface(isShowDopedColor);
+                {
+                    if (IsTryingToWalkRight)
+                        return GetStandingRightSurface(isShowDopedColor);
+                    else
+                        return GetStandingLeftSurface(isShowDopedColor);
+                }
+                #endregion
             }
         }
         #endregion
