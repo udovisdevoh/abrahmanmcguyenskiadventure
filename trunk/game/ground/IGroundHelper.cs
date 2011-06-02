@@ -45,7 +45,13 @@ namespace AbrahmanAdventure.physics
             {
                 if (otherSprite.IsImpassable && otherSprite.IsAlive)
                 {
-                    if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
+                    bool isHorizontalCollision = (sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound);
+                    isHorizontalCollision |= sprite.RightBound == otherSprite.RightBound;
+                    isHorizontalCollision |= sprite.LeftBound == otherSprite.LeftBound;
+                    isHorizontalCollision |= sprite.LeftBound > otherSprite.LeftBound && sprite.RightBound < otherSprite.RightBound;
+                    isHorizontalCollision |= sprite.LeftBound < otherSprite.LeftBound && sprite.RightBound > otherSprite.RightBound;
+
+                    if (isHorizontalCollision)
                     {
                         double currentHeight = otherSprite.TopBound;
                         if (sprite.YPosition <= currentHeight)

@@ -789,7 +789,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>width</returns>
         protected override double BuildWidth(Random random)
         {
-            return 1.2;
+            return 0.7;
         }
 
         /// <summary>

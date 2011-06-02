@@ -152,7 +152,7 @@ namespace AbrahmanAdventure.physics
             #region We test collision with impassable sprites
             foreach (AbstractSprite otherSprite in visibleSpriteList)
                 if (sprite != otherSprite && otherSprite.IsImpassable)
-                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, sprite.YPosition, 0.27, otherSprite))
+                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, sprite.YPosition, 0.46, otherSprite))
                         return true;
             #endregion
 
