@@ -1,4 +1,7 @@
-?Optimize SpriteDistanceSorter performance. Remove linq. Must not do dynamic allocation
+Optimize SpriteDistanceSorter performance. Remove linq. Must not do dynamic allocation
+{
+	Faire comme CVMFight>SpritePool.cs
+}
 
 change mathematical width of grown up sprite to 1.0
 remove permisive side collision detection
