@@ -33,17 +33,14 @@ afficher path, ou pas, dépendant de la situation
 plateformes de largeur diverse
 
 
-show smaller abrahman mcguyenski when not grown by mushroom
+?si invincible -> nombre plus élevé de boules de feux sur l'écran?
 
 
 
 shells must open anarchy blocks
 
 
-always blit player sprite over all sprites
 
-
-add walkable blocks
 ?add bouncing notes?
 add ? blocks and brick blocks
 add mushroom, flower, star, something to fly (leaf/feather/wings)

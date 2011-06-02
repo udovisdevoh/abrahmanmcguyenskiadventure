@@ -6,7 +6,7 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    internal class ShishaSprite : StaticSprite, IGrowable
+    internal class PeyoteSprite : StaticSprite, IGrowable
     {
         #region Fields and parts
         private static Surface surface;
@@ -24,12 +24,12 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public ShishaSprite(double xPosition, double yPosition, Random random)
+        public PeyoteSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
-                surface = BuildSpriteSurface("./assets/rendered/powerups/shisha.png");
+                surface = BuildSpriteSurface("./assets/rendered/powerups/peyote.png");
         }
         #endregion
 

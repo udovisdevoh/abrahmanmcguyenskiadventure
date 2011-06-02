@@ -37,9 +37,9 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                 }
-                else if (sprite is PlayerSprite && otherSprite is ShishaSprite && otherSprite.IsAlive)
+                else if (sprite is PlayerSprite && otherSprite is PeyoteSprite && otherSprite.IsAlive)
                 {
-                    UpdateTouchShisha((PlayerSprite)sprite, (ShishaSprite)otherSprite);
+                    UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
                 }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
@@ -175,11 +175,11 @@ namespace AbrahmanAdventure.physics
         }
 
         /// <summary>
-        /// Sprite touches shisha
+        /// Sprite touches peyote
         /// </summary>
         /// <param name="playerSprite">player sprite</param>
-        /// <param name="shishaSprite">shisha sprite</param>
-        private void UpdateTouchShisha(PlayerSprite playerSprite, ShishaSprite shishaSprite)
+        /// <param name="peyoteSprite">peyote sprite</param>
+        private void UpdateTouchPeyote(PlayerSprite playerSprite, PeyoteSprite peyoteSprite)
         {
             SoundManager.PlayPowerUpSound();
             playerSprite.PowerUpAnimationCycle.Fire();
@@ -187,8 +187,8 @@ namespace AbrahmanAdventure.physics
                 playerSprite.ChangingSizeAnimationCycle.Fire();
             playerSprite.IsTiny = false;
             playerSprite.IsDoped = true;
-            shishaSprite.IsAlive = false;
-            shishaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+            peyoteSprite.IsAlive = false;
+            peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>

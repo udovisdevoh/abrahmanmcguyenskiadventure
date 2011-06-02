@@ -89,7 +89,7 @@
     <Compile Include="game\sprites\monsters\SnakeSprite.cs" />
     <Compile Include="game\sprites\powerups\IGrowable.cs" />
     <Compile Include="game\sprites\powerups\MushroomSprite.cs" />
-    <Compile Include="game\sprites\powerups\ShishaSprite.cs" />
+    <Compile Include="game\sprites\powerups\PeyoteSprite.cs" />
     <Compile Include="game\sprites\SpriteDistanceSorter.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\sprites\staticSprites\AnarchyBlockSprite.cs" />
@@ -257,6 +257,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\mushroom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\powerups\peyote.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\shisha.png">
