@@ -86,6 +86,9 @@ namespace AbrahmanAdventure.physics
                     battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
                     if (((PlayerSprite)sprite).PowerUpAnimationCycle.IsFired)
                         ((PlayerSprite)sprite).PowerUpAnimationCycle.Increment(timeDelta);
+
+                    if (((PlayerSprite)sprite).ChangingSizeAnimationCycle.IsFired)
+                        ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Increment(timeDelta);
                 }
             }
             

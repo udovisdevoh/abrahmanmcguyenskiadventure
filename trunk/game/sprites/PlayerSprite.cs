@@ -21,6 +21,14 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface walking2RightSurface;
 
+        private static Surface walking1LeftSurfaceTiny;
+
+        private static Surface walking1RightSurfaceTiny;
+
+        private static Surface walking2LeftSurfaceTiny;
+
+        private static Surface walking2RightSurfaceTiny;
+
         private static Surface standingLeftSurface;
 
         private static Surface standingRightSurface;
@@ -137,6 +145,8 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle powerUpAnimationCycle;
 
+        private Cycle changingSizeAnimationCycle;
+
         /// <summary>
         /// Whether sprite can throw fire balls
         /// </summary>
@@ -160,6 +170,7 @@ namespace AbrahmanAdventure.sprites
             IsTiny = true;
             Health = defaultHealth;
             powerUpAnimationCycle = new Cycle(30, false);
+            changingSizeAnimationCycle = new Cycle(20, false);
         }
         #endregion
 
@@ -425,6 +436,35 @@ namespace AbrahmanAdventure.sprites
                 kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick1.png");
 
             return kickFrame1RightSurface;
+        }
+
+
+        private Surface GetWalking2LeftSurfaceTiny()
+        {
+            if (walking2LeftSurfaceTiny == null)
+                walking2LeftSurfaceTiny = GetWalking2RightSurfaceTiny().CreateFlippedHorizontalSurface();
+            return walking2LeftSurfaceTiny;
+        }
+
+        private Surface GetWalking2RightSurfaceTiny()
+        {
+            if (walking2RightSurfaceTiny == null)
+                walking2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk2.png");
+            return walking2RightSurfaceTiny;
+        }
+
+        private Surface GetWalking1LeftSurfaceTiny()
+        {
+            if (walking1LeftSurfaceTiny == null)
+                walking1LeftSurfaceTiny = GetWalking1RightSurfaceTiny().CreateFlippedHorizontalSurface();
+            return walking1LeftSurfaceTiny;
+        }
+
+        private Surface GetWalking1RightSurfaceTiny()
+        {
+            if (walking1RightSurfaceTiny == null)
+                walking1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk1.png");
+            return walking1RightSurfaceTiny;
         }
 
         private Surface GetWalking1RightSurfaceDoped()
@@ -836,6 +876,12 @@ namespace AbrahmanAdventure.sprites
                 isShowDopedColor = isDoped;
             }
 
+            bool isShowTiny = IsTiny;
+
+            if (changingSizeAnimationCycle.IsFired)
+                isShowTiny = changingSizeAnimationCycle.CurrentValue % 4 <= 2;
+
+
             #region Attacking
             if (AttackingCycle.IsFired)
             {
@@ -873,7 +919,7 @@ namespace AbrahmanAdventure.sprites
                 else if (IGround == null)
                 {
                     #region In air
-                    if (IsTiny)
+                    if (isShowTiny)
                     {
                         #region Tiny
                         if (IsTryingToWalkRight)
@@ -947,7 +993,7 @@ namespace AbrahmanAdventure.sprites
                 }
                 else
                 {
-                    if (IsTiny)
+                    if (isShowTiny)
                     {
                         #region Tiny
                         if (IsTryingToWalkRight)
@@ -1038,7 +1084,7 @@ namespace AbrahmanAdventure.sprites
                 #region Jumping or falling while being hit
                 if (HitCycle.IsFired)
                 {
-                    if (IsTiny)
+                    if (isShowTiny)
                     {
                         #region Tiny
                         if (IsTryingToWalkRight)
@@ -1060,10 +1106,24 @@ namespace AbrahmanAdventure.sprites
                 #endregion
 
                 #region Jumping or falling
-                if (IsTryingToWalkRight)
-                    return GetWalking1RightSurface(isShowDopedColor);
+                if (isShowTiny)
+                {
+                    #region Tiny
+                    if (IsTryingToWalkRight)
+                        return GetWalking1RightSurfaceTiny();
+                    else
+                        return GetWalking1LeftSurfaceTiny();
+                    #endregion
+                }
                 else
-                    return GetWalking1LeftSurface(isShowDopedColor);
+                {
+                    #region Not tiny
+                    if (IsTryingToWalkRight)
+                        return GetWalking1RightSurface(isShowDopedColor);
+                    else
+                        return GetWalking1LeftSurface(isShowDopedColor);
+                    #endregion
+                }
                 #endregion
             }
             else if (CurrentWalkingSpeed != 0)
@@ -1071,49 +1131,96 @@ namespace AbrahmanAdventure.sprites
                 int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
                 #region Walking
-                if (cycleDivision == 1)
+                if (isShowTiny)
                 {
-                    if (HitCycle.IsFired)
+                    #region Tiny
+                    if (cycleDivision == 1)
+                    {
+                        if (HitCycle.IsFired)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurfaceTiny();
+                            else
+                                return GetHitLeftSurfaceTiny();
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking1RightSurfaceTiny();
+                        else
+                            return GetWalking1LeftSurfaceTiny();
+                    }
+                    else if (cycleDivision == 3)
+                    {
+                        if (HitCycle.IsFired)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurfaceTiny();
+                            else
+                                return GetHitLeftSurfaceTiny();
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking2RightSurfaceTiny();
+                        else
+                            return GetWalking2LeftSurfaceTiny();
+                    }
+                    else
                     {
                         if (IsTryingToWalkRight)
-                            return GetHitRightSurface(isShowDopedColor);
+                            return GetStandingRightSurfaceTiny();
                         else
-                            return GetHitLeftSurface(isShowDopedColor);
+                            return GetStandingLeftSurfaceTiny();
                     }
-
-                    if (IsTryingToWalkRight)
-                        return GetWalking1RightSurface(isShowDopedColor);
-                    else
-                        return GetWalking1LeftSurface(isShowDopedColor);
-                }
-                else if (cycleDivision == 3)
-                {
-                    if (HitCycle.IsFired)
-                    {
-                        if (IsTryingToWalkRight)
-                            return GetHitRightSurface(isShowDopedColor);
-                        else
-                            return GetHitLeftSurface(isShowDopedColor);
-                    }
-
-                    if (IsTryingToWalkRight)
-                        return GetWalking2RightSurface(isShowDopedColor);
-                    else
-                        return GetWalking2LeftSurface(isShowDopedColor);
+                    #endregion
                 }
                 else
                 {
-                    if (IsTryingToWalkRight)
-                        return GetStandingRightSurface(isShowDopedColor);
+                    #region Not tiny
+                    if (cycleDivision == 1)
+                    {
+                        if (HitCycle.IsFired)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurface(isShowDopedColor);
+                            else
+                                return GetHitLeftSurface(isShowDopedColor);
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking1RightSurface(isShowDopedColor);
+                        else
+                            return GetWalking1LeftSurface(isShowDopedColor);
+                    }
+                    else if (cycleDivision == 3)
+                    {
+                        if (HitCycle.IsFired)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurface(isShowDopedColor);
+                            else
+                                return GetHitLeftSurface(isShowDopedColor);
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking2RightSurface(isShowDopedColor);
+                        else
+                            return GetWalking2LeftSurface(isShowDopedColor);
+                    }
                     else
-                        return GetStandingLeftSurface(isShowDopedColor);
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetStandingRightSurface(isShowDopedColor);
+                        else
+                            return GetStandingLeftSurface(isShowDopedColor);
+                    }
+                    #endregion
                 }
                 #endregion
             }
             else
             {
                 #region Standing
-                if (IsTiny)
+                if (isShowTiny)
                 {
                     if (IsTryingToWalkRight)
                         return GetStandingRightSurfaceTiny();
@@ -1156,6 +1263,14 @@ namespace AbrahmanAdventure.sprites
         public Cycle PowerUpAnimationCycle
         {
             get { return powerUpAnimationCycle; }
+        }
+
+        /// <summary>
+        /// Change size animation cycle
+        /// </summary>
+        public Cycle ChangingSizeAnimationCycle
+        {
+            get { return changingSizeAnimationCycle; }
         }
         #endregion
     }
