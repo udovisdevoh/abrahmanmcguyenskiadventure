@@ -29,6 +29,10 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface hitRightSurface;
 
+        private static Surface hitLeftSurfaceTiny;
+
+        private static Surface hitRightSurfaceTiny;
+
         private static Surface crouchedRightSurface;
 
         private static Surface crouchedLeftSurface;
@@ -701,6 +705,22 @@ namespace AbrahmanAdventure.sprites
 
             return attackFrame2RightSurfaceTiny;
         }
+
+        private Surface GetHitLeftSurfaceTiny()
+        {
+            if (hitLeftSurfaceTiny == null)
+                hitLeftSurfaceTiny = GetHitRightSurfaceTiny().CreateFlippedHorizontalSurface();
+
+            return hitLeftSurfaceTiny;
+        }
+
+        private Surface GetHitRightSurfaceTiny()
+        {
+            if (hitRightSurfaceTiny == null)
+                hitRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyHit.png");
+
+            return hitRightSurfaceTiny;
+        }
         #endregion
 
         #region Overrides
@@ -1018,10 +1038,24 @@ namespace AbrahmanAdventure.sprites
                 #region Jumping or falling while being hit
                 if (HitCycle.IsFired)
                 {
-                    if (IsTryingToWalkRight)
-                        return GetHitRightSurface(isShowDopedColor);
+                    if (IsTiny)
+                    {
+                        #region Tiny
+                        if (IsTryingToWalkRight)
+                            return GetHitRightSurfaceTiny();
+                        else
+                            return GetHitLeftSurfaceTiny();
+                        #endregion
+                    }
                     else
-                        return GetHitLeftSurface(isShowDopedColor);
+                    {
+                        #region Not tiny
+                        if (IsTryingToWalkRight)
+                            return GetHitRightSurface(isShowDopedColor);
+                        else
+                            return GetHitLeftSurface(isShowDopedColor);
+                        #endregion
+                    }
                 }
                 #endregion
 
