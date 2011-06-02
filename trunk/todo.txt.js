@@ -1,9 +1,7 @@
-Optimize SpriteDistanceSorter performance. Remove linq. Must not do dynamic allocation
+?Optimize SpriteDistanceSorter performance. Remove linq. Must not do dynamic allocation
 
 change mathematical width of grown up sprite to 1.0
 remove permisive side collision detection
-
-create tiny abrahman gfx
 
 get frontmost walkable ground
 {
