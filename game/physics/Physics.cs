@@ -278,7 +278,12 @@ namespace AbrahmanAdventure.physics
 
                     double sprite1TopBound, sprite1BottomBound;
 
-                    if (sprite1.IGround == null || sprite1.IsCrouch)
+                    if (sprite1.IsTiny)
+                    {
+                        sprite1TopBound = sprite1.TopBound;
+                        sprite1BottomBound = sprite1.YPosition;
+                    }
+                    else if (sprite1.IGround == null || sprite1.IsCrouch)
                     {
                         sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0;
                         sprite1BottomBound = sprite1.YPosition;
