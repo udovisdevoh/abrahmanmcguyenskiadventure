@@ -81,6 +81,15 @@ namespace AbrahmanAdventure.physics
             }
         }
 
+        /// <summary>
+        /// Sprite jumps under a block
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="block">block</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">list of currently visible sprites</param>
+        /// <param name="random">random number generator</param>
         private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             if (sprite.YPosition < block.YPosition)
@@ -102,7 +111,7 @@ namespace AbrahmanAdventure.physics
             sprite.IsNeedToJumpAgain = true;
 
             //Must be well centered, or else, don't open the block
-            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 1.0)
+            if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 1.5)
                 return;
 
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
@@ -138,9 +147,9 @@ namespace AbrahmanAdventure.physics
         {
             //Side collision
             if (sprite.XPosition < block.XPosition)
-                sprite.RightBoundKeepPrevious = block.LeftBound - 0.1;
+                sprite.RightBoundKeepPrevious = block.LeftBound;// - 0.1;
             else if (sprite.XPosition > block.XPosition)
-                sprite.LeftBoundKeepPrevious = block.RightBound + 0.1;
+                sprite.LeftBoundKeepPrevious = block.RightBound;// + 0.1;
             sprite.CurrentWalkingSpeed = 0;
             sprite.IGround = null;
         }
