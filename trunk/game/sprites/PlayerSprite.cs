@@ -1223,9 +1223,9 @@ namespace AbrahmanAdventure.sprites
                 if (isShowTiny)
                 {
                     if (IsTryingToWalkRight)
-                        return GetStandingRightSurfaceTiny();
+                        return GetWalking1RightSurfaceTiny();
                     else
-                        return GetStandingLeftSurfaceTiny();
+                        return GetWalking1LeftSurfaceTiny();
                 }
                 else
                 {
