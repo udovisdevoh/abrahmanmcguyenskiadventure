@@ -1,3 +1,6 @@
+change mathematical width of grown up sprite to 1.0
+remove permisive side collision detection
+
 create tiny abrahman gfx
 
 get frontmost walkable ground
@@ -6,6 +9,8 @@ get frontmost walkable ground
 }
 
 Faire gestion automatique de la population de sprite
+
+jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
 
 sprite dispatcher must not put anarchy block on a ambiguous height (too low to pass under, but it looks like not)
 
