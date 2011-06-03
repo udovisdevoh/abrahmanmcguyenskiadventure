@@ -62,6 +62,11 @@ namespace AbrahmanAdventure.physics
         /// Manages player's projectiles
         /// </summary>
         private PlayerProjectileManager playerProjectileManager = new PlayerProjectileManager();
+
+        /// <summary>
+        /// Manages collisions between fireball and monsters
+        /// </summary>
+        private FireBallToMonsterCollisionManager fireBallToMonsterCollisionManager = new FireBallToMonsterCollisionManager();
         #endregion
 
         #region Public Instance Methods
@@ -95,6 +100,9 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)sprite).ChangingSizeAnimationCycle.IsFired)
                         ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Increment(timeDelta);
 
+                    if (((PlayerSprite)sprite).ThrowBallCycle.IsFired)
+                        ((PlayerSprite)sprite).ThrowBallCycle.Increment(timeDelta);
+
                     playerProjectileManager.Update((PlayerSprite)sprite, visibleSpriteList, spritePopulation, random);
                 }
             }
@@ -102,6 +110,10 @@ namespace AbrahmanAdventure.physics
             if (sprite is HelmetSprite)
             {
                 helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList);
+            }
+            else if (sprite is FireBallSprite)
+            {
+                fireBallToMonsterCollisionManager.Update((FireBallSprite)sprite, level, visibleSpriteList);
             }
 
             if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsEnableSpontaneousConversion)

@@ -17,12 +17,7 @@ invincibilité
 
 fix fire balls
 {
-	remove "jump on it"
-	remove "getting jumped on by it"
-	//must take player's direction at begining ok
-	show first punch animation frame when throwing fireball
 	must explode when touching impassable sprite or monster
-	must do damage to monsters
 	must be invulnerable to helmets
 	ne doivent pas être affectées par les pentes à monter
 }
