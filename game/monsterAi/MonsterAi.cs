@@ -106,11 +106,21 @@ namespace AbrahmanAdventure.ai
 
                 if (monster.IsWalkEnabled && Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0) //Change direction if can't move
                 {
-                    if (monster is HelmetSprite)
-                        SoundManager.PlayHelmetBumpSound();
-                    monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
-                    if (monster.IsFullSpeedAfterBounceNoAi)
-                        monster.CurrentWalkingSpeed = monster.MaxWalkingSpeed;
+                    if (monster.IsNoAiChangeDirectionWhenStucked)
+                    {
+                        if (monster is HelmetSprite)
+                            SoundManager.PlayHelmetBumpSound();
+
+                        monster.IsNoAiDefaultDirectionWalkingRight = !monster.IsNoAiDefaultDirectionWalkingRight;
+                        if (monster.IsFullSpeedAfterBounceNoAi)
+                            monster.CurrentWalkingSpeed = monster.MaxWalkingSpeed;
+                    }
+                    else if (monster.IsNoAiDieWhenStucked)
+                    {
+                        if (monster is FireBallSprite)
+                            SoundManager.PlayHelmetBumpSound();
+                        monster.IsAlive = false;
+                    }
                 }
 
                 #region Some monsters should not fall in holes, they change direction instead
