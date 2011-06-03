@@ -22,6 +22,7 @@ fix fire balls
 	must be invulnerable to helmets
 }
 
+faire un truc qui correspond à des cent, et un compteur dans le hud
 
 sprite must not be squeezable on slope under block
 
@@ -134,6 +135,8 @@ Monstres
 	{
 		Sabre courbé
 	}
+	
+	Avocat
 	
 	Juif hassidique (spelling?)
 	{
