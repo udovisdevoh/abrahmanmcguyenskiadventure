@@ -12,7 +12,7 @@ invincibilité
 
 Raccon
 {
-	Casque de rasta (volle avec cheveux)
+	Rasta hat (volle avec cheveux)
 }
 
 À chaque boss: désolé c'était une marionnette
