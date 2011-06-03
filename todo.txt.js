@@ -9,6 +9,22 @@ si tiny
 	?must not take sprite ground if it's lower than current ground?
 }?
 
+fix fire balls
+{
+	remove "jump on it"
+	must not change direction
+	//must take player's direction at begining ok
+	must start by falling at approximately 45 degrees
+	show first punch animation frame when throwing fireball
+	bouncing must be constant
+	must explode when touching impassable sprite or monster
+	must do damage to monsters
+	must be invulnerable to helmets
+}
+
+
+sprite must not be squeezable on slope under block
+
 Faire gestion automatique de la population de sprite
 
 jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
@@ -85,6 +101,8 @@ cetrains monstres ne doivent pas avoir de flee mode
 Monstres
 {
 	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
+	
+	truc qui se comporte comme une plante carnivore (je sais pas quoi encore)
 
 	Jesus raptor
 	{
