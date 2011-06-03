@@ -167,6 +167,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsNoAiAlwaysBounce()
+        {
+            return false;
+        }
+
         protected override double BuildJumpProbability()
         {
             return 0;

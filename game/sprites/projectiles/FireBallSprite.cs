@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildJumpProbability()
         {
-            return 1.0;
+            return 0.0;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -109,6 +109,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
         {
             return false;
+        }
+
+        protected override bool BuildIsNoAiAlwaysBounce()
+        {
+            return true;
         }
 
         protected override double BuildMaxHealth()

@@ -269,6 +269,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsNoAiAlwaysBounce()
+        {
+            return false;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return new HelmetSprite(XPosition, YPosition, random, IsAvoidFall);
