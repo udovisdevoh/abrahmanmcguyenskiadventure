@@ -64,6 +64,7 @@
     <Compile Include="game\physics\BattleManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
+    <Compile Include="game\physics\FireBallToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
     <Compile Include="game\ground\IGroundHelper.cs" />
     <Compile Include="game\physics\HelmetToMonsterCollisionManager.cs" />

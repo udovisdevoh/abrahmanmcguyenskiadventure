@@ -147,6 +147,8 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle changingSizeAnimationCycle;
 
+        private Cycle throwBallCycle;
+
         /// <summary>
         /// Whether sprite can throw fire balls
         /// </summary>
@@ -176,6 +178,7 @@ namespace AbrahmanAdventure.sprites
             Health = defaultHealth;
             powerUpAnimationCycle = new Cycle(30, false);
             changingSizeAnimationCycle = new Cycle(20, false);
+            throwBallCycle = new Cycle(2.5, false);
         }
         #endregion
 
@@ -887,9 +890,23 @@ namespace AbrahmanAdventure.sprites
                 isShowTiny = changingSizeAnimationCycle.CurrentValue % 4 <= 2;
 
 
-            #region Attacking
-            if (AttackingCycle.IsFired)
+            
+            if (ThrowBallCycle.IsFired)
             {
+                if (IsTryingToWalkRight)
+                {
+                    xOffset = 0.2;
+                    return GetAttackFrame1RightSurface(isShowDopedColor);
+                }
+                else
+                {
+                    xOffset = -0.2;
+                    return GetAttackFrame1LeftSurface(isShowDopedColor);
+                }
+            }
+            else if (AttackingCycle.IsFired)
+            {
+                #region Attacking (punch / kick)
                 if (IsCrouch)
                 {
                     #region Crouched
@@ -1061,8 +1078,8 @@ namespace AbrahmanAdventure.sprites
                         #endregion
                     }
                 }
+                #endregion
             }
-            #endregion
 
             #region Crouched and not attacking
             if (IsCrouch)
@@ -1285,6 +1302,14 @@ namespace AbrahmanAdventure.sprites
         public Cycle ChangingSizeAnimationCycle
         {
             get { return changingSizeAnimationCycle; }
+        }
+
+        /// <summary>
+        /// Fired when throw fire ball
+        /// </summary>
+        public Cycle ThrowBallCycle
+        {
+            get { return throwBallCycle; }
         }
         #endregion
     }

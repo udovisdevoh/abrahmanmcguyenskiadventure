@@ -30,8 +30,9 @@ namespace AbrahmanAdventure.physics
 
                 if (ballCount < Program.maxPlayerFireBallPerScreen)
                 {
-                    double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
+                    playerSprite.ThrowBallCycle.Fire();
                     SoundManager.PlayFireBallSound();
+                    double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
                     FireBallSprite fireBallSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
                     fireBallSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
                     fireBallSprite.CurrentWalkingSpeed = fireBallSprite.MaxWalkingSpeed;

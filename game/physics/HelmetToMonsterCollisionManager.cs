@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (helmet != otherSprite && !(otherSprite is PlayerSprite) && !otherSprite.HitCycle.IsFired)
+                if (helmet != otherSprite && !(otherSprite is PlayerSprite) && !otherSprite.HitCycle.IsFired && !(otherSprite is FireBallSprite))
                 {
                     if (otherSprite is MonsterSprite && Physics.IsDetectCollision(helmet, otherSprite))
                     {
