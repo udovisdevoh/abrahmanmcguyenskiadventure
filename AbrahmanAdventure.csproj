@@ -69,6 +69,7 @@
     <Compile Include="game\physics\HelmetToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\JumpingManager.cs" />
     <Compile Include="game\physics\Physics.cs" />
+    <Compile Include="game\physics\PlayerProjectileManager.cs" />
     <Compile Include="game\physics\SpontaneousConversionManager.cs" />
     <Compile Include="game\physics\SpriteCollisionManager.cs" />
     <Compile Include="game\physics\WalkingManager.cs" />

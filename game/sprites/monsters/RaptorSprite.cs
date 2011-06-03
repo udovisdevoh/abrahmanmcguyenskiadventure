@@ -188,6 +188,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
+        {
+            return true;
+        }
+
         protected override bool BuildIsCanJump(Random random)
         {
             return true;

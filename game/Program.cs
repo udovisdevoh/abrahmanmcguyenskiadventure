@@ -53,6 +53,8 @@ namespace AbrahmanAdventure
         public const int maxCachedColumnCount = 100;
 
         public const int spatialHashingBucketWidth = 2;
+
+        public const int maxPlayerFireBallPerScreen = 2;
         
         public const double zoneWidthScreenCount = 0.025;
         
@@ -359,12 +361,20 @@ namespace AbrahmanAdventure
 
             #region We manage attack input logic
             //Attacking logic
+            playerSprite.IsTryThrowingBall = false;
             if (userInput.isPressAttack)
             {
                 if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
                 {
-                    SoundManager.PlayAttemptSound();
-                    playerSprite.AttackingCycle.Fire();
+                    if (playerSprite.IsDoped)
+                    {
+                        playerSprite.IsTryThrowingBall = true;
+                    }
+                    else
+                    {
+                        SoundManager.PlayAttemptSound();
+                        playerSprite.AttackingCycle.Fire();
+                    }
                     playerSprite.IsNeedToAttackAgain = true;
                 }
             }

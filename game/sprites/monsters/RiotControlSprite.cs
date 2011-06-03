@@ -199,6 +199,11 @@ namespace AbrahmanAdventure.sprites
             return random.Next(0, 2) == 1;
         }
 
+        protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
+        {
+            return true;
+        }
+
         protected override double BuildJumpProbability()
         {
             return 0.2;
