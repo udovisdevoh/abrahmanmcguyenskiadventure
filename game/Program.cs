@@ -40,7 +40,7 @@ namespace AbrahmanAdventure
 
         public const bool isBroadRangeUpdateSprite = true;
 
-        public const bool isEnableCrouchedWalk = true;
+        public const bool isEnableCrouchedWalk = false;
 
         public const int tileColumnCount = 20;
 

@@ -39,9 +39,13 @@ namespace AbrahmanAdventure.physics
                     ((PlayerSprite)sprite).IsDoped = false;
                     ((PlayerSprite)sprite).IsTiny = true;
 
-                    foreach (AbstractSprite anarchyBlockSprite in spritePopulation.AllSpriteList)
-                        if (anarchyBlockSprite is AnarchyBlockSprite)
-                            ((AnarchyBlockSprite)anarchyBlockSprite).IsFinalized = false;
+                    foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
+                    {
+                        if (otherSprite is AnarchyBlockSprite)
+                            ((AnarchyBlockSprite)otherSprite).IsFinalized = false;
+                        else if (otherSprite is PeyoteSprite)
+                            spritePopulation.Remove(otherSprite);
+                    }
                 }
                 else
                 {
