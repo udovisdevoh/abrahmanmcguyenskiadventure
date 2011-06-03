@@ -10,6 +10,16 @@ invincibilité
 	lorsque boit: son de prince of persia quand boit potion
 }
 
+Raccon
+{
+	Casque de rasta (volle avec cheveux)
+}
+
+À chaque boss: désolé c'était une marionnette
+{
+	Boss de la fin: grosse machine, puis vrai boss, contre sois-même
+}
+
 ?get frontmost walkable ground
 {
 	?must not take sprite ground if it's lower than current ground?
@@ -105,6 +115,10 @@ Monstres
 	
 	truc qui se comporte comme une plante carnivore (je sais pas quoi encore)
 
+	sarah palin
+
+	tom cruise
+
 	Jesus raptor
 	{
 		améliorer la texture du raptor (+d'ombrages)
@@ -151,10 +165,28 @@ Monstres
 		Arme: une carabine
 	}
 	
+	T Party
+	{
+		Tea party trailer park guy
+	}
+	
 	Hindu
 	{
 		Lance des statuettes
 	}
+	
+	Hippypocrite
+	{
+		Lance bouteilles de fruitopia en plastique qui pollue
+	}
+	
+	Yupi
+	{
+		Avec sweather attaché dans le cou
+		habit de tennis
+	}
+	
+	Bobo
 	
 	Pedo-priest
 	{
