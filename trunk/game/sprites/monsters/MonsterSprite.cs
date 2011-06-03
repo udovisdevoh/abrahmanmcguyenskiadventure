@@ -106,6 +106,11 @@ namespace AbrahmanAdventure.sprites
         /// If monster sprite has no AI, die when can't move
         /// </summary>
         private bool isNoAiDieWhenStucked;
+
+        /// <summary>
+        /// If sprite has no AI, always jump when touch ground
+        /// </summary>
+        private bool isNoAiAlwaysBounce;
         #endregion
 
         #region Constructors
@@ -137,6 +142,7 @@ namespace AbrahmanAdventure.sprites
             isCanDoDamageToPlayerWhenTouched = BuildIsCanDoDamageToPlayerWhenTouched();
             isNoAiChangeDirectionWhenStucked = BuildIsNoAiChangeDirectionWhenStucked();
             isNoAiDieWhenStucked = BuildIsNoAiDieWhenStucked();
+            isNoAiAlwaysBounce = BuildIsNoAiAlwaysBounce();
         }
         #endregion
 
@@ -218,6 +224,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>If monster sprite has no AI, die when can't move</returns>
         protected abstract bool BuildIsNoAiDieWhenStucked();
+
+        /// <summary>
+        /// If sprite has no AI, always jump when touch ground
+        /// </summary>
+        /// <returns>If sprite has no AI, always jump when touch ground</returns>
+        protected abstract bool BuildIsNoAiAlwaysBounce();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -396,6 +408,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsNoAiDieWhenStucked
         {
             get { return isNoAiDieWhenStucked; }
+        }
+
+        /// <summary>
+        /// If sprite has no AI, always jump when touch ground
+        /// </summary>
+        public bool IsNoAiAlwaysBounce
+        {
+            get { return isNoAiAlwaysBounce; }
         }
 
         /// <summary>
