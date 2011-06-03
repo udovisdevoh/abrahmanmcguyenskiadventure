@@ -30,11 +30,15 @@ namespace AbrahmanAdventure.ai
             monster.IsNeedToJumpAgain = false;
 
             #region AI Jumping logic
-            if (monster.IsCanJump || monster.HitCycle.IsFired)
+            if (monster.IsNoAiAlwaysBounce && monster.IGround != null)
+            {
+                monster.IsTryingToJump = true;
+            }
+            else if (monster.IsCanJump || monster.HitCycle.IsFired)
             {
                 if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0)
                     monster.IsTryingToJump = true;
-                else if (TryGetSlopeRatio(monster,level,timeDelta,monster.IsTryingToWalkRight, visibleSpriteList, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
+                else if (TryGetSlopeRatio(monster, level, timeDelta, monster.IsTryingToWalkRight, visibleSpriteList, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
                     monster.IsTryingToJump = true;
 
                 /*if (player.IsGrounded && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
@@ -120,6 +124,7 @@ namespace AbrahmanAdventure.ai
                         if (monster is FireBallSprite)
                             SoundManager.PlayHelmetBumpSound();
                         monster.IsAlive = false;
+                        monster.YPosition = Program.totalHeightTileCount + 1.0;
                     }
                 }
 

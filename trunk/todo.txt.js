@@ -12,14 +12,13 @@ si tiny
 fix fire balls
 {
 	remove "jump on it"
-	must not change direction
+	remove "getting jumped on by it"
 	//must take player's direction at begining ok
-	must start by falling at approximately 45 degrees
 	show first punch animation frame when throwing fireball
-	bouncing must be constant
 	must explode when touching impassable sprite or monster
 	must do damage to monsters
 	must be invulnerable to helmets
+	ne doivent pas être affectées par les pentes à monter
 }
 
 faire un truc qui correspond à des cent, et un compteur dans le hud
