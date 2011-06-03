@@ -96,6 +96,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
+        {
+            return false;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 100;

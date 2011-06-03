@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.physics
                 {
                     KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
-                else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
+                else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive && ((MonsterSprite)otherSprite).IsCanDoDamageToPlayerWhenTouched)
                 {
                     UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }

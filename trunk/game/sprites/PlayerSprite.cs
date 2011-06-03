@@ -153,6 +153,11 @@ namespace AbrahmanAdventure.sprites
         private bool isDoped = false;
 
         /// <summary>
+        /// Whether sprite is currently trying to throw a fire ball
+        /// </summary>
+        private bool isTryThrowingBall = false;
+
+        /// <summary>
         /// Default health
         /// </summary>
         private double defaultHealth = 0.5;
@@ -1247,6 +1252,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isDoped; }
             set { isDoped = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently trying to throw a fire ball
+        /// </summary>
+        public bool IsTryThrowingBall
+        {
+            get { return isTryThrowingBall; }
+            set { isTryThrowingBall = value; }
         }
 
         /// <summary>

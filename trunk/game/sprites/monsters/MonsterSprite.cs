@@ -91,6 +91,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite can be converted to another sprite when getting jumped on
         /// </summary>
         private bool isEnableJumpOnConversion;
+
+        /// <summary>
+        /// Whether sprite can do damage to player when touched
+        /// </summary>
+        private bool isCanDoDamageToPlayerWhenTouched;
         #endregion
 
         #region Constructors
@@ -119,6 +124,7 @@ namespace AbrahmanAdventure.sprites
             isInstantKickConvertedSprite = BuildIsInstantKickConvertedSprite();
             isEnableSpontaneousConversion = BuildIsEnableSpontaneousConversion();
             isEnableJumpOnConversion = BuildIsEnableJumpOnConversion();
+            isCanDoDamageToPlayerWhenTouched = BuildIsCanDoDamageToPlayerWhenTouched();
         }
         #endregion
 
@@ -182,6 +188,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite can be converted to another sprite when getting jumped on</returns>
         protected abstract bool BuildIsEnableJumpOnConversion();
+
+        /// <summary>
+        /// Whether sprite can do damage to player
+        /// </summary>
+        /// <returns>Whether sprite can do damage to player</returns>
+        protected abstract bool BuildIsCanDoDamageToPlayerWhenTouched();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -336,6 +348,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsEnableJumpOnConversion
         {
             get { return isEnableJumpOnConversion; }
+        }
+
+        /// <summary>
+        /// Whether sprite can do damage to player when touched
+        /// </summary>
+        public bool IsCanDoDamageToPlayerWhenTouched
+        {
+            get { return isCanDoDamageToPlayerWhenTouched; }
         }
 
         /// <summary>

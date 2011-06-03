@@ -57,6 +57,11 @@ namespace AbrahmanAdventure.physics
         /// Manages collisions between helmet and monsters
         /// </summary>
         private HelmetToMonsterCollisionManager helmetToMonsterCollisionManager = new HelmetToMonsterCollisionManager();
+
+        /// <summary>
+        /// Manages player's projectiles
+        /// </summary>
+        private PlayerProjectileManager playerProjectileManager = new PlayerProjectileManager();
         #endregion
 
         #region Public Instance Methods
@@ -89,6 +94,8 @@ namespace AbrahmanAdventure.physics
 
                     if (((PlayerSprite)sprite).ChangingSizeAnimationCycle.IsFired)
                         ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Increment(timeDelta);
+
+                    playerProjectileManager.Update((PlayerSprite)sprite, visibleSpriteList, spritePopulation, random);
                 }
             }
             
