@@ -6,8 +6,8 @@ si tiny
 
 invincibilité
 {
-	étoiles -> bouteille de jack daniel
-	lorsque boit: son de prince of persia quand boit possion
+	étoiles -> bouteille de whisky
+	lorsque boit: son de prince of persia quand boit potion
 }
 
 ?get frontmost walkable ground
