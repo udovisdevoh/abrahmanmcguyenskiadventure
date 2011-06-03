@@ -4,6 +4,12 @@ si tiny
 	?briques ne sont pas détruites?
 }
 
+invincibilité
+{
+	étoiles -> bouteille de jack daniel
+	lorsque boit: son de prince of persia quand boit possion
+}
+
 ?get frontmost walkable ground
 {
 	?must not take sprite ground if it's lower than current ground?
