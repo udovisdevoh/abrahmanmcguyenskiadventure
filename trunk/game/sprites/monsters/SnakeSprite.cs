@@ -131,6 +131,16 @@ namespace AbrahmanAdventure.sprites
             return null;
         }
 
+        protected override bool BuildIsNoAiChangeDirectionWhenStucked()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsNoAiDieWhenStucked()
+        {
+            return false;
+        }
+
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
             return false;

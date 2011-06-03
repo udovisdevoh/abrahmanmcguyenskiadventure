@@ -280,6 +280,16 @@ namespace AbrahmanAdventure.sprites
         {
             return false;
         }
+
+        protected override bool BuildIsNoAiChangeDirectionWhenStucked()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsNoAiDieWhenStucked()
+        {
+            return false;
+        }
         
         public override AbstractSprite GetConverstionSprite(Random random)
         {

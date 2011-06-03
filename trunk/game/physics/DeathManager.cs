@@ -23,7 +23,10 @@ namespace AbrahmanAdventure.physics
                 sprite.IsAlive = false;
 
             if (sprite.IsAnnihilateOnExitScreen && !visibleSpriteList.Contains(sprite))
-                spritePopulation.Remove(sprite);
+            {
+                sprite.IsAlive = false;
+                sprite.YPosition = Program.totalHeightTileCount + 1.0;
+            }
 
             if (sprite.IsAlive)
                 return;

@@ -52,6 +52,11 @@ namespace AbrahmanAdventure.sprites
         private bool isAiEnabled;
 
         /// <summary>
+        /// Whether sprite will change direction if no AI, when stucked
+        /// </summary>
+        private bool isNoAiChangeDirectionWhenStucked;
+
+        /// <summary>
         /// Whether monster is walking right, not left, when monster is not chasing player
         /// </summary>
         private bool isNoAiDefaultDirectionWalkingRight;
@@ -96,6 +101,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite can do damage to player when touched
         /// </summary>
         private bool isCanDoDamageToPlayerWhenTouched;
+
+        /// <summary>
+        /// If monster sprite has no AI, die when can't move
+        /// </summary>
+        private bool isNoAiDieWhenStucked;
         #endregion
 
         #region Constructors
@@ -125,6 +135,8 @@ namespace AbrahmanAdventure.sprites
             isEnableSpontaneousConversion = BuildIsEnableSpontaneousConversion();
             isEnableJumpOnConversion = BuildIsEnableJumpOnConversion();
             isCanDoDamageToPlayerWhenTouched = BuildIsCanDoDamageToPlayerWhenTouched();
+            isNoAiChangeDirectionWhenStucked = BuildIsNoAiChangeDirectionWhenStucked();
+            isNoAiDieWhenStucked = BuildIsNoAiDieWhenStucked();
         }
         #endregion
 
@@ -194,6 +206,18 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite can do damage to player</returns>
         protected abstract bool BuildIsCanDoDamageToPlayerWhenTouched();
+
+        /// <summary>
+        /// Whether sprite will change direction if no AI, when stucked
+        /// </summary>
+        /// <returns>Whether sprite will change direction if no AI, when stucked</returns>
+        protected abstract bool BuildIsNoAiChangeDirectionWhenStucked();
+
+        /// <summary>
+        /// If monster sprite has no AI, die when can't move
+        /// </summary>
+        /// <returns>If monster sprite has no AI, die when can't move</returns>
+        protected abstract bool BuildIsNoAiDieWhenStucked();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -356,6 +380,22 @@ namespace AbrahmanAdventure.sprites
         public bool IsCanDoDamageToPlayerWhenTouched
         {
             get { return isCanDoDamageToPlayerWhenTouched; }
+        }
+
+        /// <summary>
+        /// Whether sprite will change direction if no AI, when stucked
+        /// </summary>
+        public bool IsNoAiChangeDirectionWhenStucked
+        {
+            get { return isNoAiChangeDirectionWhenStucked; }
+        }
+
+        /// <summary>
+        /// If monster sprite has no AI, die when can't move
+        /// </summary>
+        public bool IsNoAiDieWhenStucked
+        {
+            get { return isNoAiDieWhenStucked; }
         }
 
         /// <summary>
