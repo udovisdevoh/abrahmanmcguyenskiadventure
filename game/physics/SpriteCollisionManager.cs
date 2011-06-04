@@ -292,10 +292,18 @@ namespace AbrahmanAdventure.physics
                             {
                                 KickOrStopHelmet(sprite, monsterSprite, level, timeDelta);
                             }
-                            else //Other sprite (monster) will be damaged
+                            else 
                             {
-                                otherSprite.HitCycle.Fire();
-                                otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                                {
+                                    monsterSprite.IsAlive = false;
+                                    monsterSprite.JumpingCycle.Fire();
+                                }
+                                else //Other sprite (monster) will be damaged
+                                {
+                                    otherSprite.HitCycle.Fire();
+                                    otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                }
                             }
                         }
 

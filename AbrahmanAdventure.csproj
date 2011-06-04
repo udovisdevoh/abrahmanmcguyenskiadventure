@@ -91,6 +91,7 @@
     <Compile Include="game\sprites\monsters\SnakeSprite.cs" />
     <Compile Include="game\sprites\powerups\IGrowable.cs" />
     <Compile Include="game\sprites\powerups\MushroomSprite.cs" />
+    <Compile Include="game\sprites\powerups\MusicNoteSprite.cs" />
     <Compile Include="game\sprites\powerups\PeyoteSprite.cs" />
     <Compile Include="game\sprites\powerups\WhiskySprite.cs" />
     <Compile Include="game\sprites\projectiles\FireBallSprite.cs" />
@@ -285,6 +286,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\mushroom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\powerups\musicNote1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\powerups\musicNote2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\peyote.png">
