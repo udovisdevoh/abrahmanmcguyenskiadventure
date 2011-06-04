@@ -130,6 +130,11 @@ namespace AbrahmanAdventure.sprites
         private bool isAffectedByGravity;
 
         /// <summary>
+        /// Max falling speed
+        /// </summary>
+        private double maxFallingSpeed = double.PositiveInfinity;
+
+        /// <summary>
         /// When bouncing on this sprite
         /// 0: nothing, 1: regular jump
         /// </summary>
@@ -248,6 +253,7 @@ namespace AbrahmanAdventure.sprites
             attackStrengthCollision = BuildAttackStrengthCollision();
             isAffectedByGravity = BuildIsAffectedByGravity();
             bounciness = BuildBounciness();
+            maxFallingSpeed = BuildMaxFallingSpeed();
             isImpassable = BuildIsImpassable();
             isAnnihilateOnExitScreen = BuildIsAnnihilateOnExitScreen();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
@@ -355,6 +361,12 @@ namespace AbrahmanAdventure.sprites
         /// 0: nothing, 1: regular jump
         /// </summary>
         protected abstract double BuildBounciness();
+
+        /// <summary>
+        /// Maximum speed when falling
+        /// </summary>
+        /// <returns>Maximum speed when falling</returns>
+        protected abstract double BuildMaxFallingSpeed();
         #endregion
 
         #region Public Abstract Methods
@@ -969,6 +981,7 @@ namespace AbrahmanAdventure.sprites
         public double Bounciness
         {
             get { return bounciness; }
+            set { bounciness = value; }
         }
 
         /// <summary>
@@ -978,6 +991,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return distanceToReferenceSprite; }
             set { distanceToReferenceSprite = value; }
+        }
+
+        /// <summary>
+        /// Maximum falling speed
+        /// </summary>
+        public double MaxFallingSpeed
+        {
+            get { return maxFallingSpeed; }
+            set { maxFallingSpeed = value; }
         }
 
         /// <summary>

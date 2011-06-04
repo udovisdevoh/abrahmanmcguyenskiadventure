@@ -99,7 +99,14 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         private void ApplyGravityMovement(AbstractSprite sprite, double timeDelta)
         {
-            sprite.YPosition -= sprite.CurrentJumpAcceleration / 50 * timeDelta;
+            double speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
+
+            if (speed < 0 && Math.Abs(speed) > Math.Abs(sprite.MaxFallingSpeed))
+            {
+                speed = -Math.Abs(sprite.MaxFallingSpeed);
+            }
+
+            sprite.YPosition -= speed;
         }
         #endregion
     }

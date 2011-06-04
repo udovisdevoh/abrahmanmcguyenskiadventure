@@ -1071,6 +1071,11 @@ namespace AbrahmanAdventure.sprites
             return 1.0;
         }
 
+        protected override double BuildMaxFallingSpeed()
+        {
+            return double.PositiveInfinity;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;

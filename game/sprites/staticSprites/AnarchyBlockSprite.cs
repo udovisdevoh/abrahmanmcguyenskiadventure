@@ -91,6 +91,9 @@ namespace AbrahmanAdventure.sprites
                     this.blockContent = BlockContent.MusicNote;
             }
 
+            #warning Remove this line (eventually)
+            this.blockContent = BlockContent.RastaHat;
+
             //blockContent = BlockContent.Whisky;
             isFinalized = false;
 
@@ -183,6 +186,8 @@ namespace AbrahmanAdventure.sprites
                     if (playerSprite.Health == playerSprite.MaxHealth)
                     {
                         RastaHatSprite rastaHatSprite = new RastaHatSprite(XPosition, TopBound, random);
+                        rastaHatSprite.JumpingCycle.Fire();
+                        rastaHatSprite.CurrentJumpAcceleration = rastaHatSprite.StartingJumpAcceleration;
                         return rastaHatSprite;
                     }
                     else
