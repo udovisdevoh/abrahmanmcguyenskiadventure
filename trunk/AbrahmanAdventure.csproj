@@ -78,6 +78,7 @@
     <Compile Include="game\sky\Sky.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
+    <Compile Include="game\sprites\powerups\IFloatable.cs" />
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
     <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="game\sprites\powerups\MushroomSprite.cs" />
     <Compile Include="game\sprites\powerups\MusicNoteSprite.cs" />
     <Compile Include="game\sprites\powerups\PeyoteSprite.cs" />
+    <Compile Include="game\sprites\powerups\RastaHatSprite.cs" />
     <Compile Include="game\sprites\powerups\WhiskySprite.cs" />
     <Compile Include="game\sprites\projectiles\FireBallSprite.cs" />
     <Compile Include="game\sprites\SpriteDistanceSorter.cs" />
@@ -295,6 +297,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\peyote.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\powerups\rastaHat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\scotch1.png">
@@ -536,6 +541,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Ko2.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\MusicNote.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\PowerUp.ogg">

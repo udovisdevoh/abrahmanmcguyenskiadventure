@@ -45,6 +45,10 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
                 }
+                else if (sprite is PlayerSprite && otherSprite is MusicNoteSprite && otherSprite.IsAlive)
+                {
+                    UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
+                }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
                     UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
@@ -116,20 +120,23 @@ namespace AbrahmanAdventure.physics
 
             sprite.IsNeedToJumpAgain = true;
 
-            //Must be well centered, or else, don't open the block
-            /*if (Math.Abs(sprite.XPosition - block.XPosition) > block.Width / 1.5)
-                return;*/
-
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
             {
-                SoundManager.PlayGrowSound();
                 ((AnarchyBlockSprite)block).BumpCycle.Fire();
                 ((AnarchyBlockSprite)block).IsFinalized = true;
 
-                AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
-                if (powerUpSprite is IGrowable)
-                    ((IGrowable)powerUpSprite).GrowthCycle.Fire();
-                spritePopulation.Add(powerUpSprite);
+                if (((AnarchyBlockSprite)block).BlockContent == BlockContent.MusicNote)
+                {
+                    SoundManager.PlayMusicNoteSound();
+                }
+                else
+                {
+                    SoundManager.PlayGrowSound();
+                    AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
+                    if (powerUpSprite is IGrowable)
+                        ((IGrowable)powerUpSprite).GrowthCycle.Fire();
+                    spritePopulation.Add(powerUpSprite);
+                }
             }
             else if (block.IsDestructible && block.IsAlive)
             {
@@ -193,6 +200,18 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsDoped = true;
             peyoteSprite.IsAlive = false;
             peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
+        /// <summary>
+        /// Sprite touches music note
+        /// </summary>
+        /// <param name="playerSprite">player</param>
+        /// <param name="musicNoteSprite">music note</param>
+        private void UpdateTouchMusicNote(PlayerSprite playerSprite, MusicNoteSprite musicNoteSprite)
+        {
+            SoundManager.PlayMusicNoteSound();
+            musicNoteSprite.IsAlive = false;
+            musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>
@@ -352,6 +371,14 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         private void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
         {
+            if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+            {
+                SoundManager.PlayHitSound();
+                monsterSprite.IsAlive = false;
+                monsterSprite.JumpingCycle.Fire();
+                return;
+            }
+
             monsterSprite.IsWalkEnabled = !monsterSprite.IsWalkEnabled;
             if (monsterSprite.IsWalkEnabled)
             {

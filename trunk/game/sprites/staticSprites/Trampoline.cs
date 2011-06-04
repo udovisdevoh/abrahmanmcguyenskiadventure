@@ -12,7 +12,7 @@ namespace AbrahmanAdventure.sprites
     class Trampoline : StaticSprite
     {
         #region Fields and parts
-        private Surface surface;
+        private static Surface surface;
         #endregion
 
         #region Constructor

@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Makes player invincible
     /// </summary>
-    class WhiskySprite : MonsterSprite
+    class WhiskySprite : MonsterSprite, IGrowable
     {
         #region Fields and parts
         private static Surface scotch1;
@@ -27,6 +27,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface scotch7;
 
         private static Surface scotch8;
+
+        /// <summary>
+        /// Cycle of growth
+        /// </summary>
+        private Cycle growthCycle;
         #endregion
 
         #region Constructor
@@ -39,6 +44,7 @@ namespace AbrahmanAdventure.sprites
         public WhiskySprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (scotch1 == null)
             {
                 scotch1 = BuildSpriteSurface("./assets/rendered/powerups/scotch1.png");
@@ -223,6 +229,13 @@ namespace AbrahmanAdventure.sprites
                 default:
                     return scotch8;
             }
+        }
+        #endregion
+
+        #region IGrowable Members
+        public Cycle GrowthCycle
+        {
+            get { return growthCycle; }
         }
         #endregion
     }

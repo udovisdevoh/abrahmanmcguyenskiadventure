@@ -15,11 +15,6 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         /// <summary>
-        /// Default undefined surface
-        /// </summary>
-        private Surface defaultUndefinedSurface;
-
-        /// <summary>
         /// Cycle of kicked sprite (for instance, helmet)
         /// When cycle is fired, no damage is given from touching this sprite
         /// </summary>
@@ -126,8 +121,8 @@ namespace AbrahmanAdventure.sprites
             isWalkEnabled = true;
             kickedHelmetCycle = new Cycle(16.0,false);
             spontaneousTransformationCycle = new Cycle(256, false);
-            defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
-            defaultUndefinedSurface.Fill(Color.Red);
+            //defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
+            //defaultUndefinedSurface.Fill(Color.Red);
             isCanJump = BuildIsCanJump(random);
             jumpProbability = BuildJumpProbability();
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
@@ -246,19 +241,6 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Override methods
-        /// <summary>
-        /// Get the sprite's current surface
-        /// </summary>
-        /// <param name="xOffset">X Offset</param>
-        /// <param name="yOffset">Y Offset</param>
-        /// <returns>sprite's current surface</returns>
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
-        {
-            xOffset = 0;
-            yOffset = 0;
-            return defaultUndefinedSurface;
-        }
-
         protected override bool BuildIsAffectedByGravity()
         {
             return true;
