@@ -103,6 +103,9 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)sprite).ThrowBallCycle.IsFired)
                         ((PlayerSprite)sprite).ThrowBallCycle.Increment(timeDelta);
 
+                    if (((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                        ((PlayerSprite)sprite).InvincibilityCycle.Increment(timeDelta);
+
                     playerProjectileManager.Update((PlayerSprite)sprite, visibleSpriteList, spritePopulation, random);
                 }
             }

@@ -7,6 +7,11 @@ using SdlDotNet.Graphics;
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
+    /// Content of an anarchy block
+    /// </summary>
+    enum BlockContent { Note, Whisky, RastaHat, Cent, Peyote };
+
+    /// <summary>
     /// Anarchy block sprite
     /// </summary>
     internal class AnarchyBlockSprite : StaticSprite
@@ -23,6 +28,8 @@ namespace AbrahmanAdventure.sprites
         private Cycle bumpCycle;
 
         private bool isFinalized;
+
+        private BlockContent blockContent;
         #endregion
 
         #region Constructor
@@ -35,6 +42,7 @@ namespace AbrahmanAdventure.sprites
         public AnarchyBlockSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            blockContent = BlockContent.Whisky;
             isFinalized = false;
 
             if (surface1 == null || surface2 == null)
@@ -114,16 +122,22 @@ namespace AbrahmanAdventure.sprites
         #region Internal Methods
         internal AbstractSprite GetPowerUpSprite(AbstractSprite playerSprite, Random random)
         {
-            if (playerSprite.Health == playerSprite.MaxHealth)
+            switch (BlockContent)
             {
-                PeyoteSprite peyoteSprite = new PeyoteSprite(XPosition, TopBound, random);
-                return peyoteSprite;
-            }
-            else
-            {
-                MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
-                mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-                return mushroomSprite;
+                case BlockContent.Whisky:
+                    return new WhiskySprite(XPosition, TopBound, random);
+                default:
+                    if (playerSprite.Health == playerSprite.MaxHealth)
+                    {
+                        PeyoteSprite peyoteSprite = new PeyoteSprite(XPosition, TopBound, random);
+                        return peyoteSprite;
+                    }
+                    else
+                    {
+                        MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
+                        mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                        return mushroomSprite;
+                    }
             }
         }
         #endregion
@@ -138,6 +152,11 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isFinalized; }
             set { isFinalized = value; }
+        }
+
+        public BlockContent BlockContent
+        {
+            get { return blockContent; }
         }
         #endregion
     }
