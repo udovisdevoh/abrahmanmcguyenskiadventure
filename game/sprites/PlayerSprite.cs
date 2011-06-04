@@ -512,7 +512,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurfaceTinyDoped()
         {
             if (walking2RightSurfaceTinyDoped == null)
-                walking2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk2Doped.png");
+                walking2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk2doped.png");
             return walking2RightSurfaceTinyDoped;
         }
 
@@ -934,7 +934,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame2RightSurfaceTinyDoped()
         {
             if (attackFrame2RightSurfaceTinyDoped == null)
-                attackFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyPuch2doped.png");
+                attackFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch2doped.png");
 
             return attackFrame2RightSurfaceTinyDoped;
         }
@@ -972,7 +972,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetHitRightSurfaceTinyDoped()
         {
             if (hitRightSurfaceTinyDoped == null)
-                hitRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyHitDoped.png");
+                hitRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyHitdoped.png");
 
             return hitRightSurfaceTinyDoped;
         }
