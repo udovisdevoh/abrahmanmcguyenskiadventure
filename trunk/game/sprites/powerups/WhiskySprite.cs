@@ -201,6 +201,9 @@ namespace AbrahmanAdventure.sprites
 
             int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
 
+            if (!IsNoAiDefaultDirectionWalkingRight)
+                cycleDivision = cycleDivision * -1 + 7;
+
             switch (cycleDivision)
             {
                 case 1:
