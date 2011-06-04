@@ -41,6 +41,8 @@ namespace AbrahmanAdventure.audio
         private static Sound fireBallSound;
 
         private static Sound bricksSound;
+
+        private static Sound drinkSound;
         #endregion
 
         #region Constructors
@@ -61,6 +63,7 @@ namespace AbrahmanAdventure.audio
             growSound = LoadSound("./assets/sounds/Grow.ogg");
             fireBallSound = LoadSound("./assets/sounds/FireBall.ogg");
             bricksSound = LoadSound("./assets/sounds/Bricks.ogg");
+            drinkSound = LoadSound("./assets/sounds/Drink.ogg");
         }
 
         /// <summary>
@@ -145,6 +148,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayBricksSound()
         {
             bricksSound.Play();
+        }
+
+        internal static void PlayDrinkSound()
+        {
+            drinkSound.Play();
         }
         #endregion
     }

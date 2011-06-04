@@ -202,7 +202,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="whiskySprite">whisky</param>
         private void UpdateTouchWhisky(PlayerSprite playerSprite, WhiskySprite whiskySprite)
         {
-            SoundManager.PlayPowerUpSound();
+            SoundManager.PlayDrinkSound();
             playerSprite.InvincibilityCycle.Fire();
             whiskySprite.IsAlive = false;
             whiskySprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
