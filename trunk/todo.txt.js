@@ -4,12 +4,6 @@ si tiny
 	?briques ne sont pas détruites?
 }
 
-invincibilité
-{
-	étoiles -> bouteille de whisky
-	lorsque boit: son de prince of persia quand boit potion
-}
-
 Raccon
 {
 	Rasta hat (volle avec cheveux)
@@ -27,8 +21,7 @@ Raccon
 
 fix fire balls
 {
-	must explode when touching impassable sprite or monster
-	must be invulnerable to helmets
+	must show explode image when touching impassable sprite or monster
 	ne doivent pas être affectées par les pentes à monter
 }
 
