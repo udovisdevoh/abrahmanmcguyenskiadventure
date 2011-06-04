@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Rasta hat (so player can fly)
     /// </summary>
-    internal class RastaHatSprite : AbstractSprite, IGrowable, IFloatable
+    internal class RastaHatSprite : MonsterSprite, IGrowable
     {
         #region Fields and parts
         /// <summary>
@@ -33,6 +33,7 @@ namespace AbrahmanAdventure.sprites
         public RastaHatSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            MaxFallingSpeed = 0.05;
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
                 surface = BuildSpriteSurface("./assets/rendered/powerups/rastaHat.png");
@@ -52,7 +53,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 10;
+            return 25;
         }
 
         protected override double BuildAttackingTime()
@@ -67,7 +68,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackStrengthCollision()
         {
-            return 0.0;
+            return -0.5;
         }
 
         protected override double BuildWidth(Random random)
@@ -110,25 +111,85 @@ namespace AbrahmanAdventure.sprites
             return 0.20;
         }
 
-        protected override bool BuildIsImpassable()
-        {
-            return false;
-        }
-
-        protected override bool BuildIsAffectedByGravity()
-        {
-            return false;
-        }
-
-        protected override double BuildBounciness()
-        {
-            return 0.0;
-        }
-
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0.0;
             return surface;
+        }
+
+        protected override bool BuildIsAiEnabled()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsCanJump(Random random)
+        {
+            return true;
+        }
+
+        protected override bool BuildIsAvoidFall(Random random)
+        {
+            return false;
+        }
+
+        protected override bool BuildIsToggleWalkWhenJumpedOn()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsFleeWhenAttacked(Random random)
+        {
+            return false;
+        }
+
+        protected override bool BuildIsFullSpeedAfterBounceNoAi()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsInstantKickConvertedSprite()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsEnableSpontaneousConversion()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsEnableJumpOnConversion()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsNoAiChangeDirectionWhenStucked()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsNoAiDieWhenStucked()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsNoAiAlwaysBounce()
+        {
+            return false;
+        }
+
+        protected override double BuildJumpProbability()
+        {
+            return 0.0;
+        }
+
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return null;
         }
         #endregion
     }

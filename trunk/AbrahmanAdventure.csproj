@@ -78,7 +78,6 @@
     <Compile Include="game\sky\Sky.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
-    <Compile Include="game\sprites\powerups\IFloatable.cs" />
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
     <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />

@@ -255,6 +255,11 @@ namespace AbrahmanAdventure.sprites
         {
             return 1.0;
         }
+
+        protected override double BuildMaxFallingSpeed()
+        {
+            return double.PositiveInfinity;
+        }
         #endregion
 
         #region Properties
