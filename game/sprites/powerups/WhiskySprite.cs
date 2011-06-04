@@ -12,13 +12,21 @@ namespace AbrahmanAdventure.sprites
     class WhiskySprite : MonsterSprite
     {
         #region Fields and parts
-        private static Surface surface0;
+        private static Surface scotch1;
 
-        private static Surface surface1;
+        private static Surface scotch2;
 
-        private static Surface surface2;
+        private static Surface scotch3;
 
-        private static Surface surface3;
+        private static Surface scotch4;
+
+        private static Surface scotch5;
+
+        private static Surface scotch6;
+
+        private static Surface scotch7;
+
+        private static Surface scotch8;
         #endregion
 
         #region Constructor
@@ -31,12 +39,16 @@ namespace AbrahmanAdventure.sprites
         public WhiskySprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            if (surface0 == null)
+            if (scotch1 == null)
             {
-                surface0 = BuildSpriteSurface("./assets/rendered/powerups/bottle4.png");
-                surface1 = BuildSpriteSurface("./assets/rendered/powerups/bottle1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/powerups/bottle2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/powerups/bottle3.png");
+                scotch1 = BuildSpriteSurface("./assets/rendered/powerups/scotch1.png");
+                scotch2 = BuildSpriteSurface("./assets/rendered/powerups/scotch2.png");
+                scotch3 = BuildSpriteSurface("./assets/rendered/powerups/scotch3.png");
+                scotch4 = scotch2.CreateFlippedVerticalSurface();
+                scotch5 = scotch1.CreateFlippedVerticalSurface();
+                scotch6 = scotch4.CreateFlippedHorizontalSurface();
+                scotch7 = scotch3.CreateFlippedHorizontalSurface();
+                scotch8 = scotch2.CreateFlippedHorizontalSurface();
             }
         }
         #endregion
@@ -134,7 +146,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 10;
+            return 3;
         }
 
         protected override double BuildWalkingAcceleration()
@@ -154,7 +166,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 25.0;
+            return 30.0;
         }
 
         protected override double BuildAttackingTime()
@@ -187,16 +199,27 @@ namespace AbrahmanAdventure.sprites
             xOffset = 0;
             yOffset = 0;
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+            int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
 
-            if (cycleDivision == 1)
-                return surface1;
-            else if (cycleDivision == 2)
-                return surface2;
-            else if (cycleDivision == 3)
-                return surface3;
-            else
-                return surface0;
+            switch (cycleDivision)
+            {
+                case 1:
+                    return scotch1;
+                case 2:
+                    return scotch2;
+                case 3:
+                    return scotch3;
+                case 4:
+                    return scotch4;
+                case 5:
+                    return scotch5;
+                case 6:
+                    return scotch6;
+                case 7:
+                    return scotch7;
+                default:
+                    return scotch8;
+            }
         }
         #endregion
     }

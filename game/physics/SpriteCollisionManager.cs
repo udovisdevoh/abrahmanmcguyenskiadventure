@@ -41,6 +41,10 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
                 }
+                else if (sprite is PlayerSprite && otherSprite is WhiskySprite && otherSprite.IsAlive)
+                {
+                    UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
+                }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
                     UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
@@ -192,6 +196,19 @@ namespace AbrahmanAdventure.physics
         }
 
         /// <summary>
+        /// Sprite touches whisky and becomes invincible
+        /// </summary>
+        /// <param name="playerSprite">player</param>
+        /// <param name="whiskySprite">whisky</param>
+        private void UpdateTouchWhisky(PlayerSprite playerSprite, WhiskySprite whiskySprite)
+        {
+            SoundManager.PlayPowerUpSound();
+            playerSprite.InvincibilityCycle.Fire();
+            whiskySprite.IsAlive = false;
+            whiskySprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
+        /// <summary>
         /// Direct collision between player and monster (player will receive damage unless it's a newly kicked helmet)
         /// </summary>
         /// <param name="sprite">player (normally)</param>
@@ -203,16 +220,25 @@ namespace AbrahmanAdventure.physics
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired)
                 return;
 
-            SoundManager.PlayHit2Sound();
-            sprite.HitCycle.Fire();
-            if (sprite is PlayerSprite && !sprite.IsTiny)
-                ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
+            if (sprite.InvincibilityCycle.IsFired)
+            {
+                SoundManager.PlayHitSound();
+                monsterSprite.IsAlive = false;
+                monsterSprite.JumpingCycle.Fire();
+            }
+            else
+            {
+                SoundManager.PlayHit2Sound();
+                sprite.HitCycle.Fire();
+                if (sprite is PlayerSprite && !sprite.IsTiny)
+                    ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
 
-            if (sprite.IsDoped)
-                sprite.IsDoped = false;
-            sprite.IsTiny = true;
+                if (sprite.IsDoped)
+                    sprite.IsDoped = false;
+                sprite.IsTiny = true;
 
-            sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+            }
         }
 
         /// <summary>
