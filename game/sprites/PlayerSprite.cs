@@ -213,7 +213,7 @@ namespace AbrahmanAdventure.sprites
             powerUpAnimationCycle = new Cycle(30, false);
             changingSizeAnimationCycle = new Cycle(20, false);
             throwBallCycle = new Cycle(2.5, false);
-            invincibilityCycle = new Cycle(300, false);
+            invincibilityCycle = new Cycle(400, false);
         }
         #endregion
 

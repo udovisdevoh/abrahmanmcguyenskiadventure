@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
     /// Content of an anarchy block
     /// </summary>
-    enum BlockContent { Note, Whisky, RastaHat, Cent, Peyote };
+    enum BlockContent { MusicNote, Whisky, RastaHat, Peyote, Undefined };
 
     /// <summary>
     /// Anarchy block sprite
@@ -17,17 +18,21 @@ namespace AbrahmanAdventure.sprites
     internal class AnarchyBlockSprite : StaticSprite
     {
         #region Fields and parts
-        private Surface surface1;
+        private static Surface surface1;
 
-        private Surface surface2;
+        private static Surface surface2;
 
-        private Surface surface3;
+        private static Surface surface3;
+
+        private static Surface surfaceBrick;
 
         private Cycle blinkCycle;
 
         private Cycle bumpCycle;
 
         private bool isFinalized;
+
+        private bool isBrick;
 
         private BlockContent blockContent;
         #endregion
@@ -40,9 +45,53 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
         public AnarchyBlockSprite(double xPosition, double yPosition, Random random)
+            : this(xPosition, yPosition, random, BlockContent.Undefined, false)
+        {
+        }
+
+        /// <summary>
+        /// Create sprite
+        /// </summary>
+        /// <param name="xPosition">x position</param>
+        /// <param name="yPosition">y position</param>
+        /// <param name="random">random number generator</param>
+        /// <param name="blockContent">block's content</param>
+        /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
+        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, bool isBrick)
+            : this(xPosition, yPosition, random, BlockContent.Undefined, isBrick)
+        {
+        }
+
+        /// <summary>
+        /// Create sprite
+        /// </summary>
+        /// <param name="xPosition">x position</param>
+        /// <param name="yPosition">y position</param>
+        /// <param name="random">random number generator</param>
+        /// <param name="blockContent">block's content (default:undefined)</param>
+        /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
+        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, BlockContent blockContent, bool isBrick)
             : base(xPosition, yPosition, random)
         {
-            blockContent = BlockContent.Whisky;
+            this.isBrick = isBrick;
+            if (blockContent != BlockContent.Undefined)
+            {
+                this.blockContent = blockContent;
+            }
+            else
+            {
+                int blockContentId = random.Next(0, 7);
+                if (blockContentId == 1)
+                    this.blockContent = BlockContent.Whisky;
+                else if (blockContentId == 2)
+                    this.blockContent = BlockContent.Peyote;
+                else if (blockContentId == 3)
+                    this.blockContent = BlockContent.RastaHat;
+                else
+                    this.blockContent = BlockContent.MusicNote;
+            }
+
+            //blockContent = BlockContent.Whisky;
             isFinalized = false;
 
             if (surface1 == null || surface2 == null)
@@ -50,6 +99,7 @@ namespace AbrahmanAdventure.sprites
                 surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/anarchyBlock1.png");
                 surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/anarchyBlock2.png");
                 surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/anarchyBlock3.png");
+                surfaceBrick = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
             }
 
             bumpCycle = new Cycle(10, false);
@@ -112,6 +162,9 @@ namespace AbrahmanAdventure.sprites
             if (isFinalized)
                 return surface3;
 
+            if (isBrick)
+                return surfaceBrick;
+
             if (blinkCycle.GetCycleDivision(2) == 0)
                 return surface1;
             else
@@ -126,6 +179,18 @@ namespace AbrahmanAdventure.sprites
             {
                 case BlockContent.Whisky:
                     return new WhiskySprite(XPosition, TopBound, random);
+                case BlockContent.RastaHat:
+                    if (playerSprite.Health == playerSprite.MaxHealth)
+                    {
+                        RastaHatSprite rastaHatSprite = new RastaHatSprite(XPosition, TopBound, random);
+                        return rastaHatSprite;
+                    }
+                    else
+                    {
+                        MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
+                        mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                        return mushroomSprite;
+                    }
                 default:
                     if (playerSprite.Health == playerSprite.MaxHealth)
                     {
