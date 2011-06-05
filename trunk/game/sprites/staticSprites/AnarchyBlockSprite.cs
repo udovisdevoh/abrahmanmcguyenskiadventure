@@ -91,10 +91,6 @@ namespace AbrahmanAdventure.sprites
                     this.blockContent = BlockContent.MusicNote;
             }
 
-            #warning Remove this line (eventually)
-            this.blockContent = BlockContent.RastaHat;
-
-            //blockContent = BlockContent.Whisky;
             isFinalized = false;
 
             if (surface1 == null || surface2 == null)

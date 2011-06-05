@@ -481,7 +481,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedRightSurfaceRastaDoped()
         {
             if (crouchedRightSurfaceRastaDoped == null)
-                crouchedRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouched.png");
+                crouchedRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCroucheddoped.png");
 
             return crouchedRightSurfaceRastaDoped;
         }
@@ -680,7 +680,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame1RightSurfaceRastaDoped()
         {
             if (crouchedAttackFrame1RightSurfaceRastaDoped == null)
-                crouchedAttackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch1.png");
+                crouchedAttackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch1doped.png");
 
             return crouchedAttackFrame1RightSurfaceRastaDoped;
         }
@@ -711,7 +711,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame2RightSurfaceRastaDoped()
         {
             if (crouchedAttackFrame2RightSurfaceRastaDoped == null)
-                crouchedAttackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch2.png");
+                crouchedAttackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch2doped.png");
 
             return crouchedAttackFrame2RightSurfaceRastaDoped;
         }
