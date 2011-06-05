@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
                 }
-                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && !sprite.IsCrossGrounds)
                 {
                     UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
                 }

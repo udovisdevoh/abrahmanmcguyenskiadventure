@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Rasta hat (so player can fly)
     /// </summary>
-    internal class RastaHatSprite : MonsterSprite, IGrowable
+    internal class RastaHatSprite : MonsterSprite
     {
         #region Fields and parts
         /// <summary>
@@ -55,7 +55,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 25;
+            return 35;
         }
 
         protected override double BuildAttackingTime()
@@ -191,7 +191,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
-            return 100;
+            return 32;
         }
 
         protected override double BuildJumpProbability()
