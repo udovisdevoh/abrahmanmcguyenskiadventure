@@ -231,7 +231,7 @@ Musique générative
 	
 	Ce qui influence la musique
 	{
-		si le joueur est "dopé"
+		si le joueur est "dopé", "saoul" ou "rasta", si rasta et en train de voler
 		
 		si invincible (sera autre chose, genre une sorte de dopage)
 		
