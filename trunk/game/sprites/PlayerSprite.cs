@@ -1889,14 +1889,20 @@ namespace AbrahmanAdventure.sprites
                     if (IsTryingToWalkRight)
                     {
                         if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                        {
+                            xOffset = -0.33;
                             return GetFlyRightSurface(isShowDopedColor);
+                        }
                         else
                             return GetWalking1RightSurface(isShowDopedColor, isRasta);
                     }
                     else
                     {
                         if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                        {
+                            xOffset = 0.33;
                             return GetFlyLeftSurface(isShowDopedColor);
+                        }
                         else
                             return GetWalking1LeftSurface(isShowDopedColor, isRasta);
                     }
