@@ -214,7 +214,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="rastaHatSprite">rasta hat</param>
         private void UpdateTouchRastaHat(PlayerSprite playerSprite, RastaHatSprite rastaHatSprite)
         {
-            SoundManager.PlayPowerUpSound();
+            SoundManager.PlayReggaeSound();
             playerSprite.PowerUpAnimationCycle.Fire();
             if (playerSprite.IsTiny)
                 playerSprite.ChangingSizeAnimationCycle.Fire();

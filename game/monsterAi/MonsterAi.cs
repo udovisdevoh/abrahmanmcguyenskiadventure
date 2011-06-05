@@ -142,8 +142,13 @@ namespace AbrahmanAdventure.ai
 
                 if (monster.IsNoAiChangeDirectionByCycle)
                 {
+                    bool wasTryingToWalkRight = monster.IsTryingToWalkRight;
                     monster.ChangeDirectionNoAiCycle.Increment(timeDelta);
                     monster.IsTryingToWalkRight = monster.ChangeDirectionNoAiCycle.GetCycleDivision(2.0) == 1;
+                    if (wasTryingToWalkRight != monster.IsTryingToWalkRight)
+                    {
+                        monster.CurrentWalkingSpeed = 0;
+                    }
                 }
                 else
                 {
