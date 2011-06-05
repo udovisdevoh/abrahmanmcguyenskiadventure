@@ -45,6 +45,11 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Overrides
+        protected override bool BuildIsCrossGrounds()
+        {
+            return false;
+        }
+
         protected override double BuildJumpingTime()
         {
             return 0;

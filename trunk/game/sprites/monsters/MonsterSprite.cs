@@ -251,6 +251,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsCrossGrounds()
+        {
+            return false;
+        }
+
         protected override double BuildBounciness()
         {
             return 1.0;

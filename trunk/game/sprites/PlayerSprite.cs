@@ -1002,6 +1002,11 @@ namespace AbrahmanAdventure.sprites
         {
             return false;
         }
+        
+        protected override bool BuildIsCrossGrounds()
+        {
+            return false;
+        }
 
         /// <summary>
         /// Build width

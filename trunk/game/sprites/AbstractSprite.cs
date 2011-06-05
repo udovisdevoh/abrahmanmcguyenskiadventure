@@ -130,6 +130,11 @@ namespace AbrahmanAdventure.sprites
         private bool isAffectedByGravity;
 
         /// <summary>
+        /// Whether sprite can cross grounds when falling
+        /// </summary>
+        private bool isCrossGrounds;
+
+        /// <summary>
         /// Max falling speed
         /// </summary>
         private double maxFallingSpeed = double.PositiveInfinity;
@@ -256,6 +261,7 @@ namespace AbrahmanAdventure.sprites
             maxFallingSpeed = BuildMaxFallingSpeed();
             isImpassable = BuildIsImpassable();
             isAnnihilateOnExitScreen = BuildIsAnnihilateOnExitScreen();
+            isCrossGrounds = BuildIsCrossGrounds();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -266,6 +272,12 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Protected Abstract Methods
+        /// <summary>
+        /// Whether sprite can cross grounds when falling
+        /// </summary>
+        /// <returns>Whether sprite can cross grounds when falling</returns>
+        protected abstract bool BuildIsCrossGrounds();
+
         /// <summary>
         /// Whether sprite is impassable
         /// </summary>
@@ -712,6 +724,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isAffectedByGravity; }
             set { isAffectedByGravity = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite can cross grounds
+        /// </summary>
+        public bool IsCrossGrounds
+        {
+            get { return isCrossGrounds; }
+            set { isCrossGrounds = value; }
         }
 
         /// <summary>
