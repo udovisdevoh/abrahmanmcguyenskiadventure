@@ -25,8 +25,6 @@ faire un truc qui correspond à des cent, et un compteur dans le hud
 	Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)
 }
 
-sprite must not be squeezable on slope under block
-
 Faire gestion automatique de la population de sprite
 
 jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
