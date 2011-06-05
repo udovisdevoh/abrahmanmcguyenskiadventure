@@ -87,7 +87,15 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface attackFrame1RightSurface;
 
+        private static Surface attackFrame1RightSurfaceRasta;
+
+        private static Surface attackFrame1RightSurfaceRastaDoped;
+
         private static Surface attackFrame2RightSurface;
+
+        private static Surface attackFrame2RightSurfaceRasta;
+
+        private static Surface attackFrame2RightSurfaceRastaDoped;
 
         private static Surface kickFrame1RightSurface;
 
@@ -99,7 +107,15 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface attackFrame1LeftSurface;
 
+        private static Surface attackFrame1LeftSurfaceRasta;
+
+        private static Surface attackFrame1LeftSurfaceRastaDoped;
+
         private static Surface attackFrame2LeftSurface;
+
+        private static Surface attackFrame2LeftSurfaceRasta;
+
+        private static Surface attackFrame2LeftSurfaceRastaDoped;
 
         private static Surface kickFrame1LeftSurface;
 
@@ -496,9 +512,13 @@ namespace AbrahmanAdventure.sprites
             return standingRightSurfaceRastaDoped;
         }
 
-        private Surface GetAttackFrame2RightSurface(bool isDoped)
+        private Surface GetAttackFrame2RightSurface(bool isDoped, bool isRasta)
         {
-            if (isDoped)
+            if (isDoped && isRasta)
+                return GetAttackFrame2RightSurfaceRastaDoped();
+            else if (isRasta)
+                return GetAttackFrame2RightSurfaceRasta();
+            else if (isDoped)
                 return GetAttackFrame2RightSurfaceDoped();
 
             if (attackFrame2RightSurface == null)
@@ -507,15 +527,51 @@ namespace AbrahmanAdventure.sprites
             return attackFrame2RightSurface;
         }
 
-        private Surface GetAttackFrame1RightSurface(bool isDoped)
+        private Surface GetAttackFrame2RightSurfaceRastaDoped()
         {
-            if (isDoped)
+            if (attackFrame2RightSurfaceRastaDoped == null)
+                attackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch2doped.png");
+
+            return attackFrame2RightSurfaceRastaDoped;
+        }
+
+        private Surface GetAttackFrame2RightSurfaceRasta()
+        {
+            if (attackFrame2RightSurfaceRasta == null)
+                attackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch2.png");
+
+            return attackFrame2RightSurfaceRasta;
+        }
+
+        private Surface GetAttackFrame1RightSurface(bool isDoped, bool isRasta)
+        {
+            if (isDoped && isRasta)
+                return GetAttackFrame1RightSurfaceRastaDoped();
+            else if (isRasta)
+                return GetAttackFrame1RightSurfaceRasta();
+            else if (isDoped)
                 return GetAttackFrame1RightSurfaceDoped();
 
             if (attackFrame1RightSurface == null)
                 attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch1.png");
 
             return attackFrame1RightSurface;
+        }
+
+        private Surface GetAttackFrame1RightSurfaceRastaDoped()
+        {
+            if (attackFrame1RightSurfaceRastaDoped == null)
+                attackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch1doped.png");
+
+            return attackFrame1RightSurfaceRastaDoped;
+        }
+
+        private Surface GetAttackFrame1RightSurfaceRasta()
+        {
+            if (attackFrame1RightSurfaceRasta == null)
+                attackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch1.png");
+
+            return attackFrame1RightSurfaceRasta;
         }
 
         private Surface GetCrouchedAttackFrame1RightSurface(bool isDoped)
@@ -540,26 +596,66 @@ namespace AbrahmanAdventure.sprites
             return crouchedAttackFrame2RightSurface;
         }
 
-        private Surface GetAttackFrame2LeftSurface(bool isDoped)
+        private Surface GetAttackFrame2LeftSurface(bool isDoped, bool isRasta)
         {
-            if (isDoped)
+            if (isDoped && isRasta)
+                return GetAttackFrame2LeftSurfaceRastaDoped();
+            else if (isRasta)
+                return GetAttackFrame2LeftSurfaceRasta();
+            else if (isDoped)
                 return GetAttackFrame2LeftSurfaceDoped();
 
             if (attackFrame2LeftSurface == null)
-                attackFrame2LeftSurface = GetAttackFrame2RightSurface(false).CreateFlippedHorizontalSurface();
+                attackFrame2LeftSurface = GetAttackFrame2RightSurface(false, isRasta).CreateFlippedHorizontalSurface();
 
             return attackFrame2LeftSurface;
         }
 
-        private Surface GetAttackFrame1LeftSurface(bool isDoped)
+        private Surface GetAttackFrame2LeftSurfaceRastaDoped()
         {
-            if (isDoped)
+            if (attackFrame2LeftSurfaceRastaDoped == null)
+                attackFrame2LeftSurfaceRastaDoped = GetAttackFrame2RightSurfaceRastaDoped().CreateFlippedHorizontalSurface();
+
+            return attackFrame2LeftSurfaceRastaDoped;
+        }
+
+        private Surface GetAttackFrame2LeftSurfaceRasta()
+        {
+            if (attackFrame2LeftSurfaceRasta == null)
+                attackFrame2LeftSurfaceRasta = GetAttackFrame2RightSurfaceRasta().CreateFlippedHorizontalSurface();
+
+            return attackFrame2LeftSurfaceRasta;
+        }
+
+        private Surface GetAttackFrame1LeftSurface(bool isDoped, bool isRasta)
+        {
+            if (isDoped && isRasta)
+                return GetAttackFrame1LeftSurfaceRastaDoped();
+            else if (isRasta)
+                return GetAttackFrame1LeftSurfaceRasta();
+            else if (isDoped)
                 return GetAttackFrame1LeftSurfaceDoped();
 
             if (attackFrame1LeftSurface == null)
-                attackFrame1LeftSurface = GetAttackFrame1RightSurface(false).CreateFlippedHorizontalSurface();
+                attackFrame1LeftSurface = GetAttackFrame1RightSurface(false, isRasta).CreateFlippedHorizontalSurface();
 
             return attackFrame1LeftSurface;
+        }
+
+        private Surface GetAttackFrame1LeftSurfaceRastaDoped()
+        {
+            if (attackFrame1LeftSurfaceRastaDoped == null)
+                attackFrame1LeftSurfaceRastaDoped = GetAttackFrame1RightSurfaceRastaDoped().CreateFlippedHorizontalSurface();
+
+            return attackFrame1LeftSurfaceRastaDoped;
+        }
+
+        private Surface GetAttackFrame1LeftSurfaceRasta()
+        {
+            if (attackFrame1LeftSurfaceRasta == null)
+                attackFrame1LeftSurfaceRasta = GetAttackFrame1RightSurfaceRasta().CreateFlippedHorizontalSurface();
+
+            return attackFrame1LeftSurfaceRasta;
         }
 
         private Surface GetCrouchedAttackFrame2LeftSurface(bool isDoped)
@@ -1264,12 +1360,12 @@ namespace AbrahmanAdventure.sprites
                 if (IsTryingToWalkRight)
                 {
                     xOffset = 0.2;
-                    return GetAttackFrame1RightSurface(isShowDopedColor);
+                    return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
                 }
                 else
                 {
                     xOffset = -0.2;
-                    return GetAttackFrame1LeftSurface(isShowDopedColor);
+                    return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
                 }
             }
             else if (AttackingCycle.IsFired)
@@ -1422,12 +1518,12 @@ namespace AbrahmanAdventure.sprites
                             if (attackCycleDivision >= 4)
                             {
                                 xOffset = 0.6;
-                                return GetAttackFrame2RightSurface(isShowDopedColor);
+                                return GetAttackFrame2RightSurface(isShowDopedColor, isRasta);
                             }
                             else
                             {
                                 xOffset = 0.2;
-                                return GetAttackFrame1RightSurface(isShowDopedColor);
+                                return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
                             }
                         }
                         else
@@ -1435,12 +1531,12 @@ namespace AbrahmanAdventure.sprites
                             if (attackCycleDivision >= 4)
                             {
                                 xOffset = -0.6;
-                                return GetAttackFrame2LeftSurface(isShowDopedColor);
+                                return GetAttackFrame2LeftSurface(isShowDopedColor, isRasta);
                             }
                             else
                             {
                                 xOffset = -0.2;
-                                return GetAttackFrame1LeftSurface(isShowDopedColor);
+                                return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
                             }
                         }
                         #endregion
