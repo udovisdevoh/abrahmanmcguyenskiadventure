@@ -64,6 +64,8 @@ namespace AbrahmanAdventure
 
         public const double powerUpGrowthTime = 6.0;
 
+        public const double rastaFallingSpeed = 0.07;
+
         public static int tileSize = screenWidth / tileColumnCount;
 
         public static int totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
