@@ -49,6 +49,10 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
                 }
+                else if (sprite is PlayerSprite && otherSprite is RastaHatSprite && otherSprite.IsAlive)
+                {
+                    UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
+                }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null)
                 {
                     UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
@@ -197,9 +201,28 @@ namespace AbrahmanAdventure.physics
             if (playerSprite.IsTiny)
                 playerSprite.ChangingSizeAnimationCycle.Fire();
             playerSprite.IsTiny = false;
+            playerSprite.IsRasta = false;
             playerSprite.IsDoped = true;
             peyoteSprite.IsAlive = false;
             peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
+        /// <summary>
+        /// Touch rasta hat
+        /// </summary>
+        /// <param name="playerSprite">player sprite</param>
+        /// <param name="rastaHatSprite">rasta hat</param>
+        private void UpdateTouchRastaHat(PlayerSprite playerSprite, RastaHatSprite rastaHatSprite)
+        {
+            SoundManager.PlayPowerUpSound();
+            playerSprite.PowerUpAnimationCycle.Fire();
+            if (playerSprite.IsTiny)
+                playerSprite.ChangingSizeAnimationCycle.Fire();
+            playerSprite.IsTiny = false;
+            playerSprite.IsDoped = false;
+            playerSprite.IsRasta = true;
+            rastaHatSprite.IsAlive = false;
+            rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>
@@ -254,6 +277,8 @@ namespace AbrahmanAdventure.physics
 
                 if (sprite.IsDoped)
                     sprite.IsDoped = false;
+                if (sprite.IsRasta)
+                    sprite.IsRasta = false;
                 sprite.IsTiny = true;
 
                 sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;

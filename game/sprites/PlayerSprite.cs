@@ -189,6 +189,11 @@ namespace AbrahmanAdventure.sprites
         private bool isDoped = false;
 
         /// <summary>
+        /// Whether sprite can fly
+        /// </summary>
+        private bool isRasta = false;
+
+        /// <summary>
         /// Whether sprite is currently trying to throw a fire ball
         /// </summary>
         private bool isTryThrowingBall = false;
@@ -1485,6 +1490,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isDoped; }
             set { isDoped = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite can fly
+        /// </summary>
+        public bool IsRasta
+        {
+            get { return isRasta; }
+            set { isRasta = value; }
         }
 
         /// <summary>
