@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.sprites
         public RastaHatSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            MaxFallingSpeed = 0.05;
+            MaxFallingSpeed = 0.025;
             IsCrossGrounds = true;
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
@@ -55,7 +55,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 35;
+            return 30;
         }
 
         protected override double BuildAttackingTime()
@@ -191,7 +191,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
-            return 32;
+            return 38;
         }
 
         protected override double BuildJumpProbability()
