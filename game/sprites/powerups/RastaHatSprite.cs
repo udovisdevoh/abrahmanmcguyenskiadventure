@@ -34,6 +34,7 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             MaxFallingSpeed = 0.05;
+            IsCrossGrounds = true;
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
                 surface = BuildSpriteSurface("./assets/rendered/powerups/rastaHat.png");
