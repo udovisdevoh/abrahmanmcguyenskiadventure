@@ -125,6 +125,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsNoAiChangeDirectionByCycle()
+        {
+            return false;
+        }
+
         protected override double BuildJumpProbability()
         {
             return 0.0;
@@ -198,6 +203,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildHeight(Random random)
         {
             return 0.25;
+        }
+
+        protected override double BuildChangeDirectionNoAiCycleLength()
+        {
+            return 100;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)

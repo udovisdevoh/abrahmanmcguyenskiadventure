@@ -116,6 +116,16 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsNoAiChangeDirectionByCycle()
+        {
+            return false;
+        }
+
+        protected override double BuildChangeDirectionNoAiCycleLength()
+        {
+            return 100;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 100;

@@ -117,6 +117,11 @@ namespace AbrahmanAdventure.sprites
             return 0.5;
         }
 
+        protected override double BuildChangeDirectionNoAiCycleLength()
+        {
+            return 100;
+        }
+
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
             return false;
@@ -168,6 +173,11 @@ namespace AbrahmanAdventure.sprites
         }
 
         protected override bool BuildIsNoAiAlwaysBounce()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsNoAiChangeDirectionByCycle()
         {
             return false;
         }
