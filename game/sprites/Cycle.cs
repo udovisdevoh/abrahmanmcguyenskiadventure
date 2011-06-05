@@ -65,6 +65,7 @@ namespace AbrahmanAdventure.sprites
         public double CurrentValue
         {
             get { return currentValue; }
+            set { currentValue = value; }
         }
 
         public bool IsFinished

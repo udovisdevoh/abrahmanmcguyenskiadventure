@@ -252,6 +252,16 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsNoAiChangeDirectionByCycle()
+        {
+            return false;
+        }
+
+        protected override double BuildChangeDirectionNoAiCycleLength()
+        {
+            return 100;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;

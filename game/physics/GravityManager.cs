@@ -94,7 +94,7 @@ namespace AbrahmanAdventure.physics
             {
                 if (Math.Abs(speed) > Math.Abs(Program.rastaFallingSpeed))
                 {
-                    sprite.CurrentJumpAcceleration = -4.0 * timeDelta;
+                    sprite.CurrentJumpAcceleration = -16.0 * timeDelta;
                     return;
                 }
             }

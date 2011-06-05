@@ -25,6 +25,11 @@ namespace AbrahmanAdventure.sprites
         /// At the very end, the sprite will be transformed into another sprite (if fired)
         /// </summary>
         private Cycle spontaneousTransformationCycle;
+
+        /// <summary>
+        /// Some sprites change direction automatically according to a cycle
+        /// </summary>
+        private Cycle changeDirectionNoAiCycle;
         
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -50,6 +55,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite will change direction if no AI, when stucked
         /// </summary>
         private bool isNoAiChangeDirectionWhenStucked;
+
+        /// <summary>
+        /// Whether spritr will change direction (if no AI) using a cycle
+        /// </summary>
+        private bool isNoAiChangeDirectionByCycle;
 
         /// <summary>
         /// Whether monster is walking right, not left, when monster is not chasing player
@@ -121,8 +131,7 @@ namespace AbrahmanAdventure.sprites
             isWalkEnabled = true;
             kickedHelmetCycle = new Cycle(16.0,false);
             spontaneousTransformationCycle = new Cycle(256, false);
-            //defaultUndefinedSurface = new Surface((int)(this.Width * Program.tileSize), (int)(this.Height * Program.tileSize), Program.bitDepth);
-            //defaultUndefinedSurface.Fill(Color.Red);
+            changeDirectionNoAiCycle = new Cycle(BuildChangeDirectionNoAiCycleLength(),true);
             isCanJump = BuildIsCanJump(random);
             jumpProbability = BuildJumpProbability();
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
@@ -138,6 +147,9 @@ namespace AbrahmanAdventure.sprites
             isNoAiChangeDirectionWhenStucked = BuildIsNoAiChangeDirectionWhenStucked();
             isNoAiDieWhenStucked = BuildIsNoAiDieWhenStucked();
             isNoAiAlwaysBounce = BuildIsNoAiAlwaysBounce();
+            isNoAiChangeDirectionByCycle = BuildIsNoAiChangeDirectionByCycle();
+            if (isNoAiChangeDirectionByCycle)
+                changeDirectionNoAiCycle.Fire();
         }
         #endregion
 
@@ -227,10 +239,22 @@ namespace AbrahmanAdventure.sprites
         protected abstract bool BuildIsNoAiAlwaysBounce();
 
         /// <summary>
+        /// Whether spritr will change direction (if no AI) using a cycle
+        /// </summary>
+        /// <returns>Whether spritr will change direction (if no AI) using a cycle</returns>
+        protected abstract bool BuildIsNoAiChangeDirectionByCycle();
+
+        /// <summary>
         /// Probability of jumping (from 0 to 1)
         /// </summary>
         /// <returns>Probability of jumping (from 0 to 1)</returns>
         protected abstract double BuildJumpProbability();
+
+        /// <summary>
+        /// Some sprites change direction automatically
+        /// </summary>
+        /// <returns>Some sprites change direction automatically</returns>
+        protected abstract double BuildChangeDirectionNoAiCycleLength();
 
         /// <summary>
         /// Sprite when converted to another sprite (default: null)
@@ -284,6 +308,14 @@ namespace AbrahmanAdventure.sprites
         public Cycle SpontaneousTransformationCycle
         {
             get { return spontaneousTransformationCycle; }
+        }
+
+        /// <summary>
+        /// Change direction no AI cycle
+        /// </summary>
+        public Cycle ChangeDirectionNoAiCycle
+        {
+            get { return changeDirectionNoAiCycle; }
         }
 
         /// <summary>
@@ -408,6 +440,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsNoAiAlwaysBounce
         {
             get { return isNoAiAlwaysBounce; }
+        }
+
+        /// <summary>
+        /// Whether spritr will change direction (if no AI) using a cycle
+        /// </summary>
+        public bool IsNoAiChangeDirectionByCycle
+        {
+            get { return isNoAiChangeDirectionByCycle; }
         }
 
         /// <summary>

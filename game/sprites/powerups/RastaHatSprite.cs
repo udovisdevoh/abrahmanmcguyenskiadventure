@@ -38,6 +38,7 @@ namespace AbrahmanAdventure.sprites
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
                 surface = BuildSpriteSurface("./assets/rendered/powerups/rastaHat.png");
+            ChangeDirectionNoAiCycle.CurrentValue = random.NextDouble() * ChangeDirectionNoAiCycle.TotalTimeLength;
         }
         #endregion
 
@@ -181,6 +182,16 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsNoAiAlwaysBounce()
         {
             return false;
+        }
+
+        protected override bool BuildIsNoAiChangeDirectionByCycle()
+        {
+            return true;
+        }
+
+        protected override double BuildChangeDirectionNoAiCycleLength()
+        {
+            return 100;
         }
 
         protected override double BuildJumpProbability()
