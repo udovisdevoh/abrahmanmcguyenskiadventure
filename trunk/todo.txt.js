@@ -123,6 +123,11 @@ Monstres
 		mettre genre de couche
 	}
 	
+	Journaliste
+	{
+		Marionette (avec fils). Tient un micro
+	}
+	
 	Mormon
 	{
 		arme: bible
