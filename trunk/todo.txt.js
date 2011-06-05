@@ -4,11 +4,6 @@ si tiny
 	?briques ne sont pas détruites?
 }
 
-Raccon
-{
-	Rasta hat (volle avec cheveux)
-}
-
 À chaque boss: désolé c'était une marionnette
 {
 	Boss de la fin: grosse machine, puis vrai boss, contre sois-même
