@@ -255,6 +255,14 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface attackFrame2LeftSurfaceTinyDoped;
 
+        private static Surface flyRightSurface;
+
+        private static Surface flyRightSurfaceDoped;
+
+        private static Surface flyLeftSurface;
+
+        private static Surface flyLeftSurfaceDoped;
+
         private Cycle powerUpAnimationCycle;
 
         private Cycle changingSizeAnimationCycle;
@@ -1459,6 +1467,40 @@ namespace AbrahmanAdventure.sprites
 
             return hitRightSurfaceTinyDoped;
         }
+
+        private Surface GetFlyLeftSurface(bool isShowDopedColor)
+        {
+            if (isShowDopedColor)
+                return GetFlyLeftSurfaceDoped();
+
+            if (flyLeftSurface == null)
+                flyLeftSurface = GetFlyRightSurface(isShowDopedColor).CreateFlippedHorizontalSurface();
+            return flyLeftSurface;
+        }
+
+        private Surface GetFlyLeftSurfaceDoped()
+        {
+            if (flyLeftSurfaceDoped == null)
+                flyLeftSurfaceDoped = GetFlyRightSurfaceDoped().CreateFlippedHorizontalSurface();
+            return flyLeftSurfaceDoped;
+        }
+
+        private Surface GetFlyRightSurface(bool isShowDopedColor)
+        {
+            if (isShowDopedColor)
+                return GetFlyRightSurfaceDoped();
+
+            if (flyRightSurface == null)
+                flyRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/rastaFly.png");
+            return flyRightSurface;
+        }
+
+        private Surface GetFlyRightSurfaceDoped()
+        {
+            if (flyRightSurfaceDoped == null)
+                flyRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlydoped.png");
+            return flyRightSurfaceDoped;
+        }
         #endregion
 
         #region Overrides
@@ -1845,9 +1887,19 @@ namespace AbrahmanAdventure.sprites
                 {
                     #region Not tiny
                     if (IsTryingToWalkRight)
-                        return GetWalking1RightSurface(isShowDopedColor, isRasta);
+                    {
+                        if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            return GetFlyRightSurface(isShowDopedColor);
+                        else
+                            return GetWalking1RightSurface(isShowDopedColor, isRasta);
+                    }
                     else
-                        return GetWalking1LeftSurface(isShowDopedColor, isRasta);
+                    {
+                        if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            return GetFlyLeftSurface(isShowDopedColor);
+                        else
+                            return GetWalking1LeftSurface(isShowDopedColor, isRasta);
+                    }
                     #endregion
                 }
                 #endregion
