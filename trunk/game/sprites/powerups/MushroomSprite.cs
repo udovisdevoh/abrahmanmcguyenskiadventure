@@ -69,7 +69,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 0;
+            return 20;
         }
 
         protected override double BuildAttackingTime()

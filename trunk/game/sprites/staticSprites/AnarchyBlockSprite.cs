@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Anarchy block sprite
     /// </summary>
-    internal class AnarchyBlockSprite : StaticSprite
+    internal class AnarchyBlockSprite : StaticSprite, IBumpable
     {
         #region Fields and parts
         private static Surface surface1;

@@ -167,6 +167,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new AnarchyBlockSprite(19, -5, random));
             spritePopulation.Add(new AnarchyBlockSprite(20, -5, random));
 
+
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
 
             if (isFullScreen)
