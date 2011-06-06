@@ -42,6 +42,16 @@ namespace AbrahmanAdventure.sprites
         public RiotControlSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            GetWalkingRightSurface();
+            GetWalking2RightSurface();
+            GetWalkingLeftSurface();
+            GetWalking2LeftSurface();
+            GetStandingRightSurface();
+            GetStandingLeftSurface();
+            GetStanding2RightSurface();
+            GetStanding2LeftSurface();
+            GetDeadSurface();
+            GetDeadSurface2();
         }
 
         /// <summary>

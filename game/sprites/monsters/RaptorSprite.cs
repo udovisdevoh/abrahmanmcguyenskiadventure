@@ -40,6 +40,15 @@ namespace AbrahmanAdventure.sprites
         public RaptorSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            GetWalking1RightSurface();
+            GetWalking1LeftSurface();
+            GetWalking2RightSurface();
+            GetWalking2LeftSurface();
+            GetStandingRightSurface();
+            GetStandingLeftSurface();
+            GetHitRightSurface();
+            GetHitLeftSurface();
+            GetDeadSurface();
         }
         #endregion
 

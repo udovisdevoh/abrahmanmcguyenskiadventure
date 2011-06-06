@@ -32,6 +32,11 @@ namespace AbrahmanAdventure.sprites
         public SnakeSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            GetLeft1Surface();
+            GetLeft2Surface();
+            GetRight1Surface();
+            GetRight2Surface();
+            GetDeadSurface();
         }
         #endregion
 

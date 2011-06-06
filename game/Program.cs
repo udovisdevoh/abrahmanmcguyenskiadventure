@@ -124,7 +124,15 @@ namespace AbrahmanAdventure
             random = new Random();
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
+
+            #region Some pre-caching
             SoundManager.PreCache();
+            MushroomSprite mushroom = new MushroomSprite(0, 0, random);
+            PeyoteSprite peyote = new PeyoteSprite(0, 0, random);
+            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, random);
+            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, random);
+            WhiskySprite whisky = new WhiskySprite(0, 0, random);
+            #endregion
 
             level = new Level(random);
 
