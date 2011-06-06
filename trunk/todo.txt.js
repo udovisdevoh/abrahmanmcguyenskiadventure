@@ -14,6 +14,8 @@ si tiny
 	?must not take sprite ground if it's lower than current ground?
 }?
 
+Maybe increase maxCachedColumnCount = 100 to 1000 and do some prerendering when sprite not walking
+
 fix fire balls
 {
 	must show explode image when touching impassable sprite or monster
