@@ -124,6 +124,7 @@ namespace AbrahmanAdventure
             random = new Random();
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
+            SoundManager.PreCache();
 
             level = new Level(random);
 

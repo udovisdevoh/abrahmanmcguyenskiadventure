@@ -307,6 +307,148 @@ namespace AbrahmanAdventure.sprites
             changingSizeAnimationCycle = new Cycle(20, false);
             throwBallCycle = new Cycle(2.5, false);
             invincibilityCycle = new Cycle(400, false);
+
+            #region We preload the textures
+            GetDeadSurface();
+
+            GetWalking1RightSurface(false, false);
+            GetWalking1RightSurface(true, false);
+            GetWalking1RightSurface(false, true);
+            GetWalking1RightSurface(true, true);
+            GetWalking2RightSurface(false, false);
+            GetWalking2RightSurface(true, false);
+            GetWalking2RightSurface(false, true);
+            GetWalking2RightSurface(true, true);
+            GetWalking1LeftSurface(false, false);
+            GetWalking1LeftSurface(true, false);
+            GetWalking1LeftSurface(false, true);
+            GetWalking1LeftSurface(true, true);
+            GetWalking2LeftSurface(false, false);
+            GetWalking2LeftSurface(true, false);
+            GetWalking2LeftSurface(false, true);
+            GetWalking2LeftSurface(true, true);
+
+            GetStandingRightSurface(false, false);
+            GetStandingRightSurface(false, true);
+            GetStandingRightSurface(true, false);
+            GetStandingRightSurface(true, true);
+            GetStandingLeftSurface(false, false);
+            GetStandingLeftSurface(false, true);
+            GetStandingLeftSurface(true, false);
+            GetStandingLeftSurface(true, true);
+
+            GetCrouchedLeftSurface(false, false);
+            GetCrouchedLeftSurface(false, true);
+            GetCrouchedLeftSurface(true, false);
+            GetCrouchedLeftSurface(true, true);
+            GetCrouchedRightSurface(false, false);
+            GetCrouchedRightSurface(false, true);
+            GetCrouchedRightSurface(true, false);
+            GetCrouchedRightSurface(true, true);
+
+            GetCrouchedHitRightSurface(false);
+            GetCrouchedHitRightSurface(true);
+            GetCrouchedHitLeftSurface(false);
+            GetCrouchedHitLeftSurface(true);
+
+            GetHitRightSurface(false);
+            GetHitRightSurface(true);
+            GetHitLeftSurface(false);
+            GetHitLeftSurface(true);
+
+            GetAttackFrame1RightSurface(false, false);
+            GetAttackFrame1RightSurface(false, true);
+            GetAttackFrame1RightSurface(true, false);
+            GetAttackFrame1RightSurface(true, true);
+            GetAttackFrame2RightSurface(false, false);
+            GetAttackFrame2RightSurface(false, true);
+            GetAttackFrame2RightSurface(true, false);
+            GetAttackFrame2RightSurface(true, true);
+            GetAttackFrame1LeftSurface(false, false);
+            GetAttackFrame1LeftSurface(false, true);
+            GetAttackFrame1LeftSurface(true, false);
+            GetAttackFrame1LeftSurface(true, true);
+            GetAttackFrame2LeftSurface(false, false);
+            GetAttackFrame2LeftSurface(false, true);
+            GetAttackFrame2LeftSurface(true, false);
+            GetAttackFrame2LeftSurface(true, true);
+
+            GetCrouchedAttackFrame1RightSurface(false, false);
+            GetCrouchedAttackFrame1RightSurface(true, false);
+            GetCrouchedAttackFrame1RightSurface(false, true);
+            GetCrouchedAttackFrame1RightSurface(true, true);
+            GetCrouchedAttackFrame1LeftSurface(false, false);
+            GetCrouchedAttackFrame1LeftSurface(true, false);
+            GetCrouchedAttackFrame1LeftSurface(false, true);
+            GetCrouchedAttackFrame1LeftSurface(true, true);
+            GetCrouchedAttackFrame2RightSurface(false, false);
+            GetCrouchedAttackFrame2RightSurface(true, false);
+            GetCrouchedAttackFrame2RightSurface(false, true);
+            GetCrouchedAttackFrame2RightSurface(true, true);
+            GetCrouchedAttackFrame2LeftSurface(false, false);
+            GetCrouchedAttackFrame2LeftSurface(true, false);
+            GetCrouchedAttackFrame2LeftSurface(false, true);
+            GetCrouchedAttackFrame2LeftSurface(true, true);
+
+            GetKickFrame1RightSurface(false, false);
+            GetKickFrame1RightSurface(true, false);
+            GetKickFrame1RightSurface(false, true);
+            GetKickFrame1RightSurface(true, true);
+            GetKickFrame2RightSurface(false, false);
+            GetKickFrame2RightSurface(true, false);
+            GetKickFrame2RightSurface(false, true);
+            GetKickFrame2RightSurface(true, true);
+            GetKickFrame1LeftSurface(false, false);
+            GetKickFrame1LeftSurface(true, false);
+            GetKickFrame1LeftSurface(false, true);
+            GetKickFrame1LeftSurface(true, true);
+            GetKickFrame2LeftSurface(false, false);
+            GetKickFrame2LeftSurface(true, false);
+            GetKickFrame2LeftSurface(false, true);
+            GetKickFrame2LeftSurface(true, true);
+
+            GetFlyRightSurface(false);
+            GetFlyRightSurface(true);
+            GetFlyLeftSurface(false);
+            GetFlyLeftSurface(true);
+
+            GetWalking1RightSurfaceTiny(false);
+            GetWalking1RightSurfaceTiny(true);
+            GetWalking2RightSurfaceTiny(false);
+            GetWalking2RightSurfaceTiny(true);
+            GetWalking1LeftSurfaceTiny(false);
+            GetWalking1LeftSurfaceTiny(true);
+            GetWalking2LeftSurfaceTiny(false);
+            GetWalking2LeftSurfaceTiny(true);
+
+            GetKickFrame1RightSurfaceTiny(false);
+            GetKickFrame1RightSurfaceTiny(true);
+            GetKickFrame2RightSurfaceTiny(false);
+            GetKickFrame2RightSurfaceTiny(true);
+            GetKickFrame1LeftSurfaceTiny(false);
+            GetKickFrame1LeftSurfaceTiny(true);
+            GetKickFrame2LeftSurfaceTiny(false);
+            GetKickFrame2LeftSurfaceTiny(true);
+
+            GetAttackFrame1RightSurfaceTiny(false);
+            GetAttackFrame1RightSurfaceTiny(true);
+            GetAttackFrame2RightSurfaceTiny(false);
+            GetAttackFrame2RightSurfaceTiny(true);
+            GetAttackFrame1LeftSurfaceTiny(false);
+            GetAttackFrame1LeftSurfaceTiny(true);
+            GetAttackFrame2LeftSurfaceTiny(false);
+            GetAttackFrame2LeftSurfaceTiny(true);
+
+            GetHitRightSurfaceTiny(false);
+            GetHitRightSurfaceTiny(true);
+            GetHitLeftSurfaceTiny(false);
+            GetHitLeftSurfaceTiny(true);
+
+            GetStandingRightSurfaceTiny(false);
+            GetStandingRightSurfaceTiny(true);
+            GetStandingLeftSurfaceTiny(false);
+            GetStandingLeftSurfaceTiny(true);
+            #endregion
         }
         #endregion
 
@@ -971,7 +1113,6 @@ namespace AbrahmanAdventure.sprites
 
             return kickFrame1RightSurfaceRasta;
         }
-
 
         private Surface GetWalking2LeftSurfaceTiny(bool isShowDopedColor)
         {
