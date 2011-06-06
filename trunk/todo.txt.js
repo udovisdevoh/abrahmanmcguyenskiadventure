@@ -118,6 +118,10 @@ Monstres
 		mettre genre de couche
 	}
 	
+	équivalent de poisson
+	
+	équivalent de bullet bill
+	
 	Journaliste
 	{
 		Marionette (avec fils). Tient un micro
@@ -136,14 +140,19 @@ Monstres
 	
 	Mickey Mouse
 	
-	Musulman sunith
+	Musulmans
 	{
-		Lance des dynamites
-	}
+		comportement de bobomb
 	
-	Musulman shiite
-	{
-		Sabre courbé
+		Musulman sunith
+		{
+			Lance des dynamites
+		}
+		
+		Musulman shiite
+		{
+			Sabre courbé
+		}
 	}
 	
 	Avocat
