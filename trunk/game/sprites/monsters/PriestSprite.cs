@@ -14,9 +14,13 @@ namespace AbrahmanAdventure.sprites
         #region Fields and parts
         private static Surface deadSurface;
 
-        private static Surface walkingRightSurface;
+        private static Surface walking1RightSurface;
 
-        private static Surface walkingLeftSurface;
+        private static Surface walking1LeftSurface;
+
+        private static Surface walking2RightSurface;
+
+        private static Surface walking2LeftSurface;
 
         private static Surface standingRightSurface;
 
@@ -37,9 +41,11 @@ namespace AbrahmanAdventure.sprites
             {
                 standingRightSurface = BuildSpriteSurface("./assets/rendered/priest/stand.png");
                 standingLeftSurface = standingRightSurface.CreateFlippedHorizontalSurface();
-                walkingRightSurface = BuildSpriteSurface("./assets/rendered/priest/walk.png");
-                walkingLeftSurface = walkingRightSurface.CreateFlippedHorizontalSurface();
-                deadSurface = walkingRightSurface.CreateFlippedVerticalSurface();
+                walking1RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk1.png");
+                walking2RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk2.png");
+                walking1LeftSurface = walking1RightSurface.CreateFlippedHorizontalSurface();
+                walking2LeftSurface = walking2RightSurface.CreateFlippedHorizontalSurface();
+                deadSurface = walking1RightSurface.CreateFlippedVerticalSurface();
             }
         }
         #endregion
@@ -204,20 +210,27 @@ namespace AbrahmanAdventure.sprites
             if (CurrentJumpAcceleration != 0)
             {
                 if (IsTryingToWalkRight)
-                    return walkingRightSurface;
+                    return walking1RightSurface;
                 else
-                    return walkingLeftSurface;
+                    return walking1LeftSurface;
             }
             else if (CurrentWalkingSpeed != 0)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
                 if (cycleDivision == 1)
                 {
                     if (IsTryingToWalkRight)
-                        return walkingRightSurface;
+                        return walking1RightSurface;
                     else
-                        return walkingLeftSurface;
+                        return walking1LeftSurface;
+                }
+                else if (cycleDivision == 3)
+                {
+                    if (IsTryingToWalkRight)
+                        return walking2RightSurface;
+                    else
+                        return walking2LeftSurface;
                 }
                 else
                 {
