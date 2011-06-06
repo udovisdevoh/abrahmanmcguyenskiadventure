@@ -123,6 +123,7 @@ namespace AbrahmanAdventure.physics
                 return;
 
             sprite.IsNeedToJumpAgain = true;
+            AbstractSprite powerUpSprite = null;
 
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
             {
@@ -136,22 +137,67 @@ namespace AbrahmanAdventure.physics
                 else
                 {
                     SoundManager.PlayGrowSound();
-                    AbstractSprite powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
+                    powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
                     if (powerUpSprite is IGrowable)
                         ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                     spritePopulation.Add(powerUpSprite);
                 }
+
+                foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
+                    if (spriteStackedOnBlock.IGround == block && spriteStackedOnBlock is MonsterSprite && powerUpSprite != spriteStackedOnBlock)
+                        UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
             }
             else if (block.IsDestructible && block.IsAlive)
             {
-                SoundManager.PlayBricksSound();
-                block.HitCycle.Fire();
-                block.IsAlive = false;
-                block.IsAffectedByGravity = true;
+                if (sprite.IsTiny)
+                {
+                    SoundManager.PlayHelmetBumpSound();
+                    if (block is IBumpable)
+                        ((IBumpable)block).BumpCycle.Fire();
+
+                    foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
+                        if (spriteStackedOnBlock.IGround == block && spriteStackedOnBlock is MonsterSprite && powerUpSprite != spriteStackedOnBlock)
+                            UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
+                }
+                else
+                {
+                    SoundManager.PlayBricksSound();
+                    block.HitCycle.Fire();
+                    block.IsAlive = false;
+                    block.IsAffectedByGravity = true;
+                }
             }
             else
             {
                 SoundManager.PlayHelmetBumpSound();
+            }
+        }
+
+        /// <summary>
+        /// Reach sprite stacked on block by jumping under the block
+        /// </summary>
+        /// <param name="jumper">jumper</param>
+        /// <param name="monsterSprite">reached sprite</param>
+        /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">list of visible sprites</param>
+        /// <param name="spritePopulation">all the sprites in the level</param>
+        /// <param name="random">random number generator</param>
+        private void UpdateJumpUnderBlockReachSpriteStackedOnBlock(AbstractSprite jumper, MonsterSprite monsterSprite, Level level, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        {
+            if (monsterSprite.IsEnableJumpOnConversion)
+            {
+                AbstractSprite jumpedOnConvertedSprite = monsterSprite.GetConverstionSprite(random);
+                if (jumpedOnConvertedSprite != null)
+                    PerformSpriteConversion(jumper, monsterSprite, jumpedOnConvertedSprite, spritePopulation);
+            }
+            else 
+            {
+                monsterSprite.HitCycle.Fire();
+                monsterSprite.JumpingCycle.Fire();
+                monsterSprite.CurrentJumpAcceleration = monsterSprite.StartingJumpAcceleration;
+                monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
+                monsterSprite.CurrentDamageReceiving = jumper.AttackStrengthCollision;
+                monsterSprite.IsNoAiDefaultDirectionWalkingRight = jumper.XPositionPrevious < jumper.XPosition;
             }
         }
 

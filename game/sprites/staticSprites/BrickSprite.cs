@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents bricks (breakable or not), unbreakable are darker
     /// </summary>
-    internal class BrickSprite : StaticSprite
+    internal class BrickSprite : StaticSprite, IBumpable
     {
         #region Fields
         private static Surface destructibleSurface;
@@ -19,6 +19,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface indestructibleSurface;
 
         private static Surface destroyedSurface;
+
+        private Cycle bumpCycle;
         #endregion
 
         #region Constructors
@@ -31,6 +33,7 @@ namespace AbrahmanAdventure.sprites
         public BrickSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            bumpCycle = new Cycle(10, false);
             if (destructibleSurface == null || indestructibleSurface == null)
             {
                 indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
@@ -49,6 +52,7 @@ namespace AbrahmanAdventure.sprites
         public BrickSprite(double xPosition, double yPosition, Random random, bool isDestructible)
             : base(xPosition, yPosition, random, isDestructible)
         {
+            bumpCycle = new Cycle(10, false);
             if (destructibleSurface == null || indestructibleSurface == null)
             {
                 indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
@@ -102,12 +106,23 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
+            bumpCycle.Increment(1);
+            if (bumpCycle.IsFired)
+                yOffset = bumpCycle.CurrentValue / -20.0;
+
             if (!IsAlive)
                 return destroyedSurface;
             else if (IsDestructible)
                 return destructibleSurface;
             else
                 return indestructibleSurface;
+        }
+        #endregion
+
+        #region IBumpable Members
+        public Cycle BumpCycle
+        {
+            get { return bumpCycle; }
         }
         #endregion
     }
