@@ -132,7 +132,7 @@ namespace AbrahmanAdventure.physics
 
                 if (((AnarchyBlockSprite)block).BlockContent == BlockContent.MusicNote)
                 {
-                    SoundManager.PlayMusicNoteSound();
+                    SoundManager.PlayCoinSound();
                 }
                 else
                 {
@@ -278,7 +278,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="musicNoteSprite">music note</param>
         private void UpdateTouchMusicNote(PlayerSprite playerSprite, MusicNoteSprite musicNoteSprite)
         {
-            SoundManager.PlayMusicNoteSound();
+            SoundManager.PlayCoinSound();
             musicNoteSprite.IsAlive = false;
             musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }

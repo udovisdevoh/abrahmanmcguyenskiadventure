@@ -47,6 +47,8 @@ namespace AbrahmanAdventure.audio
         private static Sound musicNoteSound;
 
         private static Sound reggaeSound;
+
+        private static Sound coinSound;
         #endregion
 
         #region Constructors
@@ -70,6 +72,7 @@ namespace AbrahmanAdventure.audio
             drinkSound = LoadSound("./assets/sounds/Drink.ogg");
             musicNoteSound = LoadSound("./assets/sounds/MusicNote.ogg");
             reggaeSound = LoadSound("./assets/sounds/Reggae.ogg");
+            coinSound = LoadSound("./assets/sounds/Coin.ogg");
         }
 
         /// <summary>
@@ -176,6 +179,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayReggaeSound()
         {
             reggaeSound.Play();
+        }
+
+        internal static void PlayCoinSound()
+        {
+            coinSound.Play();
         }
         #endregion
     }
