@@ -32,6 +32,11 @@ namespace AbrahmanAdventure.sprites
         public BlobSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            GetLeft1Surface();
+            GetRight1Surface();
+            GetLeft2Surface();
+            GetRight2Surface();
+            GetDeadSurface();
         }
         #endregion
 

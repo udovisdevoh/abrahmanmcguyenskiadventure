@@ -54,6 +54,21 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             this.isBlack = isBlack;
+            GetWalking1aSurface();
+            GetWalking1bSurface();
+            GetWalking1cSurface();
+            GetWalking1dSurface();
+            GetWalking1eSurface();
+            GetWalking1fSurface();
+            GetDeadSurface();
+
+            GetWalking2aSurface();
+            GetWalking2bSurface();
+            GetWalking2cSurface();
+            GetWalking2dSurface();
+            GetWalking2eSurface();
+            GetWalking2fSurface();
+            GetDead2Surface();
         }
         #endregion
 

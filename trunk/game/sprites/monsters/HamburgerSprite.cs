@@ -32,6 +32,9 @@ namespace AbrahmanAdventure.sprites
         public HamburgerSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            GetSurface1();
+            GetSurface2();
+            GetDeadSurface();
         }
         #endregion
 

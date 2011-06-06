@@ -40,6 +40,15 @@ namespace AbrahmanAdventure.sprites
         public JewSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            GetWalking1RightSurface();
+            GetWalking2RightSurface();
+            GetWalking1LeftSurface();
+            GetWalking2LeftSurface();
+            GetStandingRightSurface();
+            GetStandingLeftSurface();
+            GetHitRightSurface();
+            GetHitLeftSurface();
+            GetDeadSurface();
         }
         #endregion
 
