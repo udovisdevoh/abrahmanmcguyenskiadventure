@@ -14,6 +14,16 @@ namespace AbrahmanAdventure.level
     {
         #region Fields and parts
         /// <summary>
+        /// Right most index
+        /// </summary>
+        private int rightMostIndex = 0;
+
+        /// <summary>
+        /// Left most index
+        /// </summary>
+        private int leftMostIndex = 0;
+
+        /// <summary>
         /// Internal cached zone surface list
         /// </summary>
         private Dictionary<int, Surface> internalDictionary = new Dictionary<int, Surface>();
@@ -43,6 +53,11 @@ namespace AbrahmanAdventure.level
         /// <param name="surface">surface</param>
         internal void Add(int index, Surface surface)
         {
+            if (index > rightMostIndex)
+                rightMostIndex = index;
+            else if (index < leftMostIndex)
+                leftMostIndex = index;
+
             internalDictionary.Add(index, surface);
             internalQueue.Enqueue(index);
         }
@@ -55,7 +70,12 @@ namespace AbrahmanAdventure.level
         {
             while (internalDictionary.Count > maxCachedColumnCount)
             {
-                internalDictionary.Remove(internalQueue.Dequeue());
+                int index = internalQueue.Dequeue();
+                if (index == leftMostIndex)
+                    leftMostIndex++;
+                else if (index == rightMostIndex)
+                    rightMostIndex--;
+                internalDictionary.Remove(index);
             }
         }
 
@@ -64,7 +84,22 @@ namespace AbrahmanAdventure.level
         /// </summary>
         internal void Clear()
         {
+            leftMostIndex = 0;
+            rightMostIndex = 0;
             internalDictionary.Clear();
+        }
+
+        /// <summary>
+        /// Get index of next unrendered zone
+        /// </summary>
+        /// <param name="isPlayerWalkingRight">is player walking right</param>
+        /// <returns>index of next unrendered zone</returns>
+        internal int GetNextUnrenderedZoneIndex(bool isPlayerWalkingRight)
+        {
+            if (isPlayerWalkingRight)
+                return rightMostIndex + 1;
+            else
+                return leftMostIndex - 1;
         }
         #endregion
 

@@ -125,15 +125,6 @@ namespace AbrahmanAdventure
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
 
-            #region Some pre-caching
-            SoundManager.PreCache();
-            MushroomSprite mushroom = new MushroomSprite(0, 0, random);
-            PeyoteSprite peyote = new PeyoteSprite(0, 0, random);
-            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, random);
-            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, random);
-            WhiskySprite whisky = new WhiskySprite(0, 0, random);
-            #endregion
-
             level = new Level(random);
 
             userInput = new UserInput();
@@ -187,6 +178,16 @@ namespace AbrahmanAdventure
             levelViewer = new LevelViewer(mainSurface);
             spriteViewer = new SpriteViewer(spritePopulation, mainSurface);
             hudViewer = new HudViewer(mainSurface);
+
+            #region Some pre-caching
+            SoundManager.PreCache();
+            MushroomSprite mushroom = new MushroomSprite(0, 0, random);
+            PeyoteSprite peyote = new PeyoteSprite(0, 0, random);
+            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, random);
+            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, random);
+            WhiskySprite whisky = new WhiskySprite(0, 0, random);
+            //levelViewer.PreCache(level);
+            #endregion
         }
         #endregion
 
@@ -480,13 +481,14 @@ namespace AbrahmanAdventure
             viewOffsetY = Math.Min(viewOffsetY, maxViewOffsetY);
             #endregion
 
-
             #region We update the viewers
             levelViewer.Update(level, viewOffsetX, viewOffsetY);
             spriteViewer.Update(viewOffsetX, viewOffsetY, playerSprite, visibleSpriteList, isOddFrame);
             hudViewer.Update(playerSprite.Health);
             mainSurface.Update();
             #endregion
+
+            //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
         }
 		#endregion
 		

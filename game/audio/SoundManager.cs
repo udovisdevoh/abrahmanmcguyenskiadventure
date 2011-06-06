@@ -83,10 +83,10 @@ namespace AbrahmanAdventure.audio
         private static Sound LoadSound(string fileName)
         {
             Sound soundPlayer = new Sound(fileName);
-            int previousVolume = soundPlayer.Volume;
+            /*int previousVolume = soundPlayer.Volume;
             soundPlayer.Volume = 0;
             soundPlayer.Play();
-            soundPlayer.Volume = previousVolume;
+            soundPlayer.Volume = previousVolume;*/
             return soundPlayer;
         }
         #endregion

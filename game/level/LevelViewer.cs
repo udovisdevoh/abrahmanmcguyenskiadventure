@@ -78,11 +78,51 @@ namespace AbrahmanAdventure.level
         }
 
         /// <summary>
+        /// If level viewer
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="isPlayerWalkingRight">whether player is walking right</param>
+        internal void PreCacheNextZoneIfLevelViewerCacheNotFull(Level level, bool isPlayerWalkingRight)
+        {
+            if (!levelViewerCache.IsFull)
+            {
+                int nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(isPlayerWalkingRight);
+                int absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
+                Surface nextZoneSurface = BuildZoneSurface(level, nextZoneIndex, absoluteXOffset);
+                levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
+            }
+        }
+
+        /// <summary>
         /// Clear level viewer cache
         /// </summary>
         internal void ClearCache()
         {
             levelViewerCache.Clear();
+        }
+
+        /// <summary>
+        /// Precache level viewer until cache is full
+        /// </summary>
+        /// <param name="level">level</param>
+        internal void PreCache(Level level)
+        {
+            while (!levelViewerCache.IsFull)
+            {
+                int nextZoneIndex;
+                int absoluteXOffset;
+                Surface nextZoneSurface;
+
+                nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(true);
+                absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
+                nextZoneSurface = BuildZoneSurface(level, nextZoneIndex, absoluteXOffset);
+                levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
+
+                /*nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(false);
+                absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
+                nextZoneSurface = BuildZoneSurface(level, nextZoneIndex, absoluteXOffset);
+                levelViewerCache.Add(nextZoneIndex, nextZoneSurface);*/
+            }
         }
         #endregion
 
