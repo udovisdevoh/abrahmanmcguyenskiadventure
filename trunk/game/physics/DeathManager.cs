@@ -41,6 +41,7 @@ namespace AbrahmanAdventure.physics
                     sprite.Health = ((PlayerSprite)sprite).DefaultHealth;
                     ((PlayerSprite)sprite).IsDoped = false;
                     ((PlayerSprite)sprite).IsRasta = false;
+                    ((PlayerSprite)sprite).InvincibilityCycle.StopAndReset();
                     ((PlayerSprite)sprite).IsTiny = true;
 
                     foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)

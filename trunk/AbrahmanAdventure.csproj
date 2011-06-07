@@ -64,6 +64,7 @@
     <Compile Include="game\physics\BattleManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
+    <Compile Include="game\physics\ExplosionManager.cs" />
     <Compile Include="game\physics\FireBallToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
     <Compile Include="game\ground\IGroundHelper.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
     <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
+    <Compile Include="game\sprites\monsters\IExplodable.cs" />
     <Compile Include="game\sprites\monsters\JewSprite.cs" />
     <Compile Include="game\sprites\monsters\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
@@ -618,6 +620,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Drink.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\Explosion.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\FireBall.ogg">
