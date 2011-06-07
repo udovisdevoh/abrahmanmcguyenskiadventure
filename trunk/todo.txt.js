@@ -1,6 +1,6 @@
 ?si tiny: son différent si jump?
 
-À chaque boss: désolé c'était une marionnette
+À chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
 	Boss de la fin: grosse machine, puis vrai boss, contre sois-même
 }
@@ -149,6 +149,8 @@ Monstres
 		doit tenir une croix dans sa main
 		mettre genre de couche
 	}
+	
+	truc chinois de censure
 	
 	équivalent de poisson
 	
