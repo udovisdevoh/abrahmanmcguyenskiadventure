@@ -150,6 +150,8 @@ Monstres
 		mettre genre de couche
 	}
 	
+	millitaire de l'armé américaine
+	
 	truc chinois de censure
 	
 	équivalent de poisson
