@@ -133,7 +133,7 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate is IExplodable)
                 explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
             else if (spriteToUpdate is ExplosionSprite && spriteToUpdate.IsAlive)
-                explosionManager.UpdateExplosion((ExplosionSprite)spriteToUpdate, timeDelta);
+                explosionManager.UpdateExplosion((ExplosionSprite)spriteToUpdate, visibleSpriteList, timeDelta);
         }
         #endregion
 
