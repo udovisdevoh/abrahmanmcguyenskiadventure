@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.physics
                 if (spriteToUpdate.CountDownCycle.IsFinished)
                 {
                     SoundManager.PlayExplosionSound();
-                    ExplosionSprite explosionSprite = new ExplosionSprite(((AbstractSprite)spriteToUpdate).XPosition, ((AbstractSprite)spriteToUpdate).YPosition, random);
+                    ExplosionSprite explosionSprite = new ExplosionSprite(((AbstractSprite)spriteToUpdate).XPosition, ((AbstractSprite)spriteToUpdate).YPosition + 1.0, random);
                     ((AbstractSprite)spriteToUpdate).IsAlive = false;
                     ((AbstractSprite)spriteToUpdate).YPosition = Program.totalHeightTileCount + 1.0;
                     spritePopulation.Add(explosionSprite);
@@ -44,7 +44,7 @@ namespace AbrahmanAdventure.physics
             }
         }
 
-        internal void UpdateExplosion(ExplosionSprite explosionSprite, double timeDelta)
+        internal void UpdateExplosion(ExplosionSprite explosionSprite, HashSet<AbstractSprite> visibleSpriteList, double timeDelta)
         {
             if (explosionSprite.ExplosionCycle.IsFired)
             {
@@ -55,6 +55,15 @@ namespace AbrahmanAdventure.physics
             {
                 explosionSprite.IsAlive = false;
                 explosionSprite.YPosition = Program.totalHeightTileCount + 1.0;
+            }
+
+            foreach (AbstractSprite otherMonster in visibleSpriteList)
+            {
+                if (otherMonster != explosionSprite && otherMonster is MonsterSprite)
+                {
+                    otherMonster.HitCycle.Fire();
+                    otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision;
+                }
             }
         }
     }
