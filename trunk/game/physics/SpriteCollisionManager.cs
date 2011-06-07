@@ -57,12 +57,9 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
                 }
-                else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
+                else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition && (!(otherSprite is MonsterSprite) || ((MonsterSprite)otherSprite).IsJumpableOn)) //Player IS jumping on the monster
                 {
-                    if (otherSprite is MonsterSprite && !(((MonsterSprite)otherSprite).IsJumpableOn))
-                        UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta);
-                    else
-                        UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
+                    UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
                 {
