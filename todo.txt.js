@@ -52,17 +52,21 @@ afficher path, ou pas, dépendant de la situation
 plateformes de largeur diverse
 
 
+
+shells must open anarchy blocks and break brick blocks
+
+
+if top speed
+{
+	play special sound (beep in loop)
+	do special jump (longer jump time)
+}
+
+
 ?si invincible -> nombre plus élevé de boules de feux sur l'écran?
 
 
-
-shells must open anarchy blocks
-
-
-
 ?add bouncing notes?
-add ? blocks and brick blocks
-add mushroom, flower, star, something to fly (leaf/feather/wings)
 ?add pipes or equivalent, must think about it first?
 {
 	could just be a teleporter to another level. You walk in it, and you go to another level, the game will remember the current level, so you can come back
@@ -79,10 +83,12 @@ add some water, lava etc
 
 Regler bug de zone de tile hyper repeté
 
-Éliminer ground avec régions cul de sac vertical, éliminer ground avec bosse à pic en loop toujours pareille
-
-on doit pouvoir passer au travers des pics verticaux en sautant (pas coller dessus)
-on doit pouvoir grimper sur les parroies verticales
+Possiblement réglé
+{
+	Éliminer ground avec régions cul de sac vertical, éliminer ground avec bosse à pic en loop toujours pareille
+	on doit pouvoir passer au travers des pics verticaux en sautant (pas coller dessus)
+}
+?on doit pouvoir grimper sur les parroies verticales
 
 glisser: doit attaquer monstrers (ne doit plus glisser sur pente trop douce)
 
@@ -93,23 +99,52 @@ fin de level
 	Changement de level
 }
 
-life powerup
+
+?on death, change level?
+?add key combination for self death (when stucked)?
+
+
 Miniboss?
-?Arme de longe portée si powerup?
-?Arme de portée moyenne?, (toujours là)?,  (agrandissable)? light saber? chainsaw?
-certains monstres doivent automatiquement sauter par dessus les trous
 certains monstres doivent se spawner directement sur le sol (probablement la majorité)
-cetrains monstres ne doivent pas avoir de flee mode
+
+Faire écran de menu
+{
+	Logo
+	
+	si dure trop longtemps, affiche "how to play"
+	
+	Menu
+	{
+		New game
+		?Load game?
+		Graphical options
+		{
+			Changer résolution
+		}
+		Setup controller
+		{
+			Config de joystick
+		}
+		How to play
+		{
+			Comment jouer (key comb)
+			Tous les monstres et leur noms
+		}
+	}
+}
 
 Monstres
 {
-	Stephenson Harpenstein: boss de la fin; Harper Frankenstein
-	
-	truc qui se comporte comme une plante carnivore (je sais pas quoi encore)
+	truc qui se comporte comme une plante carnivore (je sais pas quoi encore), possiblement pelle mécanique ou drill de pétrole
 
-	sarah palin
-
-	tom cruise
+	Bosses
+	{
+		Sarah Palin
+		Tom Cruise	
+		Ron Hubbard
+		Présidents de banque
+		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
+	}
 
 	Jesus raptor
 	{
@@ -141,21 +176,6 @@ Monstres
 	
 	Mickey Mouse
 	
-	Musulmans
-	{
-		comportement de bobomb
-	
-		Musulman sunith
-		{
-			Lance des dynamites
-		}
-		
-		Musulman shiite
-		{
-			Sabre courbé
-		}
-	}
-	
 	Avocat
 	
 	Juif hassidique (spelling?)
@@ -176,28 +196,23 @@ Monstres
 		Tea party trailer park guy
 	}
 	
-	Hindu
+	?Hindu
 	{
 		Lance des statuettes
-	}
+	}?
 	
-	Hippypocrite
+	?Hippypocrite
 	{
 		Lance bouteilles de fruitopia en plastique qui pollue
-	}
+	}?
 	
-	Yupi
+	?Yupi
 	{
 		Avec sweather attaché dans le cou
 		habit de tennis
-	}
+	}?
 	
-	Bobo
-	
-	Pedo-priest
-	{
-		En boxers du Canada et avec les jambes à l'air. Pencé par en avant avec les mains sorties comme pour faire un attouchement
-	}
+	?Bobo?
 	
 	Ronald mcdonalds
 	{
@@ -214,16 +229,16 @@ Monstres
 		lance des maïs monsanto
 	}
 	
-	Diseuse de bonne aventure
+	?Diseuse de bonne aventure
 	{
 		lance boule de crystal
-	}
+	}?
 	
-	Obese (4*4 tile)
+	?Obese (4*4 tile)
 	{
 		donne des coups de bedaine
 		en veston sans chemise avec un shaggy
-	}
+	}?
 }
 
 Musique générative
