@@ -131,7 +131,9 @@ namespace AbrahmanAdventure.physics
                 ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
 
             if (spriteToUpdate is IExplodable)
-                explosionManager.Update((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
+                explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
+            else if (spriteToUpdate is ExplosionSprite && spriteToUpdate.IsAlive)
+                explosionManager.UpdateExplosion((ExplosionSprite)spriteToUpdate, timeDelta);
         }
         #endregion
 

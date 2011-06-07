@@ -7,24 +7,18 @@ using SdlDotNet.Graphics;
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
-    /// Catholic priest
+    /// Represents an explosion
     /// </summary>
-    internal class PriestSprite : MonsterSprite
+    internal class ExplosionSprite : MonsterSprite
     {
         #region Fields and parts
-        private static Surface deadSurface;
+        private static Surface surface1;
 
-        private static Surface walking1RightSurface;
+        private static Surface surface2;
 
-        private static Surface walking1LeftSurface;
+        private static Surface surface3;
 
-        private static Surface walking2RightSurface;
-
-        private static Surface walking2LeftSurface;
-
-        private static Surface standingRightSurface;
-
-        private static Surface standingLeftSurface;
+        private Cycle explosionCycle;
         #endregion
 
         #region Constructors
@@ -34,18 +28,16 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public PriestSprite(double xPosition, double yPosition, Random random)
+        public ExplosionSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            if (deadSurface == null)
+            explosionCycle = new Cycle(15, false);
+            explosionCycle.Fire();
+            if (surface1 == null)
             {
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/priest/stand.png");
-                standingLeftSurface = standingRightSurface.CreateFlippedHorizontalSurface();
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk1.png");
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk2.png");
-                walking1LeftSurface = walking1RightSurface.CreateFlippedHorizontalSurface();
-                walking2LeftSurface = walking2RightSurface.CreateFlippedHorizontalSurface();
-                deadSurface = walking1RightSurface.CreateFlippedVerticalSurface();
+                surface1 = BuildSpriteSurface("./assets/rendered/effects/explosion1.png");
+                surface2 = BuildSpriteSurface("./assets/rendered/effects/explosion2.png");
+                surface3 = BuildSpriteSurface("./assets/rendered/effects/explosion3.png");
             }
         }
         #endregion
@@ -58,12 +50,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsAvoidFall(Random random)
         {
-            return random.Next(0, 2) == 1;
+            return false;
         }
 
         protected override bool BuildIsToggleWalkWhenJumpedOn()
@@ -73,12 +65,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsInstantKickConvertedSprite()
@@ -103,7 +95,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiChangeDirectionWhenStucked()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsNoAiDieWhenStucked()
@@ -123,17 +115,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsJumpableOn()
         {
-            return true;
+            return false;
         }
 
         protected override double BuildJumpProbability()
         {
-            return 0.2;
+            return 0.0;
         }
 
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
-            return 0.0;
+            return 1.0;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -148,47 +140,47 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 0.5;
+            return 100;
         }
 
         protected override double BuildJumpingTime()
         {
-            return 10.0;
+            return 0;
         }
 
         protected override double BuildWalkingCycleLength()
         {
-            return 3;
+            return 0.1;
         }
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0;
         }
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.20;
+            return 0;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.20;
+            return 0;
         }
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 8.0;
+            return 0;
         }
 
         protected override double BuildAttackingTime()
         {
-            return 4;
+            return 0;
         }
 
         protected override double BuildHitTime()
         {
-            return 32;
+            return 0;
         }
 
         protected override double BuildAttackStrengthCollision()
@@ -198,60 +190,38 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return 1.0;
+            return 4.0;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return 1.9;
+            return 4.0;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            if (!IsAlive)
-                return deadSurface;
+            int cycleDivision = ExplosionCycle.GetCycleDivision(100) % 3;
 
-            if (CurrentJumpAcceleration != 0)
+            if (cycleDivision == 1)
             {
-                if (IsTryingToWalkRight)
-                    return walking1RightSurface;
-                else
-                    return walking1LeftSurface;
+                return surface1;
             }
-            else if (CurrentWalkingSpeed != 0)
+            else if (cycleDivision == 2)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
-
-                if (cycleDivision == 1)
-                {
-                    if (IsTryingToWalkRight)
-                        return walking1RightSurface;
-                    else
-                        return walking1LeftSurface;
-                }
-                else if (cycleDivision == 3)
-                {
-                    if (IsTryingToWalkRight)
-                        return walking2RightSurface;
-                    else
-                        return walking2LeftSurface;
-                }
-                else
-                {
-                    if (IsTryingToWalkRight)
-                        return standingRightSurface;
-                    else
-                        return standingLeftSurface;
-                }
+                return surface2;
             }
             else
             {
-                if (IsTryingToWalkRight)
-                    return standingRightSurface;
-                else
-                    return standingLeftSurface;
+                return surface3;
             }
+        }
+        #endregion
+
+        #region Properties
+        public Cycle ExplosionCycle
+        {
+            get { return explosionCycle; }
         }
         #endregion
     }

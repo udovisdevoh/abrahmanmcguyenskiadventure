@@ -61,6 +61,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsJumpableOn()
+        {
+            return true;
+        }
+
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
             return false;
