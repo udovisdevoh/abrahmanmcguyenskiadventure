@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Muslim
     /// </summary>
-    internal class MuslimSprite : MonsterSprite
+    internal class MuslimSprite : MonsterSprite, IExplodable
     {
         #region Fields and parts
         private static Surface standRight;
@@ -29,6 +29,10 @@ namespace AbrahmanAdventure.sprites
         private static Surface walk2Left;
 
         private static Surface deadSurface;
+
+        private Cycle countDownCycle;
+
+        private double minDistanceFromPlayerToStartCountDown;
         #endregion
 
         #region Constructor
@@ -41,6 +45,9 @@ namespace AbrahmanAdventure.sprites
         public MuslimSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            minDistanceFromPlayerToStartCountDown = 5;
+            countDownCycle = new Cycle(125, false);
+
             if (standRight == null)
             {
                 standRight = BuildSpriteSurface("./assets/rendered/muslim/muslimStand.png");
@@ -275,6 +282,18 @@ namespace AbrahmanAdventure.sprites
                 else
                     return standLeft;
             }
+        }
+        #endregion
+
+        #region IExplodable Members
+        public double MinDistanceFromPlayerToStartCountDown
+        {
+            get { return minDistanceFromPlayerToStartCountDown; }
+        }
+
+        public Cycle CountDownCycle
+        {
+            get { return countDownCycle; }
         }
         #endregion
     }

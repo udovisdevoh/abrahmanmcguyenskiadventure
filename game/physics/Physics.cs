@@ -67,6 +67,11 @@ namespace AbrahmanAdventure.physics
         /// Manages collisions between fireball and monsters
         /// </summary>
         private FireBallToMonsterCollisionManager fireBallToMonsterCollisionManager = new FireBallToMonsterCollisionManager();
+
+        /// <summary>
+        /// Manages explosive sprites
+        /// </summary>
+        private ExplosionManager explosionManager = new ExplosionManager();
         #endregion
 
         #region Public Instance Methods
@@ -79,51 +84,54 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
-            walkingManager.Update(sprite, level, timeDelta, visibleSpriteList);
-            gravityManager.Update(sprite, level, timeDelta, visibleSpriteList);
-            jumpingManager.Update(sprite, timeDelta);
-            damageManager.Update(sprite, timeDelta);
-            deathManager.Update(sprite, timeDelta, spritePopulation, visibleSpriteList);
+            walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+            gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+            jumpingManager.Update(spriteToUpdate, timeDelta);
+            damageManager.Update(spriteToUpdate, timeDelta);
+            deathManager.Update(spriteToUpdate, timeDelta, spritePopulation, visibleSpriteList);
 
-            if (sprite is PlayerSprite || sprite is MonsterSprite)
+            if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {
-                spriteCollisionManager.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
+                spriteCollisionManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, spritePopulation, random);
 
-                if (sprite is PlayerSprite)
+                if (spriteToUpdate is PlayerSprite)
                 {
-                    battleManager.Update(sprite, level, timeDelta, visibleSpriteList);
-                    if (((PlayerSprite)sprite).PowerUpAnimationCycle.IsFired)
-                        ((PlayerSprite)sprite).PowerUpAnimationCycle.Increment(timeDelta);
+                    battleManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+                    if (((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.IsFired)
+                        ((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.Increment(timeDelta);
 
-                    if (((PlayerSprite)sprite).ChangingSizeAnimationCycle.IsFired)
-                        ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Increment(timeDelta);
+                    if (((PlayerSprite)spriteToUpdate).ChangingSizeAnimationCycle.IsFired)
+                        ((PlayerSprite)spriteToUpdate).ChangingSizeAnimationCycle.Increment(timeDelta);
 
-                    if (((PlayerSprite)sprite).ThrowBallCycle.IsFired)
-                        ((PlayerSprite)sprite).ThrowBallCycle.Increment(timeDelta);
+                    if (((PlayerSprite)spriteToUpdate).ThrowBallCycle.IsFired)
+                        ((PlayerSprite)spriteToUpdate).ThrowBallCycle.Increment(timeDelta);
 
-                    if (((PlayerSprite)sprite).InvincibilityCycle.IsFired)
-                        ((PlayerSprite)sprite).InvincibilityCycle.Increment(timeDelta);
+                    if (((PlayerSprite)spriteToUpdate).InvincibilityCycle.IsFired)
+                        ((PlayerSprite)spriteToUpdate).InvincibilityCycle.Increment(timeDelta);
 
-                    playerProjectileManager.Update((PlayerSprite)sprite, visibleSpriteList, spritePopulation, random);
+                    playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                 }
             }
             
-            if (sprite is HelmetSprite)
+            if (spriteToUpdate is HelmetSprite)
             {
-                helmetToMonsterCollisionManager.Update((HelmetSprite)sprite, level, visibleSpriteList);
+                helmetToMonsterCollisionManager.Update((HelmetSprite)spriteToUpdate, level, visibleSpriteList);
             }
-            else if (sprite is FireBallSprite)
+            else if (spriteToUpdate is FireBallSprite)
             {
-                fireBallToMonsterCollisionManager.Update((FireBallSprite)sprite, level, visibleSpriteList);
+                fireBallToMonsterCollisionManager.Update((FireBallSprite)spriteToUpdate, level, visibleSpriteList);
             }
 
-            if (sprite is MonsterSprite && ((MonsterSprite)sprite).IsEnableSpontaneousConversion)
-                spontaneousConversionManager.Update((MonsterSprite)sprite, spritePopulation, timeDelta, random);
+            if (spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsEnableSpontaneousConversion)
+                spontaneousConversionManager.Update((MonsterSprite)spriteToUpdate, spritePopulation, timeDelta, random);
 
-            if (sprite is IGrowable && ((IGrowable)sprite).GrowthCycle.IsFired)
-                ((IGrowable)sprite).GrowthCycle.Increment(timeDelta);
+            if (spriteToUpdate is IGrowable && ((IGrowable)spriteToUpdate).GrowthCycle.IsFired)
+                ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
+
+            if (spriteToUpdate is IExplodable)
+                explosionManager.Update((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
         }
         #endregion
 

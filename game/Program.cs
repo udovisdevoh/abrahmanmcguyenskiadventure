@@ -26,7 +26,7 @@ namespace AbrahmanAdventure
        
         public const bool isBindViewOffsetToPlayer = true;
 
-        public const bool isFullScreen = false;
+        public const bool isFullScreen = true;
 
         public const bool isHardwareSurface = true;
 
@@ -466,12 +466,12 @@ namespace AbrahmanAdventure
             }
             #endregion
 
-            physics.Update(playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
+            physics.Update(playerSprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
 
             foreach (AbstractSprite sprite in toUpdateSpriteList)
                 if (sprite != playerSprite)
                 {
-                    physics.Update(sprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
+                    physics.Update(sprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
                     if (sprite is MonsterSprite && sprite.IsAlive)
                         monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, random);
                 }
