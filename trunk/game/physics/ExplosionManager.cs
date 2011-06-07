@@ -44,6 +44,12 @@ namespace AbrahmanAdventure.physics
             }
         }
 
+        /// <summary>
+        /// Update explosion sprite
+        /// </summary>
+        /// <param name="explosionSprite">explosion sprite</param>
+        /// <param name="visibleSpriteList">list of visible sprite list</param>
+        /// <param name="timeDelta">time delta</param>
         internal void UpdateExplosion(ExplosionSprite explosionSprite, HashSet<AbstractSprite> visibleSpriteList, double timeDelta)
         {
             if (explosionSprite.ExplosionCycle.IsFired)
@@ -61,8 +67,11 @@ namespace AbrahmanAdventure.physics
             {
                 if (otherMonster != explosionSprite && otherMonster is MonsterSprite)
                 {
-                    otherMonster.HitCycle.Fire();
-                    otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision;
+                    if (Physics.IsDetectCollision(explosionSprite, otherMonster))
+                    {
+                        otherMonster.HitCycle.Fire();
+                        otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision;
+                    }
                 }
             }
         }
