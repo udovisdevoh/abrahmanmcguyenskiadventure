@@ -124,7 +124,7 @@ Monstres
 	
 	Journaliste
 	{
-		Marionette (avec fils). Tient un micro
+		Marionette (avec fil). Tient un micro
 	}
 	
 	Mormon
