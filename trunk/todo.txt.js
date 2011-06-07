@@ -1,8 +1,4 @@
-si tiny
-{
-	?son différent si jump?
-	?briques ne sont pas détruites?
-}
+?si tiny: son différent si jump?
 
 À chaque boss: désolé c'était une marionnette
 {
@@ -14,7 +10,7 @@ si tiny
 	?must not take sprite ground if it's lower than current ground?
 }?
 
-Maybe increase maxCachedColumnCount = 100 to 1000 and do some prerendering when sprite not walking
+?Maybe increase maxCachedColumnCount = 100 to 1000 and do some prerendering when sprite not walking?
 
 fix fire balls
 {
@@ -22,12 +18,12 @@ fix fire balls
 	ne doivent pas être affectées par les pentes à monter
 }
 
-faire un truc qui correspond à des cent, et un compteur dans le hud
+?compteur de "music note" dans le hud? si 100, ajoute une vie et reset compteur?? augmente score lorsque touche music note? affiche score dans hud?
 {
-	Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)
+	?Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)?
 }
 
-Must test implementation: jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
+Test implementation: jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
 
 Faire gestion automatique de la population de sprite
 {
