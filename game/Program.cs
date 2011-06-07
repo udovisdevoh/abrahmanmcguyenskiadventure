@@ -26,7 +26,7 @@ namespace AbrahmanAdventure
        
         public const bool isBindViewOffsetToPlayer = true;
 
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isHardwareSurface = true;
 
@@ -187,6 +187,7 @@ namespace AbrahmanAdventure
             RastaHatSprite rastaHat = new RastaHatSprite(0, 0, random);
             MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, random);
             WhiskySprite whisky = new WhiskySprite(0, 0, random);
+            ExplosionSprite explosion = new ExplosionSprite(0, 0, random);
             //levelViewer.PreCache(level);
             #endregion
         }

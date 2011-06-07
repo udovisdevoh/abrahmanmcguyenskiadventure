@@ -1025,7 +1025,7 @@ namespace AbrahmanAdventure.sprites
         {
             if (isDoped && isRasta)
                 return GetKickFrame2RightSurfaceRastaDoped();
-            else if (isDoped)
+            else if (isRasta)
                 return GetKickFrame2RightSurfaceRasta();
             else if (isDoped)
                 return GetKickFrame2RightSurfaceDoped();

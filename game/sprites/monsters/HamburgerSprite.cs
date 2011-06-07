@@ -120,6 +120,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsJumpableOn()
+        {
+            return true;
+        }
+
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;

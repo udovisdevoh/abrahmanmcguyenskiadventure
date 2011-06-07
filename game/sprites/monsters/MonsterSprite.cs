@@ -116,6 +116,11 @@ namespace AbrahmanAdventure.sprites
         /// If sprite has no AI, always jump when touch ground
         /// </summary>
         private bool isNoAiAlwaysBounce;
+
+        /// <summary>
+        /// Whether we can jump on this sprite
+        /// </summary>
+        private bool isJumpableOn;
         #endregion
 
         #region Constructors
@@ -147,6 +152,7 @@ namespace AbrahmanAdventure.sprites
             isNoAiChangeDirectionWhenStucked = BuildIsNoAiChangeDirectionWhenStucked();
             isNoAiDieWhenStucked = BuildIsNoAiDieWhenStucked();
             isNoAiAlwaysBounce = BuildIsNoAiAlwaysBounce();
+            isJumpableOn = BuildIsJumpableOn();
             isNoAiChangeDirectionByCycle = BuildIsNoAiChangeDirectionByCycle();
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
@@ -154,6 +160,12 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Abstract methods
+        /// <summary>
+        /// Whether we can jump on this sprite
+        /// </summary>
+        /// <returns>Whether we can jump on this sprite</returns>
+        protected abstract bool BuildIsJumpableOn();
+
         /// <summary>
         /// Whether monster is chasing player
         /// </summary>
@@ -448,6 +460,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsNoAiChangeDirectionByCycle
         {
             get { return isNoAiChangeDirectionByCycle; }
+        }
+
+        /// <summary>
+        /// Whether we can jump on this sprite
+        /// </summary>
+        public bool IsJumpableOn
+        {
+            get { return isJumpableOn; }
         }
 
         /// <summary>

@@ -256,6 +256,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsJumpableOn()
+        {
+            return true;
+        }
+
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
             return false;
