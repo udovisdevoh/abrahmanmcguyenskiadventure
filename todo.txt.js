@@ -1,3 +1,7 @@
+shorter bomb timer sound
+
+fix exception when touch explosion
+
 si tiny
 {
 	?son différent si jump?
