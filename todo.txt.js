@@ -1,7 +1,3 @@
-shorter bomb timer sound
-
-fix exception when touch explosion
-
 si tiny
 {
 	?son différent si jump?
@@ -31,11 +27,12 @@ faire un truc qui correspond à des cent, et un compteur dans le hud
 	Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)
 }
 
+Must test implementation: jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
+
 Faire gestion automatique de la population de sprite
-
-jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
-
-sprite dispatcher must not put anarchy block on a ambiguous height (too low to pass under, but it looks like not)
+{
+	sprite dispatcher must not put anarchy block on a ambiguous height (too low to pass under, but it looks like not)
+}
 
 collision detection
 {
