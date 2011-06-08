@@ -39,10 +39,10 @@ namespace AbrahmanAdventure
         /// </summary>
         private static bool isNeedRefresh = true;
 
-        /// <summary>
+        /*/// <summary>
         /// To cache rendered stuff from fonts
         /// </summary>
-        private static Dictionary<string, Surface> __textCache = new Dictionary<string, Surface>();
+        private static Dictionary<string, Surface> __textCache = new Dictionary<string, Surface>();*/
         #endregion
 
         #region Internal methods
@@ -82,10 +82,11 @@ namespace AbrahmanAdventure
         /// <returns>font text</returns>
         private static Surface GetFontText(string text)
         {
-            Surface surface;
+            /*Surface surface;
             if (!__textCache.TryGetValue(text, out surface))
                 surface = MenuFont.Render(text, System.Drawing.Color.White);
-            return surface;
+            return surface;*/
+            return MenuFont.Render(text, System.Drawing.Color.White);
         }
         #endregion
 

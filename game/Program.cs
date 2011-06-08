@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
 
         public const bool isFullScreen = false;
 
-        public const bool isShowMenuOnStart = true;
+        public const bool isShowMenuOnStart = false;
 
         public const bool isHardwareSurface = true;
 
