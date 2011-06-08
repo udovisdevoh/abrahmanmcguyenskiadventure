@@ -18,6 +18,10 @@ Faire écran de menu
 		{
 			Config de joystick
 		}
+		Audio
+		{
+			Volume de musique et de sons
+		}
 		How to play
 		{
 			Comment jouer (key comb)
