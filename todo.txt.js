@@ -26,6 +26,13 @@ Faire écran de menu
 	}
 }
 
+Storyline
+{
+	Each level must be a planet
+	Random name for planet
+	?generate spherical image? use textures?
+}
+
 ?si tiny: son différent si jump?
 
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
