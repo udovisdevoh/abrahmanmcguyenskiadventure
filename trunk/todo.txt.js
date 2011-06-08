@@ -113,7 +113,7 @@ if top speed
 		dans les level, tu trouve des seed d'aladdium. Parfois il faut battre un monstre boss pour l'avoir,
 		parfois c'est caché
 		
-		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans.
+		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans. (plus gros, look différent), affiche nombre minimum dessus
 		Lorsque tu entre dans ces pipe, tu va au niveau suivant (plus de sorte de sprite, certains levels sont plus grands)
 	}
 }
