@@ -9,7 +9,7 @@ Faire écran de menu
 	Menu
 	{
 		New game
-		?Load game?
+		Load game (?password?) lol
 		Graphical options
 		{
 			Changer résolution
@@ -109,6 +109,12 @@ if top speed
 		Tu rentre dans un tuyau ou un teleporteur, warp vortex, ou une porte
 		Chaque tuyau à un seed de départ (seed du level dans lequel se trouve le tuyau) et un seed de destination (seed du level généré).
 		Ça te téléporte dans un autre level à coté d'un tuyau, téléporteur, warp vortex ou porte dont le seed de destination est inversé par rapport au seed de source du tuyau de provenance
+		
+		dans les level, tu trouve des seed d'aladdium. Parfois il faut battre un monstre boss pour l'avoir,
+		parfois c'est caché
+		
+		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans.
+		Lorsque tu entre dans ces pipe, tu va au niveau suivant (plus de sorte de sprite, certains levels sont plus grands)
 	}
 }
 
