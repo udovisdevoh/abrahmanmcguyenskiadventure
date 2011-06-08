@@ -11,6 +11,7 @@ using AbrahmanAdventure.physics;
 using AbrahmanAdventure.ai;
 using AbrahmanAdventure.hud;
 using AbrahmanAdventure.audio;
+using AbrahmanAdventure.menu;
 
 namespace AbrahmanAdventure
 {
@@ -24,7 +25,7 @@ namespace AbrahmanAdventure
 
         public const bool isFullScreen = false;
 
-        public const bool isShowMenuOnStart = false;
+        public const bool isShowMenuOnStart = true;
 
         public const bool isHardwareSurface = true;
 
@@ -155,15 +156,41 @@ namespace AbrahmanAdventure
         {
             joystickManager.DefaultJoystickForRealAxes = null;
             if (args.Key == Key.Escape)
-                Events.QuitApplication();
+            {
+                if (!isShowMenu || (isShowMenu && gameState != null))
+                {
+                    GameMenu.Dirthen();
+                    isShowMenu = !isShowMenu;
+                }
+            }
+            else if (args.Key == Key.Return && isShowMenu)
+            {
+                GameMenu.Select(this);
+            }
             else if (args.Key == Key.LeftArrow)
+            {
+                if (isShowMenu)
+                    GameMenu.MoveLeft();
                 userInput.isPressLeft = true;
+            }
             else if (args.Key == Key.RightArrow)
+            {
+                if (isShowMenu)
+                    GameMenu.MoveRight();
                 userInput.isPressRight = true;
+            }
             else if (args.Key == Key.UpArrow)
+            {
+                if (isShowMenu)
+                    GameMenu.MoveUp();
                 userInput.isPressUp = true;
+            }
             else if (args.Key == Key.DownArrow)
+            {
+                if (isShowMenu)
+                    GameMenu.MoveDown();
                 userInput.isPressDown = true;
+            }
             else if (args.Key == Key.Space)
                 userInput.isPressJump = true;
             else if (args.Key == Key.LeftControl)
@@ -465,7 +492,35 @@ namespace AbrahmanAdventure
             mainSurface.Update();
         }
 		#endregion
-		
+
+        #region Properties
+        /// <summary>
+        /// Game's state
+        /// </summary>
+        public GameState GameState
+        {
+            get { return gameState; }
+            set { gameState = value; }
+        }
+
+        /// <summary>
+        /// Level viewer
+        /// </summary>
+        public LevelViewer LevelViewer
+        {
+            get { return levelViewer; }
+        }
+
+        /// <summary>
+        /// Whether we show menu
+        /// </summary>
+        public bool IsShowMenu
+        {
+            get { return isShowMenu; }
+            set { isShowMenu = value; }
+        }
+        #endregion
+
         #region Main
         public void Start()
         {
