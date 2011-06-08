@@ -6,7 +6,7 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure
 {
-    enum SubMenu { Main, Display, Controller, HowTo }
+    enum SubMenu { Main, Display, Controller, Audio, HowTo }
 
     /// <summary>
     /// Game's main menu
@@ -56,18 +56,20 @@ namespace AbrahmanAdventure
                 return;
 
             int mainMenuMarginLeft = (int)(Program.screenWidth * 0.32);
-            int mainMenuMarginTop = Program.screenHeight / 3;
-            int lineSpace = Program.screenHeight / 20;
+            int mainMenuMarginTop = (int)(Program.screenHeight * 0.28);
+            int lineSpace = Program.screenHeight / 22;
 
             if (currentSubMenu == SubMenu.Main)
             {
                 mainSurface.Blit(TitleScreen);
                 mainSurface.Blit(GetFontText("New game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
                 mainSurface.Blit(GetFontText("Load game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
-                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
-                mainSurface.Blit(GetFontText("Controller"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
-                mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
-                mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
+                mainSurface.Blit(GetFontText("Save game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+                mainSurface.Blit(GetFontText("Controller"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
+                mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
+                mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
             }
 
             isNeedRefresh = false;
