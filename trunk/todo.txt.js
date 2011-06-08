@@ -1,6 +1,6 @@
 ?si tiny: son différent si jump?
 
-À chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
+Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
 	Boss de la fin: grosse machine, puis vrai boss, contre sois-même
 }
