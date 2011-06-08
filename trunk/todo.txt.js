@@ -103,6 +103,13 @@ if top speed
 	could just be a teleporter to another level. You walk in it, and you go to another level, the game will remember the current level, so you can come back
 	//some levels could be inside a cave instead of being outside
 	//could maybe add some moutains in the background of some levels
+	
+	idée cool
+	{
+		Tu rentre dans un tuyau ou un teleporteur, warp vortex, ou une porte
+		Chaque tuyau à un seed de départ (seed du level dans lequel se trouve le tuyau) et un seed de destination (seed du level généré).
+		Ça te téléporte dans un autre level à coté d'un tuyau, téléporteur, warp vortex ou porte dont le seed de destination est inversé par rapport au seed de source du tuyau de provenance
+	}
 }
 
 mettre décorations anarchiques
