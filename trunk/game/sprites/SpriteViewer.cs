@@ -15,14 +15,11 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private Surface mainSurface;
-
-        private SpritePopulation spritePopulation;
         #endregion
 
         #region Constructor
-        public SpriteViewer(SpritePopulation spritePopulation, Surface mainSurface)
+        public SpriteViewer(Surface mainSurface)
         {
-            this.spritePopulation = spritePopulation;
             this.mainSurface = mainSurface;
         }
         #endregion

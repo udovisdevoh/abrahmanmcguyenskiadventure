@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
 
         public const bool isFullScreen = false;
 
-        public const bool isShowMenuOnStart = true;
+        public const bool isShowMenuOnStart = false;
 
         public const bool isHardwareSurface = true;
 
@@ -90,8 +90,6 @@ namespace AbrahmanAdventure
 
         private UserInput userInput;
 
-        private Level level;
-
         private LevelViewer levelViewer;
 
         private SpriteViewer spriteViewer;
@@ -106,9 +104,7 @@ namespace AbrahmanAdventure
 
         private Random random;
 
-        private SpritePopulation spritePopulation;
-
-        private PlayerSprite playerSprite;
+        private GameState gameState = null;
 
         private Physics physics;
 
@@ -125,55 +121,12 @@ namespace AbrahmanAdventure
         public Program()
         {
             physics = new Physics();
-            random = new Random();
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
-
-            level = new Level(random);
-
             userInput = new UserInput();
 
-            spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2,random);
-            spritePopulation.Add(playerSprite);
+            random = new Random();
 
-            #warning Eventually remove test monster sprites
-            spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new HamburgerSprite(65, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new SnakeSprite(80, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new JewSprite(120, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new RaptorSprite(160, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new JewSprite(-10, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new Trampoline(10, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new PriestSprite(-30, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new MuslimSprite(-40, Program.totalHeightTileCount / -2, random));
-
-            spritePopulation.Add(new BrickSprite(-10, -10, random, true));
-            spritePopulation.Add(new BrickSprite(-11, -10, random, true));
-            spritePopulation.Add(new BrickSprite(-11, -11, random, true));
-
-            spritePopulation.Add(new BrickSprite(5, -10, random,true));
-            spritePopulation.Add(new BrickSprite(5, -11, random,true));
-            spritePopulation.Add(new BrickSprite(5, -12, random));
-            spritePopulation.Add(new BrickSprite(6, -12, random));
-            spritePopulation.Add(new BrickSprite(5, -13, random));
-            spritePopulation.Add(new BrickSprite(6, -10, random));
-            spritePopulation.Add(new BrickSprite(7, -10, random));
-            spritePopulation.Add(new BrickSprite(8, -10, random));
-
-            spritePopulation.Add(new AnarchyBlockSprite(13, -20, random));
-            spritePopulation.Add(new AnarchyBlockSprite(14, -20, random, true));
-            spritePopulation.Add(new AnarchyBlockSprite(15, -15, random));
-            spritePopulation.Add(new AnarchyBlockSprite(16, -15, random, true));
-            spritePopulation.Add(new AnarchyBlockSprite(17, -10, random));
-            spritePopulation.Add(new AnarchyBlockSprite(18, -10, random));
-            spritePopulation.Add(new AnarchyBlockSprite(19, -5, random));
-            spritePopulation.Add(new AnarchyBlockSprite(20, -5, random));
-
-
-            spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
 
             if (isFullScreen)
                 Cursor.Hide();
@@ -181,7 +134,7 @@ namespace AbrahmanAdventure
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
             levelViewer = new LevelViewer(mainSurface);
-            spriteViewer = new SpriteViewer(spritePopulation, mainSurface);
+            spriteViewer = new SpriteViewer(mainSurface);
             hudViewer = new HudViewer(mainSurface);
 
             #region Some pre-caching
@@ -337,15 +290,6 @@ namespace AbrahmanAdventure
             #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it            
 
-            HashSet<AbstractSprite> toUpdateSpriteList;
-            HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
-
-            //We process the time multiplicator
-            double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
-            previousDateTime = DateTime.Now;
-
-            isOddFrame = !isOddFrame;
-
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
 
@@ -353,8 +297,23 @@ namespace AbrahmanAdventure
             {
                 GameMenu.ShowMenu(mainSurface);
             }
-            else
+            else //Main game loop starts here
             {
+                if (gameState == null)
+                    gameState = new GameState(random);
+
+                SpritePopulation spritePopulation = gameState.SpritePopulation;
+                PlayerSprite playerSprite = gameState.PlayerSprite;
+                Level level = gameState.Level;
+                HashSet<AbstractSprite> toUpdateSpriteList;
+                HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
+
+                //We process the time multiplicator
+                double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
+                previousDateTime = DateTime.Now;
+
+                isOddFrame = !isOddFrame;
+
                 #region We manage jumping input logic
                 playerSprite.IsTryingToJump = false;
                 if (userInput.isPressJump)
