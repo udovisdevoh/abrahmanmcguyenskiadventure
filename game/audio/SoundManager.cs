@@ -53,6 +53,8 @@ namespace AbrahmanAdventure.audio
         private static Sound explosionSound;
 
         private static Sound bombTimerSound;
+
+        private static Sound chargedSound;
         #endregion
 
         #region Constructors
@@ -79,6 +81,7 @@ namespace AbrahmanAdventure.audio
             coinSound = LoadSound("./assets/sounds/Coin.ogg");
             explosionSound = LoadSound("./assets/sounds/Explosion.ogg");
             bombTimerSound = LoadSound("./assets/sounds/BombTimer.ogg");
+            chargedSound = LoadSound("./assets/sounds/Charged.ogg");
         }
 
         /// <summary>
@@ -200,6 +203,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayBombTimerSound()
         {
             bombTimerSound.Play();
+        }
+
+        internal static void PlayChargedSound()
+        {
+            chargedSound.Play();
         }
         #endregion
     }
