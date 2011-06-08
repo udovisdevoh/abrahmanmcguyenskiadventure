@@ -1,3 +1,31 @@
+Mettre icon pour app, changer nom d'app
+
+Faire écran de menu
+{
+	Logo
+	
+	si dure trop longtemps, affiche "how to play"
+	
+	Menu
+	{
+		New game
+		?Load game?
+		Graphical options
+		{
+			Changer résolution
+		}
+		Setup controller
+		{
+			Config de joystick
+		}
+		How to play
+		{
+			Comment jouer (key comb)
+			Tous les monstres et leur noms
+		}
+	}
+}
+
 ?si tiny: son différent si jump?
 
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
@@ -103,31 +131,6 @@ fin de level
 Miniboss?
 certains monstres doivent se spawner directement sur le sol (probablement la majorité)
 
-Faire écran de menu
-{
-	Logo
-	
-	si dure trop longtemps, affiche "how to play"
-	
-	Menu
-	{
-		New game
-		?Load game?
-		Graphical options
-		{
-			Changer résolution
-		}
-		Setup controller
-		{
-			Config de joystick
-		}
-		How to play
-		{
-			Comment jouer (key comb)
-			Tous les monstres et leur noms
-		}
-	}
-}
 
 Monstres
 {
