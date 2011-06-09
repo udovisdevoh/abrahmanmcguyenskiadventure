@@ -18,11 +18,6 @@ namespace AbrahmanAdventure.level
         private List<Ground> groundList;
 
         /// <summary>
-        /// Level's sky
-        /// </summary>
-        private Sky sky;
-
-        /// <summary>
         /// Represents wave modelization of holes in a level
         /// </summary>
         private HoleSet holeSet;
@@ -36,7 +31,6 @@ namespace AbrahmanAdventure.level
         /// <param name="colorTheme">color theme</param>
         public Level(Random random, ColorTheme colorTheme)
         {
-            sky = new Sky(random);
             groundList = new List<Ground>();
             holeSet = new HoleSet(random);
 
@@ -121,14 +115,6 @@ namespace AbrahmanAdventure.level
         public int Count
         {
             get { return groundList.Count; }
-        }
-
-        /// <summary>
-        /// Sky
-        /// </summary>
-        public Sky Sky
-        {
-            get { return sky; }
         }
 
         /// <summary>

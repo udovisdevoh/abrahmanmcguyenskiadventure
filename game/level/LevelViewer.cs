@@ -52,7 +52,8 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="colorTheme">color theme</param>
-        internal void Update(Level level, ColorTheme colorTheme, double viewOffsetX, double viewOffsetY)
+        /// <param name="sky">sky</param>
+        internal void Update(Level level, ColorTheme colorTheme, Sky sky, double viewOffsetX, double viewOffsetY)
         {
             viewOffsetX *= Program.tileSize * -1;
             viewOffsetY *= Program.tileSize;
@@ -60,7 +61,7 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = viewOffsetX % (double)Program.totalZoneWidth;
 
-            mainSurface.Blit(level.Sky.Surface,new Point(0,Sky.skyHeight / -4));
+            mainSurface.Blit(sky.Surface, new Point(0,Sky.skyHeight / -4));
             
             for (int currentZoneOffset = -Program.terrainColumnBufferLeftCount; currentZoneOffset < Program.terrainColumnBufferRightCount; currentZoneOffset++)
             {

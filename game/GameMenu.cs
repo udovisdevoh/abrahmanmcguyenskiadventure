@@ -220,6 +220,7 @@ namespace AbrahmanAdventure.menu
         private static void Select(Program program)
         {
             SoundManager.PlayPunchSound();
+            keyCycle.StopAndReset();
             Dirthen();
             if (currentSubMenu == SubMenu.Main)
             {
@@ -244,6 +245,7 @@ namespace AbrahmanAdventure.menu
         private static void Escape()
         {
             currentSubMenu = SubMenu.Main;
+            keyCycle.StopAndReset();
             Dirthen();
         }
         #endregion
