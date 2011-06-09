@@ -23,11 +23,6 @@ namespace AbrahmanAdventure.level
         private Sky sky;
 
         /// <summary>
-        /// Color theme
-        /// </summary>
-        private ColorTheme colorTheme;
-
-        /// <summary>
         /// Represents wave modelization of holes in a level
         /// </summary>
         private HoleSet holeSet;
@@ -38,10 +33,10 @@ namespace AbrahmanAdventure.level
         /// Use level generator instead
         /// </summary>
         /// <param name="random">random number generator</param>
-        public Level(Random random)
+        /// <param name="colorTheme">color theme</param>
+        public Level(Random random, ColorTheme colorTheme)
         {
             sky = new Sky(random);
-            colorTheme = new ColorTheme(random);
             groundList = new List<Ground>();
             holeSet = new HoleSet(random);
 
@@ -60,7 +55,7 @@ namespace AbrahmanAdventure.level
                 wave.Normalize(normalizationFactor, false);
 
                 //level.AddTerrainWave(new Ground(wave, random));
-                BuildNewGround(wave, random, ColorTheme.GetColor(waveCount - i - 1),holeSet);
+                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet);
             }
         }
         #endregion
@@ -144,14 +139,6 @@ namespace AbrahmanAdventure.level
         public Ground this[int index]
         {
             get { return groundList[index]; }
-        }
-
-        /// <summary>
-        /// Color theme
-        /// </summary>
-        public ColorTheme ColorTheme
-        {
-            get { return colorTheme; }
         }
         #endregion
     }

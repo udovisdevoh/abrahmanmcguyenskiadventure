@@ -30,6 +30,11 @@ namespace AbrahmanAdventure
         private PlayerSprite playerSprite;
 
         /// <summary>
+        /// Color theme
+        /// </summary>
+        private ColorTheme colorTheme;
+
+        /// <summary>
         /// Name of the environment
         /// </summary>
         private string name;
@@ -43,7 +48,8 @@ namespace AbrahmanAdventure
         public GameState(Random random)
         {
             name = TextGenerator.GenerateName(random);
-            level = new Level(random);
+            colorTheme = new ColorTheme(random);
+            level = new Level(random, colorTheme);
             spritePopulation = new SpritePopulation();
             playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
             spritePopulation.Add(playerSprite);
@@ -129,6 +135,14 @@ namespace AbrahmanAdventure
         public string Name
         {
             get { return name; }
+        }
+
+        /// <summary>
+        /// Color theme
+        /// </summary>
+        public ColorTheme ColorTheme
+        {
+            get { return colorTheme; }
         }
         #endregion
     }
