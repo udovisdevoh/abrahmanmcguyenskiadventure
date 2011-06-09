@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.menu
         internal static void ShowLoadingScreen(Surface mainSurface)
         {
             mainSurface.Fill(System.Drawing.Color.Black);
-            mainSurface.Blit(GetFontText("Loading..."), new System.Drawing.Point(Program.screenWidth / 36*15, Program.screenHeight / 12 * 11));
+            mainSurface.Blit(GetFontText("Loading..."), new System.Drawing.Point(Program.screenWidth / 36*15, Program.screenHeight / 48));
         }
 
         /// <summary>

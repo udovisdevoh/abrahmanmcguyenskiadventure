@@ -1,5 +1,7 @@
 Mettre icon pour app, changer nom d'app
 
+possibilité de transporter une carapace et de la lancer (en haut aussi)
+
 Faire écran de menu
 {
 	Logo
@@ -33,7 +35,7 @@ Faire écran de menu
 Storyline
 {
 	Each level must be a planet
-	Random name for planet
+	Random name for planet (show while loading), show planet image too (spherical)
 	?generate spherical image? use textures?
 }
 
