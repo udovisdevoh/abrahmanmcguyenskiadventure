@@ -161,6 +161,7 @@ namespace AbrahmanAdventure
                 {
                     GameMenu.Dirthen();
                     isShowMenu = !isShowMenu;
+                    previousDateTime = DateTime.Now;//To reset time delta
                 }
             }
             else if (args.Key == Key.LeftArrow)
@@ -309,10 +310,12 @@ namespace AbrahmanAdventure
             {
                 if (gameState == null)
                 {
+                    GC.Collect();
                     GameMenu.ShowLoadingScreen(mainSurface);
                     mainSurface.Update();
                     gameState = new GameState(random);
                     levelViewer.ClearCache();
+                    GC.Collect();
                 }
 
                 SpritePopulation spritePopulation = gameState.SpritePopulation;
