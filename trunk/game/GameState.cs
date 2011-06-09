@@ -35,6 +35,11 @@ namespace AbrahmanAdventure
         private ColorTheme colorTheme;
 
         /// <summary>
+        /// Level's sky
+        /// </summary>
+        private Sky sky;
+
+        /// <summary>
         /// Name of the environment
         /// </summary>
         private string name;
@@ -49,6 +54,7 @@ namespace AbrahmanAdventure
         {
             name = TextGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
+            sky = new Sky(random);
             level = new Level(random, colorTheme);
             spritePopulation = new SpritePopulation();
             playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
@@ -143,6 +149,15 @@ namespace AbrahmanAdventure
         public ColorTheme ColorTheme
         {
             get { return colorTheme; }
+        }
+
+
+        /// <summary>
+        /// Sky
+        /// </summary>
+        public Sky Sky
+        {
+            get { return sky; }
         }
         #endregion
     }
