@@ -110,6 +110,10 @@
     <Compile Include="game\sprites\StaticSprite.cs" />
     <Compile Include="game\sprites\staticSprites\IBumpable.cs" />
     <Compile Include="game\sprites\staticSprites\Trampoline.cs" />
+    <Compile Include="game\textGenerator\Matrix.cs" />
+    <Compile Include="game\textGenerator\Probabilities.cs" />
+    <Compile Include="game\textGenerator\TextGenerator.cs" />
+    <Compile Include="game\textGenerator\XmlMatrixSaverLoader.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\UserInput.cs" />
     <Compile Include="game\waves\AbstractWave.cs" />
@@ -645,6 +649,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Trampoline.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="game\textGenerator\english.language.matrix.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="jpeg.dll">

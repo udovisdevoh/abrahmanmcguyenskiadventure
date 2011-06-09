@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.textGenerator;
 
 namespace AbrahmanAdventure
 {
@@ -27,6 +28,11 @@ namespace AbrahmanAdventure
         /// Player's sprite
         /// </summary>
         private PlayerSprite playerSprite;
+
+        /// <summary>
+        /// Name of the environment
+        /// </summary>
+        private string name;
         #endregion
 
         #region Constructor
@@ -36,12 +42,13 @@ namespace AbrahmanAdventure
         /// <param name="random"></param>
         public GameState(Random random)
         {
+            name = TextGenerator.GenerateName(random);
             level = new Level(random);
             spritePopulation = new SpritePopulation();
             playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
             spritePopulation.Add(playerSprite);
 
-            #warning Eventually remove test monster sprites
+            #warning Eventually remove test sprites
             AddHardCodedTestSprite(random);
         }
         #endregion
@@ -114,6 +121,14 @@ namespace AbrahmanAdventure
         public PlayerSprite PlayerSprite
         {
             get { return playerSprite; }
+        }
+
+        /// <summary>
+        /// Name of the environment
+        /// </summary>
+        public string Name
+        {
+            get { return name; }
         }
         #endregion
     }
