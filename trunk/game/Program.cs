@@ -173,7 +173,7 @@ namespace AbrahmanAdventure
                 userInput.isPressUp = true;
             else if (args.Key == Key.DownArrow)
                 userInput.isPressDown = true;
-            else if (args.Key == Key.Space || args.Key == Key.Return)
+            else if (args.Key == Key.Space || args.Key == Key.Return || args.Key == Key.KeypadEnter)
                 userInput.isPressJump = true;
             else if (args.Key == Key.LeftControl)
                 userInput.isPressAttack = true;
