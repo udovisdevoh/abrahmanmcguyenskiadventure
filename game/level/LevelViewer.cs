@@ -51,7 +51,8 @@ namespace AbrahmanAdventure.level
         /// <param name="level">level</param>
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
-        internal void Update(Level level, double viewOffsetX, double viewOffsetY)
+        /// <param name="colorTheme">color theme</param>
+        internal void Update(Level level, ColorTheme colorTheme, double viewOffsetX, double viewOffsetY)
         {
             viewOffsetX *= Program.tileSize * -1;
             viewOffsetY *= Program.tileSize;
@@ -67,7 +68,7 @@ namespace AbrahmanAdventure.level
                 if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
                 {
                 	int absoluteXOffset = (int)(Math.Round((double)zoneColumnIndex * (double)Program.totalZoneWidth));
-                	currentSurface = BuildZoneSurface(level, zoneColumnIndex + currentZoneOffset, absoluteXOffset);
+                    currentSurface = BuildZoneSurface(level, colorTheme, zoneColumnIndex + currentZoneOffset, absoluteXOffset);
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
@@ -82,13 +83,14 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="level">level</param>
         /// <param name="isPlayerWalkingRight">whether player is walking right</param>
-        internal void PreCacheNextZoneIfLevelViewerCacheNotFull(Level level, bool isPlayerWalkingRight)
+        /// <param name="colorTheme">color theme</param>
+        internal void PreCacheNextZoneIfLevelViewerCacheNotFull(Level level, ColorTheme colorTheme, bool isPlayerWalkingRight)
         {
             if (!levelViewerCache.IsFull)
             {
                 int nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(isPlayerWalkingRight);
                 int absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
-                Surface nextZoneSurface = BuildZoneSurface(level, nextZoneIndex, absoluteXOffset);
+                Surface nextZoneSurface = BuildZoneSurface(level, colorTheme, nextZoneIndex, absoluteXOffset);
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
             }
         }
@@ -105,7 +107,8 @@ namespace AbrahmanAdventure.level
         /// Precache level viewer until cache is full
         /// </summary>
         /// <param name="level">level</param>
-        internal void PreCache(Level level)
+        /// <param name="colorTheme">color theme</param>
+        internal void PreCache(Level level, ColorTheme colorTheme)
         {
             while (!levelViewerCache.IsFull)
             {
@@ -115,7 +118,7 @@ namespace AbrahmanAdventure.level
 
                 nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(true);
                 absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
-                nextZoneSurface = BuildZoneSurface(level, nextZoneIndex, absoluteXOffset);
+                nextZoneSurface = BuildZoneSurface(level, colorTheme, nextZoneIndex, absoluteXOffset);
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
 
                 /*nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(false);
@@ -133,8 +136,9 @@ namespace AbrahmanAdventure.level
         /// <param name="level">level</param>
         /// <param name="zoneColumnIndex">zone column index</param>
         /// <param name="absoluteXOffset">absolute x index</param>
+        /// <param name="colorTheme">color theme</param>
         /// <returns>zone surface</returns>
-        private Surface BuildZoneSurface(Level level, int zoneColumnIndex, int absoluteXOffset)
+        private Surface BuildZoneSurface(Level level, ColorTheme colorTheme, int zoneColumnIndex, int absoluteXOffset)
         {
             Rectangle rectangle;
             Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
@@ -145,7 +149,7 @@ namespace AbrahmanAdventure.level
             int themeColorId = level.Count - 1;
             foreach (Ground ground in level)
             {
-                Color waveColor = level.ColorTheme.GetColor(themeColorId);
+                Color waveColor = colorTheme.GetColor(themeColorId);
                 
                 themeColorId--;
 
