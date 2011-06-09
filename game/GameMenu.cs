@@ -5,6 +5,7 @@ using System.Text;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
 using AbrahmanAdventure.audio;
+using AbrahmanAdventure.sprites;
 
 namespace AbrahmanAdventure.menu
 {
@@ -32,6 +33,11 @@ namespace AbrahmanAdventure.menu
         private static SubMenu currentSubMenu = SubMenu.Main;
 
         /// <summary>
+        /// Key cycle
+        /// </summary>
+        private static Cycle keyCycle = new Cycle(7, false);
+
+        /// <summary>
         /// Current X position in menu
         /// </summary>
         private static short currentMenuPositionX = 0;
@@ -40,11 +46,6 @@ namespace AbrahmanAdventure.menu
         /// Current Y position in menu
         /// </summary>
         private static short currentMenuPositionY = 0;
-
-        /// <summary>
-        /// "New game" label
-        /// </summary>
-        private static Surface __labelNewGame;
 
         /// <summary>
         /// Whether we need to refresh the menu
@@ -104,71 +105,46 @@ namespace AbrahmanAdventure.menu
         }
 
         /// <summary>
-        /// Menu selection logic
+        /// Parse user input
         /// </summary>
-        internal static void Select(Program program)
+        /// <param name="userInput">user input</param>
+        /// <param name="program">program</param>
+        internal static void ParseUserInput(UserInput userInput, Program program)
         {
-            SoundManager.PlayPunchSound();
-            Dirthen();
-            if (currentSubMenu == SubMenu.Main)
+            keyCycle.Increment(1.0);
+            if (keyCycle.IsFinished)
             {
-                switch (currentMenuPositionY)
+                if (userInput.isPressJump)
                 {
-                    case 0:
-                        program.IsShowMenu = false;
-                        program.GameState = null;
-                        break;
-                    case 7:
-                        Events.QuitApplication();
-                        break;
-                    default:
-                        break;
+                    Select(program);
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressAttack)
+                {
+                    Escape();
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressLeft)
+                {
+                    MoveLeft();
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressRight)
+                {
+                    MoveRight();
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressUp)
+                {
+                    MoveUp();
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressDown)
+                {
+                    MoveDown();
+                    keyCycle.Fire();
                 }
             }
-        }
-
-        /// <summary>
-        /// Moving left
-        /// </summary>
-        internal static void MoveLeft()
-        {
-            SoundManager.PlayHitSound();
-            Dirthen();
-            currentMenuPositionX--;
-        }
-
-        /// <summary>
-        /// Moving right
-        /// </summary>
-        internal static void MoveRight()
-        {
-            SoundManager.PlayHitSound();
-            Dirthen();
-            currentMenuPositionX++;
-        }
-
-        /// <summary>
-        /// Moving up
-        /// </summary>
-        internal static void MoveUp()
-        {
-            SoundManager.PlayHitSound();
-            Dirthen();
-            currentMenuPositionY--;
-            if (currentMenuPositionY < 0)
-                currentMenuPositionY = 7;
-        }
-
-        /// <summary>
-        /// Moving down
-        /// </summary>
-        internal static void MoveDown()
-        {
-            SoundManager.PlayHitSound();
-            Dirthen();
-            currentMenuPositionY++;
-            if (currentMenuPositionY > 7)
-                currentMenuPositionY = 0;
         }
         #endregion
 
@@ -192,6 +168,83 @@ namespace AbrahmanAdventure.menu
         private static Surface GetFontText(string text, System.Drawing.Color color)
         {
             return MenuFont.Render(text, color);
+        }
+
+        /// <summary>
+        /// Moving left
+        /// </summary>
+        private static void MoveLeft()
+        {
+            SoundManager.PlayHitSound();
+            Dirthen();
+            currentMenuPositionX--;
+        }
+
+        /// <summary>
+        /// Moving right
+        /// </summary>
+        private static void MoveRight()
+        {
+            SoundManager.PlayHitSound();
+            Dirthen();
+            currentMenuPositionX++;
+        }
+
+        /// <summary>
+        /// Moving up
+        /// </summary>
+        private static void MoveUp()
+        {
+            SoundManager.PlayHitSound();
+            Dirthen();
+            currentMenuPositionY--;
+            if (currentMenuPositionY < 0)
+                currentMenuPositionY = 7;
+        }
+
+        /// <summary>
+        /// Moving down
+        /// </summary>
+        private static void MoveDown()
+        {
+            SoundManager.PlayHitSound();
+            Dirthen();
+            currentMenuPositionY++;
+            if (currentMenuPositionY > 7)
+                currentMenuPositionY = 0;
+        }
+
+        /// <summary>
+        /// Menu selection logic
+        /// </summary>
+        private static void Select(Program program)
+        {
+            SoundManager.PlayPunchSound();
+            Dirthen();
+            if (currentSubMenu == SubMenu.Main)
+            {
+                switch (currentMenuPositionY)
+                {
+                    case 0: //new game
+                        program.IsShowMenu = false;
+                        program.GameState = null;
+                        break;
+                    case 7: //exit
+                        Events.QuitApplication();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Escape menu
+        /// </summary>
+        private static void Escape()
+        {
+            currentSubMenu = SubMenu.Main;
+            Dirthen();
         }
         #endregion
 
@@ -231,21 +284,6 @@ namespace AbrahmanAdventure.menu
                     __menuFont = new Font("./assets/rendered/MenuFont.ttf", 16 * Program.screenWidth / 640);
                 }
                 return __menuFont;
-            }
-        }
-
-        /// <summary>
-        /// "New game" label
-        /// </summary>
-        private static Surface LabelNewGame
-        {
-            get
-            {
-                if (__labelNewGame == null)
-                {
-                    __labelNewGame = MenuFont.Render("New game", System.Drawing.Color.White);
-                }
-                return __labelNewGame;
             }
         }
         #endregion
