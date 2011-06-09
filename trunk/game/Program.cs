@@ -11,7 +11,6 @@ using AbrahmanAdventure.physics;
 using AbrahmanAdventure.ai;
 using AbrahmanAdventure.hud;
 using AbrahmanAdventure.audio;
-using AbrahmanAdventure.menu;
 
 namespace AbrahmanAdventure
 {
@@ -313,8 +312,7 @@ namespace AbrahmanAdventure
                 {
                     GC.Collect();
                     GameMenu.ShowLoadingScreen(mainSurface);
-                    mainSurface.Update();
-                    gameState = new GameState(random);
+                    gameState = new GameState(random, mainSurface);
                     levelViewer.ClearCache();
                     GC.Collect();
                 }

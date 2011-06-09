@@ -51,17 +51,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="game\audio\SoundManager.cs" />
+    <Compile Include="game\colorTheme\ColorHsl.cs" />
     <Compile Include="game\colorTheme\ColorTheme.cs" />
     <Compile Include="game\ground\Ground.cs" />
     <Compile Include="game\ground\IGround.cs" />
     <Compile Include="game\holes\HoleSet.cs" />
     <Compile Include="game\hud\HudViewer.cs" />
+    <Compile Include="game\hud\PlanetViewer.cs" />
     <Compile Include="game\joystick\JoystickManager.cs" />
     <Compile Include="game\GameState.cs" />
     <Compile Include="game\level\Level.cs" />
     <Compile Include="game\level\LevelViewer.cs" />
     <Compile Include="game\level\LevelViewerCache.cs" />
-    <Compile Include="game\GameMenu.cs" />
+    <Compile Include="game\hud\GameMenu.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
