@@ -1,5 +1,7 @@
 Mettre icon pour app, changer nom d'app
 
+add maximum time delta (will slow down, but physics will be tested properly)
+
 possibilité de transporter une carapace et de la lancer (en haut aussi)
 
 Faire écran de menu
@@ -121,6 +123,7 @@ if top speed
 		
 		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans. (plus gros, look différent), affiche nombre minimum dessus
 		Lorsque tu entre dans ces pipe, tu va au niveau suivant (plus de sorte de sprite, certains levels sont plus grands)
+		chaque seed d'Alladium à son Hash (genre md5) unique comme ça on ne peut pas pogner le même 2 fois)
 	}
 }
 
