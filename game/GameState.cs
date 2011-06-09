@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SdlDotNet.Graphics;
 using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.textGenerator;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure
 {
@@ -35,6 +37,11 @@ namespace AbrahmanAdventure
         private ColorTheme colorTheme;
 
         /// <summary>
+        /// Sky's color (HSL)
+        /// </summary>
+        private ColorHsl skyColorHsl;
+
+        /// <summary>
         /// Level's sky
         /// </summary>
         private Sky sky;
@@ -49,16 +56,45 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Random number generator
         /// </summary>
-        /// <param name="random"></param>
-        public GameState(Random random)
+        /// <param name="random">random number generator</param>
+        public GameState(Random random) : this(random, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Random number generator
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
+        public GameState(Random random, Surface surfaceToDrawLoadingProgress) : this(random, null, surfaceToDrawLoadingProgress)
+        {
+        }
+
+        /// <summary>
+        /// Random number generator
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="playerSprite">player sprite (if null, it will create a new one)</param>
+        /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
+        public GameState(Random random, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
         {
             name = TextGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
-            sky = new Sky(random);
+            skyColorHsl = new ColorHsl(random);
+
+            if (surfaceToDrawLoadingProgress != null)
+                PlanetViewer.ShowPlanet(name, skyColorHsl, colorTheme, surfaceToDrawLoadingProgress);
+
+            sky = new Sky(random, skyColorHsl);
             level = new Level(random, colorTheme);
             spritePopulation = new SpritePopulation();
-            playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
-            spritePopulation.Add(playerSprite);
+
+            if (playerSprite != null)
+                this.playerSprite = playerSprite;
+            else
+                this.playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
+
+            spritePopulation.Add(this.playerSprite);
 
             #warning Eventually remove test sprites
             AddHardCodedTestSprite(random);

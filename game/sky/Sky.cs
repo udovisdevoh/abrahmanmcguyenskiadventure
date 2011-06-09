@@ -31,22 +31,7 @@ namespace AbrahmanAdventure.level
         /// Sky surface to blit
         /// </summary>
         private Surface surface;
-
-        /// <summary>
-        /// Hue
-        /// </summary>
-        private int hue;
-
-        /// <summary>
-        /// Saturation
-        /// </summary>
-        private int saturation;
-
-        /// <summary>
-        /// Lightness
-        /// </summary>
-        private int lightness;
-        
+      
         /// <summary>
         /// Height of the sky (in pixels)
         /// </summary>
@@ -63,12 +48,9 @@ namespace AbrahmanAdventure.level
         /// Build new sky
         /// </summary>
         /// <param name="random">random number generator</param>
-        public Sky(Random random)
+        /// <param name="colorHsl">HSL color</param>
+        public Sky(Random random, ColorHsl colorHsl)
         {
-            hue = random.Next(0, 256);
-            saturation = random.Next(24, 224);
-            lightness = random.Next(32, 256);
-
             AbstractWave horizontalWaveHue = BuildWave(random);
             AbstractWave horizontalWaveSaturation = BuildWave(random);
             AbstractWave horizontalWaveLightness = BuildWave(random);
@@ -89,9 +71,9 @@ namespace AbrahmanAdventure.level
             		column = new Surface(1, skyHeight,Program.bitDepth);
 	            	for (int y = 0; y < skyHeight; y++)
 	            	{
-	            		double currentHue = hue;
-	            		double currentSaturation = saturation;
-	            		double currentLightness = lightness;
+                        double currentHue = colorHsl.Hue;
+                        double currentSaturation = colorHsl.Saturation;
+                        double currentLightness = colorHsl.Lightness;
 	            		double relativeY = (double)y / (double)Program.screenHeight * 480.0;
            		
 	            		currentHue += horizontalWaveHue[relativeY];
