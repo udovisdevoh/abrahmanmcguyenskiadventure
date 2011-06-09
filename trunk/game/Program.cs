@@ -163,35 +163,15 @@ namespace AbrahmanAdventure
                     isShowMenu = !isShowMenu;
                 }
             }
-            else if (args.Key == Key.Return && isShowMenu)
-            {
-                GameMenu.Select(this);
-            }
             else if (args.Key == Key.LeftArrow)
-            {
-                if (isShowMenu)
-                    GameMenu.MoveLeft();
                 userInput.isPressLeft = true;
-            }
             else if (args.Key == Key.RightArrow)
-            {
-                if (isShowMenu)
-                    GameMenu.MoveRight();
                 userInput.isPressRight = true;
-            }
             else if (args.Key == Key.UpArrow)
-            {
-                if (isShowMenu)
-                    GameMenu.MoveUp();
                 userInput.isPressUp = true;
-            }
             else if (args.Key == Key.DownArrow)
-            {
-                if (isShowMenu)
-                    GameMenu.MoveDown();
                 userInput.isPressDown = true;
-            }
-            else if (args.Key == Key.Space)
+            else if (args.Key == Key.Space || args.Key == Key.Return)
                 userInput.isPressJump = true;
             else if (args.Key == Key.LeftControl)
                 userInput.isPressAttack = true;
@@ -207,7 +187,7 @@ namespace AbrahmanAdventure
                 userInput.isPressUp = false;
             else if (args.Key == Key.DownArrow)
                 userInput.isPressDown = false;
-            else if (args.Key == Key.Space)
+            else if (args.Key == Key.Space || args.Key == Key.Return)
                 userInput.isPressJump = false;
             else if (args.Key == Key.LeftControl)
                 userInput.isPressAttack = false;
@@ -322,6 +302,7 @@ namespace AbrahmanAdventure
 
             if (isShowMenu)
             {
+                GameMenu.ParseUserInput(userInput, this);
                 GameMenu.ShowMenu(mainSurface);
             }
             else //Main game loop starts here
