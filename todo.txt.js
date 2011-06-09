@@ -112,7 +112,7 @@ if top speed
 	
 	idée cool
 	{
-		Tu rentre dans un tuyau ou un teleporteur, warp vortex, ou une porte
+		Tu rentre dans un tuyau ou un teleporteur, warp vortex, plante grimpante, ou une porte
 		Chaque tuyau à un seed de départ (seed du level dans lequel se trouve le tuyau) et un seed de destination (seed du level généré).
 		Ça te téléporte dans un autre level à coté d'un tuyau, téléporteur, warp vortex ou porte dont le seed de destination est inversé par rapport au seed de source du tuyau de provenance
 		
