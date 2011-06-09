@@ -86,6 +86,16 @@ namespace AbrahmanAdventure.menu
         }
 
         /// <summary>
+        /// Show loading screen
+        /// </summary>
+        /// <param name="mainSurface">Show loading screen</param>
+        internal static void ShowLoadingScreen(Surface mainSurface)
+        {
+            mainSurface.Fill(System.Drawing.Color.Black);
+            mainSurface.Blit(GetFontText("Loading..."), new System.Drawing.Point(Program.screenWidth / 36*15, Program.screenHeight / 12 * 11));
+        }
+
+        /// <summary>
         /// Menu will need refresh
         /// </summary>
         internal static void Dirthen()
@@ -107,7 +117,6 @@ namespace AbrahmanAdventure.menu
                     case 0:
                         program.IsShowMenu = false;
                         program.GameState = null;
-                        program.LevelViewer.ClearCache();
                         break;
                     case 7:
                         Events.QuitApplication();
@@ -240,6 +249,5 @@ namespace AbrahmanAdventure.menu
             }
         }
         #endregion
-
     }
 }
