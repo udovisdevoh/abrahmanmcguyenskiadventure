@@ -327,7 +327,12 @@ namespace AbrahmanAdventure
             else //Main game loop starts here
             {
                 if (gameState == null)
+                {
+                    GameMenu.ShowLoadingScreen(mainSurface);
+                    mainSurface.Update();
                     gameState = new GameState(random);
+                    levelViewer.ClearCache();
+                }
 
                 SpritePopulation spritePopulation = gameState.SpritePopulation;
                 PlayerSprite playerSprite = gameState.PlayerSprite;
