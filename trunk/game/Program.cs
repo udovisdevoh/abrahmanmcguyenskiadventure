@@ -146,6 +146,8 @@ namespace AbrahmanAdventure
             MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, random);
             WhiskySprite whisky = new WhiskySprite(0, 0, random);
             ExplosionSprite explosion = new ExplosionSprite(0, 0, random);
+            HelmetSprite helmet1 = new HelmetSprite(0, 0, random, true);
+            HelmetSprite helmet2 = new HelmetSprite(0, 0, random, false);
             //levelViewer.PreCache(level);
             #endregion
         }
