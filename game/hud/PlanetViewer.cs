@@ -43,6 +43,7 @@ namespace AbrahmanAdventure.hud
             DrawClouds(mainSurface, random);
 
             Surface sphere = new Surface("./assets/rendered/Sphere.png");
+            //sphere = sphere.CreateRotatedSurface(random.Next(0, 4) * 90);
 
             double scaling = ((double)Program.screenHeight / 1.5) / (double)sphere.Width * 1.01;
             sphere = sphere.CreateScaledSurface(scaling);
