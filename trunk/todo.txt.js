@@ -1,5 +1,7 @@
 Changer nom d'app
 
+lorsque qu'explose alh akbr
+
 add maximum time delta (will slow down, but physics will be tested properly)
 
 possibilité de transporter une carapace et de la lancer (en haut aussi)

@@ -52,6 +52,11 @@ namespace AbrahmanAdventure.hud
         /// Whether we need to refresh the menu
         /// </summary>
         private static bool isNeedRefresh = true;
+
+        /// <summary>
+        /// Max menu item per menu
+        /// </summary>
+        private static int[] listMaxMenuItemCount = {7,0,1,0,0};
         #endregion
 
         #region Internal methods
@@ -80,6 +85,12 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
                 mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
+            }
+            else
+            {
+                mainSurface.Fill(System.Drawing.Color.Black);
+                mainSurface.Blit(GetFontText("Jump button"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                mainSurface.Blit(GetFontText("Attack button"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
             }
 
             mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
@@ -149,6 +160,17 @@ namespace AbrahmanAdventure.hud
                 }
             }
         }
+
+        /// <summary>
+        /// Escape menu
+        /// </summary>
+        internal static void Escape()
+        {
+            currentSubMenu = SubMenu.Main;
+            currentMenuPositionY = 0;
+            keyCycle.StopAndReset();
+            Dirthen();
+        }
         #endregion
 
         #region Private Methods
@@ -202,7 +224,7 @@ namespace AbrahmanAdventure.hud
             Dirthen();
             currentMenuPositionY--;
             if (currentMenuPositionY < 0)
-                currentMenuPositionY = 7;
+                currentMenuPositionY = (short)listMaxMenuItemCount[(int)currentSubMenu];
         }
 
         /// <summary>
@@ -213,7 +235,7 @@ namespace AbrahmanAdventure.hud
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionY++;
-            if (currentMenuPositionY > 7)
+            if (currentMenuPositionY > (short)listMaxMenuItemCount[(int)currentSubMenu])
                 currentMenuPositionY = 0;
         }
 
@@ -233,6 +255,10 @@ namespace AbrahmanAdventure.hud
                         program.IsShowMenu = false;
                         program.GameState = null;
                         break;
+                    case 4:
+                        currentMenuPositionY = 0;
+                        currentSubMenu = SubMenu.Controller;
+                        break;
                     case 7: //exit
                         Events.QuitApplication();
                         break;
@@ -241,19 +267,17 @@ namespace AbrahmanAdventure.hud
                 }
             }
         }
-
-        /// <summary>
-        /// Escape menu
-        /// </summary>
-        private static void Escape()
-        {
-            currentSubMenu = SubMenu.Main;
-            keyCycle.StopAndReset();
-            Dirthen();
-        }
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Current sub menu (could be main menu too)
+        /// </summary>
+        public static SubMenu CurrentSubMenu
+        {
+            get { return currentSubMenu; }
+        }
+
         /// <summary>
         /// Title screen
         /// </summary>
