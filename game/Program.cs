@@ -332,7 +332,6 @@ namespace AbrahmanAdventure
                 if (gameState == null)
                 {
                     GC.Collect();
-                    GameMenu.ShowLoadingScreen(mainSurface);
                     gameState = new GameState(random, mainSurface);
                     levelViewer.ClearCache();
                     GC.Collect();
