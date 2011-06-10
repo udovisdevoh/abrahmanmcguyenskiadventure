@@ -54,6 +54,16 @@ namespace AbrahmanAdventure.hud
         private static bool isNeedRefresh = true;
 
         /// <summary>
+        /// Whether we are expecting to press a new joystick button to remap jump button
+        /// </summary>
+        private static bool isWaitingForJumpButtonRemap = false;
+
+        /// <summary>
+        /// Whether we are expecting to press a new joystick button to remap attack button
+        /// </summary>
+        private static bool isWaitingForAttackButtonRemap = false;
+
+        /// <summary>
         /// Max menu item per menu
         /// </summary>
         private static int[] listMaxMenuItemCount = {7,0,1,0,0};
@@ -64,7 +74,8 @@ namespace AbrahmanAdventure.hud
         /// Show menu
         /// </summary>
         /// <param name="mainSurface">main surface to show menu on</param>
-        internal static void ShowMenu(Surface mainSurface)
+        /// <param name="userInput">user input</param>
+        internal static void ShowMenu(Surface mainSurface, UserInput userInput)
         {
             if (!isNeedRefresh)
                 return;
@@ -81,7 +92,7 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Load game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
                 mainSurface.Blit(GetFontText("Save game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
                 mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
-                mainSurface.Blit(GetFontText("Controller"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
+                mainSurface.Blit(GetFontText("Gamepad"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
                 mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
                 mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
@@ -89,8 +100,15 @@ namespace AbrahmanAdventure.hud
             else
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
-                mainSurface.Blit(GetFontText("Jump button"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
-                mainSurface.Blit(GetFontText("Attack button"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                if (isWaitingForJumpButtonRemap)
+                    mainSurface.Blit(GetFontText("Jump button: press jump"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                else
+                    mainSurface.Blit(GetFontText("Jump button: button " + userInput.jumpButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+
+                if (isWaitingForAttackButtonRemap)
+                    mainSurface.Blit(GetFontText("Attack button: press attack"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                else
+                    mainSurface.Blit(GetFontText("Attack button: button " + userInput.attackButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
             }
 
             mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
@@ -166,6 +184,8 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         internal static void Escape()
         {
+            isWaitingForJumpButtonRemap = false;
+            isWaitingForAttackButtonRemap = false;
             currentSubMenu = SubMenu.Main;
             currentMenuPositionY = 0;
             keyCycle.StopAndReset();
@@ -200,6 +220,8 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private static void MoveLeft()
         {
+            isWaitingForJumpButtonRemap = false;
+            isWaitingForAttackButtonRemap = false;
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionX--;
@@ -210,6 +232,8 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private static void MoveRight()
         {
+            isWaitingForJumpButtonRemap = false;
+            isWaitingForAttackButtonRemap = false;
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionX++;
@@ -220,6 +244,8 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private static void MoveUp()
         {
+            isWaitingForJumpButtonRemap = false;
+            isWaitingForAttackButtonRemap = false;
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionY--;
@@ -232,6 +258,8 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private static void MoveDown()
         {
+            isWaitingForJumpButtonRemap = false;
+            isWaitingForAttackButtonRemap = false;
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionY++;
@@ -265,6 +293,15 @@ namespace AbrahmanAdventure.hud
                     default:
                         break;
                 }
+            }
+            else if (currentSubMenu == SubMenu.Controller)
+            {
+                isWaitingForJumpButtonRemap = false;
+                isWaitingForAttackButtonRemap = false;
+                if (currentMenuPositionY == 0)
+                    isWaitingForJumpButtonRemap = true;
+                else if (currentMenuPositionY == 1)
+                    isWaitingForAttackButtonRemap = true;
             }
         }
         #endregion
@@ -314,6 +351,24 @@ namespace AbrahmanAdventure.hud
                 }
                 return __menuFont;
             }
+        }
+
+        /// <summary>
+        /// Whether we are expecting to press a new joystick button to remap jump button
+        /// </summary>
+        public static bool IsWaitingForJumpButtonRemap
+        {
+            get { return isWaitingForJumpButtonRemap; }
+            set { isWaitingForJumpButtonRemap = value; }
+        }
+
+        /// <summary>
+        /// Whether we are expecting to press a new joystick button to remap attack button
+        /// </summary>
+        public static bool IsWaitingForAttackButtonRemap
+        {
+            get { return isWaitingForAttackButtonRemap; }
+            set { isWaitingForAttackButtonRemap = value; }
         }
         #endregion
     }
