@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         /// <param name="mainSurface">main surface</param>
         /// <param name="random">random number generator</param>
-        private static void DrawStars(Surface mainSurface, Random random)
+        private static void DrawStars(Surface surface, Random random)
         {
             int totalStarCount = 640 * 480 / random.Next(100,500);
 
@@ -74,9 +74,9 @@ namespace AbrahmanAdventure.hud
             for (int i = 0; i < totalStarCount; i++)
             {
                 point = new System.Drawing.Point(random.Next(0, 640), random.Next(0, 480));
-                int brightness = random.Next(0, 256);
-                color = System.Drawing.Color.FromArgb(brightness, brightness, brightness);
-                mainSurface.Draw(point, color);
+                int starLightness = random.Next(0, 256);
+                color = System.Drawing.Color.FromArgb(starLightness, starLightness, starLightness);
+                surface.Draw(point, color);
             }
         }
         #endregion

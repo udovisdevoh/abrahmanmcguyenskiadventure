@@ -92,6 +92,8 @@ namespace AbrahmanAdventure.level
         /// <returns>color from hue saturation lightness (value)</returns>
         internal static Color ColorFromHSV(double hue, double saturation, double value)
         {
+            hue *= 1.45;
+
             int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
             double f = hue / 60 - Math.Floor(hue / 60);
 
