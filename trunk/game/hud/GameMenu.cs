@@ -281,8 +281,9 @@ namespace AbrahmanAdventure.hud
                 switch (currentMenuPositionY)
                 {
                     case 0: //new game
+                        program.ChangeGameState(new Random().Next());
                         program.IsShowMenu = false;
-                        program.GameState = null;
+                        //program.GameState = null;
                         break;
                     case 4:
                         currentMenuPositionY = 0;
