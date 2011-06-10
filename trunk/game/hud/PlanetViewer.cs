@@ -92,15 +92,23 @@ namespace AbrahmanAdventure.hud
             }
         }
 
+        /// <summary>
+        /// Draw clouds
+        /// </summary>
+        /// <param name="mainSurface">main surface</param>
+        /// <param name="random">random number generator</param>
         private static void DrawClouds(Surface mainSurface, Random random)
         {
             int totalPointCount = (Program.screenWidth * Program.screenHeight) / 16;
             int pointX = random.Next(Program.screenWidth);
             int pointY = random.Next(Program.screenHeight);
+
+            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(128, 255, 255, 255);
+
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
             {
-                pointX += random.Next(-3, 4);
-                pointY += random.Next(-3, 4);
+                pointX += random.Next(-2, 3);
+                pointY += random.Next(-2, 3);
 
                 if (pointX < Program.screenWidth / 2 - Program.screenHeight / 3)
                     pointX = Program.screenWidth / 2 + Program.screenHeight / 3;
@@ -117,7 +125,7 @@ namespace AbrahmanAdventure.hud
 
                 if (Math.Sqrt(Math.Pow(Math.Abs(pointX - Program.screenWidth / 2), 2.0) + Math.Pow(Math.Abs(pointY - Program.screenHeight / 2), 2.0)) <= Program.screenHeight / 3)
                 {
-                    mainSurface.Draw(currentPoint, System.Drawing.Color.White);
+                    mainSurface.Draw(currentPoint, transparentWhite, true);
                 }
             }
         }
