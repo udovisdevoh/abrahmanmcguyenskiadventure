@@ -44,8 +44,6 @@ namespace AbrahmanAdventure
 
         public const int screenHeight = 480;
 
-        public const int tileColumnCount = 20;
-
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;
@@ -67,6 +65,8 @@ namespace AbrahmanAdventure
         public const double powerUpGrowthTime = 6.0;
 
         public const double rastaFallingSpeed = 0.07;
+
+        public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
 
         public static int tileSize = screenWidth / tileColumnCount;
 

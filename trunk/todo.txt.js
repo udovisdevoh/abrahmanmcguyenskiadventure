@@ -1,7 +1,5 @@
 Changer nom d'app
 
-Rendre compatible à plusieurs aspect ratio (autre que 4*3)
-
 add maximum time delta (will slow down, but physics will be tested properly)
 
 possibilité de transporter une carapace et de la lancer (en haut aussi)
