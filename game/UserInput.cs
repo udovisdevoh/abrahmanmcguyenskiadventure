@@ -21,5 +21,9 @@ namespace AbrahmanAdventure
         public bool isPressJump = false;
 
         public bool isPressAttack = false;
+
+        public int jumpButton = 2;
+
+        public int attackButton = 3;
     }
 }

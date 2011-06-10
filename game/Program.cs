@@ -203,17 +203,31 @@ namespace AbrahmanAdventure
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
         {
-            if (args.Button == 3)
+            if (isShowMenu && GameMenu.CurrentSubMenu == SubMenu.Controller)
+            {
+                if (GameMenu.IsWaitingForJumpButtonRemap)
+                {
+                    userInput.jumpButton = args.Button;
+                    GameMenu.IsWaitingForJumpButtonRemap = false;
+                }
+                else if (GameMenu.IsWaitingForAttackButtonRemap)
+                {
+                    userInput.attackButton = args.Button;
+                    GameMenu.IsWaitingForAttackButtonRemap = false;
+                }
+            }
+
+            if (args.Button == userInput.attackButton)
                 userInput.isPressAttack = true;
-            else if (args.Button == 2)
+            else if (args.Button == userInput.jumpButton)
                 userInput.isPressJump = true;
         }
 
         public void OnJoystickButtonUp(object sender, JoystickButtonEventArgs args)
         {
-            if (args.Button == 3)
+            if (args.Button == userInput.attackButton)
                 userInput.isPressAttack = false;
-            else if (args.Button == 2)
+            else if (args.Button == userInput.jumpButton)
                 userInput.isPressJump = false;
         }
 
@@ -311,7 +325,7 @@ namespace AbrahmanAdventure
             if (isShowMenu)
             {
                 GameMenu.ParseUserInput(userInput, this);
-                GameMenu.ShowMenu(mainSurface);
+                GameMenu.ShowMenu(mainSurface, userInput);
             }
             else //Main game loop starts here
             {
