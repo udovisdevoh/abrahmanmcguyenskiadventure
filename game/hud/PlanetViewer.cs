@@ -35,10 +35,11 @@ namespace AbrahmanAdventure.hud
             Surface planetNameSurface = LargeFont.Render(name, System.Drawing.Color.White);
             mainSurface.Blit(planetNameSurface, new System.Drawing.Point(Program.screenWidth / 2 - planetNameSurface.Width / 2, Program.screenHeight / 12 * 11));
 
-            Circle circle = new Circle(Program.screenWidth / 2, Program.screenHeight / 2, Program.screenHeight / 3);
+
+
             System.Drawing.Color waterColor = skyColorHsl.GetColor();
 
-            mainSurface.Draw(circle, waterColor, true, true);
+            mainSurface.Draw(new Circle(Program.screenWidth / 2, Program.screenHeight / 2, Program.screenHeight / 3), waterColor, true, true);
 
             int totalPointCount = (Program.screenWidth * Program.screenHeight) / 8;
             int pointX = random.Next(Program.screenWidth);
@@ -67,6 +68,13 @@ namespace AbrahmanAdventure.hud
                     mainSurface.Draw(currentPoint, colorTheme.GetColor(random.Next(0, colorTheme.Count)),true,true);
                 }
             }
+
+            Surface sphere = new Surface("./assets/rendered/Sphere.png");
+
+            double scaling = ((double)Program.screenHeight / 1.5) / (double)sphere.Width * 1.01;
+            sphere = sphere.CreateScaledSurface(scaling);
+
+            mainSurface.Blit(sphere, new System.Drawing.Point(Program.screenWidth / 2 - sphere.Width / 2, Program.screenHeight / 2 - sphere.Height / 2));
 
             mainSurface.Update();
         }

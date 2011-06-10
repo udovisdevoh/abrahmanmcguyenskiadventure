@@ -39,6 +39,19 @@ namespace AbrahmanAdventure.level
             saturation = random.Next(24, 224);
             lightness = random.Next(32, 256);
         }
+
+        /// <summary>
+        /// Create HSL color
+        /// </summary>
+        /// <param name="hue">Hue</param>
+        /// <param name="saturation">Saturation</param>
+        /// <param name="lightness">Lightness</param>
+        public ColorHsl(int hue, int saturation, int lightness)
+        {
+            this.hue = hue;
+            this.saturation = saturation;
+            this.lightness = lightness;
+        }
         #endregion
 
         #region Internal Methods
@@ -50,6 +63,15 @@ namespace AbrahmanAdventure.level
         {
             return ColorTheme.ColorFromHSV(hue, saturation / 256.0, lightness / 256.0);
         }
+
+        /// <summary>
+        /// Clone HSL color
+        /// </summary>
+        /// <returns>Clone HSL color</returns>
+        internal ColorHsl Clone()
+        {
+            return new ColorHsl(hue, saturation, lightness);
+        }
         #endregion
 
         #region Properties
@@ -59,6 +81,7 @@ namespace AbrahmanAdventure.level
         public int Hue
         {
             get { return hue; }
+            set { hue = value; }
         }
 
         /// <summary>
@@ -67,6 +90,7 @@ namespace AbrahmanAdventure.level
         public int Saturation
         {
             get { return saturation; }
+            set { saturation = value; }
         }
 
         /// <summary>
@@ -75,6 +99,7 @@ namespace AbrahmanAdventure.level
         public int Lightness
         {
             get { return lightness; }
+            set { lightness = value; }
         }
         #endregion
     }
