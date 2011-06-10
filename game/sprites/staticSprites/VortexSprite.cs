@@ -33,9 +33,9 @@ namespace AbrahmanAdventure.sprites
         private Cycle rotateCycle;
 
         /// <summary>
-        /// Seed for target world
+        /// Seed for destination world
         /// </summary>
-        private int targetSeed;
+        private int destinationSeed;
         #endregion
 
         #region Constructors
@@ -48,7 +48,7 @@ namespace AbrahmanAdventure.sprites
         public VortexSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            targetSeed = random.Next();
+            destinationSeed = random.Next();
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
             if (surface1 == null)
@@ -120,6 +120,16 @@ namespace AbrahmanAdventure.sprites
             {
                 return surface3;
             }
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Seed for destination world
+        /// </summary>
+        internal int DestinationSeed
+        {
+            get { return destinationSeed; }
         }
         #endregion
     }

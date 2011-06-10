@@ -23,8 +23,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">sprite population</param>
+        /// <param name="program">program itself</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, Random random)
         {
             List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
 
@@ -55,7 +56,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp)
                 {
-                    UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite);
+                    UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program);
                 }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && !sprite.IsCrossGrounds)
                 {
@@ -306,9 +307,10 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="playerSprite">player sprite</param>
         /// <param name="vortexSprite">vortex sprite</param>
-        private void UpdateGoToVortex(PlayerSprite playerSprite, VortexSprite vortexSprite)
+        /// <param name="program">program itself</param>
+        private void UpdateGoToVortex(PlayerSprite playerSprite, VortexSprite vortexSprite, Program program)
         {
-            throw new NotImplementedException();
+            program.ChangeGameState(vortexSprite.DestinationSeed);
         }
 
         /// <summary>

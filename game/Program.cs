@@ -114,6 +114,8 @@ namespace AbrahmanAdventure
 
         private double viewOffsetY = 0.0;
 
+        private int seedNextGameState;
+
         private bool isOddFrame = true;
 
         private bool isShowMenu = isShowMenuOnStart;
@@ -127,9 +129,10 @@ namespace AbrahmanAdventure
             joystickManager = new JoystickManager();
             userInput = new UserInput();
 
-            gameStateRandom = new Random();
             spriteBehaviorRandom = new Random();
-
+            seedNextGameState = new Random().Next();
+            gameStateRandom = new Random(seedNextGameState);
+            
             if (isFullScreen)
                 Cursor.Hide();
 
@@ -331,8 +334,9 @@ namespace AbrahmanAdventure
             }
             else //Main game loop starts here
             {
-                if (gameState == null)
+                if (gameState == null || gameState.IsExpired)
                 {
+                    gameStateRandom = new Random(seedNextGameState);
                     GC.Collect();
                     gameState = new GameState(gameStateRandom, mainSurface);
                     levelViewer.ClearCache();
@@ -473,12 +477,12 @@ namespace AbrahmanAdventure
                 }
                 #endregion
 
-                physics.Update(playerSprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
+                physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
 
                 foreach (AbstractSprite sprite in toUpdateSpriteList)
                     if (sprite != playerSprite)
                     {
-                        physics.Update(sprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
+                        physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
                         if (sprite is MonsterSprite && sprite.IsAlive)
                             monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                     }
@@ -501,18 +505,20 @@ namespace AbrahmanAdventure
 
             mainSurface.Update();
         }
+
+        /// <summary>
+        /// Chage game state
+        /// </summary>
+        /// <param name="nextGameState">seed for next game state</param>
+        internal void ChangeGameState(int seedNextGameState)
+        {
+            if (this.gameState != null)
+                gameState.IsExpired = true;
+            this.seedNextGameState = seedNextGameState;
+        }
 		#endregion
 
         #region Properties
-        /// <summary>
-        /// Game's state
-        /// </summary>
-        public GameState GameState
-        {
-            get { return gameState; }
-            set { gameState = value; }
-        }
-
         /// <summary>
         /// Level viewer
         /// </summary>
@@ -550,5 +556,5 @@ namespace AbrahmanAdventure
             program.Start();
         }
         #endregion
-	}
+    }
 }

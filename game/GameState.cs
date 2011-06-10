@@ -50,6 +50,11 @@ namespace AbrahmanAdventure
         /// Name of the environment
         /// </summary>
         private string name;
+
+        /// <summary>
+        /// Whether game state must be recreated because we change the world
+        /// </summary>
+        private bool isExpired = false;
         #endregion
 
         #region Constructor
@@ -149,6 +154,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new AnarchyBlockSprite(20, -5, random));
 
             spritePopulation.Add(new VortexSprite(-60, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new VortexSprite(-75, Program.totalHeightTileCount / -2, random));
 
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
         }
@@ -202,6 +208,15 @@ namespace AbrahmanAdventure
         public Sky Sky
         {
             get { return sky; }
+        }
+
+        /// <summary>
+        /// Whether game state needs to be recreated (changing world)
+        /// </summary>
+        public bool IsExpired
+        {
+            get { return isExpired; }
+            set { isExpired = value; }
         }
         #endregion
     }
