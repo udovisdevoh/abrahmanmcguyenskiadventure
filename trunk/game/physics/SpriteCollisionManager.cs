@@ -53,9 +53,13 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
                 }
+                else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp)
+                {
+                    UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite);
+                }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && !sprite.IsCrossGrounds)
                 {
-                    UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList,random);
+                    UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, random);
                 }
                 else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition && (!(otherSprite is MonsterSprite) || ((MonsterSprite)otherSprite).IsJumpableOn)) //Player IS jumping on the monster
                 {
@@ -295,6 +299,16 @@ namespace AbrahmanAdventure.physics
             playerSprite.HitCycle.StopAndReset();
             whiskySprite.IsAlive = false;
             whiskySprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
+        /// <summary>
+        /// Player will go to vortex
+        /// </summary>
+        /// <param name="playerSprite">player sprite</param>
+        /// <param name="vortexSprite">vortex sprite</param>
+        private void UpdateGoToVortex(PlayerSprite playerSprite, VortexSprite vortexSprite)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
