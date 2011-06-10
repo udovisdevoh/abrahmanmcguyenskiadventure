@@ -1,5 +1,7 @@
 Mettre icon pour app, changer nom d'app
 
+Rendre compatible à plusieurs aspect ratio (autre que 4*3)
+
 add maximum time delta (will slow down, but physics will be tested properly)
 
 possibilité de transporter une carapace et de la lancer (en haut aussi)
@@ -8,7 +10,7 @@ Faire écran de menu
 {
 	Logo
 	
-	si dure trop longtemps, affiche "how to play"
+	?si dure trop longtemps, affiche "how to play"?
 	
 	Menu
 	{
@@ -298,6 +300,8 @@ Musique générative
 		{
 			Ça fait des descente de notes
 		}
+		
+		si timer de monster explosif (plus timer approche fin, plus intense, rapide, aigu, dissonant)
 		
 		Plus on va vitte, plus les notes sont courtes (drum surtout), exmple: position stationnaire: beat de hip hop très peu remplis. Course: Drum and bass
 		
