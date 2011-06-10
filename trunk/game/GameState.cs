@@ -82,8 +82,14 @@ namespace AbrahmanAdventure
             colorTheme = new ColorTheme(random);
             skyColorHsl = new ColorHsl(random);
 
+            Surface planetSurface = PlanetViewer.ShowPlanet(name, skyColorHsl, colorTheme, random);
+
             if (surfaceToDrawLoadingProgress != null)
-                PlanetViewer.ShowPlanet(name, skyColorHsl, colorTheme, surfaceToDrawLoadingProgress);
+            {
+                surfaceToDrawLoadingProgress.Blit(planetSurface,new System.Drawing.Point(0,0));
+                GameMenu.ShowLoading(surfaceToDrawLoadingProgress);
+                surfaceToDrawLoadingProgress.Update();
+            }
 
             sky = new Sky(random, skyColorHsl);
             level = new Level(random, colorTheme);

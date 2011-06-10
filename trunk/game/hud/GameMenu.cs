@@ -120,9 +120,10 @@ namespace AbrahmanAdventure.hud
         /// Show loading screen
         /// </summary>
         /// <param name="mainSurface">Show loading screen</param>
-        internal static void ShowLoadingScreen(Surface mainSurface)
+        internal static void ShowLoading(Surface mainSurface)
         {
-            mainSurface.Fill(System.Drawing.Color.Black);
+            /*if (isBlack)
+                mainSurface.Fill(System.Drawing.Color.Black);*/
             Surface loadingLabel = GetFontText("Loading...");
             mainSurface.Blit(loadingLabel, new System.Drawing.Point(Program.screenWidth / 2 - loadingLabel.Width / 2, Program.screenHeight / 48));
             mainSurface.Update();
