@@ -39,16 +39,14 @@ namespace AbrahmanAdventure.hud
 
             mainSurface.Draw(new Circle(Program.screenWidth / 2, Program.screenHeight / 2, Program.screenHeight / 3), waterColor, true, true);
 
+            Surface shadeSphere = new Surface("./assets/rendered/Sphere.png");
+            double scaling = ((double)Program.screenHeight / 1.5) / (double)shadeSphere.Width * 1.01;
+            shadeSphere = shadeSphere.CreateScaledSurface(scaling);
+
             DrawContinents(mainSurface, colorTheme, random);
             DrawClouds(mainSurface, random);
 
-            Surface sphere = new Surface("./assets/rendered/Sphere.png");
-            //sphere = sphere.CreateRotatedSurface(random.Next(0, 4) * 90);
-
-            double scaling = ((double)Program.screenHeight / 1.5) / (double)sphere.Width * 1.01;
-            sphere = sphere.CreateScaledSurface(scaling);
-
-            mainSurface.Blit(sphere, new System.Drawing.Point(Program.screenWidth / 2 - sphere.Width / 2, Program.screenHeight / 2 - sphere.Height / 2));
+            mainSurface.Blit(shadeSphere, new System.Drawing.Point(Program.screenWidth / 2 - shadeSphere.Width / 2, Program.screenHeight / 2 - shadeSphere.Height / 2));
 
             mainSurface.Update();
         }
