@@ -48,8 +48,11 @@ namespace AbrahmanAdventure.physics
                     {
                         if (otherSprite is AnarchyBlockSprite)
                             ((AnarchyBlockSprite)otherSprite).IsFinalized = false;
-                        else if (otherSprite is PeyoteSprite)
-                            spritePopulation.Remove(otherSprite);
+                        else if (otherSprite is PeyoteSprite || otherSprite is RastaHatSprite || otherSprite is WhiskySprite || otherSprite is MushroomSprite)
+                        {
+                            otherSprite.IsAlive = false;
+                            otherSprite.YPosition = Program.totalHeightTileCount + 1.0;
+                        }
                     }
                 }
                 else
