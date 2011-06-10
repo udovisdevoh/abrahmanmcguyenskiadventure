@@ -147,7 +147,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
-            return true;
+            return false;
         }
 
         protected override double BuildMaxHealth()
