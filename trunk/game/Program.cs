@@ -102,7 +102,9 @@ namespace AbrahmanAdventure
 
         private DateTime previousDateTime = DateTime.Now;
 
-        private Random random;
+        private Random gameStateRandom;
+
+        private Random spriteBehaviorRandom;
 
         private GameState gameState = null;
 
@@ -125,8 +127,8 @@ namespace AbrahmanAdventure
             joystickManager = new JoystickManager();
             userInput = new UserInput();
 
-            random = new Random();
-
+            gameStateRandom = new Random();
+            spriteBehaviorRandom = new Random();
 
             if (isFullScreen)
                 Cursor.Hide();
@@ -139,13 +141,13 @@ namespace AbrahmanAdventure
 
             #region Some pre-caching
             SoundManager.PreCache();
-            MushroomSprite mushroom = new MushroomSprite(0, 0, random);
-            PeyoteSprite peyote = new PeyoteSprite(0, 0, random);
-            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, random);
-            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, random);
-            WhiskySprite whisky = new WhiskySprite(0, 0, random);
-            ExplosionSprite explosion = new ExplosionSprite(0, 0, random);
-            HelmetSprite helmet = new HelmetSprite(0, 0, random, true);
+            MushroomSprite mushroom = new MushroomSprite(0, 0, gameStateRandom);
+            PeyoteSprite peyote = new PeyoteSprite(0, 0, gameStateRandom);
+            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, gameStateRandom);
+            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, gameStateRandom);
+            WhiskySprite whisky = new WhiskySprite(0, 0, gameStateRandom);
+            ExplosionSprite explosion = new ExplosionSprite(0, 0, gameStateRandom);
+            HelmetSprite helmet = new HelmetSprite(0, 0, gameStateRandom, true);
             //levelViewer.PreCache(level);
             #endregion
         }
@@ -332,7 +334,7 @@ namespace AbrahmanAdventure
                 if (gameState == null)
                 {
                     GC.Collect();
-                    gameState = new GameState(random, mainSurface);
+                    gameState = new GameState(gameStateRandom, mainSurface);
                     levelViewer.ClearCache();
                     GC.Collect();
                 }
@@ -471,14 +473,14 @@ namespace AbrahmanAdventure
                 }
                 #endregion
 
-                physics.Update(playerSprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
+                physics.Update(playerSprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
 
                 foreach (AbstractSprite sprite in toUpdateSpriteList)
                     if (sprite != playerSprite)
                     {
-                        physics.Update(sprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, random);
+                        physics.Update(sprite, playerSprite, level, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
                         if (sprite is MonsterSprite && sprite.IsAlive)
-                            monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, random);
+                            monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                     }
 
                 #region We position the camera
