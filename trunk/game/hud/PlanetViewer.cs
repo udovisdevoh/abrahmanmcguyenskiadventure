@@ -35,12 +35,33 @@ namespace AbrahmanAdventure.hud
             Surface planetNameSurface = LargeFont.Render(name, System.Drawing.Color.White);
             mainSurface.Blit(planetNameSurface, new System.Drawing.Point(Program.screenWidth / 2 - planetNameSurface.Width / 2, Program.screenHeight / 12 * 11));
 
-
-
             System.Drawing.Color waterColor = skyColorHsl.GetColor();
 
             mainSurface.Draw(new Circle(Program.screenWidth / 2, Program.screenHeight / 2, Program.screenHeight / 3), waterColor, true, true);
 
+            DrawContinents(mainSurface, colorTheme, random);
+            DrawClouds(mainSurface, random);
+
+            Surface sphere = new Surface("./assets/rendered/Sphere.png");
+
+            double scaling = ((double)Program.screenHeight / 1.5) / (double)sphere.Width * 1.01;
+            sphere = sphere.CreateScaledSurface(scaling);
+
+            mainSurface.Blit(sphere, new System.Drawing.Point(Program.screenWidth / 2 - sphere.Width / 2, Program.screenHeight / 2 - sphere.Height / 2));
+
+            mainSurface.Update();
+        }
+        #endregion
+
+        #region Private Method
+        /// <summary>
+        /// Draw continents
+        /// </summary>
+        /// <param name="mainSurface">main surface</param>
+        /// <param name="colorTheme">color theme</param>
+        /// <param name="random">random number generator</param>
+        private static void DrawContinents(Surface mainSurface, ColorTheme colorTheme, Random random)
+        {
             int totalPointCount = (Program.screenWidth * Program.screenHeight) / 8;
             int pointX = random.Next(Program.screenWidth);
             int pointY = random.Next(Program.screenHeight);
@@ -52,31 +73,53 @@ namespace AbrahmanAdventure.hud
                 pointY += random.Next(-1, 2) * pointRadius;
 
                 if (pointX < Program.screenWidth / 2 - Program.screenHeight / 3)
-                    pointX = Program.screenWidth / 2 - Program.screenHeight / 3;
-                else if (pointX > Program.screenWidth / 2 + Program.screenHeight / 3)
                     pointX = Program.screenWidth / 2 + Program.screenHeight / 3;
+                else if (pointX > Program.screenWidth / 2 + Program.screenHeight / 3)
+                    pointX = Program.screenWidth / 2 - Program.screenHeight / 3;
 
                 if (pointY < Program.screenHeight / 2 - Program.screenHeight / 3)
-                    pointY = Program.screenHeight / 2 - Program.screenHeight / 3;
-                else if (pointY > Program.screenHeight / 2 + Program.screenHeight / 3)
                     pointY = Program.screenHeight / 2 + Program.screenHeight / 3;
+                else if (pointY > Program.screenHeight / 2 + Program.screenHeight / 3)
+                    pointY = Program.screenHeight / 2 - Program.screenHeight / 3;
+
 
                 Circle currentPoint = new Circle((short)pointX, (short)pointY, (short)pointRadius);
 
                 if (Math.Sqrt(Math.Pow(Math.Abs(pointX - Program.screenWidth / 2), 2.0) + Math.Pow(Math.Abs(pointY - Program.screenHeight / 2), 2.0)) <= Program.screenHeight / 3)
                 {
-                    mainSurface.Draw(currentPoint, colorTheme.GetColor(random.Next(0, colorTheme.Count)),true,true);
+                    mainSurface.Draw(currentPoint, colorTheme.GetColor(random.Next(0, colorTheme.Count)), true, true);
                 }
             }
+        }
 
-            Surface sphere = new Surface("./assets/rendered/Sphere.png");
+        private static void DrawClouds(Surface mainSurface, Random random)
+        {
+            int totalPointCount = (Program.screenWidth * Program.screenHeight) / 16;
+            int pointX = random.Next(Program.screenWidth);
+            int pointY = random.Next(Program.screenHeight);
+            for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
+            {
+                pointX += random.Next(-3, 4);
+                pointY += random.Next(-3, 4);
 
-            double scaling = ((double)Program.screenHeight / 1.5) / (double)sphere.Width * 1.01;
-            sphere = sphere.CreateScaledSurface(scaling);
+                if (pointX < Program.screenWidth / 2 - Program.screenHeight / 3)
+                    pointX = Program.screenWidth / 2 + Program.screenHeight / 3;
+                else if (pointX > Program.screenWidth / 2 + Program.screenHeight / 3)
+                    pointX = Program.screenWidth / 2 - Program.screenHeight / 3;
 
-            mainSurface.Blit(sphere, new System.Drawing.Point(Program.screenWidth / 2 - sphere.Width / 2, Program.screenHeight / 2 - sphere.Height / 2));
+                if (pointY < Program.screenHeight / 2 - Program.screenHeight / 3)
+                    pointY = Program.screenHeight / 2 + Program.screenHeight / 3;
+                else if (pointY > Program.screenHeight / 2 + Program.screenHeight / 3)
+                    pointY = Program.screenHeight / 2 - Program.screenHeight / 3;
 
-            mainSurface.Update();
+
+                System.Drawing.Point currentPoint = new System.Drawing.Point((short)pointX, (short)pointY);
+
+                if (Math.Sqrt(Math.Pow(Math.Abs(pointX - Program.screenWidth / 2), 2.0) + Math.Pow(Math.Abs(pointY - Program.screenHeight / 2), 2.0)) <= Program.screenHeight / 3)
+                {
+                    mainSurface.Draw(currentPoint, System.Drawing.Color.White);
+                }
+            }
         }
         #endregion
 
