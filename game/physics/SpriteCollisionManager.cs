@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.physics
                 {
                     KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
-                else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive && ((MonsterSprite)otherSprite).IsCanDoDamageToPlayerWhenTouched)
+                else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
                     UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta);
                 }
@@ -292,6 +292,7 @@ namespace AbrahmanAdventure.physics
         {
             SoundManager.PlayDrinkSound();
             playerSprite.InvincibilityCycle.Fire();
+            playerSprite.HitCycle.StopAndReset();
             whiskySprite.IsAlive = false;
             whiskySprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
@@ -314,7 +315,7 @@ namespace AbrahmanAdventure.physics
                 monsterSprite.IsAlive = false;
                 monsterSprite.JumpingCycle.Fire();
             }
-            else
+            else if (monsterSprite.IsCanDoDamageToPlayerWhenTouched)
             {
                 SoundManager.PlayHit2Sound();
                 sprite.HitCycle.Fire();

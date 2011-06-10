@@ -34,9 +34,17 @@ namespace AbrahmanAdventure.physics
                             if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
                             {
                                 SoundManager.PlayPunchSound();
-                                monsterSprite.HitCycle.Fire();
-                                monsterSprite.PunchedCycle.Fire();
-                                monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                                {
+                                    monsterSprite.IsAlive = false;
+                                    monsterSprite.JumpingCycle.Fire();
+                                }
+                                else
+                                {
+                                    monsterSprite.HitCycle.Fire();
+                                    monsterSprite.PunchedCycle.Fire();
+                                    monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                }
 
                                 monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                                 monsterSprite.JumpingCycle.Reset();
