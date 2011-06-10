@@ -63,6 +63,11 @@ namespace AbrahmanAdventure.level
             hueShiftRate = random.Next(-24, 24);
             saturationShiftRate = random.Next(-32, -16);
             lightnessShiftRate = random.Next(-64, -32);
+
+            BuildColor(0);
+            BuildColor(1);
+            BuildColor(2);
+            BuildColor(3);
         }
         #endregion
 
@@ -147,6 +152,16 @@ namespace AbrahmanAdventure.level
             Color color = ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 
             colorList.Add(color);
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// How many colors
+        /// </summary>
+        public int Count
+        {
+            get { return colorList.Count; }
         }
         #endregion
     }
