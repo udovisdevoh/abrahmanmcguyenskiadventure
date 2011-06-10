@@ -63,7 +63,7 @@ namespace AbrahmanAdventure.hud
         /// <param name="random">random number generator</param>
         private static void DrawContinents(Surface mainSurface, ColorTheme colorTheme, Random random)
         {
-            int totalPointCount = (Program.screenWidth * Program.screenHeight) / 8;
+            int totalPointCount = 38400;
             int pointX = random.Next(Program.screenWidth);
             int pointY = random.Next(Program.screenHeight);
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
