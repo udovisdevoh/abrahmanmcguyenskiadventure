@@ -1,4 +1,4 @@
-Mettre icon pour app, changer nom d'app
+Changer nom d'app
 
 Rendre compatible à plusieurs aspect ratio (autre que 4*3)
 
@@ -19,6 +19,7 @@ Faire écran de menu
 		Graphical options
 		{
 			Changer résolution
+			Fullscreen?
 		}
 		Setup controller
 		{
