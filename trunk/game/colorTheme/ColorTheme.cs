@@ -64,7 +64,7 @@ namespace AbrahmanAdventure.level
             saturationShiftRate = random.Next(-32, -16);
             lightnessShiftRate = random.Next(-64, -32);
 
-            int startingColorCount = random.Next(2, 7); //Some other color may appear later, and some color may not be used in level
+            int startingColorCount = random.Next(3, 7); //Some other color may appear later, and some color may not be used in level
             for (int i = 0; i < startingColorCount; i++)
                 BuildColor(i);
         }
