@@ -32,7 +32,14 @@ namespace AbrahmanAdventure.hud
         {
             Surface planetSurface = new Surface(640, 480, 32, true);
 
+            bool isShowNebulae = random.Next(0, 2) == 1;
+
+            if (isShowNebulae)
+                DrawNebulae(planetSurface, random);
             DrawStars(planetSurface, random);
+            
+            if (!isShowNebulae)
+                DrawSun(planetSurface, random);
 
             Surface planetNameSurface = LargeFont640Res.Render(name, System.Drawing.Color.White);
             planetSurface.Blit(planetNameSurface, new System.Drawing.Point(640 / 2 - planetNameSurface.GetWidth() / 2, 480 / 12 * 11));
@@ -47,7 +54,7 @@ namespace AbrahmanAdventure.hud
 
             for (int i = 0; i < 4; i++)
                 if (random.Next(0, 7) != 0)
-                    DrawContinents(planetSurface, colorTheme, random);
+                    DrawContinent(planetSurface, colorTheme, random);
 
             if (random.Next(0, 7) != 0)
                 DrawClouds(planetSurface, random);
@@ -66,6 +73,65 @@ namespace AbrahmanAdventure.hud
         #endregion
 
         #region Private Method
+        /// <summary>
+        /// Draw nebulae
+        /// </summary>
+        /// <param name="surface">surface to draw on</param>
+        /// <param name="random">random number generator</param>
+        private static void DrawNebulae(Surface surface, Random random)
+        {
+            short radius = (short)random.Next(50, 1200);
+
+            System.Drawing.Color coronaColor = new ColorHsl(random.Next(0, 256), random.Next(128, 256), random.Next(0, 32)).GetColor();
+
+            Surface nebulaeSurface = new Surface("./assets/rendered/Nebulae.png");
+
+            double zoom = (double)radius / ((double)nebulaeSurface.Width / 2.0);
+
+            nebulaeSurface = nebulaeSurface.CreateScaledSurface(zoom);
+
+            short positionX = (short)random.Next(-160, 800);
+            short positionY = (short)random.Next(-120, 600);
+
+            surface.Draw(new Circle(positionX, positionY, (short)(radius - 1)), coronaColor, true, true);
+
+            surface.Blit(nebulaeSurface, new System.Drawing.Point(positionX - radius, positionY - radius), nebulaeSurface.GetRectangle());
+        }
+
+        /// <summary>
+        /// Draw planet's sun
+        /// </summary>
+        /// <param name="surface">surface</param>
+        /// <param name="random">random number generator</param>
+        private static void DrawSun(Surface surface, Random random)
+        {
+            short coronaRadius = (short)random.Next(30, 150);
+            short coreRadius = (short)(coronaRadius / 2);
+
+            System.Drawing.Color coronaColor = new ColorHsl(random.Next(0, 256), 255, 255).GetColor();
+
+
+            Surface coronaSurface = new Surface("./assets/rendered/Corona.png");
+
+            double zoom = (double)coronaRadius / ((double)coronaSurface.Width / 2.0);
+
+            coronaSurface = coronaSurface.CreateScaledSurface(zoom);
+
+
+            short positionX, positionY;
+            do
+            {
+                positionX = (short)random.Next(-160, 800);
+                positionY = (short)random.Next(-120, 600);
+            } while (positionX > 140 && positionX < 500 && positionY > 140 && positionY < 340);
+
+            surface.Draw(new Circle(positionX, positionY, (short)(coronaRadius - 1)), coronaColor, true, true);
+
+            surface.Blit(coronaSurface, new System.Drawing.Point(positionX - coronaRadius, positionY - coronaRadius), coronaSurface.GetRectangle());
+
+            surface.Draw(new Circle(positionX, positionY, coreRadius), System.Drawing.Color.White, true, true);
+        }
+
         /// <summary>
         /// Draw stars
         /// </summary>
@@ -92,7 +158,7 @@ namespace AbrahmanAdventure.hud
         /// <param name="mainSurface">main surface</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="random">random number generator</param>
-        private static void DrawContinents(Surface mainSurface, ColorTheme colorTheme, Random random)
+        private static void DrawContinent(Surface mainSurface, ColorTheme colorTheme, Random random)
         {
             int totalPointCount = 38400;
             int pointX = random.Next(640);
