@@ -157,7 +157,7 @@ namespace AbrahmanAdventure.hud
             int pointX = random.Next(640);
             int pointY = random.Next(480);
 
-            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(16, random.Next(240, 256), random.Next(240, 256), random.Next(240, 256));
+            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(16, random.Next(230, 256), random.Next(230, 256), random.Next(230, 256));
 
             int maxRadiusSize = random.Next(1, 6);
             totalPointCount = totalPointCount * 3 / maxRadiusSize;
