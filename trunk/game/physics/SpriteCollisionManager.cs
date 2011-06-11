@@ -327,7 +327,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
         {
-            if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired)
+            if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired || sprite.FromVortexCycle.IsFired)
                 return;
 
             if (sprite.InvincibilityCycle.IsFired)
