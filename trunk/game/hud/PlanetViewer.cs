@@ -99,10 +99,15 @@ namespace AbrahmanAdventure.hud
                 changeColorRate *= 100;
 
             int counter = 0;
+
+            int maxRadiusSize = random.Next(1, 10);
+
+            totalPointCount = totalPointCount * 3 / maxRadiusSize;
+
             System.Drawing.Color continentColor = colorTheme.GetColor(random.Next(0, colorTheme.Count));
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
             {
-                int pointRadius = random.Next(1, 640 / 200);
+                int pointRadius = random.Next(1, maxRadiusSize);
 
                 pointX += random.Next(-1, 2) * pointRadius;
                 pointY += random.Next(-1, 2) * pointRadius;
@@ -120,6 +125,7 @@ namespace AbrahmanAdventure.hud
                 if (counter > changeColorRate)
                 {
                     continentColor = colorTheme.GetColor(random.Next(0, colorTheme.Count));
+                    continentColor = System.Drawing.Color.FromArgb(32, continentColor.R, continentColor.G, continentColor.B);
                     counter = 0;
                 }
                 counter++;
