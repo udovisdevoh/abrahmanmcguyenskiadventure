@@ -61,9 +61,10 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
         /// <param name="holeSet">represents wave modelization of holes in a level</param>
-        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet)
+        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, int seed, int groundId)
         {
             this.holeSet = holeSet;
+
             topTexture = new Texture(random, color, 1.5, true);
 
             if (Program.isAlwaysUseBottomTexture)
@@ -72,7 +73,9 @@ namespace AbrahmanAdventure.level
                 isUseBottomTexture = random.Next(0, 2) == 0;
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
+            {
                 bottomTexture = new Texture(random, color, 16, 0.75, false);
+            }
             
             this.terrainWave = terrainWave;
             isTransparent = random.Next(0,5) == 0;
