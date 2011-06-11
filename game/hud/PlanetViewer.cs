@@ -95,7 +95,7 @@ namespace AbrahmanAdventure.hud
             int pointY = random.Next(480);
 
             int changeColorRate = random.Next(1, 10);
-            if (changeColorRate > 6)
+            if (changeColorRate > 7)
                 changeColorRate *= 100;
 
             int counter = 0;
