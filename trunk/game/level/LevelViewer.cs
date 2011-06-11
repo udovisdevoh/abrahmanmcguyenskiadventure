@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = viewOffsetX % (double)Program.totalZoneWidth;
 
-            mainSurface.Blit(sky.Surface, new Point(0,Sky.skyHeight / -4));
+            mainSurface.Blit(sky.Surface, new Point(0,Sky.skyHeight / -4), sky.Surface.GetRectangle());
             
             for (int currentZoneOffset = -Program.terrainColumnBufferLeftCount; currentZoneOffset < Program.terrainColumnBufferRightCount; currentZoneOffset++)
             {
@@ -73,7 +73,7 @@ namespace AbrahmanAdventure.level
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
-                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, - (int)viewOffsetY - Program.totalZoneHeight / 2));
+                mainSurface.Blit(currentSurface, new Point((int)offsetXPerZone + Program.totalZoneWidth * currentZoneOffset, - (int)viewOffsetY - Program.totalZoneHeight / 2), currentSurface.GetRectangle());
             }
 
             levelViewerCache.Trim(Program.maxCachedColumnCount);
@@ -162,23 +162,23 @@ namespace AbrahmanAdventure.level
                     int relativeFloorHeight = GetRelativeFloorHeight(ground, x, startX);
 
                     int textureInputX = absoluteXOffset + x;
-                    textureInputX %= ground.TopTexture.Surface.Width;
-                    while (textureInputX > ground.TopTexture.Surface.Width)
-                        textureInputX -= ground.TopTexture.Surface.Width;
+                    textureInputX %= ground.TopTexture.Surface.GetWidth();
+                    while (textureInputX > ground.TopTexture.Surface.GetWidth())
+                        textureInputX -= ground.TopTexture.Surface.GetWidth();
                     while (textureInputX < 0)
-                        textureInputX += ground.TopTexture.Surface.Width;
+                        textureInputX += ground.TopTexture.Surface.GetWidth();
 
                     if (IGroundHelper.IsTransparentAt(ground, level, waveInput))
                     {
-                        rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
+                        rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.GetHeight(), Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                         zoneSurface.Fill(rectangle, transparentColor);
                     }
                     else
                     {
                         if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                         {
-                            int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.Height);
-                            int bottomSurfacePositionY = (relativeFloorHeight + ground.TopTexture.Surface.Height) / bottomSurfaceAligment * bottomSurfaceAligment;
+                            int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
+                            int bottomSurfacePositionY = (relativeFloorHeight + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
 
                             int desiredBottomSurfaceLowerBound = Program.totalZoneHeight;
                             Ground nextCloserGround = ground.NextCloser;
@@ -189,13 +189,13 @@ namespace AbrahmanAdventure.level
 
                             do
                             {
-                                zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.Height));
-                                bottomSurfacePositionY += ground.BottomTexture.Surface.Height;
-                            } while (bottomSurfacePositionY - ground.BottomTexture.Surface.Height < Program.totalZoneHeight);
+                                zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.GetHeight()));
+                                bottomSurfacePositionY += ground.BottomTexture.Surface.GetHeight();
+                            } while (bottomSurfacePositionY - ground.BottomTexture.Surface.GetHeight() < Program.totalZoneHeight);
                         }
                         else
                         {
-                            rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.Height, Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
+                            rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.GetHeight(), Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                             zoneSurface.Fill(rectangle, waveColor);
                         }
                     }
@@ -209,11 +209,11 @@ namespace AbrahmanAdventure.level
                             scaledSurface = ground.TopTexture.Surface.CreateScaledSurface(1.0, scaling);
                             ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
                         }
-                        zoneSurface.Blit(scaledSurface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, scaledSurface.Height));
+                        zoneSurface.Blit(scaledSurface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
                     }
                     else
                     {
-                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.Height));
+                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, relativeFloorHeight), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
                     }
                 }
             }

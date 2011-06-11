@@ -104,7 +104,7 @@ namespace AbrahmanAdventure
 
             if (surfaceToDrawLoadingProgress != null)
             {
-                surfaceToDrawLoadingProgress.Blit(planetSurface,new System.Drawing.Point(0,0));
+                surfaceToDrawLoadingProgress.Blit(planetSurface,new System.Drawing.Point(0,0), planetSurface.GetRectangle());
                 GameMenu.ShowLoading(surfaceToDrawLoadingProgress);
                 surfaceToDrawLoadingProgress.Update();
             }

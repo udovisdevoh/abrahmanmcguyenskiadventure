@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.hud
             DrawStars(planetSurface, random);
 
             Surface planetNameSurface = LargeFont640Res.Render(name, System.Drawing.Color.White);
-            planetSurface.Blit(planetNameSurface, new System.Drawing.Point(640 / 2 - planetNameSurface.Width / 2, 480 / 12 * 11));
+            planetSurface.Blit(planetNameSurface, new System.Drawing.Point(640 / 2 - planetNameSurface.GetWidth() / 2, 480 / 12 * 11));
 
             System.Drawing.Color waterColor = skyColorHsl.GetColor();
 
@@ -50,10 +50,10 @@ namespace AbrahmanAdventure.hud
 
             planetSurface.Blit(shadeSphere, new System.Drawing.Point(640 / 2 - shadeSphere.Width / 2, 480 / 2 - shadeSphere.Height / 2));
 
-            if (planetSurface.Width != Program.screenWidth || planetSurface.Height != Program.screenHeight)
+            if (planetSurface.GetWidth() != Program.screenWidth || planetSurface.GetHeight() != Program.screenHeight)
             {
-                double zoomX = (double)Program.screenWidth / (double)planetSurface.Width;
-                double zoomY = (double)Program.screenHeight / (double)planetSurface.Height;
+                double zoomX = (double)Program.screenWidth / (double)planetSurface.GetWidth();
+                double zoomY = (double)Program.screenHeight / (double)planetSurface.GetHeight();
                 planetSurface = planetSurface.CreateScaledSurface(zoomX, zoomY, true);
             }
 
