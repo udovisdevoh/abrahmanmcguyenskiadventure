@@ -45,8 +45,10 @@ namespace AbrahmanAdventure.hud
             double scaling = ((double)480 / 1.5) / (double)shadeSphere.Width * 1.01;
             shadeSphere = shadeSphere.CreateScaledSurface(scaling);
 
-            if (random.Next(0, 7) != 0)
-                DrawContinents(planetSurface, colorTheme, random);
+            for (int i = 0; i < 4; i++)
+                if (random.Next(0, 7) != 0)
+                    DrawContinents(planetSurface, colorTheme, random);
+
             if (random.Next(0, 7) != 0)
                 DrawClouds(planetSurface, random);
 
@@ -107,6 +109,7 @@ namespace AbrahmanAdventure.hud
             totalPointCount = totalPointCount * 3 / maxRadiusSize;
             totalPointCount *= random.Next(1, 4);
             totalPointCount /= random.Next(1, 4);
+            totalPointCount /= 4;
 
             System.Drawing.Color continentColor = colorTheme.GetColor(random.Next(0, colorTheme.Count));
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
@@ -154,18 +157,21 @@ namespace AbrahmanAdventure.hud
             int pointX = random.Next(640);
             int pointY = random.Next(480);
 
-            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(16, 255, 255, 255);
+            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(16, random.Next(240, 256), random.Next(240, 256), random.Next(240, 256));
 
-            int maxRadiusSize = random.Next(1, 7);
+            int maxRadiusSize = random.Next(1, 6);
             totalPointCount = totalPointCount * 3 / maxRadiusSize;
 
             totalPointCount *= random.Next(1, 4);
             totalPointCount /= random.Next(1, 4);
 
+            int maxHorizontalMovement = random.Next(1, 7);
+            int maxVerticalMovement = random.Next(1, 7);
+
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
             {
-                pointX += random.Next(-2, 3);
-                pointY += random.Next(-2, 3);
+                pointX += random.Next(-maxHorizontalMovement, maxHorizontalMovement + 1);
+                pointY += random.Next(-maxVerticalMovement, maxVerticalMovement+1);
 
                 if (pointX < 640 / 2 - 480 / 3)
                     pointX = 640 / 2 + 480 / 3;
