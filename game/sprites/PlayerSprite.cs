@@ -271,6 +271,8 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle invincibilityCycle;
 
+        private Cycle fromVortexCycle;
+
         /// <summary>
         /// Whether sprite can throw fire balls
         /// </summary>
@@ -307,6 +309,7 @@ namespace AbrahmanAdventure.sprites
             changingSizeAnimationCycle = new Cycle(20, false);
             throwBallCycle = new Cycle(2.5, false);
             invincibilityCycle = new Cycle(400, false);
+            fromVortexCycle = new Cycle(225, false);
 
             #region We preload the textures
             GetDeadSurface();
@@ -2230,6 +2233,14 @@ namespace AbrahmanAdventure.sprites
         public Cycle InvincibilityCycle
         {
             get { return invincibilityCycle; }
+        }
+
+        /// <summary>
+        /// Time for which the player won't be able to use a vortex because he came from one
+        /// </summary>
+        public Cycle FromVortexCycle
+        {
+            get { return fromVortexCycle; }
         }
         #endregion
     }

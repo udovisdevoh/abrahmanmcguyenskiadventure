@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.physics
             gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
             jumpingManager.Update(spriteToUpdate, timeDelta);
             damageManager.Update(spriteToUpdate, timeDelta);
-            deathManager.Update(spriteToUpdate, timeDelta, spritePopulation, visibleSpriteList);
+            deathManager.Update(spriteToUpdate, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState);
 
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {
@@ -113,6 +113,9 @@ namespace AbrahmanAdventure.physics
 
                     if (((PlayerSprite)spriteToUpdate).InvincibilityCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).InvincibilityCycle.Increment(timeDelta);
+
+                    if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired)
+                        ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
 
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                 }

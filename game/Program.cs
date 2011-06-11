@@ -341,6 +341,7 @@ namespace AbrahmanAdventure
                     GC.Collect();
                     if (gameState != null)
                     {
+                        SoundManager.PlayVortexInSound();
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
                     }
@@ -349,9 +350,13 @@ namespace AbrahmanAdventure
                     List<int> listWarpBackSeed;
                     if (gameMetaState.TryGetWarpBackTargetSeed(gameState.Seed, out listWarpBackSeed))
                         gameState.AddWarpBackVortexList(listWarpBackSeed);
-                    gameState.PlayerSprite.IsTryToWalkUp = false;
                     if (gameMetaState.PreviousSeed != -1)
+                    {
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
+                        SoundManager.PlayVortexOutSound();
+                        gameState.PlayerSprite.FromVortexCycle.Fire();
+                        gameState.PlayerSprite.IsTryToWalkUp = false;
+                    }
                     levelViewer.ClearCache();
                     GC.Collect();
                     #endregion

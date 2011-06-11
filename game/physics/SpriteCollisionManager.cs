@@ -56,7 +56,7 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
                 }
-                else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp)
+                else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp && !((PlayerSprite)sprite).FromVortexCycle.IsFired)
                 {
                     UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program, gameMetaState, gameState);
                 }

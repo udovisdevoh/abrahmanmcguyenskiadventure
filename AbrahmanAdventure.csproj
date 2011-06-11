@@ -668,6 +668,12 @@
     <Content Include="assets\sounds\Trampoline.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\sounds\VortexIn.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\VortexOut.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="game\textGenerator\english.language.matrix.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
