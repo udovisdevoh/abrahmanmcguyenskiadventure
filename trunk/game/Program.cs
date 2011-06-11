@@ -217,11 +217,13 @@ namespace AbrahmanAdventure
                 {
                     userInput.jumpButton = args.Button;
                     GameMenu.IsWaitingForJumpButtonRemap = false;
+                    return;
                 }
                 else if (GameMenu.IsWaitingForAttackButtonRemap)
                 {
                     userInput.attackButton = args.Button;
                     GameMenu.IsWaitingForAttackButtonRemap = false;
+                    return;
                 }
             }
 
