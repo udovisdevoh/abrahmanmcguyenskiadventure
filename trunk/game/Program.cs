@@ -356,6 +356,8 @@ namespace AbrahmanAdventure
                         SoundManager.PlayVortexOutSound();
                         gameState.PlayerSprite.FromVortexCycle.Fire();
                         gameState.PlayerSprite.IsTryToWalkUp = false;
+                        gameState.PlayerSprite.IsNeedToAttackAgain = true;
+                        gameState.PlayerSprite.IsNeedToJumpAgain = true;
                     }
                     levelViewer.ClearCache();
                     GC.Collect();

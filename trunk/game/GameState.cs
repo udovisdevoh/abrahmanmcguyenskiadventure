@@ -166,8 +166,8 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new AnarchyBlockSprite(19, -5, random));
             spritePopulation.Add(new AnarchyBlockSprite(20, -5, random));
 
-            spritePopulation.Add(new VortexSprite(-60, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new VortexSprite(-75, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new VortexSprite(-60, Program.totalHeightTileCount / -2, random, true));
+            spritePopulation.Add(new VortexSprite(-75, Program.totalHeightTileCount / -2, random, true));
 
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
         }
@@ -189,7 +189,7 @@ namespace AbrahmanAdventure
                         isFoundIndenticalVortex = true;
                 if (!isFoundIndenticalVortex)
                 {
-                    VortexSprite warpBack = new VortexSprite(xOffset, Program.totalHeightTileCount / -2, random, seed);
+                    VortexSprite warpBack = new VortexSprite(xOffset, Program.totalHeightTileCount / -2, random, seed, false);
                     spritePopulation.Add(warpBack);
                     xOffset -= 5;
                 }
