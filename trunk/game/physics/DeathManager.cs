@@ -16,8 +16,11 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta"></param>
-        /// <param name="spritePopulation"></param>
-        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList)
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="gameMetaState">game meta state</param>
+        /// <param name="gameState">game state</param>
+        /// <param name="visibleSpriteList">visible sprite list</param>
+        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState)
         {
             if (sprite.YPosition > Program.totalHeightTileCount)
                 sprite.IsAlive = false;
@@ -43,6 +46,9 @@ namespace AbrahmanAdventure.physics
                     ((PlayerSprite)sprite).IsRasta = false;
                     ((PlayerSprite)sprite).InvincibilityCycle.StopAndReset();
                     ((PlayerSprite)sprite).IsTiny = true;
+
+                    if (gameMetaState.PreviousSeed != -1)
+                        gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
 
                     foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
                     {
