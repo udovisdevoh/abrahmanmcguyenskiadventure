@@ -59,7 +59,9 @@ namespace AbrahmanAdventure.hud
 
             return planetSurface;
         }
+        #endregion
 
+        #region Private Method
         /// <summary>
         /// Draw stars
         /// </summary>
@@ -67,7 +69,7 @@ namespace AbrahmanAdventure.hud
         /// <param name="random">random number generator</param>
         private static void DrawStars(Surface surface, Random random)
         {
-            int totalStarCount = 640 * 480 / random.Next(100,500);
+            int totalStarCount = 640 * 480 / random.Next(100, 500);
 
             System.Drawing.Point point;
             System.Drawing.Color color;
@@ -79,9 +81,7 @@ namespace AbrahmanAdventure.hud
                 surface.Draw(point, color);
             }
         }
-        #endregion
 
-        #region Private Method
         /// <summary>
         /// Draw continents
         /// </summary>
@@ -93,6 +93,13 @@ namespace AbrahmanAdventure.hud
             int totalPointCount = 38400;
             int pointX = random.Next(640);
             int pointY = random.Next(480);
+
+            int changeColorRate = random.Next(1, 10);
+            if (changeColorRate > 6)
+                changeColorRate *= 100;
+
+            int counter = 0;
+            System.Drawing.Color continentColor = colorTheme.GetColor(random.Next(0, colorTheme.Count));
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
             {
                 int pointRadius = random.Next(1, 640 / 200);
@@ -110,12 +117,18 @@ namespace AbrahmanAdventure.hud
                 else if (pointY > 480 / 2 + 480 / 3)
                     pointY = 480 / 2 - 480 / 3;
 
+                if (counter > changeColorRate)
+                {
+                    continentColor = colorTheme.GetColor(random.Next(0, colorTheme.Count));
+                    counter = 0;
+                }
+                counter++;
 
                 Circle currentPoint = new Circle((short)pointX, (short)pointY, (short)pointRadius);
 
                 if (Math.Sqrt(Math.Pow(Math.Abs(pointX - 640 / 2), 2.0) + Math.Pow(Math.Abs(pointY - 480 / 2), 2.0)) <= 480 / 3)
                 {
-                    mainSurface.Draw(currentPoint, colorTheme.GetColor(random.Next(0, colorTheme.Count)), true, true);
+                    mainSurface.Draw(currentPoint, continentColor, true, true);
                 }
             }
         }

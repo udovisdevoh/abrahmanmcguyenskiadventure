@@ -549,6 +549,14 @@ namespace AbrahmanAdventure
         }
 
         /// <summary>
+        /// Game's meta state
+        /// </summary>
+        public GameMetaState GameMetaState
+        {
+            get { return gameMetaState; }
+        }
+
+        /// <summary>
         /// Whether we show menu
         /// </summary>
         public bool IsShowMenu
