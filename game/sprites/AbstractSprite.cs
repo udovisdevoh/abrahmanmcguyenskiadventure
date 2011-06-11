@@ -135,6 +135,11 @@ namespace AbrahmanAdventure.sprites
         private bool isCrossGrounds;
 
         /// <summary>
+        /// Whether we must apply full gravity force on next frame
+        /// </summary>
+        private bool isFullGravityOnNextFrame;
+
+        /// <summary>
         /// Max falling speed
         /// </summary>
         private double maxFallingSpeed = double.PositiveInfinity;
@@ -750,6 +755,15 @@ namespace AbrahmanAdventure.sprites
         public bool IsAnnihilateOnExitScreen
         {
             get { return isAnnihilateOnExitScreen; }
+        }
+
+        /// <summary>
+        /// Whether we must apply full gravity force on next frame
+        /// </summary>
+        public bool IsFullGravityOnNextFrame
+        {
+            get { return isFullGravityOnNextFrame; }
+            set { isFullGravityOnNextFrame = value; }
         }
 
         /// <summary>

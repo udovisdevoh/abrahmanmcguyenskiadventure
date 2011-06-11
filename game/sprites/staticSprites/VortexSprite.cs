@@ -70,6 +70,7 @@ namespace AbrahmanAdventure.sprites
         {
             this.isGoingIn = isGoingIn;
             destinationSeed = random.Next();
+            IsFullGravityOnNextFrame = true;
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
             if (surface1 == null)
@@ -96,6 +97,7 @@ namespace AbrahmanAdventure.sprites
         {
             this.isGoingIn = isGoingIn;
             this.destinationSeed = destinationSeed;
+            IsFullGravityOnNextFrame = true;
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
             if (surface1 == null)
