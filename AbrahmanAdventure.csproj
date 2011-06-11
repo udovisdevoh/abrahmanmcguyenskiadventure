@@ -115,6 +115,7 @@
     <Compile Include="game\sprites\staticSprites\IBumpable.cs" />
     <Compile Include="game\sprites\staticSprites\Trampoline.cs" />
     <Compile Include="game\sprites\staticSprites\VortexSprite.cs" />
+    <Compile Include="game\SurfaceSizeCache.cs" />
     <Compile Include="game\textGenerator\Matrix.cs" />
     <Compile Include="game\textGenerator\Probabilities.cs" />
     <Compile Include="game\textGenerator\TextGenerator.cs" />

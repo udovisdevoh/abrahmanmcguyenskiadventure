@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.level
             		}
             	}
 
-            	surface.Blit(column,new Point(x,(int)verticalWaveOffset));
+            	surface.Blit(column,new Point(x,(int)verticalWaveOffset), column.GetRectangle());
             }
         }
         #endregion
