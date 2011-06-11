@@ -28,6 +28,21 @@ namespace AbrahmanAdventure.sprites
         private static Surface surface3;
 
         /// <summary>
+        /// Surface 1 b
+        /// </summary>
+        private static Surface surface1b;
+
+        /// <summary>
+        /// Surface 2 b
+        /// </summary>
+        private static Surface surface2b;
+
+        /// <summary>
+        /// Surface 3 b
+        /// </summary>
+        private static Surface surface3b;
+
+        /// <summary>
         /// Rotation cycle
         /// </summary>
         private Cycle rotateCycle;
@@ -36,6 +51,11 @@ namespace AbrahmanAdventure.sprites
         /// Seed for destination world
         /// </summary>
         private int destinationSeed;
+
+        /// <summary>
+        /// True: going in, False: warp back
+        /// </summary>
+        private bool isGoingIn;
         #endregion
 
         #region Constructors
@@ -45,9 +65,10 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public VortexSprite(double xPosition, double yPosition, Random random)
+        public VortexSprite(double xPosition, double yPosition, Random random, bool isGoingIn)
             : base(xPosition, yPosition, random)
         {
+            this.isGoingIn = isGoingIn;
             destinationSeed = random.Next();
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
@@ -56,6 +77,9 @@ namespace AbrahmanAdventure.sprites
                 surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
                 surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2.png");
                 surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3.png");
+                surface1b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1b.png");
+                surface2b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2b.png");
+                surface3b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3b.png");
             }
         }
 
@@ -67,9 +91,10 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         /// <param name="isAffectedByGravity">default true</param>
         /// <param name="destinationSeed">default: random using local seed</param>
-        public VortexSprite(double xPosition, double yPosition, Random random, int destinationSeed)
+        public VortexSprite(double xPosition, double yPosition, Random random, int destinationSeed, bool isGoingIn)
             : base(xPosition, yPosition, random)
         {
+            this.isGoingIn = isGoingIn;
             this.destinationSeed = destinationSeed;
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
@@ -78,6 +103,9 @@ namespace AbrahmanAdventure.sprites
                 surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
                 surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2.png");
                 surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3.png");
+                surface1b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1b.png");
+                surface2b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2b.png");
+                surface3b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3b.png");
             }
         }
         #endregion
@@ -131,17 +159,35 @@ namespace AbrahmanAdventure.sprites
 
             rotateCycle.Increment(1.0);
 
-            if (cycleDivision == 1)
+            if (isGoingIn)
             {
-                return surface1;
-            }
-            else if (cycleDivision == 2)
-            {
-                return surface2;
+                if (cycleDivision == 1)
+                {
+                    return surface1;
+                }
+                else if (cycleDivision == 2)
+                {
+                    return surface2;
+                }
+                else
+                {
+                    return surface3;
+                }
             }
             else
             {
-                return surface3;
+                if (cycleDivision == 1)
+                {
+                    return surface1b;
+                }
+                else if (cycleDivision == 2)
+                {
+                    return surface2b;
+                }
+                else
+                {
+                    return surface3b;
+                }
             }
         }
         #endregion
