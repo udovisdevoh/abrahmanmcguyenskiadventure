@@ -24,8 +24,10 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="program">program itself</param>
+        /// <param name="gameMetaState">game meta state</param>
+        /// <param name="gameState">game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, Random random)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
             List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
 
@@ -56,7 +58,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp)
                 {
-                    UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program);
+                    UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program, gameMetaState, gameState);
                 }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && !sprite.IsCrossGrounds)
                 {
@@ -308,8 +310,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="playerSprite">player sprite</param>
         /// <param name="vortexSprite">vortex sprite</param>
         /// <param name="program">program itself</param>
-        private void UpdateGoToVortex(PlayerSprite playerSprite, VortexSprite vortexSprite, Program program)
+        /// <param name="gameMetaState">meta state</param>
+        /// <param name="gameState">game state</param>
+        private void UpdateGoToVortex(PlayerSprite playerSprite, VortexSprite vortexSprite, Program program, GameMetaState gameMetaState, GameState gameState)
         {
+            gameMetaState.SetWarpBack(vortexSprite.DestinationSeed, gameState.Seed);
             program.ChangeGameState(vortexSprite.DestinationSeed);
         }
 

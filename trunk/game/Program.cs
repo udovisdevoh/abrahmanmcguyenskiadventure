@@ -102,9 +102,9 @@ namespace AbrahmanAdventure
 
         private DateTime previousDateTime = DateTime.Now;
 
-        private Random gameStateRandom;
-
         private Random spriteBehaviorRandom;
+
+        private GameMetaState gameMetaState;
 
         private GameState gameState = null;
 
@@ -128,10 +128,10 @@ namespace AbrahmanAdventure
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
             userInput = new UserInput();
+            gameMetaState = new GameMetaState();
 
             spriteBehaviorRandom = new Random();
             seedNextGameState = new Random().Next();
-            gameStateRandom = new Random(seedNextGameState);
             
             if (isFullScreen)
                 Cursor.Hide();
@@ -144,13 +144,14 @@ namespace AbrahmanAdventure
 
             #region Some pre-caching
             SoundManager.PreCache();
-            MushroomSprite mushroom = new MushroomSprite(0, 0, gameStateRandom);
-            PeyoteSprite peyote = new PeyoteSprite(0, 0, gameStateRandom);
-            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, gameStateRandom);
-            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, gameStateRandom);
-            WhiskySprite whisky = new WhiskySprite(0, 0, gameStateRandom);
-            ExplosionSprite explosion = new ExplosionSprite(0, 0, gameStateRandom);
-            HelmetSprite helmet = new HelmetSprite(0, 0, gameStateRandom, true);
+            Random spriteCachingRandom = new Random();
+            MushroomSprite mushroom = new MushroomSprite(0, 0, spriteCachingRandom);
+            PeyoteSprite peyote = new PeyoteSprite(0, 0, spriteCachingRandom);
+            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, spriteCachingRandom);
+            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, spriteCachingRandom);
+            WhiskySprite whisky = new WhiskySprite(0, 0, spriteCachingRandom);
+            ExplosionSprite explosion = new ExplosionSprite(0, 0, spriteCachingRandom);
+            HelmetSprite helmet = new HelmetSprite(0, 0, spriteCachingRandom, true);
             //levelViewer.PreCache(level);
             #endregion
         }
@@ -336,11 +337,24 @@ namespace AbrahmanAdventure
             {
                 if (gameState == null || gameState.IsExpired)
                 {
-                    gameStateRandom = new Random(seedNextGameState);
+                    #region We regenerate game state because it is nonexistant or expired (changing environment)
                     GC.Collect();
-                    gameState = new GameState(gameStateRandom, mainSurface);
+                    if (gameState != null)
+                    {
+                        gameMetaState.PreviousSeed = gameState.Seed;
+                        gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
+                    }
+                    gameState = new GameState(seedNextGameState, mainSurface);
+                    gameMetaState.ApplyPlayerInfoToSprite(gameState.PlayerSprite);
+                    List<int> listWarpBackSeed;
+                    if (gameMetaState.TryGetWarpBackTargetSeed(gameState.Seed, out listWarpBackSeed))
+                        gameState.AddWarpBackVortexList(listWarpBackSeed);
+                    gameState.PlayerSprite.IsTryToWalkUp = false;
+                    if (gameMetaState.PreviousSeed != -1)
+                        gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
                     levelViewer.ClearCache();
                     GC.Collect();
+                    #endregion
                 }
 
                 SpritePopulation spritePopulation = gameState.SpritePopulation;
@@ -383,8 +397,8 @@ namespace AbrahmanAdventure
                 #endregion
 
                 playerSprite.IsCrouch = userInput.isPressDown && !userInput.isPressUp && !playerSprite.IsTiny;
-                
-                playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown;
+
+                playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight;
 
                 #region We manage attack input logic
                 //Attacking logic
@@ -477,12 +491,12 @@ namespace AbrahmanAdventure
                 }
                 #endregion
 
-                physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
+                physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, spriteBehaviorRandom);
 
                 foreach (AbstractSprite sprite in toUpdateSpriteList)
                     if (sprite != playerSprite)
                     {
-                        physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, spriteBehaviorRandom);
+                        physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, spriteBehaviorRandom);
                         if (sprite is MonsterSprite && sprite.IsAlive)
                             monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                     }
