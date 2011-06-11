@@ -79,6 +79,20 @@ namespace AbrahmanAdventure.physics
                 }
             }
         }
+
+        /// <summary>
+        /// Apply gravity until sprite falls on ground or die
+        /// </summary>
+        /// <param name="spriteToUpdate">sprite to update</param>
+        /// <param name="level">level</param>
+        /// <param name="timeDelta">time delta</param>
+        /// <param name="visibleSpriteList">visible sprite list</param>
+        internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        {
+            spriteToUpdate.IsFullGravityOnNextFrame = false;
+            while (spriteToUpdate.IsAlive && spriteToUpdate.IGround == null && spriteToUpdate.YPosition < Program.holeHeight)
+                Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+        }
         #endregion
 
         #region Private Methods
