@@ -58,6 +58,28 @@ namespace AbrahmanAdventure.sprites
                 surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3.png");
             }
         }
+
+        /// <summary>
+        /// Create caterpillar sprite
+        /// </summary>
+        /// <param name="xPosition">x position</param>
+        /// <param name="yPosition">y position</param>
+        /// <param name="random">random number generator</param>
+        /// <param name="isAffectedByGravity">default true</param>
+        /// <param name="destinationSeed">default: random using local seed</param>
+        public VortexSprite(double xPosition, double yPosition, Random random, int destinationSeed)
+            : base(xPosition, yPosition, random)
+        {
+            this.destinationSeed = destinationSeed;
+            rotateCycle = new Cycle(20, true);
+            rotateCycle.Fire();
+            if (surface1 == null)
+            {
+                surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
+                surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2.png");
+                surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3.png");
+            }
+        }
         #endregion
 
         #region Overrides
@@ -88,12 +110,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return 4;
+            return 3;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return 4;
+            return 3;
         }
 
         protected override double BuildBounciness()
@@ -103,7 +125,8 @@ namespace AbrahmanAdventure.sprites
 
         public override SdlDotNet.Graphics.Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = yOffset = 0;
+            xOffset = 0;
+            yOffset = 0.1;
             int cycleDivision = rotateCycle.GetCycleDivision(3);
 
             rotateCycle.Increment(1.0);

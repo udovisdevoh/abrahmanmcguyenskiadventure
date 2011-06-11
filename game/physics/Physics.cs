@@ -84,8 +84,10 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="program">the program itself</param>
+        /// <param name="gameMetaState">game meta state</param>
+        /// <param name="gameState">game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, Random random)
         {
             walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
             gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
@@ -95,7 +97,7 @@ namespace AbrahmanAdventure.physics
 
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {
-                spriteCollisionManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, spritePopulation, program, random);
+                spriteCollisionManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, spritePopulation, program, gameMetaState, gameState, random);
 
                 if (spriteToUpdate is PlayerSprite)
                 {

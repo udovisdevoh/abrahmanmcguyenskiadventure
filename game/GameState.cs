@@ -7,6 +7,7 @@ using AbrahmanAdventure.level;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.textGenerator;
 using AbrahmanAdventure.hud;
+using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure
 {
@@ -42,6 +43,11 @@ namespace AbrahmanAdventure
         private ColorHsl skyColorHsl;
 
         /// <summary>
+        /// Random number generator using local seed
+        /// </summary>
+        private Random random;
+
+        /// <summary>
         /// Level's sky
         /// </summary>
         private Sky sky;
@@ -50,6 +56,11 @@ namespace AbrahmanAdventure
         /// Name of the environment
         /// </summary>
         private string name;
+
+        /// <summary>
+        /// Seed for random number generator
+        /// </summary>
+        private int seed;
 
         /// <summary>
         /// Whether game state must be recreated because we change the world
@@ -61,28 +72,30 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Random number generator
         /// </summary>
-        /// <param name="random">random number generator</param>
-        public GameState(Random random) : this(random, null, null)
+        /// <param name="seed">seed for random number generator</param>
+        public GameState(int seed) : this(seed, null, null)
         {
         }
 
         /// <summary>
         /// Random number generator
         /// </summary>
-        /// <param name="random">random number generator</param>
+        /// <param name="seed">seed for random number generator</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(Random random, Surface surfaceToDrawLoadingProgress) : this(random, null, surfaceToDrawLoadingProgress)
+        public GameState(int seed, Surface surfaceToDrawLoadingProgress) : this(seed, null, surfaceToDrawLoadingProgress)
         {
         }
 
         /// <summary>
         /// Random number generator
         /// </summary>
-        /// <param name="random">random number generator</param>
+        /// <param name="seed">seed for random number generator</param>
         /// <param name="playerSprite">player sprite (if null, it will create a new one)</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(Random random, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
+        public GameState(int seed, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
         {
+            this.seed = seed;
+            random = new Random(seed);
             name = TextGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
             skyColorHsl = new ColorHsl(random);
@@ -108,7 +121,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(this.playerSprite);
 
             #warning Eventually remove test sprites
-            AddHardCodedTestSprite(random);
+            AddHardCodedTestSprite();
         }
         #endregion
 
@@ -117,7 +130,7 @@ namespace AbrahmanAdventure
         /// Add some hardcoded test sprites
         /// </summary>
         /// <param name="random">random number generator</param>
-        private void AddHardCodedTestSprite(Random random)
+        private void AddHardCodedTestSprite()
         {
             spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
@@ -157,6 +170,46 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new VortexSprite(-75, Program.totalHeightTileCount / -2, random));
 
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
+        }
+        #endregion
+
+        #region Internal Methods
+        /// <summary>
+        /// Create "warp back" vortex sprites, ususally we create only one, but there could be more than one
+        /// </summary>
+        /// <param name="listWarpBackSeed"></param>
+        internal void AddWarpBackVortexList(List<int> listWarpBackSeed)
+        {
+            double xOffset = 0;//-1.5;
+            foreach (int seed in listWarpBackSeed)
+            {
+                bool isFoundIndenticalVortex = false;
+                foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
+                    if (sprite is VortexSprite && ((VortexSprite)sprite).DestinationSeed == seed)
+                        isFoundIndenticalVortex = true;
+                if (!isFoundIndenticalVortex)
+                {
+                    VortexSprite warpBack = new VortexSprite(xOffset, Program.totalHeightTileCount / -2, random, seed);
+                    spritePopulation.Add(warpBack);
+                    xOffset -= 5;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Move player so it is in front of vortex that goes to the provided seed
+        /// </summary>
+        /// <param name="seed">seed</param>
+        internal void MovePlayerToVortexGoingToSeed(int seed)
+        {
+            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
+                if (sprite is VortexSprite && ((VortexSprite)sprite).DestinationSeed == seed)
+                {
+                    playerSprite.XPosition = sprite.XPosition;
+                    playerSprite.YPosition = sprite.YPosition;
+                    playerSprite.IGround = sprite.IGround;
+                    return;
+                }
         }
         #endregion
 
@@ -217,6 +270,14 @@ namespace AbrahmanAdventure
         {
             get { return isExpired; }
             set { isExpired = value; }
+        }
+
+        /// <summary>
+        /// Seed that was used to generate game state
+        /// </summary>
+        public int Seed
+        {
+            get { return seed; }
         }
         #endregion
     }
