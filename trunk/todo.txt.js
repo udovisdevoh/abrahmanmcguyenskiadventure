@@ -1,3 +1,9 @@
+?remove pink bias?
+
+planet: less noisy sometimes (continents)
+
+add texture cache (for all gamestates, use seed and ground index)
+
 Changer nom d'app
 
 lorsque qu'explose alh akbr
