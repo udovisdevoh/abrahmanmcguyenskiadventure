@@ -341,6 +341,7 @@ namespace AbrahmanAdventure
                 {
                     #region We regenerate game state because it is nonexistant or expired (changing environment)
                     GC.Collect();
+                    SurfaceSizeCache.Clear();
                     if (gameState != null)
                     {
                         SoundManager.PlayVortexInSound();

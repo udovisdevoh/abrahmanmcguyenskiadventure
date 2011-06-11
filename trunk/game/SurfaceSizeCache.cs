@@ -77,6 +77,16 @@ namespace AbrahmanAdventure
             }
             return width;
         }
+
+        /// <summary>
+        /// Clear size cache (to prevent memory leak)
+        /// </summary>
+        internal static void Clear()
+        {
+            mapTextureToRectangle.Clear();
+            mapTextureToHeight.Clear();
+            mapTextureToWidth.Clear();
+        }
         #endregion
     }
 }
