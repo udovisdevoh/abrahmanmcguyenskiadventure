@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="colorTheme">color theme</param>
-        public Level(Random random, ColorTheme colorTheme)
+        public Level(Random random, ColorTheme colorTheme, int seed)
         {
             groundList = new List<Ground>();
             holeSet = new HoleSet(random);
@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.level
                 wave.Normalize(normalizationFactor, false);
 
                 //level.AddTerrainWave(new Ground(wave, random));
-                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet);
+                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i);
             }
         }
         #endregion
@@ -102,9 +102,9 @@ namespace AbrahmanAdventure.level
         /// <param name="wave">wave</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">color</param>
-        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet)
+        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet, int seed, int groundId)
         {
-            AddGround(new Ground(wave, random, color, holeSet));
+            AddGround(new Ground(wave, random, color, holeSet, seed, groundId));
         }
         #endregion
 
