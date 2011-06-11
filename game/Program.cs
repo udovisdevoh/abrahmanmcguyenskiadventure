@@ -30,6 +30,8 @@ namespace AbrahmanAdventure
 
         public const bool isUseBottomTexture = true;
 
+        public const bool isLimitFrameSkip = false;
+
         public const bool isAlwaysUseBottomTexture = false;
 
         public const bool isUseBumpMapLightness = false;
@@ -372,6 +374,9 @@ namespace AbrahmanAdventure
 
                 //We process the time multiplicator
                 double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
+                if (isLimitFrameSkip)
+                    timeDelta = Math.Min(1.0, timeDelta);
+
                 previousDateTime = DateTime.Now;
 
                 isOddFrame = !isOddFrame;
