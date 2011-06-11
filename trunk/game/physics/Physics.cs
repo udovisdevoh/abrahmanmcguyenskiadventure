@@ -114,7 +114,7 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)spriteToUpdate).InvincibilityCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).InvincibilityCycle.Increment(timeDelta);
 
-                    if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired)
+                    if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired && spriteToUpdate.IGround != null)
                         ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
 
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
