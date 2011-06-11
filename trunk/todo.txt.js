@@ -1,14 +1,14 @@
 ?remove pink bias?
 
-planet: less noisy sometimes (continents)
-
 add texture cache (for all gamestates, use seed and ground index)
 
 Changer nom d'app
 
 lorsque qu'explose alh akbr
 
-add maximum time delta (will slow down, but physics will be tested properly)
+?add maximum time delta (will slow down, but physics will be tested properly)?
+
+fix joystick remap
 
 possibilité de transporter une carapace et de la lancer (en haut aussi)
 
