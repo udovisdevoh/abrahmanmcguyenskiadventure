@@ -45,8 +45,10 @@ namespace AbrahmanAdventure.hud
             double scaling = ((double)480 / 1.5) / (double)shadeSphere.Width * 1.01;
             shadeSphere = shadeSphere.CreateScaledSurface(scaling);
 
-            DrawContinents(planetSurface, colorTheme, random);
-            DrawClouds(planetSurface, random);
+            if (random.Next(0, 7) != 0)
+                DrawContinents(planetSurface, colorTheme, random);
+            if (random.Next(0, 7) != 0)
+                DrawClouds(planetSurface, random);
 
             planetSurface.Blit(shadeSphere, new System.Drawing.Point(640 / 2 - shadeSphere.Width / 2, 480 / 2 - shadeSphere.Height / 2));
 
@@ -100,9 +102,11 @@ namespace AbrahmanAdventure.hud
 
             int counter = 0;
 
-            int maxRadiusSize = random.Next(1, 10);
+            int maxRadiusSize = random.Next(1, 7);
 
             totalPointCount = totalPointCount * 3 / maxRadiusSize;
+            totalPointCount *= random.Next(1, 4);
+            totalPointCount /= random.Next(1, 4);
 
             System.Drawing.Color continentColor = colorTheme.GetColor(random.Next(0, colorTheme.Count));
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
@@ -150,7 +154,13 @@ namespace AbrahmanAdventure.hud
             int pointX = random.Next(640);
             int pointY = random.Next(480);
 
-            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(128, 255, 255, 255);
+            System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(16, 255, 255, 255);
+
+            int maxRadiusSize = random.Next(1, 7);
+            totalPointCount = totalPointCount * 3 / maxRadiusSize;
+
+            totalPointCount *= random.Next(1, 4);
+            totalPointCount /= random.Next(1, 4);
 
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
             {
@@ -167,12 +177,12 @@ namespace AbrahmanAdventure.hud
                 else if (pointY > 480 / 2 + 480 / 3)
                     pointY = 480 / 2 - 480 / 3;
 
-
-                System.Drawing.Point currentPoint = new System.Drawing.Point((short)pointX, (short)pointY);
+                int pointRadius = random.Next(1, maxRadiusSize);
+                Circle currentPoint = new Circle((short)pointX, (short)pointY, (short)pointRadius);
 
                 if (Math.Sqrt(Math.Pow(Math.Abs(pointX - 640 / 2), 2.0) + Math.Pow(Math.Abs(pointY - 480 / 2), 2.0)) <= 480 / 3)
                 {
-                    mainSurface.Draw(currentPoint, transparentWhite, true);
+                    mainSurface.Draw(currentPoint, transparentWhite, true, true);
                 }
             }
         }
