@@ -91,6 +91,11 @@ namespace AbrahmanAdventure.sprites
             return 0.5;
         }
 
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
+        }
+
         protected override bool BuildIsJumpableOn()
         {
             return true;

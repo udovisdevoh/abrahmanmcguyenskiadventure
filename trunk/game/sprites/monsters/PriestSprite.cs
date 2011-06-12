@@ -136,6 +136,11 @@ namespace AbrahmanAdventure.sprites
             return 0.0;
         }
 
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;

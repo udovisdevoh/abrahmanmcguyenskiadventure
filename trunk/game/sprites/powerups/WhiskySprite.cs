@@ -150,6 +150,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 100;

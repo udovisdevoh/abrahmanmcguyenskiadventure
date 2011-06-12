@@ -110,6 +110,11 @@ namespace AbrahmanAdventure.sprites
             return 100;
         }
 
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
+        }
+
         protected override bool BuildIsCanJump(Random random)
         {
             return false;

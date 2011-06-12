@@ -37,6 +37,11 @@ namespace AbrahmanAdventure.sprites
         private double jumpProbability;
 
         /// <summary>
+        /// When AI is enabled, keep safe distance to player
+        /// </summary>
+        private double safeDistanceAi;
+
+        /// <summary>
         /// Whether monster can jump
         /// </summary>
         private bool isCanJump;
@@ -137,6 +142,7 @@ namespace AbrahmanAdventure.sprites
             kickedHelmetCycle = new Cycle(16.0,false);
             spontaneousTransformationCycle = new Cycle(256, false);
             changeDirectionNoAiCycle = new Cycle(BuildChangeDirectionNoAiCycleLength(),true);
+            safeDistanceAi = BuildSafeDistanceAi();
             isCanJump = BuildIsCanJump(random);
             jumpProbability = BuildJumpProbability();
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
@@ -267,6 +273,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Some sprites change direction automatically</returns>
         protected abstract double BuildChangeDirectionNoAiCycleLength();
+
+        /// <summary>
+        /// Distance to keep from player (if AI is on)
+        /// </summary>
+        /// <returns>Distance to keep from player (if AI is on)</returns>
+        protected abstract double BuildSafeDistanceAi();
 
         /// <summary>
         /// Sprite when converted to another sprite (default: null)
@@ -476,6 +488,14 @@ namespace AbrahmanAdventure.sprites
         public double JumpProbability
         {
             get { return jumpProbability; }
+        }
+
+        /// <summary>
+        /// When AI is enabled, keep safe distance to player
+        /// </summary>
+        public double SafeDistanceAi
+        {
+            get { return safeDistanceAi; }
         }
         #endregion
     }
