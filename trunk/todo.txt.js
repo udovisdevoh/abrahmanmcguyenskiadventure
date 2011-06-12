@@ -8,6 +8,8 @@ Changer nom d'app
 
 possibilité de transporter une carapace et de la lancer (en haut aussi)
 
+create persistant config
+
 Faire écran de menu
 {
 	Logo
