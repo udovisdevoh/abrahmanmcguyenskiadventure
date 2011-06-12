@@ -1,14 +1,10 @@
 ?remove pink bias?
 
-add texture cache (for all gamestates, use seed and ground index)
+fix add texture cache transparency bug
 
 Changer nom d'app
 
-lorsque qu'explose alh akbr
-
 ?add maximum time delta (will slow down, but physics will be tested properly)?
-
-fix joystick remap
 
 possibilité de transporter une carapace et de la lancer (en haut aussi)
 
@@ -41,13 +37,6 @@ Faire écran de menu
 			Tous les monstres et leur noms
 		}
 	}
-}
-
-Storyline
-{
-	Each level must be a planet
-	Random name for planet (show while loading), show planet image too (spherical)
-	?generate spherical image? use textures?
 }
 
 ?si tiny: son différent si jump?
@@ -104,11 +93,11 @@ plateformes de largeur diverse
 shells must open anarchy blocks and break brick blocks
 
 
-if top speed
+?if top speed
 {
 	play special sound (beep in loop)
 	do special jump (longer jump time)
-}
+}?
 
 
 ?si invincible -> nombre plus élevé de boules de feux sur l'écran?
@@ -167,7 +156,7 @@ fin de level
 
 
 Miniboss?
-certains monstres doivent se spawner directement sur le sol (probablement la majorité)
+certains monstres doivent se spawner directement sur le sol (probablement la majorité) -> utiliser IsFullGravityOnNextFrame
 
 
 Monstres
