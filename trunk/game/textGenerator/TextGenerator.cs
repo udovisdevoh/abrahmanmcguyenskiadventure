@@ -66,7 +66,7 @@ namespace AbrahmanAdventure.textGenerator
             foreach (string word in wordList)
                 averageWordLength += word.Length;
             averageWordLength /= wordList.Length;
-            averageWordLength+=random.Next(0,6);
+            averageWordLength+=random.Next(-2,6);
 
             string wordWithBestLength = "noname";
             int leastDistance = -1;
