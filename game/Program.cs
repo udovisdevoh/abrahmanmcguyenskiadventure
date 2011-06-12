@@ -42,6 +42,8 @@ namespace AbrahmanAdventure
 
         public const bool isEnableCrouchedWalk = false;
 
+        public const bool isUseTextureCache = false;
+
         public const int screenWidth = 640;
 
         public const int screenHeight = 480;

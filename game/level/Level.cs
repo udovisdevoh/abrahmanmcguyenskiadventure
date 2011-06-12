@@ -38,17 +38,11 @@ namespace AbrahmanAdventure.level
             for (int i = 0; i < waveCount; i++)
             {
                 AbstractWave wave;
-                //if (random.Next(0, 4) != 0)
-                    wave = WaveBuilder.BuildWavePack(random);
-                //else
-                //    wave = WaveBuilder.BuildWaveTree(random, 16);
-
-                //wave = new Wave(10, 10, 0, WaveFunctions.AbsSin);
+                wave = WaveBuilder.BuildWavePack(random);
 
                 double normalizationFactor = (random.NextDouble() * 20) + 4;
                 wave.Normalize(normalizationFactor, false);
 
-                //level.AddTerrainWave(new Ground(wave, random));
                 BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i);
             }
         }

@@ -130,18 +130,6 @@ namespace AbrahmanAdventure.level
             verticalSaturationWave = BuildWave(random, waveHeightMultiplicator);
             verticalLightnessWave = BuildWave(random, waveHeightMultiplicator);
 
-            if (isBumpMapLightness)
-            {
-                horizontalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
-                verticalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
-            }
-
-            List<double> valueList = new List<double>();
-            for (double i = 0; i < 256; i++)
-            {
-                valueList.Add(horizontalLightnessWave.GetTangentValue(i, 1.0));
-            }
-
             if (isUseXOffsetInputWave)
             {
                 xOffsetInputWave = BuildWave(random, 1);
@@ -154,8 +142,18 @@ namespace AbrahmanAdventure.level
                 yOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
-            if (!TextureCache.TryGetCachedSurface(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, out surface))
+            if (!Program.isUseTextureCache || !TextureCache.TryGetCachedSurface(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, out surface))
             {
+                if (isBumpMapLightness)
+                {
+                    horizontalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
+                    verticalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
+                }
+
+                /*List<double> valueList = new List<double>();
+                for (double i = 0; i < 256; i++)
+                    valueList.Add(horizontalLightnessWave.GetTangentValue(i, 1.0));*/
+
                 surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
                 surface.Transparent = false;
 
@@ -244,7 +242,8 @@ namespace AbrahmanAdventure.level
                     }
                 }
 
-                TextureCache.AddSurfaceToCache(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, surface);
+                if (Program.isUseTextureCache)
+                    TextureCache.AddSurfaceToCache(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, surface);
             }
         }
         #endregion
