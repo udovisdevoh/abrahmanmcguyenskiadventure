@@ -64,7 +64,8 @@ namespace AbrahmanAdventure.level
         /// Create a random texture
         /// </summary>
         /// <param name="random">random number generator</param>
-        public Texture(Random random) : this(random, Color.Empty, 1.0, true)
+        public Texture(Random random, int seed, int groundId)
+            : this(random, Color.Empty, 1.0, seed, groundId, true)
         {
         }
 
@@ -73,8 +74,8 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
-        public Texture(Random random, Color color, double waveStrengthMultiplicator, bool isTop)
-            : this(random, color, -1, waveStrengthMultiplicator, isTop)
+        public Texture(Random random, Color color, double waveStrengthMultiplicator, int seed, int groundId, bool isTop)
+            : this(random, color, -1, waveStrengthMultiplicator, seed, groundId, isTop)
         {
         }
 
@@ -84,7 +85,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
         /// <param name="defaultHeight">default height (how manu tiles)</param>
-        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, bool isTop)
+        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, int seed, int groundId, bool isTop)
         {
             if (color == Color.Empty)
                 color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
@@ -153,97 +154,98 @@ namespace AbrahmanAdventure.level
                 yOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
-            surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
-            surface.Transparent=false;
-
-
-            double originalHue = color.GetHue();
-            double originalSaturation = color.GetSaturation() * 256.0;
-            double originalLightness = color.GetBrightness() * 256.0;
-            
-            for (int x = 0; x < surfaceWidth; x++)
+            if (!TextureCache.TryGetCachedSurface(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, out surface))
             {
-                for (int y = 0; y < surfaceHeight; y++)
+                surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
+                surface.Transparent = false;
+
+                double originalHue = color.GetHue();
+                double originalSaturation = color.GetSaturation() * 256.0;
+                double originalLightness = color.GetBrightness() * 256.0;
+
+                for (int x = 0; x < surfaceWidth; x++)
                 {
-                    double relativeY = y;
-                    double relativeX = x;
-                        
-                    if (isUseXOffsetInputWave)
-                        relativeX += xOffsetInputWave[y];
-
-                    if (isUseYOffsetInputWave)
-                        relativeY += yOffsetInputWave[x];
-
-                    double currentHue = originalHue;
-                    double currentSaturation = originalSaturation;
-                    double currentLightness = originalLightness;
-
-                    double verticalHueContribution = verticalHueWave[relativeY] * waveStrengthMultiplicator;
-                    double horizontalHueContribution = horizontalHueWave[relativeX] * waveStrengthMultiplicator;
-
-                    double horizontalSaturationContribution = horizontalSaturationWave[relativeX] * waveStrengthMultiplicator;
-                    double verticalSaturationContribution = horizontalSaturationWave[relativeY] * waveStrengthMultiplicator;
-
-                    double horizontalLightnessContribution;
-                    double verticalLightnessContribution;
-
-                    if (isBumpMapLightness)
+                    for (int y = 0; y < surfaceHeight; y++)
                     {
-                        horizontalLightnessContribution = horizontalLightnessWave.GetTangentValue(relativeX,1.0) * waveStrengthMultiplicator;
-                        verticalLightnessContribution = verticalLightnessWave.GetTangentValue(relativeY, 1.0) * waveStrengthMultiplicator;
+                        double relativeY = y;
+                        double relativeX = x;
+
+                        if (isUseXOffsetInputWave)
+                            relativeX += xOffsetInputWave[y];
+
+                        if (isUseYOffsetInputWave)
+                            relativeY += yOffsetInputWave[x];
+
+                        double currentHue = originalHue;
+                        double currentSaturation = originalSaturation;
+                        double currentLightness = originalLightness;
+
+                        double verticalHueContribution = verticalHueWave[relativeY] * waveStrengthMultiplicator;
+                        double horizontalHueContribution = horizontalHueWave[relativeX] * waveStrengthMultiplicator;
+
+                        double horizontalSaturationContribution = horizontalSaturationWave[relativeX] * waveStrengthMultiplicator;
+                        double verticalSaturationContribution = horizontalSaturationWave[relativeY] * waveStrengthMultiplicator;
+
+                        double horizontalLightnessContribution;
+                        double verticalLightnessContribution;
+
+                        if (isBumpMapLightness)
+                        {
+                            horizontalLightnessContribution = horizontalLightnessWave.GetTangentValue(relativeX, 1.0) * waveStrengthMultiplicator;
+                            verticalLightnessContribution = verticalLightnessWave.GetTangentValue(relativeY, 1.0) * waveStrengthMultiplicator;
+                        }
+                        else
+                        {
+                            horizontalLightnessContribution = horizontalLightnessWave[relativeX] * waveStrengthMultiplicator;
+                            verticalLightnessContribution = verticalLightnessWave[relativeY] * waveStrengthMultiplicator;
+                        }
+
+
+                        if (isHueMultiply)
+                            currentHue += (horizontalHueContribution * verticalHueContribution) * 10.0;
+                        else
+                            currentHue += ((horizontalHueContribution + verticalHueContribution) * 10.0);
+
+                        if (isSaturationMultiply)
+                            currentSaturation += (horizontalSaturationContribution * verticalSaturationContribution) * 30;
+                        else
+                            currentSaturation += ((horizontalSaturationContribution + verticalSaturationContribution) * 30.0);
+
+                        if (isLightnessMultiply)
+                            currentLightness += (horizontalLightnessContribution * verticalLightnessContribution) * 30;
+                        else
+                            currentLightness += ((horizontalLightnessContribution + verticalLightnessContribution) * 30.0);
+
+
+                        /*while (currentHue < 0.0)
+                            currentHue += 256.0;
+
+                        while (currentHue > 255.0)
+                            currentHue -= 256.0;*/
+
+                        if (isTop)
+                        {
+                            if (y == 0)
+                                currentLightness += 75;
+                            else if (y == 1)
+                                currentLightness += 25;
+                        }
+
+                        currentSaturation = Math.Max(0.0, currentSaturation);
+                        currentLightness = Math.Max(1, currentLightness);
+                        currentHue = Math.Max(0.0, currentHue);
+                        currentSaturation = Math.Min(255.0, currentSaturation);
+                        currentLightness = Math.Min(255.0, currentLightness);
+                        currentHue = Math.Min(255.0, currentHue);
+
+                        Color currentColor = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
+
+                        surface.Fill(new Rectangle(x, y, 1, 1), currentColor);
                     }
-                    else
-                    {
-                        horizontalLightnessContribution = horizontalLightnessWave[relativeX] * waveStrengthMultiplicator;
-                        verticalLightnessContribution = verticalLightnessWave[relativeY] * waveStrengthMultiplicator;
-                    }
-
-
-                    if (isHueMultiply)
-                        currentHue += (horizontalHueContribution * verticalHueContribution) * 10.0;
-                    else
-                        currentHue += ((horizontalHueContribution + verticalHueContribution) * 10.0);
-
-                    if (isSaturationMultiply)
-                        currentSaturation += (horizontalSaturationContribution * verticalSaturationContribution) * 30;
-                    else
-                        currentSaturation += ((horizontalSaturationContribution + verticalSaturationContribution) * 30.0);
-
-                    if (isLightnessMultiply)
-                        currentLightness += (horizontalLightnessContribution * verticalLightnessContribution) * 30;
-                    else
-                        currentLightness += ((horizontalLightnessContribution + verticalLightnessContribution) * 30.0);
-
-
-                    /*while (currentHue < 0.0)
-                        currentHue += 256.0;
-
-                    while (currentHue > 255.0)
-                        currentHue -= 256.0;*/
-
-                    if (isTop)
-                    {
-                        if (y == 0)
-                            currentLightness += 75;
-                        else if (y == 1)
-                            currentLightness += 25;
-                    }
-
-                    currentSaturation = Math.Max(0.0, currentSaturation);
-                    currentLightness = Math.Max(1, currentLightness);
-                    currentHue = Math.Max(0.0, currentHue);
-                    currentSaturation = Math.Min(255.0, currentSaturation);
-                    currentLightness = Math.Min(255.0, currentLightness);
-                    currentHue = Math.Min(255.0, currentHue);
-
-                    Color currentColor = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
-                    
-                    surface.Fill(new Rectangle(x,y,1,1),currentColor);
                 }
+
+                TextureCache.AddSurfaceToCache(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, surface);
             }
-            
-            short circleSize = (short)(surfaceWidth/2);
-            //surface.Draw(new Circle(circleSize,circleSize,circleSize),Color.Red);
         }
         #endregion
 
