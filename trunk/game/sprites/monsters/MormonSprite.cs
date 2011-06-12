@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a mormon
     /// </summary>
-    internal class MormonSprite : MonsterSprite
+    internal class MormonSprite : MonsterSprite, IProjectileShooter
     {
         #region Fields and parts
         private static Surface standRight;
@@ -55,7 +55,7 @@ namespace AbrahmanAdventure.sprites
                 attackRight = BuildSpriteSurface("./assets/rendered/mormon/MormonAttack.png");
                 attackLeft = attackRight.CreateFlippedHorizontalSurface();
 
-                deadSurface = standRight.CreateFlippedVerticalSurface();
+                deadSurface = hitRight.CreateFlippedVerticalSurface();
             }
         }
         #endregion

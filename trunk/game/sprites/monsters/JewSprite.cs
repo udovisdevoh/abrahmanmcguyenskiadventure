@@ -119,7 +119,7 @@ namespace AbrahmanAdventure.sprites
         private Surface GetDeadSurface()
         {
             if (deadSurface == null)
-                deadSurface = GetStandingRightSurface().CreateFlippedVerticalSurface();
+                deadSurface = GetHitRightSurface().CreateFlippedVerticalSurface();
 
             return deadSurface;
         }
