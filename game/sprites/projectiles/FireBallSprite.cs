@@ -96,16 +96,6 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
-        protected override double BuildJumpProbability()
-        {
-            return 0.0;
-        }
-
-        public override AbstractSprite GetConverstionSprite(Random random)
-        {
-            return null;
-        }
-
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return true;
@@ -124,6 +114,21 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsNoAiChangeDirectionByCycle()
         {
             return false;
+        }
+
+        public override AbstractSprite GetConverstionSprite(Random random)
+        {
+            return null;
+        }
+
+        protected override double BuildJumpProbability()
+        {
+            return 0.0;
+        }
+
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
         }
 
         protected override double BuildChangeDirectionNoAiCycleLength()

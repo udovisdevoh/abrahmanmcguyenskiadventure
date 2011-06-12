@@ -113,6 +113,11 @@ namespace AbrahmanAdventure.sprites
             return 0.20;
         }
 
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0.0;
