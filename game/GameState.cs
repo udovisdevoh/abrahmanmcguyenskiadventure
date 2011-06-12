@@ -8,6 +8,7 @@ using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.textGenerator;
 using AbrahmanAdventure.hud;
 using AbrahmanAdventure.physics;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure
 {
@@ -51,6 +52,11 @@ namespace AbrahmanAdventure
         /// Level's sky
         /// </summary>
         private Sky sky;
+
+        /// <summary>
+        /// Level's music moode
+        /// </summary>
+        private MusicMood musicMood;
 
         /// <summary>
         /// Name of the environment
@@ -99,6 +105,7 @@ namespace AbrahmanAdventure
             name = TextGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
             skyColorHsl = new ColorHsl(random);
+            musicMood = new MusicMood(random);
 
             Surface planetSurface = PlanetViewer.ShowPlanet(name, skyColorHsl, colorTheme, random);
 
