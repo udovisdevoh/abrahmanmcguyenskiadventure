@@ -28,6 +28,21 @@ namespace AbrahmanAdventure.ai
             double slope;
             monster.IsTryingToWalk = false;
             monster.IsNeedToJumpAgain = false;
+            bool isFleeMode = false;
+            double playerMonsterDistanceX = Math.Abs(monster.XPosition - player.XPosition);
+
+            #region AI safe distance logic
+            bool isSafeDistanceDontMove = false;
+            if (monster.IsAiEnabled)
+            {
+                if (playerMonsterDistanceX < monster.SafeDistanceAi)
+                {
+                    isFleeMode = true;
+                    if (playerMonsterDistanceX > monster.SafeDistanceAi - 2.0)
+                        isSafeDistanceDontMove = true;
+                }
+            }
+            #endregion
 
             #region AI Jumping logic
             if (monster.IsNoAiAlwaysBounce && monster.IGround != null)
@@ -36,7 +51,7 @@ namespace AbrahmanAdventure.ai
             }
             else if (monster.IsCanJump || monster.HitCycle.IsFired)
             {
-                if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0 && monster.SafeDistanceAi == 0)
+                if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0 && !isSafeDistanceDontMove)
                     monster.IsTryingToJump = true;
                 else if (TryGetSlopeRatio(monster, level, timeDelta, monster.IsTryingToWalkRight, visibleSpriteList, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
                     monster.IsTryingToJump = true;
@@ -68,24 +83,12 @@ namespace AbrahmanAdventure.ai
                 #region AI walking logic
                 bool wasTryingToWalkRight = monster.IsTryingToWalkRight;
 
-                double playerMonsterDistanceX = Math.Abs(monster.XPosition - player.XPosition);
-
-                bool isFleeMode = (monster.IsFleeWhenAttacked && monster.HitCycle.IsFired) || (player.YPosition < monster.YPosition && (playerMonsterDistanceX < player.Width / 2.0));
+                isFleeMode |= (monster.IsFleeWhenAttacked && monster.HitCycle.IsFired) || (player.YPosition < monster.YPosition && (playerMonsterDistanceX < player.Width / 2.0));
 
                 if (monster.PunchedCycle.IsFired) //always flee after a punch
                     isFleeMode = true;
 
-                #region Manage safe distance
-                bool safeDistanceDontMove = false;
-                if (playerMonsterDistanceX < monster.SafeDistanceAi)
-                {
-                    isFleeMode = true;
-                    if (playerMonsterDistanceX > monster.SafeDistanceAi - 2.0)
-                        safeDistanceDontMove = true;
-                }
-                #endregion
-
-                if (Math.Abs(monster.XPosition - player.XPosition) < (0.75 * monster.Width) || safeDistanceDontMove)
+                if (Math.Abs(monster.XPosition - player.XPosition) < (0.75 * monster.Width) || isSafeDistanceDontMove)
                 {
                     monster.IsTryingToWalk = false;//Too close, don't chase nor flee
                 }
