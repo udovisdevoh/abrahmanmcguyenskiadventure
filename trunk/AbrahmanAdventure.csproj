@@ -95,6 +95,7 @@
     <Compile Include="game\sprites\monsters\JewSprite.cs" />
     <Compile Include="game\sprites\monsters\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
+    <Compile Include="game\sprites\monsters\MormonSprite.cs" />
     <Compile Include="game\sprites\monsters\MuslimSprite.cs" />
     <Compile Include="game\sprites\monsters\PriestSprite.cs" />
     <Compile Include="game\sprites\PlayerSprite.cs" />
