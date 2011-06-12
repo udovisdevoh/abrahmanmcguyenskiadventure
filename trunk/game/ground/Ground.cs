@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.level
         {
             this.holeSet = holeSet;
 
-            topTexture = new Texture(random, color, 1.5, true);
+            topTexture = new Texture(random, color, 1.5, seed,groundId,true);
 
             if (Program.isAlwaysUseBottomTexture)
                 isUseBottomTexture = true;
@@ -74,7 +74,7 @@ namespace AbrahmanAdventure.level
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
             {
-                bottomTexture = new Texture(random, color, 16, 0.75, false);
+                bottomTexture = new Texture(random, color, 16, 0.75, seed, groundId, false);
             }
             
             this.terrainWave = terrainWave;
