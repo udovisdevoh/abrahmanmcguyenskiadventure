@@ -579,6 +579,11 @@ namespace AbrahmanAdventure
             get { return isShowMenu; }
             set { isShowMenu = value; }
         }
+
+        public UserInput UserInput
+        {
+            get { return userInput; }
+        }
         #endregion
 
         #region Main

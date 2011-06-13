@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
                 {
-                    if (sprite.IsRunning && sprite.IGround != null && sprite.CarriedSprite == null && otherSprite is ICarriable)
+                    if (sprite.IsRunning && sprite.IGround != null && sprite.CarriedSprite == null && otherSprite is ICarriable && !sprite.AttackingCycle.IsFired && otherSprite.IsAlive)
                     {
                         sprite.CarriedSprite = otherSprite;
                     }
