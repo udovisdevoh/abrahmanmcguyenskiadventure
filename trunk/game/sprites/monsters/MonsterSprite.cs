@@ -118,6 +118,11 @@ namespace AbrahmanAdventure.sprites
         private bool isNoAiDieWhenStucked;
 
         /// <summary>
+        /// Sprite dies when touch ground
+        /// </summary>
+        private bool isDieOnTouchGround;
+
+        /// <summary>
         /// If sprite has no AI, always jump when touch ground
         /// </summary>
         private bool isNoAiAlwaysBounce;
@@ -160,6 +165,7 @@ namespace AbrahmanAdventure.sprites
             isNoAiAlwaysBounce = BuildIsNoAiAlwaysBounce();
             isJumpableOn = BuildIsJumpableOn();
             isNoAiChangeDirectionByCycle = BuildIsNoAiChangeDirectionByCycle();
+            isDieOnTouchGround = BuildIsDieOnTouchGround();
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
         }
@@ -261,6 +267,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether spritr will change direction (if no AI) using a cycle</returns>
         protected abstract bool BuildIsNoAiChangeDirectionByCycle();
+
+        /// <summary>
+        /// Whether sprite dies when touches ground
+        /// </summary>
+        /// <returns>Whether sprite dies when touches ground</returns>
+        protected abstract bool BuildIsDieOnTouchGround();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -480,6 +492,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsJumpableOn
         {
             get { return isJumpableOn; }
+        }
+
+        /// <summary>
+        /// Whether sprite dies when touch ground
+        /// </summary>
+        public bool IsDieOnTouchGround
+        {
+            get { return isDieOnTouchGround; }
         }
 
         /// <summary>

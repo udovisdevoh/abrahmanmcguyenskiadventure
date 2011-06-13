@@ -10,5 +10,58 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     interface IProjectileShooter
     {
+        /// <summary>
+        /// Get projectile
+        /// </summary>
+        /// <param name="random">random</param>
+        /// <returns>Get projectile</returns>
+        AbstractSprite GetProjectile(Random random);
+
+        /// <summary>
+        /// Shooting cycle
+        /// </summary>
+        Cycle ShootingCycle
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Minimum time between shots
+        /// </summary>
+        double MinShootingTimeBetween
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Maximum time between shots
+        /// </summary>
+        double MaxShootingTimeBetween
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Maximum shooting distance
+        /// </summary>
+        double MaxShootingDistance
+        {
+            get;
+        }
+
+        double XPosition
+        {
+            get;
+        }
+
+        double RightBound
+        {
+            get;
+        }
+
+        double LeftBound
+        {
+            get;
+        }
     }
 }
