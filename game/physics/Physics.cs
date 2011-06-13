@@ -133,7 +133,7 @@ namespace AbrahmanAdventure.physics
 
                     if (spriteToUpdate.CarriedSprite != null)
                     {
-                        carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,timeDelta);
+                        carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,program,timeDelta);
                     }
 
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);

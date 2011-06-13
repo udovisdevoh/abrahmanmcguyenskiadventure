@@ -14,32 +14,48 @@ namespace AbrahmanAdventure.physics
     {
         internal SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
 
-        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carried, Level level, double timeDelta)
+        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, double timeDelta)
         {
-            carried.YPosition = carrier.YPosition - carrier.Height / 4.0;
+            carriedItem.YPosition = carrier.YPosition - carrier.Height / 4.0;
 
             if (carrier.IsTryingToWalkRight)
             {
-                carried.XPosition = carrier.RightBound;
+                carriedItem.XPosition = carrier.RightBound;
             }
             else
             {
-                carried.XPosition = carrier.LeftBound;
+                carriedItem.XPosition = carrier.LeftBound;
             }
 
             if (!carrier.IsRunning)
             {
-                if (carried is MonsterSprite)
+                if (carriedItem is MonsterSprite)
                 {
-                    carried.IGround = carrier.IGround;
-                    spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carried, level, timeDelta);
-                    ((MonsterSprite)carried).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
-                    carried.CurrentWalkingSpeed = Math.Max(carried.MaxWalkingSpeed, carrier.CurrentWalkingSpeed);
+                    carriedItem.IGround = carrier.IGround;
 
-                    if (carried.IGround == null)
+                    if (program.UserInput.isPressDown && carriedItem.IGround != null) //Deposit carried item
                     {
-                        carried.JumpingCycle.Fire();
-                        carried.CurrentJumpAcceleration = carried.StartingJumpAcceleration / 2.0;
+                        ((MonsterSprite)carriedItem).KickedHelmetCycle.Fire();//We don't kick the helmet, but we must prevent further accicdental kick so next kick will wait
+                        ((MonsterSprite)carriedItem).SpontaneousTransformationCycle.Fire();
+
+                        if (carrier.IsTryingToWalkRight)
+                            ((MonsterSprite)carriedItem).XPosition = carrier.RightBound + 0.5;
+                        else
+                            ((MonsterSprite)carriedItem).XPosition = carrier.LeftBound - 0.5;
+
+                        carriedItem.YPosition = carriedItem.IGround[carriedItem.XPosition];
+                    }
+                    else //Throw carried item
+                    {
+                        spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, timeDelta);
+                        ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
+                        carriedItem.CurrentWalkingSpeed = Math.Max(carriedItem.MaxWalkingSpeed, carrier.CurrentWalkingSpeed);
+                    }
+
+                    if (carriedItem.IGround == null)
+                    {
+                        carriedItem.JumpingCycle.Fire();
+                        carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration / 2.0;
                     }
                 }
                 carrier.CarriedSprite = null;
