@@ -336,6 +336,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return new RiotControlSprite(XPosition, YPosition, random, isBlack);

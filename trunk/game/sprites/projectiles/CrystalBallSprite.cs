@@ -60,7 +60,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsInstantKickConvertedSprite()
@@ -90,7 +90,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiDieWhenStucked()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsNoAiAlwaysBounce()
@@ -106,6 +106,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsDieOnTouchGround()
         {
             return false;
+        }
+
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return true;
         }
 
         protected override double BuildJumpProbability()
@@ -155,7 +160,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.20;
+            return 0.40;
         }
 
         protected override double BuildMaxRunningSpeed()
@@ -165,7 +170,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 0.0;
+            return -10.0;
         }
 
         protected override double BuildAttackingTime()

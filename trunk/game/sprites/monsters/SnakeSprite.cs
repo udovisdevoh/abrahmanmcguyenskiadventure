@@ -206,6 +206,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>

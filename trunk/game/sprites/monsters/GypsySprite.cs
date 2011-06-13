@@ -126,6 +126,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
         protected override double BuildJumpProbability()
         {
             return 0.10;
