@@ -60,7 +60,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsInstantKickConvertedSprite()
@@ -85,7 +85,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiChangeDirectionWhenStucked()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsNoAiDieWhenStucked()
