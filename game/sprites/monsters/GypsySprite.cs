@@ -294,7 +294,7 @@ namespace AbrahmanAdventure.sprites
 
         public double MaxShootingDistance
         {
-            get { return 10.0; }
+            get { return 15.0; }
         }
         #endregion
     }
