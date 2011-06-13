@@ -227,6 +227,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
             return random.Next(0, 3) == 1;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -78,6 +79,10 @@ namespace AbrahmanAdventure.physics
                     sprite.IGround = closestDownGround;
                 }
             }
+
+
+            if (sprite.IGround != null && sprite is MonsterSprite && ((MonsterSprite)sprite).IsMakeSoundWhenTouchGround)
+                SoundManager.PlayHelmetBumpSound();
 
             if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null)
                 sprite.IsAlive = false;

@@ -281,6 +281,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;

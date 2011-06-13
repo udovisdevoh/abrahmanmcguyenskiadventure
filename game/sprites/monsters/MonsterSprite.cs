@@ -131,6 +131,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether we can jump on this sprite
         /// </summary>
         private bool isJumpableOn;
+
+        /// <summary>
+        /// Whether sprite makes metal sound when touching ground
+        /// </summary>
+        private bool isMakeSoundWhenTouchGround;
         #endregion
 
         #region Constructors
@@ -166,6 +171,7 @@ namespace AbrahmanAdventure.sprites
             isJumpableOn = BuildIsJumpableOn();
             isNoAiChangeDirectionByCycle = BuildIsNoAiChangeDirectionByCycle();
             isDieOnTouchGround = BuildIsDieOnTouchGround();
+            isMakeSoundWhenTouchGround = BuildIsMakeSoundWhenTouchGround();
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
         }
@@ -273,6 +279,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite dies when touches ground</returns>
         protected abstract bool BuildIsDieOnTouchGround();
+
+        /// <summary>
+        /// Whether sprite makes metal sound when touches ground
+        /// </summary>
+        /// <returns>Whether sprite makes metal sound when touches ground</returns>
+        protected abstract bool BuildIsMakeSoundWhenTouchGround();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -500,6 +512,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsDieOnTouchGround
         {
             get { return isDieOnTouchGround; }
+        }
+
+        /// <summary>
+        /// Whether sprite makes metal sound when touching ground
+        /// </summary>
+        public bool IsMakeSoundWhenTouchGround
+        {
+            get { return isMakeSoundWhenTouchGround; }
         }
 
         /// <summary>

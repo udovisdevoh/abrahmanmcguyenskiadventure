@@ -141,6 +141,11 @@ namespace AbrahmanAdventure.sprites
             return 0.0;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
         protected override double BuildSafeDistanceAi()
         {
             return 0.0;
