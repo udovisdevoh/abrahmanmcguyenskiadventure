@@ -78,6 +78,9 @@ namespace AbrahmanAdventure.physics
                     sprite.IGround = closestDownGround;
                 }
             }
+
+            if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null)
+                sprite.IsAlive = false;
         }
 
         /// <summary>
