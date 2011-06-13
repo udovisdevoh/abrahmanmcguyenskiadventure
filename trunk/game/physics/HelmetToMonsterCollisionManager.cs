@@ -30,6 +30,7 @@ namespace AbrahmanAdventure.physics
                 {
                     if (otherSprite is MonsterSprite && Physics.IsDetectCollision(helmet, otherSprite))
                     {
+                        helmet.IsCurrentlyInFreeFall = false;
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
                         otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters

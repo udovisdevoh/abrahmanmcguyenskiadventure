@@ -98,7 +98,7 @@ namespace AbrahmanAdventure.physics
         private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
-
+            sprite.IsCurrentlyInFreeFall = false;
             if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
             {
                 UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);
@@ -405,7 +405,7 @@ namespace AbrahmanAdventure.physics
                             else
                                 SoundManager.PlayHitSound();
 
-                            if (((MonsterSprite)otherSprite).IsEnableJumpOnConversion) //If sprite is converted into another sprite when getting jumped on
+                            if (((MonsterSprite)otherSprite).IsEnableJumpOnConversion && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).InvincibilityCycle.IsFired)) //If sprite is converted into another sprite when getting jumped on
                             {
                                 AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
                                 if (jumpedOnConvertedSprite != null)

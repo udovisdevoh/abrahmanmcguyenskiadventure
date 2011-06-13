@@ -54,13 +54,15 @@ namespace AbrahmanAdventure.physics
                     else
                     {
                         ApplyGravityMovement(sprite, timeDelta);
-                        ApplyGravityAcceleration(sprite, timeDelta);
+                        if (!sprite.IsCurrentlyInFreeFall)
+                            ApplyGravityAcceleration(sprite, timeDelta);
                     }
                 }
                 else
                 {
                     ApplyGravityMovement(sprite, timeDelta);
-                    ApplyGravityAcceleration(sprite, timeDelta);
+                    if (!sprite.IsCurrentlyInFreeFall)
+                        ApplyGravityAcceleration(sprite, timeDelta);
                 }
             }
             else
@@ -70,7 +72,8 @@ namespace AbrahmanAdventure.physics
 
                 if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
                 {
-                    ApplyGravityAcceleration(sprite, timeDelta);
+                    if (!sprite.IsCurrentlyInFreeFall)
+                        ApplyGravityAcceleration(sprite, timeDelta);
                 }
 
                 if (sprite.YPosition >= closestDownGroundHeight && sprite.IsAlive && !sprite.IsCrossGrounds)
@@ -81,8 +84,13 @@ namespace AbrahmanAdventure.physics
             }
 
 
-            if (sprite.IGround != null && sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsMakeSoundWhenTouchGround)
-                SoundManager.PlayHelmetBumpSound();
+            if (sprite.IGround != null)
+            {
+                sprite.IsCurrentlyInFreeFall = false;
+
+                if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsMakeSoundWhenTouchGround)
+                    SoundManager.PlayHelmetBumpSound();
+            }
 
             if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null)
                 sprite.IsAlive = false;

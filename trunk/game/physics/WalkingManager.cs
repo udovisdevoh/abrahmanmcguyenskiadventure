@@ -33,13 +33,16 @@ namespace AbrahmanAdventure.physics
             double walkingDistance;
             double previousWalkingSpeed = sprite.CurrentWalkingSpeed;
 
-            if (sprite.IsTryingToWalk)
-                sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
+            if (!sprite.IsCurrentlyInFreeFall && !sprite.IsCurrentlyInFreeFallX)
+            {
+                if (sprite.IsTryingToWalk)
+                    sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
 
-            if (sprite.IsRunning)
-                sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxRunningSpeed);
-            else
-                sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxWalkingSpeed);
+                if (sprite.IsRunning)
+                    sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxRunningSpeed);
+                else
+                    sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxWalkingSpeed);
+            }
 
             if (sprite.IsTryingToWalkRight)
             {

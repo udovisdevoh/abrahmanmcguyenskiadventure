@@ -35,8 +35,9 @@ namespace AbrahmanAdventure.physics
                     double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
                     FireBallSprite fireBallSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
                     fireBallSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-                    fireBallSprite.CurrentWalkingSpeed = fireBallSprite.MaxWalkingSpeed;
-                    fireBallSprite.CurrentJumpAcceleration = -25;
+                    fireBallSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + fireBallSprite.MaxWalkingSpeed;
+                    fireBallSprite.CurrentJumpAcceleration = -30;
+                    fireBallSprite.IsCurrentlyInFreeFall = true;
                     spritePopulation.Add(fireBallSprite);
                 }
             }
