@@ -56,7 +56,7 @@ namespace AbrahmanAdventure.sprites
         #region Override Methods
         protected override bool BuildIsJumpableOn()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsAiEnabled()
