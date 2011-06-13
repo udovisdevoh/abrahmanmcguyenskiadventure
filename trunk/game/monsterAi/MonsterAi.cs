@@ -37,9 +37,13 @@ namespace AbrahmanAdventure.ai
             {
                 if (playerMonsterDistanceX < monster.SafeDistanceAi)
                 {
-                    isFleeMode = true;
                     if (playerMonsterDistanceX > monster.SafeDistanceAi - 2.0)
+                    {
+                        monster.IsTryingToWalkRight = monster.XPosition < player.XPosition;
                         isSafeDistanceDontMove = true;
+                    }
+                    else
+                        isFleeMode = true;
                 }
             }
             #endregion
