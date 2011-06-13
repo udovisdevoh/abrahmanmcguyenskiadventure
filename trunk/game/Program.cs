@@ -22,7 +22,7 @@ namespace AbrahmanAdventure
         #region Constants and static variables
         public const bool isBindViewOffsetToPlayer = true;
 
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isShowMenuOnStart = true;
 
@@ -156,6 +156,9 @@ namespace AbrahmanAdventure
             WhiskySprite whisky = new WhiskySprite(0, 0, spriteCachingRandom);
             ExplosionSprite explosion = new ExplosionSprite(0, 0, spriteCachingRandom);
             HelmetSprite helmet = new HelmetSprite(0, 0, spriteCachingRandom, true);
+            BibleSprite bible = new BibleSprite(0, 0, spriteCachingRandom);
+            CrystalBallSprite crystalBall = new CrystalBallSprite(0, 0, spriteCachingRandom);
+            PillSprite pill = new PillSprite(0, 0, spriteCachingRandom);
             //levelViewer.PreCache(level);
             #endregion
         }

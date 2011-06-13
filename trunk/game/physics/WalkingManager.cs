@@ -132,6 +132,9 @@ namespace AbrahmanAdventure.physics
         /// <returns>farthest walking distance without collision</returns>
         private double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
+            if (sprite.IsCrossGrounds)
+                return desiredDistance;
+
             double previousDistance = 0;
             if (desiredDistance > 0)
             {
