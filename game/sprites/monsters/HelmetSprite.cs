@@ -8,7 +8,7 @@ using SdlDotNet.Core;
 
 namespace AbrahmanAdventure.sprites
 {
-    class HelmetSprite : MonsterSprite
+    class HelmetSprite : MonsterSprite, ICarriable
     {
         #region Fields and parts
         private static Surface walking1aSurface;
