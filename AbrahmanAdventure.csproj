@@ -90,6 +90,7 @@
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
+    <Compile Include="game\sprites\monsters\GypsySprite.cs" />
     <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
     <Compile Include="game\sprites\monsters\IExplodable.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="game\sprites\powerups\RastaHatSprite.cs" />
     <Compile Include="game\sprites\powerups\WhiskySprite.cs" />
     <Compile Include="game\sprites\projectiles\BibleSprite.cs" />
+    <Compile Include="game\sprites\projectiles\CrystalBallSprite.cs" />
     <Compile Include="game\sprites\projectiles\FireBallSprite.cs" />
     <Compile Include="game\sprites\SpriteDistanceSorter.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
@@ -357,6 +359,12 @@
     <Content Include="assets\rendered\effects\explosion3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\gypsy\GypsyStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\gypsy\GypsyWalk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\mormon\MormonAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -430,6 +438,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\projectiles\bible3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\projectiles\crystalBall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\projectiles\fireBall1.png">

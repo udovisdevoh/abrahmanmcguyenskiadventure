@@ -151,6 +151,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new PriestSprite(-30, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new MuslimSprite(-40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new MormonSprite(-55, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new GypsySprite(-75, Program.totalHeightTileCount / -2, random));
 
             spritePopulation.Add(new BrickSprite(-10, -10, random, true));
             spritePopulation.Add(new BrickSprite(-11, -10, random, true));

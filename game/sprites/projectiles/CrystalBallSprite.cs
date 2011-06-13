@@ -6,27 +6,10 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    /// <summary>
-    /// Bible (projectile)
-    /// </summary>
-    internal class BibleSprite : MonsterSprite
+    class CrystalBallSprite : MonsterSprite
     {
         #region Fields
-        private static Surface surface1;
-
-        private static Surface surface2;
-
-        private static Surface surface3;
-
-        private static Surface surface4;
-
-        private static Surface surface5;
-
-        private static Surface surface6;
-
-        private static Surface surface7;
-
-        private static Surface surface8;
+        private static Surface surface;
         #endregion
 
         #region Constructor
@@ -36,20 +19,11 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public BibleSprite(double xPosition, double yPosition, Random random)
+        public CrystalBallSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            if (surface1 == null)
-            {
-                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/bible1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/bible2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/projectiles/bible3.png");
-                surface4 = surface2.CreateFlippedVerticalSurface();
-                surface5 = surface1.CreateFlippedVerticalSurface();
-                surface6 = surface4.CreateFlippedHorizontalSurface();
-                surface7 = surface3.CreateFlippedHorizontalSurface();
-                surface8 = surface2.CreateFlippedHorizontalSurface();
-            }
+            if (surface == null)
+                surface = BuildSpriteSurface("./assets/rendered/projectiles/crystalBall.png");
         }
         #endregion
 
@@ -111,12 +85,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiChangeDirectionWhenStucked()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsNoAiDieWhenStucked()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsNoAiAlwaysBounce()
@@ -131,7 +105,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsDieOnTouchGround()
         {
-            return true;
+            return false;
         }
 
         protected override double BuildJumpProbability()
@@ -161,7 +135,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 100.0;
+            return 0.5;
         }
 
         protected override double BuildJumpingTime()
@@ -181,17 +155,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.35;
+            return 0.20;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.55;
+            return 0.40;
         }
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 20.0;
+            return 0.0;
         }
 
         protected override double BuildAttackingTime()
@@ -222,30 +196,7 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
-
-            if (!IsNoAiDefaultDirectionWalkingRight)
-                cycleDivision = cycleDivision * -1 + 7;
-
-            switch (cycleDivision)
-            {
-                case 1:
-                    return surface1;
-                case 2:
-                    return surface2;
-                case 3:
-                    return surface3;
-                case 4:
-                    return surface4;
-                case 5:
-                    return surface5;
-                case 6:
-                    return surface6;
-                case 7:
-                    return surface7;
-                default:
-                    return surface8;
-            }
+            return surface;
         }
         #endregion
     }
