@@ -23,7 +23,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
-            if (!sprite.IsAffectedByGravity)
+            if (!sprite.IsAffectedByGravity && sprite.IsAlive)
                 return;
 
             if (sprite.IGround != null) //No gravity, sprite is on a ground

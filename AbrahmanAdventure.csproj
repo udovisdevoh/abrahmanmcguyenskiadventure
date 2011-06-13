@@ -90,6 +90,7 @@
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
+    <Compile Include="game\sprites\monsters\DoctorSprite.cs" />
     <Compile Include="game\sprites\monsters\GypsySprite.cs" />
     <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="game\sprites\projectiles\BibleSprite.cs" />
     <Compile Include="game\sprites\projectiles\CrystalBallSprite.cs" />
     <Compile Include="game\sprites\projectiles\FireBallSprite.cs" />
+    <Compile Include="game\sprites\projectiles\PillSprite.cs" />
     <Compile Include="game\sprites\SpriteDistanceSorter.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
     <Compile Include="game\sprites\staticSprites\AnarchyBlockSprite.cs" />
