@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.physics
                 carriedItem.XPosition = carrier.LeftBound;
             }
 
-            if (!carrier.IsRunning)
+            if (!carrier.IsRunning) //Sprite release carried item because running button is not pressed anymore
             {
                 if (carriedItem is MonsterSprite)
                 {
@@ -63,12 +63,13 @@ namespace AbrahmanAdventure.physics
                     {
                         spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, timeDelta);
                         ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
-                        carriedItem.CurrentWalkingSpeed = Math.Max(carriedItem.MaxWalkingSpeed, carrier.CurrentWalkingSpeed);
+                        carriedItem.CurrentWalkingSpeed = (carriedItem.MaxWalkingSpeed / 2.0) + carrier.CurrentWalkingSpeed;
 
                         if (carriedItem.IGround == null)
                         {
+                            carriedItem.IsCurrentlyInFreeFallX = true;
                             carriedItem.JumpingCycle.Fire();
-                            carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration / 2.0;
+                            carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration / 3;
                         }
                     }
                 }
