@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.physics
 
             if (iProjectileShooter.ShootingCycle.IsFinished)
             {
-                SoundManager.PlayAttemptSound();
+                SoundManager.PlayThrowSound();
                 AbstractSprite projectile = iProjectileShooter.GetProjectile(random);
 
                 projectile.JumpingCycle.Fire();
