@@ -7,50 +7,58 @@ using SdlDotNet.Graphics;
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
-    /// Catholic priest
+    /// Bible (projectile)
     /// </summary>
-    internal class PriestSprite : MonsterSprite
+    internal class BibleSprite : MonsterSprite
     {
-        #region Fields and parts
-        private static Surface deadSurface;
+        #region Fields
+        private static Surface surface1;
 
-        private static Surface walking1RightSurface;
+        private static Surface surface2;
 
-        private static Surface walking1LeftSurface;
+        private static Surface surface3;
 
-        private static Surface walking2RightSurface;
+        private static Surface surface4;
 
-        private static Surface walking2LeftSurface;
+        private static Surface surface5;
 
-        private static Surface standingRightSurface;
+        private static Surface surface6;
 
-        private static Surface standingLeftSurface;
+        private static Surface surface7;
+
+        private static Surface surface8;
         #endregion
 
-        #region Constructors
+        #region Constructor
         /// <summary>
-        /// Create caterpillar sprite
+        /// Create sprite
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public PriestSprite(double xPosition, double yPosition, Random random)
+        public BibleSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            if (deadSurface == null)
+            if (surface1 == null)
             {
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/priest/stand.png");
-                standingLeftSurface = standingRightSurface.CreateFlippedHorizontalSurface();
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk1.png");
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk2.png");
-                walking1LeftSurface = walking1RightSurface.CreateFlippedHorizontalSurface();
-                walking2LeftSurface = walking2RightSurface.CreateFlippedHorizontalSurface();
-                deadSurface = walking1RightSurface.CreateFlippedVerticalSurface();
+                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/bible1.png");
+                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/bible2.png");
+                surface3 = BuildSpriteSurface("./assets/rendered/projectiles/bible3.png");
+                surface4 = surface2.CreateFlippedVerticalSurface();
+                surface5 = surface1.CreateFlippedVerticalSurface();
+                surface6 = surface4.CreateFlippedHorizontalSurface();
+                surface7 = surface3.CreateFlippedHorizontalSurface();
+                surface8 = surface2.CreateFlippedHorizontalSurface();
             }
         }
         #endregion
 
-        #region Overrides
+        #region Override Methods
+        protected override bool BuildIsJumpableOn()
+        {
+            return false;
+        }
+
         protected override bool BuildIsAiEnabled()
         {
             return false;
@@ -63,7 +71,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAvoidFall(Random random)
         {
-            return random.Next(0, 2) == 1;
+            return false;
         }
 
         protected override bool BuildIsToggleWalkWhenJumpedOn()
@@ -73,7 +81,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
@@ -103,12 +111,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiChangeDirectionWhenStucked()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsNoAiDieWhenStucked()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsNoAiAlwaysBounce()
@@ -121,19 +129,14 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override bool BuildIsJumpableOn()
+        protected override bool BuildIsDieOnTouchGround()
         {
             return true;
         }
 
-        protected override bool BuildIsDieOnTouchGround()
-        {
-            return false;
-        }
-
         protected override double BuildJumpProbability()
         {
-            return 0.2;
+            return 0.0;
         }
 
         protected override double BuildChangeDirectionNoAiCycleLength()
@@ -143,7 +146,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -153,12 +156,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
-            return false;
+            return true;
         }
 
         protected override double BuildMaxHealth()
         {
-            return 0.5;
+            return 100.0;
         }
 
         protected override double BuildJumpingTime()
@@ -168,7 +171,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 3;
+            return 4;
         }
 
         protected override double BuildWalkingAcceleration()
@@ -178,17 +181,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.20;
+            return 0.35;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.20;
+            return 0.55;
         }
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 8.0;
+            return 20.0;
         }
 
         protected override double BuildAttackingTime()
@@ -203,64 +206,45 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 1.0;
         }
 
         protected override double BuildWidth(Random random)
         {
-            return 1.0;
+            return 0.5;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return 1.9;
+            return 0.5;
         }
-
+        
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            if (!IsAlive)
-                return deadSurface;
+            int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
 
-            if (CurrentJumpAcceleration != 0)
-            {
-                if (IsTryingToWalkRight)
-                    return walking1RightSurface;
-                else
-                    return walking1LeftSurface;
-            }
-            else if (CurrentWalkingSpeed != 0)
-            {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+            if (!IsNoAiDefaultDirectionWalkingRight)
+                cycleDivision = cycleDivision * -1 + 7;
 
-                if (cycleDivision == 1)
-                {
-                    if (IsTryingToWalkRight)
-                        return walking1RightSurface;
-                    else
-                        return walking1LeftSurface;
-                }
-                else if (cycleDivision == 3)
-                {
-                    if (IsTryingToWalkRight)
-                        return walking2RightSurface;
-                    else
-                        return walking2LeftSurface;
-                }
-                else
-                {
-                    if (IsTryingToWalkRight)
-                        return standingRightSurface;
-                    else
-                        return standingLeftSurface;
-                }
-            }
-            else
+            switch (cycleDivision)
             {
-                if (IsTryingToWalkRight)
-                    return standingRightSurface;
-                else
-                    return standingLeftSurface;
+                case 1:
+                    return surface1;
+                case 2:
+                    return surface2;
+                case 3:
+                    return surface3;
+                case 4:
+                    return surface4;
+                case 5:
+                    return surface5;
+                case 6:
+                    return surface6;
+                case 7:
+                    return surface7;
+                default:
+                    return surface8;
             }
         }
         #endregion

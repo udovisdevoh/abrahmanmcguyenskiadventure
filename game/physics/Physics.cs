@@ -64,6 +64,11 @@ namespace AbrahmanAdventure.physics
         private PlayerProjectileManager playerProjectileManager = new PlayerProjectileManager();
 
         /// <summary>
+        /// Manages monster's projectiles
+        /// </summary>
+        private MonsterProjectileManager monsterProjectileManager = new MonsterProjectileManager();
+
+        /// <summary>
         /// Manages collisions between fireball and monsters
         /// </summary>
         private FireBallToMonsterCollisionManager fireBallToMonsterCollisionManager = new FireBallToMonsterCollisionManager();
@@ -133,6 +138,9 @@ namespace AbrahmanAdventure.physics
             {
                 fireBallToMonsterCollisionManager.Update((FireBallSprite)spriteToUpdate, level, visibleSpriteList);
             }
+
+            if (spriteToUpdate is IProjectileShooter)
+                monsterProjectileManager.Update((IProjectileShooter)spriteToUpdate, spritePopulation, gameState.PlayerSprite, timeDelta, random);
 
             if (spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsEnableSpontaneousConversion)
                 spontaneousConversionManager.Update((MonsterSprite)spriteToUpdate, spritePopulation, timeDelta, random);

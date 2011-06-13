@@ -12,6 +12,8 @@ namespace AbrahmanAdventure.sprites
     internal class MormonSprite : MonsterSprite, IProjectileShooter
     {
         #region Fields and parts
+        private Cycle shootingCycle;
+
         private static Surface standRight;
 
         private static Surface standLeft;
@@ -41,6 +43,8 @@ namespace AbrahmanAdventure.sprites
         public MormonSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            shootingCycle = new Cycle(MaxShootingTimeBetween, false);
+            shootingCycle.Fire();
             if (standRight == null)
             {
                 standRight = BuildSpriteSurface("./assets/rendered/mormon/MormonStand.png");
@@ -152,6 +156,11 @@ namespace AbrahmanAdventure.sprites
         }
 
         protected override bool BuildIsAnnihilateOnExitScreen()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsDieOnTouchGround()
         {
             return false;
         }
@@ -284,6 +293,33 @@ namespace AbrahmanAdventure.sprites
                 else
                     return standLeft;
             }
+        }
+        #endregion
+
+        #region IProjectileShooter Members
+        public AbstractSprite GetProjectile(Random random)
+        {
+            return new BibleSprite(XPosition, TopBound, random);
+        }
+
+        public Cycle ShootingCycle
+        {
+            get { return shootingCycle; }
+        }
+
+        public double MinShootingTimeBetween
+        {
+            get { return 50.0; }
+        }
+
+        public double MaxShootingTimeBetween
+        {
+            get { return 100.0; }
+        }
+
+        public double MaxShootingDistance
+        {
+            get { return 7.0; }
         }
         #endregion
     }

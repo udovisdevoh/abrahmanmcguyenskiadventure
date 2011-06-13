@@ -124,6 +124,11 @@ namespace AbrahmanAdventure.sprites
             return surface;
         }
 
+        protected override bool BuildIsDieOnTouchGround()
+        {
+            return false;
+        }
+
         protected override bool BuildIsAiEnabled()
         {
             return false;

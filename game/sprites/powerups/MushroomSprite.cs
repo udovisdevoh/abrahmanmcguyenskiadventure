@@ -187,6 +187,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsDieOnTouchGround()
+        {
+            return false;
+        }
+
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;

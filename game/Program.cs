@@ -22,7 +22,7 @@ namespace AbrahmanAdventure
         #region Constants and static variables
         public const bool isBindViewOffsetToPlayer = true;
 
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isShowMenuOnStart = true;
 

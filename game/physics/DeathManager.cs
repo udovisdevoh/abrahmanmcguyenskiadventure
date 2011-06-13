@@ -30,6 +30,8 @@ namespace AbrahmanAdventure.physics
                 sprite.IsAlive = false;
                 sprite.YPosition = Program.totalHeightTileCount + 1.0;
             }
+            else if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null)
+                sprite.IsAlive = false;
 
             if (sprite.IsAlive)
                 return;

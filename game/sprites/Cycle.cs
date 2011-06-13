@@ -89,6 +89,7 @@ namespace AbrahmanAdventure.sprites
         public double TotalTimeLength
         {
             get { return totalTimeLength; }
+            set { totalTimeLength = value; }
         }
         #endregion
     }
