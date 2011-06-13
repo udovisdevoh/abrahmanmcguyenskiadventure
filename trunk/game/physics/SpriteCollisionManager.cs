@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite))
+                if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)
                     continue;
 
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
@@ -70,7 +70,14 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
                 {
-                    KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                    if (sprite.IsRunning && sprite.IGround != null && sprite.CarriedSprite == null && otherSprite is ICarriable)
+                    {
+                        sprite.CarriedSprite = otherSprite;
+                    }
+                    else
+                    {
+                        KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                    }
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
@@ -466,8 +473,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">kicked</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        private void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        public void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
         {
+            if (monsterSprite.KickedHelmetCycle.IsFired)
+                return;
+
             if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
             {
                 SoundManager.PlayHitSound();

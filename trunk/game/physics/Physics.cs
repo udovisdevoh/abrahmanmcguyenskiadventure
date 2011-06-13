@@ -77,6 +77,11 @@ namespace AbrahmanAdventure.physics
         /// Manages explosive sprites
         /// </summary>
         private ExplosionManager explosionManager = new ExplosionManager();
+
+        /// <summary>
+        /// Manages carriable sprites
+        /// </summary>
+        private CarriableSpriteManager carriableSpriteManager = new CarriableSpriteManager();
         #endregion
 
         #region Public Instance Methods
@@ -126,6 +131,11 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired && spriteToUpdate.IGround != null)
                         ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
 
+                    if (spriteToUpdate.CarriedSprite != null)
+                    {
+                        carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,timeDelta);
+                    }
+
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                 }
             }
@@ -142,7 +152,7 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive)
                 monsterProjectileManager.Update((IProjectileShooter)spriteToUpdate, spritePopulation, gameState.PlayerSprite, timeDelta, random);
 
-            if (spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsEnableSpontaneousConversion)
+            if (spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsEnableSpontaneousConversion && spriteToUpdate != playerSpriteReference.CarriedSprite)
                 spontaneousConversionManager.Update((MonsterSprite)spriteToUpdate, spritePopulation, timeDelta, random);
 
             if (spriteToUpdate is IGrowable && ((IGrowable)spriteToUpdate).GrowthCycle.IsFired)

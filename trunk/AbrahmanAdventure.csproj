@@ -70,6 +70,7 @@
     <Compile Include="game\hud\GameMenu.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
+    <Compile Include="game\physics\CarriableSpriteManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
     <Compile Include="game\physics\ExplosionManager.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
+    <Compile Include="game\sprites\ICarriable.cs" />
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
     <Compile Include="game\sprites\monsters\DoctorSprite.cs" />
     <Compile Include="game\sprites\monsters\GypsySprite.cs" />

@@ -29,33 +29,36 @@ namespace AbrahmanAdventure.physics
                     if (!otherSprite.PunchedCycle.IsFired)
                     {
                         MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
-                        if (sprite != monsterSprite)
+                        if (!monsterSprite.KickedHelmetCycle.IsFired)
                         {
-                            if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
+                            if (sprite != monsterSprite)
                             {
-                                SoundManager.PlayPunchSound();
-                                if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                                if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
                                 {
-                                    monsterSprite.IsAlive = false;
+                                    SoundManager.PlayPunchSound();
+                                    if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                                    {
+                                        monsterSprite.IsAlive = false;
+                                        monsterSprite.JumpingCycle.Fire();
+                                    }
+                                    else
+                                    {
+                                        monsterSprite.HitCycle.Fire();
+                                        monsterSprite.PunchedCycle.Fire();
+                                        monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                    }
+
+                                    monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                                    monsterSprite.JumpingCycle.Reset();
                                     monsterSprite.JumpingCycle.Fire();
+
+                                    if (monsterSprite.IsTryingToWalkRight)
+                                        monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
+                                    else
+                                        monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
+
+                                    monsterSprite.IsTryingToJump = true;
                                 }
-                                else
-                                {
-                                    monsterSprite.HitCycle.Fire();
-                                    monsterSprite.PunchedCycle.Fire();
-                                    monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
-                                }
-
-                                monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                                monsterSprite.JumpingCycle.Reset();
-                                monsterSprite.JumpingCycle.Fire();
-
-                                if (monsterSprite.IsTryingToWalkRight)
-                                    monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
-                                else
-                                    monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
-
-                                monsterSprite.IsTryingToJump = true;
                             }
                         }
                     }

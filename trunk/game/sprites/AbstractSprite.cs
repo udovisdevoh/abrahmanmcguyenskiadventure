@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.sprites
         private IGround iGround;
 
         /// <summary>
+        /// Sprite carried by this sprite
+        /// </summary>
+        private AbstractSprite carriedSprite;
+
+        /// <summary>
         /// Whether sprite is currently tiny
         /// </summary>
         private bool isTiny = false;
@@ -417,6 +422,15 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Sprite carried by this sprite
+        /// </summary>
+        public AbstractSprite CarriedSprite
+        {
+            get { return carriedSprite; }
+            set { carriedSprite = value; }
+        }
+
         /// <summary>
         /// X position
         /// </summary>
