@@ -172,6 +172,10 @@ Monstres
 		Ron Hubbard
 		Présidents de banque
 		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
+		Ronald McDonalds
+		{
+			lance des bigmacs, frites, coke, etc
+		}
 	}
 
 	Jesus raptor
@@ -195,11 +199,6 @@ Monstres
 		Marionette (avec fil). Tient un micro
 	}
 	
-	Mormon
-	{
-		arme: bible
-	}
-	
 	Trijambiste
 	{
 		3 jambes
@@ -209,11 +208,6 @@ Monstres
 	Mickey Mouse
 	
 	Avocat
-	
-	Juif hassidique (spelling?)
-	{
-		Lance des sacs d'argent (avec un $)
-	}
 	
 	Texan
 	{
@@ -245,11 +239,6 @@ Monstres
 	}?
 	
 	?Bobo?
-	
-	Ronald mcdonalds
-	{
-		lance des bigmacs, frites, coke, etc
-	}
 	
 	Docteur pharmaceutique
 	{
