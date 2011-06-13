@@ -392,7 +392,11 @@ namespace AbrahmanAdventure.physics
                         if (otherSprite is MonsterSprite)
                         {
                             MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
-                            SoundManager.PlayHitSound();
+
+                            if (monsterSprite is CrystalBallSprite)
+                                SoundManager.PlayGlassBreakSound();
+                            else
+                                SoundManager.PlayHitSound();
 
                             if (((MonsterSprite)otherSprite).IsEnableJumpOnConversion) //If sprite is converted into another sprite when getting jumped on
                             {

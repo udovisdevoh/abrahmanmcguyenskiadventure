@@ -142,6 +142,9 @@ namespace AbrahmanAdventure.ai
                     {
                         if (monster is FireBallSprite)
                             SoundManager.PlayHelmetBumpSound();
+                        else if (monster is CrystalBallSprite)
+                            SoundManager.PlayGlassBreakSound();
+
                         monster.IsAlive = false;
                         monster.YPosition = Program.totalHeightTileCount + 1.0;
                     }

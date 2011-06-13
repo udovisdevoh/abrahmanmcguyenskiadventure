@@ -61,6 +61,8 @@ namespace AbrahmanAdventure.audio
         private static Sound vortexOutSound;
 
         private static Sound throwSound;
+
+        private static Sound glassBreakSound;
         #endregion
 
         #region Constructors
@@ -91,6 +93,7 @@ namespace AbrahmanAdventure.audio
             vortexInSound = LoadSound("./assets/sounds/VortexIn.ogg");
             vortexOutSound = LoadSound("./assets/sounds/VortexOut.ogg");
             throwSound = LoadSound("./assets/sounds/Throw.ogg");
+            glassBreakSound = LoadSound("./assets/sounds/GlassBreak.ogg");
         }
 
         /// <summary>
@@ -232,6 +235,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayThrowSound()
         {
             throwSound.Play();
+        }
+
+        internal static void PlayGlassBreakSound()
+        {
+            glassBreakSound.Play();
         }
         #endregion
     }
