@@ -81,7 +81,7 @@ namespace AbrahmanAdventure.physics
             }
 
 
-            if (sprite.IGround != null && sprite is MonsterSprite && ((MonsterSprite)sprite).IsMakeSoundWhenTouchGround)
+            if (sprite.IGround != null && sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsMakeSoundWhenTouchGround)
                 SoundManager.PlayHelmetBumpSound();
 
             if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null)
