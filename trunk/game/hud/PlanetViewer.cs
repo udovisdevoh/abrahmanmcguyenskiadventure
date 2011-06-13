@@ -231,13 +231,15 @@ namespace AbrahmanAdventure.hud
             totalPointCount *= random.Next(1, 4);
             totalPointCount /= random.Next(1, 4);
 
+            int minHorizontalMovement = random.Next(1, 7);
+            int minVerticalMovement = random.Next(1, 7);
             int maxHorizontalMovement = random.Next(1, 7);
             int maxVerticalMovement = random.Next(1, 7);
 
             for (int pointCounter = 0; pointCounter < totalPointCount; pointCounter++)
             {
-                pointX += random.Next(-maxHorizontalMovement, maxHorizontalMovement + 1);
-                pointY += random.Next(-maxVerticalMovement, maxVerticalMovement+1);
+                pointX += random.Next(-minHorizontalMovement, maxHorizontalMovement + 1);
+                pointY += random.Next(-minVerticalMovement, maxVerticalMovement + 1);
 
                 if (pointX < 640 / 2 - 480 / 3)
                     pointX = 640 / 2 + 480 / 3;
