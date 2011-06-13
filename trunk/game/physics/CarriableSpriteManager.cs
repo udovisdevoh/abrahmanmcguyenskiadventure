@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -45,17 +46,30 @@ namespace AbrahmanAdventure.physics
 
                         carriedItem.YPosition = carriedItem.IGround[carriedItem.XPosition];
                     }
-                    else //Throw carried item
+                    else if (program.UserInput.isPressUp) //We throw it up
+                    {
+                        SoundManager.PlayHelmetKickSound();
+                        ((MonsterSprite)carriedItem).KickedHelmetCycle.Fire();//We don't kick the helmet, but we must prevent further accicdental kick so next kick will wait
+                        ((MonsterSprite)carriedItem).SpontaneousTransformationCycle.Fire();
+
+                        ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
+
+                        carriedItem.IGround = null;
+                        carriedItem.YPosition = carrier.TopBound;
+                        carriedItem.JumpingCycle.Fire();
+                        carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 2.0;
+                    }
+                    else //We throw it left or right
                     {
                         spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, timeDelta);
                         ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
                         carriedItem.CurrentWalkingSpeed = Math.Max(carriedItem.MaxWalkingSpeed, carrier.CurrentWalkingSpeed);
-                    }
 
-                    if (carriedItem.IGround == null)
-                    {
-                        carriedItem.JumpingCycle.Fire();
-                        carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration / 2.0;
+                        if (carriedItem.IGround == null)
+                        {
+                            carriedItem.JumpingCycle.Fire();
+                            carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration / 2.0;
+                        }
                     }
                 }
                 carrier.CarriedSprite = null;
