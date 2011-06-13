@@ -167,6 +167,7 @@ Monstres
 
 	Bosses
 	{
+		Le pape
 		Sarah Palin
 		Tom Cruise	
 		Ron Hubbard
