@@ -7,53 +7,50 @@ using SdlDotNet.Graphics;
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
-    /// Bible (projectile)
+    /// Gypsy girl
     /// </summary>
-    internal class BibleSprite : MonsterSprite
+    internal class GypsySprite : MonsterSprite, IProjectileShooter
     {
-        #region Fields
-        private static Surface surface1;
+        #region Fields and parts
+        private Cycle shootingCycle;
 
-        private static Surface surface2;
+        private static Surface standRight;
 
-        private static Surface surface3;
+        private static Surface standLeft;
 
-        private static Surface surface4;
+        private static Surface walkRight;
 
-        private static Surface surface5;
+        private static Surface walkLeft;
 
-        private static Surface surface6;
-
-        private static Surface surface7;
-
-        private static Surface surface8;
+        private static Surface deadSurface;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Create sprite
+        /// Create caterpillar sprite
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public BibleSprite(double xPosition, double yPosition, Random random)
+        public GypsySprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            if (surface1 == null)
+            shootingCycle = new Cycle(MaxShootingTimeBetween, false);
+            shootingCycle.Fire();
+            if (standRight == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/bible1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/bible2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/projectiles/bible3.png");
-                surface4 = surface2.CreateFlippedVerticalSurface();
-                surface5 = surface1.CreateFlippedVerticalSurface();
-                surface6 = surface4.CreateFlippedHorizontalSurface();
-                surface7 = surface3.CreateFlippedHorizontalSurface();
-                surface8 = surface2.CreateFlippedHorizontalSurface();
+                standRight = BuildSpriteSurface("./assets/rendered/gypsy/GypsyStand.png");
+                standLeft = standRight.CreateFlippedHorizontalSurface();
+
+                walkRight = BuildSpriteSurface("./assets/rendered/gypsy/GypsyWalk.png");
+                walkLeft = walkRight.CreateFlippedHorizontalSurface();
+
+                deadSurface = walkRight.CreateFlippedVerticalSurface();
             }
         }
         #endregion
 
-        #region Override Methods
+        #region Overrides
         protected override bool BuildIsJumpableOn()
         {
             return true;
@@ -61,7 +58,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAiEnabled()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsCanJump(Random random)
@@ -71,7 +68,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAvoidFall(Random random)
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsToggleWalkWhenJumpedOn()
@@ -81,12 +78,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsInstantKickConvertedSprite()
@@ -116,7 +113,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiDieWhenStucked()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsNoAiAlwaysBounce()
@@ -129,24 +126,14 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override bool BuildIsDieOnTouchGround()
-        {
-            return true;
-        }
-
         protected override double BuildJumpProbability()
         {
-            return 0.0;
+            return 0.10;
         }
 
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 0.0;
-        }
-
-        protected override double BuildSafeDistanceAi()
-        {
-            return 0;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -156,12 +143,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
-            return true;
+            return false;
+        }
+
+        protected override bool BuildIsDieOnTouchGround()
+        {
+            return false;
         }
 
         protected override double BuildMaxHealth()
         {
-            return 100.0;
+            return 1.0;
         }
 
         protected override double BuildJumpingTime()
@@ -171,27 +163,27 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 4;
+            return 2.5;
         }
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.02;
         }
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.35;
+            return 0.50;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.55;
+            return 0.75;
         }
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 20.0;
+            return 25.0;
         }
 
         protected override double BuildAttackingTime()
@@ -211,41 +203,93 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return 0.5;
+            return 1.0;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return 0.5;
+            return 2.0;
         }
-        
+
+        protected override double BuildSafeDistanceAi()
+        {
+            return 8.0;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
 
-            if (!IsNoAiDefaultDirectionWalkingRight)
-                cycleDivision = cycleDivision * -1 + 7;
+            if (!IsAlive)
+                return deadSurface;
 
-            switch (cycleDivision)
+            if (CurrentJumpAcceleration != 0)
             {
-                case 1:
-                    return surface1;
-                case 2:
-                    return surface2;
-                case 3:
-                    return surface3;
-                case 4:
-                    return surface4;
-                case 5:
-                    return surface5;
-                case 6:
-                    return surface6;
-                case 7:
-                    return surface7;
-                default:
-                    return surface8;
+                if (IsTryingToWalkRight)
+                    return walkRight;
+                else
+                    return walkLeft;
             }
+            else if (CurrentWalkingSpeed != 0)
+            {
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+
+                if (cycleDivision == 1)
+                {
+                    if (IsTryingToWalkRight)
+                        return walkRight;
+                    else
+                        return walkLeft;
+                }
+                else if (cycleDivision == 3)
+                {
+                    if (IsTryingToWalkRight)
+                        return walkRight;
+                    else
+                        return walkLeft;
+                }
+                else
+                {
+                    if (IsTryingToWalkRight)
+                        return standRight;
+                    else
+                        return standLeft;
+                }
+            }
+            else
+            {
+                if (IsTryingToWalkRight)
+                    return standRight;
+                else
+                    return standLeft;
+            }
+        }
+        #endregion
+
+        #region IProjectileShooter Members
+        public AbstractSprite GetProjectile(Random random)
+        {
+            return new CrystalBallSprite(XPosition, TopBound, random);
+        }
+
+        public Cycle ShootingCycle
+        {
+            get { return shootingCycle; }
+        }
+
+        public double MinShootingTimeBetween
+        {
+            get { return 50.0; }
+        }
+
+        public double MaxShootingTimeBetween
+        {
+            get { return 100.0; }
+        }
+
+        public double MaxShootingDistance
+        {
+            get { return 10.0; }
         }
         #endregion
     }
