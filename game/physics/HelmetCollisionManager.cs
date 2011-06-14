@@ -11,15 +11,25 @@ namespace AbrahmanAdventure.physics
     /// <summary>
     /// Manages collsions between helmets and monsters
     /// </summary>
-    internal class HelmetToMonsterCollisionManager
+    internal class HelmetCollisionManager
     {
+        #region Fields and parts
+        /// <summary>
+        /// Manages block collision and stuff like open, close, break
+        /// </summary>
+        private BlockManager blockManager = new BlockManager();
+        #endregion
+
+        #region Internal Methods
         /// <summary>
         /// Manages collsions between helmets and monsters
         /// </summary>
         /// <param name="helmet">helmet sprite</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(HelmetSprite helmet, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        /// <param name="spritePopulation">all the sprites in game state</param>
+        /// <param name="random">random number generator</param>
+        internal void Update(HelmetSprite helmet, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX)
                 return;
@@ -44,11 +54,12 @@ namespace AbrahmanAdventure.physics
                         double virtualOffsetX = (helmet.IsTryingToWalkRight) ? 0.25 : -0.25;
                         if (Physics.IsDetectCollision(helmet, helmet.XPosition + virtualOffsetX, helmet.YPosition, 1.0, otherSprite))
                         {
-
+                            blockManager.TryOpenOrBreakBlock(helmet, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, random);
                         }
                     }
                 }
             }
         }
+        #endregion
     }
 }

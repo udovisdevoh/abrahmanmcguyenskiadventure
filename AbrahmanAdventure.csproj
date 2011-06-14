@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D28254B5-E02D-4885-B91C-924220F45F7E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -70,6 +70,7 @@
     <Compile Include="game\hud\GameMenu.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
+    <Compile Include="game\physics\BlockManager.cs" />
     <Compile Include="game\physics\CarriableSpriteManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
@@ -77,13 +78,14 @@
     <Compile Include="game\physics\FireBallToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
     <Compile Include="game\ground\IGroundHelper.cs" />
-    <Compile Include="game\physics\HelmetToMonsterCollisionManager.cs" />
+    <Compile Include="game\physics\HelmetCollisionManager.cs" />
     <Compile Include="game\physics\JumpingManager.cs" />
     <Compile Include="game\physics\MonsterProjectileManager.cs" />
     <Compile Include="game\physics\Physics.cs" />
     <Compile Include="game\physics\PlayerProjectileManager.cs" />
     <Compile Include="game\physics\SpontaneousConversionManager.cs" />
     <Compile Include="game\physics\SpriteCollisionManager.cs" />
+    <Compile Include="game\physics\SpriteConversionManager.cs" />
     <Compile Include="game\physics\WalkingManager.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\sky\Sky.cs" />
