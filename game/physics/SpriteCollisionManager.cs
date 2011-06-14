@@ -126,15 +126,13 @@ namespace AbrahmanAdventure.physics
 
             sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
 
-                        
-
             //Only expell the sprite if it doesn't make force the sprite to go lower than the ground
             IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
             if (highestVisibleGroundBelowSprite == null || highestVisibleGroundBelowSprite[sprite.XPosition] > block.YPosition + sprite.Height + 0.01)
                 sprite.TopBoundKeepPrevious = block.YPosition + 0.01;
 
 
-            if (!(sprite is PlayerSprite))
+            if (!(sprite is PlayerSprite) && !(sprite is HelmetSprite))
                 return;
 
             sprite.IsNeedToJumpAgain = true;

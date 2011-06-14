@@ -241,20 +241,10 @@ Monstres
 	
 	?Bobo?
 	
-	Docteur pharmaceutique
-	{
-		lance des pilules ou des seringues
-	}
-	
 	Fermier transgénique
 	{
-		lance des maïs monsanto
+		lance des maïs monsanto ?(comportement de boomerang)?
 	}
-	
-	?Diseuse de bonne aventure
-	{
-		lance boule de crystal
-	}?
 	
 	?Obese (4*4 tile)
 	{
