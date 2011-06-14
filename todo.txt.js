@@ -6,9 +6,9 @@ Changer nom d'app
 
 ?add maximum time delta (will slow down, but physics will be tested properly)?
 
-possibilité de transporter une carapace et de la lancer (en haut aussi)
-
 create persistant config
+
+helmets must collide blocks
 
 Faire écran de menu
 {
