@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         internal void Update(HelmetSprite helmet, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
-            if (!helmet.IsWalkEnabled)
+            if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX)
                 return;
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
