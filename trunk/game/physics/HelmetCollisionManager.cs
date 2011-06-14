@@ -51,8 +51,9 @@ namespace AbrahmanAdventure.physics
                     }
                     else if (otherSprite is StaticSprite && helmet.IGround != null && otherSprite.IsImpassable)
                     {
-                        double virtualOffsetX = (helmet.IsTryingToWalkRight) ? 0.25 : -0.25;
-                        if (Physics.IsDetectCollision(helmet, helmet.XPosition + virtualOffsetX, helmet.YPosition, 1.0, otherSprite))
+                        double virtualX = helmet.XPosition + ((helmet.IsTryingToWalkRight) ? helmet.CurrentWalkingSpeed : -helmet.CurrentWalkingSpeed);
+                        double virtualY = helmet.IGround[virtualX];
+                        if (Physics.IsDetectCollision(helmet, virtualX, virtualY, 1.0, otherSprite))
                         {
                             blockManager.TryOpenOrBreakBlock(helmet, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, random);
                         }
