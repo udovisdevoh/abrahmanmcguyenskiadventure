@@ -274,7 +274,7 @@ namespace AbrahmanAdventure.sprites
         #region IProjectileShooter Members
         public AbstractSprite GetProjectile(Random random)
         {
-            return new PillSprite(XPosition, TopBound, random);
+            return new PillSprite(XPosition, TopBound + Height / 3.5, random);
         }
 
         public Cycle ShootingCycle
