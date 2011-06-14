@@ -26,14 +26,14 @@ namespace AbrahmanAdventure.physics
                 return;
             else if (!sprite.IsTryingToWalk && sprite.CurrentWalkingSpeed <= 0)
                 return;
-            else if (sprite is MonsterSprite && !((MonsterSprite)sprite).IsWalkEnabled)
+            else if (sprite is MonsterSprite && !((MonsterSprite)sprite).IsWalkEnabled && !sprite.IsCurrentlyInFreeFallX)
                 return;
 
             double desiredWalkingDistance;
             double walkingDistance;
             double previousWalkingSpeed = sprite.CurrentWalkingSpeed;
 
-            if (!sprite.IsCurrentlyInFreeFall && !sprite.IsCurrentlyInFreeFallX)
+            if (!sprite.IsCurrentlyInFreeFallX)
             {
                 if (sprite.IsTryingToWalk)
                     sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;

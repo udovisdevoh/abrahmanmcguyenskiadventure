@@ -98,7 +98,8 @@ namespace AbrahmanAdventure.physics
         private void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
-            sprite.IsCurrentlyInFreeFall = false;
+            sprite.IsCurrentlyInFreeFallX = false;
+            sprite.IsCurrentlyInFreeFallY = false;
             if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
             {
                 UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);

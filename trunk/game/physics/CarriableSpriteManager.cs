@@ -53,11 +53,15 @@ namespace AbrahmanAdventure.physics
                         ((MonsterSprite)carriedItem).SpontaneousTransformationCycle.Fire();
 
                         ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
+                        ((MonsterSprite)carriedItem).IsTryingToWalkRight = carrier.IsTryingToWalkRight;
 
                         carriedItem.IGround = null;
                         carriedItem.YPosition = carrier.TopBound;
                         carriedItem.JumpingCycle.Fire();
                         carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 2.0;
+
+                        carriedItem.IsCurrentlyInFreeFallX = true;
+                        carriedItem.CurrentWalkingSpeed = carrier.CurrentWalkingSpeed;
                     }
                     else //We throw it left or right
                     {
