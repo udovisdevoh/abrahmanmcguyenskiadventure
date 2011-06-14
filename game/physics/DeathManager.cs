@@ -46,6 +46,7 @@ namespace AbrahmanAdventure.physics
                     ((PlayerSprite)sprite).IsRasta = false;
                     ((PlayerSprite)sprite).InvincibilityCycle.StopAndReset();
                     ((PlayerSprite)sprite).IsTiny = true;
+                    sprite.CarriedSprite = null;
 
                     if (gameMetaState.PreviousSeed != -1)
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);

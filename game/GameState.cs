@@ -169,10 +169,21 @@ namespace AbrahmanAdventure
 
             spritePopulation.Add(new AnarchyBlockSprite(13, -20, random));
             spritePopulation.Add(new AnarchyBlockSprite(14, -20, random, true));
+
             spritePopulation.Add(new AnarchyBlockSprite(15, -15, random));
             spritePopulation.Add(new AnarchyBlockSprite(16, -15, random, true));
+            spritePopulation.Add(new AnarchyBlockSprite(17, -15, random, true));
+            
+            
             spritePopulation.Add(new AnarchyBlockSprite(17, -10, random));
             spritePopulation.Add(new AnarchyBlockSprite(18, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(19, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(20, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(21, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(22, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(23, -10, random));
+            spritePopulation.Add(new AnarchyBlockSprite(24, -10, random));
+
             spritePopulation.Add(new AnarchyBlockSprite(19, -5, random));
             spritePopulation.Add(new AnarchyBlockSprite(20, -5, random));
 

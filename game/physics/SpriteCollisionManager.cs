@@ -213,6 +213,7 @@ namespace AbrahmanAdventure.physics
                 monsterSprite.CurrentWalkingSpeed = monsterSprite.WalkingAcceleration;
                 monsterSprite.CurrentDamageReceiving = jumper.AttackStrengthCollision;
                 monsterSprite.IsNoAiDefaultDirectionWalkingRight = jumper.XPositionPrevious < jumper.XPosition;
+                monsterSprite.IGround = null;
             }
         }
 
