@@ -28,13 +28,24 @@ namespace AbrahmanAdventure.physics
             {
                 if (helmet != otherSprite && !(otherSprite is PlayerSprite) && !otherSprite.HitCycle.IsFired && !(otherSprite is FireBallSprite))
                 {
-                    if (otherSprite is MonsterSprite && Physics.IsDetectCollision(helmet, otherSprite))
+                    if (otherSprite is MonsterSprite)
                     {
-                        helmet.IsCurrentlyInFreeFallX = false;
-                        helmet.IsCurrentlyInFreeFallY = false;
-                        SoundManager.PlayHitSound();
-                        otherSprite.HitCycle.Fire();
-                        otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
+                        if (Physics.IsDetectCollision(helmet, otherSprite))
+                        {
+                            helmet.IsCurrentlyInFreeFallX = false;
+                            helmet.IsCurrentlyInFreeFallY = false;
+                            SoundManager.PlayHitSound();
+                            otherSprite.HitCycle.Fire();
+                            otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
+                        }
+                    }
+                    else if (otherSprite is StaticSprite && helmet.IGround != null && otherSprite.IsImpassable)
+                    {
+                        double virtualOffsetX = (helmet.IsTryingToWalkRight) ? 0.25 : -0.25;
+                        if (Physics.IsDetectCollision(helmet, helmet.XPosition + virtualOffsetX, helmet.YPosition, 1.0, otherSprite))
+                        {
+
+                        }
                     }
                 }
             }
