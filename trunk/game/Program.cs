@@ -549,7 +549,13 @@ namespace AbrahmanAdventure
         internal void ChangeGameState(int seedNextGameState)
         {
             if (this.gameState != null)
+            {
+                gameState.PlayerSprite.IsTiny = true;
+                gameState.PlayerSprite.IsDoped = false;
+                gameState.PlayerSprite.IsRasta = false;
+                gameState.PlayerSprite.Health = 0.5;
                 gameState.IsExpired = true;
+            }
             this.seedNextGameState = seedNextGameState;
         }
 		#endregion
