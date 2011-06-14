@@ -54,14 +54,14 @@ namespace AbrahmanAdventure.physics
                     else
                     {
                         ApplyGravityMovement(sprite, timeDelta);
-                        if (!sprite.IsCurrentlyInFreeFall)
+                        if (!sprite.IsCurrentlyInFreeFallY)
                             ApplyGravityAcceleration(sprite, timeDelta);
                     }
                 }
                 else
                 {
                     ApplyGravityMovement(sprite, timeDelta);
-                    if (!sprite.IsCurrentlyInFreeFall)
+                    if (!sprite.IsCurrentlyInFreeFallY)
                         ApplyGravityAcceleration(sprite, timeDelta);
                 }
             }
@@ -72,7 +72,7 @@ namespace AbrahmanAdventure.physics
 
                 if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
                 {
-                    if (!sprite.IsCurrentlyInFreeFall)
+                    if (!sprite.IsCurrentlyInFreeFallY)
                         ApplyGravityAcceleration(sprite, timeDelta);
                 }
 
@@ -86,7 +86,8 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.IGround != null)
             {
-                sprite.IsCurrentlyInFreeFall = false;
+                sprite.IsCurrentlyInFreeFallX = false;
+                sprite.IsCurrentlyInFreeFallY = false;
 
                 if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsMakeSoundWhenTouchGround)
                     SoundManager.PlayHelmetBumpSound();

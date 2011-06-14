@@ -37,7 +37,8 @@ namespace AbrahmanAdventure.physics
                     fireBallSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
                     fireBallSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + fireBallSprite.MaxWalkingSpeed;
                     fireBallSprite.CurrentJumpAcceleration = -30;
-                    fireBallSprite.IsCurrentlyInFreeFall = true;
+                    fireBallSprite.IsCurrentlyInFreeFallX = true;
+                    fireBallSprite.IsCurrentlyInFreeFallY = true;
                     spritePopulation.Add(fireBallSprite);
                 }
             }

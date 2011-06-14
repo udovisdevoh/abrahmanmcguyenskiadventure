@@ -145,14 +145,14 @@ namespace AbrahmanAdventure.sprites
         private bool isFullGravityOnNextFrame;
 
         /// <summary>
-        /// Whether sprite is currently in free fall (constant falling speed and walking speed)
-        /// </summary>
-        private bool isCurrentlyInFreeFall;
-
-        /// <summary>
         /// Whether sprite is currently in free fall (walking speed)
         /// </summary>
         private bool isCurrentlyInFreeFallX;
+
+        /// <summary>
+        /// Whether sprite is currently in free fall (vertical falling speed)
+        /// </summary>
+        private bool isCurrentlyInFreeFallY;
 
         /// <summary>
         /// Max falling speed
@@ -563,21 +563,21 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// Whether sprite's falling and walking speed is constant
-        /// </summary>
-        public bool IsCurrentlyInFreeFall
-        {
-            get { return isCurrentlyInFreeFall; }
-            set { isCurrentlyInFreeFall = value; }
-        }
-
-        /// <summary>
         /// Whether sprite's walking speed is constant
         /// </summary>
         public bool IsCurrentlyInFreeFallX
         {
             get { return isCurrentlyInFreeFallX; }
             set { isCurrentlyInFreeFallX = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite's vertical falling speed
+        /// </summary>
+        public bool IsCurrentlyInFreeFallY
+        {
+            get { return isCurrentlyInFreeFallY; }
+            set { isCurrentlyInFreeFallY = value; }
         }
 
         /// <summary>
