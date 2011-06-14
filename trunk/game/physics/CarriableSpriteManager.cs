@@ -13,8 +13,22 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class CarriableSpriteManager
     {
-        internal SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
+        #region Fields and parts
+        /// <summary>
+        /// Sprite collision manager
+        /// </summary>
+        private SpriteCollisionManager spriteCollisionManager = new SpriteCollisionManager();
+        #endregion
 
+        #region Internal Methods
+        /// <summary>
+        /// Update carried sprite
+        /// </summary>
+        /// <param name="carrier">carrier</param>
+        /// <param name="carriedItem">carried item</param>
+        /// <param name="level">level</param>
+        /// <param name="program">program</param>
+        /// <param name="timeDelta">time delta</param>
         internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, double timeDelta)
         {
             carriedItem.YPosition = carrier.YPosition - carrier.Height / 4.0;
@@ -80,5 +94,6 @@ namespace AbrahmanAdventure.physics
                 carrier.CarriedSprite = null;
             }
         }
+        #endregion
     }
 }

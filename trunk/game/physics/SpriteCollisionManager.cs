@@ -106,7 +106,7 @@ namespace AbrahmanAdventure.physics
             }
             else
             {
-                UpdateJumpOnBlockSide(sprite, block);
+                ManageBlockSideCollision(sprite, block, spritePopulation, visibleSpriteList, level, random);
             }
         }
 
@@ -131,13 +131,25 @@ namespace AbrahmanAdventure.physics
             if (highestVisibleGroundBelowSprite == null || highestVisibleGroundBelowSprite[sprite.XPosition] > block.YPosition + sprite.Height + 0.01)
                 sprite.TopBoundKeepPrevious = block.YPosition + 0.01;
 
-
             if (!(sprite is PlayerSprite) && !(sprite is HelmetSprite))
                 return;
 
             sprite.IsNeedToJumpAgain = true;
-            AbstractSprite powerUpSprite = null;
+            TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
+        }
 
+        /// <summary>
+        /// Try to open a block
+        /// </summary>
+        /// <param name="sprite">opener</param>
+        /// <param name="block">block</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="visibleSpriteList">list of visible sprites</param>
+        /// <param name="level">level</param>
+        /// <param name="random">random number generator</param>
+        private void TryOpenOrBreakBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, Random random)
+        {
+            AbstractSprite powerUpSprite = null;
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
             {
                 ((AnarchyBlockSprite)block).BumpCycle.Fire();
@@ -220,7 +232,11 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">jumper sprite</param>
         /// <param name="block">block</param>
-        private void UpdateJumpOnBlockSide(AbstractSprite sprite, StaticSprite block)
+        /// <param name="level">level</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="visibleSpriteList">list of visible sprites</param>
+        /// <param name="random">random number generator</param>
+        private void ManageBlockSideCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, Random random)
         {
             //Side collision
             if (sprite.XPosition < block.XPosition)
@@ -229,6 +245,9 @@ namespace AbrahmanAdventure.physics
                 sprite.LeftBoundKeepPrevious = block.RightBound;// + 0.1;
             sprite.CurrentWalkingSpeed = 0;
             sprite.IGround = null;
+
+            if (sprite is HelmetSprite)
+                TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
         }
 
         /// <summary>
