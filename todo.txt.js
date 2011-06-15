@@ -8,8 +8,6 @@ Changer nom d'app
 
 create persistant config
 
-helmets must collide blocks
-
 Faire écran de menu
 {
 	Logo
@@ -19,6 +17,10 @@ Faire écran de menu
 	Menu
 	{
 		New game
+		{
+			Choix d'épisode avec nom random (très courte phrase)
+			32768 épisodes (chaque seed possible)
+		}
 		Load game (?password?) lol
 		Graphical options
 		{
