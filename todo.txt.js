@@ -197,6 +197,8 @@ Monstres
 		mettre genre de couche
 	}
 	
+	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
+	
 	millitaire de l'armé américaine
 	
 	truc chinois de censure
