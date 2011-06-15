@@ -11,10 +11,15 @@ create persistant config
 équivalent de yoshi: Sera un castor
 {
 	Pourra bouffer les enemis avec ses dents de castor
-	Pourra grinder les ground si le sol est à hauteur de dent
 	Le dessiner comme le castor dentaire dans ren and stimpy
 	lorsque passe dans portal, garde le castor
-	lorsque sort d'un bloc: fait un son de chain saw
+	lorsque sort d'un bloc: fait un son de chain saw (avant obtention du powerup)
+	
+	avant de faire ça refactor du levelViewerCache pour avoir une segmentation verticalle aussi
+	
+	Pourra grinder les ground si le sol est à hauteur de dent
+	
+	lorsque grind le sol, dirthen le cache de la zone affectée
 }
 
 Faire écran de menu
