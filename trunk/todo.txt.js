@@ -8,6 +8,8 @@ Changer nom d'app
 
 create persistant config
 
+équivalent de yoshi: Sera un castor
+
 Faire écran de menu
 {
 	Logo
