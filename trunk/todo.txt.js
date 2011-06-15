@@ -9,6 +9,11 @@ Changer nom d'app
 create persistant config
 
 équivalent de yoshi: Sera un castor
+{
+	Pourra bouffer les enemis avec ses dents de castor
+	Pourra grinder les ground si le sol est à hauteur de dent
+	Le dessiner comme le castor dentaire dans ren and stimpy
+}
 
 Faire écran de menu
 {
