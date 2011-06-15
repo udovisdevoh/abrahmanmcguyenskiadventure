@@ -14,6 +14,7 @@ create persistant config
 	Pourra grinder les ground si le sol est à hauteur de dent
 	Le dessiner comme le castor dentaire dans ren and stimpy
 	lorsque passe dans portal, garde le castor
+	lorsque sort d'un bloc: fait un son de chain saw
 }
 
 Faire écran de menu
