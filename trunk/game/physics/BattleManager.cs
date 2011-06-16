@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.physics
                                 if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
                                 {
                                     SoundManager.PlayPunchSound();
-                                    if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                                    if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                                     {
                                         monsterSprite.IsAlive = false;
                                         monsterSprite.JumpingCycle.Fire();

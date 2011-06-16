@@ -249,6 +249,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsVulnerableToInvincibility()
+        {
+            return true;
+        }
+
         protected override bool BuildIsAiEnabled()
         {
             return false;

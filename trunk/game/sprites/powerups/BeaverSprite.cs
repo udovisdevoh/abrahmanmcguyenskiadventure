@@ -180,6 +180,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsVulnerableToInvincibility()
+        {
+            return false;
+        }
+
         protected override bool BuildIsEnableJumpOnConversion()
         {
             return false;

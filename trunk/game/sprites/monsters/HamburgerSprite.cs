@@ -130,6 +130,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsVulnerableToInvincibility()
+        {
+            return true;
+        }
+
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;

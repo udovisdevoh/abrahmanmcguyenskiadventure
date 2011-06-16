@@ -206,7 +206,7 @@ namespace AbrahmanAdventure.physics
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired || sprite.FromVortexCycle.IsFired)
                 return;
 
-            if (sprite.InvincibilityCycle.IsFired)
+            if (sprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
             {
                 SoundManager.PlayHitSound();
                 monsterSprite.IsAlive = false;
@@ -286,7 +286,7 @@ namespace AbrahmanAdventure.physics
                             }
                             else 
                             {
-                                if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
+                                if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                                 {
                                     monsterSprite.IsAlive = false;
                                     monsterSprite.JumpingCycle.Fire();
