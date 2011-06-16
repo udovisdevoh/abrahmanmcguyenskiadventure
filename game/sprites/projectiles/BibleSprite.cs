@@ -129,6 +129,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsVulnerableToInvincibility()
+        {
+            return true;
+        }
+
         protected override bool BuildIsDieOnTouchGround()
         {
             return true;

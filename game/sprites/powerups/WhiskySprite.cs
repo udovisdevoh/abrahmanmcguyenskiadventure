@@ -145,6 +145,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsVulnerableToInvincibility()
+        {
+            return true;
+        }
+
         protected override double BuildJumpProbability()
         {
             return 0.0;
