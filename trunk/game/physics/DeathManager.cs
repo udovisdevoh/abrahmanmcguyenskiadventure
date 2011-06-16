@@ -51,16 +51,18 @@ namespace AbrahmanAdventure.physics
                     if (gameMetaState.PreviousSeed != -1)
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
 
+                    #region We remove powerups after player dies
                     foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
                     {
                         if (otherSprite is AnarchyBlockSprite)
                             ((AnarchyBlockSprite)otherSprite).IsFinalized = false;
-                        else if (otherSprite is PeyoteSprite || otherSprite is RastaHatSprite || otherSprite is WhiskySprite || otherSprite is MushroomSprite)
+                        else if (otherSprite is PeyoteSprite || otherSprite is RastaHatSprite || otherSprite is WhiskySprite || otherSprite is MushroomSprite || otherSprite is BeaverSprite)
                         {
                             otherSprite.IsAlive = false;
                             otherSprite.YPosition = Program.totalHeightTileCount + 1.0;
                         }
                     }
+                    #endregion
                 }
                 else
                 {

@@ -8,6 +8,8 @@ Changer nom d'app
 
 create persistant config
 
+monsters should respawn after player dies
+
 équivalent de yoshi: Sera un castor
 {
 	Pourra bouffer les enemis avec ses dents de castor
