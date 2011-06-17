@@ -281,6 +281,8 @@ namespace AbrahmanAdventure.hud
                 switch (currentMenuPositionY)
                 {
                     case 0: //new game
+                        if (program.GameState != null)
+                            program.GameState.PlayerSprite.ResetHealthAndPowerUps();
                         program.ChangeGameState(new Random().Next());
                         program.IsShowMenu = false;
                         //program.GameState = null;

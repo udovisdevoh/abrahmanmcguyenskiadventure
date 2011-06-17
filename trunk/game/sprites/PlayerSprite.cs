@@ -1834,6 +1834,183 @@ namespace AbrahmanAdventure.sprites
                 flyRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlydoped.png");
             return flyRightSurfaceDoped;
         }
+
+        private Surface GetCurrentSurfaceWithBeaver(out double xOffset, out double yOffset)
+        {
+            xOffset = 0;
+            yOffset = 0;
+
+            if (!IsAlive)
+                return GetDeadSurface();
+
+            Surface standSurfaceRight;
+            Surface standSurfaceLeft;
+            Surface walkSurfaceRight;
+            Surface walkSurfaceLeft;
+            Surface attackSurfaceRight;
+            Surface attackSurfaceLeft;
+            Surface crouchedSurfaceRight;
+            Surface crouchedSurfaceLeft;
+            Surface hitSurfaceRight;
+            Surface hitSurfaceLeft;
+
+            if (IsTiny)
+            {
+                if (isDoped)
+                {
+                    standSurfaceRight = beaverStandTinyDopedRight;
+                    standSurfaceLeft = beaverStandTinyDopedLeft;
+                    walkSurfaceRight = beaverWalkTinyDopedRight;
+                    walkSurfaceLeft = beaverWalkTinyDopedLeft;
+                    attackSurfaceRight = beaverAttackTinyDopedRight;
+                    attackSurfaceLeft = beaverAttackTinyDopedLeft;
+                    crouchedSurfaceRight = beaverCrouchedTinyDopedRight;
+                    crouchedSurfaceLeft = beaverCrouchedTinyDopedLeft;
+                    hitSurfaceRight = beaverHitTinyDopedRight;
+                    hitSurfaceLeft = beaverHitTinyDopedLeft;
+                }
+                else
+                {
+                    standSurfaceRight = beaverStandTinyRight;
+                    standSurfaceLeft = beaverStandTinyLeft;
+                    walkSurfaceRight = beaverWalkTinyRight;
+                    walkSurfaceLeft = beaverWalkTinyLeft;
+                    attackSurfaceRight = beaverAttackTinyRight;
+                    attackSurfaceLeft = beaverAttackTinyLeft;
+                    crouchedSurfaceRight = beaverCrouchedTinyRight;
+                    crouchedSurfaceLeft = beaverCrouchedTinyLeft;
+                    hitSurfaceRight = beaverHitTinyRight;
+                    hitSurfaceLeft = beaverHitTinyLeft;
+                }
+            }
+            else
+            {
+                if (isRasta)
+                {
+                    if (isDoped)
+                    {
+                        standSurfaceRight = beaverStandTallRastaDopedRight;
+                        standSurfaceLeft = beaverStandTallRastaDopedLeft;
+                        walkSurfaceRight = beaverWalkTallRastaDopedRight;
+                        walkSurfaceLeft = beaverWalkTallRastaDopedLeft;
+                        attackSurfaceRight = beaverAttackTallRastaDopedRight;
+                        attackSurfaceLeft = beaverAttackTallRastaDopedLeft;
+                        crouchedSurfaceRight = beaverCrouchedTallRastaDopedRight;
+                        crouchedSurfaceLeft = beaverCrouchedTallRastaDopedLeft;
+                        hitSurfaceRight = beaverHitTallRastaDopedRight;
+                        hitSurfaceLeft = beaverHitTallRastaDopedLeft;
+                    }
+                    else
+                    {
+                        standSurfaceRight = beaverStandTallRastaRight;
+                        standSurfaceLeft = beaverStandTallRastaLeft;
+                        walkSurfaceRight = beaverWalkTallRastaRight;
+                        walkSurfaceLeft = beaverWalkTallRastaLeft;
+                        attackSurfaceRight = beaverAttackTallRastaRight;
+                        attackSurfaceLeft = beaverAttackTallRastaLeft;
+                        crouchedSurfaceRight = beaverCrouchedTallRastaRight;
+                        crouchedSurfaceLeft = beaverCrouchedTallRastaLeft;
+                        hitSurfaceRight = beaverHitTallRastaRight;
+                        hitSurfaceLeft = beaverHitTallRastaLeft;
+                    }
+                }
+                else
+                {
+                    if (isDoped)
+                    {
+                        standSurfaceRight = beaverStandTallDopedRight;
+                        standSurfaceLeft = beaverStandTallDopedLeft;
+                        walkSurfaceRight = beaverWalkTallDopedRight;
+                        walkSurfaceLeft = beaverWalkTallDopedLeft;
+                        attackSurfaceRight = beaverAttackTallDopedRight;
+                        attackSurfaceLeft = beaverAttackTallDopedLeft;
+                        crouchedSurfaceRight = beaverCrouchedTallDopedRight;
+                        crouchedSurfaceLeft = beaverCrouchedTallDopedLeft;
+                        hitSurfaceRight = beaverHitTallDopedRight;
+                        hitSurfaceLeft = beaverHitTallDopedLeft;
+                    }
+                    else
+                    {
+                        standSurfaceRight = beaverStandTallRight;
+                        standSurfaceLeft = beaverStandTallLeft;
+                        walkSurfaceRight = beaverWalkTallRight;
+                        walkSurfaceLeft = beaverWalkTallLeft;
+                        attackSurfaceRight = beaverAttackTallRight;
+                        attackSurfaceLeft = beaverAttackTallLeft;
+                        crouchedSurfaceRight = beaverCrouchedTallRight;
+                        crouchedSurfaceLeft = beaverCrouchedTallLeft;
+                        hitSurfaceRight = beaverHitTallRight;
+                        hitSurfaceLeft = beaverHitTallLeft;
+                    }
+                }
+            }
+
+            Surface standSurface;
+            Surface walkSurface;
+            Surface attackSurface;
+            Surface crouchedSurface;
+            Surface hitSurface;
+
+            if (IsTryingToWalkRight)
+            {
+                standSurface = standSurfaceRight;
+                walkSurface = walkSurfaceRight;
+                attackSurface = attackSurfaceRight;
+                crouchedSurface = crouchedSurfaceRight;
+                hitSurface = hitSurfaceRight;
+            }
+            else
+            {
+                standSurface = standSurfaceLeft;
+                walkSurface = walkSurfaceLeft;
+                attackSurface = attackSurfaceLeft;
+                crouchedSurface = crouchedSurfaceLeft;
+                hitSurface = hitSurfaceLeft;
+            }
+
+            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+
+            if (IsCrouch)
+            {
+                return crouchedSurface;
+            }
+
+            if (AttackingCycle.IsFired)
+            {
+                if (IsTryingToWalkRight)
+                    xOffset = 0.5;
+                else
+                    xOffset = -0.5;
+
+                return attackSurface;
+            }
+
+            if (cycleDivision == 1 || cycleDivision == 3 || IGround == null || CurrentJumpAcceleration != 0)
+            {
+                return walkSurface;
+            }
+
+            if (HitCycle.IsFired)
+            {
+                return hitSurface;
+            }
+            
+            return standSurface;
+        }
+        #endregion
+
+        #region Internal Methods
+        /// <summary>
+        /// Reset health and powerups
+        /// </summary>
+        internal void ResetHealthAndPowerUps()
+        {
+            IsTiny = true;
+            isRasta = false;
+            isDoped = false;
+            isBeaver = false;
+            Health = 0.5;
+        }
         #endregion
 
         #region Overrides
@@ -1941,6 +2118,9 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
+            if (isBeaver)
+                return GetCurrentSurfaceWithBeaver(out xOffset, out yOffset);
+
             xOffset = 0;
             yOffset = 0;
             //If currently attacking
