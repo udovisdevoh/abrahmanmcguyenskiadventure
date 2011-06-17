@@ -1,11 +1,8 @@
 équivalent de yoshi: Sera un castor
 {
-	button to leave beaver
-	{
-		(joystick must be tested, must set default)
-	}
-	
-	feature freeze: clean the code
+	button to leave beaver: (joystick must be tested, must set default)
+
+	feature freeze: clean the code, fix bugs
 	
 	avant de faire les choses suivantes de cette section, refactor du levelViewerCache pour avoir une segmentation verticalle aussi
 	
