@@ -1858,9 +1858,9 @@ namespace AbrahmanAdventure.sprites
             if (IsTiny)
             {
                 if (IsTryingToWalkRight)
-                    xOffset -= 0.1;
+                    xOffset -= 0.15;
                 else
-                    xOffset += 0.1;
+                    xOffset += 0.15;
             }
 
             bool isShowDopedColor;

@@ -115,11 +115,6 @@ namespace AbrahmanAdventure.sprites
         private bool isTryingToJump = false;
 
         /// <summary>
-        /// Whether sprite is currently trying to spin
-        /// </summary>
-        private bool isTryingToSpin = false;
-
-        /// <summary>
         /// Whether sprite is currently crouching
         /// </summary>
         private bool isCrouch = false;
@@ -258,7 +253,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Distance to reference sprite
         /// </summary>
-        private double distanceToReferenceSprite;
+        private int distanceToReferenceSprite;
         #endregion
 
         #region Constructor
@@ -727,15 +722,6 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// Whether sprite is currently trying to spin
-        /// </summary>
-        public bool IsTryingToSpin
-        {
-            get { return isTryingToSpin; }
-            set { isTryingToSpin = value; }
-        }
-
-        /// <summary>
         /// Whether sprite is currently trying to move up (to enter a door or a pipe going up)
         /// </summary>
         public bool IsTryToWalkUp
@@ -1084,7 +1070,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Distance to reference sprite
         /// </summary>
-        public double DistanceToReferenceSprite
+        public int DistanceToReferenceSprite
         {
             get { return distanceToReferenceSprite; }
             set { distanceToReferenceSprite = value; }

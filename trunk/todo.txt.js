@@ -3,8 +3,9 @@
 	button to leave beaver
 	{
 		(joystick must be tested, must set default)
-		spin like in mario world: use playerSprite.IsTryingToSpin, throw fire balls if doped
 	}
+	
+	feature freeze: clean the code
 	
 	avant de faire les choses suivantes de cette section, refactor du levelViewerCache pour avoir une segmentation verticalle aussi
 	

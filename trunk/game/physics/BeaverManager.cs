@@ -54,9 +54,8 @@ namespace AbrahmanAdventure.physics
             beaverSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed;
 
             playerSprite.JumpingCycle.Fire();
-            playerSprite.IsTryingToSpin = true;
 
-            playerSprite.YPosition -= playerSprite.Height / 4.0;
+            playerSprite.YPosition -= 0.5;
 
             playerSprite.IsTryingToJump = true;
         }
