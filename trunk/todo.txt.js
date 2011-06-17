@@ -1,10 +1,14 @@
-attack surface when beaver: change range
-flying frame when rasta
-button to leave beaver
-on beaver, show growth animation and invincibility animation
-on beaver: change width? ?left bound, right bound?
-must be able to grind ground
-
+équivalent de yoshi: Sera un castor
+{
+	flying frame when rasta
+	button to leave beaver	
+	
+	avant de faire les choses suivantes de cette section, refactor du levelViewerCache pour avoir une segmentation verticalle aussi
+	
+	Pourra grinder les ground si le sol est à hauteur de dent
+	
+	lorsque grind le sol, dirthen le cache de la zone affectée
+}
 
 ?remove pink bias?
 
@@ -17,20 +21,6 @@ Changer nom d'app
 create persistant config
 
 monsters should respawn after player dies
-
-équivalent de yoshi: Sera un castor
-{
-	Pourra bouffer les enemis avec ses dents de castor
-	Le dessiner comme le castor dentaire dans ren and stimpy
-	lorsque passe dans portal, garde le castor
-	lorsque sort d'un bloc: fait un son de chain saw (avant obtention du powerup)
-	
-	avant de faire ça refactor du levelViewerCache pour avoir une segmentation verticalle aussi
-	
-	Pourra grinder les ground si le sol est à hauteur de dent
-	
-	lorsque grind le sol, dirthen le cache de la zone affectée
-}
 
 Faire écran de menu
 {

@@ -536,7 +536,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double Width
         {
-            get { return width; }
+            get
+            {
+                if (this is PlayerSprite && ((PlayerSprite)this).IsBeaver)
+                    return width * 2.0;
+                else
+                    return width;
+            }
         }
 
         /// <summary>
@@ -546,7 +552,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (isTiny)
+                if (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver))
                     return height / 2.0;
                 else
                     return height;
@@ -856,7 +862,7 @@ namespace AbrahmanAdventure.sprites
         {
         	get
         	{
-        		if (isCrouch || isTiny)
+                if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
         			return yPosition - height / 2.0;
         		else
         			return yPosition - height;
@@ -864,7 +870,7 @@ namespace AbrahmanAdventure.sprites
             set
             {
                 yPositionPrevious = yPosition;
-                if (isCrouch || isTiny)
+                if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
                     yPosition = value + height / 2.0;
                 else
                     yPosition = value + height;
@@ -878,7 +884,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (isCrouch || isTiny)
+                if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
                     return yPositionPrevious - height / 2.0;
                 else
                     return yPositionPrevious - height;
@@ -892,14 +898,14 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (isCrouch || isTiny)
+                if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
                     return yPosition - height / 2.0;
                 else
                     return yPosition - height;
             }
             set
             {
-                if (isCrouch || isTiny)
+                if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
                     yPosition = value + height / 2.0;
                 else
                     yPosition = value + height;
@@ -911,7 +917,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double RightBound
         {
-            get { return xPosition + width / 2.0; }
+            get { return xPosition + Width / 2.0; }
         }
 
         /// <summary>
@@ -919,7 +925,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double RightBoundPrevious
         {
-            get { return xPositionPrevious + width / 2.0; }
+            get { return xPositionPrevious + Width / 2.0; }
         }
 
         /// <summary>
@@ -927,8 +933,8 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double RightBoundKeepPrevious
         {
-            get { return xPosition + width / 2.0; }
-            set { xPosition = value - width / 2.0; }
+            get { return xPosition + Width / 2.0; }
+            set { xPosition = value - Width / 2.0; }
         }
 
         /// <summary>
@@ -936,7 +942,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double LeftBound
         {
-            get { return xPosition - width / 2.0; }
+            get { return xPosition - Width / 2.0; }
         }
 
         /// <summary>
@@ -944,7 +950,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double LeftBoundPrevious
         {
-            get { return xPositionPrevious - width / 2.0; }
+            get { return xPositionPrevious - Width / 2.0; }
         }
 
         /// <summary>
@@ -952,8 +958,8 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double LeftBoundKeepPrevious
         {
-            get { return xPosition - width / 2.0; }
-            set { xPosition = value + width / 2.0; }
+            get { return xPosition - Width / 2.0; }
+            set { xPosition = value + Width / 2.0; }
         }
 
         /// <summary>
