@@ -69,8 +69,12 @@ namespace AbrahmanAdventure.physics
                 {
                     if (Physics.IsDetectCollision(explosionSprite, otherMonster))
                     {
-                        otherMonster.HitCycle.Fire();
-                        otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision;
+                        if (!otherMonster.HitCycle.IsFired)
+                        {
+                            otherMonster.HitCycle.Fire();
+                            //3 x the strength for damage on monsters
+                            otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision * 3.0;
+                        }
                     }
                 }
             }

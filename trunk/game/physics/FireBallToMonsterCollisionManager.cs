@@ -32,6 +32,7 @@ namespace AbrahmanAdventure.physics
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
+                        fireBallSprite.IsAlive = false;
                         otherSprite.CurrentDamageReceiving = fireBallSprite.AttackStrengthCollision;
                     }
                 }
