@@ -430,7 +430,7 @@ namespace AbrahmanAdventure
                 {
                     if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
                     {
-                        if (playerSprite.IsDoped)
+                        if (playerSprite.IsDoped && !playerSprite.IsBeaver)
                         {
                             playerSprite.IsTryThrowingBall = true;
                         }
