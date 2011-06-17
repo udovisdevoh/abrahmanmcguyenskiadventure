@@ -102,6 +102,8 @@ namespace AbrahmanAdventure
 
         private JoystickManager joystickManager;
 
+        private BeaverManager beaverManager;
+
         private MonsterAi monsterAi;
 
         private DateTime previousDateTime = DateTime.Now;
@@ -131,6 +133,7 @@ namespace AbrahmanAdventure
             physics = new Physics();
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
+            beaverManager = new BeaverManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
 
@@ -405,6 +408,7 @@ namespace AbrahmanAdventure
 
                 #region We manage jumping input logic
                 playerSprite.IsTryingToJump = false;
+                playerSprite.IsTryingToSpin = false;
                 if (userInput.isPressJump || userInput.isPressLeaveBeaver)
                 {
                     //We manage jumping from one ground to a lower ground
@@ -424,6 +428,9 @@ namespace AbrahmanAdventure
                     else
                     {
                         playerSprite.IsTryingToJump = true;
+
+                        if (userInput.isPressLeaveBeaver)
+                            playerSprite.IsTryingToSpin = true;
                     }
                 }
                 else
@@ -527,25 +534,7 @@ namespace AbrahmanAdventure
 
                 #region We manage the "leave beaver" input logic
                 if (userInput.isPressLeaveBeaver && playerSprite.IsBeaver)
-                {
-                    playerSprite.IsBeaver = false;
-                    BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, new Random());
-                    spritePopulation.Add(beaverSprite);
-                    if (beaverSprite.IGround == null)
-                        beaverSprite.IsCurrentlyInFreeFallX = true;
-
-                    beaverSprite.IsWalkEnabled = false;
-                    playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;
-
-                    beaverSprite.IsTryingToWalkRight = playerSprite.IsTryingToWalkRight;
-                    beaverSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-                    beaverSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed;
-                    playerSprite.JumpingCycle.Fire();
-
-                    playerSprite.YPosition -= playerSprite.Height;
-
-                    playerSprite.IsTryingToJump = true;
-                }
+                    beaverManager.LeaveBeaver(playerSprite, spritePopulation);
                 #endregion
 
                 physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, spriteBehaviorRandom);

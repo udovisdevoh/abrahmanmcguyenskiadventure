@@ -115,6 +115,11 @@ namespace AbrahmanAdventure.sprites
         private bool isTryingToJump = false;
 
         /// <summary>
+        /// Whether sprite is currently trying to spin
+        /// </summary>
+        private bool isTryingToSpin = false;
+
+        /// <summary>
         /// Whether sprite is currently crouching
         /// </summary>
         private bool isCrouch = false;
@@ -719,6 +724,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryingToJump; }
             set { isTryingToJump = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently trying to spin
+        /// </summary>
+        public bool IsTryingToSpin
+        {
+            get { return isTryingToSpin; }
+            set { isTryingToSpin = value; }
         }
 
         /// <summary>
