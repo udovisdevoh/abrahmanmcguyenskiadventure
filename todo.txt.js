@@ -1,3 +1,11 @@
+attack surface when beaver: change range
+flying frame when rasta
+button to leave beaver
+on beaver, show growth animation and invincibility animation
+on beaver: change width? ?left bound, right bound?
+must be able to grind ground
+
+
 ?remove pink bias?
 
 fix add texture cache transparency bug

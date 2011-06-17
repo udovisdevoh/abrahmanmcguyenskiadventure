@@ -1843,6 +1843,20 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return GetDeadSurface();
 
+            bool isShowDopedColor;
+            if (powerUpAnimationCycle.IsFired)
+            {
+                isShowDopedColor = ((int)(powerUpAnimationCycle.CurrentValue) % 4 >= 2);
+            }
+            else if (invincibilityCycle.IsFired)
+            {
+                isShowDopedColor = ((int)(invincibilityCycle.CurrentValue) % 4 >= 2);
+            }
+            else
+            {
+                isShowDopedColor = isDoped;
+            }
+
             Surface standSurfaceRight;
             Surface standSurfaceLeft;
             Surface walkSurfaceRight;
@@ -1856,7 +1870,7 @@ namespace AbrahmanAdventure.sprites
 
             if (IsTiny)
             {
-                if (isDoped)
+                if (isShowDopedColor)
                 {
                     standSurfaceRight = beaverStandTinyDopedRight;
                     standSurfaceLeft = beaverStandTinyDopedLeft;
@@ -1887,7 +1901,7 @@ namespace AbrahmanAdventure.sprites
             {
                 if (isRasta)
                 {
-                    if (isDoped)
+                    if (isShowDopedColor)
                     {
                         standSurfaceRight = beaverStandTallRastaDopedRight;
                         standSurfaceLeft = beaverStandTallRastaDopedLeft;
@@ -1916,7 +1930,7 @@ namespace AbrahmanAdventure.sprites
                 }
                 else
                 {
-                    if (isDoped)
+                    if (isShowDopedColor)
                     {
                         standSurfaceRight = beaverStandTallDopedRight;
                         standSurfaceLeft = beaverStandTallDopedLeft;
