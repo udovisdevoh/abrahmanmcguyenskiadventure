@@ -263,6 +263,126 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface flyLeftSurfaceDoped;
 
+        private static Surface beaverStandTallRight;
+
+        private static Surface beaverWalkTallRight;
+
+        private static Surface beaverAttackTallRight;
+
+        private static Surface beaverHitTallRight;
+
+        private static Surface beaverCrouchedTallRight;
+
+        private static Surface beaverStandTallDopedRight;
+
+        private static Surface beaverWalkTallDopedRight;
+
+        private static Surface beaverAttackTallDopedRight;
+
+        private static Surface beaverHitTallDopedRight;
+
+        private static Surface beaverCrouchedTallDopedRight;
+
+        private static Surface beaverStandTallRastaRight;
+
+        private static Surface beaverWalkTallRastaRight;
+
+        private static Surface beaverAttackTallRastaRight;
+
+        private static Surface beaverHitTallRastaRight;
+
+        private static Surface beaverCrouchedTallRastaRight;
+
+        private static Surface beaverStandTallRastaDopedRight;
+
+        private static Surface beaverWalkTallRastaDopedRight;
+
+        private static Surface beaverAttackTallRastaDopedRight;
+
+        private static Surface beaverHitTallRastaDopedRight;
+
+        private static Surface beaverCrouchedTallRastaDopedRight;
+
+        private static Surface beaverStandTinyRight;
+
+        private static Surface beaverWalkTinyRight;
+
+        private static Surface beaverAttackTinyRight;
+
+        private static Surface beaverHitTinyRight;
+
+        private static Surface beaverCrouchedTinyRight;
+
+        private static Surface beaverStandTinyDopedRight;
+
+        private static Surface beaverWalkTinyDopedRight;
+
+        private static Surface beaverAttackTinyDopedRight;
+
+        private static Surface beaverHitTinyDopedRight;
+
+        private static Surface beaverCrouchedTinyDopedRight;
+
+        private static Surface beaverStandTallLeft;
+
+        private static Surface beaverWalkTallLeft;
+
+        private static Surface beaverAttackTallLeft;
+
+        private static Surface beaverHitTallLeft;
+
+        private static Surface beaverCrouchedTallLeft;
+
+        private static Surface beaverStandTallDopedLeft;
+
+        private static Surface beaverWalkTallDopedLeft;
+
+        private static Surface beaverAttackTallDopedLeft;
+
+        private static Surface beaverHitTallDopedLeft;
+
+        private static Surface beaverCrouchedTallDopedLeft;
+
+        private static Surface beaverStandTallRastaLeft;
+
+        private static Surface beaverWalkTallRastaLeft;
+
+        private static Surface beaverAttackTallRastaLeft;
+
+        private static Surface beaverHitTallRastaLeft;
+
+        private static Surface beaverCrouchedTallRastaLeft;
+
+        private static Surface beaverStandTallRastaDopedLeft;
+
+        private static Surface beaverWalkTallRastaDopedLeft;
+
+        private static Surface beaverAttackTallRastaDopedLeft;
+
+        private static Surface beaverHitTallRastaDopedLeft;
+
+        private static Surface beaverCrouchedTallRastaDopedLeft;
+
+        private static Surface beaverStandTinyLeft;
+
+        private static Surface beaverWalkTinyLeft;
+
+        private static Surface beaverAttackTinyLeft;
+
+        private static Surface beaverHitTinyLeft;
+
+        private static Surface beaverCrouchedTinyLeft;
+
+        private static Surface beaverStandTinyDopedLeft;
+
+        private static Surface beaverWalkTinyDopedLeft;
+
+        private static Surface beaverAttackTinyDopedLeft;
+
+        private static Surface beaverHitTinyDopedLeft;
+
+        private static Surface beaverCrouchedTinyDopedLeft;
+
         private Cycle powerUpAnimationCycle;
 
         private Cycle changingSizeAnimationCycle;
@@ -316,7 +436,69 @@ namespace AbrahmanAdventure.sprites
             invincibilityCycle = new Cycle(400, false);
             fromVortexCycle = new Cycle(50, false);
 
-            #region We preload the textures
+            if (beaverStandTallRight == null)
+            {
+                beaverStandTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTall.png");
+                beaverWalkTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTall.png");
+                beaverAttackTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTall.png");
+                beaverHitTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTall.png");
+                beaverCrouchedTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTall.png");
+                beaverStandTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallDoped.png");
+                beaverWalkTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallDoped.png");
+                beaverAttackTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallDoped.png");
+                beaverHitTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallDoped.png");
+                beaverCrouchedTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallDoped.png");
+                beaverStandTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallRasta.png");
+                beaverWalkTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRasta.png");
+                beaverAttackTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallRasta.png");
+                beaverHitTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallRasta.png");
+                beaverCrouchedTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallRasta.png");
+                beaverStandTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallRastaDoped.png");
+                beaverWalkTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaDoped.png");
+                beaverAttackTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallRastaDoped.png");
+                beaverHitTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallRastaDoped.png");
+                beaverCrouchedTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallRastaDoped.png");
+                beaverStandTinyRight;
+                beaverWalkTinyRight;
+                beaverAttackTinyRight;
+                beaverHitTinyRight;
+                beaverCrouchedTinyRight;
+                beaverStandTinyDopedRight;
+                beaverWalkTinyDopedRight;
+                beaverAttackTinyDopedRight;
+                beaverHitTinyDopedRight;
+                beaverCrouchedTinyDopedRight;
+                beaverStandTallLeft = beaverStandTallRight.CreateFlippedHorizontalSurface();
+                beaverWalkTallLeft = beaverWalkTallRight.CreateFlippedHorizontalSurface();
+                beaverAttackTallLeft = beaverAttackTallRight.CreateFlippedHorizontalSurface();
+                beaverHitTallLeft = beaverHitTallRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTallLeft = beaverCrouchedTallRight.CreateFlippedHorizontalSurface();
+                beaverStandTallDopedLeft = beaverStandTallDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkTallDopedLeft = beaverWalkTallDopedRight.CreateFlippedHorizontalSurface();
+                beaverAttackTallDopedLeft = beaverAttackTallDopedRight.CreateFlippedHorizontalSurface();
+                beaverHitTallDopedLeft = beaverHitTallDopedRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTallDopedLeft = beaverCrouchedTallDopedRight.CreateFlippedHorizontalSurface();
+                beaverStandTallRastaLeft = beaverStandTallRastaRight.CreateFlippedHorizontalSurface();
+                beaverWalkTallRastaLeft = beaverWalkTallRastaRight.CreateFlippedHorizontalSurface();
+                beaverAttackTallRastaLeft = beaverAttackTallRastaRight.CreateFlippedHorizontalSurface();
+                beaverHitTallRastaLeft = beaverHitTallRastaRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTallRastaLeft = beaverCrouchedTallRastaRight.CreateFlippedHorizontalSurface();
+                beaverStandTallRastaDopedLeft = beaverStandTallRastaDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkTallRastaDopedLeft = beaverWalkTallRastaDopedRight.CreateFlippedHorizontalSurface();
+                beaverAttackTallRastaDopedLeft = beaverAttackTallRastaDopedRight.CreateFlippedHorizontalSurface();
+                beaverHitTallRastaDopedLeft = beaverHitTallRastaDopedRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTallRastaDopedLeft = beaverCrouchedTallRastaDopedRight.CreateFlippedHorizontalSurface();
+                beaverStandTinyLeft;
+                beaverWalkTinyLeft;
+                beaverAttackTinyLeft;
+                beaverHitTinyLeft;
+                beaverCrouchedTinyLeft;
+                beaverStandTinyDopedLeft;
+                beaverWalkTinyDopedLeft;
+                beaverAttackTinyDopedLeft;
+            }
+
+            #region We preload the textures that use lazy initialization
             GetDeadSurface();
 
             GetWalking1RightSurface(false, false);
