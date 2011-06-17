@@ -458,16 +458,16 @@ namespace AbrahmanAdventure.sprites
                 beaverAttackTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallRastaDoped.png");
                 beaverHitTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallRastaDoped.png");
                 beaverCrouchedTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallRastaDoped.png");
-                beaverStandTinyRight;
-                beaverWalkTinyRight;
-                beaverAttackTinyRight;
-                beaverHitTinyRight;
-                beaverCrouchedTinyRight;
-                beaverStandTinyDopedRight;
-                beaverWalkTinyDopedRight;
-                beaverAttackTinyDopedRight;
-                beaverHitTinyDopedRight;
-                beaverCrouchedTinyDopedRight;
+                beaverStandTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTiny.png");
+                beaverWalkTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTiny.png");
+                beaverAttackTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTiny.png");
+                beaverHitTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTiny.png");
+                beaverCrouchedTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTiny.png");
+                beaverStandTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTinyDoped.png");
+                beaverWalkTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTinyDoped.png");
+                beaverAttackTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTinyDoped.png");
+                beaverHitTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTinyDoped.png");
+                beaverCrouchedTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTinyDoped.png");
                 beaverStandTallLeft = beaverStandTallRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallLeft = beaverWalkTallRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallLeft = beaverAttackTallRight.CreateFlippedHorizontalSurface();
@@ -488,14 +488,16 @@ namespace AbrahmanAdventure.sprites
                 beaverAttackTallRastaDopedLeft = beaverAttackTallRastaDopedRight.CreateFlippedHorizontalSurface();
                 beaverHitTallRastaDopedLeft = beaverHitTallRastaDopedRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallRastaDopedLeft = beaverCrouchedTallRastaDopedRight.CreateFlippedHorizontalSurface();
-                beaverStandTinyLeft;
-                beaverWalkTinyLeft;
-                beaverAttackTinyLeft;
-                beaverHitTinyLeft;
-                beaverCrouchedTinyLeft;
-                beaverStandTinyDopedLeft;
-                beaverWalkTinyDopedLeft;
-                beaverAttackTinyDopedLeft;
+                beaverStandTinyLeft = beaverStandTinyRight.CreateFlippedHorizontalSurface();
+                beaverWalkTinyLeft = beaverWalkTinyRight.CreateFlippedHorizontalSurface();
+                beaverAttackTinyLeft = beaverAttackTinyRight.CreateFlippedHorizontalSurface();
+                beaverHitTinyLeft = beaverHitTinyRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTinyLeft = beaverCrouchedTinyRight.CreateFlippedHorizontalSurface();
+                beaverStandTinyDopedLeft = beaverStandTinyDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkTinyDopedLeft = beaverWalkTinyDopedRight.CreateFlippedHorizontalSurface();
+                beaverAttackTinyDopedLeft = beaverAttackTinyDopedRight.CreateFlippedHorizontalSurface();
+                beaverHitTinyDopedLeft = beaverHitTinyDopedRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTinyDopedLeft = beaverCrouchedTinyDopedRight.CreateFlippedHorizontalSurface();
             }
 
             #region We preload the textures that use lazy initialization
