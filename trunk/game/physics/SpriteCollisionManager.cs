@@ -227,8 +227,6 @@ namespace AbrahmanAdventure.physics
             else if (monsterSprite.IsCanDoDamageToPlayerWhenTouched)
             {
                 sprite.HitCycle.Fire();
-                if (sprite is PlayerSprite && !sprite.IsTiny)
-                    ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
 
                 if (sprite.IsBeaver)
                 {
@@ -240,6 +238,9 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
+                    if (sprite is PlayerSprite && !sprite.IsTiny)
+                        ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
+
                     SoundManager.PlayHit2Sound();
                     if (sprite.IsDoped)
                         sprite.IsDoped = false;
