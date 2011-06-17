@@ -355,6 +355,14 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverStandTallRastaDopedLeft;
 
+        private static Surface beaverStandTallRastaDopedFlyLeft;
+
+        private static Surface beaverStandTallRastaDopedFlyRight;
+
+        private static Surface beaverStandTallRastaFlyLeft;
+
+        private static Surface beaverStandTallRastaFlyRight;
+
         private static Surface beaverWalkTallRastaDopedLeft;
 
         private static Surface beaverAttackTallRastaDopedLeft;
@@ -498,6 +506,10 @@ namespace AbrahmanAdventure.sprites
                 beaverAttackTinyDopedLeft = beaverAttackTinyDopedRight.CreateFlippedHorizontalSurface();
                 beaverHitTinyDopedLeft = beaverHitTinyDopedRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTinyDopedLeft = beaverCrouchedTinyDopedRight.CreateFlippedHorizontalSurface();
+                beaverStandTallRastaFlyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaFly.png");
+                beaverStandTallRastaFlyLeft = beaverStandTallRastaFlyRight.CreateFlippedHorizontalSurface();
+                beaverStandTallRastaDopedFlyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaDopedFly.png");
+                beaverStandTallRastaDopedFlyLeft = beaverStandTallRastaDopedFlyRight.CreateFlippedHorizontalSurface();
             }
 
             #region We preload the textures that use lazy initialization
@@ -1998,6 +2010,33 @@ namespace AbrahmanAdventure.sprites
 
                 return attackSurface;
             }
+
+            if (isRasta && CurrentJumpAcceleration < 0 && IsTryingToJump)
+            {
+                if (IsTryingToWalkRight)
+                {
+                    if (isShowDopedColor)
+                    {
+                        return beaverStandTallRastaDopedFlyRight;
+                    }
+                    else
+                    {
+                        return beaverStandTallRastaFlyRight;
+                    }
+                }
+                else
+                {
+                    if (isShowDopedColor)
+                    {
+                        return beaverStandTallRastaDopedFlyLeft;
+                    }
+                    else
+                    {
+                        return beaverStandTallRastaFlyLeft;
+                    }
+                }
+            }
+
 
             if (cycleDivision == 1 || cycleDivision == 3 || IGround == null || CurrentJumpAcceleration != 0)
             {
