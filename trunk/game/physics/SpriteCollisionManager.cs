@@ -105,7 +105,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
-                    UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                    UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta, spritePopulation, random);
                 }
             }
         }
@@ -213,7 +213,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">monster</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta, SpritePopulation spritePopulation, Random random)
         {
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired || sprite.FromVortexCycle.IsFired)
                 return;
@@ -226,18 +226,28 @@ namespace AbrahmanAdventure.physics
             }
             else if (monsterSprite.IsCanDoDamageToPlayerWhenTouched)
             {
-                SoundManager.PlayHit2Sound();
                 sprite.HitCycle.Fire();
                 if (sprite is PlayerSprite && !sprite.IsTiny)
                     ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
 
-                if (sprite.IsDoped)
-                    sprite.IsDoped = false;
-                if (sprite.IsRasta)
-                    sprite.IsRasta = false;
-                sprite.IsTiny = true;
-
-                sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                if (sprite.IsBeaver)
+                {
+                    SoundManager.PlayBeaverHitSound();
+                    sprite.IsBeaver = false;
+                    BeaverSprite beaverSprite = new BeaverSprite(sprite.XPosition, sprite.YPosition, random);
+                    spritePopulation.Add(beaverSprite);
+                    beaverSprite.IsWalkEnabled = true;
+                }
+                else
+                {
+                    SoundManager.PlayHit2Sound();
+                    if (sprite.IsDoped)
+                        sprite.IsDoped = false;
+                    if (sprite.IsRasta)
+                        sprite.IsRasta = false;
+                    sprite.IsTiny = true;
+                    sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                }
             }
         }
 
