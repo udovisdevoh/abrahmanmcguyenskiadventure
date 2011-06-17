@@ -408,7 +408,6 @@ namespace AbrahmanAdventure
 
                 #region We manage jumping input logic
                 playerSprite.IsTryingToJump = false;
-                playerSprite.IsTryingToSpin = false;
                 if (userInput.isPressJump || userInput.isPressLeaveBeaver)
                 {
                     //We manage jumping from one ground to a lower ground
@@ -428,9 +427,6 @@ namespace AbrahmanAdventure
                     else
                     {
                         playerSprite.IsTryingToJump = true;
-
-                        if (userInput.isPressLeaveBeaver)
-                            playerSprite.IsTryingToSpin = true;
                     }
                 }
                 else

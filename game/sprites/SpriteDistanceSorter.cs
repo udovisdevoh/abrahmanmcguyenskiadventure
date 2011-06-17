@@ -31,7 +31,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in unsortedSpriteList)
             {
-                otherSprite.DistanceToReferenceSprite = GetApproximateDistance(sprite, otherSprite);
+                otherSprite.DistanceToReferenceSprite = GetExactDistance(sprite, otherSprite);
                 __sortedListSprite.Add(otherSprite);
             }
             __sortedListSprite.Sort();
@@ -41,9 +41,14 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Private Methods
-        private static double GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
+        private static int GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
-            return Math.Max(Math.Abs(sprite.XPosition - otherSprite.XPosition), Math.Abs(sprite.YPosition - otherSprite.YPosition));
+            return (int)(Math.Max(Math.Abs(sprite.XPosition - otherSprite.XPosition), Math.Abs(sprite.YPosition - otherSprite.YPosition)) * 32.0);
+        }
+
+        private static int GetExactDistance(AbstractSprite sprite, AbstractSprite otherSprite)
+        {
+            return (int)(Math.Sqrt(Math.Pow(sprite.XPosition - otherSprite.XPosition, 2.0) + Math.Pow(sprite.YPosition - otherSprite.YPosition, 2.0)) * 32.0);
         }
         #endregion
     }
