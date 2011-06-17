@@ -1855,6 +1855,14 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return GetDeadSurface();
 
+            if (IsTiny)
+            {
+                if (IsTryingToWalkRight)
+                    xOffset -= 0.1;
+                else
+                    xOffset += 0.1;
+            }
+
             bool isShowDopedColor;
             if (powerUpAnimationCycle.IsFired)
             {
@@ -1996,19 +2004,19 @@ namespace AbrahmanAdventure.sprites
 
             int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
-            if (IsCrouch)
-            {
-                return crouchedSurface;
-            }
-
             if (AttackingCycle.IsFired)
             {
                 if (IsTryingToWalkRight)
-                    xOffset = 0.5;
+                    xOffset += 0.5;
                 else
-                    xOffset = -0.5;
+                    xOffset -= 0.5;
 
                 return attackSurface;
+            }
+
+            if (IsCrouch)
+            {
+                return crouchedSurface;
             }
 
             if (isRasta && CurrentJumpAcceleration < 0 && IsTryingToJump)
