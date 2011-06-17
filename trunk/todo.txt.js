@@ -1,7 +1,5 @@
 équivalent de yoshi: Sera un castor
 {
-	flying frame when rasta
-
 	button to leave beaver
 	{
 		(joystick must be tested, must set default)
