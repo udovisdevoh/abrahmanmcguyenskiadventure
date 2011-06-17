@@ -1,7 +1,7 @@
 équivalent de yoshi: Sera un castor
 {
 	flying frame when rasta
-	button to leave beaver	
+	button to leave beaver	(must be tested, must set default)
 	
 	avant de faire les choses suivantes de cette section, refactor du levelViewerCache pour avoir une segmentation verticalle aussi
 	

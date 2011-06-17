@@ -22,8 +22,12 @@ namespace AbrahmanAdventure
 
         public bool isPressAttack = false;
 
+        public bool isPressLeaveBeaver = false;
+
         public int jumpButton = 2;
 
         public int attackButton = 3;
+
+        public int leaveBeaverButton = 4;
     }
 }
