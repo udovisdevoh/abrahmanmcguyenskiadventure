@@ -64,9 +64,14 @@ namespace AbrahmanAdventure.hud
         private static bool isWaitingForAttackButtonRemap = false;
 
         /// <summary>
+        /// Whether we are expecting to press a new joystick button to remap leave beaver button
+        /// </summary>
+        private static bool isWaitingForLeaveBeaverButtonRemap = false;
+
+        /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {7,0,1,0,0};
+        private static int[] listMaxMenuItemCount = {7,0,2,0,0};
         #endregion
 
         #region Internal methods
@@ -109,6 +114,11 @@ namespace AbrahmanAdventure.hud
                     mainSurface.Blit(GetFontText("Attack button: press attack"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
                 else
                     mainSurface.Blit(GetFontText("Attack button: button " + userInput.attackButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+
+                if (isWaitingForLeaveBeaverButtonRemap)
+                    mainSurface.Blit(GetFontText("Leave beaver button: press leave beaver"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                else
+                    mainSurface.Blit(GetFontText("Leave beaver button: button " + userInput.leaveBeaverButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
             }
 
             mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
@@ -373,6 +383,15 @@ namespace AbrahmanAdventure.hud
         {
             get { return isWaitingForAttackButtonRemap; }
             set { isWaitingForAttackButtonRemap = value; }
+        }
+
+        /// <summary>
+        /// Whether we are expecting to press new joystick button to remap leave beaver button
+        /// </summary>
+        public static bool IsWaitingForLeaveBeaverButtonRemap
+        {
+            get { return isWaitingForLeaveBeaverButtonRemap; }
+            set { isWaitingForLeaveBeaverButtonRemap = value; }
         }
         #endregion
     }

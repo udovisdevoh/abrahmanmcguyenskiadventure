@@ -197,6 +197,8 @@ namespace AbrahmanAdventure
                 userInput.isPressJump = true;
             else if (args.Key == Key.LeftControl)
                 userInput.isPressAttack = true;
+            else if (args.Key == Key.LeftAlt)
+                userInput.isPressLeaveBeaver = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
@@ -213,6 +215,8 @@ namespace AbrahmanAdventure
                 userInput.isPressJump = false;
             else if (args.Key == Key.LeftControl)
                 userInput.isPressAttack = false;
+            else if (args.Key == Key.LeftAlt)
+                userInput.isPressLeaveBeaver = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
@@ -229,6 +233,13 @@ namespace AbrahmanAdventure
                 else if (GameMenu.IsWaitingForAttackButtonRemap)
                 {
                     userInput.attackButton = args.Button;
+                    GameMenu.IsWaitingForAttackButtonRemap = false;
+                    GameMenu.Dirthen();
+                    return;
+                }
+                else if (GameMenu.IsWaitingForLeaveBeaverButtonRemap)
+                {
+                    userInput.leaveBeaverButton = args.Button;
                     GameMenu.IsWaitingForAttackButtonRemap = false;
                     GameMenu.Dirthen();
                     return;
@@ -394,7 +405,7 @@ namespace AbrahmanAdventure
 
                 #region We manage jumping input logic
                 playerSprite.IsTryingToJump = false;
-                if (userInput.isPressJump)
+                if (userInput.isPressJump || userInput.isPressLeaveBeaver)
                 {
                     //We manage jumping from one ground to a lower ground
                     if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
@@ -511,6 +522,29 @@ namespace AbrahmanAdventure
                         playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                         playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
                     }
+                }
+                #endregion
+
+                #region We manage the "leave beaver" input logic
+                if (userInput.isPressLeaveBeaver && playerSprite.IsBeaver)
+                {
+                    playerSprite.IsBeaver = false;
+                    BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, new Random());
+                    spritePopulation.Add(beaverSprite);
+                    if (beaverSprite.IGround == null)
+                        beaverSprite.IsCurrentlyInFreeFallX = true;
+
+                    beaverSprite.IsWalkEnabled = false;
+                    playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;
+
+                    beaverSprite.IsTryingToWalkRight = playerSprite.IsTryingToWalkRight;
+                    beaverSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                    beaverSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed;
+                    playerSprite.JumpingCycle.Fire();
+
+                    playerSprite.YPosition -= playerSprite.Height;
+
+                    playerSprite.IsTryingToJump = true;
                 }
                 #endregion
 
