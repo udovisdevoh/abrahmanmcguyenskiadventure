@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.sprites
             }
             else
             {
-                int blockContentId = random.Next(0, 7);
+                int blockContentId = random.Next(0, 8);
                 if (blockContentId == 1)
                     this.blockContent = BlockContent.Whisky;
                 else if (blockContentId == 2)

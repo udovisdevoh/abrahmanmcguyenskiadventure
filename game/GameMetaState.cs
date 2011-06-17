@@ -24,6 +24,11 @@ namespace AbrahmanAdventure
         private bool isRasta = false;
 
         /// <summary>
+        /// Whether player is on beaver
+        /// </summary>
+        private bool isBeaver = false;
+
+        /// <summary>
         /// Whether player is doped
         /// </summary>
         private bool isDoped = false;
@@ -62,6 +67,7 @@ namespace AbrahmanAdventure
             isDoped = playerSprite.IsDoped;
             isRasta = playerSprite.IsRasta;
             isTiny = playerSprite.IsTiny;
+            isBeaver = playerSprite.IsBeaver;
             health = playerSprite.Health;
         }
 
@@ -74,6 +80,7 @@ namespace AbrahmanAdventure
             playerSprite.IsDoped = isDoped;
             playerSprite.IsRasta = isRasta;
             playerSprite.IsTiny = isTiny;
+            playerSprite.IsBeaver = isBeaver;
             playerSprite.Health = health;
         }
         

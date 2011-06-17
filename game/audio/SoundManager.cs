@@ -63,6 +63,10 @@ namespace AbrahmanAdventure.audio
         private static Sound throwSound;
 
         private static Sound glassBreakSound;
+
+        private static Sound beaverAttackSound;
+
+        private static Sound beaverUpSound;
         #endregion
 
         #region Constructors
@@ -94,6 +98,8 @@ namespace AbrahmanAdventure.audio
             vortexOutSound = LoadSound("./assets/sounds/VortexOut.ogg");
             throwSound = LoadSound("./assets/sounds/Throw.ogg");
             glassBreakSound = LoadSound("./assets/sounds/GlassBreak.ogg");
+            beaverAttackSound = LoadSound("./assets/sounds/BeaverAttack.ogg");
+            beaverUpSound = LoadSound("./assets/sounds/BeaverUp.ogg");
         }
 
         /// <summary>
@@ -240,6 +246,16 @@ namespace AbrahmanAdventure.audio
         internal static void PlayGlassBreakSound()
         {
             glassBreakSound.Play();
+        }
+
+        internal static void PlayBeaverAttackSound()
+        {
+            beaverAttackSound.Play();
+        }
+
+        internal static void PlayBeaverUpSound()
+        {
+            beaverUpSound.Play();
         }
         #endregion
     }

@@ -284,6 +284,11 @@ namespace AbrahmanAdventure.sprites
         private bool isRasta = false;
 
         /// <summary>
+        /// Whether sprite is on beaver
+        /// </summary>
+        private bool isBeaver = false;
+
+        /// <summary>
         /// Whether sprite is currently trying to throw a fire ball
         /// </summary>
         private bool isTryThrowingBall = false;
@@ -2184,6 +2189,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isRasta; }
             set { isRasta = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is on beaver
+        /// </summary>
+        public bool IsBeaver
+        {
+            get { return isBeaver; }
+            set { isBeaver = value; }
         }
 
         /// <summary>
