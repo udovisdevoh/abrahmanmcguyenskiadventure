@@ -70,6 +70,7 @@
     <Compile Include="game\hud\GameMenu.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
+    <Compile Include="game\physics\BeaverManager.cs" />
     <Compile Include="game\physics\BlockManager.cs" />
     <Compile Include="game\physics\CarriableSpriteManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
@@ -758,6 +759,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\Attempt.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\BeaverAttack.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sounds\BeaverUp.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\BombTimer.ogg">
