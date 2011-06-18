@@ -1855,7 +1855,12 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return GetDeadSurface();
 
-            if (IsTiny)
+            bool isShowTiny = IsTiny;
+
+            if (changingSizeAnimationCycle.IsFired)
+                isShowTiny = changingSizeAnimationCycle.CurrentValue % 4 <= 2;
+
+            if (isShowTiny)
             {
                 if (IsTryingToWalkRight)
                     xOffset -= 0.15;
@@ -1888,7 +1893,7 @@ namespace AbrahmanAdventure.sprites
             Surface hitSurfaceRight;
             Surface hitSurfaceLeft;
 
-            if (IsTiny)
+            if (isShowTiny)
             {
                 if (isShowDopedColor)
                 {
