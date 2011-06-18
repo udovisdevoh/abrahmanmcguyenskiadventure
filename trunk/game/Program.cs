@@ -243,7 +243,7 @@ namespace AbrahmanAdventure
                 else if (GameMenu.IsWaitingForLeaveBeaverButtonRemap)
                 {
                     userInput.leaveBeaverButton = args.Button;
-                    GameMenu.IsWaitingForAttackButtonRemap = false;
+                    GameMenu.IsWaitingForLeaveBeaverButtonRemap = false;
                     GameMenu.Dirthen();
                     return;
                 }
@@ -253,6 +253,8 @@ namespace AbrahmanAdventure
                 userInput.isPressAttack = true;
             else if (args.Button == userInput.jumpButton)
                 userInput.isPressJump = true;
+            else if (args.Button == userInput.leaveBeaverButton)
+                userInput.isPressLeaveBeaver = true;
         }
 
         public void OnJoystickButtonUp(object sender, JoystickButtonEventArgs args)
@@ -261,6 +263,8 @@ namespace AbrahmanAdventure
                 userInput.isPressAttack = false;
             else if (args.Button == userInput.jumpButton)
                 userInput.isPressJump = false;
+            else if (args.Button == userInput.leaveBeaverButton)
+                userInput.isPressLeaveBeaver = false;
         }
 
         public void OnJoystickHatMotion(object sender, JoystickHatEventArgs args)

@@ -197,6 +197,7 @@ namespace AbrahmanAdventure.hud
         {
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
+            isWaitingForLeaveBeaverButtonRemap = false;
             currentSubMenu = SubMenu.Main;
             currentMenuPositionY = 0;
             keyCycle.StopAndReset();
@@ -312,10 +313,13 @@ namespace AbrahmanAdventure.hud
             {
                 isWaitingForJumpButtonRemap = false;
                 isWaitingForAttackButtonRemap = false;
+                isWaitingForLeaveBeaverButtonRemap = false;
                 if (currentMenuPositionY == 0)
                     isWaitingForJumpButtonRemap = true;
                 else if (currentMenuPositionY == 1)
                     isWaitingForAttackButtonRemap = true;
+                else if (currentMenuPositionY == 2)
+                    isWaitingForLeaveBeaverButtonRemap = true;
             }
         }
         #endregion

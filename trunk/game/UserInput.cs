@@ -28,6 +28,6 @@ namespace AbrahmanAdventure
 
         public int attackButton = 3;
 
-        public int leaveBeaverButton = 4;
+        public int leaveBeaverButton = 1;
     }
 }
