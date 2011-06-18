@@ -2409,7 +2409,7 @@ namespace AbrahmanAdventure.sprites
             #region Crouched and not attacking
             if (IsCrouch)
             {
-                if (HitCycle.IsFired)
+                if (HitCycle.IsFired && !isRasta)
                 {
                     if (IsTryingToWalkRight)
                         return GetCrouchedHitRightSurface(isShowDopedColor);
@@ -2429,7 +2429,7 @@ namespace AbrahmanAdventure.sprites
             if (CurrentJumpAcceleration != 0)
             {
                 #region Jumping or falling while being hit
-                if (HitCycle.IsFired)
+                if (HitCycle.IsFired && !isRasta)
                 {
                     if (isShowTiny)
                     {
@@ -2499,7 +2499,7 @@ namespace AbrahmanAdventure.sprites
                     #region Tiny
                     if (cycleDivision == 1)
                     {
-                        if (HitCycle.IsFired)
+                        if (HitCycle.IsFired && !isRasta)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurfaceTiny(isShowDopedColor);
@@ -2514,7 +2514,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     else if (cycleDivision == 3)
                     {
-                        if (HitCycle.IsFired)
+                        if (HitCycle.IsFired && !isRasta)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurfaceTiny(isShowDopedColor);
@@ -2541,7 +2541,7 @@ namespace AbrahmanAdventure.sprites
                     #region Not tiny
                     if (cycleDivision == 1)
                     {
-                        if (HitCycle.IsFired)
+                        if (HitCycle.IsFired && !isRasta)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurface(isShowDopedColor);
@@ -2556,7 +2556,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     else if (cycleDivision == 3)
                     {
-                        if (HitCycle.IsFired)
+                        if (HitCycle.IsFired && !isRasta)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurface(isShowDopedColor);
