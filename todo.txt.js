@@ -1,7 +1,7 @@
+rasta flying hair (also when crouched, doped or not)
+
 équivalent de yoshi: Sera un castor
 {
-	make longer the time for which we can't jump on beaver because the player was hit
-
 	feature freeze: clean the code, fix bugs
 	
 	avant de faire les choses suivantes de cette section, refactor du levelViewerCache pour avoir une segmentation verticalle aussi
