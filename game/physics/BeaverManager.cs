@@ -55,6 +55,7 @@ namespace AbrahmanAdventure.physics
 
             playerSprite.JumpingCycle.Fire();
 
+            playerSprite.IGround = null;
             playerSprite.YPosition -= 0.5;
 
             playerSprite.IsTryingToJump = true;
