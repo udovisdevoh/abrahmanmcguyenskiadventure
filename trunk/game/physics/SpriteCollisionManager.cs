@@ -83,7 +83,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition && (!(otherSprite is MonsterSprite) || ((MonsterSprite)otherSprite).IsJumpableOn)) //Player IS jumping on the monster
                 {
-                    if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver)
+                    if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0)
                     {
                         beaverManager.UpdateJumpOnBeaver((PlayerSprite)sprite, (BeaverSprite)otherSprite);
                     }
@@ -231,6 +231,9 @@ namespace AbrahmanAdventure.physics
                 if (sprite.IsBeaver)
                 {
                     SoundManager.PlayBeaverHitSound();
+                    sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                    sprite.IGround = null;
+                    sprite.JumpingCycle.Fire();
                     sprite.IsBeaver = false;
                     BeaverSprite beaverSprite = new BeaverSprite(sprite.XPosition, sprite.YPosition, random);
                     spritePopulation.Add(beaverSprite);
