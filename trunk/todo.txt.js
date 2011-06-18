@@ -1,6 +1,6 @@
 équivalent de yoshi: Sera un castor
 {
-	button to leave beaver: (joystick must be tested, must set default)
+	make longer the time for which we can't jump on beaver because the player was hit
 
 	feature freeze: clean the code, fix bugs
 	
