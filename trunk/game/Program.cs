@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
 
         public const bool isFullScreen = false;
 
-        public const bool isShowMenuOnStart = true;
+        public const bool isShowMenuOnStart = false;
 
         public const bool isHardwareSurface = true;
 
@@ -44,9 +44,9 @@ namespace AbrahmanAdventure
 
         public const bool isUseTextureCache = false;
 
-        public const int screenWidth = 640;
+        public const int screenWidth = 320;
 
-        public const int screenHeight = 480;
+        public const int screenHeight = 240;
 
         public const int waveResolution = 1;
 
@@ -94,7 +94,7 @@ namespace AbrahmanAdventure
 
         private UserInput userInput;
 
-        private LevelViewer levelViewer;
+        private ILevelViewer levelViewer;
 
         private SpriteViewer spriteViewer;
 
@@ -138,14 +138,15 @@ namespace AbrahmanAdventure
             gameMetaState = new GameMetaState();
 
             spriteBehaviorRandom = new Random();
-            seedNextGameState = new Random().Next();
+            #warning Put back random seed
+            seedNextGameState = 0;//new Random().Next();
             
             if (isFullScreen)
                 Cursor.Hide();
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
-            levelViewer = new LevelViewer(mainSurface);
+            levelViewer = new LevelViewerSquareBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
             hudViewer = new HudViewer(mainSurface);
 
@@ -582,7 +583,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Level viewer
         /// </summary>
-        public LevelViewer LevelViewer
+        public ILevelViewer LevelViewer
         {
             get { return levelViewer; }
         }
