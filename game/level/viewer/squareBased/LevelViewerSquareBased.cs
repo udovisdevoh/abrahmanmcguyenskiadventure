@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.level
                 }
             }
 
-            levelViewerCache.Trim(Program.maxCachedColumnCount);
+            levelViewerCache.Trim(Program.maxCachedSquareCount);
         }
         #endregion
 
