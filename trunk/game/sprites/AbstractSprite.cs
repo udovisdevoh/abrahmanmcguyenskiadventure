@@ -253,7 +253,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Distance to reference sprite
         /// </summary>
-        private int distanceToReferenceSprite;
+        private double distanceToReferenceSprite;
         #endregion
 
         #region Constructor
@@ -1070,7 +1070,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Distance to reference sprite
         /// </summary>
-        public int DistanceToReferenceSprite
+        public double DistanceToReferenceSprite
         {
             get { return distanceToReferenceSprite; }
             set { distanceToReferenceSprite = value; }

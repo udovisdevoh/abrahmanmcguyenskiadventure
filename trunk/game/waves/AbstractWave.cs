@@ -55,6 +55,13 @@ namespace AbrahmanAdventure.level
         {
             get;
         }
+
+        /// <summary>
+        /// Mostly for wave packs
+        /// </summary>
+        /// <param name="x">x</param>
+        /// <returns>Cached value</returns>
+        public abstract double GetCachedValue(double x);
         #endregion
 
         #region Implementation

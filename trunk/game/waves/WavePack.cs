@@ -28,6 +28,8 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private List<AbstractWave> waveList = new List<AbstractWave>();
 
+        private Dictionary<int, double> waveValueCache = new Dictionary<int, double>();
+
         /// <summary>
         /// Current junction type (to add or multiply waves)
         /// </summary>
@@ -273,6 +275,18 @@ namespace AbrahmanAdventure.level
 
                 return value + offsetForAverage;
             }
+        }
+
+        public override double GetCachedValue(double x)
+        {
+            double value;
+            int key = (int)(x * 32);
+            if (!waveValueCache.TryGetValue(key, out value))
+            {
+                value = this[x];
+                waveValueCache.Add(key, value);
+            }
+            return value;
         }
 
         /// <summary>

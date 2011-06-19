@@ -108,7 +108,8 @@ namespace AbrahmanAdventure.sprites
                 Bucket bucket = this[bucketId];
                 foreach (AbstractSprite sprite in bucket)
                 {
-                    visibleSpriteList.Add(sprite);
+                    if (sprite.YPosition >= viewOffsetY && sprite.YPosition <= viewOffsetY + (double)Program.tileRowCount)
+                        visibleSpriteList.Add(sprite);
                     if (Program.isBroadRangeUpdateSprite)
                         __toUpdateSpriteList.Add(sprite);
                 }
