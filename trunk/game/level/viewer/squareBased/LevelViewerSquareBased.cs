@@ -144,13 +144,17 @@ namespace AbrahmanAdventure.level
                     }
                     else
                     {
-                        /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                        if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                         {
+                            int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
+                            int bottomSurfacePositionY = (groundYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
+
+                            zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.GetHeight()));
                         }
                         else
-                        {*/
-                        zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), waveColor);
-                        //}
+                        {
+                            zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), waveColor);
+                        }
                     }
 
                     if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
