@@ -59,14 +59,14 @@ namespace AbrahmanAdventure.level
         {
             mainSurface.Blit(sky.Surface, new Point(0, Sky.skyHeight / -4), sky.Surface.GetRectangle());
 
-            int minZoneX = GetMinZoneX(viewOffsetX);
-            int maxZoneX = GetMaxZoneX(viewOffsetX);
-            int minZoneY = GetMinZoneY(viewOffsetY);
-            int maxZoneY = GetMaxZoneY(viewOffsetY);
+            int minTileX = GetMinZoneX(viewOffsetX);
+            int maxTileX = GetMaxZoneX(viewOffsetX);
+            int minTileY = GetMinZoneY(viewOffsetY);
+            int maxTileY = GetMaxZoneY(viewOffsetY);
 
-            for (int zoneX = minZoneX; zoneX <= maxZoneX; zoneX++)
+            for (int zoneX = minTileX; zoneX <= maxTileX; zoneX += Program.squareZoneTileSize)
             {
-                for (int zoneY = minZoneY; zoneY <= maxZoneY; zoneY++)
+                for (int zoneY = minTileY; zoneY <= maxTileY; zoneY += Program.squareZoneTileSize)
                 {
                     Surface currentZone;
                     if (!levelViewerCache.TryGetValue(zoneX, zoneY, out currentZone))
@@ -98,7 +98,9 @@ namespace AbrahmanAdventure.level
 
         private Surface BuildZoneSurface(Level level, ColorTheme colorTheme, int zoneX, int zoneY)
         {
-            Surface zoneSurface = new Surface(Program.tileSize, Program.tileSize, Program.bitDepth);
+            int zoneSize = Program.tileSize * Program.squareZoneTileSize;
+
+            Surface zoneSurface = new Surface(zoneSize, zoneSize, Program.bitDepth);
             zoneSurface.Transparent = true;
 
             int themeColorId = level.Count - 1;
@@ -107,12 +109,12 @@ namespace AbrahmanAdventure.level
                 Color waveColor = colorTheme.GetColor(themeColorId);
                 themeColorId--;
 
-                for (int x = 0; x < Program.tileSize; x++)
+                for (int x = 0; x < zoneSize; x++)
                 {
                     double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
                     double waveOutputY = ground[waveInputX];
 
-                    if (waveOutputY > (double)zoneY + 1.0)
+                    if (waveOutputY > (double)zoneY + Program.squareZoneTileSize)
                         continue;
 
                     int groundYOnTile;
@@ -126,7 +128,7 @@ namespace AbrahmanAdventure.level
                         groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
                     }
 
-                    zoneSurface.Fill(new Rectangle(x, groundYOnTile, 1, Program.tileSize), waveColor);
+                    zoneSurface.Fill(new Rectangle(x, groundYOnTile, 1, zoneSize), waveColor);
                 }
             }
 
@@ -144,7 +146,7 @@ namespace AbrahmanAdventure.level
         /// <returns>Left-most visible zone index</returns>
         private int GetMinZoneX(double viewOffsetX)
         {
-            return (int)viewOffsetX - 1;
+            return (int)(viewOffsetX / (double)Program.squareZoneTileSize) * Program.squareZoneTileSize - Program.squareZoneTileSize;
         }
 
         /// <summary>
@@ -164,7 +166,7 @@ namespace AbrahmanAdventure.level
         /// <returns>First zone Y index</returns>
         private int GetMinZoneY(double viewOffsetY)
         {
-            return (int)viewOffsetY - 1;
+            return (int)(viewOffsetY / (double)Program.squareZoneTileSize) * Program.squareZoneTileSize - Program.squareZoneTileSize;
         }
 
         /// <summary>
@@ -183,7 +185,7 @@ namespace AbrahmanAdventure.level
         /// <returns>Rectangle for a zone (all zones)</returns>
         private Rectangle GetZoneRectangle()
         {
-            return new Rectangle(0, 0, Program.tileSize, Program.tileSize);
+            return new Rectangle(0, 0, Program.tileSize * Program.squareZoneTileSize, Program.tileSize * Program.squareZoneTileSize);
         }
         #endregion
     }
