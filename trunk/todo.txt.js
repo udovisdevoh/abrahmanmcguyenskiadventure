@@ -1,15 +1,13 @@
-rasta flying hair (also when crouched, doped or not)
-
 équivalent de yoshi: Sera un castor
 {
 	feature freeze: clean the code, fix bugs
-	
-	avant de faire les choses suivantes de cette section, refactor du levelViewerCache pour avoir une segmentation verticalle aussi
 	
 	Pourra grinder les ground si le sol est à hauteur de dent
 	
 	lorsque grind le sol, dirthen le cache de la zone affectée
 }
+
+
 
 ?remove pink bias?
 
