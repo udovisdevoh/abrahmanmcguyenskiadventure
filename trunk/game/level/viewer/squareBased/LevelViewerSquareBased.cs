@@ -101,25 +101,38 @@ namespace AbrahmanAdventure.level
             Surface zoneSurface = new Surface(Program.tileSize, Program.tileSize, Program.bitDepth);
             zoneSurface.Transparent = true;
 
-            /*int themeColorId = level.Count - 1;
+            int themeColorId = level.Count - 1;
             foreach (Ground ground in level)
             {
                 Color waveColor = colorTheme.GetColor(themeColorId);
                 themeColorId--;
 
-                for (int x = 0; x < Program.tileSize; x ++)
+                for (int x = 0; x < Program.tileSize; x++)
                 {
-                    double waveInputX = (double)(x + zoneX) / Program.tileSize;
+                    double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
                     double waveOutputY = ground[waveInputX];
 
-                    if (waveOutputY < (double)zoneY || waveOutputY > (double)zoneY + 1.0)
+                    if (waveOutputY > (double)zoneY + 1.0)
                         continue;
+
+                    int groundYOnTile;
+
+                    if (waveOutputY <= (double)zoneY)
+                        groundYOnTile = 0;
+                    else
+                    {
+                        //groundYOnTile = (int)(waveOutputY * Program.tileSize) % Program.tileSize;
+
+                        groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
+                    }
+
+                    zoneSurface.Fill(new Rectangle(x, groundYOnTile, 1, Program.tileSize), waveColor);
                 }
             }
 
-            return null;*/
+            
 
-            zoneSurface.Fill(Color.FromArgb(255, random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
+            //zoneSurface.Fill(Color.FromArgb(255, random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
 
             return zoneSurface;
         }
