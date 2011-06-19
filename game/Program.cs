@@ -44,6 +44,8 @@ namespace AbrahmanAdventure
 
         public const bool isUseTextureCache = false;
 
+        public const bool isUseWaveValueCache = false;
+
         public const int screenWidth = 640;
 
         public const int screenHeight = 480;
@@ -150,7 +152,7 @@ namespace AbrahmanAdventure
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
-            levelViewer = new LevelViewerSquareBased(mainSurface);
+            levelViewer = new LevelViewerColumnBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
             hudViewer = new HudViewer(mainSurface);
 
