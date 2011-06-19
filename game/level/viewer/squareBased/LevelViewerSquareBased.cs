@@ -121,12 +121,17 @@ namespace AbrahmanAdventure.level
                     double waveOutputY = ground[waveInputX];
 
                     int textureInputX = zoneX + x;
-                    while (textureInputX > ground.TopTexture.Surface.GetWidth())
+
+                    textureInputX = Math.Abs(textureInputX) % ground.TopTexture.Surface.GetWidth();
+
+                    /*while (textureInputX > ground.TopTexture.Surface.GetWidth())
                         textureInputX -= ground.TopTexture.Surface.GetWidth();
                     while (textureInputX < 0)
-                        textureInputX += ground.TopTexture.Surface.GetWidth();
+                        textureInputX += ground.TopTexture.Surface.GetWidth();*/
 
                     if (waveOutputY > (double)zoneY + Program.squareZoneTileHeight)
+                        continue;
+                    else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX))
                         continue;
 
                     int groundYOnTile;
@@ -134,15 +139,19 @@ namespace AbrahmanAdventure.level
                     groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
                     if (IGroundHelper.IsTransparentAt(ground, level, waveInputX))
-                        waveColor = transparentColor;
-
-                    /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                     {
+                        zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), transparentColor);
                     }
                     else
-                    {*/
-                    zoneSurface.Fill(new Rectangle(x, Math.Max(0,groundYOnTile), 1, zoneHeight), waveColor);
-                    //}
+                    {
+                        /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                        {
+                        }
+                        else
+                        {*/
+                        zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), waveColor);
+                        //}
+                    }
 
                     if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
                         zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
