@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-                double yValue = terrainWave[xPosition];
+                double yValue = terrainWave.GetCachedValue(xPosition);
                 if (holeSet[xPosition, yValue])
                     yValue = Program.holeHeight - yValue;
 

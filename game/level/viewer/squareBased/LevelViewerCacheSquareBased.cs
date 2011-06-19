@@ -54,8 +54,7 @@ namespace AbrahmanAdventure.level
         public void Add(int indexX, int indexY, Surface surface)
         {
             long index = indexX * 10000 + indexY;
-            if (!internalDictionary.ContainsKey(index))
-                internalDictionary.Add(index, surface);
+            internalDictionary.Add(index, surface);
         }
         #endregion
     }

@@ -26,6 +26,8 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private Wave atomicWave;
 
+        private Dictionary<int, double> waveValueCache = new Dictionary<int, double>();
+
         /// <summary>
         /// Whether the operator is a * instead of + (to join left and right child)
         /// </summary>
@@ -134,6 +136,18 @@ namespace AbrahmanAdventure.level
                     }
                 }
             }
+        }
+
+        public override double GetCachedValue(double x)
+        {
+            double value;
+            int key = (int)(x * 32);
+            if (!waveValueCache.TryGetValue(key, out value))
+            {
+                value = this[x];
+                waveValueCache.Add(key, value);
+            }
+            return value;
         }
 
         public override bool Equals(AbstractWave other)

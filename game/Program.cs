@@ -60,7 +60,9 @@ namespace AbrahmanAdventure
 
         public const int maxPlayerFireBallPerScreen = 2;
 
-        public const int squareZoneTileSize = 2;
+        public const int squareZoneTileWidth = 1;
+
+        public const int squareZoneTileHeight = 10;
 
         public const double zoneWidthScreenCount = 0.025;
         
