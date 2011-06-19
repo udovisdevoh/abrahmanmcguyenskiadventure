@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Queue of cached zone indexes
         /// </summary>
-        private Queue<int> internalQueue = new Queue<int>();
+        private Queue<long> internalQueue = new Queue<long>();
         #endregion
 
         #region Public Methods
@@ -55,6 +55,20 @@ namespace AbrahmanAdventure.level
         {
             long index = indexX * 10000 + indexY;
             internalDictionary.Add(index, surface);
+            internalQueue.Enqueue(index);
+        }
+
+        /// <summary>
+        /// Only keep maximum surface count, remove other cached surfaces
+        /// </summary>
+        /// <param name="maxCachedColumnCount">maximum surface count</param>
+        internal void Trim(int maxCachedColumnCount)
+        {
+            while (internalDictionary.Count > maxCachedColumnCount)
+            {
+                long index = internalQueue.Dequeue();
+                internalDictionary.Remove(index);
+            }
         }
         #endregion
     }

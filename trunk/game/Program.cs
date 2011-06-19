@@ -152,7 +152,7 @@ namespace AbrahmanAdventure
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
-            levelViewer = new LevelViewerColumnBased(mainSurface);
+            levelViewer = new LevelViewerSquareBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
             hudViewer = new HudViewer(mainSurface);
 

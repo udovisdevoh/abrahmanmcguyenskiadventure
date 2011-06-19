@@ -37,6 +37,7 @@ namespace AbrahmanAdventure.physics
                 {
                     SoundManager.PlayExplosionSound();
                     ExplosionSprite explosionSprite = new ExplosionSprite(((AbstractSprite)spriteToUpdate).XPosition, ((AbstractSprite)spriteToUpdate).YPosition + 1.0, random);
+                    explosionSprite.IsWalkEnabled = false;
                     ((AbstractSprite)spriteToUpdate).IsAlive = false;
                     ((AbstractSprite)spriteToUpdate).YPosition = Program.totalHeightTileCount + 1.0;
                     spritePopulation.Add(explosionSprite);
