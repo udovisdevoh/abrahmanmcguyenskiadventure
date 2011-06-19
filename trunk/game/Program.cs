@@ -44,7 +44,7 @@ namespace AbrahmanAdventure
 
         public const bool isUseTextureCache = false;
 
-        public const bool isUseWaveValueCache = false;
+        public const bool isUseWaveValueCache = true;
 
         public const int screenWidth = 640;
 
