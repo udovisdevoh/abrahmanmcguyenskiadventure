@@ -79,6 +79,8 @@ namespace AbrahmanAdventure.level
                     mainSurface.Blit(currentZone, zonePosition, GetZoneRectangle());
                 }
             }
+
+            levelViewerCache.Trim(Program.maxCachedColumnCount);
         }
         #endregion
 
