@@ -1,3 +1,9 @@
+restore
+{
+	random seed
+	show menu on start
+}
+
 équivalent de yoshi: Sera un castor
 {
 	feature freeze: clean the code, fix bugs
