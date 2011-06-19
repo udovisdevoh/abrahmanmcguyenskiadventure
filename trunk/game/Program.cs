@@ -58,6 +58,8 @@ namespace AbrahmanAdventure
 
         public const int maxCachedColumnCount = 100;
 
+        public const int maxCachedSquareCount = 1000;
+
         public const int spatialHashingBucketWidth = 2;
 
         public const int maxPlayerFireBallPerScreen = 2;
