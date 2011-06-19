@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Internal cached zone surface list
         /// </summary>
-        private Dictionary<int, Surface> internalDictionary = new Dictionary<int, Surface>();
+        private Dictionary<long, Surface> internalDictionary = new Dictionary<long, Surface>();
 
         /// <summary>
         /// Queue of cached zone indexes
@@ -41,7 +41,8 @@ namespace AbrahmanAdventure.level
         /// <returns>Whether could get surface from cache</returns>
         public bool TryGetValue(int indexX, int indexY, out Surface surface)
         {
-            return internalDictionary.TryGetValue((indexX * Program.totalHeightTileCount) + indexY, out surface);
+            long index = indexX * 10000 + indexY;
+            return internalDictionary.TryGetValue(index, out surface);
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace AbrahmanAdventure.level
         /// <param name="surface">surface</param>
         public void Add(int indexX, int indexY, Surface surface)
         {
-            int index = (indexX * Program.totalHeightTileCount) + indexY;
+            long index = indexX * 10000 + indexY;
             if (!internalDictionary.ContainsKey(index))
                 internalDictionary.Add(index, surface);
         }
