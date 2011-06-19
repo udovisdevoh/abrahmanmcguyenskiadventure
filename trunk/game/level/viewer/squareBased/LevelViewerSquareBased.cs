@@ -22,6 +22,8 @@ namespace AbrahmanAdventure.level
         /// Level viewer cache (segments are square shaped)
         /// </summary>
         private LevelViewerCacheSquareBased levelViewerCache;
+
+        private Random random = new Random();
         #endregion
 
         #region Constructors
@@ -116,8 +118,6 @@ namespace AbrahmanAdventure.level
             }
 
             return null;*/
-
-            Random random = new Random();
 
             zoneSurface.Fill(Color.FromArgb(255, random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
 
