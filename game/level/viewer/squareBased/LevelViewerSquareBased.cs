@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.level
 {
@@ -24,6 +25,8 @@ namespace AbrahmanAdventure.level
         private LevelViewerCacheSquareBased levelViewerCache;
 
         private Random random = new Random();
+
+        private Color transparentColor = ColorTheme.ColorFromHSV(0, 0, 0);
         #endregion
 
         #region Constructors
@@ -125,13 +128,18 @@ namespace AbrahmanAdventure.level
                     if (waveOutputY <= (double)zoneY)
                         groundYOnTile = 0;
                     else
-                    {
-                        //groundYOnTile = (int)(waveOutputY * Program.tileSize) % Program.tileSize;
-
                         groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
-                    }
 
-                    zoneSurface.Fill(new Rectangle(x, groundYOnTile, 1, zoneHeight), waveColor);
+                    if (IGroundHelper.IsTransparentAt(ground, level, waveInputX))
+                        waveColor = transparentColor;
+
+                    /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                    {
+                    }
+                    else
+                    {*/
+                        zoneSurface.Fill(new Rectangle(x, groundYOnTile, 1, zoneHeight), waveColor);
+                    //}
                 }
             }
 

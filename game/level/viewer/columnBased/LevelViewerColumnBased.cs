@@ -202,7 +202,7 @@ namespace AbrahmanAdventure.level
 
                     if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
                     {
-                        double scaling = ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
+                        double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0: ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
                         Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
                         if (scaledSurface == null)
                         {
