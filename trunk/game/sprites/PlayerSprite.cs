@@ -391,6 +391,14 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverCrouchedTinyDopedLeft;
 
+        private static Surface rastaFlyCrouchedRight;
+
+        private static Surface rastaFlyCrouchedLeft;
+
+        private static Surface rastaFlyCrouchedDopedRight;
+
+        private static Surface rastaFlyCrouchedDopedLeft;
+
         private Cycle powerUpAnimationCycle;
 
         private Cycle changingSizeAnimationCycle;
@@ -510,6 +518,10 @@ namespace AbrahmanAdventure.sprites
                 beaverStandTallRastaFlyLeft = beaverStandTallRastaFlyRight.CreateFlippedHorizontalSurface();
                 beaverStandTallRastaDopedFlyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaDopedFly.png");
                 beaverStandTallRastaDopedFlyLeft = beaverStandTallRastaDopedFlyRight.CreateFlippedHorizontalSurface();
+                rastaFlyCrouchedDopedRight = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlyCrouchedDoped.png");
+                rastaFlyCrouchedDopedLeft = rastaFlyCrouchedDopedRight.CreateFlippedHorizontalSurface();
+                rastaFlyCrouchedRight = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlyCrouched.png");
+                rastaFlyCrouchedLeft = rastaFlyCrouchedRight.CreateFlippedHorizontalSurface();
             }
 
             #region We preload the textures that use lazy initialization
@@ -2419,9 +2431,29 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     if (IsTryingToWalkRight)
+                    {
+                        if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0)
+                        {
+                            xOffset = -0.1;
+                            if (isShowDopedColor)
+                                return rastaFlyCrouchedDopedRight;
+                            else
+                                return rastaFlyCrouchedRight;
+                        }
                         return GetCrouchedRightSurface(isShowDopedColor, isRasta);
+                    }
                     else
+                    {
+                        if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0)
+                        {
+                            xOffset = 0.1;
+                            if (isShowDopedColor)
+                                return rastaFlyCrouchedDopedLeft;
+                            else
+                                return rastaFlyCrouchedLeft;
+                        }
                         return GetCrouchedLeftSurface(isShowDopedColor, isRasta);
+                    }
                 }
             }
             #endregion
