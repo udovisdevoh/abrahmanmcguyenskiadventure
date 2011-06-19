@@ -152,6 +152,31 @@ namespace AbrahmanAdventure.physics
         }
 
         /// <summary>
+        /// Whether ground is higher than other grounds that are in front of it
+        /// </summary>
+        /// <param name="ground">ground</param>
+        /// <param name="level">level</param>
+        /// <param name="waveInputX">wave input x</param>
+        /// <returns>Whether ground is higher than other grounds that are in front of it</returns>
+        internal static bool IsHigherThanOtherGroundsInFront(Ground ground, Level level, double waveInputX)
+        {
+            bool isCrossedSourceGround = false;
+            double yOutput = ground[waveInputX];
+            foreach (Ground otherGround in level)
+            {
+                if (otherGround == ground)
+                {
+                    isCrossedSourceGround = true;
+                }
+                else if (isCrossedSourceGround && otherGround[waveInputX] < yOutput)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Get frontmost ground having accessible walking height for sprite
         /// </summary>
         /// <param name="sprite">sprite</param>
