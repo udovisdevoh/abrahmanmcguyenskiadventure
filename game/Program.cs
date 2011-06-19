@@ -44,9 +44,9 @@ namespace AbrahmanAdventure
 
         public const bool isUseTextureCache = false;
 
-        public const int screenWidth = 320;
+        public const int screenWidth = 640;
 
-        public const int screenHeight = 240;
+        public const int screenHeight = 480;
 
         public const int waveResolution = 1;
 
@@ -59,7 +59,9 @@ namespace AbrahmanAdventure
         public const int spatialHashingBucketWidth = 2;
 
         public const int maxPlayerFireBallPerScreen = 2;
-        
+
+        public const int squareZoneTileSize = 2;
+
         public const double zoneWidthScreenCount = 0.025;
         
         public const double collisionDetectionResolution = 0.0625;
