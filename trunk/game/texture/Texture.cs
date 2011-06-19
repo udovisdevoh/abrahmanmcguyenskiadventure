@@ -169,20 +169,26 @@ namespace AbrahmanAdventure.level
                         double relativeX = x;
 
                         if (isUseXOffsetInputWave)
-                            relativeX += xOffsetInputWave[y];
+                            relativeX += (Program.isUseWaveValueCache) ? xOffsetInputWave.GetCachedValue(y) : xOffsetInputWave[y];
 
                         if (isUseYOffsetInputWave)
-                            relativeY += yOffsetInputWave[x];
+                            relativeY += (Program.isUseWaveValueCache) ? yOffsetInputWave.GetCachedValue(x) : yOffsetInputWave[x];
 
                         double currentHue = originalHue;
                         double currentSaturation = originalSaturation;
                         double currentLightness = originalLightness;
 
-                        double verticalHueContribution = verticalHueWave[relativeY] * waveStrengthMultiplicator;
-                        double horizontalHueContribution = horizontalHueWave[relativeX] * waveStrengthMultiplicator;
+                        double verticalHueWaveRelativeY = Program.isUseWaveValueCache ? verticalHueWave.GetCachedValue(relativeY) : verticalHueWave[relativeY];
+                        double verticalHueContribution = verticalHueWaveRelativeY * waveStrengthMultiplicator;
 
-                        double horizontalSaturationContribution = horizontalSaturationWave[relativeX] * waveStrengthMultiplicator;
-                        double verticalSaturationContribution = horizontalSaturationWave[relativeY] * waveStrengthMultiplicator;
+                        double horizontalHueWaveRelativeX = Program.isUseWaveValueCache ? horizontalHueWave.GetCachedValue(relativeX) : horizontalHueWave[relativeX];
+                        double horizontalHueContribution = horizontalHueWaveRelativeX * waveStrengthMultiplicator;
+
+                        double horizontalSaturationWaveRelativeX = Program.isUseWaveValueCache ? horizontalSaturationWave.GetCachedValue(relativeX) : horizontalSaturationWave[relativeX];
+                        double horizontalSaturationContribution = horizontalSaturationWaveRelativeX * waveStrengthMultiplicator;
+
+                        double horizontalSaturationWaveRelativeY = Program.isUseWaveValueCache ? horizontalSaturationWave.GetCachedValue(relativeY) : horizontalSaturationWave[relativeY];
+                        double verticalSaturationContribution = horizontalSaturationWaveRelativeY * waveStrengthMultiplicator;
 
                         double horizontalLightnessContribution;
                         double verticalLightnessContribution;
