@@ -141,7 +141,7 @@ namespace AbrahmanAdventure.level
         public override double GetCachedValue(double x)
         {
             double value;
-            int key = (int)(x * 32);
+            int key = (int)(x * Program.tileSize);
             if (!waveValueCache.TryGetValue(key, out value))
             {
                 value = this[x];
