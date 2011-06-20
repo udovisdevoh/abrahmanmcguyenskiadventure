@@ -26,6 +26,11 @@ namespace AbrahmanAdventure.physics
         private BeaverManager beaverManager = new BeaverManager();
 
         /// <summary>
+        /// Manages touching powerups
+        /// </summary>
+        private PowerUpManager powerUpManager = new PowerUpManager();
+
+        /// <summary>
         /// To convert sprites
         /// </summary>
         private SpriteConversionManager spriteConverter = new SpriteConversionManager();
@@ -55,23 +60,23 @@ namespace AbrahmanAdventure.physics
 
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {
-                    UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                    powerUpManager.UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                 }
                 else if (sprite is PlayerSprite && otherSprite is PeyoteSprite && otherSprite.IsAlive)
                 {
-                    UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
+                    powerUpManager.UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
                 }
                 else if (sprite is PlayerSprite && otherSprite is WhiskySprite && otherSprite.IsAlive)
                 {
-                    UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
+                    powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
                 }
                 else if (sprite is PlayerSprite && otherSprite is MusicNoteSprite && otherSprite.IsAlive)
                 {
-                    UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
+                    powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
                 }
                 else if (sprite is PlayerSprite && otherSprite is RastaHatSprite && otherSprite.IsAlive)
                 {
-                    UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
+                    powerUpManager.UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
                 }
                 else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp && !((PlayerSprite)sprite).FromVortexCycle.IsFired)
                 {
@@ -112,86 +117,6 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Private Methods
-        /// <summary>
-        /// Player touches mushroom and get health
-        /// </summary>
-        /// <param name="playerSprite">player</param>
-        /// <param name="mushroomSprite">mushroom</param>
-        private void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
-        {
-            SoundManager.PlayPowerUpSound();
-            if (playerSprite.IsTiny)
-                playerSprite.ChangingSizeAnimationCycle.Fire();
-            else
-                playerSprite.PowerUpAnimationCycle.Fire();
-            playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
-            playerSprite.IsTiny = false;
-            mushroomSprite.IsAlive = false;
-            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
-
-        /// <summary>
-        /// Sprite touches peyote
-        /// </summary>
-        /// <param name="playerSprite">player sprite</param>
-        /// <param name="peyoteSprite">peyote sprite</param>
-        private void UpdateTouchPeyote(PlayerSprite playerSprite, PeyoteSprite peyoteSprite)
-        {
-            SoundManager.PlayPowerUpSound();
-            playerSprite.PowerUpAnimationCycle.Fire();
-            if (playerSprite.IsTiny)
-                playerSprite.ChangingSizeAnimationCycle.Fire();
-            playerSprite.IsTiny = false;
-            playerSprite.IsRasta = false;
-            playerSprite.IsDoped = true;
-            peyoteSprite.IsAlive = false;
-            peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
-
-        /// <summary>
-        /// Touch rasta hat
-        /// </summary>
-        /// <param name="playerSprite">player sprite</param>
-        /// <param name="rastaHatSprite">rasta hat</param>
-        private void UpdateTouchRastaHat(PlayerSprite playerSprite, RastaHatSprite rastaHatSprite)
-        {
-            SoundManager.PlayReggaeSound();
-            playerSprite.PowerUpAnimationCycle.Fire();
-            if (playerSprite.IsTiny)
-                playerSprite.ChangingSizeAnimationCycle.Fire();
-            playerSprite.IsTiny = false;
-            playerSprite.IsDoped = false;
-            playerSprite.IsRasta = true;
-            rastaHatSprite.IsAlive = false;
-            rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
-
-        /// <summary>
-        /// Sprite touches music note
-        /// </summary>
-        /// <param name="playerSprite">player</param>
-        /// <param name="musicNoteSprite">music note</param>
-        private void UpdateTouchMusicNote(PlayerSprite playerSprite, MusicNoteSprite musicNoteSprite)
-        {
-            SoundManager.PlayCoinSound();
-            musicNoteSprite.IsAlive = false;
-            musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
-
-        /// <summary>
-        /// Sprite touches whisky and becomes invincible
-        /// </summary>
-        /// <param name="playerSprite">player</param>
-        /// <param name="whiskySprite">whisky</param>
-        private void UpdateTouchWhisky(PlayerSprite playerSprite, WhiskySprite whiskySprite)
-        {
-            SoundManager.PlayDrinkSound();
-            playerSprite.InvincibilityCycle.Fire();
-            playerSprite.HitCycle.StopAndReset();
-            whiskySprite.IsAlive = false;
-            whiskySprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
-
         /// <summary>
         /// Player will go to vortex
         /// </summary>
