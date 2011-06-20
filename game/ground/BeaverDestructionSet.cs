@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.level
         /// <param name="xPosition">Dig a hole at x position</param>
         public void Dig(double xPosition)
         {
-            int index = (int)(xPosition * (double)Program.beaverHoleDiameter);
+            int index = (int)(xPosition / (double)Program.beaverHoleDiameter);
 
             double depthOffset;
             if (internalDictionary.TryGetValue(index, out depthOffset))
@@ -58,7 +58,7 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-                int index = (int)(xPosition * (double)Program.beaverHoleDiameter);
+                int index = (int)(xPosition / (double)Program.beaverHoleDiameter);
 
                 double yOffset;
                 if (internalDictionary.TryGetValue(index, out yOffset))
