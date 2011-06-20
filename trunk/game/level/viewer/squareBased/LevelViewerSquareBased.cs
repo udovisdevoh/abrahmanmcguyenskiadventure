@@ -146,9 +146,7 @@ namespace AbrahmanAdventure.level
                     double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
                     double waveOutputY = ground[waveInputX];
 
-                    int textureInputX = zoneX * zoneWidth + x;
-
-                    textureInputX = Math.Abs(textureInputX) % ground.TopTexture.Surface.GetWidth();
+                    int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
 
                     if (waveOutputY > (double)zoneY + Program.squareZoneTileHeight)
                         continue;
@@ -168,6 +166,8 @@ namespace AbrahmanAdventure.level
                     {
                         if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                         {
+                            textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
+
                             int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
                             int bottomSurfacePositionY = (groundYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
                             

@@ -153,7 +153,7 @@ namespace AbrahmanAdventure
 
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
-            seedNextGameState = 5;// new Random().Next();
+            seedNextGameState = 0;// new Random().Next();
             
             if (isFullScreen)
                 Cursor.Hide();
