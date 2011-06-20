@@ -160,8 +160,23 @@ namespace AbrahmanAdventure.level
                         }
                     }
 
-                    if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
-                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
+                    if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
+                    {
+                        double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0 : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
+                        Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
+                        if (scaledSurface == null)
+                        {
+                            scaledSurface = ground.TopTexture.Surface.CreateScaledSurface(1.0, scaling);
+                            ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
+                        }
+                        if (groundYOnTile >= 0 || groundYOnTile + scaledSurface.GetHeight() <= zoneHeight)
+                            zoneSurface.Blit(scaledSurface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
+                    }
+                    else
+                    {
+                        if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
+                            zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
+                    }
                 }
             }
 
