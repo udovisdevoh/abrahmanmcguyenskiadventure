@@ -156,12 +156,12 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="ground">ground</param>
         /// <param name="level">level</param>
-        /// <param name="waveInputX">wave input x</param>
+        /// <param name="waveInputX">x input of wave</param>
+        /// <param name="yOutput">wave y output</param>
         /// <returns>Whether ground is higher than other grounds that are in front of it</returns>
-        internal static bool IsHigherThanOtherGroundsInFront(Ground ground, Level level, double waveInputX)
+        internal static bool IsHigherThanOtherGroundsInFront(Ground ground, Level level, double waveInputX, double yOutput)
         {
             bool isCrossedSourceGround = false;
-            double yOutput = ground[waveInputX];
             foreach (Ground otherGround in level)
             {
                 if (otherGround == ground)

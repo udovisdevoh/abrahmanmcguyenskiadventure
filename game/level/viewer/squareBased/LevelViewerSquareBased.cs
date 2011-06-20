@@ -124,20 +124,16 @@ namespace AbrahmanAdventure.level
 
                     textureInputX = Math.Abs(textureInputX) % ground.TopTexture.Surface.GetWidth();
 
-                    /*while (textureInputX > ground.TopTexture.Surface.GetWidth())
-                        textureInputX -= ground.TopTexture.Surface.GetWidth();
-                    while (textureInputX < 0)
-                        textureInputX += ground.TopTexture.Surface.GetWidth();*/
-
                     if (waveOutputY > (double)zoneY + Program.squareZoneTileHeight)
                         continue;
-                    else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX))
+                    else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX, zoneY))
                         continue;
 
                     int groundYOnTile;
 
                     groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
+                    #region Bottom Texture
                     if (IGroundHelper.IsTransparentAt(ground, level, waveInputX))
                     {
                         zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), transparentColor);
@@ -151,15 +147,24 @@ namespace AbrahmanAdventure.level
                             
                             int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
 
+                        DrawBottomTextureAgain:
                             if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
                                 zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1,bottomSurfaceHeight));
+
+                            if (bottomSurfacePositionY + bottomSurfaceHeight < zoneHeight)
+                            {
+                                bottomSurfacePositionY += bottomSurfaceHeight;
+                                goto DrawBottomTextureAgain;
+                            }
                         }
                         else
                         {
                             zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), waveColor);
                         }
                     }
+                    #endregion
 
+                    #region Top texture
                     if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
                     {
                         double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0 : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
@@ -177,6 +182,7 @@ namespace AbrahmanAdventure.level
                         if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
                             zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
                     }
+                    #endregion
                 }
             }
 
