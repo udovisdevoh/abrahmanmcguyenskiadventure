@@ -148,8 +148,11 @@ namespace AbrahmanAdventure.level
                         {
                             int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
                             int bottomSurfacePositionY = (groundYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
+                            
+                            int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
 
-                            zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, ground.BottomTexture.Surface.GetHeight()));
+                            if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
+                                zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1,bottomSurfaceHeight));
                         }
                         else
                         {
@@ -161,10 +164,6 @@ namespace AbrahmanAdventure.level
                         zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
                 }
             }
-
-            
-
-            //zoneSurface.Fill(Color.FromArgb(255, random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)));
 
             return zoneSurface;
         }
