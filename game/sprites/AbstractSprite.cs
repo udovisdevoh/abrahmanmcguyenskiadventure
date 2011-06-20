@@ -110,6 +110,11 @@ namespace AbrahmanAdventure.sprites
         private bool isTryToWalkUp = false;
 
         /// <summary>
+        /// Whether sprite is trying to dig ground
+        /// </summary>
+        private bool isTryDigGround = false;
+
+        /// <summary>
         /// Whether sprite is currently trying to jump
         /// </summary>
         private bool isTryingToJump = false;
@@ -728,6 +733,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryToWalkUp; }
             set { isTryToWalkUp = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is trying to dig ground
+        /// </summary>
+        public bool IsTryDigGround
+        {
+            get { return isTryDigGround; }
+            set { isTryDigGround = value; }
         }
 
         /// <summary>

@@ -85,6 +85,18 @@ namespace AbrahmanAdventure.level
 
             levelViewerCache.Trim(Program.maxCachedSquareCount);
         }
+
+        /// <summary>
+        /// Clear level viewer's cache within provided bounds
+        /// </summary>
+        /// <param name="leftBound">left bound</param>
+        /// <param name="rightBound">right bound</param>
+        /// <param name="topBound">top bound</param>
+        /// <param name="bottomBound">bottom bound</param>
+        public void ClearCacheAtRange(double leftBound, double rightBound, double topBound, double bottomBound)
+        {
+            levelViewerCache.ClearCacheAtRange((int)Math.Floor(leftBound), (int)Math.Ceiling(rightBound), (int)Math.Floor(topBound), (int)Math.Ceiling(bottomBound));
+        }
         #endregion
 
         #region Private Methods
@@ -101,6 +113,14 @@ namespace AbrahmanAdventure.level
             return new Point((int)((zoneX - viewOffsetX) * Program.tileSize), (int)((zoneY - viewOffsetY) * Program.tileSize));
         }
 
+        /// <summary>
+        /// Build zone surface
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="colorTheme">color theme</param>
+        /// <param name="zoneX">zone X</param>
+        /// <param name="zoneY">zone Y</param>
+        /// <returns>Zone surface</returns>
         private Surface BuildZoneSurface(Level level, ColorTheme colorTheme, int zoneX, int zoneY)
         {
             int zoneWidth = Program.tileSize * Program.squareZoneTileWidth;

@@ -78,6 +78,10 @@ namespace AbrahmanAdventure
 
         public const double rastaFallingSpeed = 0.07;
 
+        public const double beaverHoleDiameter = 1.0;
+
+        public const double beaverHoleDepth = 0.5;
+
         public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
 
         public static int tileSize = screenWidth / tileColumnCount;
@@ -450,6 +454,10 @@ namespace AbrahmanAdventure
 
                 playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight;
 
+                #region We manage the "beaver digs ground" logic
+                playerSprite.IsTryDigGround = playerSprite.IsCrouch && userInput.isPressAttack && playerSprite.IsBeaver && !playerSprite.IsNeedToAttackAgain;
+                #endregion
+
                 #region We manage attack input logic
                 //Attacking logic
                 playerSprite.IsTryThrowingBall = false;
@@ -546,12 +554,13 @@ namespace AbrahmanAdventure
                     beaverManager.LeaveBeaver(playerSprite, spritePopulation);
                 #endregion
 
-                physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, spriteBehaviorRandom);
+
+                physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
 
                 foreach (AbstractSprite sprite in toUpdateSpriteList)
                     if (sprite != playerSprite)
                     {
-                        physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, spriteBehaviorRandom);
+                        physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
                         if (sprite is MonsterSprite && sprite.IsAlive)
                             monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                     }

@@ -75,7 +75,8 @@ namespace AbrahmanAdventure.level
                     leftMostIndex++;
                 else if (index == rightMostIndex)
                     rightMostIndex--;
-                internalDictionary.Remove(index);
+                if (internalDictionary.ContainsKey(index))
+                    internalDictionary.Remove(index);
             }
         }
 
@@ -100,6 +101,18 @@ namespace AbrahmanAdventure.level
                 return rightMostIndex + 1;
             else
                 return leftMostIndex - 1;
+        }
+
+        /// <summary>
+        /// Clear cache at provided range
+        /// </summary>
+        /// <param name="minX">left bound (inclusive)</param>
+        /// <param name="maxX">right bound (inclusive)</param>
+        internal void ClearCacheAtRange(int minX, int maxX)
+        {
+            for (int x = minX; x <= maxX; x++)
+                if (internalDictionary.ContainsKey(x))
+                    internalDictionary.Remove(x);
         }
         #endregion
 

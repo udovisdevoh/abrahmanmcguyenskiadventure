@@ -52,6 +52,8 @@ namespace AbrahmanAdventure.physics
                     if (gameMetaState.PreviousSeed != -1)
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
 
+                    gameState.Level.ClearBeaverDestruction();
+
                     #region We remove powerups after player dies
                     foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
                     {
