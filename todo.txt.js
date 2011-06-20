@@ -4,15 +4,7 @@ restore
 	show menu on start
 }
 
-équivalent de yoshi: Sera un castor
-{
-	feature freeze: clean the code, fix bugs
-	
-	Pourra grinder les ground si le sol est à hauteur de dent
-	
-	lorsque grind le sol, dirthen le cache de la zone affectée
-}
-
+beaver must be able to eat powerups
 
 
 ?remove pink bias?

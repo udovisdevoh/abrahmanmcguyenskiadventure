@@ -123,9 +123,7 @@ namespace AbrahmanAdventure.physics
             else
                 sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed);
         }
-        #endregion
 
-        #region Private Methods
         /// <summary>
         /// Get farthest walking distance without collision
         /// </summary>
@@ -133,7 +131,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="desiredDistance">desired walking distance</param>
         /// <param name="level">level</param>
         /// <returns>farthest walking distance without collision</returns>
-        private double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             if (sprite.IsCrossGrounds)
                 return desiredDistance;

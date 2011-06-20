@@ -144,7 +144,7 @@ namespace AbrahmanAdventure.physics
 
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                     if (spriteToUpdate.IsTryDigGround)
-                        beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer);
+                        beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);
                 }
             }
             
