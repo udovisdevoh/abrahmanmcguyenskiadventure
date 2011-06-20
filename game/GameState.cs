@@ -102,7 +102,7 @@ namespace AbrahmanAdventure
         {
             this.seed = seed;
             random = new Random(seed);
-            name = TextGenerator.GenerateName(random);
+            name = WordGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
             skyColorHsl = new ColorHsl(random);
             musicMood = new MusicMood(random);

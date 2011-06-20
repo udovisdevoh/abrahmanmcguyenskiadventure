@@ -140,7 +140,7 @@
     <Compile Include="game\SurfaceSizeCache.cs" />
     <Compile Include="game\textGenerator\Matrix.cs" />
     <Compile Include="game\textGenerator\Probabilities.cs" />
-    <Compile Include="game\textGenerator\TextGenerator.cs" />
+    <Compile Include="game\textGenerator\WordGenerator.cs" />
     <Compile Include="game\textGenerator\XmlMatrixSaverLoader.cs" />
     <Compile Include="game\texture\Texture.cs" />
     <Compile Include="game\texture\TextureCache.cs" />
