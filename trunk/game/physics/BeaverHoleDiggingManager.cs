@@ -28,10 +28,10 @@ namespace AbrahmanAdventure.physics
 
             double holeYPosition = playerSprite.IGround[holeXPosition];
 
-            if (holeYPosition > playerSprite.YPosition + playerSprite.Height)
+            if (holeYPosition > playerSprite.YPosition + playerSprite.Height / 2.0)
                 return;
-            else if (holeYPosition < playerSprite.YPosition - playerSprite.Height)
-                return;
+            /*else if (holeYPosition < playerSprite.YPosition - playerSprite.Height)
+                return;*/
 
             SoundManager.PlayBeaverAttackSound();
             ((Ground)playerSprite.IGround).DigHole(holeXPosition);

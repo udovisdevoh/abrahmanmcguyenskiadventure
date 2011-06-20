@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.physics
 
             jumpingManager.Update(spriteToUpdate, timeDelta);
             damageManager.Update(spriteToUpdate, timeDelta);
-            deathManager.Update(spriteToUpdate, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState);
+            deathManager.Update(spriteToUpdate, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState, levelViewer);
 
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {

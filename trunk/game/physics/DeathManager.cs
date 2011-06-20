@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
@@ -19,8 +20,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="gameMetaState">game meta state</param>
         /// <param name="gameState">game state</param>
+        /// <param name="levelViewer">level viewer</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState)
+        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
         {
             if (sprite.YPosition > Program.totalHeightTileCount)
                 sprite.IsAlive = false;
@@ -53,6 +55,7 @@ namespace AbrahmanAdventure.physics
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
 
                     gameState.Level.ClearBeaverDestruction();
+                    levelViewer.ClearCache();
 
                     #region We remove powerups after player dies
                     foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)

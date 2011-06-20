@@ -38,7 +38,7 @@ namespace AbrahmanAdventure.physics
             {
                 if (helmet != otherSprite && !(otherSprite is PlayerSprite) && !otherSprite.HitCycle.IsFired && !(otherSprite is FireBallSprite))
                 {
-                    if (otherSprite is MonsterSprite)
+                    if (otherSprite is MonsterSprite && !(otherSprite is BeaverSprite))
                     {
                         if (Physics.IsDetectCollision(helmet, otherSprite))
                         {
