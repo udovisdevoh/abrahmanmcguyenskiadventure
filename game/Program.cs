@@ -99,6 +99,8 @@ namespace AbrahmanAdventure
         public static int tileRowCount = screenHeight / tileSize;
 
         public static double maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
+
+        public static double zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
         #endregion
 
         #region Fields and parts
