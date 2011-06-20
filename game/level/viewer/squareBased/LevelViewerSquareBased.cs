@@ -146,7 +146,7 @@ namespace AbrahmanAdventure.level
                     double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
                     double waveOutputY = ground[waveInputX];
 
-                    int textureInputX = zoneX + x;
+                    int textureInputX = zoneX * zoneWidth + x;
 
                     textureInputX = Math.Abs(textureInputX) % ground.TopTexture.Surface.GetWidth();
 
