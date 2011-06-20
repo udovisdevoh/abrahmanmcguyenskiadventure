@@ -28,19 +28,14 @@ namespace AbrahmanAdventure.level
         private Texture bottomTexture;
         
         /// <summary>
-        /// Whether ground's color is transparent
-        /// </summary>
-        private bool isTransparent;
-
-        /// <summary>
-        /// Whether we put a base texture
-        /// </summary>
-        private bool isUseBottomTexture;
-
-        /// <summary>
         /// Represents wave modelization of holes in a level
         /// </summary>
         private HoleSet holeSet;
+
+        /// <summary>
+        /// Stores which part of a ground are destroyed by a beaver
+        /// </summary>
+        private BeaverDestructionSet beaverDestructionSet;
 
         /// <summary>
         /// Next ground
@@ -51,6 +46,16 @@ namespace AbrahmanAdventure.level
         /// Previous ground
         /// </summary>
         private Ground previousFurther = null;
+
+        /// <summary>
+        /// Whether ground's color is transparent
+        /// </summary>
+        private bool isTransparent;
+
+        /// <summary>
+        /// Whether we put a base texture
+        /// </summary>
+        private bool isUseBottomTexture;
         #endregion
 
         #region Constructors
@@ -66,6 +71,7 @@ namespace AbrahmanAdventure.level
             this.holeSet = holeSet;
 
             topTexture = new Texture(random, color, 1.5, seed,groundId,true);
+            beaverDestructionSet = new BeaverDestructionSet();
 
             if (Program.isAlwaysUseBottomTexture)
                 isUseBottomTexture = true;
@@ -101,6 +107,23 @@ namespace AbrahmanAdventure.level
         	
         	return true;
         }
+
+        /// <summary>
+        /// Remove beaver's holes
+        /// </summary>
+        public void ClearBeaverDestruction()
+        {
+            beaverDestructionSet.Clear();
+        }
+
+        /// <summary>
+        /// Dig hole at X position
+        /// </summary>
+        /// <param name="holeXPosition"></param>
+        public void DigHole(double holeXPosition)
+        {
+            beaverDestructionSet.Dig(holeXPosition);
+        }
         #endregion
 
         #region Properties
@@ -116,6 +139,8 @@ namespace AbrahmanAdventure.level
                 double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
                     yValue = Program.holeHeight - yValue;
+
+                yValue += beaverDestructionSet[xPosition];
 
                 return yValue;
             }

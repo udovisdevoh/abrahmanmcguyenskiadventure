@@ -44,6 +44,11 @@ namespace AbrahmanAdventure.physics
         private DeathManager deathManager = new DeathManager();
 
         /// <summary>
+        /// Manges beaver hole digging
+        /// </summary>
+        private BeaverHoleDiggingManager beaverHoleDiggingManager = new BeaverHoleDiggingManager();
+
+        /// <summary>
         /// Manages cases where sprites are spontaneously converted when they have stoped moving for too long
         /// </summary>
         private SpontaneousConversionManager spontaneousConversionManager = new SpontaneousConversionManager();
@@ -96,8 +101,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="program">the program itself</param>
         /// <param name="gameMetaState">game meta state</param>
         /// <param name="gameState">game state</param>
+        /// <param name="levelViewer">level viewer</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
             walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
             gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
@@ -137,6 +143,8 @@ namespace AbrahmanAdventure.physics
                     }
 
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
+                    if (spriteToUpdate.IsTryDigGround)
+                        beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer);
                 }
             }
             

@@ -67,8 +67,31 @@ namespace AbrahmanAdventure.level
             while (internalDictionary.Count > maxCachedColumnCount)
             {
                 long index = internalQueue.Dequeue();
-                internalDictionary.Remove(index);
+                if (internalDictionary.ContainsKey(index))
+                    internalDictionary.Remove(index);
             }
+        }
+
+        /// <summary>
+        /// Clear cache at range
+        /// </summary>
+        /// <param name="leftBound">left bound (inclusive)</param>
+        /// <param name="rightBound">right bound (inclusive)</param>
+        /// <param name="topBound">top bound (inclusive)</param>
+        /// <param name="bottomBound">bottom bound (inclusive)</param>
+        internal void ClearCacheAtRange(int leftBound, int rightBound, int topBound, int bottomBound)
+        {
+            #warning Optimize this
+            internalDictionary.Clear();
+            /*for (int x = leftBound; x <= rightBound; x++)
+            {
+                for (int y = topBound; y <= bottomBound; y++)
+                {
+                    long index = x * 10000 + y;
+                    if (internalDictionary.ContainsKey(index))
+                        internalDictionary.Remove(index);
+                }
+            }*/
         }
         #endregion
     }

@@ -128,6 +128,18 @@ namespace AbrahmanAdventure.level
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);*/
             }
         }
+
+        /// <summary>
+        /// Clear level viewer's cache within provided bounds
+        /// </summary>
+        /// <param name="leftBound">left bound</param>
+        /// <param name="rightBound">right bound</param>
+        /// <param name="topBound">top bound</param>
+        /// <param name="bottomBound">bottom bound</param>
+        public void ClearCacheAtRange(double leftBound, double rightBound, double topBound, double bottomBound)
+        {
+            //levelViewerCache.ClearCacheAtRange(leftBound, rightBound);
+        }
         #endregion
 
         #region Private Methods

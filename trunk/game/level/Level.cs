@@ -87,6 +87,15 @@ namespace AbrahmanAdventure.level
 
             groundList.Add(ground);
         }
+
+        /// <summary>
+        /// Remove beaver's holes
+        /// </summary>
+        internal void ClearBeaverDestruction()
+        {
+            foreach (Ground ground in this)
+                ground.ClearBeaverDestruction();
+        }
         #endregion
 
         #region Private Methods

@@ -57,6 +57,7 @@
     <Compile Include="game\colorTheme\ColorHsl.cs" />
     <Compile Include="game\colorTheme\ColorTheme.cs" />
     <Compile Include="game\GameMetaState.cs" />
+    <Compile Include="game\ground\BeaverDestructionSet.cs" />
     <Compile Include="game\ground\Ground.cs" />
     <Compile Include="game\ground\IGround.cs" />
     <Compile Include="game\holes\HoleSet.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
+    <Compile Include="game\physics\BeaverHoleDiggingManager.cs" />
     <Compile Include="game\physics\BeaverManager.cs" />
     <Compile Include="game\physics\BlockManager.cs" />
     <Compile Include="game\physics\CarriableSpriteManager.cs" />
