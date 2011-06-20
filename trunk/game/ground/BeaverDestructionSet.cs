@@ -27,16 +27,9 @@ namespace AbrahmanAdventure.level
         {
             int index = (int)(xPosition / (double)Program.beaverHoleDiameter);
 
-            double depthOffset;
-            if (internalDictionary.TryGetValue(index, out depthOffset))
-            {
-                internalDictionary[index] = depthOffset + Program.beaverHoleDepth;
-            }
-            else
-            {
-                depthOffset = 0;
-                internalDictionary.Add(index, depthOffset + Program.beaverHoleDepth);
-            }
+            IncrementDepthOffet(index, Program.beaverHoleDepth);
+            //IncrementDepthOffet(index - 1, Program.beaverHoleDepth / -2.0);
+            //IncrementDepthOffet(index + 1, Program.beaverHoleDepth / -2.0);
         }
 
         /// <summary>
@@ -45,6 +38,27 @@ namespace AbrahmanAdventure.level
         public void Clear()
         {
             internalDictionary.Clear();
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Increment (or decrement) depth offset
+        /// </summary>
+        /// <param name="index">index</param>
+        /// <param name="incrementationValue">incrementation value (negative or positive)</param>
+        private void IncrementDepthOffet(int index, double incrementationValue)
+        {
+            double depthOffset;
+            if (internalDictionary.TryGetValue(index, out depthOffset))
+            {
+                internalDictionary[index] = depthOffset + incrementationValue;
+            }
+            else
+            {
+                depthOffset = 0;
+                internalDictionary.Add(index, depthOffset + incrementationValue);
+            }
         }
         #endregion
 
