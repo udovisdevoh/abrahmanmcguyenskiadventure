@@ -14,6 +14,11 @@ namespace AbrahmanAdventure.physics
     internal class BattleManager
     {
         /// <summary>
+        /// Manages powerups
+        /// </summary>
+        private PowerUpManager powerUpManager = new PowerUpManager();
+
+        /// <summary>
         /// Update fist/kick fight logic
         /// </summary>
         /// <param name="sprite">sprite</param>
@@ -24,46 +29,63 @@ namespace AbrahmanAdventure.physics
         {
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (otherSprite is MonsterSprite)
+                if (sprite == otherSprite || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite))
+                    continue;
+
+                if (otherSprite is MushroomSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                {
+                    powerUpManager.UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                }
+                else if (otherSprite is RastaHatSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                {
+                    powerUpManager.UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
+                }
+                else if (otherSprite is PeyoteSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                {
+                    powerUpManager.UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
+                }
+                else if (otherSprite is MusicNoteSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                {
+                    powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
+                }
+                else if (otherSprite is WhiskySprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                {
+                    powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
+                }
+                else if (otherSprite is MonsterSprite)
                 {
                     if (!otherSprite.PunchedCycle.IsFired)
                     {
                         MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
                         if (!monsterSprite.KickedHelmetCycle.IsFired)
-                        {
-                            if (sprite != monsterSprite)
+                        {       
+                            if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                                SoundManager.PlayBeaverAttackSound();
+                            else
+                                SoundManager.PlayPunchSound();
+
+                            if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                             {
-                                if (Physics.IsDetectCollisionPunchOrKick(sprite, monsterSprite))
-                                {
-                                    if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
-                                        SoundManager.PlayBeaverAttackSound();
-                                    else
-                                        SoundManager.PlayPunchSound();
-
-                                    if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
-                                    {
-                                        monsterSprite.IsAlive = false;
-                                        monsterSprite.JumpingCycle.Fire();
-                                    }
-                                    else
-                                    {
-                                        monsterSprite.HitCycle.Fire();
-                                        monsterSprite.PunchedCycle.Fire();
-                                        monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
-                                    }
-
-                                    monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                                    monsterSprite.JumpingCycle.Reset();
-                                    monsterSprite.JumpingCycle.Fire();
-
-                                    if (monsterSprite.IsTryingToWalkRight)
-                                        monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
-                                    else
-                                        monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
-
-                                    monsterSprite.IsTryingToJump = true;
-                                }
+                                monsterSprite.IsAlive = false;
+                                monsterSprite.JumpingCycle.Fire();
                             }
+                            else
+                            {
+                                monsterSprite.HitCycle.Fire();
+                                monsterSprite.PunchedCycle.Fire();
+                                monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                            }
+
+                            monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                            monsterSprite.JumpingCycle.Reset();
+                            monsterSprite.JumpingCycle.Fire();
+
+                            if (monsterSprite.IsTryingToWalkRight)
+                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
+                            else
+                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
+
+                            monsterSprite.IsTryingToJump = true;
                         }
                     }
                 }
