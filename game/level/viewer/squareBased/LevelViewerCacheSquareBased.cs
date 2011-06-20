@@ -30,6 +30,7 @@ namespace AbrahmanAdventure.level
         public void Clear()
         {
             internalDictionary.Clear();
+            internalQueue.Clear();
         }
 
         /// <summary>
@@ -81,17 +82,15 @@ namespace AbrahmanAdventure.level
         /// <param name="bottomBound">bottom bound (inclusive)</param>
         internal void ClearCacheAtRange(int leftBound, int rightBound, int topBound, int bottomBound)
         {
-            #warning Optimize this
-            internalDictionary.Clear();
-            /*for (int x = leftBound; x <= rightBound; x++)
+            for (int x = leftBound; x <= rightBound; x+= Program.squareZoneTileWidth)
             {
-                for (int y = topBound; y <= bottomBound; y++)
+                for (int y = topBound - Program.squareZoneTileHeight; y <= bottomBound; y+= Program.squareZoneTileHeight)
                 {
                     long index = x * 10000 + y;
                     if (internalDictionary.ContainsKey(index))
                         internalDictionary.Remove(index);
                 }
-            }*/
+            }
         }
         #endregion
     }

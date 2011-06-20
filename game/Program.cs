@@ -80,7 +80,7 @@ namespace AbrahmanAdventure
 
         public const double beaverHoleDiameter = 1.0;
 
-        public const double beaverHoleDepth = 0.5;
+        public const double beaverHoleDepth = 0.25;
 
         public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
 
@@ -158,7 +158,7 @@ namespace AbrahmanAdventure
 
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
-            levelViewer = new LevelViewerSquareBased(mainSurface);
+            levelViewer = new LevelViewerColumnBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
             hudViewer = new HudViewer(mainSurface);
 

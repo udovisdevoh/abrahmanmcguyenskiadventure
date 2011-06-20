@@ -95,7 +95,13 @@ namespace AbrahmanAdventure.level
         /// <param name="bottomBound">bottom bound</param>
         public void ClearCacheAtRange(double leftBound, double rightBound, double topBound, double bottomBound)
         {
-            levelViewerCache.ClearCacheAtRange((int)Math.Floor(leftBound), (int)Math.Ceiling(rightBound), (int)Math.Floor(topBound), (int)Math.Ceiling(bottomBound));
+            int leftBoundInt = (int)(leftBound / (double)Program.squareZoneTileWidth) * Program.squareZoneTileWidth;
+            int rightBoundInt = (int)Math.Ceiling(rightBound / (double)Program.squareZoneTileWidth) * Program.squareZoneTileWidth;
+
+            int topBoundInt = (int)(topBound / (double)Program.squareZoneTileHeight) * Program.squareZoneTileHeight;
+            int bottomBoundInt = (int)(bottomBound / (double)Program.squareZoneTileHeight) * Program.squareZoneTileHeight;
+
+            levelViewerCache.ClearCacheAtRange(leftBoundInt, rightBoundInt, topBoundInt, bottomBoundInt);
         }
         #endregion
 

@@ -88,6 +88,7 @@ namespace AbrahmanAdventure.level
             leftMostIndex = 0;
             rightMostIndex = 0;
             internalDictionary.Clear();
+            internalQueue.Clear();
         }
 
         /// <summary>
