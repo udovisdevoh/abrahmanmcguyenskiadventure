@@ -157,6 +157,10 @@ namespace AbrahmanAdventure
 
             #warning Remove test string
             string test = AbrahmanAdventure.textGenerator.LineGenerator.GetRandomLine(new Random());
+            string episode0 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(0);
+            string episode1 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(1);
+            string episode2 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(2);
+            string episode3 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(3);            
             
             if (isFullScreen)
                 Cursor.Hide();
