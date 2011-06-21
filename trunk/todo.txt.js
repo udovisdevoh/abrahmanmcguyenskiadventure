@@ -6,6 +6,13 @@ restore
 
 beaver must be able to eat powerups
 
+episode list
+{
+	Trim long lines
+	Pick only one line (not the shortest)
+	shorten end buffer
+}
+
 
 ?remove pink bias?
 
