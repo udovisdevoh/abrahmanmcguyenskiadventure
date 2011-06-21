@@ -1,22 +1,16 @@
 fix abrahman on beaver x offset asymmetry
 
-fix rasta hat walking on ground
-
-prevent search in visual studio to search in episode name list
-
 restore
 {
 	show menu on start
 	random seed
+	monsters in game state
 }
 
 episode list
 {
 	ce sera 2 milliards d'épisodes
 }
-
-
-beavers must jump when they run randomly (no need to jump high, just high enough not to get stucked on low steps, sorta like blobs)
 
 
 ?remove pink bias?
