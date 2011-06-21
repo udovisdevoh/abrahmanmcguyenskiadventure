@@ -1,3 +1,5 @@
+fix abrahman on beaver x offset asymmetry
+
 restore
 {
 	show menu on start

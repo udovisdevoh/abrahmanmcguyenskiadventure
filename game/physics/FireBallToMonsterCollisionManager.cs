@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.physics
             {
                 if (fireBallSprite != otherSprite && !(otherSprite is PlayerSprite) && !(otherSprite is FireBallSprite) && !otherSprite.HitCycle.IsFired)
                 {
-                    if (otherSprite is MonsterSprite && Physics.IsDetectCollision(fireBallSprite, otherSprite))
+                    if (otherSprite is MonsterSprite && !(otherSprite is BeaverSprite) && Physics.IsDetectCollision(fireBallSprite, otherSprite))
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();

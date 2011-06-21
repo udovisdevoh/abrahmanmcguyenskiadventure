@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.ai
             {
                 monster.IsTryingToJump = true;
             }
-            else if (monster.IsCanJump || monster.HitCycle.IsFired)
+            else if (monster.IsWalkEnabled && (monster.IsCanJump || monster.HitCycle.IsFired))
             {
                 if (Math.Abs(monster.CurrentWalkingSpeed) < monster.WalkingAcceleration / 2.0 && !isSafeDistanceDontMove)
                     monster.IsTryingToJump = true;
