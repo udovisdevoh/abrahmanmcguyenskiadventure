@@ -16,7 +16,7 @@ episode list
 
 beavers must have priority over trampolines when jumping on them
 
-beavers must jump when they run randomly (no need to jump high, just high enough not to get stucked on low steps)
+beavers must jump when they run randomly (no need to jump high, just high enough not to get stucked on low steps, sorta like blobs)
 
 
 ?remove pink bias?
