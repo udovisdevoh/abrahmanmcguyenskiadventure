@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.textGenerator
                     {
                         string line = reader.ReadLine();
 
-                        for (int i = 0; i < 30; i++)
+                        for (int i = 0; i < 15; i++)
                         {
                             if (reader.EndOfStream)
                                 break;
