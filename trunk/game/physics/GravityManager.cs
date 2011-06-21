@@ -35,20 +35,33 @@ namespace AbrahmanAdventure.physics
             if (sprite is IGrowable && ((IGrowable)sprite).GrowthCycle.IsFired)
                 return;
 
-
-            IGround closestDownGround = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
-            if (closestDownGround == null)
+            if (sprite.IsCrossGrounds)
             {
-                if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
+                ApplyGravityMovement(sprite, timeDelta);
+                ApplyGravityAcceleration(sprite, timeDelta);
+            }
+            else
+            {
+                IGround closestDownGround = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
+                if (closestDownGround == null)
                 {
-                    Ground lowestVisibleGround = IGroundHelper.GetLowestVisibleGround(sprite, level);
-                    if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
+                    if (sprite.YPositionPrevious <= sprite.YPosition) //if sprite is not fall/jumping up but only falling down
                     {
-                        if (sprite.IsAlive && !sprite.IsCrossGrounds)
+                        Ground lowestVisibleGround = IGroundHelper.GetLowestVisibleGround(sprite, level);
+                        if (sprite.YPosition - lowestVisibleGround[sprite.XPosition] < sprite.MinimumFallingHeight)
                         {
-                            sprite.IGround = lowestVisibleGround;
-                            sprite.YPosition = sprite.IGround[sprite.XPosition];
-                            sprite.CurrentJumpAcceleration = 0;
+                            if (sprite.IsAlive && !sprite.IsCrossGrounds)
+                            {
+                                sprite.IGround = lowestVisibleGround;
+                                sprite.YPosition = sprite.IGround[sprite.XPosition];
+                                sprite.CurrentJumpAcceleration = 0;
+                            }
+                        }
+                        else
+                        {
+                            ApplyGravityMovement(sprite, timeDelta);
+                            if (!sprite.IsCurrentlyInFreeFallY)
+                                ApplyGravityAcceleration(sprite, timeDelta);
                         }
                     }
                     else
@@ -60,26 +73,20 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
+                    double closestDownGroundHeight = closestDownGround[sprite.XPosition];
                     ApplyGravityMovement(sprite, timeDelta);
-                    if (!sprite.IsCurrentlyInFreeFallY)
-                        ApplyGravityAcceleration(sprite, timeDelta);
-                }
-            }
-            else
-            {
-                double closestDownGroundHeight = closestDownGround[sprite.XPosition];
-                ApplyGravityMovement(sprite, timeDelta);
 
-                if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
-                {
-                    if (!sprite.IsCurrentlyInFreeFallY)
-                        ApplyGravityAcceleration(sprite, timeDelta);
-                }
+                    if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
+                    {
+                        if (!sprite.IsCurrentlyInFreeFallY)
+                            ApplyGravityAcceleration(sprite, timeDelta);
+                    }
 
-                if (sprite.YPosition >= closestDownGroundHeight && sprite.IsAlive && !sprite.IsCrossGrounds)
-                {
-                    sprite.YPosition = closestDownGroundHeight;
-                    sprite.IGround = closestDownGround;
+                    if (sprite.YPosition >= closestDownGroundHeight && sprite.IsAlive && !sprite.IsCrossGrounds)
+                    {
+                        sprite.YPosition = closestDownGroundHeight;
+                        sprite.IGround = closestDownGround;
+                    }
                 }
             }
 
