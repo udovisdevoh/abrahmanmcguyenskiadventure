@@ -61,6 +61,7 @@
     <Compile Include="game\ground\Ground.cs" />
     <Compile Include="game\ground\IGround.cs" />
     <Compile Include="game\holes\HoleSet.cs" />
+    <Compile Include="game\hud\EpisodeList.cs" />
     <Compile Include="game\hud\HudViewer.cs" />
     <Compile Include="game\hud\PlanetViewer.cs" />
     <Compile Include="game\joystick\JoystickManager.cs" />
