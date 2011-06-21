@@ -1,5 +1,9 @@
 fix abrahman on beaver x offset asymmetry
 
+fix rasta hat walking on ground
+
+prevent search in visual studio to search in episode name list
+
 restore
 {
 	show menu on start
