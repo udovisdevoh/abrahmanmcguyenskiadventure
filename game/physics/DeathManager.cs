@@ -69,6 +69,8 @@ namespace AbrahmanAdventure.physics
                         }
                     }
                     #endregion
+
+                    GC.Collect();
                 }
                 else
                 {

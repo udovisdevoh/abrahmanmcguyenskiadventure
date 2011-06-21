@@ -22,10 +22,8 @@ namespace AbrahmanAdventure.textGenerator
         {
             FileInfo fileInfo = new FileInfo(fileName);
 
-            long position = (long)(random.NextDouble() * (double)(fileInfo.Length - 500));
+            long position = (long)(random.NextDouble() * (double)(fileInfo.Length - 100));
             
-            List<string> lineList = new List<string>();
-
             try
             {
                 using (Stream stream = File.Open(fileName, FileMode.Open))
@@ -33,14 +31,8 @@ namespace AbrahmanAdventure.textGenerator
                     stream.Seek(position, 0);
                     using (StreamReader reader = new StreamReader(stream))
                     {
-                        string line = reader.ReadLine();
-
-                        for (int i = 0; i < 15; i++)
-                        {
-                            if (reader.EndOfStream)
-                                break;
-                            lineList.Add(reader.ReadLine());
-                        }
+                        reader.ReadLine();
+                        return reader.ReadLine();
                     }
                 }
             }
@@ -48,19 +40,6 @@ namespace AbrahmanAdventure.textGenerator
             {
                 return "Undefined";
             }
-
-            int shortestLineLength = -1;
-            string shortestLine = "Undefined";
-            foreach (string line in lineList)
-            {
-                if (line.Length < shortestLineLength || shortestLineLength == -1)
-                {
-                    shortestLine = line;
-                    shortestLineLength = line.Length;
-                }
-            }
-
-            return shortestLine;
         }
     }
 }

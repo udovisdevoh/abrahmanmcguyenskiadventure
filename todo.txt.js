@@ -6,10 +6,6 @@ restore
 
 episode list
 {
-	Trim long lines
-	Pick only one line (not the shortest)
-	shorten end buffer
-	
 	ce sera 2 milliards d'épisodes
 }
 
