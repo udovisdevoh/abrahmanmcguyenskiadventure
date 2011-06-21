@@ -1,10 +1,8 @@
 restore
 {
-	random seed
 	show menu on start
+	random seed
 }
-
-beaver must be able to eat powerups
 
 episode list
 {
@@ -12,6 +10,11 @@ episode list
 	Pick only one line (not the shortest)
 	shorten end buffer
 }
+
+
+beavers must have priority over trampolines when jumping on them
+
+beavers must jump when they run randomly (no need to jump high, just high enough not to get stucked on low steps)
 
 
 ?remove pink bias?
