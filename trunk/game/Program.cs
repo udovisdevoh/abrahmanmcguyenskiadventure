@@ -154,6 +154,9 @@ namespace AbrahmanAdventure
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
             seedNextGameState = 0;// new Random().Next();
+
+            #warning Remove test string
+            string test = AbrahmanAdventure.textGenerator.LineGenerator.GetRandomLine(new Random());
             
             if (isFullScreen)
                 Cursor.Hide();

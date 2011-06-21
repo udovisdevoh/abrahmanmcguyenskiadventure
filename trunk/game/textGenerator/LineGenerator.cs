@@ -22,27 +22,38 @@ namespace AbrahmanAdventure.textGenerator
         {
             FileInfo fileInfo = new FileInfo(fileName);
 
-            long position = (long)(random.NextDouble() * (double)(fileInfo.Length - 100000));
+            long position = (long)(random.NextDouble() * (double)(fileInfo.Length - 500));
             
             List<string> lineList = new List<string>();
 
-            using( Stream stream = File.Open(fileName, FileMode.Open) )
+            try
             {
-                stream.Seek(position,0);
-                using( StreamReader reader = new StreamReader(stream) )
+                using (Stream stream = File.Open(fileName, FileMode.Open))
                 {
-                    string line = reader.ReadLine();
+                    stream.Seek(position, 0);
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string line = reader.ReadLine();
 
-                    for (int i = 0; i < 30; i++)
-                        lineList.Add(reader.ReadLine());
+                        for (int i = 0; i < 30; i++)
+                        {
+                            if (reader.EndOfStream)
+                                break;
+                            lineList.Add(reader.ReadLine());
+                        }
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                return "Undefined";
             }
 
             int shortestLineLength = -1;
-            string shortestLine = null;
+            string shortestLine = "Undefined";
             foreach (string line in lineList)
             {
-                if (line.Length < shortestLineLength || shortestLine == null)
+                if (line.Length < shortestLineLength || shortestLineLength == -1)
                 {
                     shortestLine = line;
                     shortestLineLength = line.Length;
