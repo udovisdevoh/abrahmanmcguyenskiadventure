@@ -67,7 +67,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildJumpingTime()
         {
-            return 0;
+            return 10.0;
         }
 
         protected override double BuildWalkingCycleLength()
@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 25.0;
+            return 5.0;
         }
 
         protected override double BuildAttackingTime()
@@ -117,7 +117,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHeight(Random random)
         {
-            return 1.3;
+            return 0.9;
         }
 
         protected override double BuildBounciness()
@@ -147,7 +147,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsAvoidFall(Random random)
@@ -232,7 +232,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildJumpProbability()
         {
-            return 0;
+            return 0.1;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
