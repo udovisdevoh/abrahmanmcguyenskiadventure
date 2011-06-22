@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.physics
         {
             List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
 
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)
                     continue;
