@@ -139,7 +139,7 @@ namespace AbrahmanAdventure
         /// <param name="random">random number generator</param>
         private void AddHardCodedTestSprite()
         {
-            /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new HamburgerSprite(65, Program.totalHeightTileCount / -2, random));
@@ -152,7 +152,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new MuslimSprite(-40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new MormonSprite(-55, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new GypsySprite(-75, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new DoctorSprite(-85, Program.totalHeightTileCount / -2, random));*/
+            spritePopulation.Add(new DoctorSprite(-85, Program.totalHeightTileCount / -2, random));
 
             spritePopulation.Add(new BrickSprite(-10, -10, random, true));
             spritePopulation.Add(new BrickSprite(-11, -10, random, true));
