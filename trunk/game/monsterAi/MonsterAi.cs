@@ -23,13 +23,13 @@ namespace AbrahmanAdventure.ai
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void Update(MonsterSprite monster, PlayerSprite player, Level level, float timeDelta, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
-            double slope;
+            float slope;
             monster.IsTryingToWalk = false;
             monster.IsNeedToJumpAgain = false;
             bool isFleeMode = false;
-            double playerMonsterDistanceX = Math.Abs(monster.XPosition - player.XPosition);
+            float playerMonsterDistanceX = Math.Abs(monster.XPosition - player.XPosition);
 
             #region AI safe distance logic
             bool isSafeDistanceDontMove = false;
@@ -114,7 +114,7 @@ namespace AbrahmanAdventure.ai
                 }
 
                 if (wasTryingToWalkRight != monster.IsTryingToWalkRight)
-                    monster.CurrentWalkingSpeed = 0.0;
+                    monster.CurrentWalkingSpeed = 0.0f;
 
                 #endregion
             }
@@ -146,7 +146,7 @@ namespace AbrahmanAdventure.ai
                             SoundManager.PlayGlassBreakSound();
 
                         monster.IsAlive = false;
-                        monster.YPosition = Program.totalHeightTileCount + 1.0;
+                        monster.YPosition = Program.totalHeightTileCount + 1.0f;
                     }
                 }
 
@@ -166,7 +166,7 @@ namespace AbrahmanAdventure.ai
                 {
                     bool wasTryingToWalkRight = monster.IsTryingToWalkRight;
                     monster.ChangeDirectionNoAiCycle.Increment(timeDelta);
-                    monster.IsTryingToWalkRight = monster.ChangeDirectionNoAiCycle.GetCycleDivision(2.0) == 1;
+                    monster.IsTryingToWalkRight = monster.ChangeDirectionNoAiCycle.GetCycleDivision(2.0f) == 1;
                     if (wasTryingToWalkRight != monster.IsTryingToWalkRight)
                     {
                         monster.CurrentWalkingSpeed = 0;
@@ -192,7 +192,7 @@ namespace AbrahmanAdventure.ai
         /// <param name="slope">slope ratio</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <returns>whether could get slope ratio or not</returns>
-        private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, HashSet<AbstractSprite> visibleSpriteList, out double slope)
+        private bool TryGetSlopeRatio(AbstractSprite monster, Level level, float timeDelta, bool isWalkingRight, HashSet<AbstractSprite> visibleSpriteList, out float slope)
         {
             slope = 0;
             IGround groundToTestSlope = monster.IGround;
@@ -204,11 +204,11 @@ namespace AbrahmanAdventure.ai
 
             if (groundToTestSlope is AbstractSprite)
             {
-                slope = 0.0;
+                slope = 0f;
                 return true;
             }
-            
-            double walkingDistance = timeDelta * monster.CurrentWalkingSpeed;
+
+            float walkingDistance = timeDelta * monster.CurrentWalkingSpeed;
 
             if (!isWalkingRight) //negative distance, (walking left)
                 walkingDistance *= -1;

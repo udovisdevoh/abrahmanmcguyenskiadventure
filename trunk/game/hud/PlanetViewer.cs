@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.hud
             planetSurface.Draw(new Circle(640 / 2, 480 / 2, 480 / 3), waterColor, true, true);
 
             Surface shadeSphere = new Surface("./assets/rendered/Sphere.png");
-            double scaling = ((double)480 / 1.5) / (double)shadeSphere.Width * 1.01;
+            float scaling = ((float)480f / 1.5f) / (float)shadeSphere.Width * 1.01f;
             shadeSphere = shadeSphere.CreateScaledSurface(scaling);
 
             for (int i = 0; i < 4; i++)

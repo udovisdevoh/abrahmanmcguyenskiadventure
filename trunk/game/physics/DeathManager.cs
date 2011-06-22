@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
+        internal void Update(AbstractSprite sprite, float timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
         {
             if (sprite.YPosition > Program.totalHeightTileCount)
                 sprite.IsAlive = false;
@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.physics
             if (sprite.IsAnnihilateOnExitScreen && !visibleSpriteList.Contains(sprite))
             {
                 sprite.IsAlive = false;
-                sprite.YPosition = Program.totalHeightTileCount + 1.0;
+                sprite.YPosition = Program.totalHeightTileCount + 1.0f;
             }
 
             if (sprite.IsAlive)
@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.physics
                         else if (otherSprite is PeyoteSprite || otherSprite is RastaHatSprite || otherSprite is WhiskySprite || otherSprite is MushroomSprite || otherSprite is BeaverSprite)
                         {
                             otherSprite.IsAlive = false;
-                            otherSprite.YPosition = Program.totalHeightTileCount + 1.0;
+                            otherSprite.YPosition = Program.totalHeightTileCount + 1.0f;
                         }
                     }
                     #endregion
@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.physics
             else
             {
                 sprite.IGround = null;
-                sprite.YPosition += 0.25;//we make it fall even faster so it doesn't get stucked by falling on grounds
+                sprite.YPosition += 0.25f;//we make it fall even faster so it doesn't get stucked by falling on grounds
             }
         }
     }

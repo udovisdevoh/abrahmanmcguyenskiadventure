@@ -67,7 +67,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -77,22 +77,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.01f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.35;
+            return 0.35f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.60;
+            return 0.60f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 5.0;
+            return 5.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -112,22 +112,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWidth(Random random)
         {
-            return 1.5;
+            return 1.5f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 0.9;
+            return 0.9f;
         }
 
         protected override float BuildBounciness()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
@@ -232,7 +232,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpProbability()
         {
-            return 0.1;
+            return 0.1f;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -244,7 +244,7 @@ namespace AbrahmanAdventure.sprites
         {
             xOffset = yOffset = 0;
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+            int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
             if (!IsAlive)
                 return dead;

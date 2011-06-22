@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public MusicNoteSprite(double xPosition, double yPosition, Random random)
+        public MusicNoteSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             spinCycle = new Cycle(64, true);
@@ -67,22 +67,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 0.65;
+            return 0.65f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 0.94;
+            return 0.94f;
         }
 
         protected override float BuildBounciness()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.sprites
             
             spinCycle.Increment(1);
 
-            int cycleDivision = spinCycle.GetCycleDivision(6.0);
+            int cycleDivision = spinCycle.GetCycleDivision(6.0f);
 
             switch (cycleDivision)
             {

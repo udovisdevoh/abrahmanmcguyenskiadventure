@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(AbstractSprite sprite, Level level, float timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
             if (!sprite.IsAffectedByGravity && sprite.IsAlive)
                 return;
@@ -73,7 +73,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
-                    double closestDownGroundHeight = closestDownGround[sprite.XPosition];
+                    float closestDownGroundHeight = closestDownGround[sprite.XPosition];
                     ApplyGravityMovement(sprite, timeDelta);
 
                     if (!sprite.IsTryingToJump || sprite.JumpingCycle.IsFinished)
@@ -111,7 +111,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, float timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
             spriteToUpdate.IsFullGravityOnNextFrame = false;
             while (spriteToUpdate.IsAlive && spriteToUpdate.IGround == null && spriteToUpdate.YPosition < Program.holeHeight)
@@ -125,19 +125,19 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void ApplyGravityAcceleration(AbstractSprite sprite, double timeDelta)
+        private void ApplyGravityAcceleration(AbstractSprite sprite, float timeDelta)
         {
-            double speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
+            float speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
             if (speed < 0 && sprite is PlayerSprite && ((PlayerSprite)sprite).IsRasta && sprite.IsTryingToJump)
             {
                 if (Math.Abs(speed) > Math.Abs(Program.rastaFallingSpeed))
                 {
-                    sprite.CurrentJumpAcceleration = -16.0 * timeDelta;
+                    sprite.CurrentJumpAcceleration = -16.0f * timeDelta;
                     return;
                 }
             }
             
-            sprite.CurrentJumpAcceleration -= 4.0 * timeDelta;           
+            sprite.CurrentJumpAcceleration -= 4.0f * timeDelta;           
         }
 
         /// <summary>
@@ -145,11 +145,11 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void ApplyGravityMovement(AbstractSprite sprite, double timeDelta)
+        private void ApplyGravityMovement(AbstractSprite sprite, float timeDelta)
         {
-            double speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
+            float speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
 
-            double maxFallingSpeed = Math.Abs(sprite.MaxFallingSpeed);
+            float maxFallingSpeed = Math.Abs(sprite.MaxFallingSpeed);
 
             if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsRasta && sprite.IsTryingToJump)
                 maxFallingSpeed = Program.rastaFallingSpeed;

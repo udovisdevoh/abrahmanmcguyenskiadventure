@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameMetaState">game meta state</param>
         /// <param name="gameState">game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
+        internal void Update(AbstractSprite sprite, Level level, float timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
             List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
 
@@ -138,7 +138,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">monster</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta, SpritePopulation spritePopulation, Random random)
+        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, float timeDelta, SpritePopulation spritePopulation, Random random)
         {
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired || sprite.FromVortexCycle.IsFired)
                 return;
@@ -189,7 +189,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
+        private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, float timeDelta, Random random)
         {
             if (sprite is PlayerSprite || (sprite is MonsterSprite && ((MonsterSprite)sprite).IsCanJump))
             {
@@ -264,7 +264,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">kicked</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        public void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        public void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, float timeDelta)
         {
             if (monsterSprite.KickedHelmetCycle.IsFired)
                 return;

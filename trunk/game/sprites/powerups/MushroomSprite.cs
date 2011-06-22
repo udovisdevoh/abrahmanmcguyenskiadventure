@@ -54,17 +54,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.016;
+            return 0.016f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.17;
+            return 0.17f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.17;
+            return 0.17f;
         }
 
         protected override float BuildStartingJumpAcceleration()
@@ -84,17 +84,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return -0.5;
+            return -0.5f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildBounciness()
@@ -104,7 +104,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()

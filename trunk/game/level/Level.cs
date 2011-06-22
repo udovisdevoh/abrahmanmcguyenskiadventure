@@ -40,7 +40,7 @@ namespace AbrahmanAdventure.level
                 AbstractWave wave;
                 wave = WaveBuilder.BuildWavePack(random);
 
-                double normalizationFactor = (random.NextDouble() * 20) + 4;
+                float normalizationFactor = ((float)random.NextDouble() * 20f) + 4f;
                 wave.Normalize(normalizationFactor, false);
 
                 BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i);

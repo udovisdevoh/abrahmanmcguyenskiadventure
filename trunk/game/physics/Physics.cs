@@ -103,7 +103,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, float timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
             walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
             gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
@@ -181,7 +181,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="xDesiredPosition">desired x position for sprite</param>
         /// <param name="level">level to look into</param>
         /// <returns>Whether collision was detected</returns>
-        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal static bool IsDetectCollision(AbstractSprite sprite, float xDesiredPosition, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             IGround referenceGround;
 
@@ -195,9 +195,9 @@ namespace AbrahmanAdventure.physics
             }
             else
                 referenceGround = sprite.IGround;
-        	
-        	double angleX1;
-        	double angleX2;
+
+            float angleX1;
+            float angleX2;
         	
         	if (sprite.IsTryingToWalkRight)
         	{
@@ -210,20 +210,20 @@ namespace AbrahmanAdventure.physics
         		angleX2 = angleX1 - Program.collisionDetectionResolution;
         	}
 
-        	double angleY1 = Math.Min(referenceGround[angleX1], referenceGround[sprite.XPosition]);
-            double angleY2 = referenceGround[angleX2];
-            double slope = angleY1 - angleY2;
+        	float angleY1 = Math.Min(referenceGround[angleX1], referenceGround[sprite.XPosition]);
+            float angleY2 = referenceGround[angleX2];
+            float slope = angleY1 - angleY2;
             if (slope >= sprite.MaximumWalkingHeight)
                 return true;
 
 
             #region We test collision with impassable sprites
-            double yDesiredPosition = sprite.YPosition;
+            float yDesiredPosition = sprite.YPosition;
             if (sprite.IGround is Ground)
                 yDesiredPosition = sprite.IGround[xDesiredPosition];
             foreach (AbstractSprite otherSprite in visibleSpriteList)
                 if (sprite != otherSprite && otherSprite.IsImpassable)
-                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, 0.46, otherSprite))
+                    if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, 0.46f, otherSprite))
                         return true;
             #endregion
 
@@ -257,9 +257,9 @@ namespace AbrahmanAdventure.physics
                 return 0.0f;
 
             if (isRight)
-                return ((ground[sprite.XPosition + walkingDistance] - ground[sprite.XPosition]) / walkingDistance) / 2.0;
+                return ((ground[sprite.XPosition + walkingDistance] - ground[sprite.XPosition]) / walkingDistance) / 2.0f;
             else
-                return ((ground[sprite.XPosition] - ground[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0;
+                return ((ground[sprite.XPosition] - ground[sprite.XPosition + walkingDistance]) / walkingDistance) / 2.0f;
         }
 
         /// <summary>
@@ -299,12 +299,12 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite1WidthMultiplicator">virtual width multiplicator for sprite 1 (we simulate a different width</param>
         /// <param name="sprite2">sprite 2</param>
         /// <returns>Whether there is collision from sprite with virtual position to other sprite with real position</returns>
-        internal static bool IsDetectCollision(AbstractSprite sprite1, double virtualX, double virtualY, double sprite1WidthMultiplicator, AbstractSprite sprite2)
+        internal static bool IsDetectCollision(AbstractSprite sprite1, float virtualX, float virtualY, float sprite1WidthMultiplicator, AbstractSprite sprite2)
         {
-            double sprite1RightBound = virtualX + sprite1.Width / 2.0 * sprite1WidthMultiplicator;
-            double sprite1LeftBound = virtualX - sprite1.Width / 2.0 * sprite1WidthMultiplicator;
-            double sprite1YPosition = virtualY;
-            double sprite1TopBound = sprite1.TopBound - sprite1.YPosition + virtualY;
+            float sprite1RightBound = virtualX + sprite1.Width / 2.0f * sprite1WidthMultiplicator;
+            float sprite1LeftBound = virtualX - sprite1.Width / 2.0f * sprite1WidthMultiplicator;
+            float sprite1YPosition = virtualY;
+            float sprite1TopBound = sprite1.TopBound - sprite1.YPosition + virtualY;
 
             bool isHorizontalCollision =    (sprite1RightBound > sprite2.LeftBound && sprite1LeftBound < sprite2.LeftBound)
                                      ||     (sprite2.LeftBound < sprite1RightBound && sprite2.RightBound > sprite1RightBound)
@@ -350,7 +350,7 @@ namespace AbrahmanAdventure.physics
                         isHorizontalCollision = (sprite1.LeftPunchBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
                     }
 
-                    double sprite1TopBound, sprite1BottomBound;
+                    float sprite1TopBound, sprite1BottomBound;
 
                     if (sprite1.IsTiny)
                     {
@@ -359,13 +359,13 @@ namespace AbrahmanAdventure.physics
                     }
                     else if (sprite1.IGround == null || sprite1.IsCrouch)
                     {
-                        sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0;
+                        sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0f;
                         sprite1BottomBound = sprite1.YPosition;
                     }
                     else
                     {
                         sprite1TopBound = sprite1.TopBound;
-                        sprite1BottomBound = sprite1.YPosition - sprite1.Height / 2.0;
+                        sprite1BottomBound = sprite1.YPosition - sprite1.Height / 2.0f;
                     }
 
                     isVerticalCollision = (sprite1TopBound > sprite2.TopBound && sprite1.TopBound < sprite2.YPosition)
@@ -385,9 +385,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="x2">x2</param>
         /// <param name="y2">y2</param>
         /// <returns>angle between two points (in degrees)</returns>
-        internal static double GetAngleDegree(double x1, double y1, double x2, double y2)
+        internal static float GetAngleDegree(float x1, float y1, float x2, float y2)
         {
-            double angle = Math.Atan2(y1 - y2, x1 - x2) * 180 / Math.PI;
+            float angle = (float)(Math.Atan2(y1 - y2, x1 - x2) * 180 / Math.PI);
             while (angle < 0)
                 angle += 360;
             while (angle > 360)

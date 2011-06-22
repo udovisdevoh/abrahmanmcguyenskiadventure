@@ -28,16 +28,16 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private List<AbstractWave> waveList = new List<AbstractWave>();
 
-        private Dictionary<int, double> waveValueCache = new Dictionary<int, double>();
+        private Dictionary<int, float> waveValueCache = new Dictionary<int, float>();
 
         /// <summary>
         /// Current junction type (to add or multiply waves)
         /// </summary>
         private int junctionType = JunctionAdd;
 
-        private double normalizationMultiplicator = 1.0;
+        private float normalizationMultiplicator = 1.0f;
 
-        private double offsetForAverage = 0;
+        private float offsetForAverage = 0f;
         #endregion
 
         #region Constructor
@@ -243,7 +243,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="x">x</param>
         /// <returns>amplitude at position/time x</returns>
-        public override double this[double x]
+        public override float this[float x]
         {
             get
             {
@@ -253,13 +253,13 @@ namespace AbrahmanAdventure.level
                     return 0;
                 else if (x >= 30 && x < 50)
                     return Program.totalHeightTileCount / 2;*/
-            	
-                double value = 0.0;
+
+                float value = 0.0f;
 
                 if (junctionType == JunctionMultiply)
-                    value = 1.0;
+                    value = 1.0f;
                 else if (junctionType == JunctionAdd)
-                    value = 0.0;
+                    value = 0.0f;
 
 
                 foreach (AbstractWave iWave in waveList)
@@ -277,9 +277,9 @@ namespace AbrahmanAdventure.level
             }
         }
 
-        public override double GetCachedValue(double x)
+        public override float GetCachedValue(float x)
         {
-            double value;
+            float value;
             int key = (int)(x * Program.tileSize);
             if (!waveValueCache.TryGetValue(key, out value))
             {
@@ -295,14 +295,14 @@ namespace AbrahmanAdventure.level
         /// <returns></returns>
         public override void Normalize()
         {
-            Normalize(1.0);
+            Normalize(1.0f);
         }
 
         /// <summary>
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public override void Normalize(double maxValue)
+        public override void Normalize(float maxValue)
         {
             Normalize(maxValue, true);
         }
@@ -311,16 +311,16 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public override void Normalize(double maxValue, bool isIncreaseToo)
+        public override void Normalize(float maxValue, bool isIncreaseToo)
         {
-            double oldNormalizationMultiplicator = normalizationMultiplicator;
+            float oldNormalizationMultiplicator = normalizationMultiplicator;
 
-            normalizationMultiplicator = 1.0;
-            double y;
+            normalizationMultiplicator = 1.0f;
+            float y;
 
-            double maxY = double.NegativeInfinity;
-            double minY = double.PositiveInfinity;
-            for (double x = -10024.0; x < 10024.0; x += 1)
+            float maxY = float.NegativeInfinity;
+            float minY = float.PositiveInfinity;
+            for (float x = -10024.0f; x < 10024.0f; x += 1)
             {
                 y = this[x];
                 if (y > maxY)
@@ -330,9 +330,9 @@ namespace AbrahmanAdventure.level
                     minY = y;
             }
 
-            maxY = Math.Max(maxY, minY * -1.0);
+            maxY = Math.Max(maxY, minY * -1.0f);
 
-            normalizationMultiplicator = 1.0 / maxY * maxValue;
+            normalizationMultiplicator = 1.0f / maxY * maxValue;
 
             if (!isIncreaseToo)
                 normalizationMultiplicator = Math.Min(oldNormalizationMultiplicator, normalizationMultiplicator);
@@ -380,14 +380,14 @@ namespace AbrahmanAdventure.level
         #endregion
 
         #region Public Methods
-        internal void AdjustAverage(double desiredAverage)
+        internal void AdjustAverage(float desiredAverage)
         {
             offsetForAverage = 0;
-            double sum = 0;
-            for (double x = -1024.0; x < 1024.0; x += 1)
+            float sum = 0;
+            for (float x = -1024.0f; x < 1024.0f; x += 1f)
                 sum += this[x];
 
-            double average = sum / 2048.0;
+            float average = sum / 2048.0f;
 
             offsetForAverage = desiredAverage - average;
         }

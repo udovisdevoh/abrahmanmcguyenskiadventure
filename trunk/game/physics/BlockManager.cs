@@ -95,12 +95,12 @@ namespace AbrahmanAdventure.physics
             if (sprite.YPosition < block.YPosition)
                 return;
 
-            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
+            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0f;
 
             //Only expell the sprite if it doesn't make force the sprite to go lower than the ground
             IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList);
             if (highestVisibleGroundBelowSprite == null || highestVisibleGroundBelowSprite[sprite.XPosition] > block.YPosition + sprite.Height + 0.01)
-                sprite.TopBoundKeepPrevious = block.YPosition + 0.01;
+                sprite.TopBoundKeepPrevious = block.YPosition + 0.01f;
 
             if (!(sprite is PlayerSprite) && !(sprite is HelmetSprite))
                 return;
@@ -118,7 +118,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
-            double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
+            float angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
             sprite.IsCurrentlyInFreeFallX = false;
             sprite.IsCurrentlyInFreeFallY = false;
             if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)

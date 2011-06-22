@@ -32,8 +32,8 @@ namespace AbrahmanAdventure.physics
                 {
                     playerSprite.ThrowBallCycle.Fire();
                     SoundManager.PlayFireBallSound();
-                    double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
-                    FireBallSprite fireBallSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
+                    float xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5f: playerSprite.LeftBound - 0.5f;
+                    FireBallSprite fireBallSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33f, random);
                     fireBallSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
                     fireBallSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + fireBallSprite.MaxWalkingSpeed;
                     fireBallSprite.CurrentJumpAcceleration = -30;

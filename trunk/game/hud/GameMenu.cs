@@ -154,7 +154,7 @@ namespace AbrahmanAdventure.hud
         /// <param name="program">program</param>
         internal static void ParseUserInput(UserInput userInput, Program program)
         {
-            keyCycle.Increment(1.0);
+            keyCycle.Increment(1.0f);
             if (keyCycle.IsFinished)
             {
                 if (userInput.isPressJump)

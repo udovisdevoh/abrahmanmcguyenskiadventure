@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public BlobSprite(double xPosition, double yPosition, Random random)
+        public BlobSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             GetLeft1Surface();
@@ -43,58 +43,58 @@ namespace AbrahmanAdventure.sprites
         #region Override Methods
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
         {
-            return 5;
+            return 5f;
         }
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.01f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.25;
+            return 0.25f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.55;
+            return 0.55f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
             //return 25.0;
-            return 5.0;
+            return 5.0f;
         }
 
         protected override float BuildAttackingTime()
         {
-            return 4;
+            return 4f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildMaxHealth()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsDieOnTouchGround()
@@ -129,7 +129,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpProbability()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHitTime()
@@ -139,7 +139,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
@@ -225,7 +225,7 @@ namespace AbrahmanAdventure.sprites
         {
             xOffset = 0;
             yOffset = 0;
-            int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
+            int cycleDivision = WalkingCycle.GetCycleDivision(2.0f);
 
             if (!IsAlive)
                 return GetDeadSurface();

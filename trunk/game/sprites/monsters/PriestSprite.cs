@@ -138,12 +138,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpProbability()
         {
-            return 0.2;
+            return 0.2f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsMakeSoundWhenTouchGround()
@@ -153,7 +153,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -168,12 +168,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildMaxHealth()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -183,22 +183,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.01f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.20;
+            return 0.20f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.20;
+            return 0.20f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 8.0;
+            return 8.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -213,17 +213,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 1.9;
+            return 1.9f;
         }
 
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
@@ -241,7 +241,7 @@ namespace AbrahmanAdventure.sprites
             }
             else if (CurrentWalkingSpeed != 0)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
                 if (cycleDivision == 1)
                 {

@@ -177,7 +177,7 @@ namespace AbrahmanAdventure.sprites
         #region Override Methods
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -187,23 +187,23 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.05;
+            return 0.05f;
             //return 0.1;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.60;
+            return 0.60f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.60;
+            return 0.60f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 25.0;
+            return 25.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -213,22 +213,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 0.9;
+            return 0.9f;
         }
 
         protected override float BuildMaxHealth()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildJumpProbability()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override float BuildHitTime()
@@ -238,7 +238,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
@@ -248,7 +248,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsCanJump(Random random)
@@ -392,7 +392,7 @@ namespace AbrahmanAdventure.sprites
             }
             #endregion
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+            int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
             if (isBlack)
             {

@@ -136,12 +136,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpProbability()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -166,7 +166,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingCycleLength()
         {
-            return 0.1;
+            return 0.1f;
         }
 
         protected override float BuildWalkingAcceleration()
@@ -201,22 +201,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 4.0;
+            return 4.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 4.0;
+            return 4.0f;
         }
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)

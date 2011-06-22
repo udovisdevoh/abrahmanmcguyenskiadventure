@@ -23,7 +23,7 @@ namespace AbrahmanAdventure.level
         /// <param name="sky">sky</param>
         /// <param name="viewOffsetX">view offset X</param>
         /// <param name="viewOffsetY">view offset Y</param>
-        void Update(Level level, ColorTheme colorTheme, Sky sky, double viewOffsetX, double viewOffsetY);
+        void Update(Level level, ColorTheme colorTheme, Sky sky, float viewOffsetX, float viewOffsetY);
 
         /// <summary>
         /// Clear level viewer's cache within provided bounds
@@ -32,6 +32,6 @@ namespace AbrahmanAdventure.level
         /// <param name="rightBound">right bound</param>
         /// <param name="topBound">top bound</param>
         /// <param name="bottomBound">bottom bound</param>
-        void ClearCacheAtRange(double leftBound, double rightBound, double topBound, double bottomBound);
+        void ClearCacheAtRange(float leftBound, float rightBound, float topBound, float bottomBound);
     }
 }

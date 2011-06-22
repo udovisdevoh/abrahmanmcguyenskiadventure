@@ -127,7 +127,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildMaxHealth()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildAttackStrengthCollision()
@@ -137,17 +137,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildBounciness()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
@@ -158,7 +158,7 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0;
 
             if (bumpCycle.IsFired)
-                yOffset = bumpCycle.CurrentValue / -20.0;
+                yOffset = bumpCycle.CurrentValue / -20.0f;
 
             if (isFinalized)
                 return surface3;

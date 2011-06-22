@@ -54,9 +54,9 @@ namespace AbrahmanAdventure.hud
         /// Show Hud
         /// </summary>
         /// <param name="playerHealth">player's health (1.0 = default max)</param>
-        internal void Update(double playerHealth)
+        internal void Update(float playerHealth)
         {
-            int yellowBarWidth = (int)((playerHealth * (double)(75)) * Program.screenWidth / 640);
+            int yellowBarWidth = (int)((playerHealth * (float)(75)) * Program.screenWidth / 640);
 
             Rectangle yellowRectangle = new Rectangle(xYOffsetEnergyBar, xYOffsetEnergyBar, yellowBarWidth, energyBarThickness);
             Rectangle redRectangle = new Rectangle(yellowBarWidth + xYOffsetEnergyBar, xYOffsetEnergyBar, maxEnergyBarWidth - yellowBarWidth, energyBarThickness);

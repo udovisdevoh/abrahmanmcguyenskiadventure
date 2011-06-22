@@ -39,7 +39,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public RiotControlSprite(double xPosition, double yPosition, Random random)
+        public RiotControlSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             GetWalkingRightSurface();
@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
         /// <param name="isAvoidFall">is avoid fall</param>
-        public RiotControlSprite(double xPosition, double yPosition, Random random, bool isAvoidFall)
+        public RiotControlSprite(float xPosition, float yPosition, Random random, bool isAvoidFall)
             : base(xPosition, yPosition, random)
         {
             this.IsAvoidFall = isAvoidFall;
@@ -151,7 +151,7 @@ namespace AbrahmanAdventure.sprites
         #region Override Methods
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -161,22 +161,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.3;
+            return 0.3f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.17;
+            return 0.17f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.55;
+            return 0.55f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 25.0;
+            return 25.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -186,22 +186,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 1.3;
+            return 1.3f;
         }
 
         protected override float BuildMaxHealth()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsAnnihilateOnExitScreen()
@@ -221,7 +221,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpProbability()
         {
-            return 0.2;
+            return 0.2f;
         }
 
         protected override float BuildHitTime()
@@ -231,7 +231,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
@@ -331,7 +331,7 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             xOffset = 0;
-            yOffset = 0.24;
+            yOffset = 0.24f;
             if (!IsAlive)
             {
                 if (IsAvoidFall)
@@ -342,7 +342,7 @@ namespace AbrahmanAdventure.sprites
 
             if (CurrentJumpAcceleration != 0)
             {
-                yOffset = 0.4;
+                yOffset = 0.4f;
                 if (IsAvoidFall)
                 {
                     if (IsTryingToWalkRight)
@@ -360,11 +360,11 @@ namespace AbrahmanAdventure.sprites
             }
             else if (CurrentWalkingSpeed != 0)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
                 if (cycleDivision == 1 || cycleDivision == 3)
                 {
-                    yOffset = 0.4;
+                    yOffset = 0.4f;
                     if (IsAvoidFall)
                     {
                         if (IsTryingToWalkRight)
@@ -382,7 +382,7 @@ namespace AbrahmanAdventure.sprites
                 }
                 else
                 {
-                    yOffset = 0.24;
+                    yOffset = 0.24f;
                     if (IsAvoidFall)
                     {
                         if (IsTryingToWalkRight)
@@ -401,7 +401,7 @@ namespace AbrahmanAdventure.sprites
             }
             else
             {
-                yOffset = 0.24;
+                yOffset = 0.24f;
                 if (IsAvoidFall)
                 {
                     if (IsTryingToWalkRight)
