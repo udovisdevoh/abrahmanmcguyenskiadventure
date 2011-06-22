@@ -1,4 +1,4 @@
-fix abrahman on beaver x offset asymmetry
+fix jump under block collision detection asymmetry (more visible with beaver, but always visible)
 
 restore
 {
