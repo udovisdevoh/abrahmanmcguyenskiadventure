@@ -1122,7 +1122,7 @@ namespace AbrahmanAdventure.sprites
         #region IComparable<AbstractSprite> Membres
         public int CompareTo(AbstractSprite other)
         {
-            return (int)(distanceToReferenceSprite * 100 - other.distanceToReferenceSprite * 100);
+            return (int)(distanceToReferenceSprite * 100.0 - other.distanceToReferenceSprite * 100.0);
         }
         #endregion
     }
