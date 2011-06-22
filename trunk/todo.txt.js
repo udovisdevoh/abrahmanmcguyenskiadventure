@@ -1,10 +1,7 @@
-fix jump under block collision detection asymmetry (more visible with beaver, but always visible)
-
 restore
 {
 	show menu on start
 	random seed
-	monsters in game state
 }
 
 episode list
