@@ -24,6 +24,10 @@ namespace AbrahmanAdventure
 
         public bool isPressLeaveBeaver = false;
 
+        public bool isPressPageUp = false;
+
+        public bool isPressPageDown = false;
+
         public int jumpButton = 2;
 
         public int attackButton = 3;

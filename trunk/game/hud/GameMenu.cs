@@ -10,7 +10,7 @@ using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.hud
 {
-    enum SubMenu { Main, Display, Controller, Audio, HowTo }
+    enum SubMenu { Main, Display, Controller, Audio, HowTo, EpisodeList }
 
     /// <summary>
     /// Game's main menu
@@ -41,12 +41,17 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Current X position in menu
         /// </summary>
-        private static short currentMenuPositionX = 0;
+        private static int currentMenuPositionX = 0;
 
         /// <summary>
         /// Current Y position in menu
         /// </summary>
-        private static short currentMenuPositionY = 0;
+        private static int currentMenuPositionY = 0;
+
+        /// <summary>
+        /// Offset of the episode menu
+        /// </summary>
+        private static int episodeOffset = 0;
 
         /// <summary>
         /// Whether we need to refresh the menu
@@ -71,7 +76,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {7,0,2,0,0};
+        private static int[] listMaxMenuItemCount = {7,0,2,0,0,12};
         #endregion
 
         #region Internal methods
@@ -86,7 +91,9 @@ namespace AbrahmanAdventure.hud
                 return;
 
             int mainMenuCursorLeft = (int)(Program.screenWidth * 0.295);
+            int episodeMenuCursorLeft = (int)(Program.screenWidth * 0.024);
             int mainMenuMarginLeft = (int)(Program.screenWidth * 0.32);
+            int episodeMenuMarginLeft = (int)(Program.screenWidth * 0.05);
             int mainMenuMarginTop = (int)(Program.screenHeight * 0.28);
             int lineSpace = Program.screenHeight / 22;
 
@@ -101,8 +108,10 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
                 mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
+
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
-            else
+            else if (currentSubMenu == SubMenu.Controller)
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
                 if (isWaitingForJumpButtonRemap)
@@ -119,9 +128,22 @@ namespace AbrahmanAdventure.hud
                     mainSurface.Blit(GetFontText("Leave beaver button: press leave beaver"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
                 else
                     mainSurface.Blit(GetFontText("Leave beaver button: button " + userInput.leaveBeaverButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
-            }
 
-            mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
+            }
+            else if (currentSubMenu == SubMenu.EpisodeList)
+            {
+                mainSurface.Fill(System.Drawing.Color.Black);
+
+                mainSurface.Blit(GetFontText("Choose episode"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+
+                for (int episodeIndex = 0; episodeIndex <= listMaxMenuItemCount[(int)SubMenu.EpisodeList]; episodeIndex++)
+                {
+                    mainSurface.Blit(GetFontText((episodeIndex + episodeOffset + 1) + ": " + EpisodeNameManager.GetEpisodeName(episodeIndex + episodeOffset), EpisodeNameManager.GetEpisodeColor(episodeIndex + episodeOffset)), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * episodeIndex));
+                }
+
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
+            }
 
             isNeedRefresh = false;
         }
@@ -185,6 +207,18 @@ namespace AbrahmanAdventure.hud
                 else if (userInput.isPressDown)
                 {
                     MoveDown();
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressPageDown)
+                {
+                    for (int i = 0; i < listMaxMenuItemCount[(short)currentSubMenu]; i++)
+                        MoveDown();
+                    keyCycle.Fire();
+                }
+                else if (userInput.isPressPageUp)
+                {
+                    for (int i = 0; i < listMaxMenuItemCount[(short)currentSubMenu]; i++)
+                        MoveUp();
                     keyCycle.Fire();
                 }
             }
@@ -262,7 +296,18 @@ namespace AbrahmanAdventure.hud
             Dirthen();
             currentMenuPositionY--;
             if (currentMenuPositionY < 0)
-                currentMenuPositionY = (short)listMaxMenuItemCount[(int)currentSubMenu];
+            {
+                if (currentSubMenu == SubMenu.EpisodeList)
+                {
+                    currentMenuPositionY = 0;
+                    if (episodeOffset > 0)
+                        episodeOffset--;
+                }
+                else
+                {
+                    currentMenuPositionY = listMaxMenuItemCount[(int)currentSubMenu];
+                }
+            }
         }
 
         /// <summary>
@@ -270,13 +315,25 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private static void MoveDown()
         {
+
+
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionY++;
-            if (currentMenuPositionY > (short)listMaxMenuItemCount[(int)currentSubMenu])
-                currentMenuPositionY = 0;
+            if (currentMenuPositionY > listMaxMenuItemCount[(int)currentSubMenu])
+            {
+                if (currentSubMenu == SubMenu.EpisodeList)
+                {
+                    episodeOffset++;
+                    currentMenuPositionY = listMaxMenuItemCount[(int)currentSubMenu];
+                }
+                else
+                {
+                    currentMenuPositionY = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -292,11 +349,8 @@ namespace AbrahmanAdventure.hud
                 switch (currentMenuPositionY)
                 {
                     case 0: //new game
-                        if (program.GameState != null)
-                            program.GameState.PlayerSprite.ResetHealthAndPowerUps();
-                        program.ChangeGameState(new Random().Next());
-                        program.IsShowMenu = false;
-                        //program.GameState = null;
+                        currentMenuPositionY = 0;
+                        currentSubMenu = SubMenu.EpisodeList;
                         break;
                     case 4:
                         currentMenuPositionY = 0;
@@ -320,6 +374,16 @@ namespace AbrahmanAdventure.hud
                     isWaitingForAttackButtonRemap = true;
                 else if (currentMenuPositionY == 2)
                     isWaitingForLeaveBeaverButtonRemap = true;
+            }
+            else if (currentSubMenu == SubMenu.EpisodeList)
+            {
+                if (program.GameState != null)
+                    program.GameState.PlayerSprite.ResetHealthAndPowerUps();
+                currentSubMenu = SubMenu.Main;
+                program.ChangeGameState(currentMenuPositionY + episodeOffset);
+                currentMenuPositionY = 0;
+                program.IsShowMenu = false;
+                //program.GameState = null;
             }
         }
         #endregion
