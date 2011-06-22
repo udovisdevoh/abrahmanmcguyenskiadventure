@@ -46,14 +46,14 @@ namespace AbrahmanAdventure.physics
                             helmet.IsCurrentlyInFreeFallY = false;
                             SoundManager.PlayHitSound();
                             otherSprite.HitCycle.Fire();
-                            otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
+                            otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0f;//Yes, twice damage to monsters
                         }
                     }
                     else if (otherSprite is StaticSprite && helmet.IGround != null && otherSprite.IsImpassable)
                     {
-                        double virtualX = helmet.XPosition + ((helmet.IsTryingToWalkRight) ? helmet.CurrentWalkingSpeed : -helmet.CurrentWalkingSpeed);
-                        double virtualY = helmet.IGround[virtualX];
-                        if (Physics.IsDetectCollision(helmet, virtualX, virtualY, 1.0, otherSprite))
+                        float virtualX = helmet.XPosition + ((helmet.IsTryingToWalkRight) ? helmet.CurrentWalkingSpeed : -helmet.CurrentWalkingSpeed);
+                        float virtualY = helmet.IGround[virtualX];
+                        if (Physics.IsDetectCollision(helmet, virtualX, virtualY, 1.0f, otherSprite))
                         {
                             blockManager.TryOpenOrBreakBlock(helmet, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, random);
                         }

@@ -432,7 +432,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Default health
         /// </summary>
-        private double defaultHealth = 0.5;
+        private float defaultHealth = 0.5f;
         #endregion
 
         #region Constructors
@@ -441,14 +441,14 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
-        public PlayerSprite(double xPosition, double yPosition, Random random)
+        public PlayerSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             IsTiny = true;
             Health = defaultHealth;
             powerUpAnimationCycle = new Cycle(30, false);
             changingSizeAnimationCycle = new Cycle(20, false);
-            throwBallCycle = new Cycle(2.5, false);
+            throwBallCycle = new Cycle(2.5f, false);
             invincibilityCycle = new Cycle(400, false);
             fromVortexCycle = new Cycle(50, false);
 
@@ -1859,7 +1859,7 @@ namespace AbrahmanAdventure.sprites
             return flyRightSurfaceDoped;
         }
 
-        private Surface GetCurrentSurfaceWithBeaver(out double xOffset, out double yOffset)
+        private Surface GetCurrentSurfaceWithBeaver(out float xOffset, out float yOffset)
         {
             xOffset = 0;
             yOffset = 0;
@@ -1875,9 +1875,9 @@ namespace AbrahmanAdventure.sprites
             if (isShowTiny)
             {
                 if (IsTryingToWalkRight)
-                    xOffset = -0.15;
+                    xOffset = -0.15f;
                 else
-                    xOffset = 0.15;
+                    xOffset = 0.15f;
             }
 
 
@@ -2020,14 +2020,14 @@ namespace AbrahmanAdventure.sprites
                 hitSurface = hitSurfaceLeft;
             }
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+            int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
             if (AttackingCycle.IsFired)
             {
                 if (IsTryingToWalkRight)
-                    xOffset += 0.5;
+                    xOffset += 0.5f;
                 else
-                    xOffset -= 0.5;
+                    xOffset -= 0.5f;
 
                 return attackSurface;
             }
@@ -2088,7 +2088,7 @@ namespace AbrahmanAdventure.sprites
             isRasta = false;
             isDoped = false;
             isBeaver = false;
-            Health = 0.5;
+            Health = 0.5f;
         }
         #endregion
 
@@ -2123,7 +2123,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>width</returns>
         protected override float BuildWidth(Random random)
         {
-            return 0.7;
+            return 0.7f;
         }
 
         /// <summary>
@@ -2132,27 +2132,27 @@ namespace AbrahmanAdventure.sprites
         /// <returns>height</returns>
         protected override float BuildHeight(Random random)
         {
-            return 1.9;
+            return 1.9f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 25.0;
+            return 25.0f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.45;
+            return 0.45f;
         }
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.016;
+            return 0.016f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.60;
+            return 0.60f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -2162,7 +2162,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -2172,7 +2172,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildMaxHealth()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHitTime()
@@ -2182,17 +2182,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildBounciness()
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildMaxFallingSpeed()
         {
-            return double.PositiveInfinity;
+            return float.PositiveInfinity;
         }
 
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
@@ -2233,12 +2233,12 @@ namespace AbrahmanAdventure.sprites
             {
                 if (IsTryingToWalkRight)
                 {
-                    xOffset = 0.2;
+                    xOffset = 0.2f;
                     return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
                 }
                 else
                 {
-                    xOffset = -0.2;
+                    xOffset = -0.2f;
                     return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
                 }
             }
@@ -2252,12 +2252,12 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (attackCycleDivision >= 4)
                         {
-                            xOffset = 0.6;
+                            xOffset = 0.6f;
                             return GetCrouchedAttackFrame2RightSurface(isShowDopedColor, isRasta);
                         }
                         else
                         {
-                            xOffset = 0.2;
+                            xOffset = 0.2f;
                             return GetCrouchedAttackFrame1RightSurface(isShowDopedColor, isRasta);
                         }
                     }
@@ -2265,12 +2265,12 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (attackCycleDivision >= 4)
                         {
-                            xOffset = -0.6;
+                            xOffset = -0.6f;
                             return GetCrouchedAttackFrame2LeftSurface(isShowDopedColor, isRasta);
                         }
                         else
                         {
-                            xOffset = -0.2;
+                            xOffset = -0.2f;
                             return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor, isRasta);
                         }
                     }
@@ -2286,14 +2286,14 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision < 4)
                             {
-                                xOffset = 0.35;
-                                yOffset = 0.1;
+                                xOffset = 0.35f;
+                                yOffset = 0.1f;
                                 return GetKickFrame2RightSurfaceTiny(isShowDopedColor);
                             }
                             else
                             {
-                                xOffset = -0.2;
-                                yOffset = 0.0;
+                                xOffset = -0.2f;
+                                yOffset = 0.0f;
                                 return GetKickFrame1RightSurfaceTiny(isShowDopedColor);
                             }
                         }
@@ -2301,14 +2301,14 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision < 4)
                             {
-                                xOffset = -0.35;
-                                yOffset = 0.1;
+                                xOffset = -0.35f;
+                                yOffset = 0.1f;
                                 return GetKickFrame2LeftSurfaceTiny(isShowDopedColor);
                             }
                             else
                             {
-                                xOffset = 0.2;
-                                yOffset = 0.0;
+                                xOffset = 0.2f;
+                                yOffset = 0.0f;
                                 return GetKickFrame1LeftSurfaceTiny(isShowDopedColor);
                             }
                         }
@@ -2321,14 +2321,14 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision < 4)
                             {
-                                xOffset = 0.35;
-                                yOffset = 0.1;
+                                xOffset = 0.35f;
+                                yOffset = 0.1f;
                                 return GetKickFrame2RightSurface(isShowDopedColor, isRasta);
                             }
                             else
                             {
-                                xOffset = -0.2;
-                                yOffset = 0.0;
+                                xOffset = -0.2f;
+                                yOffset = 0.0f;
                                 return GetKickFrame1RightSurface(isShowDopedColor, isRasta);
                             }
                         }
@@ -2336,14 +2336,14 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision < 4)
                             {
-                                xOffset = -0.35;
-                                yOffset = 0.1;
+                                xOffset = -0.35f;
+                                yOffset = 0.1f;
                                 return GetKickFrame2LeftSurface(isShowDopedColor, isRasta);
                             }
                             else
                             {
-                                xOffset = 0.2;
-                                yOffset = 0.0;
+                                xOffset = 0.2f;
+                                yOffset = 0.0f;
                                 return GetKickFrame1LeftSurface(isShowDopedColor, isRasta);
                             }
                         }
@@ -2360,12 +2360,12 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision >= 4)
                             {
-                                xOffset = 0.6;
+                                xOffset = 0.6f;
                                 return GetAttackFrame2RightSurfaceTiny(isShowDopedColor);
                             }
                             else
                             {
-                                xOffset = 0.2;
+                                xOffset = 0.2f;
                                 return GetAttackFrame1RightSurfaceTiny(isShowDopedColor);
                             }
                         }
@@ -2373,12 +2373,12 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision >= 4)
                             {
-                                xOffset = -0.6;
+                                xOffset = -0.6f;
                                 return GetAttackFrame2LeftSurfaceTiny(isShowDopedColor);
                             }
                             else
                             {
-                                xOffset = -0.2;
+                                xOffset = -0.2f;
                                 return GetAttackFrame1LeftSurfaceTiny(isShowDopedColor);
                             }
                         }
@@ -2391,12 +2391,12 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision >= 4)
                             {
-                                xOffset = 0.6;
+                                xOffset = 0.6f;
                                 return GetAttackFrame2RightSurface(isShowDopedColor, isRasta);
                             }
                             else
                             {
-                                xOffset = 0.2;
+                                xOffset = 0.2f;
                                 return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
                             }
                         }
@@ -2404,12 +2404,12 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (attackCycleDivision >= 4)
                             {
-                                xOffset = -0.6;
+                                xOffset = -0.6f;
                                 return GetAttackFrame2LeftSurface(isShowDopedColor, isRasta);
                             }
                             else
                             {
-                                xOffset = -0.2;
+                                xOffset = -0.2f;
                                 return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
                             }
                         }
@@ -2435,7 +2435,7 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0)
                         {
-                            xOffset = -0.1;
+                            xOffset = -0.1f;
                             if (isShowDopedColor)
                                 return rastaFlyCrouchedDopedRight;
                             else
@@ -2447,7 +2447,7 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0)
                         {
-                            xOffset = 0.1;
+                            xOffset = 0.1f;
                             if (isShowDopedColor)
                                 return rastaFlyCrouchedDopedLeft;
                             else
@@ -2502,7 +2502,7 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
                         {
-                            xOffset = -0.33;
+                            xOffset = -0.33f;
                             return GetFlyRightSurface(isShowDopedColor);
                         }
                         else
@@ -2512,7 +2512,7 @@ namespace AbrahmanAdventure.sprites
                     {
                         if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
                         {
-                            xOffset = 0.33;
+                            xOffset = 0.33f;
                             return GetFlyLeftSurface(isShowDopedColor);
                         }
                         else
@@ -2524,7 +2524,7 @@ namespace AbrahmanAdventure.sprites
             }
             else if (CurrentWalkingSpeed != 0)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
                 #region Walking
                 if (isShowTiny)

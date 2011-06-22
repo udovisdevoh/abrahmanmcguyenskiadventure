@@ -58,7 +58,7 @@ namespace AbrahmanAdventure.level
         /// <param name="sky">sky</param>
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
-        public void Update(Level level, ColorTheme colorTheme, Sky sky, double viewOffsetX, double viewOffsetY)
+        public void Update(Level level, ColorTheme colorTheme, Sky sky, float viewOffsetX, float viewOffsetY)
         {
             mainSurface.Blit(sky.Surface, new Point(0, Sky.skyHeight / -4), sky.Surface.GetRectangle());
 
@@ -93,13 +93,13 @@ namespace AbrahmanAdventure.level
         /// <param name="rightBound">right bound</param>
         /// <param name="topBound">top bound</param>
         /// <param name="bottomBound">bottom bound</param>
-        public void ClearCacheAtRange(double leftBound, double rightBound, double topBound, double bottomBound)
+        public void ClearCacheAtRange(float leftBound, float rightBound, float topBound, float bottomBound)
         {
-            int leftBoundInt = (int)(leftBound / (double)Program.squareZoneTileWidth) * Program.squareZoneTileWidth;
-            int rightBoundInt = (int)Math.Ceiling(rightBound / (double)Program.squareZoneTileWidth) * Program.squareZoneTileWidth;
+            int leftBoundInt = (int)(leftBound / (float)Program.squareZoneTileWidth) * Program.squareZoneTileWidth;
+            int rightBoundInt = (int)Math.Ceiling(rightBound / (float)Program.squareZoneTileWidth) * Program.squareZoneTileWidth;
 
-            int topBoundInt = (int)(topBound / (double)Program.squareZoneTileHeight) * Program.squareZoneTileHeight;
-            int bottomBoundInt = (int)(bottomBound / (double)Program.squareZoneTileHeight) * Program.squareZoneTileHeight;
+            int topBoundInt = (int)(topBound / (float)Program.squareZoneTileHeight) * Program.squareZoneTileHeight;
+            int bottomBoundInt = (int)(bottomBound / (float)Program.squareZoneTileHeight) * Program.squareZoneTileHeight;
 
             levelViewerCache.ClearCacheAtRange(leftBoundInt, rightBoundInt, topBoundInt, bottomBoundInt);
         }
@@ -114,7 +114,7 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetX">view offset X</param>
         /// <param name="viewOffsetY">view offset Y</param>
         /// <returns>Position of a zone on screen</returns>
-        private Point GetZonePositionOnScreen(int zoneX, int zoneY, double viewOffsetX, double viewOffsetY)
+        private Point GetZonePositionOnScreen(int zoneX, int zoneY, float viewOffsetX, float viewOffsetY)
         {
             return new Point((int)((zoneX - viewOffsetX) * Program.tileSize), (int)((zoneY - viewOffsetY) * Program.tileSize));
         }
@@ -143,12 +143,12 @@ namespace AbrahmanAdventure.level
 
                 for (int x = 0; x < zoneWidth; x++)
                 {
-                    double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
-                    double waveOutputY = ground[waveInputX];
+                    float waveInputX = (float)(zoneX) + (float)x / (float)Program.tileSize;
+                    float waveOutputY = ground[waveInputX];
 
                     int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
 
-                    if (waveOutputY > (double)zoneY + Program.squareZoneTileHeight)
+                    if (waveOutputY > (float)zoneY + Program.squareZoneTileHeight)
                         continue;
                     else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX, zoneY))
                         continue;
@@ -193,7 +193,7 @@ namespace AbrahmanAdventure.level
                     #region Top texture
                     if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
                     {
-                        double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0 : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
+                        float scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0f : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0f;
                         Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
                         if (scaledSurface == null)
                         {
@@ -220,9 +220,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="viewOffsetX">X view offset</param>
         /// <returns>Left-most visible zone index</returns>
-        private int GetMinZoneX(double viewOffsetX)
+        private int GetMinZoneX(float viewOffsetX)
         {
-            return (int)(viewOffsetX / (double)Program.squareZoneTileWidth) * Program.squareZoneTileWidth - Program.squareZoneTileWidth;
+            return (int)(viewOffsetX / (float)Program.squareZoneTileWidth) * Program.squareZoneTileWidth - Program.squareZoneTileWidth;
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="viewOffsetX">X view offset</param>
         /// <returns>Last zone X index</returns>
-        private int GetMaxZoneX(double viewOffsetX)
+        private int GetMaxZoneX(float viewOffsetX)
         {
             return (int)viewOffsetX + Program.tileColumnCount;
         }
@@ -240,9 +240,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="viewOffsetY">Y view offset</param>
         /// <returns>First zone Y index</returns>
-        private int GetMinZoneY(double viewOffsetY)
+        private int GetMinZoneY(float viewOffsetY)
         {
-            return (int)(viewOffsetY / (double)Program.squareZoneTileHeight) * Program.squareZoneTileHeight - Program.squareZoneTileHeight;
+            return (int)(viewOffsetY / (float)Program.squareZoneTileHeight) * Program.squareZoneTileHeight - Program.squareZoneTileHeight;
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="viewOffsetY">Y view offset</param>
         /// <returns>Last zone Y index</returns>
-        private int GetMaxZoneY(double viewOffsetY)
+        private int GetMaxZoneY(float viewOffsetY)
         {
             return (int)viewOffsetY + Program.tileRowCount;
         }

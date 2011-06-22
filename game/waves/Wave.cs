@@ -14,19 +14,19 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Amplitude (from 0 to 1)
         /// </summary>
-        private double amplitude;
+        private float amplitude;
 
         /// <summary>
         /// Amount of wave cycle per common position/time span
         /// </summary>
-        private double frequency;
+        private float frequency;
 
-        private Dictionary<int, double> waveValueCache = new Dictionary<int, double>();
+        private Dictionary<int, float> waveValueCache = new Dictionary<int, float>();
 
         /// <summary>
         /// Phase, from -1 to 1
         /// </summary>
-        private double phase;
+        private float phase;
 
         /// <summary>
         /// Wave's function
@@ -41,7 +41,7 @@ namespace AbrahmanAdventure.level
         /// <param name="amplitude">Amplitude (from 0 to 1)</param>
         /// <param name="waveLength">Length of the wave</param>
         /// <param name="phase">Phase, from -1 to 1</param>
-        public Wave(double amplitude, double waveLength, double phase)
+        public Wave(float amplitude, float waveLength, float phase)
             : this(amplitude, waveLength, phase, null)
         {
         }
@@ -53,13 +53,13 @@ namespace AbrahmanAdventure.level
         /// <param name="waveLength">Length of the wave</param>
         /// <param name="phase">Phase, from -1 to 1</param>
         /// <param name="waveFunction">wave function (default: Math.sin)</param>
-        public Wave(double amplitude, double waveLength, double phase, WaveFunction waveFunction)
+        public Wave(float amplitude, float waveLength, float phase, WaveFunction waveFunction)
         {
             if (waveFunction == null)
                 waveFunction = Math.Sin;
 
             this.amplitude = amplitude;
-            this.frequency = 1.0 / waveLength;
+            this.frequency = 1.0f / waveLength;
             this.phase = phase;
             this.waveFunction = waveFunction;
         }
@@ -87,22 +87,22 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="x">x</param>
         /// <returns>amplitude at position/time x</returns>
-        public override double this[double x]
+        public override float this[float x]
         {
             get
             {
-                double value = 0.0;
+                float value = 0.0f;
 
                 x += (phase / frequency);
-                value = waveFunction(Math.PI * x * frequency) * amplitude;
+                value = (float)waveFunction(Math.PI * x * frequency) * amplitude;
 
                 return value;
             }
         }
 
-        public override double GetCachedValue(double x)
+        public override float GetCachedValue(float x)
         {
-            double value;
+            float value;
             int key = (int)(x * Program.tileSize);
             if (!waveValueCache.TryGetValue(key, out value))
             {
@@ -114,14 +114,14 @@ namespace AbrahmanAdventure.level
 
         public override void Normalize()
         {
-            Normalize(1.0);
+            Normalize(1.0f);
         }
 
         /// <summary>
         /// Normalize the wave to amplitude 1
         /// </summary>
         /// <param name="maxValue">max value</param>
-        public override void Normalize(double maxValue)
+        public override void Normalize(float maxValue)
         {
             Normalize(maxValue, true);
         }
@@ -131,7 +131,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="maxValue">max value</param>
         /// <param name="isIncreaseToo">true: we can increase amplitude, false: decrease only</param>
-        public override void Normalize(double maxValue, bool isIncreaseToo)
+        public override void Normalize(float maxValue, bool isIncreaseToo)
         {
             if (isIncreaseToo)
                 amplitude = maxValue;

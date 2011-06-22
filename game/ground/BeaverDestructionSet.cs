@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.level
         /// Key: x position
         /// Value: y offset
         /// </summary>
-        private Dictionary<int, double> internalDictionary = new Dictionary<int, double>();
+        private Dictionary<int, float> internalDictionary = new Dictionary<int, float>();
         #endregion
 
         #region Public Methods
@@ -23,13 +23,13 @@ namespace AbrahmanAdventure.level
         /// Dig a hole at x position
         /// </summary>
         /// <param name="xPosition">Dig a hole at x position</param>
-        public void Dig(double xPosition)
+        public void Dig(float xPosition)
         {
-            int index = (int)(xPosition / (double)Program.beaverHoleDiameter);
+            int index = (int)(xPosition / (float)Program.beaverHoleDiameter);
 
             IncrementDepthOffet(index, Program.beaverHoleDepth);
-            //IncrementDepthOffet(index - 1, Program.beaverHoleDepth / -2.0);
-            //IncrementDepthOffet(index + 1, Program.beaverHoleDepth / -2.0);
+            //IncrementDepthOffet(index - 1, Program.beaverHoleDepth / -2.0f);
+            //IncrementDepthOffet(index + 1, Program.beaverHoleDepth / -2.0f);
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="index">index</param>
         /// <param name="incrementationValue">incrementation value (negative or positive)</param>
-        private void IncrementDepthOffet(int index, double incrementationValue)
+        private void IncrementDepthOffet(int index, float incrementationValue)
         {
-            double depthOffset;
+            float depthOffset;
             if (internalDictionary.TryGetValue(index, out depthOffset))
             {
                 internalDictionary[index] = depthOffset + incrementationValue;
@@ -68,16 +68,16 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <returns>Dept offset at x position</returns>
-        public double this[double xPosition]
+        public float this[float xPosition]
         {
             get
             {
-                int index = (int)(xPosition / (double)Program.beaverHoleDiameter);
+                int index = (int)(xPosition / (float)Program.beaverHoleDiameter);
 
-                double yOffset;
+                float yOffset;
                 if (internalDictionary.TryGetValue(index, out yOffset))
                     return yOffset;
-                return 0.0;
+                return 0.0f;
             }
         }
         #endregion

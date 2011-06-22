@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public RaptorSprite(double xPosition, double yPosition, Random random)
+        public RaptorSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             GetWalking1RightSurface();
@@ -128,7 +128,7 @@ namespace AbrahmanAdventure.sprites
         #region Override Methods
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -138,23 +138,23 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.011;
+            return 0.011f;
             //return 0.004;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.45;
+            return 0.45f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.75;
+            return 0.75f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 28.0;
+            return 28.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -164,22 +164,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWidth(Random random)
         {
-            return 4.0;
+            return 4.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 2.5;
+            return 2.5f;
         }
 
         protected override float BuildMaxHealth()
         {
-            return 1.5;
+            return 1.5f;
         }
 
         protected override float BuildJumpProbability()
         {
-            return 0.2;
+            return 0.2f;
         }
 
         protected override float BuildHitTime()
@@ -189,7 +189,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
@@ -199,7 +199,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override bool BuildIsDieOnTouchGround()
@@ -331,7 +331,7 @@ namespace AbrahmanAdventure.sprites
             }
             else if (CurrentWalkingSpeed != 0)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+                int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
 
                 if (cycleDivision == 1)
                 {

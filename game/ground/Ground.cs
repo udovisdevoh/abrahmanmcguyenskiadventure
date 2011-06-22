@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.level
         {
             this.holeSet = holeSet;
 
-            topTexture = new Texture(random, color, 1.5, seed,groundId,true);
+            topTexture = new Texture(random, color, 1.5f, seed,groundId,true);
             beaverDestructionSet = new BeaverDestructionSet();
 
             if (Program.isAlwaysUseBottomTexture)
@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.level
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
             {
-                bottomTexture = new Texture(random, color, 16, 0.75, seed, groundId, false);
+                bottomTexture = new Texture(random, color, 16, 0.75f, seed, groundId, false);
             }
             
             this.terrainWave = terrainWave;

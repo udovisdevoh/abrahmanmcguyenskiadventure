@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(MonsterSprite monster, SpritePopulation spritePopulation, double timeDelta, Random random)
+        internal void Update(MonsterSprite monster, SpritePopulation spritePopulation, float timeDelta, Random random)
         {
             if (!monster.SpontaneousTransformationCycle.IsFired || monster.IsWalkEnabled || monster.SpontaneousTransformationCycle.IsFinished)
                 return;
@@ -32,7 +32,7 @@ namespace AbrahmanAdventure.physics
                     return;
 
                 monster.IsAlive = false;
-                monster.YPosition = Program.totalHeightTileCount + 1.0;
+                monster.YPosition = Program.totalHeightTileCount + 1f;
                 spritePopulation.Add(newSprite);
             }
         }

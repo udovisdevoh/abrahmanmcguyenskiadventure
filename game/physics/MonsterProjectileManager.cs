@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="playerSprite">player sprite</param>
-        internal void Update(IProjectileShooter iProjectileShooter, SpritePopulation spritePopulation, PlayerSprite playerSprite, double timeDelta, Random random)
+        internal void Update(IProjectileShooter iProjectileShooter, SpritePopulation spritePopulation, PlayerSprite playerSprite, float timeDelta, Random random)
         {
             if (Math.Abs(playerSprite.XPosition - iProjectileShooter.XPosition) > iProjectileShooter.MaxShootingDistance)
                 return;
@@ -39,7 +39,7 @@ namespace AbrahmanAdventure.physics
                 if (projectile is MonsterSprite)
                     ((MonsterSprite)projectile).IsNoAiDefaultDirectionWalkingRight = iProjectileShooter.XPosition < playerSprite.XPosition;
 
-                iProjectileShooter.ShootingCycle.TotalTimeLength = random.NextDouble() * (iProjectileShooter.MaxShootingTimeBetween - iProjectileShooter.MinShootingTimeBetween) + iProjectileShooter.MinShootingTimeBetween;
+                iProjectileShooter.ShootingCycle.TotalTimeLength = (float)random.NextDouble() * (iProjectileShooter.MaxShootingTimeBetween - iProjectileShooter.MinShootingTimeBetween) + iProjectileShooter.MinShootingTimeBetween;
                 iProjectileShooter.ShootingCycle.Fire();
             }
         }

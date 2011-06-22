@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public PeyoteSprite(double xPosition, double yPosition, Random random)
+        public PeyoteSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
@@ -56,17 +56,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.0;
+            return 0f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 1.0;
+            return 1f;
         }
 
         protected override float BuildBounciness()

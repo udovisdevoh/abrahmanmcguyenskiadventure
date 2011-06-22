@@ -130,9 +130,9 @@ namespace AbrahmanAdventure
 
         private Physics physics;
 
-        private double viewOffsetX = -(Program.tileColumnCount / 2);
+        private float viewOffsetX = -(Program.tileColumnCount / 2f);
 
-        private double viewOffsetY = 0.0;
+        private float viewOffsetY = 0.0f;
 
         private int seedNextGameState;
 
@@ -424,9 +424,9 @@ namespace AbrahmanAdventure
                 HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
 
                 //We process the time multiplicator
-                double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
+                float timeDelta = (float)(((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0);
                 if (isLimitFrameSkip)
-                    timeDelta = Math.Min(1.0, timeDelta);
+                    timeDelta = Math.Min(1.0f, timeDelta);
 
                 previousDateTime = DateTime.Now;
 
@@ -442,7 +442,7 @@ namespace AbrahmanAdventure
                         playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
                         IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
 
-                        if (playerSprite.IGround is Ground && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
+                        if (playerSprite.IGround is Ground && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (float)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
                             playerSprite.IGround = null;
                         else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
                             playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];
@@ -528,7 +528,7 @@ namespace AbrahmanAdventure
                         playerSprite.IsTryingToWalk = false;
                         if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired)
                         {
-                            double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
+                            float rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
                             if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
                             {
                                 playerSprite.IsTryingToWalk = true;
@@ -537,7 +537,7 @@ namespace AbrahmanAdventure
                             }
                             else
                             {
-                                double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, -Program.collisionDetectionResolution, false);
+                                float leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, -Program.collisionDetectionResolution, false);
                                 if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
                                 {
                                     playerSprite.IsTryingToWalk = true;
@@ -575,8 +575,8 @@ namespace AbrahmanAdventure
                     }
 
                 #region We position the camera
-                viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
-                viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
+                viewOffsetX = playerSprite.XPosition - (float)Program.tileColumnCount / 2.0f;
+                viewOffsetY = playerSprite.YPosition - (float)Program.tileRowCount / 2.0f - playerSprite.Height / 2.0f;
                 viewOffsetY = Math.Min(viewOffsetY, maxViewOffsetY);
                 #endregion
 

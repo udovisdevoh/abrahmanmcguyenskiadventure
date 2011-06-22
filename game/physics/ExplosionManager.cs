@@ -19,9 +19,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="playerSpriteReference">player sprite</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void UpdateExplodable(IExplodable spriteToUpdate, AbstractSprite playerSpriteReference, SpritePopulation spritePopulation, double timeDelta, Random random)
+        internal void UpdateExplodable(IExplodable spriteToUpdate, AbstractSprite playerSpriteReference, SpritePopulation spritePopulation, float timeDelta, Random random)
         {
-            double distanceToPlayer = Math.Max(Math.Abs(((AbstractSprite)spriteToUpdate).XPosition - playerSpriteReference.XPosition), Math.Abs(((AbstractSprite)spriteToUpdate).YPosition - playerSpriteReference.YPosition));
+            float distanceToPlayer = Math.Max(Math.Abs(((AbstractSprite)spriteToUpdate).XPosition - playerSpriteReference.XPosition), Math.Abs(((AbstractSprite)spriteToUpdate).YPosition - playerSpriteReference.YPosition));
 
             if (distanceToPlayer <= spriteToUpdate.MinDistanceFromPlayerToStartCountDown && !spriteToUpdate.CountDownCycle.IsFired)
             {
@@ -36,10 +36,10 @@ namespace AbrahmanAdventure.physics
                 if (spriteToUpdate.CountDownCycle.IsFinished)
                 {
                     SoundManager.PlayExplosionSound();
-                    ExplosionSprite explosionSprite = new ExplosionSprite(((AbstractSprite)spriteToUpdate).XPosition, ((AbstractSprite)spriteToUpdate).YPosition + 1.0, random);
+                    ExplosionSprite explosionSprite = new ExplosionSprite(((AbstractSprite)spriteToUpdate).XPosition, ((AbstractSprite)spriteToUpdate).YPosition + 1f, random);
                     explosionSprite.IsWalkEnabled = false;
                     ((AbstractSprite)spriteToUpdate).IsAlive = false;
-                    ((AbstractSprite)spriteToUpdate).YPosition = Program.totalHeightTileCount + 1.0;
+                    ((AbstractSprite)spriteToUpdate).YPosition = Program.totalHeightTileCount + 1f;
                     spritePopulation.Add(explosionSprite);
                 }
             }
@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="explosionSprite">explosion sprite</param>
         /// <param name="visibleSpriteList">list of visible sprite list</param>
         /// <param name="timeDelta">time delta</param>
-        internal void UpdateExplosion(ExplosionSprite explosionSprite, HashSet<AbstractSprite> visibleSpriteList, double timeDelta)
+        internal void UpdateExplosion(ExplosionSprite explosionSprite, HashSet<AbstractSprite> visibleSpriteList, float timeDelta)
         {
             if (explosionSprite.ExplosionCycle.IsFired)
             {
@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.physics
             if (explosionSprite.ExplosionCycle.IsFinished)
             {
                 explosionSprite.IsAlive = false;
-                explosionSprite.YPosition = Program.totalHeightTileCount + 1.0;
+                explosionSprite.YPosition = Program.totalHeightTileCount + 1.0f;
             }
 
             foreach (AbstractSprite otherMonster in visibleSpriteList)
@@ -74,7 +74,7 @@ namespace AbrahmanAdventure.physics
                         {
                             otherMonster.HitCycle.Fire();
                             //3 x the strength for damage on monsters
-                            otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision * 3.0;
+                            otherMonster.CurrentDamageReceiving = otherMonster.AttackStrengthCollision * 3.0f;
                         }
                     }
                 }

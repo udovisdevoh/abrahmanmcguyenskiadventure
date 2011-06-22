@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public PillSprite(double xPosition, double yPosition, Random random)
+        public PillSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             IsAffectedByGravity = false;
@@ -127,17 +127,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildJumpProbability()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override float BuildChangeDirectionNoAiCycleLength()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override float BuildSafeDistanceAi()
         {
-            return 0;
+            return 0f;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -152,12 +152,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildMaxHealth()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10.0f;
         }
 
         protected override float BuildWalkingCycleLength()
@@ -167,22 +167,22 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.01f;
         }
 
         protected override float BuildMaxWalkingSpeed()
         {
-            return 0.30;
+            return 0.30f;
         }
 
         protected override float BuildMaxRunningSpeed()
         {
-            return 0.30;
+            return 0.30f;
         }
 
         protected override float BuildStartingJumpAcceleration()
         {
-            return 0.0;
+            return 0.0f;
         }
 
         protected override float BuildAttackingTime()
@@ -197,17 +197,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
         protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1.0f;
         }
 
         protected override float BuildHeight(Random random)
         {
-            return 0.56;
+            return 0.56f;
         }
 
         public override Surface GetCurrentSurface(out float xOffset, out float yOffset)

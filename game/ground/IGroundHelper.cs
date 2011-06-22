@@ -22,11 +22,11 @@ namespace AbrahmanAdventure.physics
         internal static IGround GetHighestVisibleIGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             IGround highestIGroundBelowSprite = null;
-            double highestHeight = -1;
+            float highestHeight = -1;
 
             foreach (Ground ground in level)
             {
-                double currentHeight = ground[sprite.XPosition];
+                float currentHeight = ground[sprite.XPosition];
 
                 if (sprite.YPosition <= currentHeight)
                 {
@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.physics
 
                     if (isHorizontalCollision)
                     {
-                        double currentHeight = otherSprite.TopBound;
+                        float currentHeight = otherSprite.TopBound;
                         if (sprite.YPosition <= currentHeight)
                         {
                             if (otherSprite.TopBound <= currentHeight)
@@ -79,9 +79,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="xPosition">X Position</param>
         /// <returns>Whether ground is visible at X Position</returns>
-        internal static bool IsGroundVisible(Ground ground, Level level, double xPosition)
+        internal static bool IsGroundVisible(Ground ground, Level level, float xPosition)
         {
-            double yPosition = ground[xPosition];
+            float yPosition = ground[xPosition];
 
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
@@ -105,11 +105,11 @@ namespace AbrahmanAdventure.physics
         internal static Ground GetLowestVisibleGround(AbstractSprite sprite, Level level)
         {
             Ground lowestGround = null;
-            double lowestHeight = double.NegativeInfinity;
+            float lowestHeight = float.NegativeInfinity;
 
             foreach (Ground ground in level)
             {
-                double currentHeight = ground[sprite.XPosition];
+                float currentHeight = ground[sprite.XPosition];
 
                 if (currentHeight > lowestHeight)
                 {
@@ -130,7 +130,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="x">x position</param>
         /// <returns></returns>
-        internal static bool IsTransparentAt(Ground ground, Level level, double x)
+        internal static bool IsTransparentAt(Ground ground, Level level, float x)
         {
         	return ground.IsTransparent && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
         }
@@ -141,9 +141,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="xInput">x value</param>
         /// <returns>Whether ground is higher than other grounds</returns>
-        internal static bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
+        internal static bool IsHigherThanOtherGrounds(Ground ground, Level level, float xInput)
         {
-            double yOutput = ground[xInput];
+            float yOutput = ground[xInput];
             foreach (Ground otherGround in level)
                 if (otherGround != ground)
                     if (otherGround[xInput] < yOutput)
@@ -159,7 +159,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="waveInputX">x input of wave</param>
         /// <param name="yOutput">wave y output</param>
         /// <returns>Whether ground is higher than other grounds that are in front of it</returns>
-        internal static bool IsHigherThanOtherGroundsInFront(Ground ground, Level level, double waveInputX, double yOutput)
+        internal static bool IsHigherThanOtherGroundsInFront(Ground ground, Level level, float waveInputX, float yOutput)
         {
             bool isCrossedSourceGround = false;
             foreach (Ground otherGround in level)
@@ -187,7 +187,7 @@ namespace AbrahmanAdventure.physics
         internal static IGround GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             IGround frontMostGroundHavingAccessibleWalkingHeightForSprite = null;
-            double groundHeight = iGround[sprite.XPosition];
+            float groundHeight = iGround[sprite.XPosition];
 
             for (int groundId = level.Count - 1; groundId >= 0; groundId--)
             {
@@ -196,7 +196,7 @@ namespace AbrahmanAdventure.physics
                 if (currentGround == iGround)
                     break;
 
-                double currentGroundHeight = currentGround[sprite.XPosition];
+                float currentGroundHeight = currentGround[sprite.XPosition];
 
                 if (currentGroundHeight < groundHeight && groundHeight - currentGroundHeight <= sprite.MaximumWalkingHeight)
                 {
@@ -211,7 +211,7 @@ namespace AbrahmanAdventure.physics
                 {
                     if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
                     {
-                        double currentHeight = otherSprite.TopBound;
+                        float currentHeight = otherSprite.TopBound;
                         if (sprite.YPosition <= currentHeight)
                         {
                             if (Math.Abs(groundHeight - currentHeight) <= sprite.MaximumWalkingHeight)
@@ -237,13 +237,13 @@ namespace AbrahmanAdventure.physics
         /// <returns>highest ground having accessible walking height for sprite</returns>
         internal static IGround GetHighestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
-        	double groundHeight = iGround[sprite.XPosition];
-            double highestHeight = double.PositiveInfinity;
+        	float groundHeight = iGround[sprite.XPosition];
+            float highestHeight = float.PositiveInfinity;
             IGround highestGround = null;
 
             foreach (Ground currentGround in level)
             {
-                double currentGroundHeight = currentGround[sprite.XPosition];
+                float currentGroundHeight = currentGround[sprite.XPosition];
 
                 if (currentGroundHeight < highestHeight && Math.Abs(groundHeight - currentGroundHeight) <= sprite.MaximumWalkingHeight)
                 {
@@ -258,7 +258,7 @@ namespace AbrahmanAdventure.physics
                 {
                     if ((sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound))
                     {
-                        double currentHeight = otherSprite.TopBound;
+                        float currentHeight = otherSprite.TopBound;
                         if (sprite.YPosition <= currentHeight)
                         {
                             if (otherSprite.TopBound <= currentHeight)
