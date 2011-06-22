@@ -60,32 +60,32 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return 0.0;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 0.65;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 0.94;
         }
 
-        protected override double BuildBounciness()
+        protected override float BuildBounciness()
         {
             return 0.0;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             xOffset = 0;
             yOffset = 0;

@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">X Position</param>
         /// <param name="yPosition">Y Position</param>
         /// <param name="random">Random number generator</param>
-        public StaticSprite(double xPosition, double yPosition, Random random)
+        public StaticSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             isDestructible = false;
@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">Y Position</param>
         /// <param name="random">Random number generator</param>
         /// <param name="isDestructible">whether sprite can be destroyed (default: false)</param>
-        public StaticSprite(double xPosition, double yPosition, Random random, bool isDestructible)
+        public StaticSprite(float xPosition, float yPosition, Random random, bool isDestructible)
             : base(xPosition, yPosition, random)
         {
             this.isDestructible = isDestructible;
@@ -50,49 +50,49 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
-            return 0;
+            return 0f;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
-            return 16;
+            return 16f;
         }
 
-        protected override double BuildMaxFallingSpeed()
+        protected override float BuildMaxFallingSpeed()
         {
-            return double.PositiveInfinity;
+            return float.PositiveInfinity;
         }
         #endregion
 

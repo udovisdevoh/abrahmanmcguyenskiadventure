@@ -2121,7 +2121,7 @@ namespace AbrahmanAdventure.sprites
         /// Build width
         /// </summary>
         /// <returns>width</returns>
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 0.7;
         }
@@ -2130,72 +2130,72 @@ namespace AbrahmanAdventure.sprites
         /// Build height
         /// </summary>
         /// <returns>height</returns>
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 1.9;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
             return 25.0;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
             return 0.45;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
             return 0.016;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
             return 0.60;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
             return 10;
         }
 
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
             return 10.0;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 1.0;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
             return 32;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return 0.5;
         }
 
-        protected override double BuildBounciness()
+        protected override float BuildBounciness()
         {
             return 1.0;
         }
 
-        protected override double BuildMaxFallingSpeed()
+        protected override float BuildMaxFallingSpeed()
         {
             return double.PositiveInfinity;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             if (isBeaver)
                 return GetCurrentSurfaceWithBeaver(out xOffset, out yOffset);
@@ -2675,7 +2675,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Health when starting a level or after death
         /// </summary>
-        public double DefaultHealth
+        public float DefaultHealth
         {
             get { return defaultHealth; }
         }

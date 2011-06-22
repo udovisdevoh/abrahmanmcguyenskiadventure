@@ -32,7 +32,7 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle countDownCycle;
 
-        private double minDistanceFromPlayerToStartCountDown;
+        private float minDistanceFromPlayerToStartCountDown;
         #endregion
 
         #region Constructor
@@ -42,7 +42,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public MuslimSprite(double xPosition, double yPosition, Random random)
+        public MuslimSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             minDistanceFromPlayerToStartCountDown = 5;
@@ -159,12 +159,12 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildJumpProbability()
+        protected override float BuildJumpProbability()
         {
             return 0.17;
         }
 
-        protected override double BuildChangeDirectionNoAiCycleLength()
+        protected override float BuildChangeDirectionNoAiCycleLength()
         {
             return 10;
         }
@@ -179,72 +179,72 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
             return 10;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
             return 5;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
             return 0.01;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
             return 0.45;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
             return 0.45;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
             return 25.0;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
             return 32;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return 0.0;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 2.0;
         }
 
-        protected override double BuildSafeDistanceAi()
+        protected override float BuildSafeDistanceAi()
         {
             return 0.0;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             xOffset = yOffset = 0;
 
@@ -311,7 +311,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region IExplodable Members
-        public double MinDistanceFromPlayerToStartCountDown
+        public float MinDistanceFromPlayerToStartCountDown
         {
             get { return minDistanceFromPlayerToStartCountDown; }
         }

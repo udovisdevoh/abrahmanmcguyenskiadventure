@@ -44,7 +44,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public AnarchyBlockSprite(double xPosition, double yPosition, Random random)
+        public AnarchyBlockSprite(float xPosition, float yPosition, Random random)
             : this(xPosition, yPosition, random, BlockContent.Undefined, false)
         {
         }
@@ -57,7 +57,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         /// <param name="blockContent">block's content</param>
         /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
-        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, bool isBrick)
+        public AnarchyBlockSprite(float xPosition, float yPosition, Random random, bool isBrick)
             : this(xPosition, yPosition, random, BlockContent.Undefined, isBrick)
         {
         }
@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         /// <param name="blockContent">block's content (default:undefined)</param>
         /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
-        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, BlockContent blockContent, bool isBrick)
+        public AnarchyBlockSprite(float xPosition, float yPosition, Random random, BlockContent blockContent, bool isBrick)
             : base(xPosition, yPosition, random)
         {
             this.isBrick = isBrick;
@@ -125,32 +125,32 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 1.0;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return 0;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildBounciness()
+        protected override float BuildBounciness()
         {
             return 0.0;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             blinkCycle.Increment(1);
             bumpCycle.Increment(1);

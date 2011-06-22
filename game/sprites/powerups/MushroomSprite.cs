@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public MushroomSprite(double xPosition, double yPosition, Random random)
+        public MushroomSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
@@ -37,72 +37,72 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Override
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
             return 0;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
             return 0;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
             return 0.016;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
             return 0.17;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
             return 0.17;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
             return 20;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
             return 0;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
             return 0;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return -0.5;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildBounciness()
+        protected override float BuildBounciness()
         {
             return 0;
         }
 
-        protected override double BuildSafeDistanceAi()
+        protected override float BuildSafeDistanceAi()
         {
             return 0.0;
         }
@@ -202,12 +202,12 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildChangeDirectionNoAiCycleLength()
+        protected override float BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
         }
 
-        protected override double BuildJumpProbability()
+        protected override float BuildJumpProbability()
         {
             return 0;
         }
@@ -217,7 +217,7 @@ namespace AbrahmanAdventure.sprites
             return null;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             xOffset = yOffset = 0;
             return surface;

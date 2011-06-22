@@ -34,12 +34,12 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Probability of jumping (from 0 to 1)
         /// </summary>
-        private double jumpProbability;
+        private float jumpProbability;
 
         /// <summary>
         /// When AI is enabled, keep safe distance to player
         /// </summary>
-        private double safeDistanceAi;
+        private float safeDistanceAi;
 
         /// <summary>
         /// Whether monster can jump
@@ -150,11 +150,11 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public MonsterSprite(double xPosition, double yPosition, Random random)
+        public MonsterSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             isWalkEnabled = true;
-            kickedHelmetCycle = new Cycle(16.0,false);
+            kickedHelmetCycle = new Cycle(16.0f,false);
             spontaneousTransformationCycle = new Cycle(256, false);
             changeDirectionNoAiCycle = new Cycle(BuildChangeDirectionNoAiCycleLength(),true);
             safeDistanceAi = BuildSafeDistanceAi();
@@ -302,19 +302,19 @@ namespace AbrahmanAdventure.sprites
         /// Probability of jumping (from 0 to 1)
         /// </summary>
         /// <returns>Probability of jumping (from 0 to 1)</returns>
-        protected abstract double BuildJumpProbability();
+        protected abstract float BuildJumpProbability();
 
         /// <summary>
         /// Some sprites change direction automatically
         /// </summary>
         /// <returns>Some sprites change direction automatically</returns>
-        protected abstract double BuildChangeDirectionNoAiCycleLength();
+        protected abstract float BuildChangeDirectionNoAiCycleLength();
 
         /// <summary>
         /// Distance to keep from player (if AI is on)
         /// </summary>
         /// <returns>Distance to keep from player (if AI is on)</returns>
-        protected abstract double BuildSafeDistanceAi();
+        protected abstract float BuildSafeDistanceAi();
 
         /// <summary>
         /// Sprite when converted to another sprite (default: null)
@@ -340,14 +340,14 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildBounciness()
+        protected override float BuildBounciness()
         {
-            return 1.0;
+            return 1f;
         }
 
-        protected override double BuildMaxFallingSpeed()
+        protected override float BuildMaxFallingSpeed()
         {
-            return double.PositiveInfinity;
+            return float.PositiveInfinity;
         }
         #endregion
 
@@ -545,7 +545,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Probability of jumping (from 0 to 1)
         /// </summary>
-        public double JumpProbability
+        public float JumpProbability
         {
             get { return jumpProbability; }
         }
@@ -553,7 +553,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// When AI is enabled, keep safe distance to player
         /// </summary>
-        public double SafeDistanceAi
+        public float SafeDistanceAi
         {
             get { return safeDistanceAi; }
         }
