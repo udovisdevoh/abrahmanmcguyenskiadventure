@@ -68,21 +68,21 @@ namespace AbrahmanAdventure
 
         public const int squareZoneTileHeight = 10;
 
-        public const double zoneWidthScreenCount = 0.025;
-        
-        public const double collisionDetectionResolution = 0.0625;
-        
-        public const double holeHeight = 100.0;
+        public const float zoneWidthScreenCount = 0.025f;
 
-        public const double powerUpGrowthTime = 6.0;
+        public const float collisionDetectionResolution = 0.0625f;
 
-        public const double rastaFallingSpeed = 0.07;
+        public const float holeHeight = 100.0f;
 
-        public const double beaverHoleDiameter = 1.0;
+        public const float powerUpGrowthTime = 6.0f;
 
-        public const double beaverHoleDepth = 0.25;
+        public const float rastaFallingSpeed = 0.07f;
 
-        public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
+        public const float beaverHoleDiameter = 1.0f;
+
+        public const float beaverHoleDepth = 0.25f;
+
+        public static int tileColumnCount = (int)Math.Round(20.0f / (640.0f / 480.0f) * ((float)screenWidth / (float)screenHeight)); //20 for 4/3 screen
 
         public static int tileSize = screenWidth / tileColumnCount;
 
@@ -98,9 +98,9 @@ namespace AbrahmanAdventure
         
         public static int tileRowCount = screenHeight / tileSize;
 
-        public static double maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
+        public static float maxViewOffsetY = totalHeightTileCount / 2.0f - (float)tileRowCount;
 
-        public static double zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
+        public static float zoneColumnWidthTileCount = (float)totalZoneWidth / (float)tileSize;
         #endregion
 
         #region Fields and parts

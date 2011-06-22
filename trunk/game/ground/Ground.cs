@@ -95,9 +95,9 @@ namespace AbrahmanAdventure.level
         /// <param name="level">level</param>
         /// <param name="xInput">x value</param>
         /// <returns>Whether ground is higher than other grounds</returns>
-        public bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
+        public bool IsHigherThanOtherGrounds(Ground ground, Level level, float xInput)
         {
-        	double yOutput = terrainWave[xInput];
+            float yOutput = terrainWave[xInput];
         	
         	foreach (Ground otherGround in level)
         		if (otherGround != this)
@@ -120,7 +120,7 @@ namespace AbrahmanAdventure.level
         /// Dig hole at X position
         /// </summary>
         /// <param name="holeXPosition"></param>
-        public void DigHole(double holeXPosition)
+        public void DigHole(float holeXPosition)
         {
             beaverDestructionSet.Dig(holeXPosition);
         }
@@ -132,11 +132,11 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="xPosition">X position</param>
         /// <returns>Y value at X position</returns>
-        public double this[double xPosition]
+        public float this[float xPosition]
         {
             get
             {
-                double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
+                float yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
                     yValue = Program.holeHeight - yValue;
 

@@ -10,13 +10,13 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal interface ICarriable
     {
-        double XPosition
+        float XPosition
         {
             get;
             set;
         }
 
-        double YPosition
+        float YPosition
         {
             get;
             set;

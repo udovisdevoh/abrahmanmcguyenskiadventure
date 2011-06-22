@@ -149,57 +149,57 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Override Methods
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
             return 10.0;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
             return 5;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
             return 0.3;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
             return 0.17;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
             return 0.55;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
             return 25.0;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 1.3;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 1.0;
         }
 
-        protected override double BuildSafeDistanceAi()
+        protected override float BuildSafeDistanceAi()
         {
             return 0.0;
         }
@@ -219,22 +219,22 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
-        protected override double BuildJumpProbability()
+        protected override float BuildJumpProbability()
         {
             return 0.2;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
             return 32;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return 0.5;
         }
 
-        protected override double BuildChangeDirectionNoAiCycleLength()
+        protected override float BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
         }
@@ -328,7 +328,7 @@ namespace AbrahmanAdventure.sprites
         /// Get the sprite's current surface
         /// </summary>
         /// <returns>sprite's current surface</returns>
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             xOffset = 0;
             yOffset = 0.24;

@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public SnakeSprite(double xPosition, double yPosition, Random random)
+        public SnakeSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             GetLeft1Surface();
@@ -41,59 +41,59 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Override Methods
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10f;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
-            return 5;
+            return 5f;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
-            return 0.01;
+            return 0.01f;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
-            return 0.30;
+            return 0.30f;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
-            return 0.60;
+            return 0.60f;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
-            return 25.0;
+            return 25.0f;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
-            return 4;
+            return 4f;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1f;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
-            return 1.0;
+            return 1f;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
-            return 0.5;
+            return 0.5f;
         }
 
-        protected override double BuildSafeDistanceAi()
+        protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0f;
         }
 
         protected override bool BuildIsJumpableOn()
@@ -116,24 +116,24 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
-        protected override double BuildJumpProbability()
+        protected override float BuildJumpProbability()
         {
-            return 1.2;
+            return 1.2f;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
-            return 16;
+            return 16f;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
-            return 0.5;
+            return 0.5f;
         }
 
-        protected override double BuildChangeDirectionNoAiCycleLength()
+        protected override float BuildChangeDirectionNoAiCycleLength()
         {
-            return 100;
+            return 100f;
         }
 
         protected override bool BuildIsDieOnTouchGround()
@@ -220,11 +220,11 @@ namespace AbrahmanAdventure.sprites
         /// Get the sprite's current surface
         /// </summary>
         /// <returns>sprite's current surface</returns>
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
-            xOffset = 0;
-            yOffset = 0;
-            int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
+            xOffset = 0f;
+            yOffset = 0f;
+            int cycleDivision = WalkingCycle.GetCycleDivision(2.0f);
 
             if (!IsAlive)
                 return GetDeadSurface();

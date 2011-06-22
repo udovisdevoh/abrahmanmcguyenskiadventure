@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public BrickSprite(double xPosition, double yPosition, Random random)
+        public BrickSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             bumpCycle = new Cycle(10, false);
@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">y position</param>
         /// <param name="isDestructible">whether sprite is destructible (default: false)</param>
         /// <param name="random">random number generator</param>
-        public BrickSprite(double xPosition, double yPosition, Random random, bool isDestructible)
+        public BrickSprite(float xPosition, float yPosition, Random random, bool isDestructible)
             : base(xPosition, yPosition, random, isDestructible)
         {
             bumpCycle = new Cycle(10, false);
@@ -68,27 +68,27 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
             return 1.0;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
             return 0.0;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
             return 1.0;
         }
 
-        protected override double BuildBounciness()
+        protected override float BuildBounciness()
         {
             return 0;
         }
@@ -103,7 +103,7 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
             xOffset = yOffset = 0;
             bumpCycle.Increment(1);

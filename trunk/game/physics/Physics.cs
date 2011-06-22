@@ -251,10 +251,10 @@ namespace AbrahmanAdventure.physics
         /// <param name="ground">ground</param>
         /// <param name="walkingDistance">walking distance (could be negative)</param>
         /// <returns>ratio of a slope at sprite's position going in sprite's current direction. 0: flat, 1: 45% going down, -1: -45% going up</returns>
-        internal static double GetSlopeRatio(AbstractSprite sprite, IGround ground, double walkingDistance, bool isRight)
+        internal static float GetSlopeRatio(AbstractSprite sprite, IGround ground, float walkingDistance, bool isRight)
         {
             if (ground is AbstractSprite)
-                return 0.0;
+                return 0.0f;
 
             if (isRight)
                 return ((ground[sprite.XPosition + walkingDistance] - ground[sprite.XPosition]) / walkingDistance) / 2.0;

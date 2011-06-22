@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     interface IExplodable
     {
-        double MinDistanceFromPlayerToStartCountDown
+        float MinDistanceFromPlayerToStartCountDown
         {
             get;
         }

@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="xPosition">x Position</param>
         /// <returns>Ground height</returns>
-        double this[double xPosition]
+        float this[float xPosition]
         {
             get;
         }

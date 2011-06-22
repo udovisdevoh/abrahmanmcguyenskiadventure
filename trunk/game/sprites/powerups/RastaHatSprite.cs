@@ -30,15 +30,15 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public RastaHatSprite(double xPosition, double yPosition, Random random)
+        public RastaHatSprite(float xPosition, float yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            MaxFallingSpeed = 0.025;
+            MaxFallingSpeed = 0.025f;
             IsCrossGrounds = true;
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
                 surface = BuildSpriteSurface("./assets/rendered/powerups/rastaHat.png");
-            ChangeDirectionNoAiCycle.CurrentValue = random.NextDouble() * ChangeDirectionNoAiCycle.TotalTimeLength;
+            ChangeDirectionNoAiCycle.CurrentValue = (float)random.NextDouble() * ChangeDirectionNoAiCycle.TotalTimeLength;
         }
         #endregion
 
@@ -48,39 +48,39 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildMaxHealth()
+        protected override float BuildMaxHealth()
         {
-            return 100.0;
+            return 100f;
         }
 
-        protected override double BuildStartingJumpAcceleration()
+        protected override float BuildStartingJumpAcceleration()
         {
-            return 30;
+            return 30f;
         }
 
-        protected override double BuildAttackingTime()
+        protected override float BuildAttackingTime()
         {
-            return 0.0;
+            return 0f;
         }
 
-        protected override double BuildHitTime()
+        protected override float BuildHitTime()
         {
-            return 0.0;
+            return 0f;
         }
 
-        protected override double BuildAttackStrengthCollision()
+        protected override float BuildAttackStrengthCollision()
         {
-            return -0.5;
+            return -0.5f;
         }
 
-        protected override double BuildWidth(Random random)
+        protected override float BuildWidth(Random random)
         {
-            return 1.0;
+            return 1f;
         }
 
-        protected override double BuildHeight(Random random)
+        protected override float BuildHeight(Random random)
         {
-            return 1.0;
+            return 1f;
         }
 
         public Cycle GrowthCycle
@@ -88,39 +88,39 @@ namespace AbrahmanAdventure.sprites
             get { return growthCycle; }
         }
 
-        protected override double BuildJumpingTime()
+        protected override float BuildJumpingTime()
         {
-            return 10.0;
+            return 10f;
         }
 
-        protected override double BuildWalkingCycleLength()
+        protected override float BuildWalkingCycleLength()
         {
-            return 10;
+            return 10f;
         }
 
-        protected override double BuildWalkingAcceleration()
+        protected override float BuildWalkingAcceleration()
         {
-            return 0.016;
+            return 0.016f;
         }
 
-        protected override double BuildMaxWalkingSpeed()
+        protected override float BuildMaxWalkingSpeed()
         {
-            return 0.20;
+            return 0.20f;
         }
 
-        protected override double BuildMaxRunningSpeed()
+        protected override float BuildMaxRunningSpeed()
         {
-            return 0.20;
+            return 0.20f;
         }
 
-        protected override double BuildSafeDistanceAi()
+        protected override float BuildSafeDistanceAi()
         {
-            return 0.0;
+            return 0f;
         }
 
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
         {
-            xOffset = yOffset = 0.0;
+            xOffset = yOffset = 0f;
             return surface;
         }
 
@@ -214,14 +214,14 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override double BuildChangeDirectionNoAiCycleLength()
+        protected override float BuildChangeDirectionNoAiCycleLength()
         {
-            return 38;
+            return 38f;
         }
 
-        protected override double BuildJumpProbability()
+        protected override float BuildJumpProbability()
         {
-            return 0.0;
+            return 0f;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
