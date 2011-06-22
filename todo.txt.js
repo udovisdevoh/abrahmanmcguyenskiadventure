@@ -4,12 +4,6 @@ restore
 	random seed
 }
 
-episode list
-{
-	ce sera 2 milliards d'épisodes
-}
-
-
 ?remove pink bias?
 
 fix add texture cache transparency bug

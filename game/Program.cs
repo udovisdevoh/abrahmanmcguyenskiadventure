@@ -24,7 +24,7 @@ namespace AbrahmanAdventure
 
         public const bool isFullScreen = false;
 
-        public const bool isShowMenuOnStart = false;
+        public const bool isShowMenuOnStart = true;
 
         public const bool isHardwareSurface = true;
 
@@ -153,14 +153,7 @@ namespace AbrahmanAdventure
 
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
-            seedNextGameState = 0;// new Random().Next();
-
-            #warning Remove test string
-            string test = AbrahmanAdventure.textGenerator.LineGenerator.GetRandomLine(new Random());
-            string episode0 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(0);
-            string episode1 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(1);
-            string episode2 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(2);
-            string episode3 = AbrahmanAdventure.hud.EpisodeList.GetEpisodeName(3);            
+            seedNextGameState = new Random().Next();         
             
             if (isFullScreen)
                 Cursor.Hide();
@@ -224,6 +217,10 @@ namespace AbrahmanAdventure
                 userInput.isPressAttack = true;
             else if (args.Key == Key.LeftAlt)
                 userInput.isPressLeaveBeaver = true;
+            else if (args.Key == Key.PageUp)
+                userInput.isPressPageUp = true;
+            else if (args.Key == Key.PageDown)
+                userInput.isPressPageDown = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
@@ -242,6 +239,10 @@ namespace AbrahmanAdventure
                 userInput.isPressAttack = false;
             else if (args.Key == Key.LeftAlt)
                 userInput.isPressLeaveBeaver = false;
+            else if (args.Key == Key.PageUp)
+                userInput.isPressPageUp = false;
+            else if (args.Key == Key.PageDown)
+                userInput.isPressPageDown = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
