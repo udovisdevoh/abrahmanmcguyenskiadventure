@@ -201,22 +201,26 @@ namespace AbrahmanAdventure.hud
                 }
                 else if (userInput.isPressUp)
                 {
+                    SoundManager.PlayHitSound();
                     MoveUp();
                     keyCycle.Fire();
                 }
                 else if (userInput.isPressDown)
                 {
+                    SoundManager.PlayHitSound();
                     MoveDown();
                     keyCycle.Fire();
                 }
                 else if (userInput.isPressPageDown)
                 {
+                    SoundManager.PlayHitSound();
                     for (int i = 0; i < listMaxMenuItemCount[(short)currentSubMenu]; i++)
                         MoveDown();
                     keyCycle.Fire();
                 }
                 else if (userInput.isPressPageUp)
                 {
+                    SoundManager.PlayHitSound();
                     for (int i = 0; i < listMaxMenuItemCount[(short)currentSubMenu]; i++)
                         MoveUp();
                     keyCycle.Fire();
@@ -292,7 +296,6 @@ namespace AbrahmanAdventure.hud
         {
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
-            SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionY--;
             if (currentMenuPositionY < 0)
@@ -315,11 +318,8 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         private static void MoveDown()
         {
-
-
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
-            SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionY++;
             if (currentMenuPositionY > listMaxMenuItemCount[(int)currentSubMenu])
@@ -383,7 +383,6 @@ namespace AbrahmanAdventure.hud
                 program.ChangeGameState(currentMenuPositionY + episodeOffset);
                 currentMenuPositionY = 0;
                 program.IsShowMenu = false;
-                //program.GameState = null;
             }
         }
         #endregion
