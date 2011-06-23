@@ -213,9 +213,9 @@ namespace AbrahmanAdventure
                 userInput.isPressDown = true;
             else if (args.Key == Key.Space || args.Key == Key.Return || args.Key == Key.KeypadEnter)
                 userInput.isPressJump = true;
-            else if (args.Key == Key.LeftControl)
+            else if (args.Key == Key.LeftControl || args.Key == Key.RightControl)
                 userInput.isPressAttack = true;
-            else if (args.Key == Key.LeftAlt)
+            else if (args.Key == Key.LeftAlt || args.Key == Key.RightAlt)
                 userInput.isPressLeaveBeaver = true;
             else if (args.Key == Key.PageUp)
                 userInput.isPressPageUp = true;
@@ -233,11 +233,11 @@ namespace AbrahmanAdventure
                 userInput.isPressUp = false;
             else if (args.Key == Key.DownArrow)
                 userInput.isPressDown = false;
-            else if (args.Key == Key.Space || args.Key == Key.Return)
+            else if (args.Key == Key.Space || args.Key == Key.Return || args.Key == Key.KeypadEnter)
                 userInput.isPressJump = false;
-            else if (args.Key == Key.LeftControl)
+            else if (args.Key == Key.LeftControl || args.Key == Key.RightControl)
                 userInput.isPressAttack = false;
-            else if (args.Key == Key.LeftAlt)
+            else if (args.Key == Key.LeftAlt || args.Key == Key.RightAlt)
                 userInput.isPressLeaveBeaver = false;
             else if (args.Key == Key.PageUp)
                 userInput.isPressPageUp = false;
