@@ -149,14 +149,6 @@ Monstres
 			lance des bigmacs, frites, coke, etc
 		}
 	}
-
-	Jesus raptor
-	{
-		améliorer la texture du raptor (+d'ombrages)
-		mettre courone d'épine et/ou auréole
-		doit tenir une croix dans sa main
-		mettre genre de couche
-	}
 	
 	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
 	
