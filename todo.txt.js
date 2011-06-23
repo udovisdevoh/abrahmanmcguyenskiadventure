@@ -1,9 +1,3 @@
-restore
-{
-	show menu on start
-	random seed
-}
-
 ?remove pink bias?
 
 fix add texture cache transparency bug
@@ -13,42 +7,31 @@ Changer nom d'app
 ?add maximum time delta (will slow down, but physics will be tested properly)?
 
 create persistant config
+{
+	Save sound and music volues
+	Joystick buttons
+	screen resolution
+	whether it is fullscreen
+}
 
 monsters should respawn after player dies
 
-Faire écran de menu
+Menu
 {
-	Logo
-	
-	?si dure trop longtemps, affiche "how to play"?
-	
-	Menu
+	Graphical options
 	{
-		New game
-		{
-			Choix d'épisode avec nom random (très courte phrase)
-			32768 épisodes (chaque seed possible)
-		}
-		Load game (?password?) lol
-		Graphical options
-		{
-			Changer résolution
-			Fullscreen?
-		}
-		Setup controller
-		{
-			Config de joystick
-		}
-		Audio
-		{
-			Volume de musique et de sons
-		}
-		How to play
-		{
-			Comment jouer (key comb)
-			Tous les monstres et leur noms
-		}
+		Changer résolution
+		Fullscreen?
 	}
+	Audio
+	{
+		Volume de musique et de sons
+	}
+}
+
+add skill level system
+{
+	Must be saved in GameMetaState
 }
 
 ?si tiny: son différent si jump?
@@ -75,8 +58,6 @@ fix fire balls
 {
 	?Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)?
 }
-
-Test implementation: jump under block: s'il y a un monstre dessus, update sa direction selon angle d'icidence
 
 Faire gestion automatique de la population de sprite
 {
@@ -131,7 +112,8 @@ shells must open anarchy blocks and break brick blocks
 		dans les level, tu trouve des seed d'aladdium. Parfois il faut battre un monstre boss pour l'avoir,
 		parfois c'est caché
 		
-		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans. (plus gros, look différent), affiche nombre minimum dessus
+		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans. (plus gros, look différent) (le skill level des level pas encore visités augmente), affiche nombre minimum dessus
+		On ne peut utiliser des seeds d'aladdium que si elles proviennent d'un niveau au skill level actuel
 		Lorsque tu entre dans ces pipe, tu va au niveau suivant (plus de sorte de sprite, certains levels sont plus grands)
 		chaque seed d'Alladium à son Hash (genre md5) unique comme ça on ne peut pas pogner le même 2 fois)
 	}
