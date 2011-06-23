@@ -1,10 +1,6 @@
-?remove pink bias?
-
 fix add texture cache transparency bug
 
 Changer nom d'app
-
-?add maximum time delta (will slow down, but physics will be tested properly)?
 
 create persistant config
 {
@@ -18,7 +14,7 @@ monsters should respawn after player dies
 
 Menu
 {
-	Graphical options
+	Display
 	{
 		Changer résolution
 		Fullscreen?
@@ -32,19 +28,13 @@ Menu
 add skill level system
 {
 	Must be saved in GameMetaState
+	show skill level when show planet image
 }
-
-?si tiny: son différent si jump?
 
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
-	Boss de la fin: grosse machine, puis vrai boss, contre sois-même
+	Boss de la fin: grosse machine, ?puis vrai boss, contre sois-même?
 }
-
-?get frontmost walkable ground
-{
-	?must not take sprite ground if it's lower than current ground?
-}?
 
 ?Maybe increase maxCachedColumnCount = 100 to 1000 and do some prerendering when sprite not walking?
 
@@ -93,9 +83,6 @@ shells must open anarchy blocks and break brick blocks
 }?
 
 
-?si invincible -> nombre plus élevé de boules de feux sur l'écran?
-
-
 ?add bouncing notes?
 ?add pipes or equivalent, must think about it first?
 {
@@ -126,13 +113,6 @@ mettre décorations anarchiques
 
 add some water, lava etc
 
-Regler bug de zone de tile hyper repeté
-
-Possiblement réglé
-{
-	Éliminer ground avec régions cul de sac vertical, éliminer ground avec bosse à pic en loop toujours pareille
-	on doit pouvoir passer au travers des pics verticaux en sautant (pas coller dessus)
-}
 ?on doit pouvoir grimper sur les parroies verticales
 
 glisser: doit attaquer monstrers (ne doit plus glisser sur pente trop douce)
@@ -145,7 +125,6 @@ fin de level
 }
 
 
-?on death, change level?
 ?add key combination for self death (when stucked)?
 
 
