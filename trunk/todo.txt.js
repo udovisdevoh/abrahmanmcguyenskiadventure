@@ -27,6 +27,7 @@ Menu
 
 add skill level system
 {
+	select starting skill level on episode page using left / right arrows
 	Must be saved in GameMetaState
 	show skill level when show planet image
 }
@@ -158,7 +159,9 @@ Monstres
 	
 	équivalent de poisson
 	
-	équivalent de bullet bill
+	équivalent de lakitu
+	
+	équivalent de truc que lakitu lance: punk avec une crête à pics?
 	
 	Journaliste
 	{
