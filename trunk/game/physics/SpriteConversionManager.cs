@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.sprites
         internal void PerformSpriteConversion(AbstractSprite playerSprite, AbstractSprite oldSprite, AbstractSprite newSprite, SpritePopulation spritePopulation)
         {
             oldSprite.IsAlive = false;
-            oldSprite.YPosition = Program.totalHeightTileCount + 1.0f;//The sprite will have already fell down
+            oldSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
             spritePopulation.Add(newSprite);
 
             if (newSprite is MonsterSprite && oldSprite is MonsterSprite)

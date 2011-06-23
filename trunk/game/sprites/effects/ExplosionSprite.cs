@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public ExplosionSprite(float xPosition, float yPosition, Random random)
+        public ExplosionSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             explosionCycle = new Cycle(15, false);
@@ -134,14 +134,14 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildJumpProbability()
+        protected override double BuildJumpProbability()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildChangeDirectionNoAiCycleLength()
+        protected override double BuildChangeDirectionNoAiCycleLength()
         {
-            return 1.0f;
+            return 1.0;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -154,72 +154,72 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override float BuildJumpingTime()
+        protected override double BuildJumpingTime()
         {
             return 0;
         }
 
-        protected override float BuildWalkingCycleLength()
+        protected override double BuildWalkingCycleLength()
         {
-            return 0.1f;
+            return 0.1;
         }
 
-        protected override float BuildWalkingAcceleration()
-        {
-            return 0;
-        }
-
-        protected override float BuildMaxWalkingSpeed()
+        protected override double BuildWalkingAcceleration()
         {
             return 0;
         }
 
-        protected override float BuildMaxRunningSpeed()
+        protected override double BuildMaxWalkingSpeed()
         {
             return 0;
         }
 
-        protected override float BuildStartingJumpAcceleration()
+        protected override double BuildMaxRunningSpeed()
         {
             return 0;
         }
 
-        protected override float BuildAttackingTime()
+        protected override double BuildStartingJumpAcceleration()
         {
             return 0;
         }
 
-        protected override float BuildHitTime()
+        protected override double BuildAttackingTime()
         {
             return 0;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildHitTime()
         {
-            return 0.5f;
+            return 0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildAttackStrengthCollision()
         {
-            return 4.0f;
+            return 0.5;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 4.0f;
+            return 4.0;
         }
 
-        protected override float BuildSafeDistanceAi()
+        protected override double BuildHeight(Random random)
         {
-            return 0.0f;
+            return 4.0;
         }
 
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        protected override double BuildSafeDistanceAi()
+        {
+            return 0.0;
+        }
+
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
             int cycleDivision = ExplosionCycle.GetCycleDivision(100) % 3;

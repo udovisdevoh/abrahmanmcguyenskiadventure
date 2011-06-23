@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public Trampoline(float xPosition, float yPosition, Random random)
+        public Trampoline(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             surface = BuildSpriteSurface("./assets/rendered/staticSprites/trampoline.png");
@@ -45,35 +45,35 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 2.0f;
+            return 2.0;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 0.7f;
+            return 0.7;
         }
 
-        protected override float BuildBounciness()
+        protected override double BuildBounciness()
         {
-            return 1.5f;
+            return 1.5;
         }
 
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;
-            yOffset = 0.1f;
+            yOffset = 0.1;
             return surface;
         }
         #endregion

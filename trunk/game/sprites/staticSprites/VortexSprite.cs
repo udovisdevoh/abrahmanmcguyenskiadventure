@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public VortexSprite(float xPosition, float yPosition, Random random, bool isGoingIn)
+        public VortexSprite(double xPosition, double yPosition, Random random, bool isGoingIn)
             : base(xPosition, yPosition, random)
         {
             this.isGoingIn = isGoingIn;
@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         /// <param name="isAffectedByGravity">default true</param>
         /// <param name="destinationSeed">default: random using local seed</param>
-        public VortexSprite(float xPosition, float yPosition, Random random, int destinationSeed, bool isGoingIn)
+        public VortexSprite(double xPosition, double yPosition, Random random, int destinationSeed, bool isGoingIn)
             : base(xPosition, yPosition, random)
         {
             this.isGoingIn = isGoingIn;
@@ -128,38 +128,38 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
-            return 1000f;
+            return 1000;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 0f;
+            return 0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 3f;
+            return 3;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 3f;
+            return 3;
         }
 
-        protected override float BuildBounciness()
+        protected override double BuildBounciness()
         {
-            return 0f;
+            return 0;
         }
 
-        public override SdlDotNet.Graphics.Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override SdlDotNet.Graphics.Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = 0f;
-            yOffset = 0.1f;
+            xOffset = 0;
+            yOffset = 0.1;
             int cycleDivision = rotateCycle.GetCycleDivision(3);
 
-            rotateCycle.Increment(1.0f);
+            rotateCycle.Increment(1.0);
 
             if (isGoingIn)
             {

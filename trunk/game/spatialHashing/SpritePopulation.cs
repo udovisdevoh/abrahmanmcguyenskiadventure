@@ -94,7 +94,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="viewOffsetY">view offset on Y coordinates</param>
         /// <param name="toUpdateSpriteList">List of currently visible sprites + some other sprites that are not visible yet but close</param>
         /// <returns>List of currently visible sprites</returns>
-        internal HashSet<AbstractSprite> GetVisibleSpriteList(float viewOffsetX, float viewOffsetY, out HashSet<AbstractSprite> toUpdateSpriteList)
+        internal HashSet<AbstractSprite> GetVisibleSpriteList(double viewOffsetX, double viewOffsetY, out HashSet<AbstractSprite> toUpdateSpriteList)
         {
             int leftMostViewableBucketId = ((int)Math.Floor(viewOffsetX)) / Program.spatialHashingBucketWidth;
             int rightMostViewableBucketId = ((int)Math.Ceiling(viewOffsetX + Program.tileColumnCount)) / Program.spatialHashingBucketWidth;
@@ -108,7 +108,7 @@ namespace AbrahmanAdventure.sprites
                 Bucket bucket = this[bucketId];
                 foreach (AbstractSprite sprite in bucket)
                 {
-                    if (sprite.YPosition >= viewOffsetY && sprite.YPosition <= viewOffsetY + (float)Program.tileRowCount + sprite.Height + 2.0)
+                    if (sprite.YPosition >= viewOffsetY && sprite.YPosition <= viewOffsetY + (double)Program.tileRowCount + sprite.Height + 2.0)
                         visibleSpriteList.Add(sprite);
                     if (Program.isBroadRangeUpdateSprite)
                         __toUpdateSpriteList.Add(sprite);

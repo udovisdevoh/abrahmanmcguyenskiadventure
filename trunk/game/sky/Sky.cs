@@ -63,18 +63,18 @@ namespace AbrahmanAdventure.level
             
             for (int x = 0; x < skyWidth; x++)
             {
-                float relativeX = (float)x / (float)Program.screenWidth * 640.0f;
-                float verticalWaveOffset = verticalWave[relativeX] / 4.0f;
+            	double relativeX = (double)x / (double)Program.screenWidth * 640.0;
+            	double verticalWaveOffset = verticalWave[relativeX] / 4.0;
             	
             	if (column == null)
             	{
             		column = new Surface(1, skyHeight,Program.bitDepth);
 	            	for (int y = 0; y < skyHeight; y++)
 	            	{
-                        float currentHue = colorHsl.Hue;
-                        float currentSaturation = colorHsl.Saturation;
-                        float currentLightness = colorHsl.Lightness;
-                        float relativeY = (float)y / (float)Program.screenHeight * 480.0f;
+                        double currentHue = colorHsl.Hue;
+                        double currentSaturation = colorHsl.Saturation;
+                        double currentLightness = colorHsl.Lightness;
+	            		double relativeY = (double)y / (double)Program.screenHeight * 480.0;
            		
 	            		currentHue += horizontalWaveHue[relativeY];
 	            		currentSaturation += horizontalWaveSaturation[relativeY];
@@ -88,7 +88,7 @@ namespace AbrahmanAdventure.level
 	            		currentSaturation = Math.Min(255, currentSaturation);
 	            		currentLightness = Math.Min(255, currentLightness);
 	            		
-	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0f, currentLightness / 256.0f);
+	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 	            		column.Fill(new Rectangle(0,y,1,1), color);
             		}
             	}
@@ -109,9 +109,9 @@ namespace AbrahmanAdventure.level
             WavePack wavePack = new WavePack();
             for (int i = 1; i < 5; i++)
             {
-                float amplitude = (float)random.NextDouble() * 7.0f + 1.0f;
-                float waveLength = (float)i * 60f;
-                float phase = (float)random.NextDouble() * 2.0f - 1.0f;
+                double amplitude = random.NextDouble() * 7.0 + 1.0;
+                double waveLength = (double)i * 60;
+                double phase = random.NextDouble() * 2.0 - 1.0;
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.Sine));
             }
             return wavePack;

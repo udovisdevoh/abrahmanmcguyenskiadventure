@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public PeyoteSprite(float xPosition, float yPosition, Random random)
+        public PeyoteSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
@@ -49,32 +49,32 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 0f;
+            return 0.0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 1f;
+            return 1.0;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 1f;
+            return 1.0;
         }
 
-        protected override float BuildBounciness()
+        protected override double BuildBounciness()
         {
             return 0;
         }
 
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
             return surface;

@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">Sprite</param>
         /// <param name="timeDelta">Time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, float timeDelta)
+        internal void Update(AbstractSprite sprite, double timeDelta)
         {
             sprite.HitCycle.Increment(timeDelta);
             sprite.PunchedCycle.Increment(timeDelta);
@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.physics
 
             if (sprite.IsAlive && sprite.HitCycle.IsFired && sprite.CurrentDamageReceiving > 0)
             {
-                float decrease = (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 5.0f;
+                double decrease = (sprite.CurrentDamageReceiving * timeDelta / sprite.TotalHitTime) * 5.0;
 
                 if (sprite.Health - sprite.CurrentDamageReceiving < 0.05)
                 {

@@ -162,103 +162,103 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Max falling speed
         /// </summary>
-        private float maxFallingSpeed = float.PositiveInfinity;
+        private double maxFallingSpeed = double.PositiveInfinity;
 
         /// <summary>
         /// When bouncing on this sprite
         /// 0: nothing, 1: regular jump
         /// </summary>
-        private float bounciness;
+        private double bounciness;
 
         /// <summary>
         /// X position
         /// </summary>
-        private float xPosition;
+        private double xPosition;
 
         /// <summary>
         /// Y position
         /// </summary>
-        private float yPosition;
+        private double yPosition;
 
         /// <summary>
         /// Height
         /// </summary>
-        private float height;
+        private double height;
 
         /// <summary>
         /// Width
         /// </summary>
-        private float width;
+        private double width;
 
         /// <summary>
         /// Current jump or falling acceleration
         /// </summary>
-        private float currentJumpAcceleration;
+        private double currentJumpAcceleration;
 
         /// <summary>
         /// Previous value of yPosition so we can know if the sprite is falling/jumping up or down
         /// </summary>
-        private float yPositionPrevious;
+        private double yPositionPrevious;
 
         /// <summary>
         /// Previous value of xPosition so we can know if the sprite moved left or right
         /// </summary>
-        private float xPositionPrevious;
+        private double xPositionPrevious;
 
         /// <summary>
         /// Jumping acceleration at begining of jump
         /// </summary>
-        private float startingJumpAcceleration;
+        private double startingJumpAcceleration;
 
         /// <summary>
         /// Maximum walking speed
         /// </summary>
-        private float maxWalkingSpeed;
+        private double maxWalkingSpeed;
 
         /// <summary>
         /// Walking acceleration (incrementation of speed when walking)
         /// </summary>
-        private float walkingAcceleration;
+        private double walkingAcceleration;
 
         /// <summary>
         /// Maximum running speed
         /// </summary>
-        private float maxRunningSpeed;
+        private double maxRunningSpeed;
 
         /// <summary>
         /// Maximum health
         /// </summary>
-        private float maxHealth;
+        private double maxHealth;
 
         /// <summary>
         /// Current health
         /// </summary>
-        private float health;
+        private double health;
 
         /// <summary>
         /// Giving damage to other sprite on collision
         /// </summary>
-        private float attackStrengthCollision;
+        private double attackStrengthCollision;
 
         /// <summary>
         /// Time during which a sprite is blinking with invulneability after getting hit
         /// </summary>
-        private float totalHitTime;
+        private double totalHitTime;
 
         /// <summary>
         /// Current walking speed
         /// </summary>
-        private float currentWalkingSpeed = 0f;
+        private double currentWalkingSpeed = 0;
 
         /// <summary>
         /// Damage currently receiving
         /// </summary>
-        private float currentDamageReceiving = 0f;
+        private double currentDamageReceiving = 0.0;
 
         /// <summary>
         /// Distance to reference sprite
         /// </summary>
-        private float distanceToReferenceSprite;
+        private double distanceToReferenceSprite;
         #endregion
 
         #region Constructor
@@ -267,7 +267,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
-        public AbstractSprite(float xPosition, float yPosition, Random random)
+        public AbstractSprite(double xPosition, double yPosition, Random random)
         {
             maxHealth = BuildMaxHealth();
             this.xPosition = xPosition;
@@ -325,85 +325,85 @@ namespace AbrahmanAdventure.sprites
         /// Maximum health
         /// </summary>
         /// <returns>Maximum health</returns>
-        protected abstract float BuildMaxHealth();
+        protected abstract double BuildMaxHealth();
 
         /// <summary>
         /// Jumping time
         /// </summary>
         /// <returns>Jumping time</returns>
-        protected abstract float BuildJumpingTime();
+        protected abstract double BuildJumpingTime();
 
         /// <summary>
         /// Walking animation cycle length (time)
         /// </summary>
         /// <returns>Walking animation cycle length (time)</returns>
-        protected abstract float BuildWalkingCycleLength();
+        protected abstract double BuildWalkingCycleLength();
 
         /// <summary>
         /// Walking acceleration (speed incrementation when walking)
         /// </summary>
         /// <returns>Walking acceleration (speed incrementation when walking)</returns>
-        protected abstract float BuildWalkingAcceleration();
+        protected abstract double BuildWalkingAcceleration();
 
         /// <summary>
         /// Maximum walking speed
         /// </summary>
         /// <returns>Maximum walking speed</returns>
-        protected abstract float BuildMaxWalkingSpeed();
+        protected abstract double BuildMaxWalkingSpeed();
 
         /// <summary>
         /// Maximum running speed
         /// </summary>
         /// <returns>Maximum running speed</returns>
-        protected abstract float BuildMaxRunningSpeed();
+        protected abstract double BuildMaxRunningSpeed();
 
         /// <summary>
         /// Jump acceleration at begining of jump
         /// </summary>
         /// <returns>Jump acceleration at begining of jump</returns>
-        protected abstract float BuildStartingJumpAcceleration();
+        protected abstract double BuildStartingJumpAcceleration();
 
         /// <summary>
         /// Timespan of attack
         /// </summary>
         /// <returns></returns>
-        protected abstract float BuildAttackingTime();
+        protected abstract double BuildAttackingTime();
 
         /// <summary>
         /// Timespan of getting hit
         /// </summary>
         /// <returns>Timespan of getting hit</returns>
-        protected abstract float BuildHitTime();
+        protected abstract double BuildHitTime();
 
         /// <summary>
         /// Damage giving to other sprite on collision
         /// </summary>
         /// <returns>Damage giving to other sprite on collision</returns>
-        protected abstract float BuildAttackStrengthCollision();
+        protected abstract double BuildAttackStrengthCollision();
 
         /// <summary>
         /// sprite's width (1.5 = player's width)
         /// </summary>
         /// <returns>sprite's width (1.5 = player's width)</returns>
-        protected abstract float BuildWidth(Random random);
+        protected abstract double BuildWidth(Random random);
 
         /// <summary>
         /// sprite's height (2.0 = player's height)
         /// </summary>
         /// <returns>sprite's height (2.0 = player's height)</returns>
-        protected abstract float BuildHeight(Random random);
+        protected abstract double BuildHeight(Random random);
 
         /// <summary>
         /// When bouncing on this sprite
         /// 0: nothing, 1: regular jump
         /// </summary>
-        protected abstract float BuildBounciness();
+        protected abstract double BuildBounciness();
 
         /// <summary>
         /// Maximum speed when falling
         /// </summary>
         /// <returns>Maximum speed when falling</returns>
-        protected abstract float BuildMaxFallingSpeed();
+        protected abstract double BuildMaxFallingSpeed();
         #endregion
 
         #region Public Abstract Methods
@@ -413,7 +413,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xOffset">x Offset (1.0 = 1 tile)</param>
         /// <param name="yOffset">y Offset (1.0 = 1 tile)</param>
         /// <returns>Get current surface</returns>
-        public abstract Surface GetCurrentSurface(out float xOffset, out float yOffset);
+        public abstract Surface GetCurrentSurface(out double xOffset, out double yOffset);
         #endregion
 
         #region Protected Methods
@@ -428,7 +428,7 @@ namespace AbrahmanAdventure.sprites
 
             if (Program.screenHeight != 480)
             {
-                float zoom = (float)Program.screenHeight / 480.0f;
+                double zoom = (double)Program.screenHeight / 480.0;
                 spriteSurface = spriteSurface.CreateScaledSurface(zoom);
             }
 
@@ -449,7 +449,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// X position
         /// </summary>
-        public float XPosition
+        public double XPosition
         {
             get { return xPosition; }
             set
@@ -464,7 +464,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// X position, keep previous position when setting this value
         /// </summary>
-        public float XPositionKeepPrevious
+        public double XPositionKeepPrevious
         {
             get { return xPosition; }
             set
@@ -478,7 +478,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Y position
         /// </summary>
-        public float YPosition
+        public double YPosition
         {
             get { return yPosition; }
             set
@@ -493,7 +493,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Y position
         /// </summary>
-        public float YPositionKeepPrevious
+        public double YPositionKeepPrevious
         {
             get { return yPosition; }
             set
@@ -507,7 +507,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Previous Y position (so we can know if the sprite is falling/jumping up or down
         /// </summary>
-        public float YPositionPrevious
+        public double YPositionPrevious
         {
             get { return yPositionPrevious; }
         }
@@ -515,7 +515,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Previous X position (so we can know if the sprite is moving left or right)
         /// </summary>
-        public float XPositionPrevious
+        public double XPositionPrevious
         {
             get { return xPositionPrevious; }
         }
@@ -523,7 +523,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Last X distance of sprite move
         /// </summary>
-        public float LastDistanceX
+        public double LastDistanceX
         {
             get{return xPosition - xPositionPrevious;}
         }
@@ -531,7 +531,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Last Y distance of sprite move
         /// </summary>
-        public float LastDistanceY
+        public double LastDistanceY
         {
             get { return yPosition - yPositionPrevious; }
         }
@@ -539,12 +539,12 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Width
         /// </summary>
-        public float Width
+        public double Width
         {
             get
             {
                 if (this is PlayerSprite && ((PlayerSprite)this).IsBeaver)
-                    return width * 2.0f;
+                    return width * 2.0;
                 else
                     return width;
             }
@@ -553,12 +553,12 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Height
         /// </summary>
-        public float Height
+        public double Height
         {
             get
             {
                 if (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver))
-                    return height / 2.0f;
+                    return height / 2.0;
                 else
                     return height;
             }
@@ -620,7 +620,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Current jump or falling acceleration
         /// </summary>
-        public float CurrentJumpAcceleration
+        public double CurrentJumpAcceleration
         {
             get { return currentJumpAcceleration; }
             set { currentJumpAcceleration = value; }
@@ -770,7 +770,7 @@ namespace AbrahmanAdventure.sprites
             get { return isAlive; }
             set
             {
-                currentDamageReceiving = 0f;
+                currentDamageReceiving = 0.0;
                 isAlive = value;
                 if (isAlive)
                 {
@@ -778,7 +778,7 @@ namespace AbrahmanAdventure.sprites
                 }
                 else
                 {
-                    health = 0f;
+                    health = 0.0;
                     iGround = null;
                 }
             }
@@ -831,7 +831,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Acceleration at begining of jump
         /// </summary>
-        public float StartingJumpAcceleration
+        public double StartingJumpAcceleration
         {
             get { return startingJumpAcceleration; }
         }
@@ -839,7 +839,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Maximum walking speed
         /// </summary>
-        public float MaxWalkingSpeed
+        public double MaxWalkingSpeed
         {
             get { return maxWalkingSpeed; }
         }
@@ -847,7 +847,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Maximum running speed
         /// </summary>
-        public float MaxRunningSpeed
+        public double MaxRunningSpeed
         {
             get { return maxRunningSpeed; }
         }
@@ -855,7 +855,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Current walking speed
         /// </summary>
-        public float CurrentWalkingSpeed
+        public double CurrentWalkingSpeed
         {
             get { return currentWalkingSpeed; }
             set { currentWalkingSpeed = value; }
@@ -864,7 +864,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Speed incrementation when walking
         /// </summary>
-        public float WalkingAcceleration
+        public double WalkingAcceleration
         {
             get { return walkingAcceleration; }
         }
@@ -872,12 +872,12 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Sprite's top bound
         /// </summary>
-        public float TopBound
+        public double TopBound
         {
         	get
         	{
                 if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
-        			return yPosition - height / 2.0f;
+        			return yPosition - height / 2.0;
         		else
         			return yPosition - height;
         	}
@@ -885,7 +885,7 @@ namespace AbrahmanAdventure.sprites
             {
                 yPositionPrevious = yPosition;
                 if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
-                    yPosition = value + height / 2.0f;
+                    yPosition = value + height / 2.0;
                 else
                     yPosition = value + height;
             }
@@ -894,12 +894,12 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Sprite's previous top bound
         /// </summary>
-        public float TopBoundPrevious
+        public double TopBoundPrevious
         {
             get
             {
                 if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
-                    return yPositionPrevious - height / 2.0f;
+                    return yPositionPrevious - height / 2.0;
                 else
                     return yPositionPrevious - height;
             }
@@ -908,19 +908,19 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Sprite's top bound
         /// </summary>
-        public float TopBoundKeepPrevious
+        public double TopBoundKeepPrevious
         {
             get
             {
                 if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
-                    return yPosition - height / 2.0f;
+                    return yPosition - height / 2.0;
                 else
                     return yPosition - height;
             }
             set
             {
                 if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
-                    yPosition = value + height / 2.0f;
+                    yPosition = value + height / 2.0;
                 else
                     yPosition = value + height;
             }
@@ -929,89 +929,89 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Sprite's right bound
         /// </summary>
-        public float RightBound
+        public double RightBound
         {
-            get { return xPosition + Width / 2.0f; }
+            get { return xPosition + Width / 2.0; }
         }
 
         /// <summary>
         /// Sprite's previous right bound
         /// </summary>
-        public float RightBoundPrevious
+        public double RightBoundPrevious
         {
-            get { return xPositionPrevious + Width / 2.0f; }
+            get { return xPositionPrevious + Width / 2.0; }
         }
 
         /// <summary>
         /// Sprite's right bound
         /// </summary>
-        public float RightBoundKeepPrevious
+        public double RightBoundKeepPrevious
         {
-            get { return xPosition + Width / 2.0f; }
-            set { xPosition = value - Width / 2.0f; }
+            get { return xPosition + Width / 2.0; }
+            set { xPosition = value - Width / 2.0; }
         }
 
         /// <summary>
         /// Sprite's left bound
         /// </summary>
-        public float LeftBound
+        public double LeftBound
         {
-            get { return xPosition - Width / 2.0f; }
+            get { return xPosition - Width / 2.0; }
         }
 
         /// <summary>
         /// Sprite's left bound
         /// </summary>
-        public float LeftBoundPrevious
+        public double LeftBoundPrevious
         {
-            get { return xPositionPrevious - Width / 2.0f; }
+            get { return xPositionPrevious - Width / 2.0; }
         }
 
         /// <summary>
         /// Sprite's left bound
         /// </summary>
-        public float LeftBoundKeepPrevious
+        public double LeftBoundKeepPrevious
         {
-            get { return xPosition - Width / 2.0f; }
-            set { xPosition = value + Width / 2.0f; }
+            get { return xPosition - Width / 2.0; }
+            set { xPosition = value + Width / 2.0; }
         }
 
         /// <summary>
         /// Maximum height of step to climb
         /// </summary>
-        public float MaximumWalkingHeight
+        public double MaximumWalkingHeight
         {
-            get { return height / 4.0f; }
+            get { return height / 4.0; }
         }
 
         /// <summary>
         /// Minimum height of step to fall
         /// </summary>
-        public float MinimumFallingHeight
+        public double MinimumFallingHeight
         {
-            get { return height / 3.0f; }
+            get { return height / 3.0; }
         }
 
         /// <summary>
         /// Current health
         /// </summary>
-        public float Health
+        public double Health
         {
             get { return health; }
             set
             {
                 health = value;
 
-                if (health < 0.05f)
-                    health = 0f;
+                if (health < 0.05)
+                    health = 0.0;
 
                 if (health > maxHealth)
                     health = maxHealth;
 
-                if (health <= 0f)
+                if (health <= 0)
                 {
-                    health = 0f;
-                    currentDamageReceiving = 0f;
+                    health = 0.0;
+                    currentDamageReceiving = 0.0;
                     isAlive = false;
                     iGround = null;
                 }
@@ -1025,7 +1025,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Maximum health
         /// </summary>
-        public float MaxHealth
+        public double MaxHealth
         {
             get { return maxHealth; }
         }
@@ -1033,7 +1033,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Damage giving to other sprite when collisions occur
         /// </summary>
-        public float AttackStrengthCollision
+        public double AttackStrengthCollision
         {
             get { return attackStrengthCollision; }
         }
@@ -1041,7 +1041,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Current damage receiving (progressive decrease of health bar)
         /// </summary>
-        public float CurrentDamageReceiving
+        public double CurrentDamageReceiving
         {
             get { return currentDamageReceiving; }
             set { currentDamageReceiving = value; }
@@ -1050,7 +1050,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Timespan of blinking with invulnerability after getting hit
         /// </summary>
-        public float TotalHitTime
+        public double TotalHitTime
         {
             get { return totalHitTime; }
         }
@@ -1058,24 +1058,24 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Right bound when punching right
         /// </summary>
-        public float RightPunchBound
+        public double RightPunchBound
         {
-            get { return RightBound + 1.2f; }
+            get { return RightBound + 1.2; }
         }
 
         /// <summary>
         /// Left bound when punching left
         /// </summary>
-        public float LeftPunchBound
+        public double LeftPunchBound
         {
-            get { return LeftBound - 1.2f; }
+            get { return LeftBound - 1.2; }
         }
 
         /// <summary>
         /// When bouncing on this sprite
         /// 0: nothing, 1: regular jump
         /// </summary>
-        public float Bounciness
+        public double Bounciness
         {
             get { return bounciness; }
             set { bounciness = value; }
@@ -1084,7 +1084,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Distance to reference sprite
         /// </summary>
-        public float DistanceToReferenceSprite
+        public double DistanceToReferenceSprite
         {
             get { return distanceToReferenceSprite; }
             set { distanceToReferenceSprite = value; }
@@ -1093,7 +1093,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Maximum falling speed
         /// </summary>
-        public float MaxFallingSpeed
+        public double MaxFallingSpeed
         {
             get { return maxFallingSpeed; }
             set { maxFallingSpeed = value; }
@@ -1104,7 +1104,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="xPosition">X Position</param>
         /// <returns>Top bound</returns>
-        public float this[float xPosition]
+        public double this[double xPosition]
         {
             get { return TopBound; }
         }
@@ -1122,7 +1122,7 @@ namespace AbrahmanAdventure.sprites
         #region IComparable<AbstractSprite> Membres
         public int CompareTo(AbstractSprite other)
         {
-            return (int)(distanceToReferenceSprite * 100f - other.distanceToReferenceSprite * 100f);
+            return (int)(distanceToReferenceSprite * 100.0 - other.distanceToReferenceSprite * 100.0);
         }
         #endregion
     }

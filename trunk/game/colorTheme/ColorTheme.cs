@@ -90,12 +90,12 @@ namespace AbrahmanAdventure.level
         /// <param name="saturation">saturation</param>
         /// <param name="value">lightness (value)</param>
         /// <returns>color from hue saturation lightness (value)</returns>
-        internal static Color ColorFromHSV(float hue, float saturation, float value)
+        internal static Color ColorFromHSV(double hue, double saturation, double value)
         {
-            hue *= 1.45f;
+            hue *= 1.45;
 
             int hi = Convert.ToInt32(Math.Floor(hue / 60)) % 6;
-            float f = hue / 60f - (float)Math.Floor(hue / 60f);
+            double f = hue / 60 - Math.Floor(hue / 60);
 
             value = value * 255;
             int v = Convert.ToInt32(value);
@@ -150,7 +150,7 @@ namespace AbrahmanAdventure.level
                 currentLightness += 256;
             currentLightness = Math.Max(32, currentLightness);
 
-            Color color = ColorFromHSV(currentHue, currentSaturation / 256.0f, currentLightness / 256.0f);
+            Color color = ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 
             colorList.Add(color);
         }

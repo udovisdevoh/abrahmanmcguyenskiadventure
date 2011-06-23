@@ -50,7 +50,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
         /// <param name="isBlack">is black</param>
-        public HelmetSprite(float xPosition, float yPosition, Random random, bool isBlack)
+        public HelmetSprite(double xPosition, double yPosition, Random random, bool isBlack)
             : base(xPosition, yPosition, random)
         {
             this.isBlack = isBlack;
@@ -175,80 +175,80 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Override Methods
-        protected override float BuildJumpingTime()
+        protected override double BuildJumpingTime()
         {
-            return 10.0f;
+            return 10.0;
         }
 
-        protected override float BuildWalkingCycleLength()
+        protected override double BuildWalkingCycleLength()
         {
             return 5;
         }
 
-        protected override float BuildWalkingAcceleration()
+        protected override double BuildWalkingAcceleration()
         {
-            return 0.05f;
+            return 0.05;
             //return 0.1;
         }
 
-        protected override float BuildMaxWalkingSpeed()
+        protected override double BuildMaxWalkingSpeed()
         {
-            return 0.60f;
+            return 0.60;
         }
 
-        protected override float BuildMaxRunningSpeed()
+        protected override double BuildMaxRunningSpeed()
         {
-            return 0.60f;
+            return 0.60;
         }
 
-        protected override float BuildStartingJumpAcceleration()
+        protected override double BuildStartingJumpAcceleration()
         {
-            return 25.0f;
+            return 25.0;
         }
 
-        protected override float BuildAttackingTime()
+        protected override double BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 0.9f;
+            return 0.9;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
-            return 0.5f;
+            return 0.5;
         }
 
-        protected override float BuildJumpProbability()
+        protected override double BuildJumpProbability()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildHitTime()
+        protected override double BuildHitTime()
         {
             return 32;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 0.5f;
+            return 0.5;
         }
 
-        protected override float BuildChangeDirectionNoAiCycleLength()
+        protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
         }
 
-        protected override float BuildSafeDistanceAi()
+        protected override double BuildSafeDistanceAi()
         {
-            return 0.0f;
+            return 0.0;
         }
 
         protected override bool BuildIsCanJump(Random random)
@@ -355,7 +355,7 @@ namespace AbrahmanAdventure.sprites
         /// Get the sprite's current surface
         /// </summary>
         /// <returns>sprite's current surface</returns>
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;
             yOffset = 0;
@@ -392,7 +392,7 @@ namespace AbrahmanAdventure.sprites
             }
             #endregion
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(4.0f);
+            int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
             if (isBlack)
             {

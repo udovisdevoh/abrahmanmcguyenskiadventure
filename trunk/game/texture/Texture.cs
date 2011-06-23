@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         public Texture(Random random, int seed, int groundId)
-            : this(random, Color.Empty, 1.0f, seed, groundId, true)
+            : this(random, Color.Empty, 1.0, seed, groundId, true)
         {
         }
 
@@ -74,7 +74,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
-        public Texture(Random random, Color color, float waveStrengthMultiplicator, int seed, int groundId, bool isTop)
+        public Texture(Random random, Color color, double waveStrengthMultiplicator, int seed, int groundId, bool isTop)
             : this(random, color, -1, waveStrengthMultiplicator, seed, groundId, isTop)
         {
         }
@@ -85,7 +85,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
         /// <param name="defaultHeight">default height (how manu tiles)</param>
-        public Texture(Random random, Color color, int defaultHeight, float waveStrengthMultiplicator, int seed, int groundId, bool isTop)
+        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, int seed, int groundId, bool isTop)
         {
             if (color == Color.Empty)
                 color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
@@ -133,37 +133,40 @@ namespace AbrahmanAdventure.level
             if (isUseXOffsetInputWave)
             {
                 xOffsetInputWave = BuildWave(random, 1);
-                xOffsetInputWave.Normalize(surfaceWidth / 16.0f * (float)random.Next(1, 5));
+                xOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
             if (isUseYOffsetInputWave)
             {
                 yOffsetInputWave = BuildWave(random,1);
-                yOffsetInputWave.Normalize(surfaceWidth / 16.0f * (float)random.Next(1, 5));
+                yOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
             if (!Program.isUseTextureCache || !TextureCache.TryGetCachedSurface(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, out surface))
             {
                 if (isBumpMapLightness)
                 {
-                    horizontalLightnessWave.NormalizeTangent(1.0f, -1.0f, 1.0f, 0f);
-                    verticalLightnessWave.NormalizeTangent(1.0f, -1.0f, 1.0f, 0f);
+                    horizontalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
+                    verticalLightnessWave.NormalizeTangent(1.0, -1.0, 1.0, 0);
                 }
 
+                /*List<double> valueList = new List<double>();
+                for (double i = 0; i < 256; i++)
+                    valueList.Add(horizontalLightnessWave.GetTangentValue(i, 1.0));*/
 
                 surface = new Surface(surfaceWidth, surfaceHeight, Program.bitDepth);
                 surface.Transparent = false;
 
-                float originalHue = color.GetHue();
-                float originalSaturation = color.GetSaturation() * 256.0f;
-                float originalLightness = color.GetBrightness() * 256.0f;
+                double originalHue = color.GetHue();
+                double originalSaturation = color.GetSaturation() * 256.0;
+                double originalLightness = color.GetBrightness() * 256.0;
 
                 for (int x = 0; x < surfaceWidth; x++)
                 {
                     for (int y = 0; y < surfaceHeight; y++)
                     {
-                        float relativeY = y;
-                        float relativeX = x;
+                        double relativeY = y;
+                        double relativeX = x;
 
                         if (isUseXOffsetInputWave)
                             relativeX += (Program.isUseWaveValueCache) ? xOffsetInputWave.GetCachedValue(y) : xOffsetInputWave[y];
@@ -171,29 +174,29 @@ namespace AbrahmanAdventure.level
                         if (isUseYOffsetInputWave)
                             relativeY += (Program.isUseWaveValueCache) ? yOffsetInputWave.GetCachedValue(x) : yOffsetInputWave[x];
 
-                        float currentHue = originalHue;
-                        float currentSaturation = originalSaturation;
-                        float currentLightness = originalLightness;
+                        double currentHue = originalHue;
+                        double currentSaturation = originalSaturation;
+                        double currentLightness = originalLightness;
 
-                        float verticalHueWaveRelativeY = Program.isUseWaveValueCache ? verticalHueWave.GetCachedValue(relativeY) : verticalHueWave[relativeY];
-                        float verticalHueContribution = verticalHueWaveRelativeY * waveStrengthMultiplicator;
+                        double verticalHueWaveRelativeY = Program.isUseWaveValueCache ? verticalHueWave.GetCachedValue(relativeY) : verticalHueWave[relativeY];
+                        double verticalHueContribution = verticalHueWaveRelativeY * waveStrengthMultiplicator;
 
-                        float horizontalHueWaveRelativeX = Program.isUseWaveValueCache ? horizontalHueWave.GetCachedValue(relativeX) : horizontalHueWave[relativeX];
-                        float horizontalHueContribution = horizontalHueWaveRelativeX * waveStrengthMultiplicator;
+                        double horizontalHueWaveRelativeX = Program.isUseWaveValueCache ? horizontalHueWave.GetCachedValue(relativeX) : horizontalHueWave[relativeX];
+                        double horizontalHueContribution = horizontalHueWaveRelativeX * waveStrengthMultiplicator;
 
-                        float horizontalSaturationWaveRelativeX = Program.isUseWaveValueCache ? horizontalSaturationWave.GetCachedValue(relativeX) : horizontalSaturationWave[relativeX];
-                        float horizontalSaturationContribution = horizontalSaturationWaveRelativeX * waveStrengthMultiplicator;
+                        double horizontalSaturationWaveRelativeX = Program.isUseWaveValueCache ? horizontalSaturationWave.GetCachedValue(relativeX) : horizontalSaturationWave[relativeX];
+                        double horizontalSaturationContribution = horizontalSaturationWaveRelativeX * waveStrengthMultiplicator;
 
-                        float horizontalSaturationWaveRelativeY = Program.isUseWaveValueCache ? horizontalSaturationWave.GetCachedValue(relativeY) : horizontalSaturationWave[relativeY];
-                        float verticalSaturationContribution = horizontalSaturationWaveRelativeY * waveStrengthMultiplicator;
+                        double horizontalSaturationWaveRelativeY = Program.isUseWaveValueCache ? horizontalSaturationWave.GetCachedValue(relativeY) : horizontalSaturationWave[relativeY];
+                        double verticalSaturationContribution = horizontalSaturationWaveRelativeY * waveStrengthMultiplicator;
 
-                        float horizontalLightnessContribution;
-                        float verticalLightnessContribution;
+                        double horizontalLightnessContribution;
+                        double verticalLightnessContribution;
 
                         if (isBumpMapLightness)
                         {
-                            horizontalLightnessContribution = horizontalLightnessWave.GetTangentValue(relativeX, 1.0f) * waveStrengthMultiplicator;
-                            verticalLightnessContribution = verticalLightnessWave.GetTangentValue(relativeY, 1.0f) * waveStrengthMultiplicator;
+                            horizontalLightnessContribution = horizontalLightnessWave.GetTangentValue(relativeX, 1.0) * waveStrengthMultiplicator;
+                            verticalLightnessContribution = verticalLightnessWave.GetTangentValue(relativeY, 1.0) * waveStrengthMultiplicator;
                         }
                         else
                         {
@@ -203,19 +206,19 @@ namespace AbrahmanAdventure.level
 
 
                         if (isHueMultiply)
-                            currentHue += (horizontalHueContribution * verticalHueContribution) * 10.0f;
+                            currentHue += (horizontalHueContribution * verticalHueContribution) * 10.0;
                         else
-                            currentHue += ((horizontalHueContribution + verticalHueContribution) * 10.0f);
+                            currentHue += ((horizontalHueContribution + verticalHueContribution) * 10.0);
 
                         if (isSaturationMultiply)
-                            currentSaturation += (horizontalSaturationContribution * verticalSaturationContribution) * 30f;
+                            currentSaturation += (horizontalSaturationContribution * verticalSaturationContribution) * 30;
                         else
-                            currentSaturation += ((horizontalSaturationContribution + verticalSaturationContribution) * 30.0f);
+                            currentSaturation += ((horizontalSaturationContribution + verticalSaturationContribution) * 30.0);
 
                         if (isLightnessMultiply)
-                            currentLightness += (horizontalLightnessContribution * verticalLightnessContribution) * 30f;
+                            currentLightness += (horizontalLightnessContribution * verticalLightnessContribution) * 30;
                         else
-                            currentLightness += ((horizontalLightnessContribution + verticalLightnessContribution) * 30.0f);
+                            currentLightness += ((horizontalLightnessContribution + verticalLightnessContribution) * 30.0);
 
 
                         /*while (currentHue < 0.0)
@@ -232,14 +235,14 @@ namespace AbrahmanAdventure.level
                                 currentLightness += 25;
                         }
 
-                        currentSaturation = Math.Max(0.0f, currentSaturation);
-                        currentLightness = Math.Max(1f, currentLightness);
-                        currentHue = Math.Max(0.0f, currentHue);
-                        currentSaturation = Math.Min(255.0f, currentSaturation);
-                        currentLightness = Math.Min(255.0f, currentLightness);
-                        currentHue = Math.Min(255.0f, currentHue);
+                        currentSaturation = Math.Max(0.0, currentSaturation);
+                        currentLightness = Math.Max(1, currentLightness);
+                        currentHue = Math.Max(0.0, currentHue);
+                        currentSaturation = Math.Min(255.0, currentSaturation);
+                        currentLightness = Math.Min(255.0, currentLightness);
+                        currentHue = Math.Min(255.0, currentHue);
 
-                        Color currentColor = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0f, currentLightness / 256.0f);
+                        Color currentColor = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
 
                         surface.Fill(new Rectangle(x, y, 1, 1), currentColor);
                     }
@@ -266,9 +269,9 @@ namespace AbrahmanAdventure.level
 
             for (int i = 1; i < 5; i++)
             {
-                float waveLength = (float)Program.tileSize / ((float)random.Next(1, 5)) * random.Next(1, 3) / random.Next(1, 3);
-                float amplitude = (float)random.NextDouble();
-                float phase = (float)random.NextDouble() * 2.0f - 1.0f;
+                double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5)) * random.Next(1, 3) / random.Next(1,3);
+                double amplitude = random.NextDouble();
+                double phase = random.NextDouble() * 2.0 - 1.0;
 
                 if (waveLengthMultiplicator > 1)
                     waveLength *= waveLengthMultiplicator;
@@ -276,7 +279,7 @@ namespace AbrahmanAdventure.level
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
             }
 
-            wavePack.Normalize((float)random.NextDouble() + 0.5f);
+            wavePack.Normalize(random.NextDouble() + 0.5);
 
             return wavePack;
         }
@@ -289,14 +292,14 @@ namespace AbrahmanAdventure.level
 
             for (int i = 1; i < 5; i++)
             {
-                float waveLength = (float)Program.tileSize * (float)random.Next(1, 5);
-                float amplitude = (float)random.NextDouble();
-                float phase = (float)random.NextDouble() * 2.0f - 1.0f;
+                double waveLength = (double)Program.tileSize * (double)random.Next(1, 5);
+                double amplitude = random.NextDouble();
+                double phase = random.NextDouble() * 2.0 - 1.0;
 
                 wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
             }
 
-            wavePack.Normalize((float)random.NextDouble() * 0.75f + 0.15f);
+            wavePack.Normalize(random.NextDouble() * 0.75 + 0.15);
 
             return wavePack;
         }
@@ -305,6 +308,27 @@ namespace AbrahmanAdventure.level
         {
             return (int)(scaling * 20.0);
         }
+
+        /*private double GetWaveContribution(bool isMultiply, bool isUseTangent, double xInput, AbstractWave wave, double waveStrengthMultiplicator)
+        {
+            #warning Use this
+            double contributionValue;
+
+            if (isUseTangent)
+                contributionValue = wave.GetTangentValue(xInput, 1.0);
+            else
+                contributionValue = wave[xInput];
+
+            //if (isMultiply)
+            //{
+            //    contributionValue += 1.0;
+            //    contributionValue *= 0.5;
+            //}
+
+            contributionValue *= waveStrengthMultiplicator;
+
+            return contributionValue;
+        }*/
         #endregion
 
         #region Public Methods

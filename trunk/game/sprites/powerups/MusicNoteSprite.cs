@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public MusicNoteSprite(float xPosition, float yPosition, Random random)
+        public MusicNoteSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             spinCycle = new Cycle(64, true);
@@ -60,39 +60,39 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 0.65f;
+            return 0.65;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 0.94f;
+            return 0.94;
         }
 
-        protected override float BuildBounciness()
+        protected override double BuildBounciness()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;
             yOffset = 0;
             
             spinCycle.Increment(1);
 
-            int cycleDivision = spinCycle.GetCycleDivision(6.0f);
+            int cycleDivision = spinCycle.GetCycleDivision(6.0);
 
             switch (cycleDivision)
             {

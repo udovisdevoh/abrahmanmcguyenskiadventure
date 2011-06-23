@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.level
         /// <returns>color</returns>
         internal Color GetColor()
         {
-            return ColorTheme.ColorFromHSV(hue, saturation / 256.0f, lightness / 256.0f);
+            return ColorTheme.ColorFromHSV(hue, saturation / 256.0, lightness / 256.0);
         }
 
         /// <summary>

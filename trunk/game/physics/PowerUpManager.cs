@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
             playerSprite.IsTiny = false;
             mushroomSprite.IsAlive = false;
-            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0f;//The sprite will have already fell down
+            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsRasta = false;
             playerSprite.IsDoped = true;
             peyoteSprite.IsAlive = false;
-            peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0f;//The sprite will have already fell down
+            peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsDoped = false;
             playerSprite.IsRasta = true;
             rastaHatSprite.IsAlive = false;
-            rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0f;//The sprite will have already fell down
+            rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace AbrahmanAdventure.physics
         {
             SoundManager.PlayCoinSound();
             musicNoteSprite.IsAlive = false;
-            musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0f;//The sprite will have already fell down
+            musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.InvincibilityCycle.Fire();
             playerSprite.HitCycle.StopAndReset();
             whiskySprite.IsAlive = false;
-            whiskySprite.YPosition = Program.totalHeightTileCount + 1.0f;//The sprite will have already fell down
+            whiskySprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
     }
 }
