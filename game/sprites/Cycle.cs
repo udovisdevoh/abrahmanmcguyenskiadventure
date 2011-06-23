@@ -8,9 +8,9 @@ namespace AbrahmanAdventure.sprites
     internal class Cycle
     {
         #region Fields
-        private float totalTimeLength;
+        private double totalTimeLength;
 
-        private float currentValue;
+        private double currentValue;
 
         private bool isAutoReset;
 
@@ -18,16 +18,16 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructor
-        public Cycle(float totalTimeLength, bool isAutoReset)
+        public Cycle(double totalTimeLength, bool isAutoReset)
         {
             this.totalTimeLength = totalTimeLength;
             this.isAutoReset = isAutoReset;
-            currentValue = 0f;
+            currentValue = 0;
         }
         #endregion
 
         #region Public Methods
-        public void Increment(float incrementTime)
+        public void Increment(double incrementTime)
         {
             currentValue += incrementTime;
             if (isAutoReset && totalTimeLength != 0)
@@ -39,30 +39,30 @@ namespace AbrahmanAdventure.sprites
 
         public void Reset()
         {
-            currentValue = 0f;
+            currentValue = 0;
         }
 
-        public int GetCycleDivision(float divisor)
+        public int GetCycleDivision(double divisor)
         {
-            float otherDivisor = totalTimeLength / divisor;
+            double otherDivisor = totalTimeLength / divisor;
             return (int)(currentValue / otherDivisor);
         }
 
         internal void Fire()
         {
             isFired = true;
-            currentValue = 0f;
+            currentValue = 0;
         }
 
         internal void StopAndReset()
         {
             isFired = false;
-            currentValue = 0f;
+            currentValue = 0;
         }
         #endregion
 
         #region Properties
-        public float CurrentValue
+        public double CurrentValue
         {
             get { return currentValue; }
             set { currentValue = value; }
@@ -77,7 +77,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                return currentValue == 0f || currentValue >= totalTimeLength;
+                return currentValue == 0 || currentValue >= totalTimeLength;
             }
         }
 
@@ -86,7 +86,7 @@ namespace AbrahmanAdventure.sprites
             get { return isFired; }
         }
 
-        public float TotalTimeLength
+        public double TotalTimeLength
         {
             get { return totalTimeLength; }
             set { totalTimeLength = value; }

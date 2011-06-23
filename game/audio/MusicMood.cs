@@ -59,17 +59,17 @@ namespace AbrahmanAdventure.audio
         /// <summary>
         /// 1: all instrument at once all the time, 0: only one instrument at once
         /// </summary>
-        private float orchestrationLevel;
+        private double orchestrationLevel;
 
         /// <summary>
         /// 1: a lot of drum, 0: no drum
         /// </summary>
-        private float drumPercusivity;
+        private double drumPercusivity;
 
         /// <summary>
         /// 1: a lot of chromatic percussions, 0: no chromatic percussion
         /// </summary>
-        private float chromaticPercusivity;
+        private double chromaticPercusivity;
         #endregion
 
         #region Constructor
@@ -102,9 +102,9 @@ namespace AbrahmanAdventure.audio
             padInstrument = random.Next(88, 96);
             chromaticPercussionInstrument = random.Next(112, 119);
 
-            orchestrationLevel = (float)random.NextDouble();
-            drumPercusivity = (float)random.NextDouble();
-            chromaticPercusivity = (float)random.NextDouble();
+            orchestrationLevel = random.NextDouble();
+            drumPercusivity = random.NextDouble();
+            chromaticPercusivity = random.NextDouble();
         }
         #endregion
     }

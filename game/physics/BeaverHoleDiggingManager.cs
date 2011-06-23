@@ -32,27 +32,27 @@ namespace AbrahmanAdventure.physics
             if (!(playerSprite.IGround is Ground))
                 return;
 
-            float holeXPosition;
-            float distance;
+            double holeXPosition;
+            double distance;
 
             if (playerSprite.IsTryingToWalkRight)
             {
-                float desiredDistance = playerSprite.RightPunchBound - playerSprite.XPosition;
-                distance = walkingManager.GetFarthestWalkingDistanceNoCollision(playerSprite, desiredDistance, level, visibleSpriteList) + 0.25f;
+                double desiredDistance = playerSprite.RightPunchBound - playerSprite.XPosition;
+                distance = walkingManager.GetFarthestWalkingDistanceNoCollision(playerSprite, desiredDistance, level, visibleSpriteList) + 0.25;
                 distance = Math.Min(distance, desiredDistance);
             }
             else
             {
-                float desiredDistance = playerSprite.LeftPunchBound - playerSprite.XPosition;
-                distance = walkingManager.GetFarthestWalkingDistanceNoCollision(playerSprite, desiredDistance, level, visibleSpriteList) - 0.25f;
+                double desiredDistance = playerSprite.LeftPunchBound - playerSprite.XPosition;
+                distance = walkingManager.GetFarthestWalkingDistanceNoCollision(playerSprite, desiredDistance, level, visibleSpriteList) - 0.25;
                 distance = Math.Max(distance, desiredDistance);
             }
 
             holeXPosition = playerSprite.XPosition + distance;
 
-            float holeYPosition = playerSprite.IGround[holeXPosition];
+            double holeYPosition = playerSprite.IGround[holeXPosition];
 
-            if (holeYPosition > playerSprite.YPosition + playerSprite.Height / 4.0f)
+            if (holeYPosition > playerSprite.YPosition + playerSprite.Height / 4.0)
                 return;
             /*else if (holeYPosition < playerSprite.YPosition - playerSprite.Height)
                 return;*/
@@ -60,10 +60,10 @@ namespace AbrahmanAdventure.physics
             SoundManager.PlayBeaverAttackSound();
             ((Ground)playerSprite.IGround).DigHole(holeXPosition);
 
-            float xLeftBoundClearCache = holeXPosition - Program.beaverHoleDiameter;
-            float xRightBoundClearCache = holeXPosition + Program.beaverHoleDiameter;
-            float yTopBoundClearCache = holeYPosition;
-            float yBottomBoundClearCache = holeYPosition + Program.beaverHoleDepth;
+            double xLeftBoundClearCache = holeXPosition - Program.beaverHoleDiameter;
+            double xRightBoundClearCache = holeXPosition + Program.beaverHoleDiameter;
+            double yTopBoundClearCache = holeYPosition;
+            double yBottomBoundClearCache = holeYPosition + Program.beaverHoleDepth;
 
             levelViewer.ClearCacheAtRange(xLeftBoundClearCache, xRightBoundClearCache, yTopBoundClearCache, yBottomBoundClearCache);
         }

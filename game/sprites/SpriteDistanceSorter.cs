@@ -41,12 +41,12 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Private Methods
-        private static float GetHorizontalDistance(AbstractSprite sprite, AbstractSprite otherSprite)
+        private static double GetHorizontalDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Abs(sprite.XPosition - otherSprite.XPosition);
         }
 
-        private static float GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
+        private static double GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Max(Math.Abs(sprite.XPosition - otherSprite.XPosition), Math.Abs(sprite.YPosition - otherSprite.YPosition));
         }

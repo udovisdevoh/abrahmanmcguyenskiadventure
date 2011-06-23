@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        internal void Update(AbstractSprite sprite, float timeDelta)
+        internal void Update(AbstractSprite sprite, double timeDelta)
         {
             if (sprite is StaticSprite)
                 return;
@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void StartOrContinueJump(AbstractSprite sprite, float timeDelta)
+        private void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
         {
             if (!sprite.IsNeedToJumpAgain)
             {

@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.physics
             SoundManager.PlayBeaverUpSound();
             playerSprite.IsBeaver = true;
             beaverSprite.IsAlive = false;
-            beaverSprite.YPosition = Program.totalHeightTileCount + 1.0f;
+            beaverSprite.YPosition = Program.totalHeightTileCount + 1.0;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.JumpingCycle.Fire();
 
             playerSprite.IGround = null;
-            playerSprite.YPosition -= 0.5f;
+            playerSprite.YPosition -= 0.5;
 
             playerSprite.IsTryingToJump = true;
         }

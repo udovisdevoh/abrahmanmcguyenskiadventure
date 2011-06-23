@@ -53,13 +53,13 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="sky">sky</param>
-        public void Update(Level level, ColorTheme colorTheme, Sky sky, float viewOffsetX, float viewOffsetY)
+        public void Update(Level level, ColorTheme colorTheme, Sky sky, double viewOffsetX, double viewOffsetY)
         {
             viewOffsetX *= Program.tileSize * -1;
             viewOffsetY *= Program.tileSize;
 
             int zoneColumnIndex = -((int)(viewOffsetX) / Program.totalZoneWidth);
-            float offsetXPerZone = viewOffsetX % (float)Program.totalZoneWidth;
+            double offsetXPerZone = viewOffsetX % (double)Program.totalZoneWidth;
 
             mainSurface.Blit(sky.Surface, new Point(0,Sky.skyHeight / -4), sky.Surface.GetRectangle());
             
@@ -68,7 +68,7 @@ namespace AbrahmanAdventure.level
                 Surface currentSurface;
                 if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
                 {
-                	int absoluteXOffset = (int)(Math.Round((float)zoneColumnIndex * (float)Program.totalZoneWidth));
+                	int absoluteXOffset = (int)(Math.Round((double)zoneColumnIndex * (double)Program.totalZoneWidth));
                     currentSurface = BuildZoneSurface(level, colorTheme, zoneColumnIndex + currentZoneOffset, absoluteXOffset);
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
@@ -90,7 +90,7 @@ namespace AbrahmanAdventure.level
             if (!levelViewerCache.IsFull)
             {
                 int nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(isPlayerWalkingRight);
-                int absoluteXOffset = (int)(Math.Round((float)nextZoneIndex * (float)Program.totalZoneWidth));
+                int absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
                 Surface nextZoneSurface = BuildZoneSurface(level, colorTheme, nextZoneIndex, absoluteXOffset);
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
             }
@@ -118,9 +118,14 @@ namespace AbrahmanAdventure.level
                 Surface nextZoneSurface;
 
                 nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(true);
-                absoluteXOffset = (int)(Math.Round((float)nextZoneIndex * (float)Program.totalZoneWidth));
+                absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
                 nextZoneSurface = BuildZoneSurface(level, colorTheme, nextZoneIndex, absoluteXOffset);
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
+
+                /*nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(false);
+                absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
+                nextZoneSurface = BuildZoneSurface(level, nextZoneIndex, absoluteXOffset);
+                levelViewerCache.Add(nextZoneIndex, nextZoneSurface);*/
             }
         }
 
@@ -131,7 +136,7 @@ namespace AbrahmanAdventure.level
         /// <param name="rightBound">right bound</param>
         /// <param name="topBound">top bound</param>
         /// <param name="bottomBound">bottom bound</param>
-        public void ClearCacheAtRange(float leftBound, float rightBound, float topBound, float bottomBound)
+        public void ClearCacheAtRange(double leftBound, double rightBound, double topBound, double bottomBound)
         {
             int leftBoundInt = (int)(leftBound / Program.zoneColumnWidthTileCount);
             int rightBoundInt = (int)Math.Ceiling(rightBound / Program.zoneColumnWidthTileCount);
@@ -165,7 +170,7 @@ namespace AbrahmanAdventure.level
 
                 for (int x = 0; x < Program.totalZoneWidth; x += Program.waveResolution)
                 {
-                    float waveInput = (float)(x + startX) / Program.tileSize;
+                    double waveInput = (double)(x + startX) / Program.tileSize;
 
 
                     int relativeFloorHeight = GetRelativeFloorHeight(ground, x, startX);
@@ -211,7 +216,7 @@ namespace AbrahmanAdventure.level
 
                     if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
                     {
-                        float scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0f: ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0f;
+                        double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0: ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
                         Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
                         if (scaledSurface == null)
                         {
@@ -239,9 +244,9 @@ namespace AbrahmanAdventure.level
         /// <returns>relative floor height</returns>
         private int GetRelativeFloorHeight(Ground ground, int x, int startX)
         {
-            float waveInput = (float)(x + startX) / Program.tileSize;
-            float waveOutput = ground[waveInput];
-            return (int)((waveOutput + (float)Program.totalHeightTileCount / 2.0) * (float)Program.tileSize);
+            double waveInput = (double)(x + startX) / Program.tileSize;
+            double waveOutput = ground[waveInput];
+            return (int)((waveOutput + (double)Program.totalHeightTileCount / 2.0) * (double)Program.tileSize);
         }
         #endregion
     }

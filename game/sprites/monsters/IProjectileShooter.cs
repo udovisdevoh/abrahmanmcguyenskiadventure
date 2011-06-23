@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Minimum time between shots
         /// </summary>
-        float MinShootingTimeBetween
+        double MinShootingTimeBetween
         {
             get;
         }
@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Maximum time between shots
         /// </summary>
-        float MaxShootingTimeBetween
+        double MaxShootingTimeBetween
         {
             get;
         }
@@ -44,22 +44,22 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Maximum shooting distance
         /// </summary>
-        float MaxShootingDistance
+        double MaxShootingDistance
         {
             get;
         }
 
-        float XPosition
+        double XPosition
         {
             get;
         }
 
-        float RightBound
+        double RightBound
         {
             get;
         }
 
-        float LeftBound
+        double LeftBound
         {
             get;
         }

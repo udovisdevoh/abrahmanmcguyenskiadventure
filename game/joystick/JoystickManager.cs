@@ -68,15 +68,15 @@ namespace AbrahmanAdventure
         {
             if (defaultJoystickForRealAxes != null)
             {
-                float horizontalAxisPosition = defaultJoystickForRealAxes.GetAxisPosition(JoystickAxis.Horizontal);
-                float verticalAxisPosition = defaultJoystickForRealAxes.GetAxisPosition(JoystickAxis.Vertical);
+                double horizontalAxisPosition = defaultJoystickForRealAxes.GetAxisPosition(JoystickAxis.Horizontal);
+                double verticalAxisPosition = defaultJoystickForRealAxes.GetAxisPosition(JoystickAxis.Vertical);
 
-                if (horizontalAxisPosition > 0.9f)
+                if (horizontalAxisPosition > 0.9)
                 {
                     userInput.isPressRight = true;
                     userInput.isPressLeft = false;
                 }
-                else if (horizontalAxisPosition < 0.1f)
+                else if (horizontalAxisPosition < 0.1)
                 {
                     userInput.isPressLeft = true;
                     userInput.isPressRight = false;
@@ -87,12 +87,12 @@ namespace AbrahmanAdventure
                     userInput.isPressRight = false;
                 }
 
-                if (verticalAxisPosition > 0.9f)
+                if (verticalAxisPosition > 0.9)
                 {
                     userInput.isPressUp = false;
                     userInput.isPressDown = true;
                 }
-                else if (verticalAxisPosition < 0.1f)
+                else if (verticalAxisPosition < 0.1)
                 {
                     userInput.isPressDown = false;
                     userInput.isPressUp = true;

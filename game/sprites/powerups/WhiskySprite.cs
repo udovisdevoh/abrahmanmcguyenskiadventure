@@ -41,7 +41,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public WhiskySprite(float xPosition, float yPosition, Random random)
+        public WhiskySprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
@@ -150,9 +150,9 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
-        protected override float BuildJumpProbability()
+        protected override double BuildJumpProbability()
         {
-            return 0.0f;
+            return 0.0;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
@@ -165,82 +165,82 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        protected override float BuildSafeDistanceAi()
+        protected override double BuildSafeDistanceAi()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
             return 100;
         }
 
-        protected override float BuildJumpingTime()
+        protected override double BuildJumpingTime()
         {
-            return 10.0f;
+            return 10.0;
         }
 
-        protected override float BuildWalkingCycleLength()
+        protected override double BuildWalkingCycleLength()
         {
             return 3;
         }
 
-        protected override float BuildWalkingAcceleration()
+        protected override double BuildWalkingAcceleration()
         {
-            return 0.01f;
+            return 0.01;
         }
 
-        protected override float BuildMaxWalkingSpeed()
+        protected override double BuildMaxWalkingSpeed()
         {
-            return 0.20f;
+            return 0.20;
         }
 
-        protected override float BuildMaxRunningSpeed()
+        protected override double BuildMaxRunningSpeed()
         {
-            return 0.40f;
+            return 0.40;
         }
 
-        protected override float BuildStartingJumpAcceleration()
+        protected override double BuildStartingJumpAcceleration()
         {
-            return 30.0f;
+            return 30.0;
         }
 
-        protected override float BuildAttackingTime()
+        protected override double BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override float BuildHitTime()
+        protected override double BuildHitTime()
         {
             return 32;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 0.25f;
+            return 0.25;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 0.25f;
+            return 0.25;
         }
 
-        protected override float BuildChangeDirectionNoAiCycleLength()
+        protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
         }
 
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = 0f;
-            yOffset = 0f;
+            xOffset = 0;
+            yOffset = 0;
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(8.0f);
+            int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
 
             if (!IsNoAiDefaultDirectionWalkingRight)
                 cycleDivision = cycleDivision * -1 + 7;

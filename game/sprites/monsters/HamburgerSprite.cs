@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public HamburgerSprite(float xPosition, float yPosition, Random random)
+        public HamburgerSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             GetSurface1();
@@ -39,80 +39,80 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Override Methods
-        protected override float BuildJumpingTime()
+        protected override double BuildJumpingTime()
         {
-            return 10.0f;
+            return 10.0;
         }
 
-        protected override float BuildWalkingCycleLength()
+        protected override double BuildWalkingCycleLength()
         {
-            return 5f;
+            return 5;
         }
 
-        protected override float BuildWalkingAcceleration()
+        protected override double BuildWalkingAcceleration()
         {
-            return 0.3f;
+            return 0.3;
         }
 
-        protected override float BuildMaxWalkingSpeed()
+        protected override double BuildMaxWalkingSpeed()
         {
-            return 0.17f;
+            return 0.17;
         }
 
-        protected override float BuildMaxRunningSpeed()
+        protected override double BuildMaxRunningSpeed()
         {
-            return 0.55f;
+            return 0.55;
         }
 
-        protected override float BuildStartingJumpAcceleration()
+        protected override double BuildStartingJumpAcceleration()
         {
             //return 25.0;
-            return 5.0f;
+            return 5.0;
         }
 
-        protected override float BuildAttackingTime()
+        protected override double BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildMaxHealth()
+        protected override double BuildMaxHealth()
         {
-            return 0.5f;
+            return 0.5;
         }
 
-        protected override float BuildJumpProbability()
+        protected override double BuildJumpProbability()
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildHitTime()
+        protected override double BuildHitTime()
         {
             return 16;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 0.5f;
+            return 0.5;
         }
 
-        protected override float BuildChangeDirectionNoAiCycleLength()
+        protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
         }
 
-        protected override float BuildSafeDistanceAi()
+        protected override double BuildSafeDistanceAi()
         {
-            return 0.0f;
+            return 0.0;
         }
 
         protected override bool BuildIsCanJump(Random random)
@@ -219,11 +219,11 @@ namespace AbrahmanAdventure.sprites
         /// Get the sprite's current surface
         /// </summary>
         /// <returns>sprite's current surface</returns>
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = 0;
             yOffset = 0;
-            int cycleDivision = WalkingCycle.GetCycleDivision(2.0f);
+            int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
 
             if (!IsAlive)
                 return GetDeadSurface();

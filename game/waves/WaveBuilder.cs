@@ -65,24 +65,24 @@ namespace AbrahmanAdventure.level
                 bool isOnlyContinuous = random.Next(0, 2) == 0;
                 bool isAllowSawWave = random.Next(0, 2) == 0;
 
-                float minWaveLength;
-                float maxWaveLength;
-                float minAmplitude;
-                float maxAmplitude;
+                double minWaveLength;
+                double maxWaveLength;
+                double minAmplitude;
+                double maxAmplitude;
 
                 if (random.Next(0, 2) == 0)
                 {
-                    minWaveLength = 4.0f;
-                    maxWaveLength = 64.0f;
-                    minAmplitude = 1.0f;
-                    maxAmplitude = 6.0f;
+                    minWaveLength = 4.0;
+                    maxWaveLength = 64.0;
+                    minAmplitude = 1.0;
+                    maxAmplitude = 6.0;
                 }
                 else
                 {
-                    minWaveLength = 32.0f;
-                    maxWaveLength = 512.0f;
-                    minAmplitude = 16.0f;
-                    maxAmplitude = 32.0f;
+                    minWaveLength = 32.0;
+                    maxWaveLength = 512.0;
+                    minAmplitude = 16.0;
+                    maxAmplitude = 32.0;
                     isOnlyContinuous = true;
                     isAllowSawWave = false;
                 }
@@ -108,16 +108,16 @@ namespace AbrahmanAdventure.level
         /// <param name="isOnlyContinuous">whether wave doesn't break (only sine and triangle etc)</param>
         /// <param name="isAllowSawWave">whether we allow sawtooth wave</param>
         /// <returns></returns>
-        private static Wave BuildIndividualWave(float minWaveLength, float maxWaveLength, float minAmplitude, float maxAmplitude, Random random, bool isOnlyContinuous, bool isAllowSawWave)
+        private static Wave BuildIndividualWave(double minWaveLength, double maxWaveLength, double minAmplitude, double maxAmplitude, Random random, bool isOnlyContinuous, bool isAllowSawWave)
         {
-            float waveLength = minWaveLength + (float)random.NextDouble() * (maxWaveLength - minWaveLength);
-            float amplitude = minAmplitude + (float)random.NextDouble() * (maxAmplitude - minAmplitude);
-            float phase = (float)random.NextDouble() * 2.0f - 1.0f;
+            double waveLength = minWaveLength + random.NextDouble() * (maxWaveLength - minWaveLength);
+            double amplitude = minAmplitude + random.NextDouble() * (maxAmplitude - minAmplitude);
+            double phase = random.NextDouble() * 2.0 - 1.0;
 
             WaveFunction waveFunction = WaveFunctions.GetRandomWaveFunction(random, isOnlyContinuous, isAllowSawWave);
 
             if (waveFunction == WaveFunctions.AbsSin)
-                amplitude /= 2.0f;
+                amplitude /= 2.0;
 
             return new Wave(amplitude, waveLength, phase, waveFunction);
         }

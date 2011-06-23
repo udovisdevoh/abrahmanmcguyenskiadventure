@@ -29,12 +29,12 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="program">program</param>
         /// <param name="timeDelta">time delta</param>
-        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, float timeDelta)
+        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, double timeDelta)
         {
             if (program.UserInput.isPressUp)
-                carriedItem.YPosition = carrier.YPosition - carrier.Height / 8f;
+                carriedItem.YPosition = carrier.YPosition - carrier.Height / 8.0;
             else
-                carriedItem.YPosition = carrier.YPosition - carrier.Height / 4f;
+                carriedItem.YPosition = carrier.YPosition - carrier.Height / 4.0;
 
             if (carrier.IsTryingToWalkRight)
             {
@@ -57,9 +57,9 @@ namespace AbrahmanAdventure.physics
                         ((MonsterSprite)carriedItem).SpontaneousTransformationCycle.Fire();
 
                         if (carrier.IsTryingToWalkRight)
-                            ((MonsterSprite)carriedItem).XPosition = carrier.RightBound + 0.5f;
+                            ((MonsterSprite)carriedItem).XPosition = carrier.RightBound + 0.5;
                         else
-                            ((MonsterSprite)carriedItem).XPosition = carrier.LeftBound - 0.5f;
+                            ((MonsterSprite)carriedItem).XPosition = carrier.LeftBound - 0.5;
 
                         carriedItem.YPosition = carriedItem.IGround[carriedItem.XPosition];
                     }
@@ -75,7 +75,7 @@ namespace AbrahmanAdventure.physics
                         carriedItem.IGround = null;
                         carriedItem.YPosition = carrier.TopBound;
                         carriedItem.JumpingCycle.Fire();
-                        carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 2.0f;
+                        carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 2.0;
 
                         carriedItem.IsCurrentlyInFreeFallX = true;
                         carriedItem.CurrentWalkingSpeed = carrier.CurrentWalkingSpeed;
@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.physics
                     {
                         spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, timeDelta);
                         ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
-                        carriedItem.CurrentWalkingSpeed = (carriedItem.MaxWalkingSpeed / 2.0f) + carrier.CurrentWalkingSpeed;
+                        carriedItem.CurrentWalkingSpeed = (carriedItem.MaxWalkingSpeed / 2.0) + carrier.CurrentWalkingSpeed;
 
                         if (carriedItem.IGround == null)
                         {

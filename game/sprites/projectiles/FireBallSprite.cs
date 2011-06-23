@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public FireBallSprite(float xPosition, float yPosition, Random random)
+        public FireBallSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             if (surface1 == null || surface2 == null)
@@ -136,87 +136,87 @@ namespace AbrahmanAdventure.sprites
             return null;
         }
 
-        protected override float BuildJumpProbability()
+        protected override double BuildJumpProbability()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildSafeDistanceAi()
+        protected override double BuildSafeDistanceAi()
         {
-            return 0.0f;
+            return 0.0;
         }
 
-        protected override float BuildChangeDirectionNoAiCycleLength()
-        {
-            return 100;
-        }
-
-        protected override float BuildMaxHealth()
+        protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
         }
 
-        protected override float BuildJumpingTime()
+        protected override double BuildMaxHealth()
         {
-            return 10.0f;
+            return 100;
         }
 
-        protected override float BuildWalkingCycleLength()
+        protected override double BuildJumpingTime()
+        {
+            return 10.0;
+        }
+
+        protected override double BuildWalkingCycleLength()
         {
             return 2;
         }
 
-        protected override float BuildWalkingAcceleration()
+        protected override double BuildWalkingAcceleration()
         {
-            return 0.01f;
+            return 0.01;
         }
 
-        protected override float BuildMaxWalkingSpeed()
+        protected override double BuildMaxWalkingSpeed()
         {
-            return 0.65f;
+            return 0.65;
         }
 
-        protected override float BuildMaxRunningSpeed()
+        protected override double BuildMaxRunningSpeed()
         {
-            return 0.95f;
+            return 0.95;
         }
 
-        protected override float BuildStartingJumpAcceleration()
+        protected override double BuildStartingJumpAcceleration()
         {
-            return 15.0f;
+            return 15.0;
         }
 
-        protected override float BuildAttackingTime()
+        protected override double BuildAttackingTime()
         {
             return 4;
         }
 
-        protected override float BuildHitTime()
+        protected override double BuildHitTime()
         {
             return 32;
         }
 
-        protected override float BuildAttackStrengthCollision()
+        protected override double BuildAttackStrengthCollision()
         {
-            return 1.0f;
+            return 1.0;
         }
 
-        protected override float BuildWidth(Random random)
+        protected override double BuildWidth(Random random)
         {
-            return 0.25f;
+            return 0.25;
         }
 
-        protected override float BuildHeight(Random random)
+        protected override double BuildHeight(Random random)
         {
-            return 0.25f;
+            return 0.25;
         }
 
-        public override Surface GetCurrentSurface(out float xOffset, out float yOffset)
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = 0f;
-            yOffset = 0f;
+            xOffset = 0;
+            yOffset = 0;
 
-            int cycleDivision = WalkingCycle.GetCycleDivision(2.0f);
+            int cycleDivision = WalkingCycle.GetCycleDivision(2.0);
 
             if (cycleDivision == 1)
                 return surface1;

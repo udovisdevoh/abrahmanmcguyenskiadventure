@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.level
         {
             this.holeSet = holeSet;
 
-            topTexture = new Texture(random, color, 1.5f, seed,groundId,true);
+            topTexture = new Texture(random, color, 1.5, seed,groundId,true);
             beaverDestructionSet = new BeaverDestructionSet();
 
             if (Program.isAlwaysUseBottomTexture)
@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.level
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
             {
-                bottomTexture = new Texture(random, color, 16, 0.75f, seed, groundId, false);
+                bottomTexture = new Texture(random, color, 16, 0.75, seed, groundId, false);
             }
             
             this.terrainWave = terrainWave;
@@ -95,9 +95,9 @@ namespace AbrahmanAdventure.level
         /// <param name="level">level</param>
         /// <param name="xInput">x value</param>
         /// <returns>Whether ground is higher than other grounds</returns>
-        public bool IsHigherThanOtherGrounds(Ground ground, Level level, float xInput)
+        public bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
         {
-            float yOutput = terrainWave[xInput];
+        	double yOutput = terrainWave[xInput];
         	
         	foreach (Ground otherGround in level)
         		if (otherGround != this)
@@ -120,7 +120,7 @@ namespace AbrahmanAdventure.level
         /// Dig hole at X position
         /// </summary>
         /// <param name="holeXPosition"></param>
-        public void DigHole(float holeXPosition)
+        public void DigHole(double holeXPosition)
         {
             beaverDestructionSet.Dig(holeXPosition);
         }
@@ -132,11 +132,11 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="xPosition">X position</param>
         /// <returns>Y value at X position</returns>
-        public float this[float xPosition]
+        public double this[double xPosition]
         {
             get
             {
-                float yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
+                double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
                     yValue = Program.holeHeight - yValue;
 

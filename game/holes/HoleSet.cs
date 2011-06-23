@@ -15,12 +15,12 @@ namespace AbrahmanAdventure.level
         /// Odd number for key: start of a hole -> is a hole
         /// Even number for key: end of a hole -> is not a hole
         /// </summary>
-        private List<float> holeIntervals;
+        private List<double> holeIntervals;
 
         /// <summary>
         /// Length of a full cycle of hole patterns
         /// </summary>
-        private float cycleLength;
+        private double cycleLength;
         #endregion
 
         #region Constructor
@@ -30,15 +30,15 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public HoleSet(Random random)
         {
-            cycleLength = 400.0f;
-            holeIntervals = new List<float>();
+            cycleLength = 400.0;
+            holeIntervals = new List<double>();
             holeIntervals.Add(0);
 
-            float xPosition = 0;
+            double xPosition = 0;
             while (true)
             {
-                float groundSurfaceLength = (float)random.NextDouble() * 4.0f * (float)random.NextDouble() * 4.0f * (float)random.NextDouble() * 4.0f + 1.0f;
-                float holeLength = (float)random.NextDouble() * 6.0f + 1.0f;
+                double groundSurfaceLength = random.NextDouble() * 4.0 * random.NextDouble() * 4.0 * random.NextDouble() * 4.0 + 1.0;
+                double holeLength = random.NextDouble() * 6.0 + 1.0;
                 xPosition += groundSurfaceLength + holeLength;
 
                 if (xPosition + groundSurfaceLength + holeLength >= cycleLength - 1.0)
@@ -68,7 +68,7 @@ namespace AbrahmanAdventure.level
         /// <param name="minKeyIncl">minimum key (including itself)</param>
         /// <param name="maxKeyExcl">maximum key (excluding itself)</param>
         /// <returns>key of provided value using binary search. If can't find exact value, takes the immediate lower value</returns>
-        private int BinarySearchValueGetKey(float value, List<float> collection, int minKeyIncl, int maxKeyExcl)
+        private int BinarySearchValueGetKey(double value, List<double> collection, int minKeyIncl, int maxKeyExcl)
         {
             int pivotKey = (minKeyIncl + maxKeyExcl) / 2;
 
@@ -94,7 +94,7 @@ namespace AbrahmanAdventure.level
         /// <param name="xPosition">X Position</param>
         /// <param name="yPosition">Y Position</param>
         /// <returns>True: there's a hole, false: there's no hole</returns>
-        public bool this[float xPosition, float yPosition]
+        public bool this[double xPosition, double yPosition]
         {
             get
             {

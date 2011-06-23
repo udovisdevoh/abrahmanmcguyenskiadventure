@@ -201,7 +201,7 @@ namespace AbrahmanAdventure
         /// <param name="listWarpBackSeed"></param>
         internal void AddWarpBackVortexList(List<int> listWarpBackSeed)
         {
-            float xOffset = 0;//-1.5;
+            double xOffset = 0;//-1.5;
             foreach (int seed in listWarpBackSeed)
             {
                 bool isFoundIndenticalVortex = false;

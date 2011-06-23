@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private Wave atomicWave;
 
-        private Dictionary<int, float> waveValueCache = new Dictionary<int, float>();
+        private Dictionary<int, double> waveValueCache = new Dictionary<int, double>();
 
         /// <summary>
         /// Whether the operator is a * instead of + (to join left and right child)
@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Normalization multiplicator
         /// </summary>
-        private float normalizationMultiplicator = 1.0f;
+        private double normalizationMultiplicator = 1.0;
         #endregion
 
         #region Constructor
@@ -66,14 +66,14 @@ namespace AbrahmanAdventure.level
         #region AbstractWave Members
         public override void Normalize()
         {
-            Normalize(1.0f);
+            Normalize(1.0);
         }
 
         /// <summary>
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public override void Normalize(float maxValue)
+        public override void Normalize(double maxValue)
         {
             Normalize(maxValue, true);
         }
@@ -82,16 +82,16 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave pack
         /// </summary>
         /// <returns></returns>
-        public override void Normalize(float maxValue, bool isIncreaseToo)
+        public override void Normalize(double maxValue, bool isIncreaseToo)
         {
-            float oldNormalizationMultiplicator = normalizationMultiplicator;
+            double oldNormalizationMultiplicator = normalizationMultiplicator;
 
-            normalizationMultiplicator = 1.0f;
-            float y;
+            normalizationMultiplicator = 1.0;
+            double y;
 
-            float maxY = float.NegativeInfinity;
-            float minY = float.PositiveInfinity;
-            for (float x = -10024.0f; x < 10024.0f; x += 16f)
+            double maxY = double.NegativeInfinity;
+            double minY = double.PositiveInfinity;
+            for (double x = -10024.0; x < 10024.0; x += 16)
             {
                 y = this[x];
                 if (y > maxY)
@@ -101,15 +101,15 @@ namespace AbrahmanAdventure.level
                     minY = y;
             }
 
-            maxY = Math.Max(maxY, minY * -1.0f);
+            maxY = Math.Max(maxY, minY * -1.0);
 
-            normalizationMultiplicator = 1.0f / maxY * maxValue;
+            normalizationMultiplicator = 1.0 / maxY * maxValue;
 
             if (!isIncreaseToo)
                 normalizationMultiplicator = Math.Min(oldNormalizationMultiplicator, normalizationMultiplicator);
         }
 
-        public override float this[float x]
+        public override double this[double x]
         {
             get
             {
@@ -138,9 +138,9 @@ namespace AbrahmanAdventure.level
             }
         }
 
-        public override float GetCachedValue(float x)
+        public override double GetCachedValue(double x)
         {
-            float value;
+            double value;
             int key = (int)(x * Program.tileSize);
             if (!waveValueCache.TryGetValue(key, out value))
             {

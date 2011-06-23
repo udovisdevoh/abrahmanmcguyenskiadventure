@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, float timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
@@ -83,7 +83,7 @@ namespace AbrahmanAdventure.physics
                             if (monsterSprite.IsTryingToWalkRight)
                                 monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed;
                             else
-                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0f;
+                                monsterSprite.CurrentWalkingSpeed = monsterSprite.MaxRunningSpeed * -1.0;
 
                             monsterSprite.IsTryingToJump = true;
                         }

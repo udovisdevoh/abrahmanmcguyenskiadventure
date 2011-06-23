@@ -36,7 +36,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Player's health
         /// </summary>
-        private float health = 0.5f;
+        private double health = 0.5;
 
         /// <summary>
         /// Previous seed (-1 means none)
@@ -146,7 +146,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Health
         /// </summary>
-        public float Health
+        public double Health
         {
             get { return health; }
             set { health = value; }

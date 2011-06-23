@@ -11,12 +11,12 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Tangent normalization multiplicator
         /// </summary>
-        private float tangentNormalizationMultiplicator = 1.0f;
+        private double tangentNormalizationMultiplicator = 1.0;
 
         /// <summary>
         /// Tangent normalization offset
         /// </summary>
-        private float tangentNormalizationOffset = 0.0f;
+        private double tangentNormalizationOffset = 0.0;
         #endregion
 
         #region Abstract Methods
@@ -30,14 +30,14 @@ namespace AbrahmanAdventure.level
         /// Normalize the wave
         /// </summary>
         /// <returns>Normalized wave</returns>
-        public abstract void Normalize(float maxValue);
+        public abstract void Normalize(double maxValue);
 
         /// <summary>
         /// Normalize the wave
         /// </summary>
         /// <param name="maxValue">max value</param>
         /// <param name="isIncreaseToo">true: can increase normalization factor, not just decrease</param>
-        public abstract void Normalize(float maxValue, bool isIncreaseToo);
+        public abstract void Normalize(double maxValue, bool isIncreaseToo);
 
         /// <summary>
         /// Whether waves are identical
@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="x">x coordinates</param>
         /// <returns>amplitude momentum Y value at X</returns>
-        public abstract float this[float x]
+        public abstract double this[double x]
         {
             get;
         }
@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="x">x</param>
         /// <returns>Cached value</returns>
-        public abstract float GetCachedValue(float x);
+        public abstract double GetCachedValue(double x);
         #endregion
 
         #region Implementation
@@ -72,17 +72,17 @@ namespace AbrahmanAdventure.level
         /// <param name="desiredMinimum">desired minimum value</param>
         /// <param name="desiredMaximum">desired maximum value</param>
         /// <param name="desiredAverage">desired average value</param>
-        public void NormalizeTangent(float resolution, float desiredMinimum, float desiredMaximum, float desiredAverage)
+        public void NormalizeTangent(double resolution, double desiredMinimum, double desiredMaximum, double desiredAverage)
         {
-            tangentNormalizationMultiplicator = 1.0f;
-            tangentNormalizationOffset = 0.0f;
+            tangentNormalizationMultiplicator = 1.0;
+            tangentNormalizationOffset = 0.0;
 
-            float maxY = float.NegativeInfinity;
-            float minY = float.PositiveInfinity;
+            double maxY = double.NegativeInfinity;
+            double minY = double.PositiveInfinity;
 
-            for (float x = -1024.0f; x < 1024.0f; x += 1f)
+            for (double x = -1024.0; x < 1024.0; x += 1)
             {
-                float y = this.GetTangentValue(x, resolution);
+                double y = this.GetTangentValue(x, resolution);
                 if (y > maxY)
                     maxY = y;
 
@@ -90,17 +90,17 @@ namespace AbrahmanAdventure.level
                     minY = y;
             }
 
-            float desiredRange = desiredMaximum - desiredMinimum;
-            float currentRange = maxY - minY;
+            double desiredRange = desiredMaximum - desiredMinimum;
+            double currentRange = maxY - minY;
 
             tangentNormalizationMultiplicator = tangentNormalizationMultiplicator / currentRange * desiredRange;
 
 
-            float sum = 0.0f;
-            for (float x = -1024.0f; x < 1024.0f; x += 1f)
+            double sum = 0.0;
+            for (double x = -1024.0; x < 1024.0; x += 1)
                 sum += this.GetTangentValue(x, resolution);
 
-            float average = sum / 2048.0f;
+            double average = sum / 2048.0;
             
             //tangentNormalizationOffset = desiredMinimum - minY; 
 
@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.level
         /// <param name="x">x</param>
         /// <param name="resolution">resolution</param>
         /// <returns>tangent value (difference between Y value of X and Y value of X - resolution</returns>
-        public float GetTangentValue(float x, float resolution)
+        public double GetTangentValue(double x, double resolution)
         {
             return (this[x - resolution] - this[x]) * tangentNormalizationMultiplicator + tangentNormalizationOffset;
         }
