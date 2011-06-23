@@ -527,7 +527,7 @@ namespace AbrahmanAdventure
                     {
                         #region Sliding
                         playerSprite.IsTryingToWalk = false;
-                        if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired)
+                        if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired && !playerSprite.IsBeaver)
                         {
                             float rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
                             if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
