@@ -158,10 +158,10 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Health
         /// </summary>
-        public double Health
+        public int Health
         {
-            get { return health; }
-            set { health = value; }
+            get { return (int)Math.Round((health * 100.0)); }
+            set { health = ((double)value) / 100.0; }
         }
 
         /// <summary>

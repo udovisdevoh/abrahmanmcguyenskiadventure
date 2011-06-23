@@ -34,10 +34,20 @@ namespace AbrahmanAdventure.hud
             if (openFileDialog.FileName == null || openFileDialog.FileName == "")
                 return null;
 
+            GameMetaState gameMetaState;
             using (StreamReader streamReader = new StreamReader(openFileDialog.FileName))
             {
-                return (GameMetaState)serializer.Deserialize(streamReader);
+                try
+                {
+                    gameMetaState = (GameMetaState)serializer.Deserialize(streamReader);
+                }
+                catch (InvalidOperationException)
+                {
+                    gameMetaState = null;
+                }
             }
+            return gameMetaState;
+
         }
 
         /// <summary>
