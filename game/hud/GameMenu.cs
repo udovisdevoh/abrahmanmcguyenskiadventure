@@ -144,6 +144,20 @@ namespace AbrahmanAdventure.hud
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
+            else if (currentSubMenu == SubMenu.HowTo)
+            {
+                mainSurface.Fill(System.Drawing.Color.Black);
+
+                mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+
+                mainSurface.Blit(GetFontText("Arrows: (move)", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                mainSurface.Blit(GetFontText("Space: Jump", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                mainSurface.Blit(GetFontText("Ctrl: Attack / run / grab / dig", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                mainSurface.Blit(GetFontText("Alt: Jump out of beaver", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));                
+               
+                mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
+                mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+            }
 
             isNeedRefresh = false;
         }
@@ -355,6 +369,10 @@ namespace AbrahmanAdventure.hud
                     case 4:
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.Controller;
+                        break;
+                    case 6:
+                        currentMenuPositionY = 0;
+                        currentSubMenu = SubMenu.HowTo;
                         break;
                     case 7: //exit
                         Events.QuitApplication();
