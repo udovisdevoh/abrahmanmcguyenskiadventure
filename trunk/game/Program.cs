@@ -621,6 +621,7 @@ namespace AbrahmanAdventure
         public GameMetaState GameMetaState
         {
             get { return gameMetaState; }
+            set { gameMetaState = value; }
         }
 
         /// <summary>
@@ -643,6 +644,7 @@ namespace AbrahmanAdventure
         public GameState GameState
         {
             get { return gameState; }
+            set { gameState = value; }
         }
         #endregion
 
@@ -659,6 +661,7 @@ namespace AbrahmanAdventure
             Events.Run();
         }
 
+        [STAThread]
         public static void Main(string[] args)
         {
             Program program = new Program();

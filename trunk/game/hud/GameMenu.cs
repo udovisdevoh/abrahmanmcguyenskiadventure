@@ -366,6 +366,26 @@ namespace AbrahmanAdventure.hud
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.EpisodeList;
                         break;
+                    case 1: //Load game
+                        currentMenuPositionY = 0;
+                        GameMetaState loadedGame = SaverLoader.LoadGame();
+                        if (loadedGame != null)
+                        {
+                            currentMenuPositionY = 0;
+                            program.GameMetaState = loadedGame;
+                            program.ChangeGameState(program.GameMetaState.PreviousSeed);
+                            program.GameState = null;
+                            program.IsShowMenu = false;
+                        }
+                        break;
+                    case 2: //Save game
+                        if (program.GameState != null)
+                        {
+                            program.GameMetaState.PreviousSeed = program.GameState.Seed;
+                            program.GameMetaState.GetInfoFromPlayer(program.GameState.PlayerSprite);
+                        }
+                        SaverLoader.SaveGame(program.GameMetaState);
+                        break;
                     case 4:
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.Controller;
