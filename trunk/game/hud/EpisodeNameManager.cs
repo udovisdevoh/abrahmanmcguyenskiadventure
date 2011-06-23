@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.hud
         public static Color GetEpisodeColor(int episodeId)
         {
             Random random = new Random(episodeId);
-            ColorHsl colorHsl = new ColorHsl(random.Next(0, 256), random.Next(0, 64), random.Next(128, 256));
+            ColorHsl colorHsl = new ColorHsl(random.Next(0, 256), random.Next(0, 256), random.Next(64, 256));
             return colorHsl.GetColor();
         }
     }
