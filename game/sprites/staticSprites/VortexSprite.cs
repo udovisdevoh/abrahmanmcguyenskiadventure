@@ -202,6 +202,14 @@ namespace AbrahmanAdventure.sprites
         {
             get { return destinationSeed; }
         }
+
+        /// <summary>
+        /// True: going in, False: warp back
+        /// </summary>
+        internal bool IsGoingIn
+        {
+            get { return isGoingIn; }
+        }
         #endregion
     }
 }

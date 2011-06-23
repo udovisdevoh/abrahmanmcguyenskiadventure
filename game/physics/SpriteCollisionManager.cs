@@ -127,7 +127,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         private void UpdateGoToVortex(PlayerSprite playerSprite, VortexSprite vortexSprite, Program program, GameMetaState gameMetaState, GameState gameState)
         {
-            gameMetaState.SetWarpBack(vortexSprite.DestinationSeed, gameState.Seed);
+            if (vortexSprite.IsGoingIn)
+                gameMetaState.SetWarpBack(vortexSprite.DestinationSeed, gameState.Seed);
             program.ChangeGameState(vortexSprite.DestinationSeed);
         }
 

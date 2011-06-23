@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure
 {
@@ -10,7 +12,8 @@ namespace AbrahmanAdventure
     /// Persistant information when changing game state
     /// Stock to save and load when save game / load game
     /// </summary>
-    internal class GameMetaState
+    [XmlRootAttribute(ElementName="GameMetaState", IsNullable=false)]
+    public class GameMetaState
     {
         #region Fields and parts
         /// <summary>
@@ -47,14 +50,14 @@ namespace AbrahmanAdventure
         /// Key: game state's seed
         /// Value: skill level (0: default)
         /// </summary>
-        private Dictionary<int, int> mapSeedToSkillLevel = new Dictionary<int,int>();
+        private Dictionary<int, int> mapSeedToSkillLevel = new Dictionary<int, int>();
 
         /// <summary>
         /// To remember warp-backs (vortex going in the other direction
         /// Key: gameState's seed in which we must spawn a vortex
         /// Value: list of target seed for the spawned vortex
         /// </summary>
-        private Dictionary<int, List<int>> mapWarpBack = new Dictionary<int,List<int>>();
+        private Dictionary<int, List<int>> mapWarpBack = new Dictionary<int, List<int>>();
         #endregion
 
         #region Internal Methods
@@ -144,6 +147,15 @@ namespace AbrahmanAdventure
         }
 
         /// <summary>
+        /// Whether player is on beaver
+        /// </summary>
+        public bool IsBeaver
+        {
+            get { return isBeaver; }
+            set { isBeaver = value; }
+        }
+
+        /// <summary>
         /// Health
         /// </summary>
         public double Health
@@ -159,6 +171,98 @@ namespace AbrahmanAdventure
         {
             get { return previousSeed; }
             set { previousSeed = value; }
+        }
+
+        /// <summary>
+        /// Key: game state's seed
+        /// Value: skill level (0: default)
+        /// </summary>
+        public string MapSeedToSkillLevel
+        {
+            get
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (KeyValuePair<int, int> seedAndSkillLevel in mapSeedToSkillLevel)
+                {
+                    int seed = seedAndSkillLevel.Key;
+                    int skillLevel = seedAndSkillLevel.Value;
+                    stringBuilder.Append(seed);
+                    stringBuilder.Append(':');
+                    stringBuilder.Append(skillLevel);
+                    stringBuilder.Append(',');
+                }
+                return stringBuilder.ToString();
+            }
+            set
+            {
+                mapSeedToSkillLevel = new Dictionary<int, int>();
+
+                string[] keyValuePairList = value.Split(',');
+
+                foreach (string keyValuePair in keyValuePairList)
+                {
+                    if (keyValuePair.Length > 0)
+                    {
+                        string[] seedAndSkillLevel = keyValuePair.Split(':');
+                        mapSeedToSkillLevel.Add(int.Parse(seedAndSkillLevel[0]), int.Parse(seedAndSkillLevel[1]));
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// To remember warp-backs (vortex going in the other direction
+        /// Key: gameState's seed in which we must spawn a vortex
+        /// Value: list of target seed for the spawned vortex
+        /// </summary>
+        public string MapWarpBack
+        {
+            get
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (KeyValuePair<int, List<int>> sourceAndTargetList in mapWarpBack)
+                {
+                    int source = sourceAndTargetList.Key;
+                    List<int> targetList = sourceAndTargetList.Value;
+
+
+                    stringBuilder.Append(source);
+                    stringBuilder.Append(':');
+
+                    foreach (int target in targetList)
+                    {
+                        stringBuilder.Append(target);
+                        stringBuilder.Append('|');
+                    }
+                    stringBuilder.Append(',');
+                }
+                return stringBuilder.ToString();
+            }
+            set
+            {
+                mapWarpBack = new Dictionary<int, List<int>>();
+
+                string[] keyValuePairList = value.Split(',');
+                foreach (string keyValuePair in keyValuePairList)
+                {
+                    if (keyValuePair.Length > 0)
+                    {
+                        string[] sourceAndTargetList = keyValuePair.Split(':');
+
+                        int source = int.Parse(sourceAndTargetList[0]);
+
+                        string[] targetList = sourceAndTargetList[1].Split('|');
+
+                        foreach (string target in targetList)
+                        {
+                            if (target.Length > 0)
+                            {
+                                this.SetWarpBack(source, int.Parse(target));
+                            }
+                        }
+                    }
+                }
+            }
         }
         #endregion
     }
