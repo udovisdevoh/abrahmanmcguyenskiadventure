@@ -114,8 +114,12 @@ namespace AbrahmanAdventure.physics
         internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
         {
             spriteToUpdate.IsFullGravityOnNextFrame = false;
-            while (spriteToUpdate.IsAlive && spriteToUpdate.IGround == null && spriteToUpdate.YPosition < Program.holeHeight)
-                Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+            IGround ground = IGroundHelper.GetHighestVisibleIGroundBelowSprite(spriteToUpdate, level, visibleSpriteList);
+            if (ground != null)
+            {
+                spriteToUpdate.YPosition = ground[spriteToUpdate.XPosition];
+                spriteToUpdate.IGround = ground;
+            }
         }
         #endregion
 
