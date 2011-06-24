@@ -132,10 +132,20 @@ namespace AbrahmanAdventure
             int skillLevel;
             if (!mapSeedToSkillLevel.TryGetValue(seed, out skillLevel))
             {
-                mapSeedToSkillLevel.Add(seed, skillLevel);
+                mapSeedToSkillLevel.Add(seed, skillLevelForUnknownLevels);
                 skillLevel = skillLevelForUnknownLevels;
             }
             return skillLevel;
+        }
+
+        internal void ClearWarpBack()
+        {
+            mapWarpBack.Clear();
+        }
+
+        internal void ClearMapSkillLevel()
+        {
+            mapSeedToSkillLevel.Clear();
         }
         #endregion
 
