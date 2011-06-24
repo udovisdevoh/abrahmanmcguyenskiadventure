@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
 using AbrahmanAdventure.audio;
@@ -369,11 +370,13 @@ namespace AbrahmanAdventure.hud
                         break;
                     case 1: //Load game
                         currentMenuPositionY = 0;
+                        string directory = Directory.GetCurrentDirectory();
                         if (Program.isFullScreen)
                             Cursor.Show();
                         GameMetaState loadedGame = SaverLoader.LoadGame();
                         if (Program.isFullScreen)
                             Cursor.Hide();
+                        Directory.SetCurrentDirectory(directory);
                         if (loadedGame != null)
                         {
                             currentMenuPositionY = 0;
@@ -389,11 +392,13 @@ namespace AbrahmanAdventure.hud
                             program.GameMetaState.PreviousSeed = program.GameState.Seed;
                             program.GameMetaState.GetInfoFromPlayer(program.GameState.PlayerSprite);
                         }
+                        string directory2 = Directory.GetCurrentDirectory();
                         if (Program.isFullScreen)
                             Cursor.Show();
                         SaverLoader.SaveGame(program.GameMetaState);
                         if (Program.isFullScreen)
                             Cursor.Hide();
+                        Directory.SetCurrentDirectory(directory2);
                         break;
                     case 4:
                         currentMenuPositionY = 0;
