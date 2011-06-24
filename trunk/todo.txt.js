@@ -1,9 +1,22 @@
 add skill level system
 {
-	?select starting skill level on episode page using left / right arrows?
-	Must be saved in GameMetaState
-	show skill level when show planet image
+	must influence
+	{
+		sprites
+		level size
+		?ground waves?
+	}
 }
+
+add level bounds
+
+remove file dialogs
+{
+	remove [STAThread]
+	put custom dialog instead
+}
+
+fix bug: side block collision when jumping vertically and sticking on blocks on side
 
 fix add texture cache transparency bug
 
