@@ -22,7 +22,7 @@ namespace AbrahmanAdventure
         #region Constants and static variables
         public const bool isBindViewOffsetToPlayer = true;
 
-        public const bool isFullScreen = true;
+        public const bool isFullScreen = false;
 
         public const bool isShowMenuOnStart = true;
 
@@ -410,11 +410,11 @@ namespace AbrahmanAdventure
                     {
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);
                         SoundManager.PlayVortexOutSound();
-                        gameState.PlayerSprite.FromVortexCycle.Fire();
                         gameState.PlayerSprite.IsTryToWalkUp = false;
                         gameState.PlayerSprite.IsNeedToAttackAgain = true;
                         gameState.PlayerSprite.IsNeedToJumpAgain = true;
                     }
+                    gameState.PlayerSprite.FromVortexCycle.Fire();
                     levelViewer.ClearCache();
                     GC.Collect();
                     #endregion

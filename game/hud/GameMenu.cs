@@ -38,7 +38,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Key cycle
         /// </summary>
-        private static Cycle keyCycle = new Cycle(7, false);
+        private static Cycle keyCycle = new Cycle(10, false);
 
         /// <summary>
         /// Current X position in menu
@@ -54,6 +54,11 @@ namespace AbrahmanAdventure.hud
         /// Offset of the episode menu
         /// </summary>
         private static int episodeOffset = 0;
+
+        /// <summary>
+        /// Current skill level
+        /// </summary>
+        private static int skillLevel = 0;
 
         /// <summary>
         /// Whether we need to refresh the menu
@@ -137,7 +142,11 @@ namespace AbrahmanAdventure.hud
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
 
-                mainSurface.Blit(GetFontText("Choose episode"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                string skillLevelBar = "+";
+                for (int i = 0; i < skillLevel; i++)
+                    skillLevelBar += "+";
+
+                mainSurface.Blit(GetFontText("Choose episode and skill level (<->): " + skillLevelBar), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
 
                 for (int episodeIndex = 0; episodeIndex <= listMaxMenuItemCount[(int)SubMenu.EpisodeList]; episodeIndex++)
                 {
@@ -291,6 +300,12 @@ namespace AbrahmanAdventure.hud
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionX--;
+
+            if (currentSubMenu == SubMenu.EpisodeList)
+            {
+                skillLevel--;
+                skillLevel = Math.Max(0, skillLevel);
+            }
         }
 
         /// <summary>
@@ -303,6 +318,12 @@ namespace AbrahmanAdventure.hud
             SoundManager.PlayHitSound();
             Dirthen();
             currentMenuPositionX++;
+
+            if (currentSubMenu == SubMenu.EpisodeList)
+            {
+                skillLevel++;
+                skillLevel = Math.Min(9, skillLevel);
+            }
         }
 
         /// <summary>
