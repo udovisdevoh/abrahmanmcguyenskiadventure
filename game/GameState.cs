@@ -110,7 +110,7 @@ namespace AbrahmanAdventure
             skyColorHsl = new ColorHsl(random);
             musicMood = new MusicMood(random);
 
-            Surface planetSurface = PlanetViewer.ShowPlanet(name, skyColorHsl, colorTheme, random);
+            Surface planetSurface = PlanetViewer.ShowPlanet(name, skillLevel, skyColorHsl, colorTheme, random);
 
             if (surfaceToDrawLoadingProgress != null)
             {

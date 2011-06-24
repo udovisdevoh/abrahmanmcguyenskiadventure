@@ -454,6 +454,9 @@ namespace AbrahmanAdventure.hud
                     program.GameState.PlayerSprite.ResetHealthAndPowerUps();
                 currentSubMenu = SubMenu.Main;
                 program.ChangeGameState(currentMenuPositionY + episodeOffset);
+                program.GameMetaState.SkillLevelForUnknownLevels = skillLevel;
+                program.GameMetaState.ClearWarpBack();
+                program.GameMetaState.ClearMapSkillLevel();
                 currentMenuPositionY = 0;
                 program.IsShowMenu = false;
             }
