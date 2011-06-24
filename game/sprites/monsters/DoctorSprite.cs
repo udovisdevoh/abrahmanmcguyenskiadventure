@@ -287,6 +287,16 @@ namespace AbrahmanAdventure.sprites
             get { return shootingCycle; }
         }
 
+        public Type ProjectileType
+        {
+            get { return typeof(PillSprite); }
+        }
+
+        public int MaxProjectileCountPerScreen
+        {
+            get { return 0; }
+        }
+
         public double MinShootingTimeBetween
         {
             get { return 50.0; }

@@ -117,7 +117,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildJumpProbability()
         {
-            return 1.0;
+            return 0.1;
         }
 
         protected override double BuildHitTime()
@@ -142,7 +142,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
