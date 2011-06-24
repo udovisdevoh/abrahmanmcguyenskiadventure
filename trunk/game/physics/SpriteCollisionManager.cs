@@ -86,7 +86,7 @@ namespace AbrahmanAdventure.physics
                 {
                     blockManager.UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, random);
                 }
-                else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition && (!(otherSprite is MonsterSprite) || ((MonsterSprite)otherSprite).IsJumpableOn)) //Player IS jumping on the monster
+                else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
                     if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0)
                     {
@@ -94,7 +94,15 @@ namespace AbrahmanAdventure.physics
                     }
                     else
                     {
-                        UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
+                        if (sprite is PlayerSprite && otherSprite is MonsterSprite && !((MonsterSprite)otherSprite).IsJumpableOn && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
+                        {
+                            //It is impossible to jump on this sprite
+                            UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta, spritePopulation, random);
+                        }
+                        else
+                        {
+                            UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
+                        }
                     }
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsToggleWalkWhenJumpedOn && !((MonsterSprite)otherSprite).IsWalkEnabled) //Start/stop (for helmets)
@@ -243,7 +251,7 @@ namespace AbrahmanAdventure.physics
                                     monsterSprite.IsAlive = false;
                                     monsterSprite.JumpingCycle.Fire();
                                 }
-                                else //Other sprite (monster) will be damaged
+                                else if (otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsJumpableOn) //Other sprite (monster) will be damaged
                                 {
                                     otherSprite.HitCycle.Fire();
                                     otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;

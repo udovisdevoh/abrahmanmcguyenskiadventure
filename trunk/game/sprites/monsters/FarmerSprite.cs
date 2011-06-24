@@ -274,7 +274,7 @@ namespace AbrahmanAdventure.sprites
 
         public double FlyingYSpeed
         {
-            get { return 0.1; }
+            get { return 0.05; }
         }
         #endregion
     }
