@@ -158,7 +158,7 @@ namespace AbrahmanAdventure.physics
             }
 
             if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive)
-                monsterProjectileManager.Update((IProjectileShooter)spriteToUpdate, spritePopulation, gameState.PlayerSprite, timeDelta, random);
+                monsterProjectileManager.Update((IProjectileShooter)spriteToUpdate, spritePopulation, visibleSpriteList, gameState.PlayerSprite, timeDelta, random);
 
             if (spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsEnableSpontaneousConversion && spriteToUpdate != playerSpriteReference.CarriedSprite)
                 spontaneousConversionManager.Update((MonsterSprite)spriteToUpdate, spritePopulation, timeDelta, random);

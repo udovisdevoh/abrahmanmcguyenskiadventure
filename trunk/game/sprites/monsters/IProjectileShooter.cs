@@ -26,6 +26,22 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Get the type of a projectile
+        /// </summary>
+        Type ProjectileType
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Max projectile count per screen (if less that 1: infinite)
+        /// </summary>
+        int MaxProjectileCountPerScreen
+        {
+            get;
+        }
+
+        /// <summary>
         /// Minimum time between shots
         /// </summary>
         double MinShootingTimeBetween
