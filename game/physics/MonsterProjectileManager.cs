@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.physics
             iProjectileShooter.ShootingCycle.Increment(timeDelta);
 
             //If there are too much projectiles on the screen, we reset the shooting cycle so we try again later
-            if ((iProjectileShooter.MaxProjectileCountPerScreen > 0 && CountProjectileOfShooterOnScreen(iProjectileShooter, visibleSpriteList) >= iProjectileShooter.MaxProjectileCountPerScreen) || !visibleSpriteList.Contains((AbstractSprite)iProjectileShooter))
+            if (iProjectileShooter.MaxProjectileCountPerScreen > 0 && CountProjectileOfShooterOnScreen(iProjectileShooter, visibleSpriteList) >= iProjectileShooter.MaxProjectileCountPerScreen)
             {
                 iProjectileShooter.ShootingCycle.Reset();
                 iProjectileShooter.ShootingCycle.Fire();

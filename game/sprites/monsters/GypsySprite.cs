@@ -163,7 +163,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 1.0;
+            return 0.5;
         }
 
         protected override double BuildJumpingTime()
@@ -178,7 +178,8 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.02;
+            return 0.01;
+            //return 0.02;
         }
 
         protected override double BuildMaxWalkingSpeed()
