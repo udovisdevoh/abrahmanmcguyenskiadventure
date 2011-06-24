@@ -27,7 +27,7 @@ Menu
 
 add skill level system
 {
-	select starting skill level on episode page using left / right arrows
+	?select starting skill level on episode page using left / right arrows?
 	Must be saved in GameMetaState
 	show skill level when show planet image
 }
