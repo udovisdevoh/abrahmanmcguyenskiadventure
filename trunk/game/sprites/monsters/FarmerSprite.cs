@@ -152,7 +152,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 1.0;
+            return 0.5;
         }
 
         protected override double BuildJumpingTime()

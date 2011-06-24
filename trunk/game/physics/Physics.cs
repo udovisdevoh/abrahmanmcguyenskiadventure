@@ -157,7 +157,7 @@ namespace AbrahmanAdventure.physics
                 fireBallToMonsterCollisionManager.Update((FireBallSprite)spriteToUpdate, level, visibleSpriteList);
             }
 
-            if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive)
+            if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive && visibleSpriteList.Contains(spriteToUpdate))
                 monsterProjectileManager.Update((IProjectileShooter)spriteToUpdate, spritePopulation, visibleSpriteList, gameState.PlayerSprite, timeDelta, random);
 
             if (spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsEnableSpontaneousConversion && spriteToUpdate != playerSpriteReference.CarriedSprite)
