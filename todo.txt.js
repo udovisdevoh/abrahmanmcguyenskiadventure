@@ -1,5 +1,9 @@
-IsFullGravityOnNextFrame: must be refactored: no loop, just put Y value of highest visible ground below sprite
-
+add skill level system
+{
+	?select starting skill level on episode page using left / right arrows?
+	Must be saved in GameMetaState
+	show skill level when show planet image
+}
 
 fix add texture cache transparency bug
 
@@ -26,13 +30,6 @@ Menu
 	{
 		Volume de musique et de sons
 	}
-}
-
-add skill level system
-{
-	?select starting skill level on episode page using left / right arrows?
-	Must be saved in GameMetaState
-	show skill level when show planet image
 }
 
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
