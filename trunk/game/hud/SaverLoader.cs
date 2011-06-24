@@ -27,6 +27,7 @@ namespace AbrahmanAdventure.hud
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Load game";
             openFileDialog.Filter = "XML file|*.savedgame.xml";
+            openFileDialog.SupportMultiDottedExtensions = true;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
@@ -59,6 +60,7 @@ namespace AbrahmanAdventure.hud
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "Save game";
             saveFileDialog.Filter = "XML file|*.savedgame.xml";
+            saveFileDialog.SupportMultiDottedExtensions = true;
             saveFileDialog.ShowDialog();
 
             if (saveFileDialog.FileName == null || saveFileDialog.FileName == "")
