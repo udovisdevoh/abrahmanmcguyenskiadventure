@@ -111,7 +111,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             spriteToUpdate.IsFullGravityOnNextFrame = false;
             IGround ground = IGroundHelper.GetHighestVisibleIGroundBelowSprite(spriteToUpdate, level, visibleSpriteList);
