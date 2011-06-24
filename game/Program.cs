@@ -401,7 +401,7 @@ namespace AbrahmanAdventure
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
                     }
-                    gameState = new GameState(seedNextGameState, mainSurface);
+                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface);
                     gameMetaState.ApplyPlayerInfoToSprite(gameState.PlayerSprite);
                     List<int> listWarpBackSeed;
                     if (gameMetaState.TryGetWarpBackTargetSeed(gameState.Seed, out listWarpBackSeed))

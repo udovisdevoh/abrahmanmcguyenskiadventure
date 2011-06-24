@@ -37,6 +37,11 @@ namespace AbrahmanAdventure
         private bool isDoped = false;
 
         /// <summary>
+        /// Skill level for unexplored levels
+        /// </summary>
+        private int skillLevelForUnknownLevels;
+
+        /// <summary>
         /// Player's health
         /// </summary>
         private double health = 0.5;
@@ -116,6 +121,22 @@ namespace AbrahmanAdventure
             if (!targetSeedList.Contains(targetSeed))
                 targetSeedList.Add(targetSeed);
         }
+
+        /// <summary>
+        /// Get skill level for seed
+        /// </summary>
+        /// <param name="seed">seed</param>
+        /// <returns>skill level for seed</returns>
+        internal int GetSkillLevel(int seed)
+        {
+            int skillLevel;
+            if (!mapSeedToSkillLevel.TryGetValue(seed, out skillLevel))
+            {
+                mapSeedToSkillLevel.Add(seed, skillLevel);
+                skillLevel = skillLevelForUnknownLevels;
+            }
+            return skillLevel;
+        }
         #endregion
 
         #region Properties
@@ -171,6 +192,15 @@ namespace AbrahmanAdventure
         {
             get { return previousSeed; }
             set { previousSeed = value; }
+        }
+
+        /// <summary>
+        /// Skill level for unexplored levels
+        /// </summary>
+        public int SkillLevelForUnknownLevels
+        {
+            get { return skillLevelForUnknownLevels; }
+            set { skillLevelForUnknownLevels = value; }
         }
 
         /// <summary>
