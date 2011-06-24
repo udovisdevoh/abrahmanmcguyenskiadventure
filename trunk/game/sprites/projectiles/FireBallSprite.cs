@@ -101,6 +101,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsCanDoDamageWhenInFreeFall()
+        {
+            return true;
+        }
+
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
         {
             return false;

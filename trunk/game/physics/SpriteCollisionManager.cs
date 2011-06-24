@@ -160,6 +160,9 @@ namespace AbrahmanAdventure.physics
             }
             else if (monsterSprite.IsCanDoDamageToPlayerWhenTouched)
             {
+                if (!monsterSprite.IsCanDoDamageWhenInFreeFall && (monsterSprite.IsCurrentlyInFreeFallX || monsterSprite.IsCurrentlyInFreeFallY))
+                    return;
+
                 sprite.HitCycle.Fire();
 
                 if (sprite.IsBeaver)

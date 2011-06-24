@@ -216,6 +216,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsCanDoDamageWhenInFreeFall()
+        {
+            return true;
+        }
+
         /// <summary>
         /// Get the sprite's current surface
         /// </summary>
