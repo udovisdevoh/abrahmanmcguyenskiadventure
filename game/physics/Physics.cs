@@ -34,6 +34,11 @@ namespace AbrahmanAdventure.physics
         private BattleManager battleManager = new BattleManager();
 
         /// <summary>
+        /// Manages flying sprites
+        /// </summary>
+        private FlyingSpriteManager flyingSpriteManager = new FlyingSpriteManager();
+
+        /// <summary>
         /// Manages damage logic
         /// </summary>
         private DamageManager damageManager = new DamageManager();
@@ -106,7 +111,11 @@ namespace AbrahmanAdventure.physics
         internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
             walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
-            gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+            
+            if (spriteToUpdate is IFlyingOnEqualDistance)
+                flyingSpriteManager.Update((IFlyingOnEqualDistance)spriteToUpdate, playerSpriteReference, timeDelta);
+            else
+                gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
 
             if (spriteToUpdate.IsFullGravityOnNextFrame)
                 gravityManager.ApplyFullGravityForce(spriteToUpdate, level, timeDelta, visibleSpriteList);

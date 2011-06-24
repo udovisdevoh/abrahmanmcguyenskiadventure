@@ -44,6 +44,7 @@ namespace AbrahmanAdventure.sprites
         public CornSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+            MaxFallingSpeed = 0.2;
             if (standSurfaceRight == null)
             {
                 standSurfaceRight = BuildSpriteSurface("./assets/rendered/corn/cornStand.png");
@@ -71,7 +72,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 5;
+            return 2;
         }
 
         protected override double BuildWalkingAcceleration()
