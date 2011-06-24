@@ -118,7 +118,7 @@ namespace AbrahmanAdventure.physics
                 gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
 
             if (spriteToUpdate.IsFullGravityOnNextFrame)
-                gravityManager.ApplyFullGravityForce(spriteToUpdate, level, timeDelta, visibleSpriteList);
+                gravityManager.ApplyFullGravityForce(spriteToUpdate, level, visibleSpriteList);
 
             jumpingManager.Update(spriteToUpdate, timeDelta);
             damageManager.Update(spriteToUpdate, timeDelta);
