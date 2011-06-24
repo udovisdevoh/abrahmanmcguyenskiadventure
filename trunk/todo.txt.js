@@ -1,8 +1,5 @@
-Farmer
-{
-	Doivent voller comme un lakitu (suivre tranquillement le player)
-	Doivent lancer des corn mais avec un nombre maximum par écran (nouvelle feature pour tout les IProjectileShooter
-}
+IsFullGravityOnNextFrame: must be refactored: no loop, just put Y value of highest visible ground below sprite
+
 
 fix add texture cache transparency bug
 
@@ -165,10 +162,6 @@ Monstres
 	
 	équivalent de poisson
 	
-	équivalent de lakitu
-	
-	équivalent de truc que lakitu lance: punk avec une crête à pics?
-	
 	Journaliste
 	{
 		Marionette (avec fil). Tient un micro
@@ -183,6 +176,8 @@ Monstres
 	Mickey Mouse
 	
 	Avocat
+	
+	?Comportement de shy guy?
 	
 	Texan
 	{
@@ -214,11 +209,6 @@ Monstres
 	}?
 	
 	?Bobo?
-	
-	Fermier transgénique
-	{
-		lance des maïs monsanto ?(comportement de boomerang)?
-	}
 	
 	?Obese (4*4 tile)
 	{
