@@ -1,3 +1,9 @@
+Farmer
+{
+	Doivent voller comme un lakitu (suivre tranquillement le player)
+	Doivent lancer des corn mais avec un nombre maximum par écran (nouvelle feature pour tout les IProjectileShooter
+}
+
 fix add texture cache transparency bug
 
 Changer nom d'app

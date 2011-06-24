@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
         {
-            return false;
+            return true;
         }
 
         protected override bool BuildIsNoAiChangeDirectionWhenStucked()
@@ -197,7 +197,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildAttackStrengthCollision()
         {
-            return 0.0;
+            return 0.5;
         }
 
         protected override double BuildWidth(Random random)
