@@ -79,7 +79,8 @@ namespace AbrahmanAdventure
         /// Random number generator
         /// </summary>
         /// <param name="seed">seed for random number generator</param>
-        public GameState(int seed) : this(seed, null, null)
+        /// <param name="skillLevel">skill level</param>
+        public GameState(int seed, int skillLevel) : this(seed, skillLevel, null, null)
         {
         }
 
@@ -87,8 +88,9 @@ namespace AbrahmanAdventure
         /// Random number generator
         /// </summary>
         /// <param name="seed">seed for random number generator</param>
+        /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, Surface surfaceToDrawLoadingProgress) : this(seed, null, surfaceToDrawLoadingProgress)
+        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress) : this(seed, skillLevel, null, surfaceToDrawLoadingProgress)
         {
         }
 
@@ -97,8 +99,9 @@ namespace AbrahmanAdventure
         /// </summary>
         /// <param name="seed">seed for random number generator</param>
         /// <param name="playerSprite">player sprite (if null, it will create a new one)</param>
+        /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
+        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
         {
             this.seed = seed;
             random = new Random(seed);
