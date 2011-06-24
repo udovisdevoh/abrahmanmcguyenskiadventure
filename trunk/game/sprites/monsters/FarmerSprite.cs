@@ -6,19 +6,17 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    class FarmerSprite : MonsterSprite, IProjectileShooter
+    class FarmerSprite : MonsterSprite, IProjectileShooter, IFlyingOnEqualDistance
     {
         #region Fields and parts
         private Cycle shootingCycle;
 
         private static Surface standRight;
 
-        private static Surface standLeft;
-
         private static Surface deadSurface;
         #endregion
 
-        #region Constructor
+        #region Constructors
         /// <summary>
         /// Create caterpillar sprite
         /// </summary>
@@ -33,7 +31,6 @@ namespace AbrahmanAdventure.sprites
             if (standRight == null)
             {
                 standRight = BuildSpriteSurface("./assets/rendered/farmer/farmer.png");
-                standLeft = standRight.CreateFlippedHorizontalSurface();
                 deadSurface = standRight.CreateFlippedVerticalSurface();
             }
         }
@@ -222,10 +219,7 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return deadSurface;
 
-            if (IsTryingToWalkRight)
-                return standRight;
-            else
-                return standLeft;
+            return standRight;
         }
         #endregion
 
@@ -269,6 +263,18 @@ namespace AbrahmanAdventure.sprites
         public double MaxShootingDistance
         {
             get { return 30.0; }
+        }
+        #endregion
+
+        #region IFlyingOnXWave Members
+        public double SafeYDistanceFromPlayer
+        {
+            get { return 4; }
+        }
+
+        public double FlyingYSpeed
+        {
+            get { return 0.1; }
         }
         #endregion
     }
