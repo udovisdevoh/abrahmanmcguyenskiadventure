@@ -291,6 +291,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsCanDoDamageWhenInFreeFall()
+        {
+            return true;
+        }
+
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;

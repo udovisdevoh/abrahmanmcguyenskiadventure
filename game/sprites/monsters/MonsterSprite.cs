@@ -141,6 +141,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite makes metal sound when touching ground
         /// </summary>
         private bool isMakeSoundWhenTouchGround;
+
+        /// <summary>
+        /// Whether sprite can do damage when in free fall
+        /// </summary>
+        private bool isCanDoDamageWhenInFreeFall;
         #endregion
 
         #region Constructors
@@ -178,6 +183,7 @@ namespace AbrahmanAdventure.sprites
             isDieOnTouchGround = BuildIsDieOnTouchGround();
             isVulnerableToInvincibility = BuildIsVulnerableToInvincibility();
             isMakeSoundWhenTouchGround = BuildIsMakeSoundWhenTouchGround();
+            isCanDoDamageWhenInFreeFall = BuildIsCanDoDamageWhenInFreeFall();
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
         }
@@ -297,6 +303,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns></returns>
         protected abstract bool BuildIsVulnerableToInvincibility();
+
+        /// <summary>
+        /// Whether sprite can do damage when in free fall
+        /// </summary>
+        /// <returns>Whether sprite can do damage when in free fall</returns>
+        protected abstract bool BuildIsCanDoDamageWhenInFreeFall();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -540,6 +552,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsVulnerableToInvincibility
         {
             get { return isVulnerableToInvincibility; }
+        }
+
+        /// <summary>
+        /// Whether sprite can do damage when in free fall
+        /// </summary>
+        public bool IsCanDoDamageWhenInFreeFall
+        {
+            get { return isCanDoDamageWhenInFreeFall; }
         }
 
         /// <summary>
