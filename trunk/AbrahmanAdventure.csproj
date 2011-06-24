@@ -105,6 +105,7 @@
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
     <Compile Include="game\sprites\monsters\CornSprite.cs" />
     <Compile Include="game\sprites\monsters\DoctorSprite.cs" />
+    <Compile Include="game\sprites\monsters\FarmerSprite.cs" />
     <Compile Include="game\sprites\monsters\GypsySprite.cs" />
     <Compile Include="game\sprites\monsters\HamburgerSprite.cs" />
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
