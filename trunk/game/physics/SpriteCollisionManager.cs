@@ -82,9 +82,9 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program, gameMetaState, gameState);
                 }
-                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && sprite.IGround == null && !sprite.IsCrossGrounds)
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive /*&& sprite.IGround == null*/ && !sprite.IsCrossGrounds)
                 {
-                    blockManager.UpdateJumpOnBlock(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, random);
+                    blockManager.UpdateBlockCollision(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, random);
                 }
                 else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
