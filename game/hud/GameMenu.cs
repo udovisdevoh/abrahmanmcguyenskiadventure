@@ -404,7 +404,6 @@ namespace AbrahmanAdventure.hud
                             program.GameMetaState = loadedGame;
                             program.ChangeGameState(program.GameMetaState.PreviousSeed);
                             program.GameState = null;
-                            program.IsShowMenu = false;
                         }
                         break;
                     case 2: //Save game

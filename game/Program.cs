@@ -189,8 +189,8 @@ namespace AbrahmanAdventure
             joystickManager.DefaultJoystickForRealAxes = null;
             if (args.Key == Key.Escape)
             {
-                if (!isShowMenu || (isShowMenu && gameState != null) || (isShowMenu && GameMenu.CurrentSubMenu != SubMenu.Main))
-                {
+                /*if (!isShowMenu || (isShowMenu && gameState != null) || (isShowMenu && GameMenu.CurrentSubMenu != SubMenu.Main))
+                {*/
                     GameMenu.Dirthen();
                     if (isShowMenu && GameMenu.CurrentSubMenu != SubMenu.Main)
                     {
@@ -201,7 +201,7 @@ namespace AbrahmanAdventure
                         isShowMenu = !isShowMenu;
                         previousDateTime = DateTime.Now;//To reset time delta
                     }                 
-                }
+                //}
             }
             else if (args.Key == Key.LeftArrow)
                 userInput.isPressLeft = true;
