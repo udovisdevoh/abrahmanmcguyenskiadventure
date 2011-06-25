@@ -13,6 +13,10 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class BlockManager
     {
+        #region Constants
+        private const double sufficientXCollisionPadding = 0.05;
+        #endregion
+
         #region Fields and parts
         /// <summary>
         /// To convert sprites
@@ -28,12 +32,12 @@ namespace AbrahmanAdventure.physics
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void UpdateBlockCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
             sprite.IsCurrentlyInFreeFallX = false;
             sprite.IsCurrentlyInFreeFallY = false;
-            if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
+            if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135 && sprite.IGround == null && IsSufficientXCollision(sprite,block))
             {
                 UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);
             }
@@ -102,7 +106,9 @@ namespace AbrahmanAdventure.physics
                 SoundManager.PlayHelmetBumpSound();
             }
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Sprite jumps under a block
         /// </summary>
@@ -112,7 +118,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of currently visible sprites</param>
         /// <param name="random">random number generator</param>
-        internal void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             if (sprite.YPosition < block.YPosition)
                 return;
@@ -130,9 +136,7 @@ namespace AbrahmanAdventure.physics
             sprite.IsNeedToJumpAgain = true;
             TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
         }
-        #endregion
 
-        #region Private Methods
         /// <summary>
         /// Reach sprite stacked on block by jumping under the block
         /// </summary>
@@ -179,10 +183,27 @@ namespace AbrahmanAdventure.physics
             else if (sprite.XPosition > block.XPosition)
                 sprite.LeftBoundKeepPrevious = block.RightBound;// + 0.1;
             sprite.CurrentWalkingSpeed = 0;
-            sprite.IGround = null;
+
+            if (sprite.IGround is AbstractSprite)
+                sprite.IGround = null;
 
             if (sprite is HelmetSprite)
                 TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
+        }
+
+        /// <summary>
+        /// If sufficient X collision, sprite can jump under block to open or break it
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="block">block</param>
+        /// <returns>If sufficient X collision, sprite can jump under block to open or break it</returns>
+        private bool IsSufficientXCollision(AbstractSprite sprite, StaticSprite block)
+        {
+            bool sufficientCollision = sprite.RightBound > block.LeftBound + sufficientXCollisionPadding && sprite.LeftBound < block.LeftBound;
+            sufficientCollision |= sprite.LeftBound < block.RightBound - sufficientXCollisionPadding && sprite.RightBound > block.RightBound;
+            sufficientCollision |= sprite.LeftBound <= block.LeftBound && sprite.RightBound >= block.RightBound;
+            sufficientCollision |= block.LeftBound <= sprite.LeftBound && block.RightBound >= sprite.RightBound;
+            return sufficientCollision;
         }
         #endregion
     }
