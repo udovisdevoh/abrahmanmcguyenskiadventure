@@ -22,6 +22,28 @@ namespace AbrahmanAdventure.physics
 
         #region Internal Methods
         /// <summary>
+        /// Player jumps towards impassable block. It may output something from it (mushroom, flower, etc)
+        /// </summary>
+        /// <param name="sprite">jumper</param>
+        /// <param name="anarchyBlockSprite">block</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="random">random number generator</param>
+        internal void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        {
+            double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
+            sprite.IsCurrentlyInFreeFallX = false;
+            sprite.IsCurrentlyInFreeFallY = false;
+            if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
+            {
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);
+            }
+            else
+            {
+                ManageBlockSideCollision(sprite, block, spritePopulation, visibleSpriteList, level, random);
+            }
+        }
+
+        /// <summary>
         /// Try to open a block
         /// </summary>
         /// <param name="sprite">opener</param>
@@ -107,28 +129,6 @@ namespace AbrahmanAdventure.physics
 
             sprite.IsNeedToJumpAgain = true;
             TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
-        }
-
-        /// <summary>
-        /// Player jumps towards impassable block. It may output something from it (mushroom, flower, etc)
-        /// </summary>
-        /// <param name="sprite">jumper</param>
-        /// <param name="anarchyBlockSprite">block</param>
-        /// <param name="spritePopulation">sprite population</param>
-        /// <param name="random">random number generator</param>
-        internal void UpdateJumpOnBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
-        {
-            double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
-            sprite.IsCurrentlyInFreeFallX = false;
-            sprite.IsCurrentlyInFreeFallY = false;
-            if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135)
-            {
-                UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);
-            }
-            else
-            {
-                ManageBlockSideCollision(sprite, block, spritePopulation, visibleSpriteList, level, random);
-            }
         }
         #endregion
 
