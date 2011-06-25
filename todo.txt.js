@@ -5,18 +5,11 @@ add skill level system
 		sprites
 		level size
 		?ground waves?
+		level bounds
 	}
 }
 
 add level bounds
-
-remove file dialogs
-{
-	remove [STAThread]
-	put custom dialog instead
-}
-
-fix bug: side block collision when jumping vertically and sticking on blocks on side
 
 fix add texture cache transparency bug
 
