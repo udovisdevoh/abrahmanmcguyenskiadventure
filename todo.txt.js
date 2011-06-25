@@ -9,7 +9,53 @@ add skill level system
 	}
 }
 
+Sprite dispatcher
+{
+	Blocks
+	{
+		Wave of horizontal segments
+		{
+			Vertical Waves to dispatch block segments (could be sineish or not)
+			Wave for block segement width
+			Wave for distance between segments
+			Voir SMB1 1-1
+		}
+		
+		Vertical structure
+		{
+			Wave for distance between horizontal segments
+			Wave for horizontal segment width
+			Voir SMB1 5-2, (flat on ground: see SMB3 W2-Quicksand)
+		}
+		
+		Unbreakable block ground wave
+		{
+			Wave of unbreakable blocks going from ground up
+			Voir SMB1 6-1
+			
+			-Also add optional wave qui va creuser la structure de block par en dessous
+			Voir SMB1 6-1
+			
+			-Also add option wave qui va séparer la structure en colonnes
+			Voir SMB1 1-2
+			
+			(for breakable version, see SMB3 2-3
+		}
+		
+		Unbreakable block roof wave
+		{
+			Could also be a Ground (wave ground), but on top (new feature, inverted ground on top)
+			
+			Voir SMB3 W1Fortress
+		}
+		
+		continuer à checker level de SMB3 à partir de W3
+	}
+}
+
 add level bounds
+
+équivalent de plante grimpante
 
 fix add texture cache transparency bug
 
