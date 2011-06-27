@@ -5,7 +5,8 @@ add skill level system
 		sprites
 		level size
 		?ground waves?
-		level bounds
+		level bounds (level's size)
+		quantité et grosseurs des trous
 	}
 }
 
