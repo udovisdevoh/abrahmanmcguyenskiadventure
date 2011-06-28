@@ -796,7 +796,7 @@
     <Content Include="assets\rendered\staticSprites\brickBlock3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\pipe2.png">
+    <Content Include="assets\rendered\staticSprites\pipe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\staticSprites\trampoline.png">
