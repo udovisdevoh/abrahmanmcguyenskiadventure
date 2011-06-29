@@ -19,9 +19,7 @@ namespace AbrahmanAdventure.physics
                 upDownMovingSprite.UpDownCycle.Increment(timeDelta);
             else if (upDownMovingSprite.IGround != playerSprite.IGround)
             {
-                if (!upDownMovingSprite.IsUseDontMoveUpDistance)
-                    upDownMovingSprite.UpDownCycle.Increment(timeDelta);
-                else if (Math.Abs(upDownMovingSprite.XPosition - playerSprite.XPosition) > upDownMovingSprite.DontMoveUpDistance)
+                if (Math.Abs(upDownMovingSprite.XPosition - playerSprite.XPosition) > upDownMovingSprite.DontMoveUpDistance)
                     upDownMovingSprite.UpDownCycle.Increment(timeDelta);
             }
         }
