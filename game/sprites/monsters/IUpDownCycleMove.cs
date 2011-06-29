@@ -21,5 +21,7 @@ namespace AbrahmanAdventure.sprites
         {
             get;
         }
+
+        double GetCurrentUpDownCycleHeightOffset();
     }
 }

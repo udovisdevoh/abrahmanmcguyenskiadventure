@@ -8,6 +8,12 @@ namespace AbrahmanAdventure.sprites
 {
     class DrillSprite : MonsterSprite, IUpDownCycleMove
     {
+        #region Constants
+        private const double upDownCycleLength = 100;
+
+        private const double upDownCycleMaxOffset = 1.65;
+        #endregion
+
         #region Fields and parts
         /// <summary>
         /// Black drills don't wait for player not to be over them to move up
@@ -41,7 +47,7 @@ namespace AbrahmanAdventure.sprites
         {
             this.isBlack = isBlack;
 
-            upDownCycle = new Cycle(100, true);
+            upDownCycle = new Cycle(upDownCycleLength, true);
 
             IsAffectedByGravity = false;
             IsFullGravityOnNextFrame = true;
@@ -285,6 +291,18 @@ namespace AbrahmanAdventure.sprites
         public double DontMoveUpDistance
         {
             get { return 1.5; }
+        }
+
+        public double GetCurrentUpDownCycleHeightOffset()
+        {
+            double scalar = upDownCycle.CurrentValue / upDownCycleLength;
+
+            scalar *= 2.0;
+
+            if (scalar > 1.0)
+                scalar = 2.0 - scalar;
+
+            return scalar * upDownCycleMaxOffset;
         }
         #endregion
     }
