@@ -9,9 +9,9 @@ namespace AbrahmanAdventure.sprites
     class DrillSprite : MonsterSprite, IUpDownCycleMove
     {
         #region Constants
-        private const double upDownCycleLength = 100;
+        private const double upDownCycleLength = 125;
 
-        private const double upDownCycleMaxOffset = 2.45;
+        private const double upDownCycleMaxOffset = 4.00;
         #endregion
 
         #region Fields and parts
@@ -312,7 +312,14 @@ namespace AbrahmanAdventure.sprites
             if (scalar > 1.0)
                 scalar = 2.0 - scalar;
 
-            return scalar * upDownCycleMaxOffset;
+            scalar *= upDownCycleMaxOffset * 1.333;
+
+            scalar -= upDownCycleMaxOffset * 0.2;
+
+            scalar = Math.Max(0, scalar);
+            scalar = Math.Min(2.45, scalar);
+
+            return scalar;
         }
 
         public double UpDownCycleHalfLength
