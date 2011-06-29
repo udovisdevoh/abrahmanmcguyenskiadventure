@@ -6,7 +6,7 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    class DrillSprite : MonsterSprite
+    class DrillSprite : MonsterSprite, IUpDownCycleMove
     {
         #region Fields and parts
         /// <summary>
@@ -26,7 +26,9 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface white3;
 
-        private Cycle drillCycle = new Cycle(10, true);
+        private Cycle drillCycle = new Cycle(3.0, true);
+
+        private Cycle upDownCycle;
         #endregion
 
         #region Constructor
@@ -38,6 +40,11 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             this.isBlack = isBlack;
+
+            upDownCycle = new Cycle(100, true);
+
+            IsAffectedByGravity = false;
+            IsFullGravityOnNextFrame = true;
 
             if (black1 == null)
             {
@@ -235,7 +242,7 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            drillCycle.Increment(1.0);
+            drillCycle.Increment(0.3);
             int cycleDivision = drillCycle.GetCycleDivision(3.0);
             if (isBlack)
             {
@@ -261,6 +268,23 @@ namespace AbrahmanAdventure.sprites
                         return white3;
                 }
             }
+        }
+        #endregion
+
+        #region IUpDownCycleMove Membres
+        public Cycle UpDownCycle
+        {
+            get { return upDownCycle; }
+        }
+
+        public bool IsUseDontMoveUpDistance
+        {
+            get { return !isBlack; }
+        }
+
+        public double DontMoveUpDistance
+        {
+            get { return 1.5; }
         }
         #endregion
     }

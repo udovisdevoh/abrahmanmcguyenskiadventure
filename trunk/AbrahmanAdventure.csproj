@@ -114,6 +114,7 @@
     <Compile Include="game\sprites\monsters\HelmetSprite.cs" />
     <Compile Include="game\sprites\monsters\IExplodable.cs" />
     <Compile Include="game\sprites\monsters\IProjectileShooter.cs" />
+    <Compile Include="game\sprites\monsters\IUpDownCycleMove.cs" />
     <Compile Include="game\sprites\monsters\JewSprite.cs" />
     <Compile Include="game\sprites\monsters\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
