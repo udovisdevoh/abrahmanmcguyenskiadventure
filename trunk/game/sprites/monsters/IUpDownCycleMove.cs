@@ -13,11 +13,6 @@ namespace AbrahmanAdventure.sprites
             get;
         }
 
-        bool IsUseDontMoveUpDistance
-        {
-            get;
-        }
-
         double DontMoveUpDistance
         {
             get;

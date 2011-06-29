@@ -292,14 +292,15 @@ namespace AbrahmanAdventure.sprites
             get { return upDownCycle; }
         }
 
-        public bool IsUseDontMoveUpDistance
-        {
-            get { return !isBlack; }
-        }
-
         public double DontMoveUpDistance
         {
-            get { return 2.0; }
+            get
+            {
+                if (isBlack)
+                    return 1.0;
+                else
+                    return 2.5;
+            }
         }
 
         public double GetCurrentUpDownCycleHeightOffset()
