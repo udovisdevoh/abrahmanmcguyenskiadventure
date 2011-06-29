@@ -74,6 +74,11 @@ namespace AbrahmanAdventure.physics
         private PlayerProjectileManager playerProjectileManager = new PlayerProjectileManager();
 
         /// <summary>
+        /// Manages sprites like drills (piranha plant behavior)
+        /// </summary>
+        private UpDownCycleMoveManager upDownCycleMoveManager = new UpDownCycleMoveManager();
+
+        /// <summary>
         /// Manages monster's projectiles
         /// </summary>
         private MonsterProjectileManager monsterProjectileManager = new MonsterProjectileManager();
@@ -155,6 +160,11 @@ namespace AbrahmanAdventure.physics
                     if (spriteToUpdate.IsTryDigGround)
                         beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);
                 }
+            }
+
+            if (spriteToUpdate is IUpDownCycleMove)
+            {
+                upDownCycleMoveManager.update((IUpDownCycleMove)spriteToUpdate, playerSpriteReference, timeDelta);
             }
             
             if (spriteToUpdate is HelmetSprite)

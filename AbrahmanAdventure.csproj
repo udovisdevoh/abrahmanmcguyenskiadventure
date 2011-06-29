@@ -96,6 +96,7 @@
     <Compile Include="game\physics\SpontaneousConversionManager.cs" />
     <Compile Include="game\physics\SpriteCollisionManager.cs" />
     <Compile Include="game\physics\SpriteConversionManager.cs" />
+    <Compile Include="game\physics\UpDownCycleMoveManager.cs" />
     <Compile Include="game\physics\WalkingManager.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\sky\Sky.cs" />

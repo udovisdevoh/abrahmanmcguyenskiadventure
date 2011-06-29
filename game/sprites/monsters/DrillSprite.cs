@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
         #region Constants
         private const double upDownCycleLength = 100;
 
-        private const double upDownCycleMaxOffset = 1.65;
+        private const double upDownCycleMaxOffset = 2.45;
         #endregion
 
         #region Fields and parts
@@ -19,6 +19,16 @@ namespace AbrahmanAdventure.sprites
         /// Black drills don't wait for player not to be over them to move up
         /// </summary>
         private bool isBlack = false;
+
+        private double upDownCycleHalfLength;
+
+        private double alwaysActiveRangeCycleStart;
+
+        private double alwaysActiveRangeCycleStop;
+
+        private Cycle drillCycle = new Cycle(3.0, true);
+
+        private Cycle upDownCycle;
 
         private static Surface black1;
 
@@ -31,10 +41,6 @@ namespace AbrahmanAdventure.sprites
         private static Surface white2;
 
         private static Surface white3;
-
-        private Cycle drillCycle = new Cycle(3.0, true);
-
-        private Cycle upDownCycle;
         #endregion
 
         #region Constructor
@@ -51,6 +57,9 @@ namespace AbrahmanAdventure.sprites
 
             IsAffectedByGravity = false;
             IsFullGravityOnNextFrame = true;
+            upDownCycleHalfLength = upDownCycleLength / 2.0;
+            alwaysActiveRangeCycleStart = upDownCycleLength * 0.45;
+            alwaysActiveRangeCycleStop = upDownCycleLength * 0.55;
 
             if (black1 == null)
             {
@@ -290,7 +299,7 @@ namespace AbrahmanAdventure.sprites
 
         public double DontMoveUpDistance
         {
-            get { return 1.5; }
+            get { return 2.0; }
         }
 
         public double GetCurrentUpDownCycleHeightOffset()
@@ -303,6 +312,21 @@ namespace AbrahmanAdventure.sprites
                 scalar = 2.0 - scalar;
 
             return scalar * upDownCycleMaxOffset;
+        }
+
+        public double UpDownCycleHalfLength
+        {
+            get { return upDownCycleHalfLength; }
+        }
+
+        public double AlwaysActiveRangeCycleStart
+        {
+            get { return alwaysActiveRangeCycleStart; }
+        }
+
+        public double AlwaysActiveRangeCycleStop
+        {
+            get { return alwaysActiveRangeCycleStop; }
         }
         #endregion
     }

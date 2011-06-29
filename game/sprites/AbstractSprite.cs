@@ -480,7 +480,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double YPosition
         {
-            get { return yPosition; }
+            get
+            {
+                if (this is IUpDownCycleMove)
+                    return yPosition + ((IUpDownCycleMove)this).GetCurrentUpDownCycleHeightOffset();
+
+                return yPosition;
+            }
             set
             {
                 yPositionPrevious = yPosition;
@@ -495,7 +501,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double YPositionKeepPrevious
         {
-            get { return yPosition; }
+            get { return YPosition; }
             set
             {
                 __parentSpriteCollection.RemoveSpatialHashing(this);
@@ -509,7 +515,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double YPositionPrevious
         {
-            get { return yPositionPrevious; }
+            get
+            {
+                if (this is IUpDownCycleMove)
+                    return yPositionPrevious + ((IUpDownCycleMove)this).GetCurrentUpDownCycleHeightOffset();
+
+                return yPositionPrevious;
+            }
         }
 
         /// <summary>
@@ -877,9 +889,9 @@ namespace AbrahmanAdventure.sprites
         	get
         	{
                 if (isCrouch || (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver)))
-        			return yPosition - height / 2.0;
+        			return YPosition - height / 2.0;
         		else
-        			return yPosition - height;
+        			return YPosition - height;
         	}
             set
             {
