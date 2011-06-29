@@ -103,6 +103,7 @@
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
     <Compile Include="game\sprites\ICarriable.cs" />
+    <Compile Include="game\sprites\monsters\DrillSprite.cs" />
     <Compile Include="game\sprites\monsters\IFlyingOnEqualDistance.cs" />
     <Compile Include="game\sprites\monsters\BlobSprite.cs" />
     <Compile Include="game\sprites\monsters\CornSprite.cs" />
@@ -510,12 +511,24 @@
     <Content Include="assets\rendered\doctor\DoctorWalk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\drill\drill1a.png" />
-    <Content Include="assets\rendered\drill\drill1b.png" />
-    <Content Include="assets\rendered\drill\drill2a.png" />
-    <Content Include="assets\rendered\drill\drill2b.png" />
-    <Content Include="assets\rendered\drill\drill3a.png" />
-    <Content Include="assets\rendered\drill\drill3b.png" />
+    <Content Include="assets\rendered\drill\drill1a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\drill\drill1b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\drill\drill2a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\drill\drill2b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\drill\drill3a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\drill\drill3b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\effects\explosion1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
