@@ -52,6 +52,8 @@ Sprite dispatcher
 		
 		continuer à checker level de SMB3 à partir de W3
 	}
+	
+	SMB3 6-10: great wall
 }
 
 add level bounds
