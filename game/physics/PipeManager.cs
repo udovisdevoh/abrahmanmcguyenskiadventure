@@ -98,5 +98,10 @@ namespace AbrahmanAdventure.physics
                 //playerSprite.FromVortexCycle.Fire();
             }
         }
+
+        internal bool IsWithinPipeXRange(PlayerSprite playerSprite, PipeSprite pipeSprite)
+        {
+            return Math.Abs(playerSprite.XPosition - pipeSprite.XPosition) < 0.5;
+        }
     }
 }

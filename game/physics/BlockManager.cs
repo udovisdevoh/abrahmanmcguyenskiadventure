@@ -140,7 +140,7 @@ namespace AbrahmanAdventure.physics
 
             if (block is PipeSprite)
             {
-                if (((PipeSprite)block).LinkedPipe != null && sprite.IsTryToWalkUp)
+                if (((PipeSprite)block).LinkedPipe != null && sprite.IsTryToWalkUp && pipeManager.IsWithinPipeXRange((PlayerSprite)sprite, (PipeSprite)block))
                     pipeManager.SchedulePipeTeleportation((PlayerSprite)sprite, (PipeSprite)block);
 
                 return;

@@ -196,10 +196,6 @@ Monstres
 		Ron Hubbard
 		Présidents de banque
 		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
-		Ronald McDonalds
-		{
-			lance des bigmacs, frites, coke, etc
-		}
 	}
 	
 	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
