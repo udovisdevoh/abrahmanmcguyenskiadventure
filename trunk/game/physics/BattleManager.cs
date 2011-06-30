@@ -57,9 +57,10 @@ namespace AbrahmanAdventure.physics
                     powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
                     break;
                 }
-                else if (otherSprite is PipeSprite)
+                else if (otherSprite is StaticSprite)
                 {
-                    SoundManager.PlayHelmetBumpSound();
+                    if (!((StaticSprite)otherSprite).IsDestructible)
+                        SoundManager.PlayHelmetBumpSound();
                     break;
                 }
                 else if (otherSprite is MonsterSprite)
