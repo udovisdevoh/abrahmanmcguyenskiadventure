@@ -22,6 +22,9 @@ namespace AbrahmanAdventure.physics
             SoundManager.PlayHit2Sound();
             PipeSprite targetPipe = sourcePipe.LinkedPipe;
             playerSprite.DestinationPipe = targetPipe;
+
+            if (playerSprite.DestinationPipe.LinkedDrill != null)
+                playerSprite.DestinationPipe.LinkedDrill.UpDownCycle.CurrentValue = playerSprite.DestinationPipe.LinkedDrill.UpDownCycleHalfLength;
         }
 
         internal void ContinuePipeTeleportation(PlayerSprite playerSprite)
@@ -92,7 +95,7 @@ namespace AbrahmanAdventure.physics
                 if (!playerSprite.DestinationPipe.IsUpSide)
                     playerSprite.IGround = null;
                 playerSprite.DestinationPipe = null;
-                playerSprite.FromVortexCycle.Fire();
+                //playerSprite.FromVortexCycle.Fire();
             }
         }
     }
