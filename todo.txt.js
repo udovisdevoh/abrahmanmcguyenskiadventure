@@ -189,9 +189,10 @@ Monstres
 {
 	Bosses
 	{
+		Tom Cruise
+		John Travolta
 		Le pape
 		Sarah Palin
-		Tom Cruise	
 		Ron Hubbard
 		Présidents de banque
 		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
