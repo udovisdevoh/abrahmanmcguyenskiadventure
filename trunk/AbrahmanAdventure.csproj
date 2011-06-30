@@ -124,6 +124,7 @@
     <Compile Include="game\sprites\monsters\MuslimSprite.cs" />
     <Compile Include="game\sprites\monsters\PriestSprite.cs" />
     <Compile Include="game\sprites\monsters\RaptorJesusSprite.cs" />
+    <Compile Include="game\sprites\monsters\RonaldSprite.cs" />
     <Compile Include="game\sprites\PlayerSprite.cs" />
     <Compile Include="game\spatialHashing\SpritePopulation.cs" />
     <Compile Include="game\sprites\monsters\RaptorSprite.cs" />
@@ -781,6 +782,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\riotControl\walk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\ronald\ronaldHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\ronald\ronaldStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\ronald\ronaldWalk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\snake\snake1.png">
