@@ -142,11 +142,11 @@ namespace AbrahmanAdventure
         /// <param name="random">random number generator</param>
         private void AddHardCodedTestSprite()
         {
-            AddHardCodedPipeAndDrillTestSprite(-4, false, true);
-            AddHardCodedPipeAndDrillTestSprite(-8, true, true);
+            PipeSprite sourcePipe1 = AddHardCodedPipeAndDrillTestSprite(-4, false, true, null);
+            PipeSprite sourcePipe2 = AddHardCodedPipeAndDrillTestSprite(-8, true, true, null);
 
-            AddHardCodedPipeAndDrillTestSprite(0, false, false);
-            AddHardCodedPipeAndDrillTestSprite(4, true, false);
+            AddHardCodedPipeAndDrillTestSprite(4, false, false, sourcePipe1);
+            AddHardCodedPipeAndDrillTestSprite(8, true, false, sourcePipe2);
             
             /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
@@ -204,14 +204,22 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
         }
 
-        private void AddHardCodedPipeAndDrillTestSprite(double xPosition, bool isBlack, bool isUpSide)
+        /// <summary>
+        /// Add hardcoded pipe and drill (test sprites)
+        /// </summary>
+        /// <param name="xPosition">x position of pipe</param>
+        /// <param name="isBlack">whether drill is black</param>
+        /// <param name="isUpSide">whether pipe is upside</param>
+        /// <param name="linkedPipe">pipe linked to it (none if null)</param>
+        /// <returns>Pipe added</returns>
+        private PipeSprite AddHardCodedPipeAndDrillTestSprite(double xPosition, bool isBlack, bool isUpSide, PipeSprite linkedPipe)
         {
             double pipeHeight;
 
             if (isUpSide)
                 pipeHeight = Program.totalHeightTileCount / -6.5;
             else
-                pipeHeight = Program.totalHeightTileCount / -4.0;
+                pipeHeight = Program.totalHeightTileCount / -5.0;
 
             PipeSprite pipeSprite = new PipeSprite(xPosition, pipeHeight, isUpSide, random);
             DrillSprite drillSprite = new DrillSprite(xPosition, Program.totalHeightTileCount / -2, isBlack, isUpSide, random);
@@ -223,6 +231,11 @@ namespace AbrahmanAdventure
                 drillSprite.YPosition = pipeSprite.TopBound;
             else
                 drillSprite.TopBound = pipeSprite.YPosition;
+
+            if (linkedPipe != null)
+                pipeSprite.LinkedPipe = linkedPipe;
+
+            return pipeSprite;
             
         }
         #endregion
