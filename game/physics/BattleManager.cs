@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
         {
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
-                if (sprite == otherSprite || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite))
+                if (sprite == otherSprite || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite) || !otherSprite.IsVulnerableToPunch)
                     continue;
 
                 if (otherSprite is MushroomSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
@@ -55,12 +55,6 @@ namespace AbrahmanAdventure.physics
                 else if (otherSprite is WhiskySprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                 {
                     powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
-                    break;
-                }
-                else if (otherSprite is StaticSprite)
-                {
-                    if (!((StaticSprite)otherSprite).IsDestructible)
-                        SoundManager.PlayHelmetBumpSound();
                     break;
                 }
                 else if (otherSprite is MonsterSprite)

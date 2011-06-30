@@ -27,6 +27,18 @@ namespace AbrahmanAdventure.sprites
         private static Surface white2;
 
         private static Surface white3;
+
+        private static Surface black1d;
+
+        private static Surface black2d;
+
+        private static Surface black3d;
+
+        private static Surface white1d;
+
+        private static Surface white2d;
+
+        private static Surface white3d;
         #endregion
 
         #region Instance fields and parts
@@ -34,6 +46,8 @@ namespace AbrahmanAdventure.sprites
         /// Black drills don't wait for player not to be over them to move up
         /// </summary>
         private bool isBlack = false;
+
+        private bool isUpSide = true;
 
         private double upDownCycleHalfLength;
 
@@ -48,18 +62,19 @@ namespace AbrahmanAdventure.sprites
 
         #region Constructor
         public DrillSprite(double xPosition, double yPosition, Random random)
-            : this(xPosition, yPosition, random.Next(0, 2) == 1, random)
+            : this(xPosition, yPosition, random.Next(0, 2) == 1, true, random)
         {
         }
-        public DrillSprite(double xPosition, double yPosition, bool isBlack, Random random)
+        public DrillSprite(double xPosition, double yPosition, bool isBlack, bool isUpSide, Random random)
             : base(xPosition, yPosition, random)
         {
             this.isBlack = isBlack;
+            this.isUpSide = isUpSide;
 
             upDownCycle = new Cycle(upDownCycleLength, true);
 
             IsAffectedByGravity = false;
-            //IsFullGravityOnNextFrame = true;
+            IsVulnerableToPunch = false;
             upDownCycleHalfLength = upDownCycleLength / 2.0;
             alwaysActiveRangeCycleStart = upDownCycleLength * 0.45;
             alwaysActiveRangeCycleStop = upDownCycleLength * 0.55;
@@ -73,6 +88,12 @@ namespace AbrahmanAdventure.sprites
                 white1 = BuildSpriteSurface("./assets/rendered/drill/drill1a.png");
                 white2 = BuildSpriteSurface("./assets/rendered/drill/drill2a.png");
                 white3 = BuildSpriteSurface("./assets/rendered/drill/drill3a.png");
+                black1d = black1.CreateFlippedVerticalSurface();
+                black2d = black2.CreateFlippedVerticalSurface();
+                black3d = black3.CreateFlippedVerticalSurface();
+                white1d = white1.CreateFlippedVerticalSurface();
+                white2d = white2.CreateFlippedVerticalSurface();
+                white3d = white3.CreateFlippedVerticalSurface();
             }
         }
         #endregion
@@ -260,7 +281,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHeight(Random random)
         {
-            return 1.1;
+            return 1.65;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
@@ -271,34 +292,70 @@ namespace AbrahmanAdventure.sprites
 
             Surface surface;
 
-            if (isBlack)
+            if (isUpSide)
             {
-                switch (cycleDivision)
+                if (isBlack)
                 {
-                    case 1:
-                        surface = black1;
-                        break;
-                    case 2:
-                        surface = black2;
-                        break;
-                    default:
-                        surface = black3;
-                        break;
+                    switch (cycleDivision)
+                    {
+                        case 1:
+                            surface = black1;
+                            break;
+                        case 2:
+                            surface = black2;
+                            break;
+                        default:
+                            surface = black3;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (cycleDivision)
+                    {
+                        case 1:
+                            surface = white1;
+                            break;
+                        case 2:
+                            surface = white2;
+                            break;
+                        default:
+                            surface = white3;
+                            break;
+                    }
                 }
             }
             else
             {
-                switch (cycleDivision)
+                if (isBlack)
                 {
-                    case 1:
-                        surface = white1;
-                        break;
-                    case 2:
-                        surface = white2;
-                        break;
-                    default:
-                        surface = white3;
-                        break;
+                    switch (cycleDivision)
+                    {
+                        case 1:
+                            surface = black1d;
+                            break;
+                        case 2:
+                            surface = black2d;
+                            break;
+                        default:
+                            surface = black3d;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (cycleDivision)
+                    {
+                        case 1:
+                            surface = white1d;
+                            break;
+                        case 2:
+                            surface = white2d;
+                            break;
+                        default:
+                            surface = white3d;
+                            break;
+                    }
                 }
             }
 
@@ -363,6 +420,9 @@ namespace AbrahmanAdventure.sprites
 
             scalar = Math.Max(0, scalar);
             scalar = Math.Min(2.45, scalar);
+
+            if (!isUpSide)
+                scalar *= -1;
 
             return scalar;
         }

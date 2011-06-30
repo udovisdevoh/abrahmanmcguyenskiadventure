@@ -13,12 +13,23 @@ namespace AbrahmanAdventure.sprites
     {
         #region Field and parts
         private static Surface surface;
+
+        /// <summary>
+        /// Whether the pipe is upside
+        /// </summary>
+        private bool isUpSide;
         #endregion
 
         #region Constructor
         public PipeSprite(double xPosition, double yPosition, Random random)
+            :this(xPosition,yPosition,true,random)
+        {
+        }
+
+        public PipeSprite(double xPosition, double yPosition, bool isUpSide, Random random)
             : base(xPosition, yPosition, random)
         {
+            this.isUpSide = isUpSide;
             if (surface == null)
                 surface = BuildSpriteSurface("./assets/rendered/staticSprites/pipe.png");
         }

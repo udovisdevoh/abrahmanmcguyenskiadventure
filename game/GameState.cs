@@ -142,8 +142,11 @@ namespace AbrahmanAdventure
         /// <param name="random">random number generator</param>
         private void AddHardCodedTestSprite()
         {
-            AddHardCodedPipeAndDrillTestSprite(-4, false);
-            AddHardCodedPipeAndDrillTestSprite(-8, true);
+            AddHardCodedPipeAndDrillTestSprite(-4, false, true);
+            AddHardCodedPipeAndDrillTestSprite(-8, true, true);
+
+            AddHardCodedPipeAndDrillTestSprite(0, false, false);
+            AddHardCodedPipeAndDrillTestSprite(4, true, false);
             
             /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
@@ -201,16 +204,25 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
         }
 
-        private void AddHardCodedPipeAndDrillTestSprite(double xPosition, bool isBlack)
+        private void AddHardCodedPipeAndDrillTestSprite(double xPosition, bool isBlack, bool isUpSide)
         {
-            PipeSprite pipeSprite = new PipeSprite(xPosition, Program.totalHeightTileCount / -6.5, random);
-            DrillSprite drillSprite = new DrillSprite(xPosition, Program.totalHeightTileCount / -2, isBlack, random);
+            double pipeHeight;
+
+            if (isUpSide)
+                pipeHeight = Program.totalHeightTileCount / -6.5;
+            else
+                pipeHeight = Program.totalHeightTileCount / -4.0;
+
+            PipeSprite pipeSprite = new PipeSprite(xPosition, pipeHeight, isUpSide, random);
+            DrillSprite drillSprite = new DrillSprite(xPosition, Program.totalHeightTileCount / -2, isBlack, isUpSide, random);
 
             spritePopulation.Add(pipeSprite);
             spritePopulation.Add(drillSprite);
 
-            drillSprite.YPosition = pipeSprite.TopBound;
-            drillSprite.IGround = pipeSprite;
+            if (isUpSide)
+                drillSprite.YPosition = pipeSprite.TopBound;
+            else
+                drillSprite.TopBound = pipeSprite.YPosition;
             
         }
         #endregion

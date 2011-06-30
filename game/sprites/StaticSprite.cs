@@ -50,6 +50,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsVulnerableToPunch()
+        {
+            return true;
+        }
+
         protected override int BuildZIndex()
         {
             return 0;
