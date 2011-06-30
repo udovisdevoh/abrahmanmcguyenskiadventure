@@ -18,6 +18,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether the pipe is upside
         /// </summary>
         private bool isUpSide;
+
+        /// <summary>
+        /// Sprite linked to it
+        /// </summary>
+        private PipeSprite linkedPipe = null;
         #endregion
 
         #region Constructor
@@ -80,6 +85,24 @@ namespace AbrahmanAdventure.sprites
         {
             xOffset = yOffset = 0;
             return surface;
+        }
+        #endregion
+
+        #region Properties
+        public PipeSprite LinkedPipe
+        {
+            get
+            {
+                return linkedPipe;
+            }
+            set
+            {
+                if (value != this && value != null)
+                {
+                    linkedPipe = value;
+                    linkedPipe.linkedPipe = this;
+                }
+            }
         }
         #endregion
     }
