@@ -157,7 +157,7 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired && spriteToUpdate.IGround != null)
                         ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
 
-                    if (spriteToUpdate.IGround is PipeSprite && program.UserInput.isPressDown && ((PipeSprite)spriteToUpdate.IGround).IsUpSide && ((PipeSprite)spriteToUpdate.IGround).LinkedPipe != null)
+                    if (spriteToUpdate.IGround is PipeSprite && program.UserInput.isPressDown && ((PipeSprite)spriteToUpdate.IGround).IsUpSide && ((PipeSprite)spriteToUpdate.IGround).LinkedPipe != null && pipeManager.IsWithinPipeXRange((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround))
                         pipeManager.SchedulePipeTeleportation((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround);
 
                     if (spriteToUpdate.CarriedSprite != null)
