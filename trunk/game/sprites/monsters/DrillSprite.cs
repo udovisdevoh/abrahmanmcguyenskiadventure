@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
@@ -14,7 +15,23 @@ namespace AbrahmanAdventure.sprites
         private const double upDownCycleMaxOffset = 4.00;
         #endregion
 
-        #region Fields and parts
+        #region Static parts
+        private static Surface black1;
+
+        private static Surface black2;
+
+        private static Surface black3;
+
+        private static Surface white1;
+
+        private static Surface white2;
+
+        private static Surface white3;
+
+        //private static Dictionary<int, Surface> scaledSurfaceCache = new Dictionary<int, Surface>();
+        #endregion
+
+        #region Instance fields and parts
         /// <summary>
         /// Black drills don't wait for player not to be over them to move up
         /// </summary>
@@ -29,18 +46,6 @@ namespace AbrahmanAdventure.sprites
         private Cycle drillCycle = new Cycle(3.0, true);
 
         private Cycle upDownCycle;
-
-        private static Surface black1;
-
-        private static Surface black2;
-
-        private static Surface black3;
-
-        private static Surface white1;
-
-        private static Surface white2;
-
-        private static Surface white3;
         #endregion
 
         #region Constructor
@@ -259,16 +264,22 @@ namespace AbrahmanAdventure.sprites
             xOffset = yOffset = 0;
             drillCycle.Increment(0.3);
             int cycleDivision = drillCycle.GetCycleDivision(3.0);
+
+            Surface surface;
+
             if (isBlack)
             {
                 switch (cycleDivision)
                 {
                     case 1:
-                        return black1;
+                        surface = black1;
+                        break;
                     case 2:
-                        return black2;
+                        surface = black2;
+                        break;
                     default:
-                        return black3;
+                        surface = black3;
+                        break;
                 }
             }
             else
@@ -276,13 +287,43 @@ namespace AbrahmanAdventure.sprites
                 switch (cycleDivision)
                 {
                     case 1:
-                        return white1;
+                        surface = white1;
+                        break;
                     case 2:
-                        return white2;
+                        surface = white2;
+                        break;
                     default:
-                        return white3;
+                        surface = white3;
+                        break;
                 }
             }
+
+            /*double currentUpDownCycleHeightOffset = GetCurrentUpDownCycleHeightOffset();
+            if (currentUpDownCycleHeightOffset != 0)
+            {
+                int oldSurfaceHeight = surface.GetHeight();
+                int newSurfaceHeight = oldSurfaceHeight - (int)(currentUpDownCycleHeightOffset * (double)Program.tileSize * 4.0);
+                newSurfaceHeight = Math.Max(newSurfaceHeight, 0);
+                newSurfaceHeight = Math.Min(oldSurfaceHeight, newSurfaceHeight);
+
+                int cacheKey = newSurfaceHeight;
+                if (isBlack && cacheKey != 0)
+                    cacheKey += 1000000;
+                cacheKey += (cycleDivision * 2000);
+
+                Surface scaledSurface;
+                if (!scaledSurfaceCache.TryGetValue(cacheKey, out scaledSurface))
+                {
+                    Rectangle rectangle = new Rectangle(0, 0, surface.GetWidth(), newSurfaceHeight);
+                    scaledSurface = new Surface(rectangle);
+                    scaledSurface.Transparent = true;
+                    scaledSurface.Blit(surface, new Point(0, 0), rectangle);
+                    scaledSurfaceCache.Add(cacheKey, scaledSurface);
+                }
+
+                surface = scaledSurface;
+            }*/
+            return surface;
         }
         #endregion
 
