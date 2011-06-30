@@ -55,6 +55,8 @@ namespace AbrahmanAdventure.sprites
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
 
                 dead = hitRight.CreateFlippedVerticalSurface();
+
+                IsVulnerableToPunch = false;
             }
         }
         #endregion
