@@ -24,10 +24,10 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        /// <param name="sortedVisibleSpriteList">visible sprite sorted list</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList)
         {
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
                 if (sprite == otherSprite || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite))
                     continue;
@@ -35,22 +35,32 @@ namespace AbrahmanAdventure.physics
                 if (otherSprite is MushroomSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                 {
                     powerUpManager.UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                    break;
                 }
                 else if (otherSprite is RastaHatSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                 {
                     powerUpManager.UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
+                    break;
                 }
                 else if (otherSprite is PeyoteSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                 {
                     powerUpManager.UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
+                    break;
                 }
                 else if (otherSprite is MusicNoteSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                 {
                     powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
+                    break;
                 }
                 else if (otherSprite is WhiskySprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                 {
                     powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
+                    break;
+                }
+                else if (otherSprite is PipeSprite)
+                {
+                    SoundManager.PlayHelmetBumpSound();
+                    break;
                 }
                 else if (otherSprite is MonsterSprite)
                 {
@@ -58,7 +68,7 @@ namespace AbrahmanAdventure.physics
                     {
                         MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
                         if (!monsterSprite.KickedHelmetCycle.IsFired)
-                        {       
+                        {
                             if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
                                 SoundManager.PlayBeaverAttackSound();
                             else
@@ -88,6 +98,7 @@ namespace AbrahmanAdventure.physics
                             monsterSprite.IsTryingToJump = true;
                         }
                     }
+                    break;
                 }
             }
         }
