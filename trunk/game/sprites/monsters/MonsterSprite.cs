@@ -364,6 +364,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsVulnerableToPunch()
+        {
+            return true;
+        }
+
         protected override double BuildBounciness()
         {
             return 1.0;

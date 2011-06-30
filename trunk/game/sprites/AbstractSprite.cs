@@ -160,6 +160,11 @@ namespace AbrahmanAdventure.sprites
         private bool isCurrentlyInFreeFallY;
 
         /// <summary>
+        /// Whether sprite is vulnerable to punch
+        /// </summary>
+        private bool isVulnerableToPunch;
+
+        /// <summary>
         /// Max falling speed
         /// </summary>
         private double maxFallingSpeed = double.PositiveInfinity;
@@ -293,6 +298,7 @@ namespace AbrahmanAdventure.sprites
             isAnnihilateOnExitScreen = BuildIsAnnihilateOnExitScreen();
             isCrossGrounds = BuildIsCrossGrounds();
             zIndex = BuildZIndex();
+            isVulnerableToPunch = BuildIsVulnerableToPunch();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -326,6 +332,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite will be annihilated when exiting screen</returns>
         protected abstract bool BuildIsAnnihilateOnExitScreen();
+
+        /// <summary>
+        /// Whether sprite is vulnerable to punch
+        /// </summary>
+        /// <returns>Whether sprite is vulnerable to punch</returns>
+        protected abstract bool BuildIsVulnerableToPunch();
 
         /// <summary>
         /// Maximum health
@@ -824,6 +836,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isCrossGrounds; }
             set { isCrossGrounds = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is vulnerable to punch
+        /// </summary>
+        public bool IsVulnerableToPunch
+        {
+            get { return isVulnerableToPunch; }
+            set { isVulnerableToPunch = value; }
         }
 
         /// <summary>
