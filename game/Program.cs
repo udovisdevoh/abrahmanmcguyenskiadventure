@@ -178,6 +178,7 @@ namespace AbrahmanAdventure
             CrystalBallSprite crystalBall = new CrystalBallSprite(0, 0, spriteCachingRandom);
             PillSprite pill = new PillSprite(0, 0, spriteCachingRandom);
             BeaverSprite beaverSprite = new BeaverSprite(0, 0, spriteCachingRandom);
+            CornSprite cornSprite = new CornSprite(0, 0, spriteCachingRandom);
             //levelViewer.PreCache(level);
             #endregion
         }
