@@ -22,6 +22,11 @@ namespace AbrahmanAdventure.physics
         /// To convert sprites
         /// </summary>
         private SpriteConversionManager spriteConverter = new SpriteConversionManager();
+
+        /// <summary>
+        /// Manages pipe (player going into pipes)
+        /// </summary>
+        private PipeManager pipeManager = new PipeManager();
         #endregion
 
         #region Internal Methods
@@ -132,6 +137,14 @@ namespace AbrahmanAdventure.physics
 
             if (!(sprite is PlayerSprite) && !(sprite is HelmetSprite))
                 return;
+
+            if (block is PipeSprite)
+            {
+                if (((PipeSprite)block).LinkedPipe != null && sprite.IsTryToWalkUp)
+                    pipeManager.SchedulePipeTeleportation((PlayerSprite)sprite, (PipeSprite)block);
+
+                return;
+            }
 
             sprite.IsNeedToJumpAgain = true;
             TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
