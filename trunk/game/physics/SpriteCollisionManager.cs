@@ -49,10 +49,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameMetaState">game meta state</param>
         /// <param name="gameState">game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
-            List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.SortByDistanceToSprite(sprite, visibleSpriteList);
-
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)

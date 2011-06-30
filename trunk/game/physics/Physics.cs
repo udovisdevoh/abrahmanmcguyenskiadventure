@@ -131,11 +131,12 @@ namespace AbrahmanAdventure.physics
 
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {
-                spriteCollisionManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, spritePopulation, program, gameMetaState, gameState, random);
+                List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.SortByDistanceToSprite(spriteToUpdate, visibleSpriteList);
+                spriteCollisionManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, sortedVisibleSpriteList, spritePopulation, program, gameMetaState, gameState, random);
 
                 if (spriteToUpdate is PlayerSprite)
                 {
-                    battleManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+                    battleManager.Update(spriteToUpdate, level, timeDelta, sortedVisibleSpriteList);
                     if (((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.Increment(timeDelta);
 
