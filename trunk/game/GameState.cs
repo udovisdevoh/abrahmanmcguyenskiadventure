@@ -144,6 +144,7 @@ namespace AbrahmanAdventure
         {
             spritePopulation.Add(new DrillSprite(-4, Program.totalHeightTileCount / -2, false, random));
             spritePopulation.Add(new DrillSprite(-8, Program.totalHeightTileCount / -2, true, random));
+            
             /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
