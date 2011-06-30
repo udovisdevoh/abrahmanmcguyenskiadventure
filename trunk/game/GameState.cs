@@ -142,8 +142,8 @@ namespace AbrahmanAdventure
         /// <param name="random">random number generator</param>
         private void AddHardCodedTestSprite()
         {
-            spritePopulation.Add(new DrillSprite(-4, Program.totalHeightTileCount / -2, false, random));
-            spritePopulation.Add(new DrillSprite(-8, Program.totalHeightTileCount / -2, true, random));
+            AddHardCodedPipeAndDrillTestSprite(-4, false);
+            AddHardCodedPipeAndDrillTestSprite(-8, true);
             
             /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
@@ -199,6 +199,19 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new VortexSprite(-75, Program.totalHeightTileCount / -2, random, true));
 
             spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
+        }
+
+        private void AddHardCodedPipeAndDrillTestSprite(double xPosition, bool isBlack)
+        {
+            PipeSprite pipeSprite = new PipeSprite(xPosition, Program.totalHeightTileCount / -6.5, random);
+            DrillSprite drillSprite = new DrillSprite(xPosition, Program.totalHeightTileCount / -2, isBlack, random);
+
+            spritePopulation.Add(pipeSprite);
+            spritePopulation.Add(drillSprite);
+
+            drillSprite.YPosition = pipeSprite.TopBound;
+            drillSprite.IGround = pipeSprite;
+            
         }
         #endregion
 
