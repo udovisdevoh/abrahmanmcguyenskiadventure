@@ -129,9 +129,6 @@ plateformes de largeur diverse
 
 
 
-shells must open anarchy blocks and break brick blocks
-
-
 ?if top speed
 {
 	play special sound (beep in loop)
@@ -190,8 +187,6 @@ certains monstres doivent se spawner directement sur le sol (probablement la maj
 
 Monstres
 {
-	truc qui se comporte comme une plante carnivore (je sais pas quoi encore), possiblement pelle mécanique ou drill de pétrole
-
 	Bosses
 	{
 		Le pape
