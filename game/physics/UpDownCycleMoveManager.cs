@@ -17,11 +17,8 @@ namespace AbrahmanAdventure.physics
                 upDownMovingSprite.UpDownCycle.Increment(timeDelta);
             else if (upDownMovingSprite.UpDownCycle.CurrentValue > upDownMovingSprite.AlwaysActiveRangeCycleStop)
                 upDownMovingSprite.UpDownCycle.Increment(timeDelta);
-            else if (upDownMovingSprite.IGround != playerSprite.IGround)
-            {
-                if (Math.Abs(upDownMovingSprite.XPosition - playerSprite.XPosition) > upDownMovingSprite.DontMoveUpDistance)
+            else if (Math.Abs(upDownMovingSprite.XPosition - playerSprite.XPosition) > upDownMovingSprite.DontMoveUpDistance)
                     upDownMovingSprite.UpDownCycle.Increment(timeDelta);
-            }
         }
     }
 }

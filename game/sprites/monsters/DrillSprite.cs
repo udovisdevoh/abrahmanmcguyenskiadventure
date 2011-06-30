@@ -59,7 +59,7 @@ namespace AbrahmanAdventure.sprites
             upDownCycle = new Cycle(upDownCycleLength, true);
 
             IsAffectedByGravity = false;
-            IsFullGravityOnNextFrame = true;
+            //IsFullGravityOnNextFrame = true;
             upDownCycleHalfLength = upDownCycleLength / 2.0;
             alwaysActiveRangeCycleStart = upDownCycleLength * 0.45;
             alwaysActiveRangeCycleStop = upDownCycleLength * 0.55;
@@ -342,9 +342,9 @@ namespace AbrahmanAdventure.sprites
             get
             {
                 if (isBlack)
-                    return 1.0;
+                    return 1.5;
                 else
-                    return 2.5;
+                    return 2.0;
             }
         }
 
