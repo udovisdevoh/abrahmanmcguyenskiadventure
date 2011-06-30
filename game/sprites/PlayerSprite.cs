@@ -2117,6 +2117,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override int BuildZIndex()
+        {
+            return 2;
+        }
+
         /// <summary>
         /// Build width
         /// </summary>

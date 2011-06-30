@@ -50,6 +50,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override int BuildZIndex()
+        {
+            return 0;
+        }
+
         protected override double BuildJumpingTime()
         {
             return 0;

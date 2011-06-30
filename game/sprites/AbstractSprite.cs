@@ -256,9 +256,14 @@ namespace AbrahmanAdventure.sprites
         private double currentDamageReceiving = 0.0;
 
         /// <summary>
-        /// Distance to reference sprite
+        /// Sorting index
         /// </summary>
-        private double distanceToReferenceSprite;
+        private int sortingIndex;
+
+        /// <summary>
+        /// Z index (big numbers: frontmost)
+        /// </summary>
+        private int zIndex;
         #endregion
 
         #region Constructor
@@ -287,6 +292,7 @@ namespace AbrahmanAdventure.sprites
             isImpassable = BuildIsImpassable();
             isAnnihilateOnExitScreen = BuildIsAnnihilateOnExitScreen();
             isCrossGrounds = BuildIsCrossGrounds();
+            zIndex = BuildZIndex();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false);
@@ -404,6 +410,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Maximum speed when falling</returns>
         protected abstract double BuildMaxFallingSpeed();
+
+        /// <summary>
+        /// Z Index for sprite (big numbers: frontmost)
+        /// </summary>
+        /// <returns>Z Index for sprite</returns>
+        protected abstract int BuildZIndex();
         #endregion
 
         #region Public Abstract Methods
@@ -1094,12 +1106,12 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// Distance to reference sprite
+        /// Sorting index
         /// </summary>
-        public double DistanceToReferenceSprite
+        public int SortingIndex
         {
-            get { return distanceToReferenceSprite; }
-            set { distanceToReferenceSprite = value; }
+            get { return sortingIndex; }
+            set { sortingIndex = value; }
         }
 
         /// <summary>
@@ -1129,12 +1141,21 @@ namespace AbrahmanAdventure.sprites
             get { return isTiny; }
             set { isTiny = value; }
         }
+
+        /// <summary>
+        /// Z index (big numbers: frontmost)
+        /// </summary>
+        public int ZIndex
+        {
+            get { return zIndex; }
+            set { zIndex = value; }
+        }
         #endregion
 
         #region IComparable<AbstractSprite> Membres
         public int CompareTo(AbstractSprite other)
         {
-            return (int)(distanceToReferenceSprite * 100.0 - other.distanceToReferenceSprite * 100.0);
+            return (int)(sortingIndex * 100.0 - other.sortingIndex * 100.0);
         }
         #endregion
     }

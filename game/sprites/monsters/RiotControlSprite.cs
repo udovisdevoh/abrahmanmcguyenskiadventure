@@ -259,6 +259,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsJumpableOnEvenByBeaver()
+        {
+            return true;
+        }
+
         protected override bool BuildIsAvoidFall(Random random)
         {
             return random.Next(0, 2) == 1;
