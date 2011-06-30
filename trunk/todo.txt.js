@@ -1,3 +1,10 @@
+add level bounds
+dispatch monsters
+dispatch teleporters
+dispatch blocks
+dispatch pipes
+
+
 add skill level system
 {
 	must influence
@@ -55,8 +62,6 @@ Sprite dispatcher
 	
 	SMB3 6-10: great wall
 }
-
-add level bounds
 
 équivalent de plante grimpante
 
