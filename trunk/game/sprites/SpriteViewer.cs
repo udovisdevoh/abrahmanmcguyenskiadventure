@@ -33,13 +33,10 @@ namespace AbrahmanAdventure.sprites
         /// <param name="isOddFrame">whether frame is odd</param>
         /// <param name="playerSprite">player's sprite</param>
         /// <param name="visibleSpriteList">list of currently visible sprites</param>
-        internal void Update(double viewOffsetX, double viewOffsetY, AbstractSprite playerSprite, HashSet<AbstractSprite> visibleSpriteList, bool isOddFrame)
+        internal void Update(double viewOffsetX, double viewOffsetY, List<AbstractSprite> visibleSpriteList, bool isOddFrame)
         {
             foreach (AbstractSprite sprite in visibleSpriteList)
-                if (sprite != playerSprite)
-                    ShowSprite(sprite, viewOffsetX, viewOffsetY, isOddFrame);
-
-            ShowSprite(playerSprite, viewOffsetX, viewOffsetY, isOddFrame);
+                ShowSprite(sprite, viewOffsetX, viewOffsetY, isOddFrame);
         }
         #endregion
 

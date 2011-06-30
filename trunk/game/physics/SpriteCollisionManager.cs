@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
-            List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.Sort(sprite, visibleSpriteList);
+            List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.SortByDistanceToSprite(sprite, visibleSpriteList);
 
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
@@ -94,7 +94,12 @@ namespace AbrahmanAdventure.physics
                     }
                     else
                     {
-                        if (sprite is PlayerSprite && otherSprite is MonsterSprite && !((MonsterSprite)otherSprite).IsJumpableOn && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
+                        if (sprite is PlayerSprite 
+                            && otherSprite is MonsterSprite
+                            && !((MonsterSprite)otherSprite).IsJumpableOn
+                            && (!(sprite is PlayerSprite)
+                            || !((PlayerSprite)sprite).IsBeaver)
+                            || sprite is PlayerSprite && ((otherSprite is MonsterSprite) && !((MonsterSprite)otherSprite).IsJumpableOnEvenByBeaver))
                         {
                             //It is impossible to jump on this sprite
                             UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta, spritePopulation, random);

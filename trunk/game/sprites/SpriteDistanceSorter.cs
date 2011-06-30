@@ -24,14 +24,33 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="unsortedSpriteList">unsorted list of sprites</param>
-        /// <returns></returns>
-        internal static List<AbstractSprite> Sort(AbstractSprite sprite, HashSet<AbstractSprite> unsortedSpriteList)
+        /// <returns>sorted (by distance to sprite) list of sprites</returns>
+        internal static List<AbstractSprite> SortByDistanceToSprite(AbstractSprite sprite, HashSet<AbstractSprite> unsortedSpriteList)
         {
             __sortedListSprite.Clear();
 
             foreach (AbstractSprite otherSprite in unsortedSpriteList)
             {
-                otherSprite.DistanceToReferenceSprite = GetHorizontalDistance(sprite, otherSprite);
+                otherSprite.SortingIndex = (int)(GetHorizontalDistance(sprite, otherSprite) * 32.0);
+                __sortedListSprite.Add(otherSprite);
+            }
+            __sortedListSprite.Sort();
+
+            return __sortedListSprite;
+        }
+
+        /// <summary>
+        /// Sort sprites by ZIndex (big numbers: frontmost)
+        /// </summary>
+        /// <param name="unsortedSpriteList">unsorted list of sprites</param>
+        /// <returns>sorted (by ZIndex) list of sprites</returns>
+        internal static List<AbstractSprite> SortByZIndex(HashSet<AbstractSprite> unsortedSpriteList)
+        {
+            __sortedListSprite.Clear();
+
+            foreach (AbstractSprite otherSprite in unsortedSpriteList)
+            {
+                otherSprite.SortingIndex = otherSprite.ZIndex;
                 __sortedListSprite.Add(otherSprite);
             }
             __sortedListSprite.Sort();

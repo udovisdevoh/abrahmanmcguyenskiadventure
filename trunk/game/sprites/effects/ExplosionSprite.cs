@@ -74,6 +74,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsJumpableOnEvenByBeaver()
+        {
+            return false;
+        }
+
         protected override bool BuildIsCanDoDamageWhenInFreeFall()
         {
             return true;

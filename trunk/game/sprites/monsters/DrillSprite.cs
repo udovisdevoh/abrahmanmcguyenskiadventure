@@ -27,8 +27,6 @@ namespace AbrahmanAdventure.sprites
         private static Surface white2;
 
         private static Surface white3;
-
-        //private static Dictionary<int, Surface> scaledSurfaceCache = new Dictionary<int, Surface>();
         #endregion
 
         #region Instance fields and parts
@@ -65,6 +63,7 @@ namespace AbrahmanAdventure.sprites
             upDownCycleHalfLength = upDownCycleLength / 2.0;
             alwaysActiveRangeCycleStart = upDownCycleLength * 0.45;
             alwaysActiveRangeCycleStop = upDownCycleLength * 0.55;
+            ZIndex = -1;
 
             if (black1 == null)
             {
@@ -110,6 +109,11 @@ namespace AbrahmanAdventure.sprites
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsJumpableOnEvenByBeaver()
         {
             return false;
         }

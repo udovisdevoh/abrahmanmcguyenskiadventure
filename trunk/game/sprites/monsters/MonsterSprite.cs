@@ -133,6 +133,11 @@ namespace AbrahmanAdventure.sprites
         private bool isJumpableOn;
 
         /// <summary>
+        /// Whether we can jump on this sprite as a beaver
+        /// </summary>
+        private bool isJumpableOnEvenByBeaver;
+
+        /// <summary>
         /// Whether sprite is vulnerable to invincibility
         /// </summary>
         private bool isVulnerableToInvincibility;
@@ -179,6 +184,7 @@ namespace AbrahmanAdventure.sprites
             isNoAiDieWhenStucked = BuildIsNoAiDieWhenStucked();
             isNoAiAlwaysBounce = BuildIsNoAiAlwaysBounce();
             isJumpableOn = BuildIsJumpableOn();
+            isJumpableOnEvenByBeaver = BuildIsJumpableOnEvenByBeaver();
             isNoAiChangeDirectionByCycle = BuildIsNoAiChangeDirectionByCycle();
             isDieOnTouchGround = BuildIsDieOnTouchGround();
             isVulnerableToInvincibility = BuildIsVulnerableToInvincibility();
@@ -195,6 +201,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether we can jump on this sprite</returns>
         protected abstract bool BuildIsJumpableOn();
+
+        /// <summary>
+        /// Whether we can jump on this sprite as a beaver
+        /// </summary>
+        /// <returns>Whether we can jump on this sprite as a beaver</returns>
+        protected abstract bool BuildIsJumpableOnEvenByBeaver();
 
         /// <summary>
         /// Whether monster is chasing player
@@ -360,6 +372,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildMaxFallingSpeed()
         {
             return double.PositiveInfinity;
+        }
+
+        protected override int BuildZIndex()
+        {
+            return 1;
         }
         #endregion
 
@@ -528,6 +545,14 @@ namespace AbrahmanAdventure.sprites
         public bool IsJumpableOn
         {
             get { return isJumpableOn; }
+        }
+
+        /// <summary>
+        /// Whether we can jump on this sprite as a beaver
+        /// </summary>
+        public bool IsJumpableOnEvenByBeaver
+        {
+            get { return isJumpableOnEvenByBeaver; }
         }
 
         /// <summary>

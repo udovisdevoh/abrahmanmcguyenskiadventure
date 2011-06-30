@@ -241,6 +241,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsJumpableOnEvenByBeaver()
+        {
+            return true;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;
