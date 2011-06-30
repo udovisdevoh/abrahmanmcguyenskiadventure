@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -15,6 +16,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface upSideSurface;
 
         private static Surface downSideSurface;
+
+        private Surface coloredSurface = null;
 
         /// <summary>
         /// Whether the pipe is upside
@@ -42,6 +45,15 @@ namespace AbrahmanAdventure.sprites
                 upSideSurface = BuildSpriteSurface("./assets/rendered/staticSprites/pipe.png");
                 downSideSurface = upSideSurface.CreateFlippedVerticalSurface();
             }
+
+            coloredSurface = new Surface(upSideSurface.GetWidth(), upSideSurface.GetHeight());
+            coloredSurface.Fill(upSideSurface.GetRectangle(), new ColorHsl(random).GetColor());
+            coloredSurface.Transparent = true;
+
+            if (isUpSide)
+                coloredSurface.Blit(upSideSurface);
+            else
+                coloredSurface.Blit(downSideSurface);
         }
         #endregion
 
@@ -89,10 +101,7 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            if (isUpSide)
-                return upSideSurface;
-            else
-                return downSideSurface;
+            return coloredSurface;
         }
         #endregion
 
@@ -109,8 +118,18 @@ namespace AbrahmanAdventure.sprites
                 {
                     linkedPipe = value;
                     linkedPipe.linkedPipe = this;
+                    linkedPipe.coloredSurface = this.coloredSurface;
+
+                    if (linkedPipe.isUpSide != this.isUpSide)
+                        linkedPipe.coloredSurface = linkedPipe.coloredSurface.CreateFlippedVerticalSurface();
                 }
             }
+        }
+
+        public Surface ColoredSurface
+        {
+            get { return coloredSurface; }
+            set { coloredSurface = value; }
         }
 
         public bool IsUpSide
