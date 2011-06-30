@@ -235,6 +235,8 @@ namespace AbrahmanAdventure
             if (linkedPipe != null)
                 pipeSprite.LinkedPipe = linkedPipe;
 
+            pipeSprite.LinkedDrill = drillSprite;
+
             return pipeSprite;
             
         }

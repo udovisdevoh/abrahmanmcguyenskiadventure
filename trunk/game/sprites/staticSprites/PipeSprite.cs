@@ -28,6 +28,8 @@ namespace AbrahmanAdventure.sprites
         /// Sprite linked to it
         /// </summary>
         private PipeSprite linkedPipe = null;
+
+        private DrillSprite linkedDrill = null;
         #endregion
 
         #region Constructor
@@ -124,6 +126,12 @@ namespace AbrahmanAdventure.sprites
                         linkedPipe.coloredSurface = linkedPipe.coloredSurface.CreateFlippedVerticalSurface();
                 }
             }
+        }
+
+        public DrillSprite LinkedDrill
+        {
+            get { return linkedDrill; }
+            set { linkedDrill = value; }
         }
 
         public Surface ColoredSurface
