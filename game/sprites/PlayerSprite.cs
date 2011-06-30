@@ -410,6 +410,12 @@ namespace AbrahmanAdventure.sprites
         private Cycle fromVortexCycle;
 
         /// <summary>
+        /// When sprite is currently moving from one pipe to another (destination pipe)
+        /// This value is normally null
+        /// </summary>
+        private PipeSprite destinationPipe = null;
+
+        /// <summary>
         /// Whether sprite can throw fire balls
         /// </summary>
         private bool isDoped = false;
@@ -2688,6 +2694,16 @@ namespace AbrahmanAdventure.sprites
         public double DefaultHealth
         {
             get { return defaultHealth; }
+        }
+
+        /// <summary>
+        /// When sprite is currently moving from one pipe to another (destination pipe)
+        /// This value is normally null
+        /// </summary>
+        public PipeSprite DestinationPipe
+        {
+            get { return destinationPipe; }
+            set { destinationPipe = value; }
         }
 
         /// <summary>

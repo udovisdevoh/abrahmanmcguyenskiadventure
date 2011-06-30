@@ -36,7 +36,8 @@ namespace AbrahmanAdventure.sprites
         internal void Update(double viewOffsetX, double viewOffsetY, List<AbstractSprite> visibleSpriteList, bool isOddFrame)
         {
             foreach (AbstractSprite sprite in visibleSpriteList)
-                ShowSprite(sprite, viewOffsetX, viewOffsetY, isOddFrame);
+                if (!(sprite is PlayerSprite) || ((PlayerSprite)sprite).DestinationPipe == null)
+                    ShowSprite(sprite, viewOffsetX, viewOffsetY, isOddFrame);
         }
         #endregion
 

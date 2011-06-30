@@ -91,6 +91,7 @@
     <Compile Include="game\physics\JumpingManager.cs" />
     <Compile Include="game\physics\MonsterProjectileManager.cs" />
     <Compile Include="game\physics\Physics.cs" />
+    <Compile Include="game\physics\PipeManager.cs" />
     <Compile Include="game\physics\PlayerProjectileManager.cs" />
     <Compile Include="game\physics\PowerUpManager.cs" />
     <Compile Include="game\physics\SpontaneousConversionManager.cs" />
