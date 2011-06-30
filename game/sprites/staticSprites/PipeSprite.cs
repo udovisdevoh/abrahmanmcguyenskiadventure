@@ -57,7 +57,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildHeight(Random random)
         {
-            return 2.0;
+            return 2.5;
         }
 
         protected override double BuildBounciness()
