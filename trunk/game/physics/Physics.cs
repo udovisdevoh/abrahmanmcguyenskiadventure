@@ -49,6 +49,11 @@ namespace AbrahmanAdventure.physics
         private DeathManager deathManager = new DeathManager();
 
         /// <summary>
+        /// Manages pipe (player going into pipes)
+        /// </summary>
+        private PipeManager pipeManager = new PipeManager();
+
+        /// <summary>
         /// Manges beaver hole digging
         /// </summary>
         private BeaverHoleDiggingManager beaverHoleDiggingManager = new BeaverHoleDiggingManager();
@@ -151,6 +156,9 @@ namespace AbrahmanAdventure.physics
 
                     if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired && spriteToUpdate.IGround != null)
                         ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
+
+                    if (spriteToUpdate.IGround is PipeSprite && program.UserInput.isPressDown && ((PipeSprite)spriteToUpdate.IGround).IsUpSide && ((PipeSprite)spriteToUpdate.IGround).LinkedPipe != null)
+                        pipeManager.SchedulePipeTeleportation((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround);
 
                     if (spriteToUpdate.CarriedSprite != null)
                     {

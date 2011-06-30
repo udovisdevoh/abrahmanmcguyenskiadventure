@@ -82,6 +82,8 @@ namespace AbrahmanAdventure
 
         public const double beaverHoleDepth = 0.25;
 
+        public const double pipeTeleportSpeed = 0.2;
+
         public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
 
         public static int tileSize = screenWidth / tileColumnCount;
@@ -118,6 +120,8 @@ namespace AbrahmanAdventure
 
         private BeaverManager beaverManager;
 
+        private PipeManager pipeManager;
+
         private MonsterAi monsterAi;
 
         private DateTime previousDateTime = DateTime.Now;
@@ -148,6 +152,7 @@ namespace AbrahmanAdventure
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
             beaverManager = new BeaverManager();
+            pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
 
@@ -433,154 +438,160 @@ namespace AbrahmanAdventure
 
                 isOddFrame = !isOddFrame;
 
-                #region We manage jumping input logic
-                playerSprite.IsTryingToJump = false;
-                if (userInput.isPressJump || userInput.isPressLeaveBeaver)
+                if (playerSprite.DestinationPipe == null)
                 {
-                    //We manage jumping from one ground to a lower ground
-                    if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
+                    #region We manage jumping input logic
+                    playerSprite.IsTryingToJump = false;
+                    if (userInput.isPressJump || userInput.isPressLeaveBeaver)
                     {
-                        playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
-                        IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
-
-                        if (playerSprite.IGround is Ground && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
-                            playerSprite.IGround = null;
-                        else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
-                            playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];
-
-                        if (playerSprite.IGround == null) //play sound if jump down was a success
-                            SoundManager.PlayJumpDownSound();
-                    }
-                    else
-                    {
-                        playerSprite.IsTryingToJump = true;
-                    }
-                }
-                else
-                    playerSprite.IsNeedToJumpAgain = false;
-                #endregion
-
-                playerSprite.IsCrouch = userInput.isPressDown && !userInput.isPressUp && (!playerSprite.IsTiny || playerSprite.IsBeaver);
-
-                playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight;
-
-                #region We manage the "beaver digs ground" logic
-                playerSprite.IsTryDigGround = playerSprite.IsCrouch && userInput.isPressAttack && playerSprite.IsBeaver && !playerSprite.IsNeedToAttackAgain;
-                #endregion
-
-                #region We manage attack input logic
-                //Attacking logic
-                playerSprite.IsTryThrowingBall = false;
-                if (userInput.isPressAttack)
-                {
-                    if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
-                    {
-                        if (playerSprite.IsDoped && !playerSprite.IsBeaver)
+                        //We manage jumping from one ground to a lower ground
+                        if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
                         {
-                            playerSprite.IsTryThrowingBall = true;
+                            playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
+                            IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
+
+                            if (playerSprite.IGround is Ground && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
+                                playerSprite.IGround = null;
+                            else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
+                                playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];
+
+                            if (playerSprite.IGround == null) //play sound if jump down was a success
+                                SoundManager.PlayJumpDownSound();
                         }
                         else
                         {
-                            SoundManager.PlayAttemptSound();
-                            playerSprite.AttackingCycle.Fire();
+                            playerSprite.IsTryingToJump = true;
                         }
-                        playerSprite.IsNeedToAttackAgain = true;
                     }
-                }
-                else
-                {
-                    playerSprite.IsNeedToAttackAgain = false;
-                }
-                if (playerSprite.AttackingCycle.IsFired)
-                    playerSprite.AttackingCycle.Increment(timeDelta);
-                if (playerSprite.AttackingCycle.IsFinished && playerSprite.IGround != null)
-                    playerSprite.AttackingCycle.Reset();
-                #endregion
+                    else
+                        playerSprite.IsNeedToJumpAgain = false;
+                    #endregion
 
-                #region We manage walking input logic
-                if (playerSprite.IsAlive)
-                {
-                    playerSprite.IsRunning = userInput.isPressAttack;
-                    if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
-                    {
-                        #region Walking left
-                        if (playerSprite.IsTryingToWalkRight)
-                            playerSprite.CurrentWalkingSpeed = 0;
+                    playerSprite.IsCrouch = userInput.isPressDown && !userInput.isPressUp && (!playerSprite.IsTiny || playerSprite.IsBeaver);
 
-                        playerSprite.IsTryingToWalk = true;
-                        playerSprite.IsTryingToWalkRight = false;
-                        playerSprite.IsTryingToSlide = false;
-                        #endregion
-                    }
-                    else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
-                    {
-                        #region Walking right
-                        if (!playerSprite.IsTryingToWalkRight)
-                            playerSprite.CurrentWalkingSpeed = 0;
+                    playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight;
 
-                        playerSprite.IsTryingToWalk = true;
-                        playerSprite.IsTryingToWalkRight = true;
-                        playerSprite.IsTryingToSlide = false;
-                        #endregion
-                    }
-                    else if (userInput.isPressDown && userInput.isPressAttack)
+                    #region We manage the "beaver digs ground" logic
+                    playerSprite.IsTryDigGround = playerSprite.IsCrouch && userInput.isPressAttack && playerSprite.IsBeaver && !playerSprite.IsNeedToAttackAgain;
+                    #endregion
+
+                    #region We manage attack input logic
+                    //Attacking logic
+                    playerSprite.IsTryThrowingBall = false;
+                    if (userInput.isPressAttack)
                     {
-                        #region Sliding
-                        playerSprite.IsTryingToWalk = false;
-                        if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired && !playerSprite.IsBeaver)
+                        if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
                         {
-                            double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
-                            if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
+                            if (playerSprite.IsDoped && !playerSprite.IsBeaver)
                             {
-                                playerSprite.IsTryingToWalk = true;
-                                playerSprite.IsTryingToWalkRight = true;
-                                playerSprite.IsTryingToSlide = true;
+                                playerSprite.IsTryThrowingBall = true;
                             }
                             else
                             {
-                                double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, -Program.collisionDetectionResolution, false);
-                                if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
-                                {
-                                    playerSprite.IsTryingToWalk = true;
-                                    playerSprite.IsTryingToWalkRight = false;
-                                    playerSprite.IsTryingToSlide = true;
-                                }
+                                SoundManager.PlayAttemptSound();
+                                playerSprite.AttackingCycle.Fire();
                             }
+                            playerSprite.IsNeedToAttackAgain = true;
                         }
-                        #endregion
                     }
                     else
                     {
-                        playerSprite.IsTryingToWalk = false;
-                        playerSprite.IsTryingToSlide = false;
-                        playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
-                        playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
+                        playerSprite.IsNeedToAttackAgain = false;
                     }
-                }
-                #endregion
+                    if (playerSprite.AttackingCycle.IsFired)
+                        playerSprite.AttackingCycle.Increment(timeDelta);
+                    if (playerSprite.AttackingCycle.IsFinished && playerSprite.IGround != null)
+                        playerSprite.AttackingCycle.Reset();
+                    #endregion
 
-                #region We manage the "leave beaver" input logic
-                if (userInput.isPressLeaveBeaver && playerSprite.IsBeaver)
-                    beaverManager.LeaveBeaver(playerSprite, spritePopulation);
-                #endregion
-
-
-                physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
-
-                foreach (AbstractSprite sprite in toUpdateSpriteList)
-                    if (sprite != playerSprite)
+                    #region We manage walking input logic
+                    if (playerSprite.IsAlive)
                     {
-                        physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
-                        if (sprite is MonsterSprite && sprite.IsAlive)
-                            monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
+                        playerSprite.IsRunning = userInput.isPressAttack;
+                        if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
+                        {
+                            #region Walking left
+                            if (playerSprite.IsTryingToWalkRight)
+                                playerSprite.CurrentWalkingSpeed = 0;
+
+                            playerSprite.IsTryingToWalk = true;
+                            playerSprite.IsTryingToWalkRight = false;
+                            playerSprite.IsTryingToSlide = false;
+                            #endregion
+                        }
+                        else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
+                        {
+                            #region Walking right
+                            if (!playerSprite.IsTryingToWalkRight)
+                                playerSprite.CurrentWalkingSpeed = 0;
+
+                            playerSprite.IsTryingToWalk = true;
+                            playerSprite.IsTryingToWalkRight = true;
+                            playerSprite.IsTryingToSlide = false;
+                            #endregion
+                        }
+                        else if (userInput.isPressDown && userInput.isPressAttack)
+                        {
+                            #region Sliding
+                            playerSprite.IsTryingToWalk = false;
+                            if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired && !playerSprite.IsBeaver)
+                            {
+                                double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
+                                if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
+                                {
+                                    playerSprite.IsTryingToWalk = true;
+                                    playerSprite.IsTryingToWalkRight = true;
+                                    playerSprite.IsTryingToSlide = true;
+                                }
+                                else
+                                {
+                                    double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, -Program.collisionDetectionResolution, false);
+                                    if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
+                                    {
+                                        playerSprite.IsTryingToWalk = true;
+                                        playerSprite.IsTryingToWalkRight = false;
+                                        playerSprite.IsTryingToSlide = true;
+                                    }
+                                }
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            playerSprite.IsTryingToWalk = false;
+                            playerSprite.IsTryingToSlide = false;
+                            playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
+                            playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
+                        }
                     }
+                    #endregion
+
+                    #region We manage the "leave beaver" input logic
+                    if (userInput.isPressLeaveBeaver && playerSprite.IsBeaver)
+                        beaverManager.LeaveBeaver(playerSprite, spritePopulation);
+                    #endregion
+
+                    physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
+
+                    foreach (AbstractSprite sprite in toUpdateSpriteList)
+                        if (sprite != playerSprite)
+                        {
+                            physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
+                            if (sprite is MonsterSprite && sprite.IsAlive)
+                                monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
+                        }
+                }
+                else
+                {
+                    pipeManager.ContinuePipeTeleportation(playerSprite);
+                }
+
 
                 #region We position the camera
                 viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
                 viewOffsetY = playerSprite.YPosition - (double)Program.tileRowCount / 2.0 - playerSprite.Height / 2.0;
                 viewOffsetY = Math.Min(viewOffsetY, maxViewOffsetY);
                 #endregion
-
 
                 #region We update the viewers
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Sky, viewOffsetX, viewOffsetY);

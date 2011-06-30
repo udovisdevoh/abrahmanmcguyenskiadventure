@@ -12,7 +12,9 @@ namespace AbrahmanAdventure.sprites
     internal class PipeSprite : StaticSprite
     {
         #region Field and parts
-        private static Surface surface;
+        private static Surface upSideSurface;
+
+        private static Surface downSideSurface;
 
         /// <summary>
         /// Whether the pipe is upside
@@ -35,8 +37,11 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             this.isUpSide = isUpSide;
-            if (surface == null)
-                surface = BuildSpriteSurface("./assets/rendered/staticSprites/pipe.png");
+            if (upSideSurface == null)
+            {
+                upSideSurface = BuildSpriteSurface("./assets/rendered/staticSprites/pipe.png");
+                downSideSurface = upSideSurface.CreateFlippedVerticalSurface();
+            }
         }
         #endregion
 
@@ -84,7 +89,10 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            return surface;
+            if (isUpSide)
+                return upSideSurface;
+            else
+                return downSideSurface;
         }
         #endregion
 
@@ -103,6 +111,11 @@ namespace AbrahmanAdventure.sprites
                     linkedPipe.linkedPipe = this;
                 }
             }
+        }
+
+        public bool IsUpSide
+        {
+            get { return isUpSide; }
         }
         #endregion
     }
