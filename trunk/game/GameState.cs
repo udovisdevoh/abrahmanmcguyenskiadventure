@@ -142,14 +142,14 @@ namespace AbrahmanAdventure
         /// <param name="random">random number generator</param>
         private void AddHardCodedTestSprite()
         {
-            PipeSprite sourcePipe1 = AddHardCodedPipeAndDrillTestSprite(-4, false, true, null);
+            /*PipeSprite sourcePipe1 = AddHardCodedPipeAndDrillTestSprite(-4, false, true, null);
             PipeSprite sourcePipe2 = AddHardCodedPipeAndDrillTestSprite(-8, true, true, null);
             AddHardCodedPipeAndDrillTestSprite(4, false, false, sourcePipe1);
-            AddHardCodedPipeAndDrillTestSprite(8, true, false, sourcePipe2);
+            AddHardCodedPipeAndDrillTestSprite(8, true, false, sourcePipe2);*/
 
             //spritePopulation.Add(new RonaldSprite(20, Program.totalHeightTileCount / -2, random));
             
-            /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new HamburgerSprite(65, Program.totalHeightTileCount / -2, random));
@@ -164,7 +164,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new MormonSprite(-55, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new GypsySprite(-75, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new DoctorSprite(-85, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new FarmerSprite(-100, Program.totalHeightTileCount / -2, random));*/
+            spritePopulation.Add(new FarmerSprite(-100, Program.totalHeightTileCount / -2, random));
 
             spritePopulation.Add(new BrickSprite(-10, -10, random, true));
             spritePopulation.Add(new BrickSprite(-11, -10, random, true));
