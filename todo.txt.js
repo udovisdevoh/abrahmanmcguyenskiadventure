@@ -222,8 +222,6 @@ Monstres
 		marche en faisant comme s'il nageait (avec ses bras)
 	}
 	
-	Mickey Mouse
-	
 	Avocat
 	
 	?Comportement de shy guy?
