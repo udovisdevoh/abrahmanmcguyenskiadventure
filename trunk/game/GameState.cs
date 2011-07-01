@@ -146,8 +146,6 @@ namespace AbrahmanAdventure
             PipeSprite sourcePipe2 = AddHardCodedPipeAndDrillTestSprite(-8, true, true, null);
             AddHardCodedPipeAndDrillTestSprite(4, false, false, sourcePipe1);
             AddHardCodedPipeAndDrillTestSprite(8, true, false, sourcePipe2);*/
-
-            //spritePopulation.Add(new RonaldSprite(20, Program.totalHeightTileCount / -2, random));
             
             spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
@@ -157,6 +155,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new JewSprite(120, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RaptorSprite(160, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RaptorJesusSprite(220, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new RonaldSprite(280, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new JewSprite(-10, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new Trampoline(10, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new PriestSprite(-30, Program.totalHeightTileCount / -2, random));
