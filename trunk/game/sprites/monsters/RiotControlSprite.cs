@@ -65,6 +65,16 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             this.IsAvoidFall = isAvoidFall;
+            GetWalkingRightSurface();
+            GetWalking2RightSurface();
+            GetWalkingLeftSurface();
+            GetWalking2LeftSurface();
+            GetStandingRightSurface();
+            GetStandingLeftSurface();
+            GetStanding2RightSurface();
+            GetStanding2LeftSurface();
+            GetDeadSurface();
+            GetDeadSurface2();
         }
         #endregion
 
