@@ -34,6 +34,7 @@ namespace AbrahmanAdventure.sprites
             explosionCycle = new Cycle(15, false);
             explosionCycle.Fire();
             IsAffectedByGravity = false;
+            IsCrossGrounds = true;
             if (surface1 == null)
             {
                 surface1 = BuildSpriteSurface("./assets/rendered/effects/explosion1.png");

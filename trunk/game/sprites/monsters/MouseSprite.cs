@@ -248,9 +248,9 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0;
 
             if (IsTryingToWalkRight)
-                xOffset = -0.28;
+                xOffset = -0.15;
             else
-                xOffset = 0.28;
+                xOffset = 0.15;
 
             if (!IsAlive)
                 return dead;
