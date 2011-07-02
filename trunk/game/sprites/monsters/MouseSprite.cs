@@ -116,7 +116,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return true;
+            return random.Next(0,2) == 1;
         }
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
@@ -248,9 +248,9 @@ namespace AbrahmanAdventure.sprites
             yOffset = 0;
 
             if (IsTryingToWalkRight)
-                xOffset = -0.5;
+                xOffset = -0.28;
             else
-                xOffset = 0.5;
+                xOffset = 0.28;
 
             if (!IsAlive)
                 return dead;
