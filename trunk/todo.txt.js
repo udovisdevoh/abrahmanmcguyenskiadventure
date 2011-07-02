@@ -1,7 +1,7 @@
 add level bounds
 dispatch monsters
 dispatch teleporters
-dispatch blocks
+dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 
 
@@ -210,6 +210,8 @@ Monstres
 	truc chinois de censure
 	
 	équivalent de poisson
+	
+	Rcmp
 	
 	Journaliste
 	{
