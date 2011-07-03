@@ -165,6 +165,9 @@ namespace AbrahmanAdventure.physics
                         carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,program,timeDelta);
                     }
 
+                    if (spriteToUpdate is IFluctuatingSafeDistance)
+                        ((IFluctuatingSafeDistance)spriteToUpdate).FluctuatingSafeDistanceCycle.Increment(timeDelta);
+
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                     if (spriteToUpdate.IsTryDigGround)
                         beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);

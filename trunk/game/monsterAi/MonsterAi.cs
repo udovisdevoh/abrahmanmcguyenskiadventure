@@ -35,9 +35,16 @@ namespace AbrahmanAdventure.ai
             bool isSafeDistanceDontMove = false;
             if (monster.IsAiEnabled)
             {
-                if (playerMonsterDistanceX < monster.SafeDistanceAi)
+                double safeDistanceAi;
+
+                if (monster is IFluctuatingSafeDistance)
+                    safeDistanceAi = ((IFluctuatingSafeDistance)monster).GetCurrentSafeDistance();
+                else
+                    safeDistanceAi = monster.SafeDistanceAi;
+
+                if (playerMonsterDistanceX < safeDistanceAi)
                 {
-                    if (playerMonsterDistanceX > monster.SafeDistanceAi - 2.0)
+                    if (playerMonsterDistanceX > safeDistanceAi - 2.0)
                     {
                         monster.IsTryingToWalkRight = monster.XPosition < player.XPosition;
                         isSafeDistanceDontMove = true;
