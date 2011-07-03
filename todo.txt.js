@@ -5,6 +5,11 @@ dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 
 
+remove block collision (side and bottom of block) for explosions
+
+
+
+
 add skill level system
 {
 	must influence
