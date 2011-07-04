@@ -208,8 +208,6 @@ Monstres
 		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
 	}
 	
-	prince william
-	
 	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
 	
 	millitaire de l'armé américaine
@@ -217,6 +215,8 @@ Monstres
 	truc chinois de censure
 	
 	équivalent de poisson
+	
+	équivalent de boo
 	
 	Rcmp
 	
