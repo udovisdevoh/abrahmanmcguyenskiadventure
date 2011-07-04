@@ -147,7 +147,9 @@ namespace AbrahmanAdventure
             AddHardCodedPipeAndDrillTestSprite(4, false, false, sourcePipe1);
             AddHardCodedPipeAndDrillTestSprite(8, true, false, sourcePipe2);*/
 
-            spritePopulation.Add(new PuppetSprite(20, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new HorseSprite(20, Program.totalHeightTileCount / -2, random));
+            //spritePopulation.Add(new PuppetSprite(20, Program.totalHeightTileCount / -2, random));
+            
             /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
