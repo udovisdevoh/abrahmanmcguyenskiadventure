@@ -197,6 +197,14 @@ certains monstres doivent se spawner directement sur le sol (probablement la maj
 
 Monstres
 {
+	?Comportement de shy guy?
+	{
+		?Enfant obese (4*4 tile)
+		{
+			donne des coups de bedaine
+		}?
+	}
+	
 	Bosses
 	{
 		Tom Cruise
@@ -214,26 +222,23 @@ Monstres
 	
 	truc chinois de censure
 	
-	équivalent de poisson
+	équivalent de poisson sautant/volant
+	{
+		?genre de journaliste qui tient un micro et qui essaie de te pogner au vol)
+	}
 	
 	équivalent de boo
+	{
+		?Avocat
+	}
 	
 	Rcmp
-	
-	Journaliste
-	{
-		Marionette (avec fil). Tient un micro
-	}
 	
 	Trijambiste
 	{
 		3 jambes
 		marche en faisant comme s'il nageait (avec ses bras)
 	}
-	
-	Avocat
-	
-	?Comportement de shy guy?
 	
 	Texan
 	{
@@ -248,28 +253,10 @@ Monstres
 		Tea party trailer park guy
 	}
 	
-	?Hindu
-	{
-		Lance des statuettes
-	}?
-	
-	?Hippypocrite
-	{
-		Lance bouteilles de fruitopia en plastique qui pollue
-	}?
-	
 	?Yupi
 	{
 		Avec sweather attaché dans le cou
 		habit de tennis
-	}?
-	
-	?Bobo?
-	
-	?Obese (4*4 tile)
-	{
-		donne des coups de bedaine
-		en veston sans chemise avec un shaggy
 	}?
 }
 
