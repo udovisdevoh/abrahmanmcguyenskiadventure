@@ -4,20 +4,13 @@ dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 
 
-(probably already done): remove block collision (side and bottom of block) for explosions
-
-
-
-
 skill level must influence
 {
 	sprites
-	level size
-	?ground waves?
-	level bounds (level's size)
-	quantité et grosseurs des trous
 	ground wave normalization factor
 }
+
+(probably already done): remove block collision (side and bottom of block) for explosions
 
 Sprite dispatcher
 {
