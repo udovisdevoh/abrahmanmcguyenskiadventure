@@ -48,6 +48,16 @@ namespace AbrahmanAdventure.level
         private Ground previousFurther = null;
 
         /// <summary>
+        /// Left bound
+        /// </summary>
+        private double leftBound;
+
+        /// <summary>
+        /// Right bound
+        /// </summary>
+        private double rightBound;
+
+        /// <summary>
         /// Whether ground's color is transparent
         /// </summary>
         private bool isTransparent;
@@ -66,9 +76,11 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
         /// <param name="holeSet">represents wave modelization of holes in a level</param>
-        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, int seed, int groundId)
+        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound)
         {
             this.holeSet = holeSet;
+            this.leftBound = leftBound;
+            this.rightBound = rightBound;
 
             topTexture = new Texture(random, color, 1.5, seed,groundId,true);
             beaverDestructionSet = new BeaverDestructionSet();
@@ -136,6 +148,9 @@ namespace AbrahmanAdventure.level
         {
             get
             {
+                if (xPosition < leftBound || xPosition > rightBound)
+                    return -Program.holeHeight;
+
                 double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
                     yValue = Program.holeHeight - yValue;

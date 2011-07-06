@@ -120,7 +120,7 @@ namespace AbrahmanAdventure
             }
 
             sky = new Sky(random, skyColorHsl);
-            level = new Level(random, colorTheme, seed);
+            level = new Level(random, colorTheme, seed, skillLevel);
             spritePopulation = new SpritePopulation();
 
             if (playerSprite != null)
