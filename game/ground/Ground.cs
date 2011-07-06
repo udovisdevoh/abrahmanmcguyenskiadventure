@@ -6,6 +6,8 @@ using System.Drawing;
 
 namespace AbrahmanAdventure.level
 {
+    internal enum LevelBoundType { Hole, Wall, MinusExponentialDistance, PlusExponentialDistance }
+
     /// <summary>
     /// Represents a surface on which a sprite can walk
     /// </summary>
@@ -57,6 +59,10 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private double rightBound;
 
+        private LevelBoundType leftBoundType;
+
+        private LevelBoundType rightBoundType;
+
         /// <summary>
         /// Whether ground's color is transparent
         /// </summary>
@@ -76,11 +82,13 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
         /// <param name="holeSet">represents wave modelization of holes in a level</param>
-        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound)
+        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
         {
             this.holeSet = holeSet;
             this.leftBound = leftBound;
             this.rightBound = rightBound;
+            this.leftBoundType = leftBoundType;
+            this.rightBoundType = rightBoundType;
 
             topTexture = new Texture(random, color, 1.5, seed,groundId,true);
             beaverDestructionSet = new BeaverDestructionSet();
@@ -148,8 +156,10 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-                if (xPosition < leftBound || xPosition > rightBound)
-                    return -Program.holeHeight;
+                if (xPosition < leftBound)
+                    return GetOutBoundHeight(xPosition, false);
+                else if (xPosition > rightBound)
+                    return GetOutBoundHeight(xPosition, true);
 
                 double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
@@ -159,6 +169,48 @@ namespace AbrahmanAdventure.level
 
                 return yValue;
             }
+        }
+
+        private double GetOutBoundHeight(double xPosition, bool isRightBound)
+        {
+            double boundXPosition;
+            LevelBoundType boundType;
+            if (isRightBound)
+            {
+                boundXPosition = rightBound;
+                boundType = rightBoundType;
+            }
+            else
+            {
+                boundXPosition = leftBound;
+                boundType = leftBoundType;
+            }
+
+            if (boundType == LevelBoundType.Hole)
+                return Program.holeHeight;
+            else if (boundType == LevelBoundType.Wall)
+                return -Program.holeHeight;
+
+            double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
+
+            if (boundType == LevelBoundType.MinusExponentialDistance)
+                yValue -= Math.Pow(1.1, Math.Abs(xPosition - boundXPosition));
+            else if (boundType == LevelBoundType.PlusExponentialDistance)
+                yValue += Math.Pow(1.1, Math.Abs(xPosition - boundXPosition));
+            /*else if (boundType == LevelBoundType.HeightMultiplication)
+                yValue *= Math.Abs(xPosition - boundXPosition);
+            else if (boundType == LevelBoundType.HeightDivision)
+                yValue /= Math.Abs(xPosition - boundXPosition);
+            else if (boundType == LevelBoundType.SquareHeight)
+                yValue = Math.Pow(yValue,2.0);
+            else if (boundType == LevelBoundType.SquareRootHeight)
+                yValue = Math.Sqrt(yValue);*/
+
+            if (holeSet[xPosition, yValue])
+                yValue = Program.holeHeight - yValue;
+            yValue += beaverDestructionSet[xPosition];
+
+            return yValue;
         }
 
         /// <summary>

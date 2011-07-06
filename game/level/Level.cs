@@ -31,6 +31,10 @@ namespace AbrahmanAdventure.level
         /// Right bound
         /// </summary>
         private double rightBound;
+
+        private LevelBoundType leftBoundType;
+
+        private LevelBoundType rightBoundType;
         #endregion
 
         #region Constructor
@@ -50,6 +54,8 @@ namespace AbrahmanAdventure.level
 
             leftBound = -30;//-BuildLevelBound(random, skillLevel);
             rightBound = BuildLevelBound(random, skillLevel);
+            leftBoundType = BuildBoundType(random);
+            rightBoundType = BuildBoundType(random);
 
             for (int i = 0; i < waveCount; i++)
             {
@@ -59,7 +65,7 @@ namespace AbrahmanAdventure.level
                 double normalizationFactor = (random.NextDouble() * 20) + 4;
                 wave.Normalize(normalizationFactor, false);
 
-                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i, leftBound, rightBound);
+                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i, leftBound, rightBound, leftBoundType, rightBoundType);
             }
         }
         #endregion
@@ -121,9 +127,9 @@ namespace AbrahmanAdventure.level
         /// <param name="wave">wave</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">color</param>
-        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound)
+        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
         {
-            AddGround(new Ground(wave, random, color, holeSet, seed, groundId, leftBound, rightBound));
+            AddGround(new Ground(wave, random, color, holeSet, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
         }
 
         /// <summary>
@@ -135,6 +141,16 @@ namespace AbrahmanAdventure.level
         private double BuildLevelBound(Random random, int skillLevel)
         {
             return random.Next(0, 200 * (skillLevel + 1)) + 30;
+        }
+
+        /// <summary>
+        /// Build bound type
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>Bound type</returns>
+        private LevelBoundType BuildBoundType(Random random)
+        {
+            return (LevelBoundType)random.Next(0, 4);
         }
         #endregion
 
