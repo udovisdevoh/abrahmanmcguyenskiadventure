@@ -1,4 +1,13 @@
-add level bounds
+add level bounds types (one for each bound)
+{
+	hole type
+	wall type
+	height multiplication type
+	height division type
+	exponential height type
+	sqrt height type
+}
+
 dispatch monsters
 dispatch teleporters
 dispatch blocks (and other stuff like trampolines)
