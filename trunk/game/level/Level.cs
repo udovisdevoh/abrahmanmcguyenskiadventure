@@ -48,7 +48,6 @@ namespace AbrahmanAdventure.level
         public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel)
         {
             groundList = new List<Ground>();
-            holeSet = new HoleSet(random);
 
             int waveCount = random.Next(3, 6);
 
@@ -56,6 +55,10 @@ namespace AbrahmanAdventure.level
             rightBound = BuildLevelBound(random, skillLevel);
             leftBoundType = BuildBoundType(random);
             rightBoundType = BuildBoundType(random);
+
+            double levelWidth = rightBound - leftBound;
+
+            holeSet = new HoleSet(random, skillLevel, levelWidth);
 
             for (int i = 0; i < waveCount; i++)
             {
@@ -140,7 +143,7 @@ namespace AbrahmanAdventure.level
         /// <returns>level bound</returns>
         private double BuildLevelBound(Random random, int skillLevel)
         {
-            return random.Next(0, 200 * (skillLevel + 1)) + 30;
+            return random.Next(0, 400 * (skillLevel + 1)) + 30;
         }
 
         /// <summary>

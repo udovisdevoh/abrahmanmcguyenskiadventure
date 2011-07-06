@@ -28,9 +28,10 @@ namespace AbrahmanAdventure.level
         /// Build wave modelization of holes for a level
         /// </summary>
         /// <param name="random">random number generator</param>
-        public HoleSet(Random random)
+        /// <param name="skillLevel">skill level</param>
+        public HoleSet(Random random, int skillLevel, double levelWidth)
         {
-            cycleLength = 400.0;
+            cycleLength = levelWidth;//400.0;
             holeIntervals = new List<double>();
             holeIntervals.Add(0);
 
@@ -38,6 +39,9 @@ namespace AbrahmanAdventure.level
             while (true)
             {
                 double groundSurfaceLength = random.NextDouble() * 4.0 * random.NextDouble() * 4.0 * random.NextDouble() * 4.0 + 1.0;
+
+                groundSurfaceLength /= Math.Max(1.0,random.NextDouble() * Math.Sqrt((double)skillLevel + 1.0));
+
                 double holeLength = random.NextDouble() * 6.0 + 1.0;
                 xPosition += groundSurfaceLength + holeLength;
 
