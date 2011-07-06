@@ -30,6 +30,11 @@ namespace AbrahmanAdventure.sprites
         /// Some sprites change direction automatically according to a cycle
         /// </summary>
         private Cycle changeDirectionNoAiCycle;
+
+        /// <summary>
+        /// small: easy monster, big: tough monster
+        /// </summary>
+        private double skillDispatchRatio;
         
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -168,8 +173,9 @@ namespace AbrahmanAdventure.sprites
             spontaneousTransformationCycle = new Cycle(256, false);
             changeDirectionNoAiCycle = new Cycle(BuildChangeDirectionNoAiCycleLength(),true);
             safeDistanceAi = BuildSafeDistanceAi();
-            isCanJump = BuildIsCanJump(random);
             jumpProbability = BuildJumpProbability();
+            skillDispatchRatio = BuildSkillDispatchRatio();
+            isCanJump = BuildIsCanJump(random);
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
             isAvoidFall = BuildIsAvoidFall(random);
@@ -192,6 +198,34 @@ namespace AbrahmanAdventure.sprites
             isCanDoDamageWhenInFreeFall = BuildIsCanDoDamageWhenInFreeFall();
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Small: easy, big: tough
+        /// </summary>
+        /// <returns>Ratio of a monster's skill level</returns>
+        private double BuildSkillDispatchRatio()
+        {
+            double skillDispatchRatio = 0;
+
+            if (MaxHealth < 10.0)
+                skillDispatchRatio += MaxHealth;
+            if (isCanDoDamageToPlayerWhenTouched && AttackStrengthCollision < 10.0)
+                skillDispatchRatio += AttackStrengthCollision;
+            skillDispatchRatio += MaxWalkingSpeed;
+
+            if (isAiEnabled)
+                skillDispatchRatio += 0.5;
+            if (!isJumpableOn)
+                skillDispatchRatio += 0.5;
+            if (this is IProjectileShooter)
+                skillDispatchRatio += 0.5;
+            if (isAvoidFall)
+                skillDispatchRatio += 0.5;
+
+            return skillDispatchRatio;
         }
         #endregion
 
@@ -606,6 +640,14 @@ namespace AbrahmanAdventure.sprites
         public double SafeDistanceAi
         {
             get { return safeDistanceAi; }
+        }
+
+        /// <summary>
+        /// small: easy monster, big: tough monster
+        /// </summary>
+        public double SkillDispatchRatio
+        {
+            get { return skillDispatchRatio; }
         }
         #endregion
     }
