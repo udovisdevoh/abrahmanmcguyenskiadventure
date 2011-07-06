@@ -1,34 +1,22 @@
-add level bounds types (one for each bound)
-{
-	hole type
-	wall type
-	height multiplication type
-	height division type
-	exponential height type
-	sqrt height type
-}
-
 dispatch monsters
 dispatch teleporters
 dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 
 
-remove block collision (side and bottom of block) for explosions
+(probably already done): remove block collision (side and bottom of block) for explosions
 
 
 
 
-add skill level system
+skill level must influence
 {
-	must influence
-	{
-		sprites
-		level size
-		?ground waves?
-		level bounds (level's size)
-		quantité et grosseurs des trous
-	}
+	sprites
+	level size
+	?ground waves?
+	level bounds (level's size)
+	quantité et grosseurs des trous
+	ground wave normalization factor
 }
 
 Sprite dispatcher
