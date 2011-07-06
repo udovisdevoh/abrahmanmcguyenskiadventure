@@ -21,6 +21,16 @@ namespace AbrahmanAdventure.level
         /// Represents wave modelization of holes in a level
         /// </summary>
         private HoleSet holeSet;
+
+        /// <summary>
+        /// Left bound
+        /// </summary>
+        private double leftBound;
+
+        /// <summary>
+        /// Right bound
+        /// </summary>
+        private double rightBound;
         #endregion
 
         #region Constructor
@@ -29,12 +39,18 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="colorTheme">color theme</param>
-        public Level(Random random, ColorTheme colorTheme, int seed)
+        /// <param name="seed">seed</param>
+        /// <param name="skillLevel">skill level</param>
+        public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel)
         {
             groundList = new List<Ground>();
             holeSet = new HoleSet(random);
 
             int waveCount = random.Next(3, 6);
+
+            leftBound = -30;//-BuildLevelBound(random, skillLevel);
+            rightBound = BuildLevelBound(random, skillLevel);
+
             for (int i = 0; i < waveCount; i++)
             {
                 AbstractWave wave;
@@ -43,7 +59,7 @@ namespace AbrahmanAdventure.level
                 double normalizationFactor = (random.NextDouble() * 20) + 4;
                 wave.Normalize(normalizationFactor, false);
 
-                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i);
+                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i, leftBound, rightBound);
             }
         }
         #endregion
@@ -105,9 +121,20 @@ namespace AbrahmanAdventure.level
         /// <param name="wave">wave</param>
         /// <param name="random">random number generator</param>
         /// <param name="color">color</param>
-        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet, int seed, int groundId)
+        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound)
         {
-            AddGround(new Ground(wave, random, color, holeSet, seed, groundId));
+            AddGround(new Ground(wave, random, color, holeSet, seed, groundId, leftBound, rightBound));
+        }
+
+        /// <summary>
+        /// Build level bound
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="skillLevel">skill level</param>
+        /// <returns>level bound</returns>
+        private double BuildLevelBound(Random random, int skillLevel)
+        {
+            return random.Next(0, skillLevel + 1) * 200 + 50;
         }
         #endregion
 
