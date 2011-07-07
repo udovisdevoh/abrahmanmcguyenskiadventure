@@ -18,14 +18,15 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
+        /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchVortexes(Level level, SpritePopulation spritePopulation, Random random)
+        internal static void DispatchVortexes(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
         {
             bool isAddExtraVortex = false;
             if (level.Size > Program.minSizeForExtraVortex)
                 isAddExtraVortex = random.Next(0, 6) == 1;
 
-            bool isIncrementSkill = random.Next(0, 5) == 1;
+            bool isIncrementSkill = random.Next(0, skillLevel +1) == 0;
 
             AddVortexToNextLevel(level, spritePopulation, random, isIncrementSkill);
 

@@ -88,6 +88,8 @@ namespace AbrahmanAdventure
 
         public const double minSizeForExtraVortex = 100.0;
 
+        public const double monsterDensityAdjustment = 0.5;
+
         public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
 
         public static int tileSize = screenWidth / tileColumnCount;

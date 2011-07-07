@@ -163,7 +163,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new RonaldSprite(280, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new MouseSprite(330, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new JewSprite(-10, Program.totalHeightTileCount / -2, random));
-            spritePopulation.Add(new Trampoline(10, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new TrampolineSprite(10, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new PriestSprite(-30, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new MuslimSprite(-40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new MormonSprite(-55, Program.totalHeightTileCount / -2, random));

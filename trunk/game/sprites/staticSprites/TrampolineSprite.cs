@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a trampoline
     /// </summary>
-    class Trampoline : StaticSprite
+    class TrampolineSprite : StaticSprite
     {
         #region Fields and parts
         private static Surface surface;
@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public Trampoline(double xPosition, double yPosition, Random random)
+        public TrampolineSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             surface = BuildSpriteSurface("./assets/rendered/staticSprites/trampoline.png");

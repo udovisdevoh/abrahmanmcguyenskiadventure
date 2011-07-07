@@ -73,6 +73,8 @@ namespace AbrahmanAdventure.sprites
             mormon: 2.85
             farmer: 2.61*/
             double monsterDensity = random.NextDouble() * 0.1 + 0.05; //Random density, for easiest skill (0.05 to 0.15)
+            monsterDensity *= Program.monsterDensityAdjustment;
+
             double skillLevelAdjustmentRatio = Math.Sqrt(((double)skillLevel) + 1.0);
             monsterDensity *= skillLevelAdjustmentRatio;
             double availableMonsterPopulationMass = monsterDensity * level.Size;
@@ -159,7 +161,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>max dispatch ratio per monster</returns>
         private static double GetMaxDispatchRatioPerMonster(int skillLevel)
         {
-            double maxDispatchRatioPerMonster = ((double)(skillLevel + 1)) / 2.0 + 1.0;
+            double maxDispatchRatioPerMonster = ((double)(skillLevel + 1)) / 1.5 + 1.0;
             if (skillLevel >= 9)
                 maxDispatchRatioPerMonster += 100;
             return maxDispatchRatioPerMonster;
