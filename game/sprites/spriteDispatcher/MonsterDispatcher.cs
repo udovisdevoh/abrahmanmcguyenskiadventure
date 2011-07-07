@@ -81,7 +81,6 @@ namespace AbrahmanAdventure.sprites
             do
             {
                 double maxDispatchRatioPerMonster = GetMaxDispatchRatioPerMonster(skillLevel);
-
                 MonsterSprite monsterTypeSample = GetRandomMonsterTypeSample(monsterTypeEntropy, spritePopulation, maxDispatchRatioPerMonster, random);
 
                 if (monsterTypeSample == null)
@@ -212,7 +211,7 @@ namespace AbrahmanAdventure.sprites
             __temporarySpriteList.Clear();
 
             foreach (AbstractSprite sprite in listToLookInto)
-                if (sprite is MonsterSprite && ((MonsterSprite)sprite).SkillDispatchRatio <= maxDispatchRatioPerMonster && IsContainType(sprite.GetType(), allPossibleDispatchableMonsterTypes))
+                if (sprite is MonsterSprite && (!Program.isLimitSpriteSkillBySkillLevel || ((MonsterSprite)sprite).SkillDispatchRatio <= maxDispatchRatioPerMonster) && IsContainType(sprite.GetType(), allPossibleDispatchableMonsterTypes))
                     __temporarySpriteList.Add((MonsterSprite)sprite);
 
             if (__temporarySpriteList.Count == 0)
@@ -221,6 +220,12 @@ namespace AbrahmanAdventure.sprites
             return __temporarySpriteList[random.Next(__temporarySpriteList.Count)];
         }
 
+        /// <summary>
+        /// Whether list contains provided type
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <param name="allPossibleDispatchableMonsterTypes">list</param>
+        /// <returns>Whether list contains provided type</returns>
         private static bool IsContainType(Type type, List<AbstractSprite> allPossibleDispatchableMonsterTypes)
         {
             foreach (AbstractSprite otherSprite in allPossibleDispatchableMonsterTypes)

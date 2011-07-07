@@ -46,6 +46,8 @@ namespace AbrahmanAdventure
 
         public const bool isUseWaveValueCache = true;
 
+        public const bool isLimitSpriteSkillBySkillLevel = false;
+
         public const int screenWidth = 640;
 
         public const int screenHeight = 480;
