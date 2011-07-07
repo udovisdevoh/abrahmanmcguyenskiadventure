@@ -149,7 +149,7 @@ namespace AbrahmanAdventure.level
         /// <returns>level bound</returns>
         private double BuildLevelBound(Random random, int skillLevel)
         {
-            return random.Next(0, 400 * (skillLevel + 1)) + 30;
+            return random.Next(0, 400 * (skillLevel + 1)) + 60;
         }
 
         /// <summary>
