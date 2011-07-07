@@ -23,7 +23,8 @@ namespace AbrahmanAdventure.sprites
         internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
         {
             MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, random);
-            VortexDispatcher.DispatchVortexes(level, spritePopulation, random);
+            VortexDispatcher.DispatchVortexes(level, spritePopulation, skillLevel, random);
+            TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, random);
         }
 
         /// <summary>

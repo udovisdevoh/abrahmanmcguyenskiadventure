@@ -147,6 +147,7 @@
     <Compile Include="game\sprites\projectiles\PillSprite.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MonsterDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\SpriteDispatcher.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\TrampolineDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\VortexDispatcher.cs" />
     <Compile Include="game\sprites\SpriteDistanceSorter.cs" />
     <Compile Include="game\sprites\SpriteViewer.cs" />
@@ -155,7 +156,7 @@
     <Compile Include="game\sprites\StaticSprite.cs" />
     <Compile Include="game\sprites\staticSprites\IBumpable.cs" />
     <Compile Include="game\sprites\staticSprites\PipeSprite.cs" />
-    <Compile Include="game\sprites\staticSprites\Trampoline.cs" />
+    <Compile Include="game\sprites\staticSprites\TrampolineSprite.cs" />
     <Compile Include="game\sprites\staticSprites\VortexSprite.cs" />
     <Compile Include="game\SurfaceSizeCache.cs" />
     <Compile Include="game\textGenerator\LineGenerator.cs" />
