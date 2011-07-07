@@ -194,9 +194,9 @@ namespace AbrahmanAdventure.level
             double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
 
             if (boundType == LevelBoundType.MinusExponentialDistance)
-                yValue -= Math.Pow(1.1, Math.Abs(xPosition - boundXPosition));
+                yValue -= Math.Min(Math.Pow(1.1, Math.Abs(xPosition - boundXPosition)), Program.holeHeight);
             else if (boundType == LevelBoundType.PlusExponentialDistance)
-                yValue += Math.Pow(1.1, Math.Abs(xPosition - boundXPosition));
+                yValue += Math.Min(Math.Pow(1.1, Math.Abs(xPosition - boundXPosition)), Program.holeHeight);
             /*else if (boundType == LevelBoundType.HeightMultiplication)
                 yValue *= Math.Abs(xPosition - boundXPosition);
             else if (boundType == LevelBoundType.HeightDivision)
