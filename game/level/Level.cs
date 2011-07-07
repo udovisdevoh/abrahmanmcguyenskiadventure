@@ -33,6 +33,11 @@ namespace AbrahmanAdventure.level
         private double rightBound;
 
         /// <summary>
+        /// Skill level
+        /// </summary>
+        private int skillLevel;
+
+        /// <summary>
         /// Left bound type
         /// </summary>
         private LevelBoundType leftBoundType;
@@ -53,6 +58,7 @@ namespace AbrahmanAdventure.level
         /// <param name="skillLevel">skill level</param>
         public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel)
         {
+            this.skillLevel = skillLevel;
             groundList = new List<Ground>();
 
             int waveCount = random.Next(3, 6);
@@ -170,6 +176,14 @@ namespace AbrahmanAdventure.level
         public int Count
         {
             get { return groundList.Count; }
+        }
+
+        /// <summary>
+        /// Skill level
+        /// </summary>
+        public int SkillLevel
+        {
+            get { return skillLevel; }
         }
 
         /// <summary>
