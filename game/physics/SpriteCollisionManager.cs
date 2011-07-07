@@ -140,6 +140,9 @@ namespace AbrahmanAdventure.physics
         {
             if (vortexSprite.IsGoingIn)
                 gameMetaState.SetWarpBack(vortexSprite.DestinationSeed, gameState.Seed);
+
+            gameMetaState.SkillLevelForUnknownLevels += vortexSprite.IncrementSkillOffset;//Will only be effective if vortexSprite.IncrementSkillOffset != 0
+
             program.ChangeGameState(vortexSprite.DestinationSeed);
         }
 

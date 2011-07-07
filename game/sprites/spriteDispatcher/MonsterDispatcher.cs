@@ -110,7 +110,7 @@ namespace AbrahmanAdventure.sprites
             do
             {
                 xPosition = random.NextDouble() * level.Size + level.LeftBound;
-                yPosition = GetRandomGround(level, random)[xPosition];
+                yPosition = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition)[xPosition];
                 tryCount++;
             } while (yPosition >= Program.holeHeight && tryCount < 30);
 
@@ -150,17 +150,6 @@ namespace AbrahmanAdventure.sprites
             ConstructorInfo constructorInfoGenericMonster = type.GetConstructor(constructorArgumentTypeList);
 
             return (MonsterSprite)constructorInfoGenericMonster.Invoke(constructorArgumentList);
-        }
-
-        /// <summary>
-        /// Get random ground
-        /// </summary>
-        /// <param name="level">level</param>
-        /// <param name="random">random number generator</param>
-        /// <returns>random ground</returns>
-        private static Ground GetRandomGround(Level level, Random random)
-        {
-            return level[random.Next(level.Count)];
         }
 
         /// <summary>
@@ -211,7 +200,7 @@ namespace AbrahmanAdventure.sprites
             __temporarySpriteList.Clear();
 
             foreach (AbstractSprite sprite in listToLookInto)
-                if (sprite is MonsterSprite && (!Program.isLimitSpriteSkillBySkillLevel || ((MonsterSprite)sprite).SkillDispatchRatio <= maxDispatchRatioPerMonster) && IsContainType(sprite.GetType(), allPossibleDispatchableMonsterTypes))
+                if (sprite is MonsterSprite && (!Program.isLimitMonsterSkillBySkillLevel || ((MonsterSprite)sprite).SkillDispatchRatio <= maxDispatchRatioPerMonster) && IsContainType(sprite.GetType(), allPossibleDispatchableMonsterTypes))
                     __temporarySpriteList.Add((MonsterSprite)sprite);
 
             if (__temporarySpriteList.Count == 0)

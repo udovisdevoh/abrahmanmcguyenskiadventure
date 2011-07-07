@@ -1,4 +1,8 @@
-dispatch teleporters
+player must be on a random ground, not just the top one
+teleporter to next level must be on a random ground, not just the top one
+add secondary teleporter (for some large levels)
+
+
 dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 

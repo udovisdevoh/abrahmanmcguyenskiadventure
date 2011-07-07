@@ -295,5 +295,23 @@ namespace AbrahmanAdventure.physics
 
             return bottomSprite.TopBound - topSprite.YPosition < 0.1;
         }
+
+        internal static Ground GetHighestGround(Level level, double xPosition)
+        {
+            double highestHeight = double.PositiveInfinity;
+            Ground highestGround = null;
+
+            foreach (Ground currentGround in level)
+            {
+                double currentGroundHeight = currentGround[xPosition];
+
+                if (currentGroundHeight < highestHeight)
+                {
+                    highestGround = currentGround;
+                    highestHeight = currentGroundHeight;
+                }
+            }
+            return highestGround;
+        }
     }
 }

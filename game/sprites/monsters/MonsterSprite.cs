@@ -227,7 +227,8 @@ namespace AbrahmanAdventure.sprites
             if (isToggleWalkWhenJumpedOn)
                 skillDispatchRatio += 0.333;
             if (this is IExplodable)
-                skillDispatchRatio += 0.5;
+                skillDispatchRatio += 1.5;
+
             return skillDispatchRatio;
         }
         #endregion
