@@ -40,7 +40,7 @@ namespace AbrahmanAdventure.sprites
             allPossibleDispatchableMonsterTypes.Add(new HorseSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new JewSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new MormonSprite(0, 0, random));
-            allPossibleDispatchableMonsterTypes.Add(new MouseSprite(0, 0, random));
+            //allPossibleDispatchableMonsterTypes.Add(new MouseSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new MuslimSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new PriestSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new PuppetSprite(0, 0, random));
