@@ -1,4 +1,3 @@
-dispatch monsters
 dispatch teleporters
 dispatch blocks (and other stuff like trampolines)
 dispatch pipes
@@ -6,7 +5,6 @@ dispatch pipes
 
 skill level must influence
 {
-	sprites
 	ground wave normalization factor
 }
 
