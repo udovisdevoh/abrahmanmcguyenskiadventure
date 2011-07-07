@@ -56,6 +56,12 @@ namespace AbrahmanAdventure.sprites
         /// True: going in, False: warp back
         /// </summary>
         private bool isGoingIn;
+
+        /// <summary>
+        /// Going in this vortex will increment or decrement skill level
+        /// Default: 0
+        /// </summary>
+        private int incrementSkillOffset = 0;
         #endregion
 
         #region Constructors
@@ -201,6 +207,16 @@ namespace AbrahmanAdventure.sprites
         internal int DestinationSeed
         {
             get { return destinationSeed; }
+        }
+
+        /// <summary>
+        /// Going in this vortex will increment or decrement skill level
+        /// Default: 0
+        /// </summary>
+        internal int IncrementSkillOffset
+        {
+            get { return incrementSkillOffset; }
+            set { incrementSkillOffset = value; }
         }
 
         /// <summary>
