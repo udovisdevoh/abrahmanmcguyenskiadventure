@@ -16,11 +16,12 @@ namespace AbrahmanAdventure.sprites
         /// Dispatch sprite on level
         /// </summary>
         /// <param name="level">level</param>
+        /// <param name="spritePopulation">sprite population</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchSprites(Level level, int skillLevel, Random random)
+        internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
         {
-            MonsterDispatcher.DispatchMonsters(level, skillLevel, random);
+            MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, random);
         }
         #endregion
     }

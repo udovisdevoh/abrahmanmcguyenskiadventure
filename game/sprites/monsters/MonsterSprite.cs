@@ -174,7 +174,6 @@ namespace AbrahmanAdventure.sprites
             changeDirectionNoAiCycle = new Cycle(BuildChangeDirectionNoAiCycleLength(),true);
             safeDistanceAi = BuildSafeDistanceAi();
             jumpProbability = BuildJumpProbability();
-            skillDispatchRatio = BuildSkillDispatchRatio();
             isCanJump = BuildIsCanJump(random);
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
@@ -196,6 +195,7 @@ namespace AbrahmanAdventure.sprites
             isVulnerableToInvincibility = BuildIsVulnerableToInvincibility();
             isMakeSoundWhenTouchGround = BuildIsMakeSoundWhenTouchGround();
             isCanDoDamageWhenInFreeFall = BuildIsCanDoDamageWhenInFreeFall();
+            skillDispatchRatio = BuildSkillDispatchRatio();
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
         }
@@ -224,7 +224,10 @@ namespace AbrahmanAdventure.sprites
                 skillDispatchRatio += 0.5;
             if (isAvoidFall)
                 skillDispatchRatio += 0.5;
-
+            if (isToggleWalkWhenJumpedOn)
+                skillDispatchRatio += 0.333;
+            if (this is IExplodable)
+                skillDispatchRatio += 0.5;
             return skillDispatchRatio;
         }
         #endregion
@@ -644,6 +647,13 @@ namespace AbrahmanAdventure.sprites
 
         /// <summary>
         /// small: easy monster, big: tough monster
+        /// burger: 1.17
+        /// jew: 2.85
+        /// raptor: 3.45
+        /// riot1: 2.17
+        /// riot2: 1.67
+        /// mormon: 2.85
+        /// farmer: 2.61
         /// </summary>
         public double SkillDispatchRatio
         {
