@@ -32,8 +32,14 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private double rightBound;
 
+        /// <summary>
+        /// Left bound type
+        /// </summary>
         private LevelBoundType leftBoundType;
 
+        /// <summary>
+        /// Right bound type
+        /// </summary>
         private LevelBoundType rightBoundType;
         #endregion
 
@@ -174,6 +180,30 @@ namespace AbrahmanAdventure.level
         public Ground this[int index]
         {
             get { return groundList[index]; }
+        }
+
+        /// <summary>
+        /// Left bound
+        /// </summary>
+        public double LeftBound
+        {
+            get { return leftBound; }
+        }
+
+        /// <summary>
+        /// Right bound
+        /// </summary>
+        public double RightBound
+        {
+            get { return rightBound; }
+        }
+
+        /// <summary>
+        /// Level's size (width)
+        /// </summary>
+        public double Size
+        {
+            get { return rightBound - leftBound; }
         }
         #endregion
     }
