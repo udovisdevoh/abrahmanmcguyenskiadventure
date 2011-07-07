@@ -1,15 +1,14 @@
-mouse must look more evil
-
 dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 
 ?player must be on a random ground, not just the top one
 ?teleporter to next level must be on a random ground, not just the top one
-
+put back mouse and make it look more evil and/or harder to beat
 
 skill level must influence
 {
 	ground wave normalization factor
+	powerup occurence (more powerups on average skill)
 }
 
 (probably already done): remove block collision (side and bottom of block) for explosions
