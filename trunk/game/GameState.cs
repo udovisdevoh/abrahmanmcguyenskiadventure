@@ -130,7 +130,7 @@ namespace AbrahmanAdventure
 
             spritePopulation.Add(this.playerSprite);
 
-            SpriteDispatcher.DispatchSprites(level, skillLevel, random);
+            SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
 
             #warning Eventually remove test sprites
             //AddHardCodedTestSprite();
