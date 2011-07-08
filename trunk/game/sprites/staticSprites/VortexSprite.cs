@@ -43,6 +43,21 @@ namespace AbrahmanAdventure.sprites
         private static Surface surface3b;
 
         /// <summary>
+        /// Surface 1 c
+        /// </summary>
+        private static Surface surface1c;
+
+        /// <summary>
+        /// Surface 2 c
+        /// </summary>
+        private static Surface surface2c;
+
+        /// <summary>
+        /// Surface 3 c
+        /// </summary>
+        private static Surface surface3c;
+
+        /// <summary>
         /// Rotation cycle
         /// </summary>
         private Cycle rotateCycle;
@@ -87,6 +102,9 @@ namespace AbrahmanAdventure.sprites
                 surface1b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1b.png");
                 surface2b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2b.png");
                 surface3b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3b.png");
+                surface1c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1c.png");
+                surface2c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2c.png");
+                surface3c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3c.png");
             }
         }
 
@@ -114,6 +132,9 @@ namespace AbrahmanAdventure.sprites
                 surface1b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1b.png");
                 surface2b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2b.png");
                 surface3b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3b.png");
+                surface1c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1c.png");
+                surface2c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2c.png");
+                surface3c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3c.png");
             }
         }
         #endregion
@@ -169,17 +190,35 @@ namespace AbrahmanAdventure.sprites
 
             if (isGoingIn)
             {
-                if (cycleDivision == 1)
+                if (incrementSkillOffset == 0)
                 {
-                    return surface1;
-                }
-                else if (cycleDivision == 2)
-                {
-                    return surface2;
+                    if (cycleDivision == 1)
+                    {
+                        return surface1;
+                    }
+                    else if (cycleDivision == 2)
+                    {
+                        return surface2;
+                    }
+                    else
+                    {
+                        return surface3;
+                    }
                 }
                 else
                 {
-                    return surface3;
+                    if (cycleDivision == 1)
+                    {
+                        return surface1c;
+                    }
+                    else if (cycleDivision == 2)
+                    {
+                        return surface2c;
+                    }
+                    else
+                    {
+                        return surface3c;
+                    }
                 }
             }
             else
