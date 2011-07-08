@@ -17,13 +17,13 @@ namespace AbrahmanAdventure.level
         private const int defaultHowManyLeaf = 8;
         #endregion
 
-        #region Public Methods
+        #region Internal Methods
         /// <summary>
         /// Build a wave pack
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <returns>wave pack</returns>
-        public static WavePack BuildWavePack(Random random)
+        internal static WavePack BuildWavePack(Random random)
         {
             WavePack wavePack = new WavePack();
             //Mountains
@@ -47,7 +47,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <returns>wave tree</returns>
-        public static WaveTree BuildWaveTree(Random random)
+        internal static WaveTree BuildWaveTree(Random random)
         {
             return BuildWaveTree(random, defaultHowManyLeaf);
         }
@@ -58,7 +58,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="howManyLeaf">how many wave leaf (must be a power of 2)</param>
         /// <returns>wave tree</returns>
-        public static WaveTree BuildWaveTree(Random random, int howManyLeaf)
+        internal static WaveTree BuildWaveTree(Random random, int howManyLeaf)
         {
             if (howManyLeaf == 1)
             {
@@ -93,6 +93,51 @@ namespace AbrahmanAdventure.level
             bool isMultNotAdd = random.Next(0, 20) == 0;
 
             return new WaveTree(BuildWaveTree(random, howManyLeaf / 2), isMultNotAdd, BuildWaveTree(random, howManyLeaf / 2));
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for block segment distance from ground
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave for block segment distance from ground</returns>
+        internal static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(BuildIndividualWave(1, 16, 2, 32, random, true, true));
+            } while (random.Next(0, 3) != 0);
+            return wavePack;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for block segment width
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave for block segment width</returns>
+        internal static AbstractWave BuildBlockSegmentWidthWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(BuildIndividualWave(1, 16, 1, 32, random, true, true));
+            } while (random.Next(0, 3) != 0);
+            return wavePack;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for block segment distance between each others
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave for block segment distance between each others</returns>
+        internal static AbstractWave BuildXBlockSegmentDistanceWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(BuildIndividualWave(1, 32, 1, 9, random, true, true));
+            } while (random.Next(0, 3) != 0);
+            return wavePack;
         }
         #endregion
 

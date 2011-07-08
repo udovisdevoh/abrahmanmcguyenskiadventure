@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D28254B5-E02D-4885-B91C-924220F45F7E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -145,6 +145,7 @@
     <Compile Include="game\sprites\projectiles\CrystalBallSprite.cs" />
     <Compile Include="game\sprites\projectiles\FireBallSprite.cs" />
     <Compile Include="game\sprites\projectiles\PillSprite.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\BlockDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MonsterDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\SpriteDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\TrampolineDispatcher.cs" />
