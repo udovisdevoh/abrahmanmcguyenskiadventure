@@ -1,11 +1,12 @@
 dispatch blocks (and other static stuff except tampolines and pipes)
 dispatch pipes
 
-?player must be on a random ground, not just the top one
 ?teleporter to next level must be on a random ground, not just the top one
 put back mouse and make it look more evil and/or harder to beat
 
 add some water (with water level), lava etc
+
+?player must start on a random ground, not just the top one (put back this position after death)
 
 skill level must influence
 {
