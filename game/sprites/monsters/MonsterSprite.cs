@@ -222,6 +222,8 @@ namespace AbrahmanAdventure.sprites
                 skillDispatchRatio += 0.5;
             if (this is IProjectileShooter)
                 skillDispatchRatio += 0.5;
+            if (this is IFluctuatingSafeDistance)
+                skillDispatchRatio += 0.5;
             if (isAvoidFall)
                 skillDispatchRatio += 0.5;
             if (isToggleWalkWhenJumpedOn)
