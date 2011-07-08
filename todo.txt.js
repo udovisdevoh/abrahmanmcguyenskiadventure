@@ -1,3 +1,7 @@
+fix raptor/raptorJesus bottom collision (empty zone under tail and under head)
+vortexes that increase skill level must be red
+
+
 dispatch blocks (and other stuff like trampolines)
 dispatch pipes
 
