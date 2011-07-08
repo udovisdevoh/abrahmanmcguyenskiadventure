@@ -425,6 +425,37 @@ namespace AbrahmanAdventure.physics
                 angle -= 360;
             return angle;
         }
+
+        /// <summary>
+        /// Whether sprite is in dead zone of other spirte (for instance, a raptor's dead zone (where raptor can't hit)
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="otherSprite">other sprite</param>
+        /// <returns>Whether sprite is in dead zone of other spirte (for instance, a raptor's dead zone (where raptor can't hit)</returns>
+        internal static bool IsSpriteInDeadZone(AbstractSprite sprite, AbstractSprite otherSprite)
+        {
+            if (!(otherSprite is MonsterSprite))
+                return false;
+
+            MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
+
+            if (monsterSprite.IsUseBottomHitCollisionDeadZoneExceptionRadius)
+            {
+                double leftBoundDeadZoneException = monsterSprite.XPosition - monsterSprite.BottomHitCollisionDeadZoneExceptionRadius;
+                double rightBoundDeadZoneException = monsterSprite.XPosition + monsterSprite.BottomHitCollisionDeadZoneExceptionRadius;
+
+                if (sprite.RightBound >= leftBoundDeadZoneException && sprite.RightBound <= rightBoundDeadZoneException)
+                    return false;
+                else if (sprite.LeftBound >= leftBoundDeadZoneException && sprite.LeftBound <= rightBoundDeadZoneException)
+                    return false;
+                else if (sprite.RightBound <= rightBoundDeadZoneException && sprite.LeftBound >= leftBoundDeadZoneException)
+                    return false;
+                else if (sprite.RightBound >= rightBoundDeadZoneException && sprite.LeftBound <= leftBoundDeadZoneException)
+                    return false;
+            }
+
+            return monsterSprite.IsUseBottomHitCollisionDeadZone && sprite.TopBound > monsterSprite.YPosition - monsterSprite.BottomHitCollisionDeadZoneHeight;
+        }
         #endregion
     }
 }

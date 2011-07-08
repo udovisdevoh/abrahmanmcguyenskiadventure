@@ -1,12 +1,11 @@
-fix raptor/raptorJesus bottom collision (empty zone under tail and under head)
-
-
 dispatch blocks (and other static stuff except tampolines and pipes)
 dispatch pipes
 
 ?player must be on a random ground, not just the top one
 ?teleporter to next level must be on a random ground, not just the top one
 put back mouse and make it look more evil and/or harder to beat
+
+add some water (with water level), lava etc
 
 skill level must influence
 {
@@ -168,7 +167,6 @@ mettre décorations anarchiques
 	drapeaux etc
 }
 
-add some water, lava etc
 
 ?on doit pouvoir grimper sur les parroies verticales
 

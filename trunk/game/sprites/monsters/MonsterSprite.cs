@@ -47,6 +47,17 @@ namespace AbrahmanAdventure.sprites
         private double safeDistanceAi;
 
         /// <summary>
+        /// Some monsters (raptors and raptorJesus) can do no damage when they hit you from the bottom in their dead zone
+        /// </summary>
+        private double bottomHitCollisionDeadZoneHeight = 0.0;
+
+        /// <summary>
+        /// Some monsters (raptors and raptorJesus) can do no damage when they hit you from the bottom in their dead zone,
+        /// BUT they have a foot in the middle and can give you damage anyways. [Width of the foot]
+        /// </summary>
+        private double bottomHitCollisionDeadZoneExceptionRadius = 0.0;
+
+        /// <summary>
         /// Whether monster can jump
         /// </summary>
         private bool isCanJump;
@@ -156,6 +167,17 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite can do damage when in free fall
         /// </summary>
         private bool isCanDoDamageWhenInFreeFall;
+
+        /// <summary>
+        /// Whether sprite has a dead zone collision at the bottom of it (ie raptors and raptorJesuses)
+        /// </summary>
+        private bool isUseBottomHitCollisionDeadZone;
+
+        /// <summary>
+        /// Some monsters (raptors and raptorJesus) can do no damage when they hit you from the bottom in their dead zone,
+        /// BUT they have a foot in the middle and can give you damage anyways. [Width of the foot]
+        /// </summary>
+        private bool isUseBottomHitCollisionDeadZoneExceptionRadius;
         #endregion
 
         #region Constructors
@@ -633,6 +655,25 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Whether sprite has a dead zone collision at the bottom of it (ie raptors and raptorJesuses)
+        /// </summary>
+        public bool IsUseBottomHitCollisionDeadZone
+        {
+            get { return isUseBottomHitCollisionDeadZone; }
+            set { isUseBottomHitCollisionDeadZone = value; }
+        }
+
+        /// <summary>
+        /// Some monsters (raptors and raptorJesus) can do no damage when they hit you from the bottom in their dead zone,
+        /// BUT they have a foot in the middle and can give you damage anyways. [Width of the foot]
+        /// </summary>
+        public bool IsUseBottomHitCollisionDeadZoneExceptionRadius
+        {
+            get { return isUseBottomHitCollisionDeadZoneExceptionRadius; }
+            set { isUseBottomHitCollisionDeadZoneExceptionRadius = value; }
+        }
+
+        /// <summary>
         /// Probability of jumping (from 0 to 1)
         /// </summary>
         public double JumpProbability
@@ -646,6 +687,25 @@ namespace AbrahmanAdventure.sprites
         public double SafeDistanceAi
         {
             get { return safeDistanceAi; }
+        }
+
+        /// <summary>
+        /// Some monsters (raptors and raptorJesus) can do no damage when they hit you from the bottom in their dead zone
+        /// </summary>
+        public double BottomHitCollisionDeadZoneHeight
+        {
+            get { return bottomHitCollisionDeadZoneHeight; }
+            set { bottomHitCollisionDeadZoneHeight = value; }
+        }
+
+        /// <summary>
+        /// Some monsters (raptors and raptorJesus) can do no damage when they hit you from the bottom in their dead zone,
+        /// BUT they have a foot in the middle and can give you damage anyways. [Width of the foot]
+        /// </summary>
+        public double BottomHitCollisionDeadZoneExceptionRadius
+        {
+            get { return bottomHitCollisionDeadZoneExceptionRadius; }
+            set { bottomHitCollisionDeadZoneExceptionRadius = value; }
         }
 
         /// <summary>
