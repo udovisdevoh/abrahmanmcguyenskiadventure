@@ -105,8 +105,10 @@ namespace AbrahmanAdventure.level
             WavePack wavePack = new WavePack();
             do
             {
-                wavePack.Add(BuildIndividualWave(1, 16, 2, 32, random, true, true));
-            } while (random.Next(0, 3) != 0);
+                wavePack.Add(BuildIndividualWave(4, 32, 2, 8, random, true, true));
+            } while (random.Next(0, 2) != 0);
+            wavePack.Normalize((double)random.Next(4,25));
+
             return wavePack;
         }
 
