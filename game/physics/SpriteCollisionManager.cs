@@ -158,6 +158,9 @@ namespace AbrahmanAdventure.physics
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired || sprite.FromVortexCycle.IsFired)
                 return;
 
+            if (Physics.IsSpriteInDeadZone(sprite, monsterSprite))
+                return;
+
             if (sprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
             {
                 SoundManager.PlayHitSound();
@@ -209,6 +212,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
         {
+            if (Physics.IsSpriteInDeadZone(otherSprite, sprite))
+                return;
+
             if (sprite is PlayerSprite || (sprite is MonsterSprite && ((MonsterSprite)sprite).IsCanJump))
             {
                 if (sprite.CurrentJumpAcceleration < 0) //if sprite is falling

@@ -50,6 +50,10 @@ namespace AbrahmanAdventure.sprites
             GetHitRightSurface();
             GetHitLeftSurface();
             GetDeadSurface();
+            IsUseBottomHitCollisionDeadZone = true;
+            IsUseBottomHitCollisionDeadZoneExceptionRadius = true;
+            BottomHitCollisionDeadZoneHeight = 1.18;
+            BottomHitCollisionDeadZoneExceptionRadius = 0.25;
         }
         #endregion
 
