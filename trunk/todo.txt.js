@@ -22,7 +22,7 @@ Sprite dispatcher
 		Wave of horizontal segments
 		{
 			Vertical Waves to dispatch block segments (could be sineish or not)
-			Wave for block segement width
+			Wave for block segment width
 			Wave for distance between segments
 			Voir SMB1 1-1
 		}
@@ -60,6 +60,8 @@ Sprite dispatcher
 	
 	SMB3 6-10: great wall
 }
+
+nuages qu'on peut marcher dessus
 
 équivalent de plante grimpante
 
