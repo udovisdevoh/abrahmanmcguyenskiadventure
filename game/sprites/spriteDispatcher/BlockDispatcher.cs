@@ -36,6 +36,8 @@ namespace AbrahmanAdventure.sprites
                 AbstractWave hiddenAnarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
                 AbstractWave indestructibleBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
 
+                double minimumGroundDistance = 3.0;// (double)random.Next(3, 7);
+
                 for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
                 {
                     double yOffset = yDistanceFromGroundWave[xPosition];
@@ -44,20 +46,20 @@ namespace AbrahmanAdventure.sprites
                         continue;
 
                     //desiredSegmentWidth = segmentWidthWave[xPosition];
-                    yPosition = Math.Round(ground[xPosition] + yOffset - 2.0);
+                    yPosition = Math.Round(ground[xPosition] + yOffset - minimumGroundDistance);
                     //segmentBeingDrawnCurrentWidth++;
 
-                    if (IsHigherThanHigherGroundThan(xPosition, yPosition - 2.0, ground, level))
+                    if (IsHigherThanHigherGroundThan(xPosition, yPosition - minimumGroundDistance, ground, level))
                         continue;
-                    else if (IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - 2.0, ground, level))
+                    else if (IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - minimumGroundDistance, ground, level))
                         continue;
-                    else if (IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - 2.0, ground, level))
+                    else if (IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - minimumGroundDistance, ground, level))
                         continue;
-                    else if (yPosition >= ground[xPosition] - 2.0)
+                    else if (yPosition >= ground[xPosition] - minimumGroundDistance)
                         continue;
-                    else if (yPosition >= ground[xPosition - 0.5] - 2.0)
+                    else if (yPosition >= ground[xPosition - 0.5] - minimumGroundDistance)
                         continue;
-                    else if (yPosition >= ground[xPosition + 0.5] - 2.0)
+                    else if (yPosition >= ground[xPosition + 0.5] - minimumGroundDistance)
                         continue;
 
                     int uniqueBlockKey = (int)xPosition * 4000 + (int)yPosition;
