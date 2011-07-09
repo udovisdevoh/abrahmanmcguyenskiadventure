@@ -1,3 +1,5 @@
+full gravity on next frame: must ignore sprite IGrounds
+
 dispatch blocks (and other static stuff (music notes, etc) except tampolines and pipes)
 dispatch pipes
 
