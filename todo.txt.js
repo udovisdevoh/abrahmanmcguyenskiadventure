@@ -1,4 +1,4 @@
-dispatch blocks (and other static stuff except tampolines and pipes)
+dispatch blocks (and other static stuff (music notes, etc) except tampolines and pipes)
 dispatch pipes
 
 ?teleporter to next level must be on a random ground, not just the top one
