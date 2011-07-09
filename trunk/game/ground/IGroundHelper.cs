@@ -21,6 +21,19 @@ namespace AbrahmanAdventure.physics
         /// <returns>Highest ground below sprite</returns>
         internal static IGround GetHighestVisibleIGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
+            return GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList, true);
+        }
+
+        /// <summary>
+        /// Highest ground below sprite
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="level">level</param>
+        /// <param name="visibleSpriteList">List of visible sprites</param>
+        /// <param name="isAllowSpriteGround">consider sprite IGrounds too (default: true)</param>
+        /// <returns>Highest ground below sprite</returns>
+        internal static IGround GetHighestVisibleIGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList, bool isAllowSpriteGround)
+        {
             IGround highestIGroundBelowSprite = null;
             double highestHeight = -1;
 
@@ -41,27 +54,30 @@ namespace AbrahmanAdventure.physics
                 }
             }
 
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            if (isAllowSpriteGround)
             {
-                if (otherSprite.IsImpassable && otherSprite.IsAlive)
+                foreach (AbstractSprite otherSprite in visibleSpriteList)
                 {
-                    bool isHorizontalCollision = (sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound);
-                    isHorizontalCollision |= sprite.RightBound == otherSprite.RightBound;
-                    isHorizontalCollision |= sprite.LeftBound == otherSprite.LeftBound;
-                    isHorizontalCollision |= sprite.LeftBound > otherSprite.LeftBound && sprite.RightBound < otherSprite.RightBound;
-                    isHorizontalCollision |= sprite.LeftBound < otherSprite.LeftBound && sprite.RightBound > otherSprite.RightBound;
-
-                    if (isHorizontalCollision)
+                    if (otherSprite.IsImpassable && otherSprite.IsAlive)
                     {
-                        double currentHeight = otherSprite.TopBound;
-                        if (sprite.YPosition <= currentHeight)
+                        bool isHorizontalCollision = (sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound);
+                        isHorizontalCollision |= sprite.RightBound == otherSprite.RightBound;
+                        isHorizontalCollision |= sprite.LeftBound == otherSprite.LeftBound;
+                        isHorizontalCollision |= sprite.LeftBound > otherSprite.LeftBound && sprite.RightBound < otherSprite.RightBound;
+                        isHorizontalCollision |= sprite.LeftBound < otherSprite.LeftBound && sprite.RightBound > otherSprite.RightBound;
+
+                        if (isHorizontalCollision)
                         {
-                            if (otherSprite.TopBound <= currentHeight)
+                            double currentHeight = otherSprite.TopBound;
+                            if (sprite.YPosition <= currentHeight)
                             {
-                                if (highestHeight == -1 || currentHeight < highestHeight)
+                                if (otherSprite.TopBound <= currentHeight)
                                 {
-                                    highestHeight = currentHeight;
-                                    highestIGroundBelowSprite = otherSprite;
+                                    if (highestHeight == -1 || currentHeight < highestHeight)
+                                    {
+                                        highestHeight = currentHeight;
+                                        highestIGroundBelowSprite = otherSprite;
+                                    }
                                 }
                             }
                         }
