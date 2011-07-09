@@ -47,7 +47,7 @@ namespace AbrahmanAdventure.sprites
         {
             double xPosition = level.RightBound - 2.0;
 
-            while (IGroundHelper.GetHighestGround(level, xPosition)[xPosition] >= Program.holeHeight)
+            while (IGroundHelper.GetHighestGround(level, xPosition)[xPosition] >= Program.holeHeight / 2.0)
                 xPosition -= 1.0;
 
             VortexSprite vortexSprite = new VortexSprite(xPosition, Program.totalHeightTileCount / -2, random, true);
