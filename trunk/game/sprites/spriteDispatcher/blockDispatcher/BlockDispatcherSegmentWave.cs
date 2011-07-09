@@ -34,6 +34,7 @@ namespace AbrahmanAdventure.sprites
                 AbstractWave anarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
                 AbstractWave hiddenAnarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
                 AbstractWave indestructibleBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
+                AbstractWave densityWave = BuildDensityWave(random);
 
                 int groundSamplingWidthMin = random.Next(1, 7);
                 int groundSamplingWidthMax = random.Next(4, 15);
@@ -44,9 +45,12 @@ namespace AbrahmanAdventure.sprites
 
                 for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
                 {
+                    if (densityWave[xPosition] < 0.125)
+                        continue;
+
                     if (groundSamplingWidthCurrent <= 0)
                     {
-                        groundSamplingWidthCurrent = random.Next(groundSamplingWidthMin, groundSamplingWidthMax);
+                        groundSamplingWidthCurrent = random.Next(groundSamplingWidthMin, Math.Max(groundSamplingWidthMax,groundSamplingWidthMin));
                         sampledGroundYPosition = ground[xPosition];
                     }
                     groundSamplingWidthCurrent--;
@@ -137,7 +141,7 @@ namespace AbrahmanAdventure.sprites
             {
                 wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
             } while (random.Next(0, 2) != 0);
-            wavePack.Normalize((double)random.Next(2, 16));
+            wavePack.Normalize((double)random.Next(2, 8));
 
             return wavePack;
         }
@@ -156,6 +160,23 @@ namespace AbrahmanAdventure.sprites
             } while (random.Next(0, 7) != 0);
             double normalizationFactor = random.NextDouble() * 0.5 + 1.0;
             wavePack.Normalize(normalizationFactor);
+
+            return wavePack;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for probability of having blocks (0 = yes)
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>For block dispatcher, build wave for probability of having blocks (0 = yes)</returns>
+        private static AbstractWave BuildDensityWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 16, 0, 1, random, false, true));
+            } while (random.Next(0, 5) != 0);
+            wavePack.Normalize();
 
             return wavePack;
         }

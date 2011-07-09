@@ -148,6 +148,7 @@
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherSegmentWave.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MonsterDispatcher.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\MusicNoteDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\SpriteDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\TrampolineDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\VortexDispatcher.cs" />
