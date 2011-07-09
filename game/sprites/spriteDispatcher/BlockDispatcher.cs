@@ -33,6 +33,8 @@ namespace AbrahmanAdventure.sprites
             {
                 AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
                 AbstractWave anarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
+                AbstractWave hiddenAnarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
+                AbstractWave indestructibleBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
 
                 for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
                 {
@@ -45,24 +47,37 @@ namespace AbrahmanAdventure.sprites
                     yPosition = Math.Round(ground[xPosition] + yOffset - 2.0);
                     //segmentBeingDrawnCurrentWidth++;
 
+                    if (IsHigherThanHigherGroundThan(xPosition, yPosition - 2.0, ground, level))
+                        continue;
+                    else if (IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - 2.0, ground, level))
+                        continue;
+                    else if (IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - 2.0, ground, level))
+                        continue;
+                    else if (yPosition >= ground[xPosition] - 2.0)
+                        continue;
+                    else if (yPosition >= ground[xPosition - 0.5] - 2.0)
+                        continue;
+                    else if (yPosition >= ground[xPosition + 0.5] - 2.0)
+                        continue;
 
                     int uniqueBlockKey = (int)xPosition * 4000 + (int)yPosition;
 
                     if (!addedBlockMemory.Contains(uniqueBlockKey))
                     {
-                        if (!IsHigherThanHigherGroundThan(xPosition, yPosition - 2.0, ground, level))
+                        if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
                         {
-                            if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
-                            {
-                                StaticSprite blockSprite;
-                                if (anarchyBlockProbabilityWave[xPosition] > 1.0 || anarchyBlockProbabilityWave[xPosition]< -1.0)
-                                    blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
-                                else
-                                    blockSprite = new BrickSprite(xPosition, yPosition, random, true);
+                            StaticSprite blockSprite;
+                            if (anarchyBlockProbabilityWave[xPosition] > 1.0 || anarchyBlockProbabilityWave[xPosition]< -1.0)
+                                blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
+                            else if (hiddenAnarchyBlockProbabilityWave[xPosition] > 1.0 || hiddenAnarchyBlockProbabilityWave[xPosition] < -1.0)
+                                blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true);
+                            else if (indestructibleBlockProbabilityWave[xPosition] > 1.0 || indestructibleBlockProbabilityWave[xPosition] < -1.0)
+                                blockSprite = new BrickSprite(xPosition, yPosition, random, false);
+                            else
+                                blockSprite = new BrickSprite(xPosition, yPosition, random, true);
 
-                                spritePopulation.Add(blockSprite);
-                                addedBlockMemory.Add(uniqueBlockKey);
-                            }
+                            spritePopulation.Add(blockSprite);
+                            addedBlockMemory.Add(uniqueBlockKey);
                         }
                     }
                 }
