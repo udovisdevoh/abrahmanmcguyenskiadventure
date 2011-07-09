@@ -31,7 +31,8 @@ namespace AbrahmanAdventure.sprites
             //double desiredSegmentWidth;
             foreach (Ground ground in level)
             {
-                AbstractWave yDistanceFromGroundWave = WaveBuilder.BuildBlockYDistanceFromGroundWave(random);
+                AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
+                AbstractWave anarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
 
                 for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
                 {
@@ -53,7 +54,13 @@ namespace AbrahmanAdventure.sprites
                         {
                             if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
                             {
-                                spritePopulation.Add(new BrickSprite(xPosition, yPosition, random, true));
+                                StaticSprite blockSprite;
+                                if (anarchyBlockProbabilityWave[xPosition] > 1.0 || anarchyBlockProbabilityWave[xPosition]< -1.0)
+                                    blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
+                                else
+                                    blockSprite = new BrickSprite(xPosition, yPosition, random, true);
+
+                                spritePopulation.Add(blockSprite);
                                 addedBlockMemory.Add(uniqueBlockKey);
                             }
                         }
@@ -88,6 +95,71 @@ namespace AbrahmanAdventure.sprites
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for block segment distance from ground
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave for block segment distance from ground</returns>
+        private static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
+            } while (random.Next(0, 2) != 0);
+            wavePack.Normalize((double)random.Next(2, 16));
+
+            return wavePack;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for probability of having a visible anarchy block
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>For block dispatcher, wave for probability of having a visible anarchy block</returns>
+        private static AbstractWave BuildSpecialBlockTypeProbabilityWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(WaveBuilder.BuildIndividualWave(0.5, 8, 0, 1, random, false, true));
+            } while (random.Next(0, 7) != 0);
+            double normalizationFactor = random.NextDouble() * 0.5 + 1.0;
+            wavePack.Normalize(normalizationFactor);
+
+            return wavePack;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for block segment width
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave for block segment width</returns>
+        private static AbstractWave BuildBlockSegmentWidthWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(WaveBuilder.BuildIndividualWave(1, 16, 1, 32, random, false, true));
+            } while (random.Next(0, 3) != 0);
+            return wavePack;
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for block segment distance between each others
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave for block segment distance between each others</returns>
+        private static AbstractWave BuildXBlockSegmentDistanceWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            do
+            {
+                wavePack.Add(WaveBuilder.BuildIndividualWave(1, 32, 1, 9, random, false, true));
+            } while (random.Next(0, 3) != 0);
+            return wavePack;
         }
         #endregion
     }
