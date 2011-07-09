@@ -96,55 +96,6 @@ namespace AbrahmanAdventure.level
         }
 
         /// <summary>
-        /// For block dispatcher, build wave for block segment distance from ground
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment distance from ground</returns>
-        internal static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(BuildIndividualWave(4, 32, 2, 8, random, true, true));
-            } while (random.Next(0, 2) != 0);
-            wavePack.Normalize((double)random.Next(2,16));
-
-            return wavePack;
-        }
-
-        /// <summary>
-        /// For block dispatcher, build wave for block segment width
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment width</returns>
-        internal static AbstractWave BuildBlockSegmentWidthWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(BuildIndividualWave(1, 16, 1, 32, random, true, true));
-            } while (random.Next(0, 3) != 0);
-            return wavePack;
-        }
-
-        /// <summary>
-        /// For block dispatcher, build wave for block segment distance between each others
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment distance between each others</returns>
-        internal static AbstractWave BuildXBlockSegmentDistanceWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(BuildIndividualWave(1, 32, 1, 9, random, true, true));
-            } while (random.Next(0, 3) != 0);
-            return wavePack;
-        }
-        #endregion
-
-        #region Private Methods
-        /// <summary>
         /// Build individual waves
         /// </summary>
         /// <param name="minWaveLength">minimum wave length</param>
@@ -155,7 +106,7 @@ namespace AbrahmanAdventure.level
         /// <param name="isOnlyContinuous">whether wave doesn't break (only sine and triangle etc)</param>
         /// <param name="isAllowSawWave">whether we allow sawtooth wave</param>
         /// <returns></returns>
-        private static Wave BuildIndividualWave(double minWaveLength, double maxWaveLength, double minAmplitude, double maxAmplitude, Random random, bool isOnlyContinuous, bool isAllowSawWave)
+        internal static Wave BuildIndividualWave(double minWaveLength, double maxWaveLength, double minAmplitude, double maxAmplitude, Random random, bool isOnlyContinuous, bool isAllowSawWave)
         {
             double waveLength = minWaveLength + random.NextDouble() * (maxWaveLength - minWaveLength);
             double amplitude = minAmplitude + random.NextDouble() * (maxAmplitude - minAmplitude);
