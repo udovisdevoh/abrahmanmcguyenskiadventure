@@ -1,4 +1,6 @@
-full gravity on next frame: must ignore sprite IGrounds
+fix sound clipping
+add infinite fireball bonus powerup
+
 
 dispatch blocks (and other static stuff (music notes, etc) except tampolines and pipes)
 dispatch pipes
