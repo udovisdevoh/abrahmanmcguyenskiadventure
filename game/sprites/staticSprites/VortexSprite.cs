@@ -94,6 +94,7 @@ namespace AbrahmanAdventure.sprites
             IsFullGravityOnNextFrame = true;
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
+            ZIndex = -1;
             if (surface1 == null)
             {
                 surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
@@ -124,6 +125,7 @@ namespace AbrahmanAdventure.sprites
             IsFullGravityOnNextFrame = true;
             rotateCycle = new Cycle(20, true);
             rotateCycle.Fire();
+            ZIndex = -1;
             if (surface1 == null)
             {
                 surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
