@@ -151,7 +151,7 @@ namespace AbrahmanAdventure.level
 
                     int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
 
-                    if (waveOutputY > (double)zoneY + Program.squareZoneTileHeight)
+                    if (waveOutputY > (double)(zoneY + Program.squareZoneTileHeight))
                         continue;
                     else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX, zoneY))
                         continue;
@@ -216,12 +216,21 @@ namespace AbrahmanAdventure.level
             }
 
             #region Water
-            if (waterInfo != null && zoneY + Program.squareZoneTileHeight >= waterInfo.Height)
+            if (waterInfo != null && waterInfo.Height <= zoneY + Program.squareZoneTileHeight)
             {
-                zoneSurface.Draw(new Box(0, 0, (short)zoneWidth, (short)zoneHeight), waterInfo.Color, false,true);
+                short waterHeight = 0;
+                bool isDrawLine = false;
 
-                if (waterInfo.Height == zoneY + Program.squareZoneTileHeight)
-                    zoneSurface.Draw(new Line(0,0,(short)zoneWidth,0),waterInfo.EdgeColor,false,true);
+                if (waterInfo.Height >= zoneY)
+                {
+                    waterHeight = (short)((waterInfo.Height - zoneY) * Program.tileSize);
+                    isDrawLine = true;
+                }
+
+                zoneSurface.Draw(new Box(0, waterHeight, (short)zoneWidth, (short)zoneHeight), waterInfo.Color, false, true);
+
+                if (isDrawLine)
+                    zoneSurface.Draw(new Line(0,waterHeight,(short)zoneWidth,waterHeight),waterInfo.EdgeColor,false,true);
             }
             #endregion
 
