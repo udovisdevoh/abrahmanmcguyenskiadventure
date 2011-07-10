@@ -18,6 +18,11 @@ namespace AbrahmanAdventure.level
         private int height;
 
         /// <summary>
+        /// Height of water
+        /// </summary>
+        private double heightInDouble;
+
+        /// <summary>
         /// Color of water
         /// </summary>
         private Color color;
@@ -36,7 +41,9 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public WaterInfo(ColorHsl colorHsl, Random random)
         {
-            height = -10;// random.Next(Program.totalHeightTileCount / -2, Program.totalHeightTileCount / 2);
+            height = -5;// random.Next(Program.totalHeightTileCount / -2, Program.totalHeightTileCount / 2);
+
+            heightInDouble = (double)height;
 
             colorHsl = new ColorHsl(colorHsl.Hue, Math.Min(255, colorHsl.Saturation + 32), Math.Min(255, colorHsl.Lightness + 32));
             color = Color.FromArgb(96, colorHsl.GetColor());
@@ -53,6 +60,14 @@ namespace AbrahmanAdventure.level
         public int Height
         {
             get { return height; }
+        }
+
+        /// <summary>
+        /// Height of water (in tiles)
+        /// </summary>
+        public double HeightInDouble
+        {
+            get { return heightInDouble; }
         }
 
         /// <summary>
