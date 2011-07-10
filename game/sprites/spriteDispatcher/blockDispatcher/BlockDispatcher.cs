@@ -18,7 +18,10 @@ namespace AbrahmanAdventure.sprites
         internal static void DispatchBlocks(Level level, SpritePopulation spritePopulation, Random random)
         {
             HashSet<int> addedBlockMemory = new HashSet<int>();
-            BlockDispatcherSegmentWave.DispatchBlocks(level, spritePopulation, addedBlockMemory, random);
+            foreach (Ground ground in level)
+            {
+                BlockDispatcherSegmentWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+            }
         }
     }
 }
