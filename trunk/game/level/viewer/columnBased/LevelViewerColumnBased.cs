@@ -53,7 +53,8 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="sky">sky</param>
-        public void Update(Level level, ColorTheme colorTheme, Sky sky, double viewOffsetX, double viewOffsetY)
+        /// <param name="waterInfo">water info</param>
+        public void Update(Level level, ColorTheme colorTheme, Sky sky, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
             viewOffsetX *= Program.tileSize * -1;
             viewOffsetY *= Program.tileSize;

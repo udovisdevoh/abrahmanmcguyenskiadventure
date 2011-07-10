@@ -21,9 +21,10 @@ namespace AbrahmanAdventure.level
         /// <param name="level">level</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="sky">sky</param>
+        /// <param name="waterInfo">water info</param>
         /// <param name="viewOffsetX">view offset X</param>
         /// <param name="viewOffsetY">view offset Y</param>
-        void Update(Level level, ColorTheme colorTheme, Sky sky, double viewOffsetX, double viewOffsetY);
+        void Update(Level level, ColorTheme colorTheme, Sky sky, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY);
 
         /// <summary>
         /// Clear level viewer's cache within provided bounds

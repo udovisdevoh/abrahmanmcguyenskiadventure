@@ -54,6 +54,11 @@ namespace AbrahmanAdventure
         private Sky sky;
 
         /// <summary>
+        /// Water info (or null if no water)
+        /// </summary>
+        private WaterInfo waterInfo = null;
+
+        /// <summary>
         /// Level's music moode
         /// </summary>
         private MusicMood musicMood;
@@ -122,6 +127,9 @@ namespace AbrahmanAdventure
             sky = new Sky(random, skyColorHsl);
             level = new Level(random, colorTheme, seed, skillLevel);
             spritePopulation = new SpritePopulation();
+
+            //if (random.Next(0, 7) == 1)
+            waterInfo = new WaterInfo(skyColorHsl, random);
 
             if (playerSprite != null)
                 this.playerSprite = playerSprite;
@@ -336,6 +344,14 @@ namespace AbrahmanAdventure
         public Sky Sky
         {
             get { return sky; }
+        }
+
+        /// <summary>
+        /// Info about water
+        /// </summary>
+        public WaterInfo WaterInfo
+        {
+            get { return waterInfo; }
         }
 
         /// <summary>
