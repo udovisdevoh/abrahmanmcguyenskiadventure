@@ -16,11 +16,12 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Dispatch blocks
         /// </summary>
+        /// <param name="ground">ground</param>
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="addedBlockMemory">to remember blocks that are already there</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchBlocks(Level level, SpritePopulation spritePopulation, HashSet<int> addedBlockMemory, Random random)
+        internal static void DispatchBlocks(Ground ground, Level level, SpritePopulation spritePopulation, HashSet<int> addedBlockMemory, Random random)
         {
             //AbstractWave segmentWidthWave = WaveBuilder.BuildBlockSegmentWidthWave(random);
             //AbstractWave xSegmentDistanceWave = WaveBuilder.BuildXBlockSegmentDistanceWave(random);
@@ -28,74 +29,72 @@ namespace AbrahmanAdventure.sprites
             double yPosition;
             //double segmentBeingDrawnCurrentWidth = 0.0;
             //double desiredSegmentWidth;
-            foreach (Ground ground in level)
+
+            AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
+            AbstractWave anarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
+            AbstractWave hiddenAnarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
+            AbstractWave indestructibleBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
+            AbstractWave densityWave = BuildDensityWave(random);
+
+            int groundSamplingWidthMin = random.Next(1, 7);
+            int groundSamplingWidthMax = random.Next(4, 15);
+            int groundSamplingWidthCurrent = 0;
+            double sampledGroundYPosition = 0;
+
+            double minimumGroundDistance = 3.0;// (double)random.Next(3, 7);
+
+            for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
             {
-                AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
-                AbstractWave anarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
-                AbstractWave hiddenAnarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
-                AbstractWave indestructibleBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
-                AbstractWave densityWave = BuildDensityWave(random);
+                if (densityWave[xPosition] < 0.125)
+                    continue;
 
-                int groundSamplingWidthMin = random.Next(1, 7);
-                int groundSamplingWidthMax = random.Next(4, 15);
-                int groundSamplingWidthCurrent = 0;
-                double sampledGroundYPosition = 0;
-
-                double minimumGroundDistance = 3.0;// (double)random.Next(3, 7);
-
-                for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
+                if (groundSamplingWidthCurrent <= 0)
                 {
-                    if (densityWave[xPosition] < 0.125)
-                        continue;
+                    groundSamplingWidthCurrent = random.Next(groundSamplingWidthMin, Math.Max(groundSamplingWidthMax,groundSamplingWidthMin));
+                    sampledGroundYPosition = ground[xPosition];
+                }
+                groundSamplingWidthCurrent--;
 
-                    if (groundSamplingWidthCurrent <= 0)
+                double yOffset = yDistanceFromGroundWave[xPosition];
+
+                if (yOffset > 0)
+                    continue;
+
+                //desiredSegmentWidth = segmentWidthWave[xPosition];
+                yPosition = Math.Round(sampledGroundYPosition + yOffset - minimumGroundDistance);
+                //segmentBeingDrawnCurrentWidth++;
+
+                if (IsHigherThanHigherGroundThan(xPosition, yPosition - 1.5, ground, level))
+                    continue;
+                else if (IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - 1.5, ground, level))
+                    continue;
+                else if (IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - 1.5, ground, level))
+                    continue;
+                else if (yPosition >= ground[xPosition] - minimumGroundDistance)
+                    continue;
+                else if (yPosition >= ground[xPosition - 0.5] - minimumGroundDistance)
+                    continue;
+                else if (yPosition >= ground[xPosition + 0.5] - minimumGroundDistance)
+                    continue;
+
+                int uniqueBlockKey = (int)xPosition * 4000 + (int)yPosition;
+
+                if (!addedBlockMemory.Contains(uniqueBlockKey))
+                {
+                    if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
                     {
-                        groundSamplingWidthCurrent = random.Next(groundSamplingWidthMin, Math.Max(groundSamplingWidthMax,groundSamplingWidthMin));
-                        sampledGroundYPosition = ground[xPosition];
-                    }
-                    groundSamplingWidthCurrent--;
+                        StaticSprite blockSprite;
+                        if (anarchyBlockProbabilityWave[xPosition] > 1.0 || anarchyBlockProbabilityWave[xPosition]< -1.0)
+                            blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
+                        else if (hiddenAnarchyBlockProbabilityWave[xPosition] > 1.0 || hiddenAnarchyBlockProbabilityWave[xPosition] < -1.0)
+                            blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true);
+                        else if (indestructibleBlockProbabilityWave[xPosition] > 1.0 || indestructibleBlockProbabilityWave[xPosition] < -1.0)
+                            blockSprite = new BrickSprite(xPosition, yPosition, random, false);
+                        else
+                            blockSprite = new BrickSprite(xPosition, yPosition, random, true);
 
-                    double yOffset = yDistanceFromGroundWave[xPosition];
-
-                    if (yOffset > 0)
-                        continue;
-
-                    //desiredSegmentWidth = segmentWidthWave[xPosition];
-                    yPosition = Math.Round(sampledGroundYPosition + yOffset - minimumGroundDistance);
-                    //segmentBeingDrawnCurrentWidth++;
-
-                    if (IsHigherThanHigherGroundThan(xPosition, yPosition - 1.5, ground, level))
-                        continue;
-                    else if (IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - 1.5, ground, level))
-                        continue;
-                    else if (IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - 1.5, ground, level))
-                        continue;
-                    else if (yPosition >= ground[xPosition] - minimumGroundDistance)
-                        continue;
-                    else if (yPosition >= ground[xPosition - 0.5] - minimumGroundDistance)
-                        continue;
-                    else if (yPosition >= ground[xPosition + 0.5] - minimumGroundDistance)
-                        continue;
-
-                    int uniqueBlockKey = (int)xPosition * 4000 + (int)yPosition;
-
-                    if (!addedBlockMemory.Contains(uniqueBlockKey))
-                    {
-                        if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
-                        {
-                            StaticSprite blockSprite;
-                            if (anarchyBlockProbabilityWave[xPosition] > 1.0 || anarchyBlockProbabilityWave[xPosition]< -1.0)
-                                blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
-                            else if (hiddenAnarchyBlockProbabilityWave[xPosition] > 1.0 || hiddenAnarchyBlockProbabilityWave[xPosition] < -1.0)
-                                blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true);
-                            else if (indestructibleBlockProbabilityWave[xPosition] > 1.0 || indestructibleBlockProbabilityWave[xPosition] < -1.0)
-                                blockSprite = new BrickSprite(xPosition, yPosition, random, false);
-                            else
-                                blockSprite = new BrickSprite(xPosition, yPosition, random, true);
-
-                            spritePopulation.Add(blockSprite);
-                            addedBlockMemory.Add(uniqueBlockKey);
-                        }
+                        spritePopulation.Add(blockSprite);
+                        addedBlockMemory.Add(uniqueBlockKey);
                     }
                 }
             }

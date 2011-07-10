@@ -74,6 +74,8 @@ namespace AbrahmanAdventure.audio
         #region Constructors
         static SoundManager()
         {
+            Mixer.SetAllChannelsVolume(64);
+
             Mixer.ChannelsAllocated = 64;
             jumpSound = LoadSound("./assets/sounds/Jump.ogg");
             jumpDownSound = LoadSound("./assets/sounds/JumpDown.ogg");
