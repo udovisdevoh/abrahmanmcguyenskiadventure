@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using SdlDotNet.Graphics;
+using SdlDotNet.Graphics.Primitives;
 using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.level
@@ -75,7 +76,7 @@ namespace AbrahmanAdventure.level
                     Surface currentZone;
                     if (!levelViewerCache.TryGetValue(zoneX, zoneY, out currentZone))
                     {
-                        currentZone = BuildZoneSurface(level, colorTheme, zoneX, zoneY);
+                        currentZone = BuildZoneSurface(level, waterInfo, colorTheme, zoneX, zoneY);
                         levelViewerCache.Add(zoneX, zoneY, currentZone);
                     }
 
@@ -124,11 +125,12 @@ namespace AbrahmanAdventure.level
         /// Build zone surface
         /// </summary>
         /// <param name="level">level</param>
+        /// <param name="waterInfo">waterInfo</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="zoneX">zone X</param>
         /// <param name="zoneY">zone Y</param>
         /// <returns>Zone surface</returns>
-        private Surface BuildZoneSurface(Level level, ColorTheme colorTheme, int zoneX, int zoneY)
+        private Surface BuildZoneSurface(Level level, WaterInfo waterInfo, ColorTheme colorTheme, int zoneX, int zoneY)
         {
             int zoneWidth = Program.tileSize * Program.squareZoneTileWidth;
             int zoneHeight = Program.tileSize * Program.squareZoneTileHeight;
@@ -212,6 +214,13 @@ namespace AbrahmanAdventure.level
                     #endregion
                 }
             }
+
+            #region Water
+            if (waterInfo != null && (double)(zoneY + Program.squareZoneTileHeight) >= waterInfo.Height)
+            {
+                zoneSurface.Draw(new Box(0, 0, (short)zoneWidth, (short)zoneHeight), waterInfo.Color, false,true);
+            }
+            #endregion
 
             return zoneSurface;
         }

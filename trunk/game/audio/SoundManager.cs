@@ -69,6 +69,10 @@ namespace AbrahmanAdventure.audio
         private static Sound beaverUpSound;
 
         private static Sound beaverHitSound;
+
+        private static Sound diveInSound;
+        
+        private static Sound diveOutSound;
         #endregion
 
         #region Constructors
@@ -105,6 +109,8 @@ namespace AbrahmanAdventure.audio
             beaverAttackSound = LoadSound("./assets/sounds/BeaverAttack.ogg");
             beaverUpSound = LoadSound("./assets/sounds/BeaverUp.ogg");
             beaverHitSound = LoadSound("./assets/sounds/BeaverHit.ogg");
+            diveInSound = LoadSound("./assets/sounds/DiveIn.ogg");
+            diveOutSound = LoadSound("./assets/sounds/DiveOut.ogg");
         }
 
         /// <summary>
@@ -266,6 +272,16 @@ namespace AbrahmanAdventure.audio
         internal static void PlayBeaverHitSound()
         {
             beaverHitSound.Play();
+        }
+
+        internal static void PlayDiveInSound()
+        {
+            diveInSound.Play();
+        }
+
+        internal static void PlayDiveOutSound()
+        {
+            diveOutSound.Play();
         }
         #endregion
     }
