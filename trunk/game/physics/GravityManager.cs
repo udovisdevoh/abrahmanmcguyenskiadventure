@@ -158,6 +158,9 @@ namespace AbrahmanAdventure.physics
             if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsRasta && sprite.IsTryingToJump)
                 maxFallingSpeed = Program.rastaFallingSpeed;
 
+            if (sprite.IsInWater)
+                maxFallingSpeed = Program.waterMaxFallingSpeed;
+
             if (speed < 0 && Math.Abs(speed) > maxFallingSpeed)
             {
                 speed = -maxFallingSpeed;

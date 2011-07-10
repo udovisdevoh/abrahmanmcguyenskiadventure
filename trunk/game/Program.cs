@@ -80,6 +80,8 @@ namespace AbrahmanAdventure
 
         public const double rastaFallingSpeed = 0.07;
 
+        public const double waterMaxFallingSpeed = 0.07;
+
         public const double beaverHoleDiameter = 1.0;
 
         public const double beaverHoleDepth = 0.25;
