@@ -1,6 +1,9 @@
-fix sound clipping
 add infinite fireball bonus powerup
+add mullet powerup (could be infinite powerup)
+?add running powerup (to dash like sonic)
 
+
+add some water (with water level), lava etc
 
 dispatch blocks (and other static stuff (music notes, etc) except tampolines and pipes)
 dispatch pipes
@@ -8,7 +11,6 @@ dispatch pipes
 ?teleporter to next level must be on a random ground, not just the top one
 put back mouse and make it look more evil and/or harder to beat
 
-add some water (with water level), lava etc
 
 ?player must start on a random ground, not just the top one (put back this position after death)
 
