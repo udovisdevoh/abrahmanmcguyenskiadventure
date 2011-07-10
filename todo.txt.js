@@ -4,6 +4,11 @@ add mullet powerup (could be infinite powerup)
 
 
 add some water (with water level), lava etc
+{
+	water sound
+	water surface
+	water physics
+}
 
 dispatch blocks (and other static stuff (music notes, etc) except tampolines and pipes)
 dispatch pipes
