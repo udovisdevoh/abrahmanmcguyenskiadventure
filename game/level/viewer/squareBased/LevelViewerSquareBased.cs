@@ -216,9 +216,12 @@ namespace AbrahmanAdventure.level
             }
 
             #region Water
-            if (waterInfo != null && (double)(zoneY + Program.squareZoneTileHeight) >= waterInfo.Height)
+            if (waterInfo != null && zoneY + Program.squareZoneTileHeight >= waterInfo.Height)
             {
                 zoneSurface.Draw(new Box(0, 0, (short)zoneWidth, (short)zoneHeight), waterInfo.Color, false,true);
+
+                if (waterInfo.Height == zoneY + Program.squareZoneTileHeight)
+                    zoneSurface.Draw(new Line(0,0,(short)zoneWidth,0),waterInfo.EdgeColor,false,true);
             }
             #endregion
 
