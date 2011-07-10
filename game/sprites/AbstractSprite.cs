@@ -125,6 +125,11 @@ namespace AbrahmanAdventure.sprites
         private bool isCrouch = false;
 
         /// <summary>
+        /// Whether sprite is currently in water
+        /// </summary>
+        private bool isInWater = false;
+
+        /// <summary>
         /// Whether sprite is currntly trying to slide
         /// </summary>
         private bool isTryingToSlide = false;
@@ -1161,6 +1166,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTiny; }
             set { isTiny = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently in water
+        /// </summary>
+        public bool IsInWater
+        {
+            get { return isInWater; }
+            set { isInWater = value; }
         }
 
         /// <summary>

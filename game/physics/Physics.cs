@@ -99,6 +99,11 @@ namespace AbrahmanAdventure.physics
         private ExplosionManager explosionManager = new ExplosionManager();
 
         /// <summary>
+        /// Manages water
+        /// </summary>
+        private WaterManager waterManager = new WaterManager();
+
+        /// <summary>
         /// Manages carriable sprites
         /// </summary>
         private CarriableSpriteManager carriableSpriteManager = new CarriableSpriteManager();
@@ -120,6 +125,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
+            waterManager.Update(spriteToUpdate, gameState.WaterInfo);
+
             walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
             
             if (spriteToUpdate is IFlyingOnEqualDistance)
