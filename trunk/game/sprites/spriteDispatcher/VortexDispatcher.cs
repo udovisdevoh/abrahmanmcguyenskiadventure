@@ -51,12 +51,13 @@ namespace AbrahmanAdventure.sprites
                 xPosition -= 1.0;
 
             VortexSprite vortexSprite = new VortexSprite(xPosition, Program.totalHeightTileCount / -2, random, true);
-            vortexSprite.IsFullGravityOnNextFrame = true;
 
             if (isIncrementSkill)
                 vortexSprite.IncrementSkillOffset = 1;
 
             spritePopulation.Add(vortexSprite);
+
+            vortexSprite.YPosition = IGroundHelper.GetHighestGround(level, xPosition)[xPosition];
         }
 
         /// <summary>

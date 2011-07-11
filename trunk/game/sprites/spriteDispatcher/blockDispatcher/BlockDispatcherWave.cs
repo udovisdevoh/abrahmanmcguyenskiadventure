@@ -23,14 +23,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void DispatchBlocks(Ground ground, Level level, SpritePopulation spritePopulation, HashSet<int> addedBlockMemory, Random random)
         {
-            //AbstractWave segmentWidthWave = WaveBuilder.BuildBlockSegmentWidthWave(random);
-            //AbstractWave xSegmentDistanceWave = WaveBuilder.BuildXBlockSegmentDistanceWave(random);
-
             double yPosition;
-            //double segmentBeingDrawnCurrentWidth = 0.0;
-            //double desiredSegmentWidth;
 
-            AbstractWave yDistanceFromGroundWave = BlockDispatcher.BuildBlockYDistanceFromGroundWave(random);
+            AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
             AbstractWave anarchyBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
             AbstractWave hiddenAnarchyBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
             AbstractWave indestructibleBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
@@ -45,7 +40,7 @@ namespace AbrahmanAdventure.sprites
 
             for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
             {
-                if (densityWave[xPosition] < 0.125)
+                if (densityWave[xPosition] < 0.0625)
                     continue;
 
                 if (groundSamplingWidthCurrent <= 0)
@@ -60,9 +55,7 @@ namespace AbrahmanAdventure.sprites
                 if (yOffset > 0)
                     continue;
 
-                //desiredSegmentWidth = segmentWidthWave[xPosition];
                 yPosition = Math.Round(sampledGroundYPosition + yOffset - minimumGroundDistance);
-                //segmentBeingDrawnCurrentWidth++;
 
                 if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition, yPosition - 1.5, ground, level))
                     continue;
@@ -102,36 +95,22 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Private Methods
-        /*
         /// <summary>
-        /// For block dispatcher, build wave for block segment width
+        /// For block dispatcher, build wave for block segment distance from ground
         /// </summary>
         /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment width</returns>
-        private static AbstractWave BuildBlockSegmentWidthWave(Random random)
+        /// <returns>wave for block segment distance from ground</returns>
+        private static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
         {
             WavePack wavePack = new WavePack();
             do
             {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(1, 16, 1, 32, random, false, true));
+                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
             } while (random.Next(0, 3) != 0);
+            wavePack.Normalize((double)random.Next(2, 8));
+
             return wavePack;
         }
-
-        /// <summary>
-        /// For block dispatcher, build wave for block segment distance between each others
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment distance between each others</returns>
-        private static AbstractWave BuildXBlockSegmentDistanceWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(1, 32, 1, 9, random, false, true));
-            } while (random.Next(0, 3) != 0);
-            return wavePack;
-        }*/
         #endregion
     }
 }

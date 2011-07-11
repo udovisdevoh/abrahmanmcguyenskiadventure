@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.sprites
             foreach (Ground ground in level)
             {
                 BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
-                //BlockDispatcherSegmentWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+                //BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
             }
         }
 
@@ -70,23 +70,6 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// For block dispatcher, build wave for block segment distance from ground
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment distance from ground</returns>
-        internal static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
-            } while (random.Next(0, 2) != 0);
-            wavePack.Normalize((double)random.Next(2, 8));
-
-            return wavePack;
-        }
-
-        /// <summary>
         /// For block dispatcher, build wave for probability of having a visible anarchy block
         /// </summary>
         /// <param name="random">random number generator</param>
@@ -98,7 +81,7 @@ namespace AbrahmanAdventure.sprites
             {
                 wavePack.Add(WaveBuilder.BuildIndividualWave(0.5, 8, 0, 1, random, false, true));
             } while (random.Next(0, 7) != 0);
-            double normalizationFactor = random.NextDouble() * 0.2 + 1.4;
+            double normalizationFactor = random.NextDouble() * 0.2 + 1.6;
             wavePack.Normalize(normalizationFactor);
 
             return wavePack;
