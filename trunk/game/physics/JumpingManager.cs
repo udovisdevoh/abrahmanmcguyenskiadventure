@@ -40,7 +40,19 @@ namespace AbrahmanAdventure.physics
         {
             if (!sprite.IsNeedToJumpAgain)
             {
-                if (sprite.IGround != null)
+                if (sprite.IsInWater)
+                {
+                    if (!sprite.IsNeedToJumpAgain)
+                    {
+                        sprite.JumpingCycle.Reset();
+                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration * Program.waterJumpingAccelerationMultiplier;
+                        sprite.IGround = null;
+                        sprite.IsNeedToJumpAgain = true;
+                        if (sprite is PlayerSprite)
+                            SoundManager.PlayDiveOutSound();
+                    }
+                }
+                else if (sprite.IGround != null)
                 {
                     sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
