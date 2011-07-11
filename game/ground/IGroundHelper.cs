@@ -146,9 +146,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="x">x position</param>
         /// <returns></returns>
-        internal static bool IsTransparentAt(Ground ground, Level level, double x)
+        internal static bool IsTransparentAt(double waveOutputY, WaterInfo waterInfo, Ground ground, Level level, double x)
         {
-        	return ground.IsTransparent && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
+            return ground.IsTransparent && (waterInfo == null || waveOutputY < waterInfo.Height) && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
         }
         
         /// <summary>

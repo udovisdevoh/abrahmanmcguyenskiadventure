@@ -161,7 +161,7 @@ namespace AbrahmanAdventure.level
                     groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
                     #region Bottom Texture
-                    if (IGroundHelper.IsTransparentAt(ground, level, waveInputX))
+                    if (IGroundHelper.IsTransparentAt(waveOutputY, waterInfo, ground, level, waveInputX))
                     {
                         zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), transparentColor);
                     }

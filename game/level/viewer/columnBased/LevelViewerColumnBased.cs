@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.level
                 if (!levelViewerCache.TryGetValue(zoneColumnIndex + currentZoneOffset, out currentSurface))
                 {
                 	int absoluteXOffset = (int)(Math.Round((double)zoneColumnIndex * (double)Program.totalZoneWidth));
-                    currentSurface = BuildZoneSurface(level, colorTheme, zoneColumnIndex + currentZoneOffset, absoluteXOffset);
+                    currentSurface = BuildZoneSurface(level, waterInfo, colorTheme, zoneColumnIndex + currentZoneOffset, absoluteXOffset);
                     levelViewerCache.Add(zoneColumnIndex + currentZoneOffset, currentSurface);
                 }
 
@@ -86,13 +86,13 @@ namespace AbrahmanAdventure.level
         /// <param name="level">level</param>
         /// <param name="isPlayerWalkingRight">whether player is walking right</param>
         /// <param name="colorTheme">color theme</param>
-        public void PreCacheNextZoneIfLevelViewerCacheNotFull(Level level, ColorTheme colorTheme, bool isPlayerWalkingRight)
+        public void PreCacheNextZoneIfLevelViewerCacheNotFull(Level level, WaterInfo waterInfo, ColorTheme colorTheme, bool isPlayerWalkingRight)
         {
             if (!levelViewerCache.IsFull)
             {
                 int nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(isPlayerWalkingRight);
                 int absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
-                Surface nextZoneSurface = BuildZoneSurface(level, colorTheme, nextZoneIndex, absoluteXOffset);
+                Surface nextZoneSurface = BuildZoneSurface(level, waterInfo, colorTheme, nextZoneIndex, absoluteXOffset);
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
             }
         }
@@ -110,7 +110,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="level">level</param>
         /// <param name="colorTheme">color theme</param>
-        public void PreCache(Level level, ColorTheme colorTheme)
+        public void PreCache(Level level, WaterInfo waterInfo, ColorTheme colorTheme)
         {
             while (!levelViewerCache.IsFull)
             {
@@ -120,7 +120,7 @@ namespace AbrahmanAdventure.level
 
                 nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(true);
                 absoluteXOffset = (int)(Math.Round((double)nextZoneIndex * (double)Program.totalZoneWidth));
-                nextZoneSurface = BuildZoneSurface(level, colorTheme, nextZoneIndex, absoluteXOffset);
+                nextZoneSurface = BuildZoneSurface(level, waterInfo, colorTheme, nextZoneIndex, absoluteXOffset);
                 levelViewerCache.Add(nextZoneIndex, nextZoneSurface);
 
                 /*nextZoneIndex = levelViewerCache.GetNextUnrenderedZoneIndex(false);
@@ -154,7 +154,7 @@ namespace AbrahmanAdventure.level
         /// <param name="absoluteXOffset">absolute x index</param>
         /// <param name="colorTheme">color theme</param>
         /// <returns>zone surface</returns>
-        private Surface BuildZoneSurface(Level level, ColorTheme colorTheme, int zoneColumnIndex, int absoluteXOffset)
+        private Surface BuildZoneSurface(Level level, WaterInfo waterInfo, ColorTheme colorTheme, int zoneColumnIndex, int absoluteXOffset)
         {
             Rectangle rectangle;
             Surface zoneSurface = new Surface(Program.totalZoneWidth, Program.totalZoneHeight, Program.bitDepth);
@@ -183,7 +183,7 @@ namespace AbrahmanAdventure.level
                     while (textureInputX < 0)
                         textureInputX += ground.TopTexture.Surface.GetWidth();
 
-                    if (IGroundHelper.IsTransparentAt(ground, level, waveInput))
+                    if (IGroundHelper.IsTransparentAt(ground[textureInputX], waterInfo, ground, level, waveInput))
                     {
                         rectangle = new Rectangle(x, relativeFloorHeight + ground.TopTexture.Surface.GetHeight(), Program.waveResolution, Program.totalZoneHeight - relativeFloorHeight);
                         zoneSurface.Fill(rectangle, transparentColor);
