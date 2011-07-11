@@ -148,7 +148,7 @@
     <Compile Include="game\sprites\projectiles\FireBallSprite.cs" />
     <Compile Include="game\sprites\projectiles\PillSprite.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcher.cs" />
-    <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherSegmentWave.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherTotems.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherWave.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MonsterDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MusicNoteDispatcher.cs" />
