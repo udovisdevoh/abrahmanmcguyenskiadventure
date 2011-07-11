@@ -612,7 +612,7 @@ namespace AbrahmanAdventure
                 #endregion
 
                 #region We update the viewers
-                levelViewer.Update(level, gameState.ColorTheme, gameState.Sky, gameState.WaterInfo, viewOffsetX, viewOffsetY);
+                levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 hudViewer.Update(playerSprite.Health);
                 #endregion

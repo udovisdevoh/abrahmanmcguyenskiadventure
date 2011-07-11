@@ -102,7 +102,7 @@
     <Compile Include="game\physics\WalkingManager.cs" />
     <Compile Include="game\physics\WaterManager.cs" />
     <Compile Include="game\Program.cs" />
-    <Compile Include="game\level\Sky.cs" />
+    <Compile Include="game\level\Background.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
