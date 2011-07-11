@@ -42,7 +42,7 @@ namespace AbrahmanAdventure.physics
             {
                 if (sprite.IsInWater)
                 {
-                    if (!sprite.IsNeedToJumpAgain)
+                    if (!sprite.IsNeedToJumpAgain && sprite.IsAlive)
                     {
                         sprite.JumpingCycle.Reset();
                         if (sprite is PlayerSprite)
