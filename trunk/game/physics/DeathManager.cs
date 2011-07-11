@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
         {
-            if (sprite.YPosition > Program.totalHeightTileCount)
+            if (sprite.YPosition > Program.totalHeightTileCount / 2 + 3)
                 sprite.IsAlive = false;
 
             if (sprite.IsAnnihilateOnExitScreen && !visibleSpriteList.Contains(sprite))
@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.physics
             if (sprite.IsAlive)
                 return;
 
-            if (sprite.YPosition > Program.totalHeightTileCount)
+            if (sprite.YPosition > Program.totalHeightTileCount / 2 + 3)
             {
                 if (sprite is PlayerSprite)
                 {

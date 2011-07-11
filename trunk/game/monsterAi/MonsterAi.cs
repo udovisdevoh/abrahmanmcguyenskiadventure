@@ -73,7 +73,7 @@ namespace AbrahmanAdventure.ai
                 if (monster.IGround == null)
                 {
                     if (monster.IsInWater)
-                        monster.IsTryingToJump = (random.Next(0, 30) == 0);
+                        monster.IsTryingToJump = (random.Next(0, 15) == 0);
                     else
                         monster.IsTryingToJump = (random.Next(0, 3) == 0);
                 }
