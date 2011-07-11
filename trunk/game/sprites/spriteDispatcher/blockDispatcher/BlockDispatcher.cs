@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.sprites
             HashSet<int> addedBlockMemory = new HashSet<int>();
             foreach (Ground ground in level)
             {
-                BlockDispatcherSegmentWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+                BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
             }
         }
     }
