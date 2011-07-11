@@ -128,8 +128,8 @@ namespace AbrahmanAdventure
             level = new Level(random, colorTheme, seed, skillLevel);
             spritePopulation = new SpritePopulation();
 
-            //if (skillLevel != 0 && random.Next(0, 7) == 1)
-            waterInfo = new WaterInfo(skyColorHsl, random);
+            if (skillLevel != 0 && random.Next(0, 7) == 1)
+                waterInfo = new WaterInfo(skyColorHsl, random);
 
             if (playerSprite != null)
                 this.playerSprite = playerSprite;
