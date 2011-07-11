@@ -21,8 +21,10 @@ namespace AbrahmanAdventure.sprites
             HashSet<int> addedBlockMemory = new HashSet<int>();
             foreach (Ground ground in level)
             {
-                BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
-                //BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+                if (random.Next(0,4) == 1)
+                    BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+                else
+                    BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
             }
         }
 
