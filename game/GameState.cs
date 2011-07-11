@@ -39,9 +39,9 @@ namespace AbrahmanAdventure
         private ColorTheme colorTheme;
 
         /// <summary>
-        /// Sky's color (HSL)
+        /// Background's color (HSL)
         /// </summary>
-        private ColorHsl skyColorHsl;
+        private ColorHsl backgroundColorHsl;
 
         /// <summary>
         /// Random number generator using local seed
@@ -49,9 +49,9 @@ namespace AbrahmanAdventure
         private Random random;
 
         /// <summary>
-        /// Level's sky
+        /// Level's background
         /// </summary>
-        private Sky sky;
+        private Background background;
 
         /// <summary>
         /// Water info (or null if no water)
@@ -112,10 +112,10 @@ namespace AbrahmanAdventure
             random = new Random(seed);
             name = WordGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
-            skyColorHsl = new ColorHsl(random);
+            backgroundColorHsl = new ColorHsl(random);
             musicMood = new MusicMood(random);
 
-            Surface planetSurface = PlanetViewer.ShowPlanet(name, skillLevel, skyColorHsl, colorTheme, random);
+            Surface planetSurface = PlanetViewer.ShowPlanet(name, skillLevel, backgroundColorHsl, colorTheme, random);
 
             if (surfaceToDrawLoadingProgress != null)
             {
@@ -124,12 +124,12 @@ namespace AbrahmanAdventure
                 surfaceToDrawLoadingProgress.Update();
             }
 
-            sky = new Sky(random, skyColorHsl);
+            background = new Background(random, backgroundColorHsl);
             level = new Level(random, colorTheme, seed, skillLevel);
             spritePopulation = new SpritePopulation();
 
             if (skillLevel != 0 && random.Next(0, 7) == 1)
-                waterInfo = new WaterInfo(skyColorHsl, random);
+                waterInfo = new WaterInfo(backgroundColorHsl, random);
 
             if (playerSprite != null)
                 this.playerSprite = playerSprite;
@@ -339,11 +339,11 @@ namespace AbrahmanAdventure
 
 
         /// <summary>
-        /// Sky
+        /// Background
         /// </summary>
-        public Sky Sky
+        public Background Background
         {
-            get { return sky; }
+            get { return background; }
         }
 
         /// <summary>

@@ -56,13 +56,13 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="level">level</param>
         /// <param name="colorTheme">color theme</param>
-        /// <param name="sky">sky</param>
+        /// <param name="background">background</param>
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="waterInfo">waterInfo</param>
-        public void Update(Level level, ColorTheme colorTheme, Sky sky, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
+        public void Update(Level level, ColorTheme colorTheme, Background background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
-            mainSurface.Blit(sky.Surface, new Point(0, Sky.skyHeight / -4), sky.Surface.GetRectangle());
+            mainSurface.Blit(background.Surface, new Point(0, Background.backgroundHeight / -4), background.Surface.GetRectangle());
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);

@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Create information about water
         /// </summary>
-        /// <param name="colorHsl">sky's color</param>
+        /// <param name="colorHsl">background's color</param>
         /// <param name="random">random number generator</param>
         public WaterInfo(ColorHsl colorHsl, Random random)
         {

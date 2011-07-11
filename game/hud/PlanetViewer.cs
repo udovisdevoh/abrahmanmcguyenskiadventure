@@ -26,10 +26,10 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         /// <param name="name">name</param>
         /// <param name="skillLevel">skill level</param>
-        /// <param name="skyColorHsl">sky color (HSL)</param>
+        /// <param name="backgroundColorHsl">background color (HSL)</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="random">random number generator</param>
-        internal static Surface ShowPlanet(string name, int skillLevel, ColorHsl skyColorHsl, ColorTheme colorTheme, Random random)
+        internal static Surface ShowPlanet(string name, int skillLevel, ColorHsl backgroundColorHsl, ColorTheme colorTheme, Random random)
         {
             Surface planetSurface = new Surface(640, 480, 32, true);
 
@@ -45,7 +45,7 @@ namespace AbrahmanAdventure.hud
             Surface planetNameSurface = LargeFont640Res.Render(name + " - (skill level: " + (skillLevel + 1) + ")", System.Drawing.Color.White);
             planetSurface.Blit(planetNameSurface, new System.Drawing.Point(640 / 2 - planetNameSurface.GetWidth() / 2, 480 / 12 * 11));
 
-            System.Drawing.Color waterColor = skyColorHsl.GetColor();
+            System.Drawing.Color waterColor = backgroundColorHsl.GetColor();
 
             planetSurface.Draw(new Circle(640 / 2, 480 / 2, 480 / 3), waterColor, true, true);
 
