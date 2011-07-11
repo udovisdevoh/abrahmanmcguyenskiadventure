@@ -82,6 +82,10 @@ namespace AbrahmanAdventure
 
         public const double waterMaxFallingSpeed = 0.07;
 
+        public const double waterWalkingSpeedMultiplier = 0.66;
+
+        public const double waterJumpingAccelerationMultiplier = 1.4;
+
         public const double beaverHoleDiameter = 1.0;
 
         public const double beaverHoleDepth = 0.25;

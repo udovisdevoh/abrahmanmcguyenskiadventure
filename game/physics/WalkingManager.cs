@@ -38,10 +38,20 @@ namespace AbrahmanAdventure.physics
                 if (sprite.IsTryingToWalk)
                     sprite.CurrentWalkingSpeed += sprite.WalkingAcceleration;
 
-                if (sprite.IsRunning)
-                    sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxRunningSpeed);
+                if (sprite.IsInWater && sprite is PlayerSprite)
+                {
+                    if (sprite.IsRunning)
+                        sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxRunningSpeed * Program.waterWalkingSpeedMultiplier);
+                    else
+                        sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxWalkingSpeed * Program.waterWalkingSpeedMultiplier);
+                }
                 else
-                    sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxWalkingSpeed);
+                {
+                    if (sprite.IsRunning)
+                        sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxRunningSpeed);
+                    else
+                        sprite.CurrentWalkingSpeed = Math.Min(sprite.CurrentWalkingSpeed, sprite.MaxWalkingSpeed);
+                }
             }
 
             if (sprite.IsTryingToWalkRight)
