@@ -30,11 +30,11 @@ namespace AbrahmanAdventure.sprites
             //double segmentBeingDrawnCurrentWidth = 0.0;
             //double desiredSegmentWidth;
 
-            AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
-            AbstractWave anarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
-            AbstractWave hiddenAnarchyBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
-            AbstractWave indestructibleBlockProbabilityWave = BuildSpecialBlockTypeProbabilityWave(random);
-            AbstractWave densityWave = BuildDensityWave(random);
+            AbstractWave yDistanceFromGroundWave = BlockDispatcher.BuildBlockYDistanceFromGroundWave(random);
+            AbstractWave anarchyBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
+            AbstractWave hiddenAnarchyBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
+            AbstractWave indestructibleBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
+            AbstractWave densityWave = BlockDispatcher.BuildDensityWave(random);
 
             int groundSamplingWidthMin = random.Next(1, 7);
             int groundSamplingWidthMax = random.Next(4, 15);
@@ -64,11 +64,11 @@ namespace AbrahmanAdventure.sprites
                 yPosition = Math.Round(sampledGroundYPosition + yOffset - minimumGroundDistance);
                 //segmentBeingDrawnCurrentWidth++;
 
-                if (IsHigherThanHigherGroundThan(xPosition, yPosition - 1.5, ground, level))
+                if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition, yPosition - 1.5, ground, level))
                     continue;
-                else if (IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - 1.5, ground, level))
+                else if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition - 0.5, yPosition - 1.5, ground, level))
                     continue;
-                else if (IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - 1.5, ground, level))
+                else if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition + 0.5, yPosition - 1.5, ground, level))
                     continue;
                 else if (yPosition >= ground[xPosition] - minimumGroundDistance)
                     continue;
@@ -102,84 +102,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Private Methods
-        /// <summary>
-        /// Whether Y position is higher than a ground in level which is higher than provided ground
-        /// </summary>
-        /// <param name="xPosition">X Position</param>
-        /// <param name="yPosition">Y Position</param>
-        /// <param name="ground">Ground</param>
-        /// <param name="level">Level</param>
-        /// <returns>Whether Y position is higher than a ground in level which is higher than provided ground</returns>
-        private static bool IsHigherThanHigherGroundThan(double xPosition, double yPosition, Ground ground, Level level)
-        {
-            double groundHeight = ground[xPosition];
-            foreach (Ground otherGround in level)
-            {
-                double otherGroundHeight = otherGround[xPosition];
-                if (otherGroundHeight < groundHeight)
-                {
-                    if (yPosition < otherGroundHeight)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// For block dispatcher, build wave for block segment distance from ground
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave for block segment distance from ground</returns>
-        private static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
-            } while (random.Next(0, 2) != 0);
-            wavePack.Normalize((double)random.Next(2, 8));
-
-            return wavePack;
-        }
-
-        /// <summary>
-        /// For block dispatcher, build wave for probability of having a visible anarchy block
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>For block dispatcher, wave for probability of having a visible anarchy block</returns>
-        private static AbstractWave BuildSpecialBlockTypeProbabilityWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(0.5, 8, 0, 1, random, false, true));
-            } while (random.Next(0, 7) != 0);
-            double normalizationFactor = random.NextDouble() * 0.5 + 1.0;
-            wavePack.Normalize(normalizationFactor);
-
-            return wavePack;
-        }
-
-        /// <summary>
-        /// For block dispatcher, build wave for probability of having blocks (0 = yes)
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>For block dispatcher, build wave for probability of having blocks (0 = yes)</returns>
-        private static AbstractWave BuildDensityWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 16, 0, 1, random, false, true));
-            } while (random.Next(0, 5) != 0);
-            wavePack.Normalize();
-
-            return wavePack;
-        }
-
+        /*
         /// <summary>
         /// For block dispatcher, build wave for block segment width
         /// </summary>
@@ -208,7 +131,7 @@ namespace AbrahmanAdventure.sprites
                 wavePack.Add(WaveBuilder.BuildIndividualWave(1, 32, 1, 9, random, false, true));
             } while (random.Next(0, 3) != 0);
             return wavePack;
-        }
+        }*/
         #endregion
     }
 }
