@@ -45,7 +45,10 @@ namespace AbrahmanAdventure.physics
                     if (!sprite.IsNeedToJumpAgain)
                     {
                         sprite.JumpingCycle.Reset();
-                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration * Program.waterJumpingAccelerationMultiplier;
+                        if (sprite is PlayerSprite)
+                            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration * Program.waterJumpingAccelerationMultiplier;
+                        else
+                            sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                         sprite.IGround = null;
                         sprite.IsNeedToJumpAgain = true;
                         if (sprite is PlayerSprite)
