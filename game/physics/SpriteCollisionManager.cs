@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameMetaState">game meta state</param>
         /// <param name="gameState">game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
+        internal void Update(AbstractSprite sprite, AbstractSprite playerSpriteReference, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program, gameMetaState, gameState);
                 }
-                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive /*&& sprite.IGround == null*/ && !sprite.IsCrossGrounds)
+                else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && !sprite.IsCrossGrounds && sprite != playerSpriteReference.CarriedSprite)
                 {
                     blockManager.UpdateBlockCollision(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, random);
                 }

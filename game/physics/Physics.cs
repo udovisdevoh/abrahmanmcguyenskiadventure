@@ -71,7 +71,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// Manages collisions between helmet and monsters
         /// </summary>
-        private HelmetCollisionManager helmetToMonsterCollisionManager = new HelmetCollisionManager();
+        private HelmetCollisionManager helmetCollisionManager = new HelmetCollisionManager();
 
         /// <summary>
         /// Manages player's projectiles
@@ -144,7 +144,7 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {
                 List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.SortByDistanceToSprite(spriteToUpdate, visibleSpriteList);
-                spriteCollisionManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, sortedVisibleSpriteList, spritePopulation, program, gameMetaState, gameState, random);
+                spriteCollisionManager.Update(spriteToUpdate, playerSpriteReference, level, timeDelta, visibleSpriteList, sortedVisibleSpriteList, spritePopulation, program, gameMetaState, gameState, random);
 
                 if (spriteToUpdate is PlayerSprite)
                 {
@@ -188,7 +188,7 @@ namespace AbrahmanAdventure.physics
             
             if (spriteToUpdate is HelmetSprite)
             {
-                helmetToMonsterCollisionManager.Update((HelmetSprite)spriteToUpdate, level, spritePopulation, visibleSpriteList, random);
+                helmetCollisionManager.Update((HelmetSprite)spriteToUpdate, playerSpriteReference, level, spritePopulation, visibleSpriteList, random);
             }
             else if (spriteToUpdate is FireBallSprite)
             {

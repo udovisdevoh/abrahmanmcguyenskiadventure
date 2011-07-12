@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">all the sprites in game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(HelmetSprite helmet, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void Update(HelmetSprite helmet, AbstractSprite playerSpriteReference, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
             if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX)
                 return;
@@ -47,9 +47,10 @@ namespace AbrahmanAdventure.physics
                             SoundManager.PlayHitSound();
                             otherSprite.HitCycle.Fire();
                             otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
+                            playerSpriteReference.CarriedSprite = null;
                         }
                     }
-                    else if (otherSprite is StaticSprite && helmet.IGround != null && otherSprite.IsImpassable)
+                    else if (otherSprite is StaticSprite && helmet.IGround != null && otherSprite.IsImpassable && helmet != playerSpriteReference.CarriedSprite)
                     {
                         double virtualX = helmet.XPosition + ((helmet.IsTryingToWalkRight) ? helmet.CurrentWalkingSpeed : -helmet.CurrentWalkingSpeed);
                         double virtualY = helmet.IGround[virtualX];
