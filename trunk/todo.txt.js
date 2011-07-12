@@ -1,15 +1,8 @@
-balance the amount of block/anarchy block
-
-?use box instead of rectangle?
-
 add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
 ?add running powerup (to dash like sonic)
 
-?water levels must have water sprites
 
-
-dispatch blocks (and other static stuff (music notes, etc) except tampolines and pipes)
 dispatch pipes
 
 ?teleporter to next level must be on a random ground, not just the top one
@@ -22,6 +15,8 @@ skill level must influence
 {
 	ground wave normalization factor
 	powerup occurence (more powerups on average skill)
+	
+	drill types (none, white, black) (in pipes)
 }
 
 (probably already done): remove block collision (side and bottom of block) for explosions
@@ -285,6 +280,12 @@ Musique générative
 		si invincible (sera autre chose, genre une sorte de dopage)
 		
 		si level est fini (genre de musique à la fin des level de smb1)
+		
+		skill level
+		
+		si dans l'eau
+		
+		si dans un pipe
 	
 		Lorsqu'on saute et qu'on est en train de retomber
 		{
