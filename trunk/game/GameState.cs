@@ -135,6 +135,7 @@ namespace AbrahmanAdventure
                 this.playerSprite = playerSprite;
             else
                 this.playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
+            this.playerSprite.IsFullGravityOnNextFrame = true;
 
             spritePopulation.Add(this.playerSprite);
 

@@ -48,6 +48,8 @@ namespace AbrahmanAdventure.physics
                     ((PlayerSprite)sprite).IsRasta = false;
                     ((PlayerSprite)sprite).IsBeaver = false;
                     ((PlayerSprite)sprite).InvincibilityCycle.StopAndReset();
+                    ((PlayerSprite)sprite).HitCycle.StopAndReset();
+                    ((PlayerSprite)sprite).PunchedCycle.StopAndReset();
                     ((PlayerSprite)sprite).IsTiny = true;
                     ((PlayerSprite)sprite).FromVortexCycle.Fire();
                     sprite.CarriedSprite = null;

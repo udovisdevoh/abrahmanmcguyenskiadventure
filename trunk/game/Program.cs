@@ -432,6 +432,8 @@ namespace AbrahmanAdventure
                         gameState.PlayerSprite.IsNeedToJumpAgain = true;
                     }
                     gameState.PlayerSprite.FromVortexCycle.Fire();
+                    gameState.PlayerSprite.XPosition = gameState.PlayerSprite.XPosition;//reset previous X
+                    gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
                     levelViewer.ClearCache();
                     GC.Collect();
                     #endregion

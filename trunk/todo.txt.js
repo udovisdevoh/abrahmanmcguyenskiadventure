@@ -2,12 +2,18 @@ add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
 ?add running powerup (to dash like sonic)
 
+when tiny: jump higher (just enough so head is same height as when jump as not tiny)
+
+when carry helmet, if touch monster, uncarry it
+
+more anarchy block, less hidden anarchy blocks
+
 add obese kids
 
-block dispatcher: more wave, less hills
+fix flashing in water
 
 si tient helmet, ne doit pas faire de collision d'helmet
-
+si tient helmet, doit pouvoir faire collision sur monster
 
 dispatch pipes
 

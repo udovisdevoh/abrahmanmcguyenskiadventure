@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
         {
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
-                if (sprite == otherSprite || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite) || !otherSprite.IsVulnerableToPunch)
+                if (sprite == otherSprite || !otherSprite.IsAlive || !otherSprite.IsVulnerableToPunch || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite))
                     continue;
 
                 if (otherSprite is MushroomSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)

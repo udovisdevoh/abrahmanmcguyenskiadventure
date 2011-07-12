@@ -107,7 +107,7 @@ namespace AbrahmanAdventure.sprites
             {
                 wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
             } while (random.Next(0, 3) != 0);
-            wavePack.Normalize((double)random.Next(2, 8));
+            wavePack.Normalize((double)random.Next(2, 6));
 
             return wavePack;
         }
