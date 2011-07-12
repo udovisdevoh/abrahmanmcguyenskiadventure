@@ -2,6 +2,12 @@ add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
 ?add running powerup (to dash like sonic)
 
+add obese kids
+
+block dispatcher: more wave, less hills
+
+si tient helmet, ne doit pas faire de collision d'helmet
+
 
 dispatch pipes
 
