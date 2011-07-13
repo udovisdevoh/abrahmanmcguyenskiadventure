@@ -47,12 +47,16 @@ namespace AbrahmanAdventure.physics
                             SoundManager.PlayHitSound();
                             otherSprite.HitCycle.Fire();
                             otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
-                            helmet.IsAlive = false;
-                            helmet.CurrentWalkingSpeed = playerSpriteReference.CurrentWalkingSpeed;
-                            helmet.IsCurrentlyInFreeFallX = true;
-                            helmet.IsNoAiDefaultDirectionWalkingRight = playerSpriteReference.IsTryingToWalkRight;
-                            helmet.IsTryingToWalkRight = playerSpriteReference.IsTryingToWalkRight;
-                            playerSpriteReference.CarriedSprite = null;
+
+                            if (helmet == playerSpriteReference.CarriedSprite)
+                            {
+                                helmet.IsAlive = false;
+                                helmet.CurrentWalkingSpeed = playerSpriteReference.CurrentWalkingSpeed;
+                                helmet.IsCurrentlyInFreeFallX = true;
+                                helmet.IsNoAiDefaultDirectionWalkingRight = playerSpriteReference.IsTryingToWalkRight;
+                                helmet.IsTryingToWalkRight = playerSpriteReference.IsTryingToWalkRight;
+                                playerSpriteReference.CarriedSprite = null;
+                            }
                         }
                     }
                     else if (otherSprite is StaticSprite && helmet.IGround != null && otherSprite.IsImpassable && helmet != playerSpriteReference.CarriedSprite)
