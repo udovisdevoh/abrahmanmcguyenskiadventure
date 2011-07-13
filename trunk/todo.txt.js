@@ -4,16 +4,17 @@ add mullet powerup (could be infinite powerup)
 
 when tiny: jump higher (just enough so head is same height as when jump as not tiny)
 
-when carry helmet, if touch monster, uncarry it
 
 more anarchy block, less hidden anarchy blocks
 
-add obese kids
+add obese kids: shy guy behavior
 
 fix flashing in water
 
-si tient helmet, ne doit pas faire de collision d'helmet
-si tient helmet, doit pouvoir faire collision sur monster
+
+?ballance powerups (equal number of each others)
+
+
 
 dispatch pipes
 
