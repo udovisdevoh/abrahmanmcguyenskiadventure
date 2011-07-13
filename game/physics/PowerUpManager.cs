@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.physics
                 playerSprite.ChangingSizeAnimationCycle.Fire();
             else
                 playerSprite.PowerUpAnimationCycle.Fire();
-            playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
+            playerSprite.Health = playerSprite.MaxHealth;
             playerSprite.IsTiny = false;
             mushroomSprite.IsAlive = false;
             mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
@@ -41,6 +41,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.PowerUpAnimationCycle.Fire();
             if (playerSprite.IsTiny)
                 playerSprite.ChangingSizeAnimationCycle.Fire();
+            playerSprite.Health = playerSprite.MaxHealth;
             playerSprite.IsTiny = false;
             playerSprite.IsRasta = false;
             playerSprite.IsDoped = true;
@@ -59,6 +60,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.PowerUpAnimationCycle.Fire();
             if (playerSprite.IsTiny)
                 playerSprite.ChangingSizeAnimationCycle.Fire();
+            playerSprite.Health = playerSprite.MaxHealth;
             playerSprite.IsTiny = false;
             playerSprite.IsDoped = false;
             playerSprite.IsRasta = true;
