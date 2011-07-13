@@ -23,8 +23,6 @@ namespace AbrahmanAdventure.sprites
         {
             double pipeDensity = random.NextDouble() * 0.01 + 0.02;
             int pipeCount = (int)Math.Round(pipeDensity * level.Size);
-
-
         }
         #endregion
     }

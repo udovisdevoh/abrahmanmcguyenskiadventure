@@ -31,7 +31,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(HelmetSprite helmet, AbstractSprite playerSpriteReference, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
-            if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX)
+            if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX && helmet != playerSpriteReference.CarriedSprite)
                 return;
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
@@ -47,6 +47,11 @@ namespace AbrahmanAdventure.physics
                             SoundManager.PlayHitSound();
                             otherSprite.HitCycle.Fire();
                             otherSprite.CurrentDamageReceiving = helmet.AttackStrengthCollision * 2.0;//Yes, twice damage to monsters
+                            helmet.IsAlive = false;
+                            helmet.CurrentWalkingSpeed = playerSpriteReference.CurrentWalkingSpeed;
+                            helmet.IsCurrentlyInFreeFallX = true;
+                            helmet.IsNoAiDefaultDirectionWalkingRight = playerSpriteReference.IsTryingToWalkRight;
+                            helmet.IsTryingToWalkRight = playerSpriteReference.IsTryingToWalkRight;
                             playerSpriteReference.CarriedSprite = null;
                         }
                     }
