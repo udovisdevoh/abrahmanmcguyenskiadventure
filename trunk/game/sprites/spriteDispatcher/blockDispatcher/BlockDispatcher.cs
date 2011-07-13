@@ -9,6 +9,14 @@ namespace AbrahmanAdventure.sprites
 {
     internal static class BlockDispatcher
     {
+        #region Constants
+        internal const double anarchyBlockProbability = 0.2;
+
+        internal const double hiddenAnarchyBlockProbability = 0.1;
+
+        internal const double indestructibleBlockProbability = 0.2;
+        #endregion
+
         #region Internal Methods
         /// <summary>
         /// Dispatch blocks
@@ -67,24 +75,6 @@ namespace AbrahmanAdventure.sprites
                 wavePack.Add(WaveBuilder.BuildIndividualWave(4, 16, 0, 1, random, false, true));
             } while (random.Next(0, 5) != 0);
             wavePack.Normalize();
-
-            return wavePack;
-        }
-
-        /// <summary>
-        /// For block dispatcher, build wave for probability of having a visible anarchy block
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>For block dispatcher, wave for probability of having a visible anarchy block</returns>
-        internal static AbstractWave BuildSpecialBlockTypeProbabilityWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            do
-            {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(0.5, 8, 0, 1, random, false, true));
-            } while (random.Next(0, 7) != 0);
-            double normalizationFactor = random.NextDouble() * 0.2 + 1.6;
-            wavePack.Normalize(normalizationFactor);
 
             return wavePack;
         }

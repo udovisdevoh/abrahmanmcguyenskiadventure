@@ -78,11 +78,11 @@ namespace AbrahmanAdventure.sprites
                             if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
                             {
                                 StaticSprite blockSprite;
-                                if (random.Next(0, 8) == 1)
+                                if (random.NextDouble() < BlockDispatcher.anarchyBlockProbability)
                                     blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
-                                else if (random.Next(0, 8) == 1)
+                                else if (random.NextDouble() < BlockDispatcher.hiddenAnarchyBlockProbability)
                                     blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true);
-                                else if (random.Next(0, 8) == 1)
+                                else if (random.NextDouble() < BlockDispatcher.indestructibleBlockProbability)
                                     blockSprite = new BrickSprite(xPosition, yPosition, random, false);
                                 else
                                     blockSprite = new BrickSprite(xPosition, yPosition, random, true);
