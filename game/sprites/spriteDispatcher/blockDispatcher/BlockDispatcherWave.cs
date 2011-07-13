@@ -26,9 +26,6 @@ namespace AbrahmanAdventure.sprites
             double yPosition;
 
             AbstractWave yDistanceFromGroundWave = BuildBlockYDistanceFromGroundWave(random);
-            AbstractWave anarchyBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
-            AbstractWave hiddenAnarchyBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
-            AbstractWave indestructibleBlockProbabilityWave = BlockDispatcher.BuildSpecialBlockTypeProbabilityWave(random);
             AbstractWave densityWave = BlockDispatcher.BuildDensityWave(random);
 
             int groundSamplingWidthMin = random.Next(1, 7);
@@ -77,11 +74,11 @@ namespace AbrahmanAdventure.sprites
                     if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
                     {
                         StaticSprite blockSprite;
-                        if (anarchyBlockProbabilityWave[xPosition] > 1.0 || anarchyBlockProbabilityWave[xPosition]< -1.0)
+                        if (random.NextDouble() < BlockDispatcher.anarchyBlockProbability)
                             blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
-                        else if (hiddenAnarchyBlockProbabilityWave[xPosition] > 1.0 || hiddenAnarchyBlockProbabilityWave[xPosition] < -1.0)
+                        else if (random.NextDouble() < BlockDispatcher.hiddenAnarchyBlockProbability)
                             blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true);
-                        else if (indestructibleBlockProbabilityWave[xPosition] > 1.0 || indestructibleBlockProbabilityWave[xPosition] < -1.0)
+                        else if (random.NextDouble() < BlockDispatcher.indestructibleBlockProbability)
                             blockSprite = new BrickSprite(xPosition, yPosition, random, false);
                         else
                             blockSprite = new BrickSprite(xPosition, yPosition, random, true);

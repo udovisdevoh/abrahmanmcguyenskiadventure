@@ -5,8 +5,6 @@ add mullet powerup (could be infinite powerup)
 when tiny: jump higher (just enough so head is same height as when jump as not tiny)
 
 
-more anarchy block, less hidden anarchy blocks
-
 add obese kids: shy guy behavior
 
 fix flashing in water
