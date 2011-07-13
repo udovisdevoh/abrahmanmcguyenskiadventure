@@ -1,3 +1,6 @@
+test more accessible block height
+
+
 add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
 ?add running powerup (to dash like sonic)

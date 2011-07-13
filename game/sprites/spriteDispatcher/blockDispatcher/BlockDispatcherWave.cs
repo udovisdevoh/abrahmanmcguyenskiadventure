@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.sprites
             int groundSamplingWidthCurrent = 0;
             double sampledGroundYPosition = 0;
 
-            double minimumGroundDistance = 3.0;// (double)random.Next(3, 7);
+            double minimumGroundDistance = 2.0;// (double)random.Next(3, 7);
 
             for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
             {
@@ -104,7 +104,7 @@ namespace AbrahmanAdventure.sprites
             {
                 wavePack.Add(WaveBuilder.BuildIndividualWave(4, 32, 2, 8, random, false, true));
             } while (random.Next(0, 3) != 0);
-            wavePack.Normalize((double)random.Next(2, 6));
+            wavePack.Normalize((double)random.Next(2, 5));
 
             return wavePack;
         }
