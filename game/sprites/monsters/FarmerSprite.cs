@@ -222,6 +222,11 @@ namespace AbrahmanAdventure.sprites
             return 4.0;
         }
 
+        protected override double BuildSubjectiveOccurenceProbability()
+        {
+            return 1.0;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;

@@ -58,6 +58,11 @@ namespace AbrahmanAdventure.sprites
         private double bottomHitCollisionDeadZoneExceptionRadius = 0.0;
 
         /// <summary>
+        /// For sprite dispatcher
+        /// </summary>
+        private double subjectiveOccurenceProbability;
+
+        /// <summary>
         /// Whether monster can jump
         /// </summary>
         private bool isCanJump;
@@ -196,6 +201,7 @@ namespace AbrahmanAdventure.sprites
             changeDirectionNoAiCycle = new Cycle(BuildChangeDirectionNoAiCycleLength(),true);
             safeDistanceAi = BuildSafeDistanceAi();
             jumpProbability = BuildJumpProbability();
+            subjectiveOccurenceProbability = BuildSubjectiveOccurenceProbability();
             isCanJump = BuildIsCanJump(random);
             isFleeWhenAttacked = BuildIsFleeWhenAttacked(random);
             isAiEnabled = BuildIsAiEnabled();
@@ -383,6 +389,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite can do damage when in free fall</returns>
         protected abstract bool BuildIsCanDoDamageWhenInFreeFall();
+
+        /// <summary>
+        /// Build subjective occurence probability
+        /// </summary>
+        /// <returns>Build subjective occurence probability</returns>
+        protected abstract double BuildSubjectiveOccurenceProbability();
 
         /// <summary>
         /// Probability of jumping (from 0 to 1)
@@ -721,6 +733,14 @@ namespace AbrahmanAdventure.sprites
         public double SkillDispatchRatio
         {
             get { return skillDispatchRatio; }
+        }
+
+        /// <summary>
+        /// For sprite dispatcher
+        /// </summary>
+        public double SubjectiveOccurenceProbability
+        {
+            get { return subjectiveOccurenceProbability; }
         }
         #endregion
     }

@@ -89,6 +89,11 @@ namespace AbrahmanAdventure.sprites
             return 4;
         }
 
+        protected override double BuildSubjectiveOccurenceProbability()
+        {
+            return 1.0;
+        }
+
         protected override double BuildWidth(Random random)
         {
             return 1.0;
