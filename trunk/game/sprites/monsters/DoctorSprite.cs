@@ -186,6 +186,11 @@ namespace AbrahmanAdventure.sprites
             return 4;
         }
 
+        protected override double BuildSubjectiveOccurenceProbability()
+        {
+            return 1.0;
+        }
+
         protected override double BuildWalkingAcceleration()
         {
             return 0.02;

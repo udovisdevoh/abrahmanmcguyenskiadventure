@@ -143,6 +143,11 @@ namespace AbrahmanAdventure.sprites
             return 0;
         }
 
+        protected override double BuildSubjectiveOccurenceProbability()
+        {
+            return 1.0;
+        }
+
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;

@@ -189,6 +189,11 @@ namespace AbrahmanAdventure.sprites
             return 25.0;
         }
 
+        protected override double BuildSubjectiveOccurenceProbability()
+        {
+            return 1.7;
+        }
+
         protected override double BuildAttackingTime()
         {
             return 4;

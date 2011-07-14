@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// To be used temporarly without recreating the list
         /// </summary>
-        private static List<MonsterSprite> __temporarySpriteList;
+        private static Dictionary<MonsterSprite, double> __temporarySpriteList;
         #endregion
 
         #region Constructor
@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.sprites
             allPossibleDispatchableMonsterTypes.Add(new RonaldSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new SnakeSprite(0, 0, random));
 
-            __temporarySpriteList = new List<MonsterSprite>();
+            __temporarySpriteList = new Dictionary<MonsterSprite,double>();
         }
         #endregion
 
@@ -179,12 +179,12 @@ namespace AbrahmanAdventure.sprites
         {
             MonsterSprite monsterTypeSample;
             if (random.NextDouble() < monsterTypeEntropy)
-                monsterTypeSample = GetRandomSpriteFrom(allPossibleDispatchableMonsterTypes, maxDispatchRatioPerMonster, random);
+                monsterTypeSample = GetRandomSpriteFrom(allPossibleDispatchableMonsterTypes, maxDispatchRatioPerMonster, true, random);
             else
             {
-                monsterTypeSample = GetRandomSpriteFrom(spritePopulation.AllSpriteList, maxDispatchRatioPerMonster, random);
+                monsterTypeSample = GetRandomSpriteFrom(spritePopulation.AllSpriteList, maxDispatchRatioPerMonster, false, random);
                 if (monsterTypeSample == null)
-                    monsterTypeSample = GetRandomSpriteFrom(allPossibleDispatchableMonsterTypes, maxDispatchRatioPerMonster, random);
+                    monsterTypeSample = GetRandomSpriteFrom(allPossibleDispatchableMonsterTypes, maxDispatchRatioPerMonster, true, random);
             }
             return monsterTypeSample;
         }
@@ -195,20 +195,42 @@ namespace AbrahmanAdventure.sprites
         /// <param name="listToLookInto"></param>
         /// <param name="maxDispatchRatioPerMonster"></param>
         /// <param name="random">random number generator</param>
+        /// <param name="isUseSubjectiveProbability">whether we use subjective probability</param>
         /// <returns>Random sprite (having dispatch ratio lower than maxDispatchRatioPerMonster) from list
         /// Or null if nothing could be found</returns>
-        private static MonsterSprite GetRandomSpriteFrom(IEnumerable<AbstractSprite> listToLookInto, double maxDispatchRatioPerMonster, Random random)
+        private static MonsterSprite GetRandomSpriteFrom(IEnumerable<AbstractSprite> listToLookInto, double maxDispatchRatioPerMonster, bool isUseSubjectiveProbability, Random random)
         {
             __temporarySpriteList.Clear();
 
             foreach (AbstractSprite sprite in listToLookInto)
+            {
                 if (sprite is MonsterSprite && (!Program.isLimitMonsterSkillBySkillLevel || ((MonsterSprite)sprite).SkillDispatchRatio <= maxDispatchRatioPerMonster) && IsContainType(sprite.GetType(), allPossibleDispatchableMonsterTypes))
-                    __temporarySpriteList.Add((MonsterSprite)sprite);
+                {
+                    if (isUseSubjectiveProbability)
+                        __temporarySpriteList.Add((MonsterSprite)sprite, ((MonsterSprite)sprite).SubjectiveOccurenceProbability);
+                    else
+                        __temporarySpriteList.Add((MonsterSprite)sprite, 1.0);
+                }
+            }
 
             if (__temporarySpriteList.Count == 0)
                 return null;
 
-            return __temporarySpriteList[random.Next(__temporarySpriteList.Count)];
+            double fuzzyIndex = random.NextDouble() * __temporarySpriteList.Values.Sum();
+            double fuzzyCounter = 0.0;
+            MonsterSprite monster = null;
+            foreach (KeyValuePair<MonsterSprite, double> spriteAndProbability in __temporarySpriteList)
+            {
+                monster = spriteAndProbability.Key;
+                double probability = spriteAndProbability.Value;
+                fuzzyCounter += probability;
+
+                if (fuzzyCounter >= fuzzyIndex)
+                {
+                    return monster;
+                }
+            }
+            return monster;
         }
 
         /// <summary>
