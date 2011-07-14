@@ -1,14 +1,12 @@
-add subjective property to monsters for random monster dispatcher (more riot control, less raptor jesus)
-
-
 all monsters must stoped until player starts to move (jump, or arrow)
 after load/save game, go back to game directly
 
 
+put back mouses, but with lower subjective probability
+
+
 create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
-
-?slower skill level progression?
 
 
 add infinite fireball bonus powerup
@@ -30,7 +28,7 @@ fix flashing in water
 dispatch pipes
 
 ?teleporter to next level must be on a random ground, not just the top one
-put back mouse and make it look more evil and/or harder to beat
+
 
 
 ?player must start on a random ground, not just the top one (put back this position after death)
