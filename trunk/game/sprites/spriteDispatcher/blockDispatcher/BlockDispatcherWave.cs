@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="addedBlockMemory">to remember blocks that are already there</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchBlocks(Ground ground, Level level, SpritePopulation spritePopulation, HashSet<int> addedBlockMemory, Random random)
+        internal static void DispatchBlocks(Ground ground, Level level, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, Random random)
         {
             double yPosition;
 
@@ -67,9 +67,7 @@ namespace AbrahmanAdventure.sprites
                 else if (yPosition >= ground[xPosition + 0.5] - minimumGroundDistance)
                     continue;
 
-                int uniqueBlockKey = (int)xPosition * 4000 + (int)yPosition;
-
-                if (!addedBlockMemory.Contains(uniqueBlockKey))
+                if (!addedBlockMemory.Contains((int)xPosition, (int)yPosition))
                 {
                     if (IGroundHelper.IsGroundVisible(ground, level, xPosition))
                     {
@@ -84,7 +82,7 @@ namespace AbrahmanAdventure.sprites
                             blockSprite = new BrickSprite(xPosition, yPosition, random, true);
 
                         spritePopulation.Add(blockSprite);
-                        addedBlockMemory.Add(uniqueBlockKey);
+                        addedBlockMemory.Add((int)xPosition, (int)yPosition);
                     }
                 }
             }

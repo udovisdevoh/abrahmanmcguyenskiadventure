@@ -2,6 +2,8 @@ create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
 
+add SMW style backup item rack
+
 add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
 ?add running powerup (to dash like sonic)
