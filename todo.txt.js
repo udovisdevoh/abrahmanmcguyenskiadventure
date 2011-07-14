@@ -1,4 +1,14 @@
-test more accessible block height
+add subjective property to monsters for random monster dispatcher (more riot control, less raptor jesus)
+
+
+all monsters must stoped until player starts to move (jump, or arrow)
+after load/save game, go back to game directly
+
+
+create ruin structure style block dispatcher
+fusionner wave et totem (si wave positive: totem)
+
+?slower skill level progression?
 
 
 add infinite fireball bonus powerup
