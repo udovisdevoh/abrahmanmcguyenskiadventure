@@ -456,7 +456,7 @@ namespace AbrahmanAdventure.sprites
             changingSizeAnimationCycle = new Cycle(20, false);
             throwBallCycle = new Cycle(2.5, false);
             invincibilityCycle = new Cycle(400, false);
-            fromVortexCycle = new Cycle(50, false);
+            fromVortexCycle = new Cycle(30, false);
 
             if (beaverStandTallRight == null)
             {

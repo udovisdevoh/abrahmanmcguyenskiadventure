@@ -41,7 +41,9 @@ namespace AbrahmanAdventure.physics
                 if (sprite is PlayerSprite)
                 {
                     sprite.XPosition = 0;
-                    sprite.YPosition = Program.totalHeightTileCount / -2;
+                    //sprite.YPosition = Program.totalHeightTileCount / -2;
+                    sprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, sprite.XPosition)[sprite.XPosition];
+
                     sprite.IsAlive = true;
                     sprite.Health = ((PlayerSprite)sprite).DefaultHealth;
                     ((PlayerSprite)sprite).IsDoped = false;
@@ -59,6 +61,8 @@ namespace AbrahmanAdventure.physics
 
                     gameState.Level.ClearBeaverDestruction();
                     levelViewer.ClearCache();
+
+                    gameState.IsPlayerReady = false;
 
                     #region We remove powerups after player dies
                     foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)

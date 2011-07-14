@@ -74,6 +74,11 @@ namespace AbrahmanAdventure
         private int seed;
 
         /// <summary>
+        /// Whether player is ready to play (has moved or jumped)
+        /// </summary>
+        private bool isPlayerReady = false;
+
+        /// <summary>
         /// Whether game state must be recreated because we change the world
         /// </summary>
         private bool isExpired = false;
@@ -135,9 +140,10 @@ namespace AbrahmanAdventure
                 this.playerSprite = playerSprite;
             else
                 this.playerSprite = new PlayerSprite(0, Program.totalHeightTileCount / -2, random);
-            this.playerSprite.IsFullGravityOnNextFrame = true;
 
             spritePopulation.Add(this.playerSprite);
+
+            this.playerSprite.YPosition = IGroundHelper.GetHighestGround(this.level, this.playerSprite.XPosition)[this.playerSprite.XPosition];
 
             SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
 
@@ -275,6 +281,7 @@ namespace AbrahmanAdventure
                 {
                     VortexSprite warpBack = new VortexSprite(xOffset, Program.totalHeightTileCount / -2, random, seed, false);
                     spritePopulation.Add(warpBack);
+                    warpBack.YPosition = IGroundHelper.GetHighestGround(level, warpBack.XPosition)[warpBack.XPosition];
                     xOffset -= 5;
                 }
             }
@@ -362,6 +369,15 @@ namespace AbrahmanAdventure
         {
             get { return isExpired; }
             set { isExpired = value; }
+        }
+
+        /// <summary>
+        /// Whether player is ready to play (has moved or jumped)
+        /// </summary>
+        public bool IsPlayerReady
+        {
+            get { return isPlayerReady; }
+            set { isPlayerReady = value; }
         }
 
         /// <summary>

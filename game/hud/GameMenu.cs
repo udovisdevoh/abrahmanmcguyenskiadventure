@@ -266,15 +266,13 @@ namespace AbrahmanAdventure.hud
             keyCycle.StopAndReset();
             Dirthen();
         }
-        #endregion
 
-        #region Private Methods
         /// <summary>
         /// Write font text
         /// </summary>
         /// <param name="text">text to write</param>
         /// <returns>font text</returns>
-        private static Surface GetFontText(string text)
+        internal static Surface GetFontText(string text)
         {
             return GetFontText(text, System.Drawing.Color.White);
         }
@@ -285,11 +283,13 @@ namespace AbrahmanAdventure.hud
         /// <param name="text">text to write</param>
         /// <param name="color">default: white</param>
         /// <returns>font text</returns>
-        private static Surface GetFontText(string text, System.Drawing.Color color)
+        internal static Surface GetFontText(string text, System.Drawing.Color color)
         {
             return MenuFont.Render(text, color);
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Moving left
         /// </summary>
@@ -405,6 +405,7 @@ namespace AbrahmanAdventure.hud
                             program.ChangeGameState(program.GameMetaState.PreviousSeed);
                             program.GameState = null;
                         }
+                        program.IsShowMenu = false;
                         break;
                     case 2: //Save game
                         if (program.GameState != null)
@@ -419,6 +420,8 @@ namespace AbrahmanAdventure.hud
                         if (Program.isFullScreen)
                             Cursor.Hide();
                         Directory.SetCurrentDirectory(directory2);
+                        program.IsShowMenu = false;
+                        program.GameState.IsPlayerReady = false;
                         break;
                     case 4:
                         currentMenuPositionY = 0;

@@ -432,8 +432,10 @@ namespace AbrahmanAdventure
                         gameState.PlayerSprite.IsNeedToJumpAgain = true;
                     }
                     gameState.PlayerSprite.FromVortexCycle.Fire();
+                    gameState.PlayerSprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, gameState.PlayerSprite.XPosition)[gameState.PlayerSprite.XPosition];
                     gameState.PlayerSprite.XPosition = gameState.PlayerSprite.XPosition;//reset previous X
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
+
                     levelViewer.ClearCache();
                     GC.Collect();
                     #endregion
@@ -530,6 +532,8 @@ namespace AbrahmanAdventure
                         playerSprite.IsRunning = userInput.isPressAttack;
                         if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
                         {
+                            gameState.IsPlayerReady = true;
+                            previousDateTime = DateTime.Now;
                             #region Walking left
                             if (playerSprite.IsTryingToWalkRight)
                                 playerSprite.CurrentWalkingSpeed = 0;
@@ -541,6 +545,8 @@ namespace AbrahmanAdventure
                         }
                         else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
                         {
+                            gameState.IsPlayerReady = true;
+                            previousDateTime = DateTime.Now;
                             #region Walking right
                             if (!playerSprite.IsTryingToWalkRight)
                                 playerSprite.CurrentWalkingSpeed = 0;
@@ -552,6 +558,8 @@ namespace AbrahmanAdventure
                         }
                         else if (userInput.isPressDown && userInput.isPressAttack)
                         {
+                            gameState.IsPlayerReady = true;
+                            previousDateTime = DateTime.Now;
                             #region Sliding
                             playerSprite.IsTryingToWalk = false;
                             if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired && !playerSprite.IsBeaver)
@@ -591,21 +599,22 @@ namespace AbrahmanAdventure
                         beaverManager.LeaveBeaver(playerSprite, spritePopulation);
                     #endregion
 
-                    physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
-
-                    foreach (AbstractSprite sprite in toUpdateSpriteList)
-                        if (sprite != playerSprite)
-                        {
-                            physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
-                            if (sprite is MonsterSprite && sprite.IsAlive)
-                                monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
-                        }
+                    if (gameState.IsPlayerReady)
+                    {
+                        physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
+                        foreach (AbstractSprite sprite in toUpdateSpriteList)
+                            if (sprite != playerSprite)
+                            {
+                                physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
+                                if (sprite is MonsterSprite && sprite.IsAlive)
+                                    monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
+                            }
+                    }
                 }
                 else
                 {
                     pipeManager.ContinuePipeTeleportation(playerSprite);
                 }
-
 
                 #region We position the camera
                 viewOffsetX = playerSprite.XPosition - (double)Program.tileColumnCount / 2.0;
@@ -616,7 +625,7 @@ namespace AbrahmanAdventure
                 #region We update the viewers
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
-                hudViewer.Update(playerSprite.Health);
+                hudViewer.Update(playerSprite.Health, gameState.IsPlayerReady);
                 #endregion
 
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
