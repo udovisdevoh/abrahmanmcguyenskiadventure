@@ -41,7 +41,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public WaterInfo(ColorHsl colorHsl, Random random)
         {
-            height = random.Next(Program.totalHeightTileCount / -2, Program.totalHeightTileCount / 2);
+            height = random.Next(Program.totalHeightTileCount / -2, Program.totalHeightTileCount / 4);
 
             heightInDouble = (double)height;
 
