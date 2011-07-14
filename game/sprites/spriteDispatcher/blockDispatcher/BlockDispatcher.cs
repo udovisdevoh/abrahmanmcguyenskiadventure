@@ -24,9 +24,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchBlocks(Level level, SpritePopulation spritePopulation, Random random)
+        internal static AddedBlockMemory DispatchBlocks(Level level, SpritePopulation spritePopulation, Random random)
         {
-            HashSet<int> addedBlockMemory = new HashSet<int>();
+            AddedBlockMemory addedBlockMemory = new AddedBlockMemory();
             foreach (Ground ground in level)
             {
                 if (random.Next(0,5) == 1)
@@ -34,6 +34,7 @@ namespace AbrahmanAdventure.sprites
                 else
                     BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
             }
+            return addedBlockMemory;
         }
 
         /// <summary>
