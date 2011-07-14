@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SdlDotNet.Graphics;
+using SdlDotNet.Graphics.Primitives;
 using SdlDotNet.Core;
 using System.Drawing;
 
@@ -18,6 +19,11 @@ namespace AbrahmanAdventure.hud
         /// Surface to draw on
         /// </summary>
         private Surface surface;
+
+        /// <summary>
+        /// Paused text
+        /// </summary>
+        private Surface pausedText;
 
         /// <summary>
         /// Maximum width of energy bar (in pixels)
@@ -46,6 +52,7 @@ namespace AbrahmanAdventure.hud
             maxEnergyBarWidth = (int)(75 * Program.screenWidth / 640);
             xYOffsetEnergyBar = (int)(16 * Program.screenWidth / 640);
             energyBarThickness = (int)(8 * Program.screenWidth / 640);
+            pausedText = GameMenu.GetFontText("move left or right to resume", Color.White);
         }
         #endregion
 
@@ -54,7 +61,7 @@ namespace AbrahmanAdventure.hud
         /// Show Hud
         /// </summary>
         /// <param name="playerHealth">player's health (1.0 = default max)</param>
-        internal void Update(double playerHealth)
+        internal void Update(double playerHealth, bool isPlayerReady)
         {
             int yellowBarWidth = (int)((playerHealth * (double)(75)) * Program.screenWidth / 640);
 
@@ -63,6 +70,11 @@ namespace AbrahmanAdventure.hud
             
             surface.Fill(yellowRectangle, Color.Yellow);
             surface.Fill(redRectangle, Color.Red);
+
+            if (!isPlayerReady)
+            {
+                surface.Blit(pausedText, new System.Drawing.Point(Program.screenWidth / 2 - pausedText.GetWidth() / 2, Program.screenHeight * 3 / 4));
+            }
         }
         #endregion
     }

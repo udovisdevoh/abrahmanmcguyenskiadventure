@@ -1,10 +1,3 @@
-all monsters must stoped until player starts to move (jump, or arrow)
-after load/save game, go back to game directly
-
-
-put back mouses, but with lower subjective probability
-
-
 create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
