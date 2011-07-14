@@ -14,23 +14,14 @@ add obese kids: shy guy behavior
 ?fix flashing in water?
 
 
-?ballance powerups (equal number of each others)
-
-
-
 dispatch pipes
 
 ?teleporter to next level must be on a random ground, not just the top one
 
 
-
-?player must start on a random ground, not just the top one (put back this position after death)
-
 skill level must influence
 {
-	ground wave normalization factor
-	powerup occurence (more powerups on average skill)
-	
+	ground wave normalization factor	
 	drill types (none, white, black) (in pipes)
 }
 
@@ -98,18 +89,17 @@ create persistant config
 	whether it is fullscreen
 }
 
-monsters should respawn after player dies
 
 Menu
 {
 	Display
 	{
-		Changer résolution
+		Changer résolution (nécéssite restart)
 		Fullscreen?
 	}
 	Audio
 	{
-		Volume de musique et de sons
+		Volume de musique et des sons
 	}
 }
 
@@ -129,11 +119,6 @@ fix fire balls
 ?compteur de "music note" dans le hud? si 100, ajoute une vie et reset compteur?? augmente score lorsque touche music note? affiche score dans hud?
 {
 	?Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)?
-}
-
-Faire gestion automatique de la population de sprite
-{
-	sprite dispatcher must not put anarchy block on a ambiguous height (too low to pass under, but it looks like not)
 }
 
 collision detection
@@ -207,7 +192,6 @@ fin de level
 
 
 Miniboss?
-certains monstres doivent se spawner directement sur le sol (probablement la majorité) -> utiliser IsFullGravityOnNextFrame
 
 
 Monstres
