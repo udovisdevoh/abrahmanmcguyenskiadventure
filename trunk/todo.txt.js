@@ -11,7 +11,7 @@ when tiny: jump higher (just enough so head is same height as when jump as not t
 
 add obese kids: shy guy behavior
 
-fix flashing in water
+?fix flashing in water?
 
 
 ?ballance powerups (equal number of each others)
