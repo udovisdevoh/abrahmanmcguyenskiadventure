@@ -140,13 +140,33 @@ namespace AbrahmanAdventure.sprites
         {
             while (pipeToPlugCount >= 2 && pipeList.Count >= 2) //If there is one pipe left to plug, it can't be plugged
             {
-                PipeSprite pipe1 = GetRandomPipe(pipeList, random);
+                PipeSprite pipe1 = GetLeftMostPipe(pipeList);
                 pipeList.Remove(pipe1);
                 //PipeSprite pipe2 = GetRandomPipe(pipeList, random);
                 PipeSprite pipe2 = GetClosestUnpluggedPipe(pipe1, pipeList);
                 pipeList.Remove(pipe2);
                 pipe1.LinkedPipe = pipe2;
             }
+        }
+
+        /// <summary>
+        /// Get leftmost pipe
+        /// </summary>
+        /// <param name="pipeList">pipe list</param>
+        /// <returns>leftmost pipe</returns>
+        private static PipeSprite GetLeftMostPipe(List<PipeSprite> pipeList)
+        {
+            PipeSprite leftMostPipe = null;
+            double leftMostX = -1;
+            foreach (PipeSprite pipeSprite in pipeList)
+            {
+                if (leftMostPipe == null || pipeSprite.XPosition < leftMostX)
+                {
+                    leftMostX = pipeSprite.XPosition;
+                    leftMostPipe = pipeSprite;
+                }
+            }
+            return leftMostPipe;
         }
 
         /// <summary>
