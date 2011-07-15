@@ -103,7 +103,7 @@ namespace AbrahmanAdventure.physics
                 else
                     playerSprite.IGround = null;
                 playerSprite.DestinationPipe = null;
-                //playerSprite.FromVortexCycle.Fire();
+                playerSprite.FromVortexCycle.Fire();
             }
         }
 

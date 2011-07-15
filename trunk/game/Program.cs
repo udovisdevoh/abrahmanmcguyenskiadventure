@@ -448,7 +448,7 @@ namespace AbrahmanAdventure
                 HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
 
                 //We process the time multiplicator
-                double timeDelta = ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0;
+                double timeDelta = Math.Max(0, ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0);
                 if (isLimitFrameSkip)
                     timeDelta = Math.Min(1.0, timeDelta);
 
