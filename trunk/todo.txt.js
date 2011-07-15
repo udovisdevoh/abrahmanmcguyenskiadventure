@@ -1,4 +1,4 @@
-some levels must not have too many pipes
+some levels should not have too many pipes
 
 remove unused spatial hasing (to improve performances)
 
@@ -18,6 +18,8 @@ when tiny: jump higher (just enough so head is same height as when jump as not t
 add obese kids: shy guy behavior
 
 ?fix flashing in water?
+
+Must test (and maybe fix): must be able to stomp enemies by jumping under block under them
 
 
 dispatch pipes
