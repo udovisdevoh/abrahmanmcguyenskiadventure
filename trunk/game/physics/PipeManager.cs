@@ -95,6 +95,8 @@ namespace AbrahmanAdventure.physics
 
             if (xMatch && yMatch)
             {
+                playerSprite.XPosition = playerSprite.XPosition;//we reset the previous positions
+                playerSprite.YPosition = playerSprite.YPosition;//we reset the previous positions
                 playerSprite.CurrentWalkingSpeed = 0.0;
                 if (playerSprite.DestinationPipe.IsUpSide)
                     playerSprite.IGround = playerSprite.DestinationPipe;
