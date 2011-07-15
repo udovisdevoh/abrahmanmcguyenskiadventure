@@ -92,7 +92,7 @@ namespace AbrahmanAdventure
 
         public const double beaverHoleDepth = 0.25;
 
-        public const double pipeTeleportSpeed = 0.16;
+        public const double pipeTeleportSpeed = 0.006;
 
         public const double minSizeForExtraVortex = 100.0;
 

@@ -41,9 +41,12 @@ namespace AbrahmanAdventure.physics
             bool yMatch = false;
 
 
+            playerSprite.CurrentWalkingSpeed += Program.pipeTeleportSpeed;
+
+
             if (playerSprite.XPosition < destinationX)
             {
-                playerSprite.XPosition += Program.pipeTeleportSpeed;
+                playerSprite.XPosition += playerSprite.CurrentWalkingSpeed;
 
                 if (playerSprite.XPosition >= destinationX)
                 {
@@ -53,7 +56,7 @@ namespace AbrahmanAdventure.physics
             }
             else if (playerSprite.XPosition > destinationX)
             {
-                playerSprite.XPosition -= Program.pipeTeleportSpeed;
+                playerSprite.XPosition -= playerSprite.CurrentWalkingSpeed;
 
                 if (playerSprite.XPosition <= destinationX)
                 {
@@ -68,7 +71,7 @@ namespace AbrahmanAdventure.physics
 
             if (playerSprite.YPosition < destinationY)
             {
-                playerSprite.YPosition += Program.pipeTeleportSpeed;
+                playerSprite.YPosition += playerSprite.CurrentWalkingSpeed;
 
                 if (playerSprite.YPosition >= destinationY)
                 {
@@ -78,7 +81,7 @@ namespace AbrahmanAdventure.physics
             }
             else if (playerSprite.YPosition > destinationY)
             {
-                playerSprite.YPosition -= Program.pipeTeleportSpeed;
+                playerSprite.YPosition -= playerSprite.CurrentWalkingSpeed;
 
                 if (playerSprite.YPosition <= destinationY)
                 {
@@ -93,6 +96,7 @@ namespace AbrahmanAdventure.physics
 
             if (xMatch && yMatch)
             {
+                playerSprite.CurrentWalkingSpeed = 0.0;
                 if (playerSprite.DestinationPipe.IsUpSide)
                     playerSprite.IGround = playerSprite.DestinationPipe;
                 else
