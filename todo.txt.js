@@ -1,4 +1,11 @@
-some levels should not have too many pipes
+don't allow pipes to be plugged if distance exceeds some distance (not determined yet)
+
+
+Must test (and maybe fix): must be able to stomp enemies by jumping under block under them
+{
+	to test: Use try to brand it max skill level
+	must stomp sprite even if it doesn't touch block entierly
+}
 
 remove unused spatial hasing (to improve performances)
 
@@ -19,7 +26,6 @@ add obese kids: shy guy behavior
 
 ?fix flashing in water?
 
-Must test (and maybe fix): must be able to stomp enemies by jumping under block under them
 
 
 dispatch pipes

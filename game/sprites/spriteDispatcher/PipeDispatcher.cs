@@ -41,7 +41,7 @@ namespace AbrahmanAdventure.sprites
             List<PipeSprite> pipeList = GetPipeList(spritePopulation);
             pipeCount = pipeList.Count;
 
-            PlugSomePipes(pluggedPipeCount, pipeList, random);
+            PlugSomePipes(pluggedPipeCount, pipeList, level, random);
 
             int drillCount = BuildDrillCount(skillLevel, pipeCount, random);
             int blackDrillCount = BuildDrillCount(skillLevel, drillCount, random);
@@ -52,6 +52,47 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Dispatch upwards
+        /// </summary>
+        /// <param name="pipeCount">how many upward pipes</param>
+        /// <param name="level">level</param>
+        /// <param name="spritePopulation">all other sprites</param>
+        /// <param name="random">random number generator</param>
+        private static void DispatchUpwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, Random random)
+        {
+            const int maxTryCount = 40;
+            for (int i = 0; i < pipeCount; i++)
+            {
+                for (int tryCount = 0; tryCount < maxTryCount; tryCount++)
+                {
+                    double xPosition = random.NextDouble() * level.Size + level.LeftBound;
+                    double yPosition = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition)[xPosition];
+
+                    PipeSprite pipeSprite = new PipeSprite(xPosition, yPosition, random);
+
+                    spritePopulation.Add(pipeSprite);
+
+                    if (IsAtAcceptablePosition(pipeSprite) && IsInAcceptableDistanceToOtherSprites(pipeSprite, spritePopulation))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Plug some drills
+        /// </summary>
+        /// <param name="drillCount">how many drills</param>
+        /// <param name="pipeList">list of pipes</param>
+        /// <param name="spritePopulation">all the sprites</param>
+        /// <param name="isBlack">whether we plug black drills</param>
+        /// <param name="random">random number generator</param>
         private static void PlugSomeDrills(int drillCount, List<PipeSprite> pipeList, SpritePopulation spritePopulation, bool isBlack, Random random)
         {
             pipeList = new List<PipeSprite>(pipeList);
@@ -75,54 +116,21 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
-        /// Dispatch upwards
-        /// </summary>
-        /// <param name="pipeCount">how many upward pipes</param>
-        /// <param name="level">level</param>
-        /// <param name="spritePopulation">all other sprites</param>
-        /// <param name="random">random number generator</param>
-        private static void DispatchUpwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, Random random)
-        {
-            const int maxTryCount = 40;
-            for (int i = 0; i < pipeCount; i++)
-            {
-                for (int tryCount = 0; tryCount < maxTryCount; tryCount++)
-                {
-                    double xPosition = random.NextDouble() * level.Size + level.LeftBound;
-                    double yPosition = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition)[xPosition];
-
-                    PipeSprite pipeSprite = new PipeSprite(xPosition, yPosition, random);
-
-                    spritePopulation.Add(pipeSprite);
-
-                    if (IsAtAcceptablePosition(pipeSprite) && IsInAcceptableDistance(pipeSprite, spritePopulation))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        spritePopulation.Remove(pipeSprite);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Whether pipe sprite is in acceptable distance to other sprites
         /// </summary>
         /// <param name="pipeSprite">pipe sprite</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <returns>Whether pipe sprite is in acceptable distance to other sprites</returns>
-        private static bool IsInAcceptableDistance(PipeSprite pipeSprite, SpritePopulation spritePopulation)
+        private static bool IsInAcceptableDistanceToOtherSprites(PipeSprite pipeSprite, SpritePopulation spritePopulation)
         {
             foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
             {
                 if (pipeSprite == otherSprite)
                     continue;
 
-                if (Physics.IsDetectCollision(pipeSprite, pipeSprite.XPosition, pipeSprite.YPosition - 1.0, 2.0, otherSprite))
+                if (Physics.IsDetectCollision(pipeSprite, pipeSprite.XPosition, pipeSprite.YPosition - 2.0, 2.0, otherSprite))
                     return false;
-                else if (Physics.IsDetectCollision(pipeSprite, pipeSprite.XPosition, pipeSprite.YPosition + 1.0, 2.0, otherSprite))
+                else if (Physics.IsDetectCollision(pipeSprite, pipeSprite.XPosition, pipeSprite.YPosition + 2.0, 2.0, otherSprite))
                     return false;
             }
 
@@ -159,7 +167,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="pipeCountToPlug">how many pipes to plug</param>
         /// <param name="pipeList">all the pipes</param>
         /// <param name="random">random number generator</param>
-        private static void PlugSomePipes(int pipeToPlugCount, List<PipeSprite> pipeList, Random random)
+        private static void PlugSomePipes(int pipeToPlugCount, List<PipeSprite> pipeList, Level level, Random random)
         {
             pipeList = new List<PipeSprite>(pipeList);
             while (pipeToPlugCount >= 2 && pipeList.Count >= 2) //If there is one pipe left to plug, it can't be plugged
@@ -169,7 +177,9 @@ namespace AbrahmanAdventure.sprites
                 //PipeSprite pipe2 = GetRandomPipe(pipeList, random);
                 PipeSprite pipe2 = GetClosestUnpluggedPipe(pipe1, pipeList);
                 pipeList.Remove(pipe2);
-                pipe1.LinkedPipe = pipe2;
+
+                if (SpriteDistanceSorter.GetExactDistanceTile(pipe1, pipe2) <= level.Size / 3.0)
+                    pipe1.LinkedPipe = pipe2;
             }
         }
 

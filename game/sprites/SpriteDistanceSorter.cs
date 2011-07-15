@@ -57,6 +57,28 @@ namespace AbrahmanAdventure.physics
 
             return __sortedListSprite;
         }
+
+        /// <summary>
+        /// Exact distance between sprites
+        /// </summary>
+        /// <param name="sprite">sprite 1</param>
+        /// <param name="otherSprite">sprite 2</param>
+        /// <returns>Exact distance between sprites</returns>
+        internal static int GetExactDistancePixel(AbstractSprite sprite, AbstractSprite otherSprite)
+        {
+            return (int)(Math.Sqrt(Math.Pow(sprite.XPosition - otherSprite.XPosition, 2.0) + Math.Pow(sprite.YPosition - otherSprite.YPosition, 2.0)) * 32.0);
+        }
+
+        /// <summary>
+        /// Exact distance between sprites
+        /// </summary>
+        /// <param name="sprite">sprite 1</param>
+        /// <param name="otherSprite">sprite 2</param>
+        /// <returns>Exact distance between sprites</returns>
+        internal static double GetExactDistanceTile(AbstractSprite sprite, AbstractSprite otherSprite)
+        {
+            return Math.Sqrt(Math.Pow(sprite.XPosition - otherSprite.XPosition, 2.0) + Math.Pow(sprite.YPosition - otherSprite.YPosition, 2.0));
+        }
         #endregion
 
         #region Private Methods
@@ -68,11 +90,6 @@ namespace AbrahmanAdventure.physics
         private static double GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Max(Math.Abs(sprite.XPosition - otherSprite.XPosition), Math.Abs(sprite.YPosition - otherSprite.YPosition));
-        }
-
-        private static int GetExactDistance(AbstractSprite sprite, AbstractSprite otherSprite)
-        {
-            return (int)(Math.Sqrt(Math.Pow(sprite.XPosition - otherSprite.XPosition, 2.0) + Math.Pow(sprite.YPosition - otherSprite.YPosition, 2.0)) * 32.0);
         }
         #endregion
     }
