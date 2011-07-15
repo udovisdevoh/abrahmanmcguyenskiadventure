@@ -18,8 +18,9 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
+        /// <param name="addedBlockMemory">memory of added blocks</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchPipes(Level level, SpritePopulation spritePopulation, Random random)
+        internal static void DispatchPipes(Level level, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, Random random)
         {
             double pipeDensity = random.NextDouble() * 0.01 + 0.02;
             int pipeCount = (int)Math.Round(pipeDensity * level.Size);

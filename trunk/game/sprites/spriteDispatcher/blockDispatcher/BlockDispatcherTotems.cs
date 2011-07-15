@@ -36,6 +36,9 @@ namespace AbrahmanAdventure.sprites
 
             for (double xPosition = level.LeftBound; xPosition < level.RightBound; xPosition++)
             {
+                if (xPosition > -2.0 && xPosition < 2.0) //Clear the entrance portal
+                    continue;
+
                 if (groundSamplingWidthCurrent <= 0)
                 {
                     groundSamplingWidthCurrent = 1;// random.Next(groundSamplingWidthMin, Math.Max(groundSamplingWidthMax, groundSamplingWidthMin));
