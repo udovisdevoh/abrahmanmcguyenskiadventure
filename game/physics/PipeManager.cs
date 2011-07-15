@@ -43,7 +43,6 @@ namespace AbrahmanAdventure.physics
 
             playerSprite.CurrentWalkingSpeed += Program.pipeTeleportSpeed;
 
-
             if (playerSprite.XPosition < destinationX)
             {
                 playerSprite.XPosition += playerSprite.CurrentWalkingSpeed;
