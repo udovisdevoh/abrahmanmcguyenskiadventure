@@ -40,6 +40,7 @@ namespace AbrahmanAdventure.physics
             bool xMatch = false;
             bool yMatch = false;
 
+
             if (playerSprite.XPosition < destinationX)
             {
                 playerSprite.XPosition += Program.pipeTeleportSpeed;
@@ -92,7 +93,9 @@ namespace AbrahmanAdventure.physics
 
             if (xMatch && yMatch)
             {
-                if (!playerSprite.DestinationPipe.IsUpSide)
+                if (playerSprite.DestinationPipe.IsUpSide)
+                    playerSprite.IGround = playerSprite.DestinationPipe;
+                else
                     playerSprite.IGround = null;
                 playerSprite.DestinationPipe = null;
                 //playerSprite.FromVortexCycle.Fire();
