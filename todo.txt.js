@@ -1,6 +1,3 @@
-don't allow pipes to be plugged if distance exceeds some distance (not determined yet)
-
-
 remove unused spatial hasing (to improve performances)
 
 create ruin structure style block dispatcher

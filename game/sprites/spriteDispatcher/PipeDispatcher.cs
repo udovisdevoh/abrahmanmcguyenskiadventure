@@ -34,9 +34,9 @@ namespace AbrahmanAdventure.sprites
             int upwardPipeCount = (int)Math.Ceiling(((double)pipeCount) / 2.0);
             int downwardPipeCount = pipeCount - upwardPipeCount;
 
-            DispatchUpwardPipes(upwardPipeCount, level, spritePopulation, random);
-            /*if (downwardPipeCount > 0)
-                DispatchDownwardPipes(downwarPipeCount, level, spritePopulation, random);*/
+            DispatchUpwardOrDownwardPipes(upwardPipeCount, level, spritePopulation, true, random);
+            if (downwardPipeCount > 0)
+                DispatchUpwardOrDownwardPipes(downwardPipeCount, level, spritePopulation, false, random);
 
             List<PipeSprite> pipeList = GetPipeList(spritePopulation);
             pipeCount = pipeList.Count;
@@ -59,9 +59,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="level">level</param>
         /// <param name="spritePopulation">all other sprites</param>
         /// <param name="random">random number generator</param>
-        private static void DispatchUpwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, Random random)
+        private static void DispatchUpwardOrDownwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, bool isUpward, Random random)
         {
-            const int maxTryCount = 40;
+            const int maxTryCount = 60;
             for (int i = 0; i < pipeCount; i++)
             {
                 for (int tryCount = 0; tryCount < maxTryCount; tryCount++)
@@ -69,9 +69,61 @@ namespace AbrahmanAdventure.sprites
                     double xPosition = random.NextDouble() * level.Size + level.LeftBound;
                     double yPosition = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition)[xPosition];
 
-                    PipeSprite pipeSprite = new PipeSprite(xPosition, yPosition, random);
+                    PipeSprite pipeSprite = new PipeSprite(xPosition, yPosition, isUpward, random);
+
+                    if (!isUpward)
+                        pipeSprite.TopBound = pipeSprite.YPosition + 1.0;
 
                     spritePopulation.Add(pipeSprite);
+
+                    if (!isUpward)
+                    {
+                        IGround groundBelowPipe = IGroundHelper.GetHighestVisibleIGroundBelowSprite(pipeSprite, level, null, false);
+
+                        if (groundBelowPipe == null)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (groundBelowPipe[xPosition] > Program.holeHeight / 2.0)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (groundBelowPipe[xPosition + 2.0] > Program.holeHeight / 2.0)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (groundBelowPipe[xPosition - 2.0] > Program.holeHeight / 2.0)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (groundBelowPipe[xPosition] - pipeSprite.YPosition < 2.0)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (groundBelowPipe[xPosition + 2.0] - pipeSprite.YPosition < 2.0)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (groundBelowPipe[xPosition - 2.0] - pipeSprite.YPosition < 2.0)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                    }
+
+
+                    if (pipeSprite.YPosition > Program.holeHeight / 2.0)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
+
 
                     if (IsAtAcceptablePosition(pipeSprite) && IsInAcceptableDistanceToOtherSprites(pipeSprite, spritePopulation))
                     {
