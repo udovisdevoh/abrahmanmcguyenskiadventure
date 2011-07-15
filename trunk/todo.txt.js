@@ -1,3 +1,5 @@
+some levels must not have too many pipes
+
 remove unused spatial hasing (to improve performances)
 
 create ruin structure style block dispatcher

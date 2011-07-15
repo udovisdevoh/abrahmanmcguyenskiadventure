@@ -19,18 +19,34 @@ namespace AbrahmanAdventure.sprites
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="addedBlockMemory">memory of added blocks</param>
+        /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchPipes(Level level, SpritePopulation spritePopulation, Random random)
+        internal static void DispatchPipes(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
         {
             double pipeDensity = random.NextDouble() * 0.01 + 0.02;
             int pipeCount = (int)Math.Round(pipeDensity * level.Size);
+
+            if (pipeCount < 1)
+                return;
+
             int pluggedPipeCount = (int)Math.Round((random.NextDouble() * 0.6 + 0.4) * (double)pipeCount);
 
-            DispatchUpwardPipes((int)Math.Ceiling(((double)pipeCount) / 2.0), level, spritePopulation, random);
+            int drillCount = BuildDrillCount(skillLevel, pipeCount, random);
+            int blackDrillCount = BuildDrillCount(skillLevel, drillCount, random);
+            int whiteDrillCount = drillCount - blackDrillCount;
+
+            int upwardPipeCount = (int)Math.Ceiling(((double)pipeCount) / 2.0);
+            int downwardPipeCount = pipeCount - upwardPipeCount;
+
+            DispatchUpwardPipes(upwardPipeCount, level, spritePopulation, random);
+            /*if (downwardPipeCount > 0)
+                DispatchDownwardPipes(downwarPipeCount, level, spritePopulation, random);*/
 
             List<PipeSprite> pipeList = GetPipeList(spritePopulation);
 
             PlugSomePipes(pluggedPipeCount, pipeList, random);
+            //PlugSomeDrills(whiteDrillCount, pipeList, false, random);
+            //PlugSomeDrills(blackDrillCount, pipeList, true, random);
         }
         #endregion
 
@@ -126,9 +142,37 @@ namespace AbrahmanAdventure.sprites
             {
                 PipeSprite pipe1 = GetRandomPipe(pipeList, random);
                 pipeList.Remove(pipe1);
-                PipeSprite pipe2 = GetRandomPipe(pipeList, random);
+                //PipeSprite pipe2 = GetRandomPipe(pipeList, random);
+                PipeSprite pipe2 = GetClosestUnpluggedPipe(pipe1, pipeList);
+                pipeList.Remove(pipe2);
                 pipe1.LinkedPipe = pipe2;
             }
+        }
+
+        /// <summary>
+        /// Get closest pipe
+        /// </summary>
+        /// <param name="pipe">pipe</param>
+        /// <param name="pipeList">pipe list</param>
+        /// <returns>Get closest pipe</returns>
+        private static PipeSprite GetClosestUnpluggedPipe(PipeSprite pipe, List<PipeSprite> pipeList)
+        {
+            PipeSprite closestPipe = null;
+            double closestDistance = -1.0;
+
+            foreach (PipeSprite otherPipe in pipeList)
+            {
+                if (otherPipe == pipe || otherPipe.LinkedPipe != null)
+                    continue;
+                double distance = Math.Sqrt(Math.Pow(pipe.XPosition - otherPipe.XPosition, 2.0) + Math.Pow(pipe.YPosition - otherPipe.YPosition, 2.0));
+                if (closestPipe == null || distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPipe = otherPipe;
+                }
+            }
+
+            return closestPipe;
         }
 
         /// <summary>
@@ -140,6 +184,25 @@ namespace AbrahmanAdventure.sprites
         private static PipeSprite GetRandomPipe(List<PipeSprite> pipeList, Random random)
         {
             return pipeList[random.Next(pipeList.Count)];
+        }
+
+        /// <summary>
+        /// Determine how many drills
+        /// </summary>
+        /// <param name="skillLevel">skill level (from 0 to 10+)</param>
+        /// <param name="pipeCount">how many pipes</param>
+        /// <param name="isBlack">whether we generate black drills (False: could be either black or white)</param>
+        /// <param name="random">random number generator</param>
+        /// <returns>how many drills</returns>
+        private static int BuildDrillCount(int skillLevel, int pipeCount, Random random)
+        {
+            double skillLevelAdjustmentRatio = Math.Sqrt(((double)skillLevel) + 1.0);
+
+            int drillCount = (int)Math.Round(random.NextDouble() * skillLevelAdjustmentRatio * (double)pipeCount);
+            drillCount = Math.Max(drillCount, 0);
+            drillCount = Math.Min(drillCount, pipeCount);
+
+            return drillCount;
         }
         #endregion
     }
