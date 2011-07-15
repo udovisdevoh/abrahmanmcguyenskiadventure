@@ -31,10 +31,6 @@ namespace AbrahmanAdventure.sprites
 
             int pluggedPipeCount = (int)Math.Round((random.NextDouble() * 0.6 + 0.4) * (double)pipeCount);
 
-            int drillCount = BuildDrillCount(skillLevel, pipeCount, random);
-            int blackDrillCount = BuildDrillCount(skillLevel, drillCount, random);
-            int whiteDrillCount = drillCount - blackDrillCount;
-
             int upwardPipeCount = (int)Math.Ceiling(((double)pipeCount) / 2.0);
             int downwardPipeCount = pipeCount - upwardPipeCount;
 
@@ -43,14 +39,41 @@ namespace AbrahmanAdventure.sprites
                 DispatchDownwardPipes(downwarPipeCount, level, spritePopulation, random);*/
 
             List<PipeSprite> pipeList = GetPipeList(spritePopulation);
+            pipeCount = pipeList.Count;
 
             PlugSomePipes(pluggedPipeCount, pipeList, random);
-            //PlugSomeDrills(whiteDrillCount, pipeList, false, random);
-            //PlugSomeDrills(blackDrillCount, pipeList, true, random);
+
+            int drillCount = BuildDrillCount(skillLevel, pipeCount, random);
+            int blackDrillCount = BuildDrillCount(skillLevel, drillCount, random);
+            int whiteDrillCount = drillCount - blackDrillCount;
+            PlugSomeDrills(whiteDrillCount, pipeList, spritePopulation, false, random);
+            PlugSomeDrills(blackDrillCount, pipeList, spritePopulation, true, random);
         }
         #endregion
 
         #region Private Methods
+        private static void PlugSomeDrills(int drillCount, List<PipeSprite> pipeList, SpritePopulation spritePopulation, bool isBlack, Random random)
+        {
+            pipeList = new List<PipeSprite>(pipeList);
+            while (drillCount > 0 && pipeList.Count > 0)
+            {
+                PipeSprite pipeSprite = GetRandomPipe(pipeList, random);
+                DrillSprite drillSprite = new DrillSprite(pipeSprite.XPosition, pipeSprite.YPosition, isBlack, pipeSprite.IsUpSide, random);
+                spritePopulation.Add(drillSprite);
+                pipeList.Remove(pipeSprite);
+
+
+                if (pipeSprite.IsUpSide)
+                    drillSprite.YPosition = pipeSprite.TopBound;
+                else
+                    drillSprite.TopBound = pipeSprite.YPosition;
+
+                pipeSprite.LinkedDrill = drillSprite;
+
+                drillCount--;
+            }
+        }
+
         /// <summary>
         /// Dispatch upwards
         /// </summary>
@@ -138,6 +161,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         private static void PlugSomePipes(int pipeToPlugCount, List<PipeSprite> pipeList, Random random)
         {
+            pipeList = new List<PipeSprite>(pipeList);
             while (pipeToPlugCount >= 2 && pipeList.Count >= 2) //If there is one pipe left to plug, it can't be plugged
             {
                 PipeSprite pipe1 = GetLeftMostPipe(pipeList);
