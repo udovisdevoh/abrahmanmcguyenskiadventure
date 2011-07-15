@@ -83,7 +83,7 @@ namespace AbrahmanAdventure.physics
                 }
 
                 foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
-                    if (spriteStackedOnBlock.IGround == block && spriteStackedOnBlock is MonsterSprite && powerUpSprite != spriteStackedOnBlock)
+                    if (IsSpriteStackedOn(spriteStackedOnBlock, block, powerUpSprite))
                         UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
             }
             else if (block.IsDestructible && block.IsAlive)
@@ -95,7 +95,7 @@ namespace AbrahmanAdventure.physics
                         ((IBumpable)block).BumpCycle.Fire();
 
                     foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
-                        if (spriteStackedOnBlock.IGround == block && spriteStackedOnBlock is MonsterSprite && powerUpSprite != spriteStackedOnBlock)
+                        if (IsSpriteStackedOn(spriteStackedOnBlock, block, powerUpSprite))
                             UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
                 }
                 else
@@ -110,6 +110,18 @@ namespace AbrahmanAdventure.physics
             {
                 SoundManager.PlayHelmetBumpSound();
             }
+        }
+
+        private bool IsSpriteStackedOn(AbstractSprite sprite, StaticSprite block, AbstractSprite powerUpSprite)
+        {
+            if (powerUpSprite == sprite || !(sprite is MonsterSprite))
+                return false;
+
+            bool isSpriteStackedOn = sprite.IGround == block;
+
+            isSpriteStackedOn |= sprite.YPosition < block.TopBound && Physics.IsDetectCollision(sprite, sprite.XPosition, sprite.YPosition + 0.17, 1.0, block);
+
+            return isSpriteStackedOn;
         }
         #endregion
 
