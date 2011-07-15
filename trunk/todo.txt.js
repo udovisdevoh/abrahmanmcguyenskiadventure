@@ -19,7 +19,6 @@ add obese kids: shy guy behavior
 
 
 
-dispatch pipes
 
 ?teleporter to next level must be on a random ground, not just the top one
 
