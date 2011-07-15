@@ -1,12 +1,6 @@
 don't allow pipes to be plugged if distance exceeds some distance (not determined yet)
 
 
-Must test (and maybe fix): must be able to stomp enemies by jumping under block under them
-{
-	to test: Use try to brand it max skill level
-	must stomp sprite even if it doesn't touch block entierly
-}
-
 remove unused spatial hasing (to improve performances)
 
 create ruin structure style block dispatcher
