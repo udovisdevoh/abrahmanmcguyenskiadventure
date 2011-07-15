@@ -209,7 +209,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildSubjectiveOccurenceProbability()
         {
-            return 0.45;
+            return 0.125;
         }
 
         protected override bool BuildIsDieOnTouchGround()

@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.sprites
             TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, random);
             MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, random);
             AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, random);
-            PipeDispatcher.DispatchPipes(level, spritePopulation, random);
+            PipeDispatcher.DispatchPipes(level, spritePopulation, addedBlockMemory, random);
         }
 
         /// <summary>
