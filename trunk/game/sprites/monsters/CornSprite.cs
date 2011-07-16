@@ -32,6 +32,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface rotate7;
 
         private static Surface rotate8;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Don't eat that pesticide resistant corn!";
         #endregion
 
         #region Constructors
@@ -144,6 +149,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSubjectiveOccurenceProbability()
         {
             return 1.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsCanJump(Random random)

@@ -25,6 +25,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface standingRightSurface;
 
         private static Surface standingLeftSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Don't let the pedophile priest touch your weiner!";
         #endregion
 
         #region Constructors
@@ -146,6 +151,16 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsMakeSoundWhenTouchGround()
+        {
+            return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
+        }
+
         protected override double BuildJumpProbability()
         {
             return 0.2;
@@ -154,11 +169,6 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 0.0;
-        }
-
-        protected override bool BuildIsMakeSoundWhenTouchGround()
-        {
-            return false;
         }
 
         protected override double BuildSafeDistanceAi()

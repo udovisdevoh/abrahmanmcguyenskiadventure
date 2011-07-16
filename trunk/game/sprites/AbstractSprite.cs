@@ -274,6 +274,11 @@ namespace AbrahmanAdventure.sprites
         /// Z index (big numbers: frontmost)
         /// </summary>
         private int zIndex;
+
+        /// <summary>
+        /// Info about sprite
+        /// </summary>
+        private string tutorialComment;
         #endregion
 
         #region Constructor
@@ -292,6 +297,7 @@ namespace AbrahmanAdventure.sprites
             health = maxHealth;
             startingJumpAcceleration = BuildStartingJumpAcceleration();
             __parentBucketList = new HashSet<Bucket>();
+            tutorialComment = BuildTutorialComment();
             maxWalkingSpeed = BuildMaxWalkingSpeed();
             maxRunningSpeed = BuildMaxRunningSpeed();
             walkingAcceleration = BuildWalkingAcceleration();
@@ -433,6 +439,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Z Index for sprite</returns>
         protected abstract int BuildZIndex();
+
+        /// <summary>
+        /// Info about sprite
+        /// </summary>
+        /// <returns>Info about sprite</returns>
+        protected abstract string BuildTutorialComment();
         #endregion
 
         #region Public Abstract Methods
@@ -1175,6 +1187,14 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isInWater; }
             set { isInWater = value; }
+        }
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        public string TutorialComment
+        {
+            get { return tutorialComment; }
         }
 
         /// <summary>

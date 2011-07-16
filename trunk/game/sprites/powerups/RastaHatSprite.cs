@@ -21,6 +21,11 @@ namespace AbrahmanAdventure.sprites
         /// Cycle of growth
         /// </summary>
         private Cycle growthCycle;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Wissen! Get the rasta hat and fly by keeping jump pressed";
         #endregion
 
         #region Constructors
@@ -237,6 +242,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSubjectiveOccurenceProbability()
         {
             return 1.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)

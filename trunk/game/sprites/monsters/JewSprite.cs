@@ -28,6 +28,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface hitLeftSurface;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "The hassidic jew will be intolerent to you.";
         #endregion
 
         #region Constructors
@@ -194,6 +199,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSafeDistanceAi()
         {
             return 0.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsDieOnTouchGround()

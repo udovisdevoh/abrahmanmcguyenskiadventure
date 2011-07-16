@@ -30,6 +30,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface deadSurface;
 
         private static Surface dead2Surface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Beware of riot control police repression! Un coodmahtrak, sah fraap an tahbahrnahk!";
         #endregion
 
         #region Constructors
@@ -217,6 +222,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSafeDistanceAi()
         {
             return 0.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsAnnihilateOnExitScreen()

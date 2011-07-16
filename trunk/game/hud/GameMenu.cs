@@ -83,7 +83,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {7,0,2,0,0,12};
+        private static int[] listMaxMenuItemCount = {8,0,2,0,0,12};
         #endregion
 
         #region Internal methods
@@ -108,13 +108,14 @@ namespace AbrahmanAdventure.hud
             {
                 mainSurface.Blit(TitleScreen);
                 mainSurface.Blit(GetFontText("New game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
-                mainSurface.Blit(GetFontText("Load game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
-                mainSurface.Blit(GetFontText("Save game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
-                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
-                mainSurface.Blit(GetFontText("Gamepad"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
-                mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
-                mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
-                mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
+                mainSurface.Blit(GetFontText("Tutorial"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                mainSurface.Blit(GetFontText("Load game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                mainSurface.Blit(GetFontText("Save game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
+                mainSurface.Blit(GetFontText("Gamepad"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
+                mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
+                mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 8));
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
@@ -389,7 +390,17 @@ namespace AbrahmanAdventure.hud
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.EpisodeList;
                         break;
-                    case 1: //Load game
+                    case 1: //Tutorial
+                        program.IsPlayTutorialSounds = true;
+                        if (program.GameState != null)
+                            program.GameState.PlayerSprite.ResetHealthAndPowerUps();
+                        program.GameMetaState.SkillLevelForUnknownLevels = 0;
+                        program.GameMetaState.ClearWarpBack();
+                        program.GameMetaState.ClearMapSkillLevel();
+                        currentMenuPositionY = 0;
+                        program.IsShowMenu = false;
+                        break;
+                    case 2: //Load game
                         currentMenuPositionY = 0;
                         string directory = Directory.GetCurrentDirectory();
                         if (Program.isFullScreen)
@@ -404,10 +415,11 @@ namespace AbrahmanAdventure.hud
                             program.GameMetaState = loadedGame;
                             program.ChangeGameState(program.GameMetaState.PreviousSeed);
                             program.GameState = null;
+                            program.IsPlayTutorialSounds = false;
                         }
                         program.IsShowMenu = false;
                         break;
-                    case 2: //Save game
+                    case 3: //Save game
                         if (program.GameState != null)
                         {
                             program.GameMetaState.PreviousSeed = program.GameState.Seed;
@@ -423,15 +435,15 @@ namespace AbrahmanAdventure.hud
                         program.IsShowMenu = false;
                         program.GameState.IsPlayerReady = false;
                         break;
-                    case 4:
+                    case 5:
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.Controller;
                         break;
-                    case 6:
+                    case 7:
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.HowTo;
                         break;
-                    case 7: //exit
+                    case 8: //exit
                         Events.QuitApplication();
                         break;
                     default:
@@ -460,6 +472,7 @@ namespace AbrahmanAdventure.hud
                 program.GameMetaState.ClearWarpBack();
                 program.GameMetaState.ClearMapSkillLevel();
                 currentMenuPositionY = 0;
+                program.IsPlayTutorialSounds = false;
                 program.IsShowMenu = false;
             }
         }

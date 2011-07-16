@@ -63,6 +63,11 @@ namespace AbrahmanAdventure.sprites
         private Cycle rotateCycle;
 
         /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Change level by going through the vortex (press up)";
+
+        /// <summary>
         /// Seed for destination world
         /// </summary>
         private int destinationSeed;
@@ -155,6 +160,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildMaxHealth()

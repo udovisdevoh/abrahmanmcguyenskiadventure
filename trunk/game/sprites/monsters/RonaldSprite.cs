@@ -27,6 +27,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface hitLeft;
 
         private Cycle shootingCycle;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Beware of the pedophile clown.";
         #endregion
 
         #region Constructors
@@ -131,6 +136,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSafeDistanceAi()
         {
             return 2.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsDieOnTouchGround()

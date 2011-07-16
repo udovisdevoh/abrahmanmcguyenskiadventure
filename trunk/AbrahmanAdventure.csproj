@@ -38,6 +38,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Speech">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -55,6 +58,7 @@
     <Compile Include="game\audio\MusicMood.cs" />
     <Compile Include="game\audio\ChromaticScale.cs" />
     <Compile Include="game\audio\SoundManager.cs" />
+    <Compile Include="game\audio\TutorialTalker.cs" />
     <Compile Include="game\colorTheme\ColorHsl.cs" />
     <Compile Include="game\colorTheme\ColorTheme.cs" />
     <Compile Include="game\GameMetaState.cs" />

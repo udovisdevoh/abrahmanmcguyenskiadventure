@@ -13,6 +13,11 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields and parts
         private static Surface surface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "You can jump on that trampoline. It's fun!";
         #endregion
 
         #region Constructor
@@ -43,6 +48,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildMaxHealth()

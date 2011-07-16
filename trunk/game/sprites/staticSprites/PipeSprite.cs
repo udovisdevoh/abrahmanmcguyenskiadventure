@@ -30,6 +30,11 @@ namespace AbrahmanAdventure.sprites
         private PipeSprite linkedPipe = null;
 
         private DrillSprite linkedDrill = null;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "You can use some pipes for transportation.";
         #endregion
 
         #region Constructor
@@ -73,6 +78,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildMaxHealth()

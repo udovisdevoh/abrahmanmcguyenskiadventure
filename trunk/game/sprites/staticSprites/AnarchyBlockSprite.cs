@@ -35,6 +35,11 @@ namespace AbrahmanAdventure.sprites
         private bool isBrick;
 
         private BlockContent blockContent;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Some anarchy blocks contain powerups.";
         #endregion
 
         #region Constructor
@@ -123,6 +128,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildMaxHealth()

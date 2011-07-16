@@ -148,6 +148,8 @@ namespace AbrahmanAdventure
 
         private Physics physics;
 
+        private TutorialTalker tutorialTalker;
+
         private double viewOffsetX = -(Program.tileColumnCount / 2);
 
         private double viewOffsetY = 0.0;
@@ -157,6 +159,8 @@ namespace AbrahmanAdventure
         private bool isOddFrame = true;
 
         private bool isShowMenu = isShowMenuOnStart;
+
+        private bool isPlayTutorialSounds = false;
         #endregion
 
         #region Constructor
@@ -169,6 +173,7 @@ namespace AbrahmanAdventure
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
+            tutorialTalker = new TutorialTalker();
 
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
@@ -626,6 +631,10 @@ namespace AbrahmanAdventure
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 hudViewer.Update(playerSprite.Health, gameState.IsPlayerReady);
+                if (isPlayTutorialSounds && gameState.IsPlayerReady)
+                    foreach (AbstractSprite sprite in visibleSpriteList)
+                        if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 10.0)
+                            tutorialTalker.TryTalkAbout(sprite);
                 #endregion
 
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
@@ -671,6 +680,15 @@ namespace AbrahmanAdventure
         {
             get { return isShowMenu; }
             set { isShowMenu = value; }
+        }
+
+        /// <summary>
+        /// Whether we play tutorial sounds (TTS)
+        /// </summary>
+        public bool IsPlayTutorialSounds
+        {
+            get { return isPlayTutorialSounds; }
+            set { isPlayTutorialSounds = value; }
         }
 
         public UserInput UserInput

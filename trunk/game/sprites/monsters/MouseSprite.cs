@@ -25,6 +25,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface hitLeft;
 
         private static Surface dead;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "The mouse will brainwash you from childhood.";
         #endregion
 
         #region Constructors
@@ -147,6 +152,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildChangeDirectionNoAiCycleLength()
         {
             return 100;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsFleeWhenAttacked(Random random)

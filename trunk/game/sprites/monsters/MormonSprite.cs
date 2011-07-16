@@ -31,6 +31,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface attackLeft;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "The christian fundie will throw fairy tale books at you.";
         #endregion
 
         #region Constructor
@@ -158,6 +163,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsMakeSoundWhenTouchGround()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

@@ -30,6 +30,11 @@ namespace AbrahmanAdventure.sprites
         /// Cycle of growth
         /// </summary>
         private Cycle growthCycle;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Woohoo! You've got the beaver! You can eat stuff and grind the ground when you're crouched.";
         #endregion
 
         #region Constructor
@@ -135,6 +140,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSafeDistanceAi()
         {
             return 0.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()

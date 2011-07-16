@@ -14,6 +14,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface standRight;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "The monsanto farmer will throw evil corn at you.";
         #endregion
 
         #region Constructors
@@ -130,6 +135,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsVulnerableToInvincibility()
         {
             return true;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()
