@@ -1,7 +1,5 @@
-monster:
-{
-	create maximum monster type density (for stuff like RaptorJesus and Raptor)
-}
+?monster dispatcher: add density limiter: especially for raptor and raptor jesus (max monster type percentage per level)
+
 
 remove unused spatial hasing (to improve performances)
 
