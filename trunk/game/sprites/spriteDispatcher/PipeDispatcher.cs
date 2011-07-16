@@ -62,12 +62,15 @@ namespace AbrahmanAdventure.sprites
         private static void DispatchUpwardOrDownwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, bool isUpward, Random random)
         {
             const int maxTryCount = 60;
+            const double maxSlopeHeight = 1.5;
             for (int i = 0; i < pipeCount; i++)
             {
                 for (int tryCount = 0; tryCount < maxTryCount; tryCount++)
                 {
                     double xPosition = random.NextDouble() * level.Size + level.LeftBound;
-                    double yPosition = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition)[xPosition];
+                    Ground attachedGround = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition);
+
+                    double yPosition = attachedGround[xPosition];
 
                     PipeSprite pipeSprite = new PipeSprite(xPosition, yPosition, isUpward, random);
 
@@ -124,6 +127,21 @@ namespace AbrahmanAdventure.sprites
                         continue;
                     }
 
+                    if (Math.Abs(attachedGround[xPosition - 2.0] - attachedGround[xPosition]) > maxSlopeHeight)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
+                    else if (Math.Abs(attachedGround[xPosition] - attachedGround[xPosition + 2.0]) > maxSlopeHeight)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
+                    else if (Math.Abs(attachedGround[xPosition - 2.0] - attachedGround[xPosition + 2.0]) > maxSlopeHeight)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
 
                     if (IsAtAcceptablePosition(pipeSprite) && IsInAcceptableDistanceToOtherSprites(pipeSprite, spritePopulation))
                     {
