@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "You can jump on that trampoline. It's fun!";
+        private const string tutorialComment = "Jump on that trampoline! It's fun!";
         #endregion
 
         #region Constructor
