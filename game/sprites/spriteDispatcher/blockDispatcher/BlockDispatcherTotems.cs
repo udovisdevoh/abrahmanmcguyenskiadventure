@@ -39,6 +39,9 @@ namespace AbrahmanAdventure.sprites
                 if (xPosition > -2.0 && xPosition < 2.0) //Clear the entrance portal
                     continue;
 
+                if (ground[xPosition - 0.7] > Program.holeHeight / 2.0 || ground[xPosition + 0.7] > Program.holeHeight / 2.0)
+                    continue;
+
                 if (groundSamplingWidthCurrent <= 0)
                 {
                     groundSamplingWidthCurrent = 1;// random.Next(groundSamplingWidthMin, Math.Max(groundSamplingWidthMax, groundSamplingWidthMin));
