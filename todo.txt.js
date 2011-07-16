@@ -1,3 +1,8 @@
+monster:
+{
+	create maximum monster type density (for stuff like RaptorJesus and Raptor)
+}
+
 remove unused spatial hasing (to improve performances)
 
 create ruin structure style block dispatcher
