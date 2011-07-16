@@ -20,6 +20,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface left2Surface;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Don't eat that hormone fed burger!";
         #endregion
 
         #region Constructors
@@ -118,6 +123,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSafeDistanceAi()
         {
             return 0.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsCanJump(Random random)

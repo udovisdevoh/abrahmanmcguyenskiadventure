@@ -15,6 +15,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface surface1;
 
         private static Surface surface2;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = null;
         #endregion
 
         #region Constructor
@@ -144,6 +149,11 @@ namespace AbrahmanAdventure.sprites
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

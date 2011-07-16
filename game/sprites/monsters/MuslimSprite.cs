@@ -33,6 +33,11 @@ namespace AbrahmanAdventure.sprites
         private Cycle countDownCycle;
 
         private double minDistanceFromPlayerToStartCountDown;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Behead thos who say Islam is violent!";
         #endregion
 
         #region Constructor
@@ -167,6 +172,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsMakeSoundWhenTouchGround()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

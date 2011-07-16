@@ -399,6 +399,11 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface rastaFlyCrouchedDopedLeft;
 
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = null;
+
         private Cycle powerUpAnimationCycle;
 
         private Cycle changingSizeAnimationCycle;
@@ -2131,6 +2136,11 @@ namespace AbrahmanAdventure.sprites
         protected override int BuildZIndex()
         {
             return 2;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         /// <summary>

@@ -21,6 +21,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface surface4;
 
         private static Cycle spinCycle;
+        
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = null;
         #endregion
 
         #region Constructor
@@ -58,6 +63,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildMaxHealth()

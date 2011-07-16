@@ -10,6 +10,11 @@ namespace AbrahmanAdventure.sprites
     {
         #region Fields
         private static Surface surface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = null;
         #endregion
 
         #region Constructor
@@ -126,6 +131,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsVulnerableToInvincibility()
         {
             return true;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

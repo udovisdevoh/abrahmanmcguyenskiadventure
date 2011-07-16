@@ -21,6 +21,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface walkLeft;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "You will pay taxes for useless fake monarchy.";
         #endregion
 
         #region Constructors
@@ -123,6 +128,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSubjectiveOccurenceProbability()
         {
             return 1.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsDieOnTouchGround()

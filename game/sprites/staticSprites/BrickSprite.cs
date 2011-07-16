@@ -21,6 +21,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface destroyedSurface;
 
         private Cycle bumpCycle;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "You can break some brick walls from underneath if you're high on mushroom.";
         #endregion
 
         #region Constructors
@@ -91,6 +96,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildBounciness()
         {
             return 0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsAnnihilateOnExitScreen()

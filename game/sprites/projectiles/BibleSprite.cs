@@ -27,6 +27,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface surface7;
 
         private static Surface surface8;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = null;
         #endregion
 
         #region Constructor
@@ -152,6 +157,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsMakeSoundWhenTouchGround()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

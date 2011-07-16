@@ -40,6 +40,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface dead2Surface;
 
         private bool isBlack;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "You can throw this helmet.";
         #endregion
 
         #region Constructors
@@ -364,6 +369,11 @@ namespace AbrahmanAdventure.sprites
         public override AbstractSprite GetConverstionSprite(Random random)
         {
             return new RiotControlSprite(XPosition, YPosition, random, isBlack);
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         /// <summary>

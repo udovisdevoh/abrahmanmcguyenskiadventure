@@ -20,6 +20,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface left2Surface;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Beware of the blob!";
         #endregion
 
         #region Constructors
@@ -100,6 +105,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSubjectiveOccurenceProbability()
         {
             return 1.0;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsDieOnTouchGround()

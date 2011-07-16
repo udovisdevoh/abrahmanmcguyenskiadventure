@@ -28,6 +28,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface hitRightSurface;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Beware of the rapture!";
         #endregion
 
         #region Constructors
@@ -209,6 +214,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildSubjectiveOccurenceProbability()
         {
             return 0.25;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override bool BuildIsDieOnTouchGround()

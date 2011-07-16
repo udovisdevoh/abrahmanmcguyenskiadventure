@@ -23,6 +23,11 @@ namespace AbrahmanAdventure.sprites
         private static Surface walkLeft;
 
         private static Surface deadSurface;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Astrology is bullshit!";
         #endregion
 
         #region Constructor
@@ -144,6 +149,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsMakeSoundWhenTouchGround()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

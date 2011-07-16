@@ -13,6 +13,11 @@ namespace AbrahmanAdventure.sprites
         private const double upDownCycleLength = 125;
 
         private const double upDownCycleMaxOffset = 4.00;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Beware of the oil drill!";
         #endregion
 
         #region Static parts
@@ -197,6 +202,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsCanDoDamageWhenInFreeFall()
         {
             return true;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildJumpProbability()

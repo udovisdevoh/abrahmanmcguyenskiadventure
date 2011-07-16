@@ -15,6 +15,11 @@ namespace AbrahmanAdventure.sprites
         /// Cycle of growth
         /// </summary>
         private Cycle growthCycle;
+
+        /// <summary>
+        /// Tutorial's comment
+        /// </summary>
+        private const string tutorialComment = "Wissen! Get the mescaline peyote and throw fire balls.";
         #endregion
 
         #region Constructor
@@ -47,6 +52,11 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        protected override string BuildTutorialComment()
+        {
+            return tutorialComment;
         }
 
         protected override double BuildMaxHealth()
