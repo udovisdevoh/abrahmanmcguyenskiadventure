@@ -45,6 +45,8 @@ namespace AbrahmanAdventure.sprites
 
             int drillCount = BuildDrillCount(skillLevel, pipeCount, random);
             int blackDrillCount = BuildDrillCount(skillLevel, drillCount, random);
+            if (skillLevel < 5)
+                blackDrillCount = 0;
             int whiteDrillCount = drillCount - blackDrillCount;
             PlugSomeDrills(whiteDrillCount, pipeList, spritePopulation, false, random);
             PlugSomeDrills(blackDrillCount, pipeList, spritePopulation, true, random);
@@ -61,7 +63,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         private static void DispatchUpwardOrDownwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, bool isUpward, Random random)
         {
-            const int maxTryCount = 60;
+            const int maxTryCount = 100;
             const double maxSlopeHeight = 1.5;
             for (int i = 0; i < pipeCount; i++)
             {
@@ -127,6 +129,7 @@ namespace AbrahmanAdventure.sprites
                         continue;
                     }
 
+
                     if (Math.Abs(attachedGround[xPosition - 2.0] - attachedGround[xPosition]) > maxSlopeHeight)
                     {
                         spritePopulation.Remove(pipeSprite);
@@ -142,6 +145,22 @@ namespace AbrahmanAdventure.sprites
                         spritePopulation.Remove(pipeSprite);
                         continue;
                     }
+                    else if (Math.Abs(attachedGround[xPosition - 1.0] - attachedGround[xPosition + 1.0]) > maxSlopeHeight)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
+                    else if (Math.Abs(attachedGround[xPosition - 1.0] - attachedGround[xPosition + 2.0]) > maxSlopeHeight)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
+                    else if (Math.Abs(attachedGround[xPosition - 2.0] - attachedGround[xPosition + 1.0]) > maxSlopeHeight)
+                    {
+                        spritePopulation.Remove(pipeSprite);
+                        continue;
+                    }
+
 
                     if (IsAtAcceptablePosition(pipeSprite) && IsInAcceptableDistanceToOtherSprites(pipeSprite, spritePopulation))
                     {
@@ -169,19 +188,22 @@ namespace AbrahmanAdventure.sprites
             while (drillCount > 0 && pipeList.Count > 0)
             {
                 PipeSprite pipeSprite = GetRandomPipe(pipeList, random);
-                DrillSprite drillSprite = new DrillSprite(pipeSprite.XPosition, pipeSprite.YPosition, isBlack, pipeSprite.IsUpSide, random);
-                spritePopulation.Add(drillSprite);
-                pipeList.Remove(pipeSprite);
+                if (pipeSprite.LinkedDrill == null)
+                {
+                    DrillSprite drillSprite = new DrillSprite(pipeSprite.XPosition, pipeSprite.YPosition, isBlack, pipeSprite.IsUpSide, random);
+                    spritePopulation.Add(drillSprite);
+                    pipeList.Remove(pipeSprite);
 
 
-                if (pipeSprite.IsUpSide)
-                    drillSprite.YPosition = pipeSprite.TopBound;
-                else
-                    drillSprite.TopBound = pipeSprite.YPosition;
+                    if (pipeSprite.IsUpSide)
+                        drillSprite.YPosition = pipeSprite.TopBound;
+                    else
+                        drillSprite.TopBound = pipeSprite.YPosition;
 
-                pipeSprite.LinkedDrill = drillSprite;
+                    pipeSprite.LinkedDrill = drillSprite;
 
-                drillCount--;
+                    drillCount--;
+                }
             }
         }
 
