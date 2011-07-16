@@ -1,13 +1,8 @@
-?monster dispatcher: add density limiter: especially for raptor and raptor jesus (max monster type percentage per level)
-
-
-remove unused spatial hasing (to improve performances)
-
 create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
 
-add SMW style backup item rack
+?add SMW style backup item rack?
 
 add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
@@ -26,11 +21,7 @@ add obese kids: shy guy behavior
 ?teleporter to next level must be on a random ground, not just the top one
 
 
-skill level must influence
-{
-	ground wave normalization factor	
-	drill types (none, white, black) (in pipes)
-}
+?skill level must influence ground wave normalization factor
 
 (probably already done): remove block collision (side and bottom of block) for explosions
 
@@ -114,8 +105,6 @@ Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
 	Boss de la fin: grosse machine, ?puis vrai boss, contre sois-même?
 }
-
-?Maybe increase maxCachedColumnCount = 100 to 1000 and do some prerendering when sprite not walking?
 
 fix fire balls
 {
