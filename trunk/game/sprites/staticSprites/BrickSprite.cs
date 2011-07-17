@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "You can break some brick walls from underneath if you're high on mushroom.";
+        private const string tutorialComment = null;
         #endregion
 
         #region Constructors

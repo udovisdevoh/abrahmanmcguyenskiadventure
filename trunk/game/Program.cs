@@ -48,6 +48,8 @@ namespace AbrahmanAdventure
 
         public const bool isLimitMonsterSkillBySkillLevel = true;
 
+        public const bool isTellPlanetName = false;
+
         public const int screenWidth = 640;
 
         public const int screenHeight = 480;
@@ -423,7 +425,7 @@ namespace AbrahmanAdventure
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
                     }
-                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface);
+                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface, tutorialTalker);
                     gameMetaState.ApplyPlayerInfoToSprite(gameState.PlayerSprite);
                     List<int> listWarpBackSeed;
                     if (gameMetaState.TryGetWarpBackTargetSeed(gameState.Seed, out listWarpBackSeed))
@@ -440,7 +442,6 @@ namespace AbrahmanAdventure
                     gameState.PlayerSprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, gameState.PlayerSprite.XPosition)[gameState.PlayerSprite.XPosition];
                     gameState.PlayerSprite.XPosition = gameState.PlayerSprite.XPosition;//reset previous X
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
-
                     levelViewer.ClearCache();
                     GC.Collect();
                     #endregion
@@ -631,7 +632,7 @@ namespace AbrahmanAdventure
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 hudViewer.Update(playerSprite.Health, gameState.IsPlayerReady);
-                if (isPlayTutorialSounds && gameState.IsPlayerReady)
+                if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
                         if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 10.0)
                             tutorialTalker.TryTalkAbout(sprite);

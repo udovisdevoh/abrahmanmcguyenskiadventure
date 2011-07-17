@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Behead thos who say Islam is violent!";
+        private const string tutorialComment = "Islam is a religion of peace!";
         #endregion
 
         #region Constructor

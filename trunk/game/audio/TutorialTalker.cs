@@ -13,9 +13,17 @@ namespace AbrahmanAdventure.audio
     internal class TutorialTalker
     {
         #region Fields and parts
-        private HashSet<Type> listSpriteTalkedAbout = new HashSet<Type>();
+        private HashSet<Type> listSpriteTalkedAbout;
 
-        private SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
+        private SpeechSynthesizer speechSynthesizer;
+        #endregion
+
+        #region Constructor
+        public TutorialTalker()
+        {
+            listSpriteTalkedAbout = new HashSet<Type>();
+            speechSynthesizer = new SpeechSynthesizer();
+        }
         #endregion
 
         #region Internal Methods
@@ -31,6 +39,11 @@ namespace AbrahmanAdventure.audio
                 if (sprite.TutorialComment != null)
                     speechSynthesizer.SpeakAsync(sprite.TutorialComment);
             }
+        }
+
+        internal void Talk(string comment)
+        {
+            speechSynthesizer.SpeakAsync(comment);
         }
 
         internal void Reset()

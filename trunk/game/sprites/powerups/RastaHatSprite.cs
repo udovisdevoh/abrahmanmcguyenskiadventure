@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Wissen! Get the rasta hat and fly by keeping jump pressed";
+        private const string tutorialComment = "Hey! Get the rasta hat and fly by keeping jump pressed";
         #endregion
 
         #region Constructors
