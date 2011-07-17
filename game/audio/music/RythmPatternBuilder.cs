@@ -15,27 +15,53 @@ namespace AbrahmanAdventure.audio
         /// Build rythm pattern
         /// </summary>
         /// <returns>rythm pattern</returns>
-        internal static RythmPattern Build(Random random)
+        internal static RythmPattern Build(Random random, InstrumentType instrumentType)
         {
-            return Build(random, 1.0, false);
+            return Build(random, 1.0, false, instrumentType);
         }
 
-        internal static RythmPattern Build(Random random, double length, bool isAllowedTernary)
+        internal static RythmPattern Build(Random random, double desiredRythmLength, bool isAllowedTernary, InstrumentType instrumentType)
         {
-            return Build(random, length, 0.015625, 0.125, isAllowedTernary);
-        }
-
-        internal static RythmPattern Build(Random random, double desiredRythmLength, double minimumNoteLength, double maximumNoteLength, bool isAllowedTernary)
-        {
-            return Build(random, desiredRythmLength, minimumNoteLength, maximumNoteLength, isAllowedTernary, false, 0.2, 0.1, 0.3);
+            return Build(random, desiredRythmLength, isAllowedTernary, false, 0.2, 0.1, 0.3, instrumentType);
         }
 
         /// <summary>
         /// Build rythm pattern
         /// </summary>
         /// <returns>rythm pattern</returns>
-        internal static RythmPattern Build(Random random, double desiredRythmLength, double minimumNoteLength, double maximumNoteLength, bool isAllowedTernary, bool isAllowedQuinternary, double ternaryProbability, double quinternaryProbability, double dottedProbability)
+        internal static RythmPattern Build(Random random, double desiredRythmLength, bool isAllowedTernary, bool isAllowedQuinternary, double ternaryProbability, double quinternaryProbability, double dottedProbability, InstrumentType instrumentType)
         {
+            double minimumNoteLength = 0.015625;
+            double maximumNoteLength = 0.125;
+
+            switch (instrumentType)
+            {
+                case InstrumentType.Soprano:
+                    maximumNoteLength *= 2.0;
+                    break;
+                case InstrumentType.Alto:
+                    maximumNoteLength *= 2.0;
+                    break;
+                case InstrumentType.Tenor:
+                    maximumNoteLength *= 2.0;
+                    break;
+                case InstrumentType.Bass:
+                    maximumNoteLength *= 2.0;
+                    break;
+                case InstrumentType.Pad:
+                    minimumNoteLength *= 16.0;
+                    maximumNoteLength *= 32.0;
+                    break;
+                case InstrumentType.ChromaticPercussion:
+                    minimumNoteLength /= 2.0;
+                    maximumNoteLength /= 2.0;
+                    break;
+                case InstrumentType.Drum:
+                    minimumNoteLength /= 2.0;
+                    maximumNoteLength /= 2.0;
+                    break;
+            }
+
             RythmPattern rythmPattern = new RythmPattern();
             while (rythmPattern.Sum < desiredRythmLength)
                 rythmPattern.Add(maximumNoteLength);
