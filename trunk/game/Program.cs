@@ -634,8 +634,9 @@ namespace AbrahmanAdventure
                 hudViewer.Update(playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
-                        if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 10.0)
-                            tutorialTalker.TryTalkAbout(sprite);
+                        if (sprite != playerSprite)
+                            if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 7.0)
+                                tutorialTalker.TryTalkAbout(sprite);
                 #endregion
 
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
