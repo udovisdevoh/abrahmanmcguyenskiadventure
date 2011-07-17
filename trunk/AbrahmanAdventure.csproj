@@ -55,7 +55,8 @@
     <Reference Include="Tao.Sdl, Version=1.2.13.0, Culture=neutral, PublicKeyToken=9c7a200e36c0094e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="game\audio\music\MusicMood.cs" />
+    <Compile Include="game\audio\music\InstrumentTrack.cs" />
+    <Compile Include="game\audio\music\Song.cs" />
     <Compile Include="game\audio\music\ChromaticScale.cs" />
     <Compile Include="game\audio\music\MusicWaveBuilder.cs" />
     <Compile Include="game\audio\music\Riff.cs" />

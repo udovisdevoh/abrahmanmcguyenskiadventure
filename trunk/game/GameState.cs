@@ -59,9 +59,9 @@ namespace AbrahmanAdventure
         private WaterInfo waterInfo = null;
 
         /// <summary>
-        /// Level's music moode
+        /// Level's song
         /// </summary>
-        private MusicMood musicMood;
+        private Song song;
 
         /// <summary>
         /// Name of the environment
@@ -120,7 +120,6 @@ namespace AbrahmanAdventure
             name = WordGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
             backgroundColorHsl = new ColorHsl(random);
-            musicMood = new MusicMood(random);
 
             if (tutorialTalker != null && Program.isTellPlanetName)
                 tutorialTalker.Talk("Planet " + name);
@@ -151,6 +150,8 @@ namespace AbrahmanAdventure
             this.playerSprite.YPosition = IGroundHelper.GetHighestGround(this.level, this.playerSprite.XPosition)[this.playerSprite.XPosition];
 
             SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
+
+            song = new Song(random);
 
             #warning Eventually remove test sprites
             //AddHardCodedTestSprite();

@@ -18,10 +18,10 @@ namespace AbrahmanAdventure.audio
         #endregion
 
         #region Constructor
-        public Riff(Random random, double length, MusicMood musicMood)
+        public Riff(Random random, double length, bool isAllowedTernary, InstrumentType instrumentType)
         {
             pitchWave = MusicWaveBuilder.BuildMusicWave(random);
-            rythmPattern = RythmPatternBuilder.Build(random, length, musicMood.IsAllowTernary);
+            rythmPattern = RythmPatternBuilder.Build(random, length, isAllowedTernary, instrumentType);
         }
         #endregion
     }
