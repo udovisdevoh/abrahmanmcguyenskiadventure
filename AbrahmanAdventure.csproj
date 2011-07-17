@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Sanford.Collections, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Sanford.Multimedia, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Sanford.Multimedia.Timers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Sanford.Threading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="SdlDotNet, Version=6.1.0.0, Culture=neutral, PublicKeyToken=26ad4f7e10c61408, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -56,6 +60,99 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="game\audio\music\InstrumentTrack.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Clocks\IClock.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Clocks\MidiInternalClock.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Clocks\PpqnClock.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.Construction.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.Events.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.Fields.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.Messaging.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.Properties.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.PublicMethods.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\InputDevice.Win32.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\InputDevice Class\MidiInCaps.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\MidiDevice.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\MidiDeviceException.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\MidiHeader.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\MidiHeaderBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\OutputDevice Classes\MidiOutCaps.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\OutputDevice Classes\NoOpEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\OutputDevice Classes\OutputDevice.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\OutputDevice Classes\OutputDeviceBase.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Device Classes\OutputDevice Classes\OutputStream.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\GeneralMidi.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\ChannelMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\ChannelMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\InvalidShortMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\InvalidSysExMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\MetaMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\SysCommonMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\SysExMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\EventArgs\SysRealtimeMessageEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\IMidiMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\ChannelMessageBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\IMessageBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\KeySignatureBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\MetaTextBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\SongPositionPointerBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\SysCommonMessageBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\TempoChangeBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\Message Builders\TimeSignatureBuilder.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\MessageDispatcher.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\MetaMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\ShortMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\SysCommonMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\SysExMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Messages\SysRealtimeMessage.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\MidiNoteConverter.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Processing\ChannelChaser.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Processing\ChannelStopper.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Processing\ChasedEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Processing\StoppedEventArgs.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\MidiEvent.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\MidiFileProperties.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\RecordingSession.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Sequence.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Sequencer.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Track Classes\Track.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Track Classes\Track.Iterators.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Track Classes\Track.Test.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Track Classes\TrackReader.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\Sequencing\Track Classes\TrackWriter.cs" />
+    <Compile Include="game\audio\music\midi\Sanford\UI\DeviceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\DeviceDialog.Designer.cs">
+      <DependentUpon>DeviceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\InputDeviceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\InputDeviceDialog.Designer.cs">
+      <DependentUpon>InputDeviceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\OutputDeviceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\OutputDeviceDialog.Designer.cs">
+      <DependentUpon>OutputDeviceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\PianoControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\PianoControl.PianoKey.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\PianoControlDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\PianoControlDialog.Designer.cs">
+      <DependentUpon>PianoControlDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="game\audio\music\midi\Sanford\UI\PianoKeyEventArgs.cs" />
+    <Compile Include="game\audio\music\RenderedSong.cs" />
+    <Compile Include="game\audio\music\SongPlayer.cs" />
     <Compile Include="game\audio\music\Song.cs" />
     <Compile Include="game\audio\music\ChromaticScale.cs" />
     <Compile Include="game\audio\music\MusicWaveBuilder.cs" />
@@ -193,6 +290,18 @@
     <Compile Include="game\waves\WavePack.cs" />
     <Compile Include="game\waves\WaveTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="game\audio\music\midi\Sanford\UI\DeviceDialog.resx">
+      <DependentUpon>DeviceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="game\audio\music\midi\Sanford\UI\InputDeviceDialog.resx">
+      <DependentUpon>InputDeviceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="game\audio\music\midi\Sanford\UI\OutputDeviceDialog.resx">
+      <DependentUpon>OutputDeviceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="game\audio\music\midi\Sanford\UI\PianoControlDialog.resx">
+      <DependentUpon>PianoControlDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1032,6 +1141,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="libvorbisfile-3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sanford.Collections.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sanford.Multimedia.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sanford.Multimedia.Timers.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sanford.Threading.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SDL.dll">
