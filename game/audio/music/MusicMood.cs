@@ -107,5 +107,12 @@ namespace AbrahmanAdventure.audio
             chromaticPercusivity = random.NextDouble();
         }
         #endregion
+
+        #region Properties
+        public bool IsAllowTernary
+        {
+            get { return timeSignature == TimeSignature.Ternary; }
+        }
+        #endregion
     }
 }
