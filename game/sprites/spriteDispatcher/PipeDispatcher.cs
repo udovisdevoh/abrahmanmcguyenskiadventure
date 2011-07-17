@@ -83,17 +83,17 @@ namespace AbrahmanAdventure.sprites
 
                     if (isUpward)
                     {
-                        if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition, pipeSprite.TopBound + 1.5, attachedGround, level))
+                        if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition, pipeSprite.TopBound + 0.5, attachedGround, level))
                         {
                             spritePopulation.Remove(pipeSprite);
                             continue;
                         }
-                        else if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition - 1.1, pipeSprite.TopBound + 1.5, attachedGround, level))
+                        else if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition - 1.1, pipeSprite.TopBound + 0.5, attachedGround, level))
                         {
                             spritePopulation.Remove(pipeSprite);
                             continue;
                         }
-                        else if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition + 1.1, pipeSprite.TopBound + 1.5, attachedGround, level))
+                        else if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition + 1.1, pipeSprite.TopBound + 0.5, attachedGround, level))
                         {
                             spritePopulation.Remove(pipeSprite);
                             continue;
