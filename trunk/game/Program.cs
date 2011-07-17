@@ -130,6 +130,8 @@ namespace AbrahmanAdventure
 
         private SpriteViewer spriteViewer;
 
+        private SongPlayer songPlayer; 
+
         private HudViewer hudViewer;
 
         private JoystickManager joystickManager;
@@ -176,6 +178,7 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
             tutorialTalker = new TutorialTalker();
+            songPlayer = new SongPlayer();
 
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
@@ -638,6 +641,8 @@ namespace AbrahmanAdventure
                             if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 7.0)
                                 tutorialTalker.TryTalkAbout(sprite);
                 #endregion
+
+                songPlayer.Play(gameState.RenderedSong, timeDelta);
 
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
             }

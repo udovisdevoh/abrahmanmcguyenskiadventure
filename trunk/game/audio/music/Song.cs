@@ -13,7 +13,7 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Represents a music theme with high level guide lines
     /// </summary>
-    internal class Song
+    internal class Song : IEnumerable<InstrumentTrack>
     {
         #region Fields
         /// <summary>
@@ -62,6 +62,18 @@ namespace AbrahmanAdventure.audio
         public bool IsAllowedTernary
         {
             get { return isAllowedTernary; }
+        }
+        #endregion
+
+        #region IEnumerable<InstrumentTrack> Members
+        public IEnumerator<InstrumentTrack> GetEnumerator()
+        {
+            return listInstrumentTrack.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return listInstrumentTrack.GetEnumerator();
         }
         #endregion
     }
