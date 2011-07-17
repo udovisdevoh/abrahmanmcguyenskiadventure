@@ -50,6 +50,8 @@ namespace AbrahmanAdventure.audio
             wavePack.Add(new Wave(random.NextDouble() * 0.45, 8 * random.Next(1, 3), phase4, waveFunction4));
             wavePack.Add(new Wave(random.NextDouble() * 0.45, 16 * random.Next(1, 3), phase4, waveFunction5));
 
+            wavePack.Normalize(1.0, true, 0.1, 16.0);
+
             return wavePack;
         }
         #endregion

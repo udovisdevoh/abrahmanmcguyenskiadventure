@@ -39,6 +39,15 @@ namespace AbrahmanAdventure.level
         /// <param name="isIncreaseToo">true: can increase normalization factor, not just decrease</param>
         public abstract void Normalize(double maxValue, bool isIncreaseToo);
 
+                /// <summary>
+        /// Normalize the wave
+        /// </summary>
+        /// <param name="maxValue">max value</param>
+        /// <param name="isIncreaseToo">true: can increase normalization factor, not just decrease</param>
+        /// <param name="incrementation">incrementation</param>
+        /// <param name="range">range</param>
+        public abstract void Normalize(double maxValue, bool isIncreaseToo, double incrementation, double range);
+
         /// <summary>
         /// Whether waves are identical
         /// </summary>

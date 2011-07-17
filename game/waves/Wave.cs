@@ -139,6 +139,11 @@ namespace AbrahmanAdventure.level
                 amplitude = Math.Min(amplitude, maxValue);
         }
 
+        public override void Normalize(double maxValue, bool isIncreaseToo, double incrementation, double range)
+        {
+            Normalize(maxValue, isIncreaseToo);
+        }
+
         /// <summary>
         /// Whether waves are identical
         /// </summary>

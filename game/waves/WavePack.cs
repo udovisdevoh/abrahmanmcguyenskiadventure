@@ -313,14 +313,24 @@ namespace AbrahmanAdventure.level
         /// <returns></returns>
         public override void Normalize(double maxValue, bool isIncreaseToo)
         {
+            Normalize(maxValue, isIncreaseToo, 1.0, 10024.0);
+        }
+
+        /// <summary>
+        /// Normalize the wave pack
+        /// </summary>
+        public override void Normalize(double maxValue, bool isIncreaseToo, double incrementation, double range)
+        {
             double oldNormalizationMultiplicator = normalizationMultiplicator;
 
             normalizationMultiplicator = 1.0;
             double y;
 
+            double minimumX = range * -1;
+
             double maxY = double.NegativeInfinity;
             double minY = double.PositiveInfinity;
-            for (double x = -10024.0; x < 10024.0; x += 1)
+            for (double x = minimumX; x < range; x += incrementation)
             {
                 y = this[x];
                 if (y > maxY)
