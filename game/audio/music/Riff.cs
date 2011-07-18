@@ -17,14 +17,29 @@ namespace AbrahmanAdventure.audio
         private AbstractWave velocityWave;
 
         private RythmPattern rythmPattern;
+
+        private double length;
         #endregion
 
         #region Constructor
         public Riff(Random random, double length, bool isAllowedTernary, InstrumentType instrumentType)
         {
+            this.length = length;
             pitchWave = MusicWaveBuilder.BuildMusicWave(random);
             velocityWave = MusicWaveBuilder.BuildMusicWave(random);
             rythmPattern = RythmPatternBuilder.Build(random, length, isAllowedTernary, instrumentType);
+        }
+        #endregion
+
+        #region Properties
+        public double Length
+        {
+            get { return length; }
+        }
+
+        public RythmPattern RythmPattern
+        {
+            get { return rythmPattern; }
         }
         #endregion
     }
