@@ -11,6 +11,13 @@ namespace AbrahmanAdventure.audio
     /// </summary>
     internal class RenderedSong
     {
+        #region Constants
+        /// <summary>
+        /// Midi time precision
+        /// </summary>
+        private const double timePrecision = 0.001;
+        #endregion
+
         #region Field and parts
         /// <summary>
         /// Current position in list of messages
@@ -55,12 +62,23 @@ namespace AbrahmanAdventure.audio
             //We set the midi instrument
             listMessageInfo.Add(new MessageInfo(0, new ChannelMessage(ChannelCommand.ProgramChange, channel, instrumentTrack.MidiInstrument, 0)));
 
+            double timeOffset = 0;
             foreach (Riff riff in instrumentTrack)
-                RenderRiff(listMessageInfo, riff, chordProgression, channel);
+            {
+                RenderRiff(timeOffset, listMessageInfo, riff, chordProgression, channel);
+                timeOffset += riff.Length;
+            }
         }
 
-        private void RenderRiff(List<MessageInfo> listMessageInfo, Riff riff, ChordProgression chordProgression, int channel)
+        private void RenderRiff(double timeOffset, List<MessageInfo> listMessageInfo, Riff riff, ChordProgression chordProgression, int channel)
         {
+            double currentNoteLength;
+            for (double currentTime = timeOffset; currentTime <= riff.Length; currentTime += timePrecision)
+            {
+                currentNoteLength = riff.RythmPattern.GetNextLength();
+
+
+            }
         }
         #endregion
     }
