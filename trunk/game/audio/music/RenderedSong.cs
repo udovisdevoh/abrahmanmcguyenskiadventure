@@ -15,12 +15,12 @@ namespace AbrahmanAdventure.audio
         /// <summary>
         /// Current position in list of messages
         /// </summary>
-        private int listMessagePointer;
+        private int pointer;
 
         /// <summary>
         /// List of midi messages
         /// </summary>
-        private List<ChannelMessage> listMessages;
+        private List<Note> noteList;
         #endregion
 
         #region Constructor
@@ -30,7 +30,20 @@ namespace AbrahmanAdventure.audio
         /// <param name="song">song</param>
         public RenderedSong(Song song)
         {
-            listMessages = new List<ChannelMessage>();
+            pointer = 0;
+            noteList = new List<Note>();
+
+            foreach (InstrumentTrack instrumentTrack in song)
+                RenderInstrumentTrack(noteList, instrumentTrack);
+
+            noteList = new List<Note>(from note in noteList orderby note.position select note);
+        }
+        #endregion
+
+        #region Private Methods
+        private void RenderInstrumentTrack(List<Note> noteList, InstrumentTrack instrumentTrack)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

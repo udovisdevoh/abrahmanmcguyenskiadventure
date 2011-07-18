@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Instrument track
     /// </summary>
-    internal class InstrumentTrack
+    internal class InstrumentTrack : IEnumerable<Riff>
     {
         #region Fields and parts
         private InstrumentType instrumentType;
@@ -69,6 +69,35 @@ namespace AbrahmanAdventure.audio
             riffList = new List<Riff>();
             for (int i = 0; i < riffCount; i++)
                 riffList.Add(new Riff(random, riffLength, isAllowedTernary, instrumentType));
+        }
+        #endregion
+
+        #region Properties
+        public InstrumentType InstrumentType
+        {
+            get { return instrumentType; }
+        }
+
+        public int MidiInstrument
+        {
+            get { return midiInstrument; }
+        }
+
+        public bool IsAllowedTernary
+        {
+            get { return isAllowedTernary; }
+        }
+        #endregion
+
+        #region IEnumerable<Riff> Members
+        public IEnumerator<Riff> GetEnumerator()
+        {
+            return riffList.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return riffList.GetEnumerator();
         }
         #endregion
     }
