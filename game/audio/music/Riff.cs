@@ -14,6 +14,8 @@ namespace AbrahmanAdventure.audio
         #region Fields and parts
         private AbstractWave pitchWave;
 
+        private AbstractWave velocityWave;
+
         private RythmPattern rythmPattern;
         #endregion
 
@@ -21,6 +23,7 @@ namespace AbrahmanAdventure.audio
         public Riff(Random random, double length, bool isAllowedTernary, InstrumentType instrumentType)
         {
             pitchWave = MusicWaveBuilder.BuildMusicWave(random);
+            velocityWave = MusicWaveBuilder.BuildMusicWave(random);
             rythmPattern = RythmPatternBuilder.Build(random, length, isAllowedTernary, instrumentType);
         }
         #endregion

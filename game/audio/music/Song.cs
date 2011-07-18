@@ -30,6 +30,11 @@ namespace AbrahmanAdventure.audio
         /// Instrument tracks
         /// </summary>
         private List<InstrumentTrack> listInstrumentTrack;
+
+        /// <summary>
+        /// Chord progression
+        /// </summary>
+        private ChordProgression chordProgression;
         #endregion
 
         #region Constructor
@@ -52,16 +57,8 @@ namespace AbrahmanAdventure.audio
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Pad, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.ChromaticPercussion, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Drum, isAllowedTernary, random));
-        }
-        #endregion
 
-        #region Properties
-        /// <summary>
-        /// Whether we allow ternary time
-        /// </summary>
-        public bool IsAllowedTernary
-        {
-            get { return isAllowedTernary; }
+            chordProgression = new ChordProgression(random);
         }
         #endregion
 
@@ -74,6 +71,32 @@ namespace AbrahmanAdventure.audio
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return listInstrumentTrack.GetEnumerator();
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Whether we allow ternary time
+        /// </summary>
+        public bool IsAllowedTernary
+        {
+            get { return isAllowedTernary; }
+        }
+
+        /// <summary>
+        /// Tempo
+        /// </summary>
+        public int Tempo
+        {
+            get { return tempo; }
+        }
+
+        /// <summary>
+        /// Chord progression
+        /// </summary>
+        public ChordProgression ChordProgression
+        {
+            get { return chordProgression; }
         }
         #endregion
     }
