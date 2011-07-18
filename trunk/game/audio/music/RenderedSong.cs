@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.audio
         /// <summary>
         /// List of midi messages
         /// </summary>
-        private List<Note> noteList;
+        private List<MessageInfo> listMessageInfo;
         #endregion
 
         #region Constructor
@@ -31,19 +31,36 @@ namespace AbrahmanAdventure.audio
         public RenderedSong(Song song)
         {
             pointer = 0;
-            noteList = new List<Note>();
+            listMessageInfo = new List<MessageInfo>();
 
+            int channel = 0;
             foreach (InstrumentTrack instrumentTrack in song)
-                RenderInstrumentTrack(noteList, instrumentTrack);
+            {
+                RenderInstrumentTrack(listMessageInfo, instrumentTrack, song.ChordProgression, channel);
+                channel++;
+            }
 
-            noteList = new List<Note>(from note in noteList orderby note.position select note);
+            listMessageInfo = new List<MessageInfo>(from note in listMessageInfo orderby note.TimePosition select note);
         }
         #endregion
 
         #region Private Methods
-        private void RenderInstrumentTrack(List<Note> noteList, InstrumentTrack instrumentTrack)
+        private void RenderInstrumentTrack(List<MessageInfo> listMessageInfo, InstrumentTrack instrumentTrack, ChordProgression chordProgression, int channel)
         {
-            throw new NotImplementedException();
+            if (instrumentTrack.InstrumentType == InstrumentType.Drum)
+                channel = 10;
+            else if (channel >= 10)
+                channel++;
+
+            //We set the midi instrument
+            listMessageInfo.Add(new MessageInfo(0, new ChannelMessage(ChannelCommand.ProgramChange, channel, instrumentTrack.MidiInstrument, 0)));
+
+            foreach (Riff riff in instrumentTrack)
+                RenderRiff(listMessageInfo, riff, chordProgression, channel);
+        }
+
+        private void RenderRiff(List<MessageInfo> listMessageInfo, Riff riff, ChordProgression chordProgression, int channel)
+        {
         }
         #endregion
     }

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="game\audio\music\ChordProgression.cs" />
     <Compile Include="game\audio\music\InstrumentTrack.cs" />
+    <Compile Include="game\audio\music\MessageInfo.cs" />
     <Compile Include="game\audio\music\midi\Sanford\Clocks\IClock.cs" />
     <Compile Include="game\audio\music\midi\Sanford\Clocks\MidiInternalClock.cs" />
     <Compile Include="game\audio\music\midi\Sanford\Clocks\PpqnClock.cs" />
@@ -152,7 +153,6 @@
       <DependentUpon>PianoControlDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="game\audio\music\midi\Sanford\UI\PianoKeyEventArgs.cs" />
-    <Compile Include="game\audio\music\Note.cs" />
     <Compile Include="game\audio\music\RenderedSong.cs" />
     <Compile Include="game\audio\music\SongPlayer.cs" />
     <Compile Include="game\audio\music\Song.cs" />
