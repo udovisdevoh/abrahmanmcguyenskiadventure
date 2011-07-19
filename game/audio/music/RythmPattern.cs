@@ -20,6 +20,8 @@ namespace AbrahmanAdventure.audio
         /// Current position
         /// </summary>
         private int position = 0;
+
+        private double _length = -1;
         #endregion
 
         #region Public Methods
@@ -115,6 +117,26 @@ namespace AbrahmanAdventure.audio
         {
             return beatTimeList.GetEnumerator();
         }
+
+        internal bool IsBeatBetween(double start, double end, out double noteLength)
+        {
+            start %= Length;
+            end %= Length;
+            noteLength = 0;
+
+            double rythmTimePosition = 0;
+
+            foreach (double rythmTime in beatTimeList)
+            {
+                if (start <= rythmTime && end >= rythmTime)
+                {
+                    noteLength = rythmTime;
+                    return true;
+                }
+                rythmTimePosition += rythmTime;
+            }
+            return false;
+        }
         #endregion
 
         #region Properties
@@ -146,6 +168,16 @@ namespace AbrahmanAdventure.audio
         {
             get { return beatTimeList[index]; }
             set { beatTimeList[index] = value; }
+        }
+
+        public double Length
+        {
+            get
+            {
+                if (_length == -1)
+                    _length = beatTimeList.Sum();
+                return _length;
+            }
         }
         #endregion
     }

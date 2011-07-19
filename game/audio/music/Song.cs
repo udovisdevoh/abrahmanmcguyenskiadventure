@@ -35,6 +35,11 @@ namespace AbrahmanAdventure.audio
         /// Chord progression
         /// </summary>
         private ChordProgression chordProgression;
+
+        /// <summary>
+        /// Song's length
+        /// </summary>
+        private double length;
         #endregion
 
         #region Constructor
@@ -57,6 +62,8 @@ namespace AbrahmanAdventure.audio
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Pad, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.ChromaticPercussion, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Drum, isAllowedTernary, random));
+
+            length = InstrumentTrack.GetMaxLength(listInstrumentTrack);
 
             chordProgression = new ChordProgression(random);
         }
@@ -97,6 +104,14 @@ namespace AbrahmanAdventure.audio
         public ChordProgression ChordProgression
         {
             get { return chordProgression; }
+        }
+
+        /// <summary>
+        /// Song's length
+        /// </summary>
+        public double Length
+        {
+            get { return length; }
         }
         #endregion
     }

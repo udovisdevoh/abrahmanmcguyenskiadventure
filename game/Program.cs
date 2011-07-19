@@ -642,7 +642,7 @@ namespace AbrahmanAdventure
                                 tutorialTalker.TryTalkAbout(sprite);
                 #endregion
 
-                songPlayer.Play(gameState.RenderedSong, timeDelta);
+                songPlayer.Play(gameState.Song, timeDelta);
 
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
             }

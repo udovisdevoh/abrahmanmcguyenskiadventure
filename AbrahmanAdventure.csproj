@@ -153,7 +153,7 @@
       <DependentUpon>PianoControlDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="game\audio\music\midi\Sanford\UI\PianoKeyEventArgs.cs" />
-    <Compile Include="game\audio\music\RenderedSong.cs" />
+    <Compile Include="game\audio\music\NoteOffScheduler.cs" />
     <Compile Include="game\audio\music\SongPlayer.cs" />
     <Compile Include="game\audio\music\Song.cs" />
     <Compile Include="game\audio\music\ChromaticScale.cs" />

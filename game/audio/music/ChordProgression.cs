@@ -44,6 +44,13 @@ namespace AbrahmanAdventure.audio
         }
         #endregion
 
+        #region Internal Methods
+        internal Chord GetChordAtTime(double timePosition)
+        {
+            return chordList[(int)((timePosition / chordTimeSpanBarCount) % (double)chordList.Count)];
+        }
+        #endregion
+
         #region Private Method
         private Chord GetRandomChord(Random random, bool isMajor, bool is7th)
         {
