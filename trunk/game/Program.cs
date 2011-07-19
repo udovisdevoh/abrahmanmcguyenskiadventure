@@ -11,6 +11,7 @@ using AbrahmanAdventure.physics;
 using AbrahmanAdventure.ai;
 using AbrahmanAdventure.hud;
 using AbrahmanAdventure.audio;
+using AbrahmanAdventure.audio.midi.generator;
 
 namespace AbrahmanAdventure
 {
@@ -140,6 +141,8 @@ namespace AbrahmanAdventure
 
         private MonsterAi monsterAi;
 
+        private SongPlayer songPlayer;
+
         private DateTime previousDateTime = DateTime.Now;
 
         private Random spriteBehaviorRandom;
@@ -176,6 +179,9 @@ namespace AbrahmanAdventure
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
             tutorialTalker = new TutorialTalker();
+            songPlayer = new SongPlayer();
+            songPlayer.IRiff = SongGenerator.BuildSong(16384);
+            songPlayer.PlayAsync();
 
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
@@ -415,6 +421,7 @@ namespace AbrahmanAdventure
                 if (gameState == null || gameState.IsExpired)
                 {
                     #region We regenerate game state because it is nonexistant or expired (changing environment)
+                    songPlayer.Stop();
                     mainSurface.Fill(System.Drawing.Color.Black);
                     mainSurface.Update();
                     GC.Collect();

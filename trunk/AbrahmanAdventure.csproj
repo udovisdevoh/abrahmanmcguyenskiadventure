@@ -290,6 +290,7 @@
       <DependentUpon>PianoControlDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="game\audio\music\midi\Sanford\UI\PianoKeyEventArgs.cs" />
+    <Compile Include="game\audio\music\SongGenerator.cs" />
     <Compile Include="game\audio\SoundManager.cs" />
     <Compile Include="game\audio\TutorialTalker.cs" />
     <Compile Include="game\colorTheme\ColorHsl.cs" />
