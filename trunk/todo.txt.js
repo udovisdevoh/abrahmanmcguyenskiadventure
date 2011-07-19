@@ -1,3 +1,5 @@
+fix bug: on exit music thread is leaking (or some other thread)
+
 create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
