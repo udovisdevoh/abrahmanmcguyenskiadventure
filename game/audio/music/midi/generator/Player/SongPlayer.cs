@@ -73,22 +73,26 @@ namespace AbrahmanAdventure.audio.midi.generator
             ClearEventHandlers();
             playingThread = new Thread(this.PlaySync);
             playingThread.IsBackground = true;
-            playingThread.Priority = ThreadPriority.BelowNormal;
+            //playingThread.Priority = ThreadPriority.BelowNormal;
             playingThread.Start();
         }
 
         internal void StopSync()
         {
+            if (!IsPlaying)
+                return;
+
             riffPackPlayer.Stop();
             while (riffPackPlayer.IsPlaying)
             {
                 Thread.Sleep(10);
             }
 
-            while (playingThread.IsAlive)
+            while (playingThread != null && playingThread.IsAlive)
             {
                 Thread.Sleep(10);
                 playingThread.Abort();
+                playingThread = null;
             }
         }
 
@@ -128,8 +132,6 @@ namespace AbrahmanAdventure.audio.midi.generator
             {
                 throw new Exception("Unrecognized IRiff implementation");
             }
-
-            playingThread.Join();
         }
         #endregion
 

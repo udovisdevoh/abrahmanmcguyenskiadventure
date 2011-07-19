@@ -740,6 +740,7 @@ namespace AbrahmanAdventure
         {
             Program program = new Program();
             program.Start();
+            Environment.Exit(0);
         }
         #endregion
     }
