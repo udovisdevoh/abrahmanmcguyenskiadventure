@@ -121,6 +121,13 @@ namespace AbrahmanAdventure.audio.midi.generator
                     lastTimeBlackNoteElapsed += 0.0625;
                     if (OnBlackNoteTimeElapsed != null) OnBlackNoteTimeElapsed(this, null);
                 }
+
+                if (currentTime >= totalTime)
+                {
+                    currentTime = 0;
+                    lastTimeBlackNoteElapsed = 0;
+                    riffPackPlayerMemory.Clear();
+                }
             }
             TurnAllNotesOff(riffPack, outputDevice);
 

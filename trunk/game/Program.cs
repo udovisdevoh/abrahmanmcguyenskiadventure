@@ -451,6 +451,8 @@ namespace AbrahmanAdventure
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
                     levelViewer.ClearCache();
                     GC.Collect();
+                    songPlayer.IRiff = gameState.Song;
+                    songPlayer.PlayAsync();
                     #endregion
                 }
 
