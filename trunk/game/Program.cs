@@ -715,6 +715,11 @@ namespace AbrahmanAdventure
             get { return gameState; }
             set { gameState = value; }
         }
+
+        public SongPlayer SongPlayer
+        {
+            get { return songPlayer; }
+        }
         #endregion
 
         #region Main
