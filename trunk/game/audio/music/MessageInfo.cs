@@ -27,6 +27,11 @@ namespace AbrahmanAdventure.audio
         {
             get { return timePosition; }
         }
+
+        public ChannelMessage ChannelMessage
+        {
+            get { return channelMessage; }
+        }
         #endregion
     }
 }

@@ -61,7 +61,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Level's song
         /// </summary>
-        private RenderedSong renderedSong;
+        private Song song;
 
         /// <summary>
         /// Name of the environment
@@ -151,7 +151,7 @@ namespace AbrahmanAdventure
 
             SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
 
-            renderedSong = new RenderedSong(new Song(random));
+            song = new Song(random);
 
             #warning Eventually remove test sprites
             //AddHardCodedTestSprite();
@@ -371,9 +371,9 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Rendered song
         /// </summary>
-        public RenderedSong RenderedSong
+        public Song Song
         {
-            get { return renderedSong; }
+            get { return song; }
         }
 
         /// <summary>
