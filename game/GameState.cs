@@ -9,6 +9,7 @@ using AbrahmanAdventure.textGenerator;
 using AbrahmanAdventure.hud;
 using AbrahmanAdventure.physics;
 using AbrahmanAdventure.audio;
+using AbrahmanAdventure.audio.midi.generator;
 
 namespace AbrahmanAdventure
 {
@@ -57,6 +58,11 @@ namespace AbrahmanAdventure
         /// Water info (or null if no water)
         /// </summary>
         private WaterInfo waterInfo = null;
+
+        /// <summary>
+        /// Song
+        /// </summary>
+        private IRiff song;
 
         /// <summary>
         /// Name of the environment
@@ -145,6 +151,8 @@ namespace AbrahmanAdventure
             this.playerSprite.YPosition = IGroundHelper.GetHighestGround(this.level, this.playerSprite.XPosition)[this.playerSprite.XPosition];
 
             SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
+
+            song = SongGenerator.BuildSong(seed);
 
             #warning Eventually remove test sprites
             //AddHardCodedTestSprite();
@@ -359,6 +367,14 @@ namespace AbrahmanAdventure
         public WaterInfo WaterInfo
         {
             get { return waterInfo; }
+        }
+
+        /// <summary>
+        /// Song
+        /// </summary>
+        public IRiff Song
+        {
+            get { return song; }
         }
 
         /// <summary>
