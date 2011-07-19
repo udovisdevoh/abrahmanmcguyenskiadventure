@@ -65,6 +65,21 @@ namespace AbrahmanAdventure.audio.midi.generator
         #endregion
 
         #region Public Methods
+        internal void PlayAsync()
+        {
+            if (IsPlaying)
+                return;
+
+            while (playingThread != null && playingThread.IsAlive)
+                Thread.Sleep(10);
+            
+            ClearEventHandlers();
+            playingThread = new Thread(this.Play);
+            playingThread.IsBackground = true;
+            playingThread.Priority = ThreadPriority.BelowNormal;
+            playingThread.Start();
+        }
+
         /// <summary>
         /// Play a riff or a riff pack
         /// </summary>
