@@ -158,9 +158,6 @@
     <Compile Include="game\audio\music\Song.cs" />
     <Compile Include="game\audio\music\ChromaticScale.cs" />
     <Compile Include="game\audio\music\MusicWaveBuilder.cs" />
-    <Compile Include="game\audio\music\Riff.cs" />
-    <Compile Include="game\audio\music\RythmPattern.cs" />
-    <Compile Include="game\audio\music\RythmPatternBuilder.cs" />
     <Compile Include="game\audio\SoundManager.cs" />
     <Compile Include="game\audio\TutorialTalker.cs" />
     <Compile Include="game\colorTheme\ColorHsl.cs" />

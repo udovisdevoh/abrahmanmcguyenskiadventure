@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.audio
         /// <summary>
         /// Tempo
         /// </summary>
-        private int tempo;
+        private double tempo;
 
         /// <summary>
         /// Instrument tracks
@@ -35,11 +35,6 @@ namespace AbrahmanAdventure.audio
         /// Chord progression
         /// </summary>
         private ChordProgression chordProgression;
-
-        /// <summary>
-        /// Song's length
-        /// </summary>
-        private double length;
         #endregion
 
         #region Constructor
@@ -49,21 +44,19 @@ namespace AbrahmanAdventure.audio
         /// <param name="random">random number generator</param>
         public Song(Random random)
         {
-            tempo = random.Next(80, 160);
+            tempo = (double)random.Next(80, 160);
 
             isAllowedTernary = random.Next(0, 2) == 1;
 
             listInstrumentTrack = new List<InstrumentTrack>();
 
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Soprano, isAllowedTernary, random));
-            listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Alto, isAllowedTernary, random));
+            /*listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Alto, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Tenor, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Bass, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Pad, isAllowedTernary, random));
             listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.ChromaticPercussion, isAllowedTernary, random));
-            listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Drum, isAllowedTernary, random));
-
-            length = InstrumentTrack.GetMaxLength(listInstrumentTrack);
+            listInstrumentTrack.Add(new InstrumentTrack(InstrumentType.Drum, isAllowedTernary, random));*/
 
             chordProgression = new ChordProgression(random);
         }
@@ -93,7 +86,7 @@ namespace AbrahmanAdventure.audio
         /// <summary>
         /// Tempo
         /// </summary>
-        public int Tempo
+        public double Tempo
         {
             get { return tempo; }
         }
@@ -104,14 +97,6 @@ namespace AbrahmanAdventure.audio
         public ChordProgression ChordProgression
         {
             get { return chordProgression; }
-        }
-
-        /// <summary>
-        /// Song's length
-        /// </summary>
-        public double Length
-        {
-            get { return length; }
         }
         #endregion
     }
