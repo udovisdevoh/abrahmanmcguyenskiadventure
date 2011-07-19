@@ -38,7 +38,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace AbrahmanAdventure.audio.Midi.UI
+namespace AbrahmanAdventure.audio.midi.UI
 {
     /// <summary>
     /// Piano control

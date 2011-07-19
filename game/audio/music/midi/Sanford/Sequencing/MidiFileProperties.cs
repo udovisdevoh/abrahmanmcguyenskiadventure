@@ -36,7 +36,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Defintes constants representing SMPTE frame rates.

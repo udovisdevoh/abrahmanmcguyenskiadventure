@@ -34,7 +34,7 @@
 
 using System;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Provides functionality for building song position pointer messages.

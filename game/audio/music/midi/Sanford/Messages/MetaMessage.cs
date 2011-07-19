@@ -36,7 +36,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     #region Meta Message Types
 

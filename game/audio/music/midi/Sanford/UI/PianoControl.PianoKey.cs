@@ -38,7 +38,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Sanford.Multimedia;
 
-namespace AbrahmanAdventure.audio.Midi.UI
+namespace AbrahmanAdventure.audio.midi.UI
 {
     public partial class PianoControl
     {

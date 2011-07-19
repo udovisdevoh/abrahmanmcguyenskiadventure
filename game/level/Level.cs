@@ -85,7 +85,7 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region IEnumerable<IWave> Members
+        #region IEnumerable<AbstractWave> Members
         /// <summary>
         /// List of grounds
         /// </summary>

@@ -38,7 +38,7 @@ using System.ComponentModel;
 using System.Threading;
 using Sanford.Threading;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     public partial class InputDevice
     {

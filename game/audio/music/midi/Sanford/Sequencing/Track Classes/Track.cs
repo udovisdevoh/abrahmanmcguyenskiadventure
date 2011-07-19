@@ -35,7 +35,7 @@
 using System;
 using System.Diagnostics;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Represents a collection of MidiEvents and a MIDI track within a 

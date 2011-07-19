@@ -36,7 +36,7 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Builds a pointer to a MidiHeader structure.

@@ -39,7 +39,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Represents a collection of Tracks.

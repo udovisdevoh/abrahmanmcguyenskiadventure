@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Track

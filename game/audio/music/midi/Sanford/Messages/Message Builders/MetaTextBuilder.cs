@@ -35,7 +35,7 @@
 using System;
 using System.Text;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Provides functionality for building meta text messages.

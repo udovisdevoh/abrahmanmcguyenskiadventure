@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Chased event arguments

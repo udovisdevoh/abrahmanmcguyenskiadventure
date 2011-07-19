@@ -35,7 +35,7 @@
 using System;
 using System.ComponentModel;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Input device

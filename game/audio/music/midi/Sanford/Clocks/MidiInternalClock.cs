@@ -37,7 +37,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Sanford.Multimedia.Timers;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Generates clock events internally.

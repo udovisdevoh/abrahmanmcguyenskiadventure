@@ -1,4 +1,4 @@
-namespace AbrahmanAdventure.audio.Midi.UI
+namespace AbrahmanAdventure.audio.midi.UI
 {
     partial class OutputDeviceDialog
     {

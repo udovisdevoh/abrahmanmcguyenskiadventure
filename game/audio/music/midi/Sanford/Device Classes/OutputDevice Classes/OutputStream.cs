@@ -39,7 +39,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Sanford.Multimedia.Timers;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Output stream
