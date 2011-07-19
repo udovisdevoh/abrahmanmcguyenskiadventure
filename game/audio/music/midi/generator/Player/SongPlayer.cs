@@ -106,7 +106,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             }
         }
 
-        public static void Play(SongPlayer songPlayer, IRiff song)
+        /*public static void Play(SongPlayer songPlayer, IRiff song)
         {
             if (songPlayer.IsPlaying)
                 return;
@@ -122,7 +122,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             playingThread.IsBackground = true;
             playingThread.Priority = ThreadPriority.BelowNormal;
             playingThread.Start();
-        }
+        }*/
 
         /// <summary>
         /// Stop music

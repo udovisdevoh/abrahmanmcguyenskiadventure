@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 using SdlDotNet.Graphics;
 using SdlDotNet.Core;
 using AbrahmanAdventure.audio;
@@ -444,6 +445,7 @@ namespace AbrahmanAdventure.hud
                         currentSubMenu = SubMenu.HowTo;
                         break;
                     case 8: //exit
+                        program.SongPlayer.Stop();
                         Events.QuitApplication();
                         break;
                     default:
