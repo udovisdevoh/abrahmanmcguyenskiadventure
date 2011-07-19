@@ -23,9 +23,6 @@ namespace AbrahmanAdventure.audio.midi.generator
             builder.IsOverrideKey = true;
             builder.DefaultKey = 3;
             Riff riff = builder.Build(0);
-            SongPlayer player = new SongPlayer();
-            player.IRiff = riff;
-            player.Play(new object());
             return riff;
         }
     }
