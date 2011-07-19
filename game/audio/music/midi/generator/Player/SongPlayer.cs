@@ -67,24 +67,48 @@ namespace AbrahmanAdventure.audio.midi.generator
         #region Public Methods
         internal void PlayAsync()
         {
-            if (IsPlaying)
+            if (IsPlaying || (playingThread != null && playingThread.IsAlive))
                 return;
-
-            while (playingThread != null && playingThread.IsAlive)
-                Thread.Sleep(10);
             
             ClearEventHandlers();
-            playingThread = new Thread(this.Play);
+            playingThread = new Thread(this.PlaySync);
             playingThread.IsBackground = true;
             playingThread.Priority = ThreadPriority.BelowNormal;
             playingThread.Start();
         }
 
+        internal void StopSync()
+        {
+            riffPackPlayer.Stop();
+            while (riffPackPlayer.IsPlaying)
+            {
+                Thread.Sleep(10);
+            }
+
+            while (playingThread.IsAlive)
+            {
+                Thread.Sleep(10);
+                playingThread.Abort();
+            }
+        }
+
+        /// <summary>
+        /// Remove event listeners
+        /// </summary>
+        public void ClearEventHandlers()
+        {
+            this.OnNoteOn = null;
+            this.OnNoteOff = null;
+            this.OnBlackNoteTimeElapsed = null;
+        }
+        #endregion
+
+        #region Private Methods
         /// <summary>
         /// Play a riff or a riff pack
         /// </summary>
         /// <param name="stateInfo">when method is started by threadPool</param>
-        public void Play(object stateInfo)
+        private void PlaySync(object stateInfo)
         {
             if (iRiff == null)
                 throw new MidiPlayerException("Must set IRiff before playing");
@@ -104,42 +128,8 @@ namespace AbrahmanAdventure.audio.midi.generator
             {
                 throw new Exception("Unrecognized IRiff implementation");
             }
-        }
 
-        /*public static void Play(SongPlayer songPlayer, IRiff song)
-        {
-            if (songPlayer.IsPlaying)
-                return;
-
-            songPlayer.IRiff = song;
-
-            while (playingThread != null && playingThread.IsAlive)
-                Thread.Sleep(10);
-
-            songPlayer.ClearEventHandlers();
-
-            playingThread = new Thread(songPlayer.Play);
-            playingThread.IsBackground = true;
-            playingThread.Priority = ThreadPriority.BelowNormal;
-            playingThread.Start();
-        }*/
-
-        /// <summary>
-        /// Stop music
-        /// </summary>
-        public void Stop()
-        {
-            riffPackPlayer.Stop();
-        }
-
-        /// <summary>
-        /// Remove event listeners
-        /// </summary>
-        public void ClearEventHandlers()
-        {
-            this.OnNoteOn = null;
-            this.OnNoteOff = null;
-            this.OnBlackNoteTimeElapsed = null;
+            playingThread.Join();
         }
         #endregion
 

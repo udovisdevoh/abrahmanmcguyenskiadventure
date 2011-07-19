@@ -445,7 +445,7 @@ namespace AbrahmanAdventure.hud
                         currentSubMenu = SubMenu.HowTo;
                         break;
                     case 8: //exit
-                        program.SongPlayer.Stop();
+                        program.SongPlayer.StopSync();
                         Events.QuitApplication();
                         break;
                     default:

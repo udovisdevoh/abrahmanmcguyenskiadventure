@@ -421,7 +421,7 @@ namespace AbrahmanAdventure
                 if (gameState == null || gameState.IsExpired)
                 {
                     #region We regenerate game state because it is nonexistant or expired (changing environment)
-                    songPlayer.Stop();
+                    songPlayer.StopSync();
                     mainSurface.Fill(System.Drawing.Color.Black);
                     mainSurface.Update();
                     GC.Collect();
