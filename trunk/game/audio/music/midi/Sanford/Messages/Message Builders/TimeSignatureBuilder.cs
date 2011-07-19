@@ -34,7 +34,7 @@
 
 using System;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Provides easy to use functionality for time signature MetaMessages.

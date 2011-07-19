@@ -36,7 +36,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Track

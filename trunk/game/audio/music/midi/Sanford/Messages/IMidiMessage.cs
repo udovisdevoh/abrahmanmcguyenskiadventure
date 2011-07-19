@@ -34,7 +34,7 @@
 
 using System;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Defines constants representing MIDI message types.

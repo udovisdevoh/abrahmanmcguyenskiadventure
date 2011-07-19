@@ -32,7 +32,7 @@
 
 #endregion
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Represents functionality for building MIDI messages.

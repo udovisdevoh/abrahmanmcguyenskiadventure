@@ -32,7 +32,7 @@
 
 #endregion
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Defines constants representing the General MIDI instrument set.

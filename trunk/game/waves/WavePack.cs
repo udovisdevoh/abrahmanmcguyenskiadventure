@@ -83,7 +83,7 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region IList<IWave> Members
+        #region IList<AbstractWave> Members
         /// <summary>
         /// Add component wave to pack
         /// </summary>
@@ -94,11 +94,11 @@ namespace AbrahmanAdventure.level
                 waveList.Add(item);
             else if (item is WavePack)
             {
-                foreach (AbstractWave iWave in ((WavePack)item))
+                foreach (AbstractWave AbstractWave in ((WavePack)item))
                 {
-                    if (!this.Contains(iWave))
+                    if (!this.Contains(AbstractWave))
                     {
-                        this.Add(iWave);
+                        this.Add(AbstractWave);
                     }
                 }
             }
@@ -158,9 +158,9 @@ namespace AbrahmanAdventure.level
         /// <returns>if removal succeeded</returns>
         public bool Remove(AbstractWave item)
         {
-            foreach (AbstractWave iWave in waveList)
-                if (iWave.Equals(item))
-                    return waveList.Remove(iWave);
+            foreach (AbstractWave AbstractWave in waveList)
+                if (AbstractWave.Equals(item))
+                    return waveList.Remove(AbstractWave);
             return false;
         }
 
@@ -190,9 +190,9 @@ namespace AbrahmanAdventure.level
         public int IndexOf(AbstractWave item)
         {
             int index = 0;
-            foreach (AbstractWave iWave in waveList)
+            foreach (AbstractWave AbstractWave in waveList)
             {
-                if (item.Equals(iWave))
+                if (item.Equals(AbstractWave))
                     return index;
                 index++;
             }
@@ -262,12 +262,12 @@ namespace AbrahmanAdventure.level
                     value = 0.0;
 
 
-                foreach (AbstractWave iWave in waveList)
+                foreach (AbstractWave AbstractWave in waveList)
                 {
                     if (junctionType == JunctionMultiply)
-                        value *= iWave[x];
+                        value *= AbstractWave[x];
                     else if (junctionType == JunctionAdd)
-                        value += iWave[x];
+                        value += AbstractWave[x];
                 }
 
 
@@ -359,12 +359,12 @@ namespace AbrahmanAdventure.level
             {
                 WavePack otherWavePack = (WavePack)other;
 
-                foreach (AbstractWave iWave in otherWavePack)
-                    if (this.Contains(iWave))
+                foreach (AbstractWave AbstractWave in otherWavePack)
+                    if (this.Contains(AbstractWave))
                         return false;
 
-                foreach (AbstractWave iWave in this)
-                    if (otherWavePack.Contains(iWave))
+                foreach (AbstractWave AbstractWave in this)
+                    if (otherWavePack.Contains(AbstractWave))
                         return false;
 
                 return true;

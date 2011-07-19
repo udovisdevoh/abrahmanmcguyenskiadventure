@@ -35,7 +35,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Dispatches IMidiMessages to their corresponding sink.

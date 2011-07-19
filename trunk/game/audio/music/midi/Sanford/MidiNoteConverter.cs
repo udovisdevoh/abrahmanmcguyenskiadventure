@@ -34,7 +34,7 @@
 
 using System;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Converts a MIDI note number to its corresponding frequency.

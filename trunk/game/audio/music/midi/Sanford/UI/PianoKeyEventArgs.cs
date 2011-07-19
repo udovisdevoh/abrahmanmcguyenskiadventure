@@ -34,7 +34,7 @@
 
 using System;
 
-namespace AbrahmanAdventure.audio.Midi.UI
+namespace AbrahmanAdventure.audio.midi.UI
 {
     /// <summary>
     /// Piano key event arguments

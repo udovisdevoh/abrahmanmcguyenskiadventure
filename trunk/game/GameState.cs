@@ -59,11 +59,6 @@ namespace AbrahmanAdventure
         private WaterInfo waterInfo = null;
 
         /// <summary>
-        /// Level's song
-        /// </summary>
-        private Song song;
-
-        /// <summary>
         /// Name of the environment
         /// </summary>
         private string name;
@@ -150,8 +145,6 @@ namespace AbrahmanAdventure
             this.playerSprite.YPosition = IGroundHelper.GetHighestGround(this.level, this.playerSprite.XPosition)[this.playerSprite.XPosition];
 
             SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
-
-            song = new Song(random);
 
             #warning Eventually remove test sprites
             //AddHardCodedTestSprite();
@@ -366,14 +359,6 @@ namespace AbrahmanAdventure
         public WaterInfo WaterInfo
         {
             get { return waterInfo; }
-        }
-
-        /// <summary>
-        /// Rendered song
-        /// </summary>
-        public Song Song
-        {
-            get { return song; }
         }
 
         /// <summary>

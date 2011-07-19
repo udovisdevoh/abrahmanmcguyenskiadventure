@@ -35,7 +35,7 @@
 using System;
 using System.IO;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Reads a track from a stream.

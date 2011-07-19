@@ -36,7 +36,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// Writes a Track to a Stream.

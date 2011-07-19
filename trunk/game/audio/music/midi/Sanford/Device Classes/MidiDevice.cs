@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Sanford.Multimedia;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
 	/// <summary>
 	/// The base class for all MIDI devices.

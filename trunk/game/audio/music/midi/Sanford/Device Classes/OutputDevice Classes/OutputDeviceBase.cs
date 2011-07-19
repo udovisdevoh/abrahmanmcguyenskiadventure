@@ -40,7 +40,7 @@ using System.Threading;
 using Sanford.Threading;
 using Sanford.Multimedia;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Output device base

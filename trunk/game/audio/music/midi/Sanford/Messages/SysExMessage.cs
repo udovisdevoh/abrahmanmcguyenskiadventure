@@ -35,7 +35,7 @@
 using System;
 using System.Collections;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 { 
     /// <summary>
     /// Defines constants representing various system exclusive message types.

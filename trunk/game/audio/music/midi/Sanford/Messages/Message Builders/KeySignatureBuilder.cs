@@ -35,7 +35,7 @@
 using System;
 using Sanford.Multimedia;
 
-namespace AbrahmanAdventure.audio.Midi
+namespace AbrahmanAdventure.audio.midi
 {
     /// <summary>
     /// Builds key signature MetaMessages.
