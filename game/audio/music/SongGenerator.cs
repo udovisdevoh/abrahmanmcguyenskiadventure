@@ -16,6 +16,10 @@ namespace AbrahmanAdventure.audio
     /// </summary>
     internal static class SongGenerator
     {
+        #region Constants
+        private const int instrumentTypeCount = 8;
+        #endregion
+
         #region Field and parts
         private static List<string> melodicInstrumentNameList = null;
 
@@ -58,6 +62,8 @@ namespace AbrahmanAdventure.audio
             AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, 0.5, random);
             AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, 0.5, random);
 
+            FillBlank(predefinedGenerator, (TrackType)random.Next(0, instrumentTypeCount), songLength, random);
+
             MusicGenerator musicGenerator = new MusicGenerator(random);
             return musicGenerator.BuildSong(predefinedGenerator);
         }
@@ -68,10 +74,16 @@ namespace AbrahmanAdventure.audio
         {
             predefinedGenerator[(int)trackType].MetaRiffPackName = GetRandomMetaRiffPackName(trackType, tempo, random);
 
+            #warning Must not always play
             for (int barId = 0; barId < songLength; barId++)
             {
                 predefinedGenerator[(int)trackType][barId] = true;
             }
+        }
+
+        private static void FillBlank(PredefinedGenerator predefinedGenerator, TrackType trackType, int songLength, Random random)
+        {
+            #warning Fill blank
         }
 
         private static string GetRandomMetaRiffPackName(TrackType trackType, int tempo, Random random)
