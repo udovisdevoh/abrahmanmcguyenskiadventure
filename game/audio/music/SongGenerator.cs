@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.audio
         #region Internal Methods
         internal static IRiff BuildSong(int seed)
         {
-            Random random = new Random(seed);
+            /*
 
             MetaRiff metaRiff = new MetaRiffPianoClassic();
             RiffBuilder builder = metaRiff.Build(random);
@@ -21,7 +21,20 @@ namespace AbrahmanAdventure.audio
             builder.Tempo = random.Next(80, 160);
             Riff riff = builder.Build(0);
 
-            return riff;
+            return riff;*/
+
+            Random random = new Random(seed);
+            PredefinedGenerator predefinedGenerator = new PredefinedGenerator();
+
+            predefinedGenerator.IsOverrideScale = random.Next(0, 7) == 1;
+            predefinedGenerator.IsOverrideTempo = true;
+            predefinedGenerator.Tempo = random.Next(80, 160);
+            predefinedGenerator.Modulation = random.NextDouble() * 0.75 + 0.25;
+            predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
+            predefinedGenerator.IsOverrideKey = false;
+
+            MusicGenerator musicGenerator = new MusicGenerator(random);
+            return musicGenerator.BuildSong(predefinedGenerator);
         }
         #endregion
     }
