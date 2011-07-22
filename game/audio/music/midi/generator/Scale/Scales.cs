@@ -52,6 +52,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         private static Dictionary<string, Scale> scaleList;
 
         private static List<string> nameList = null;
+
+        private static List<string> pentatonicNameList = null;
         #endregion
 
         #region Costructors
@@ -264,9 +266,33 @@ namespace AbrahmanAdventure.audio.midi.generator
             return nameList;
         }
 
+        public static List<string> GetPentatonicNameList()
+        {
+            if (pentatonicNameList == null)
+            {
+                pentatonicNameList = new List<string>();
+                pentatonicNameList.Add("chinese");
+                pentatonicNameList.Add("japanese");
+                pentatonicNameList.Add("indian");
+                pentatonicNameList.Add("indonesian");
+                pentatonicNameList.Add("arabicPentatonic");
+                pentatonicNameList.Add("gypsyPentatonic");
+                pentatonicNameList.Add("blues");
+                pentatonicNameList.Add("hexatonic");
+                pentatonicNameList.Add("majorPentatonic");
+                pentatonicNameList.Add("minorPentatonic");
+            }
+            return pentatonicNameList;
+        }
+
         public static string GetRandomScaleName(Random random)
         {
             return GetNameList()[random.Next(GetNameList().Count)];
+        }
+
+        internal static string GetRandomPentatonicScaleName(Random random)
+        {
+            return GetPentatonicNameList()[random.Next(GetPentatonicNameList().Count)];
         }
         #endregion
 
