@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         /// <param name="seed">seed</param>
         /// <returns>Song</returns>
-        internal static IRiff BuildSong(int seed)
+        internal static IRiff BuildSong(int seed, int skillLevel)
         {
             Random random = new Random(seed);
             PredefinedGenerator predefinedGenerator = new PredefinedGenerator();
@@ -42,8 +42,8 @@ namespace AbrahmanAdventure.audio
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
             predefinedGenerator.Tempo = random.Next(80, 160);
-            predefinedGenerator.Modulation = random.NextDouble() * 0.75 + 0.25;
-            predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
+            predefinedGenerator.Modulation = random.NextDouble() * 0.5 + 0.5;
+            predefinedGenerator.ScaleName = GetRandomScaleName(skillLevel, random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
 
             int songLength = random.Next(8, 17) * 2;
@@ -52,7 +52,7 @@ namespace AbrahmanAdventure.audio
             AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, random);
             AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, random);
             AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, random);
+            //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, random);
             AddRandomTrack(predefinedGenerator, TrackType.ChromaticPercussion, songLength, predefinedGenerator.Tempo, random);
             AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, random);
             AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, random);
@@ -216,6 +216,76 @@ namespace AbrahmanAdventure.audio
                 chromaticPercussionInstrumentNameList.Add("DrumChromaticWoodBlockTernary");
             }
             return chromaticPercussionInstrumentNameList;
+        }
+
+        private static string GetRandomScaleName(int skillLevel, Random random)
+        {
+            double minorProbability = 0;
+            double evilProbability = 0;
+
+            switch (skillLevel)
+            {
+                case 0:
+                    minorProbability = 0.0;
+                    evilProbability = 0.0;
+                    break;
+                case 1:
+                    minorProbability = 0.2;
+                    evilProbability = 0.0;
+                    break;
+                case 2:
+                    minorProbability = 0.5;
+                    evilProbability = 0.0;
+                    break;
+                case 3:
+                    minorProbability = 0.6;
+                    evilProbability = 0.0;
+                    break;
+                case 4:
+                    minorProbability = 0.75;
+                    evilProbability = 0.1;
+                    break;
+                case 5:
+                    minorProbability = 0.8;
+                    evilProbability = 0.2;
+                    break;
+                case 6:
+                    minorProbability = 0.8;
+                    evilProbability = 0.3;
+                    break;
+                case 7:
+                    minorProbability = 0.8;
+                    evilProbability = 0.4;
+                    break;
+                case 8:
+                    minorProbability = 0.8;
+                    evilProbability = 0.5;
+                    break;
+                case 9:
+                    minorProbability = 0.8;
+                    evilProbability = 0.6;
+                    break;
+                default:
+                    minorProbability = 1.0;
+                    evilProbability = 0.666;
+                    break;
+            }
+
+            if (random.NextDouble() < minorProbability)
+            {
+                if (random.NextDouble() < evilProbability)
+                    return Scales.GetRandomEvilScaleName(random);
+                else
+                    return Scales.GetRandomMinorScaleName(random);
+            }
+            else if (random.NextDouble() < evilProbability)
+            {
+                return Scales.GetRandomEvilScaleName(random);
+            }
+            else
+            {
+                return Scales.GetRandomMajorScaleName(random);
+            }
         }
         #endregion
     }

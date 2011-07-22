@@ -54,6 +54,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         private static List<string> nameList = null;
 
         private static List<string> pentatonicNameList = null;
+
+        private static List<string> majorScaleNameList = null;
+
+        private static List<string> minorScaleNameList = null;
+
+        private static List<string> evilScaleNameList = null;
         #endregion
 
         #region Costructors
@@ -285,6 +291,44 @@ namespace AbrahmanAdventure.audio.midi.generator
             return pentatonicNameList;
         }
 
+        private static List<string> GetMinorScaleNameList()
+        {
+            if (minorScaleNameList == null)
+            {
+                minorScaleNameList = new List<string>();
+                minorScaleNameList.Add("gypsyPentatonic");
+                minorScaleNameList.Add("minorPentatonic");
+            }
+            return minorScaleNameList;
+        }
+
+        private static List<string> GetEvilScaleNameList()
+        {
+            if (evilScaleNameList == null)
+            {
+                evilScaleNameList = new List<string>();
+                evilScaleNameList.Add("japanese");
+                evilScaleNameList.Add("indonesian");
+                evilScaleNameList.Add("hexatonic");
+                evilScaleNameList.Add("octatonic");
+            }
+            return evilScaleNameList;
+        }
+
+        private static List<string> GetMajorScaleNameList()
+        {
+            if (majorScaleNameList == null)
+            {
+                majorScaleNameList = new List<string>();
+                majorScaleNameList.Add("chinese");
+                majorScaleNameList.Add("indian");
+                majorScaleNameList.Add("arabicPentatonic");
+                majorScaleNameList.Add("blues");
+                majorScaleNameList.Add("majorPentatonic");
+            }
+            return majorScaleNameList;
+        }
+
         public static string GetRandomScaleName(Random random)
         {
             return GetNameList()[random.Next(GetNameList().Count)];
@@ -293,6 +337,21 @@ namespace AbrahmanAdventure.audio.midi.generator
         internal static string GetRandomPentatonicScaleName(Random random)
         {
             return GetPentatonicNameList()[random.Next(GetPentatonicNameList().Count)];
+        }
+
+        internal static string GetRandomMinorScaleName(Random random)
+        {
+            return GetMinorScaleNameList()[random.Next(GetMinorScaleNameList().Count)];
+        }
+
+        internal static string GetRandomEvilScaleName(Random random)
+        {
+            return GetEvilScaleNameList()[random.Next(GetEvilScaleNameList().Count)];
+        }
+
+        internal static string GetRandomMajorScaleName(Random random)
+        {
+            return GetMajorScaleNameList()[random.Next(GetMajorScaleNameList().Count)];
         }
         #endregion
 
