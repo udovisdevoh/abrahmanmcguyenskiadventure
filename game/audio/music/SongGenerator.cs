@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Track types
     /// </summary>
-    internal enum TrackType { Soprano, Alto, Tenor, Bass, Pad, ChromaticPercussion, Snare, Kick, OtherDrum }
+    internal enum TrackType { Soprano, Alto, Tenor, Bass, ChromaticPercussion, Snare, Kick, OtherDrum }
 
     /// <summary>
     /// To generate songs
@@ -48,15 +48,15 @@ namespace AbrahmanAdventure.audio
 
             int songLength = random.Next(8, 17) * 2;
 
-            AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, 0.5, random);
             //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.ChromaticPercussion, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, random);
+            AddRandomTrack(predefinedGenerator, TrackType.ChromaticPercussion, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, 0.5, random);
 
             MusicGenerator musicGenerator = new MusicGenerator(random);
             return musicGenerator.BuildSong(predefinedGenerator);
@@ -64,7 +64,7 @@ namespace AbrahmanAdventure.audio
         #endregion
 
         #region Private Methods
-        private static void AddRandomTrack(PredefinedGenerator predefinedGenerator, TrackType trackType, int songLength, int tempo, Random random)
+        private static void AddRandomTrack(PredefinedGenerator predefinedGenerator, TrackType trackType, int songLength, int tempo, double timePercent, Random random)
         {
             predefinedGenerator[(int)trackType].MetaRiffPackName = GetRandomMetaRiffPackName(trackType, tempo, random);
 
@@ -84,10 +84,10 @@ namespace AbrahmanAdventure.audio
             {
                 return GetBassInstrumentNameList()[random.Next(GetBassInstrumentNameList().Count)];
             }
-            else if (trackType == TrackType.Pad)
+            /*else if (trackType == TrackType.Pad)
             {
                 return "Pad";
-            }
+            }*/
             else if (trackType == TrackType.ChromaticPercussion)
             {
                 return GetChromaticPercussionInstrumentNameList()[random.Next(GetChromaticPercussionInstrumentNameList().Count)];
