@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.audio.midi.generator
 
         private static Dictionary<string, Scale> scaleList;
 
-        private static IEnumerable<string> nameList = null;
+        private static List<string> nameList = null;
         #endregion
 
         #region Costructors
@@ -257,11 +257,16 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// Get name list
         /// </summary>
         /// <returns>name list</returns>
-        public static IEnumerable<string> GetNameList()
+        public static List<string> GetNameList()
         {
             if (nameList == null)
-                nameList = from name in scaleList.Keys orderby name select name;
+                nameList = new List<string>(from name in scaleList.Keys orderby name select name);
             return nameList;
+        }
+
+        public static string GetRandomScaleName(Random random)
+        {
+            return GetNameList()[random.Next(GetNameList().Count)];
         }
         #endregion
 
