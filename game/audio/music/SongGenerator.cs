@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Track types
     /// </summary>
-    internal enum TrackType { Soprano, Alto, Tenor, Bass, ChromaticPercussion, Snare, Kick, OtherDrum }
+    internal enum TrackType { Soprano, Alto, Tenor, Bass, Snare, Kick, OtherDrum }
 
     internal enum SongType { Menu, Level, Invincibility }
 
@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.audio
     internal static class SongGenerator
     {
         #region Constants
-        private const int instrumentTypeCount = 8;
+        private const int instrumentTypeCount = 7;
         #endregion
 
         #region Field and parts
@@ -73,7 +73,6 @@ namespace AbrahmanAdventure.audio
             AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
             AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
             //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, instrumentDensity, random);
-            AddRandomTrack(predefinedGenerator, TrackType.ChromaticPercussion, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
             AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
             AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
             AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
@@ -129,10 +128,6 @@ namespace AbrahmanAdventure.audio
             {
                 return "Pad";
             }*/
-            else if (trackType == TrackType.ChromaticPercussion)
-            {
-                return GetChromaticPercussionInstrumentNameList()[random.Next(GetChromaticPercussionInstrumentNameList().Count)];
-            }
             else if (trackType == TrackType.Snare)
             {
                 if (tempo >= 120)
@@ -157,26 +152,33 @@ namespace AbrahmanAdventure.audio
             }
             else if (trackType == TrackType.OtherDrum)
             {
-                if (random.Next(0, 5) == 1)
+                if (random.Next(0, 6) == 1)
                 {
-                    if (random.Next(0, 2) == 1)
-                    {
-                        return "DrumTernaryOne";
-                    }
-                    else
-                    {
-                        return "DrumTernaryTwo";
-                    }
+                    return GetChromaticPercussionInstrumentNameList()[random.Next(GetChromaticPercussionInstrumentNameList().Count)];
                 }
                 else
                 {
-                    if (tempo >= random.Next(20) + 110)
+                    if (random.Next(0, 5) == 1)
                     {
-                        return "DrumQuad";
+                        if (random.Next(0, 2) == 1)
+                        {
+                            return "DrumTernaryOne";
+                        }
+                        else
+                        {
+                            return "DrumTernaryTwo";
+                        }
                     }
                     else
                     {
-                        return "DrumOcta";
+                        if (tempo >= random.Next(20) + 110)
+                        {
+                            return "DrumQuad";
+                        }
+                        else
+                        {
+                            return "DrumOcta";
+                        }
                     }
                 }
             }
