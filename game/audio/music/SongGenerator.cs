@@ -47,7 +47,6 @@ namespace AbrahmanAdventure.audio
             Random random = new Random(seed);
             PredefinedGenerator predefinedGenerator = new PredefinedGenerator();
             int songLength;
-            double barDensityPerInstrument;
 
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
@@ -59,7 +58,6 @@ namespace AbrahmanAdventure.audio
             if (songType == SongType.Invincibility)
             {
                 songLength = 4;
-                barDensityPerInstrument = 1.0;
                 predefinedGenerator.ScaleName = "majorPentatonic";
                 predefinedGenerator.Tempo = 180;
             }
@@ -69,17 +67,16 @@ namespace AbrahmanAdventure.audio
                     predefinedGenerator.ScaleName = "minorPentatonic";
 
                 songLength = random.Next(8, 17) * 2;
-                barDensityPerInstrument = 0.15;
             }
 
-            AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
-            //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, instrumentDensity, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
-            AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, 0.25, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, 0.25, random);
+            //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, 0.25, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, 0.25, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, 0.25, random);
+            AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, 0.25, random);
 
             FillBlank(predefinedGenerator, (TrackType)random.Next(0, instrumentTypeCount), songLength, random);
 
