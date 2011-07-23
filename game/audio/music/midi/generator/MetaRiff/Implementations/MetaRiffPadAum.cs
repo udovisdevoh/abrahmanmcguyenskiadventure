@@ -58,7 +58,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             WavePack wavePack = new WavePack();
             wavePack.Add(new Wave(random.NextDouble(), 0.125 * random.Next(1, 3), phase1, waveFunction1));
             wavePack.Add(new Wave(random.NextDouble(), 0.0625 * random.Next(1, 3), phase2, waveFunction2));
-            wavePack.Normalize();
+            wavePack.Normalize(1.0, true, 0.1, 16.0);
 
             return wavePack;
         }

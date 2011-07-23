@@ -69,7 +69,7 @@ namespace AbrahmanAdventure.audio
                     predefinedGenerator.ScaleName = "minorPentatonic";
 
                 songLength = random.Next(8, 17) * 2;
-                barDensityPerInstrument = 0.25;
+                barDensityPerInstrument = 0.15;
             }
 
             AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
