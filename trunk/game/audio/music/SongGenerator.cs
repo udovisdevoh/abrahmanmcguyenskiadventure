@@ -52,7 +52,7 @@ namespace AbrahmanAdventure.audio
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
             predefinedGenerator.Tempo = random.Next(80, 160);
-            predefinedGenerator.Modulation = random.NextDouble() * 0.5 + 0.5;
+            predefinedGenerator.Modulation = random.NextDouble() * 0.75 + 0.25;
             predefinedGenerator.ScaleName = GetRandomScaleName(skillLevel, random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
 
@@ -61,9 +61,13 @@ namespace AbrahmanAdventure.audio
                 songLength = 4;
                 barDensityPerInstrument = 1.0;
                 predefinedGenerator.ScaleName = "majorPentatonic";
+                predefinedGenerator.Tempo = 180;
             }
             else
             {
+                if (songType == SongType.Menu)
+                    predefinedGenerator.ScaleName = "minorPentatonic";
+
                 songLength = random.Next(8, 17) * 2;
                 barDensityPerInstrument = 0.25;
             }
@@ -231,8 +235,8 @@ namespace AbrahmanAdventure.audio
                 melodicInstrumentNameList.Add("MeditativeWest");
                 melodicInstrumentNameList.Add("Persian");
                 melodicInstrumentNameList.Add("PianoClassic");
-                melodicInstrumentNameList.Add("SynthLead");
-                melodicInstrumentNameList.Add("SynthLeadArpege");
+                //melodicInstrumentNameList.Add("SynthLead");
+                //melodicInstrumentNameList.Add("SynthLeadArpege");
                 melodicInstrumentNameList.Add("TrumpetClassic");
                 melodicInstrumentNameList.Add("ViolinCeltic");
             }
