@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.audio
             else
             {
                 songLength = random.Next(8, 17) * 2;
-                barDensityPerInstrument = 0.5;
+                barDensityPerInstrument = 0.25;
             }
 
             AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
@@ -110,7 +110,9 @@ namespace AbrahmanAdventure.audio
 
         private static void FillBlank(PredefinedGenerator predefinedGenerator, TrackType trackType, int songLength, Random random)
         {
-            #warning Fill blank
+            for (int barId = 0; barId < songLength; barId++)
+                if (!predefinedGenerator[(int)trackType][barId])
+                    predefinedGenerator[(int)trackType][barId] = true;
         }
 
         private static string GetRandomMetaRiffPackName(TrackType trackType, int tempo, Random random)
