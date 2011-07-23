@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -123,7 +124,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite spriteToUpdate, AbstractSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, PlayerSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
             waterManager.Update(spriteToUpdate, gameState.WaterInfo);
 
@@ -175,6 +176,15 @@ namespace AbrahmanAdventure.physics
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                     if (spriteToUpdate.IsTryDigGround)
                         beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);
+
+                    #region Put back level's song at the end of invincibility
+                    if (program.SongPlayer.IRiff == SongGenerator.InvincibilitySong && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
+                    {
+                        program.SongPlayer.StopSync();
+                        program.SongPlayer.IRiff = gameState.Song;
+                        program.SongPlayer.PlayAsync();
+                    }
+                    #endregion
                 }
 
                 if (spriteToUpdate is IFluctuatingSafeDistance)
