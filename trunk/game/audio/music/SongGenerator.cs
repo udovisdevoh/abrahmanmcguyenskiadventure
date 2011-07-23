@@ -11,6 +11,8 @@ namespace AbrahmanAdventure.audio
     /// </summary>
     internal enum TrackType { Soprano, Alto, Tenor, Bass, ChromaticPercussion, Snare, Kick, OtherDrum }
 
+    internal enum SongType { Menu, Level, Invincibility }
+
     /// <summary>
     /// To generate songs
     /// </summary>
@@ -30,6 +32,8 @@ namespace AbrahmanAdventure.audio
         private static List<string> slowSnareNameList = null;
 
         private static List<string> fastSnareNameList = null;
+
+        private static IRiff invincibilitySong = BuildSong(8192, 0, SongType.Invincibility);
         #endregion
 
         #region Internal Methods
@@ -38,10 +42,12 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         /// <param name="seed">seed</param>
         /// <returns>Song</returns>
-        internal static IRiff BuildSong(int seed, int skillLevel)
+        internal static IRiff BuildSong(int seed, int skillLevel, SongType songType)
         {
             Random random = new Random(seed);
             PredefinedGenerator predefinedGenerator = new PredefinedGenerator();
+            int songLength;
+            double barDensityPerInstrument;
 
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
@@ -50,17 +56,27 @@ namespace AbrahmanAdventure.audio
             predefinedGenerator.ScaleName = GetRandomScaleName(skillLevel, random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
 
-            int songLength = random.Next(8, 17) * 2;
+            if (songType == SongType.Invincibility)
+            {
+                songLength = 4;
+                barDensityPerInstrument = 1.0;
+                predefinedGenerator.ScaleName = "majorPentatonic";
+            }
+            else
+            {
+                songLength = random.Next(8, 17) * 2;
+                barDensityPerInstrument = 0.5;
+            }
 
-            AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, 0.5, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, 0.5, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, 0.5, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, 0.5, random);
-            //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, random);
-            AddRandomTrack(predefinedGenerator, TrackType.ChromaticPercussion, songLength, predefinedGenerator.Tempo, 0.5, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, 0.5, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, 0.5, random);
-            AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Soprano, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Alto, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, instrumentDensity, random);
+            AddRandomTrack(predefinedGenerator, TrackType.ChromaticPercussion, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
+            AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, barDensityPerInstrument, random);
 
             FillBlank(predefinedGenerator, (TrackType)random.Next(0, instrumentTypeCount), songLength, random);
 
@@ -298,6 +314,13 @@ namespace AbrahmanAdventure.audio
             {
                 return Scales.GetRandomMajorScaleName(random);
             }
+        }
+        #endregion
+
+        #region Properties
+        public static IRiff InvincibilitySong
+        {
+            get { return invincibilitySong; }
         }
         #endregion
     }

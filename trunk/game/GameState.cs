@@ -152,7 +152,7 @@ namespace AbrahmanAdventure
 
             SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
 
-            song = SongGenerator.BuildSong(seed, skillLevel);
+            song = SongGenerator.BuildSong(seed, skillLevel, SongType.Level);
 
             #warning Eventually remove test sprites
             //AddHardCodedTestSprite();
