@@ -87,7 +87,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="whiskySprite">whisky</param>
         internal void UpdateTouchWhisky(PlayerSprite playerSprite, WhiskySprite whiskySprite)
         {
-            SoundManager.PlayDrinkSound();
+            SoundManager.PlayPowerUpSound();
             playerSprite.InvincibilityCycle.Fire();
             playerSprite.HitCycle.StopAndReset();
             whiskySprite.IsAlive = false;

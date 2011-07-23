@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.audio
 
         private static List<string> fastSnareNameList = null;
 
-        private static IRiff invincibilitySong = BuildSong(8192, 0, SongType.Invincibility);
+        private static IRiff invincibilitySong = BuildSong(4096, 0, SongType.Invincibility);
         #endregion
 
         #region Internal Methods
@@ -91,9 +91,20 @@ namespace AbrahmanAdventure.audio
             predefinedGenerator[(int)trackType].MetaRiffPackName = GetRandomMetaRiffPackName(trackType, tempo, random);
 
             #warning Must not always play
-            for (int barId = 0; barId < songLength; barId++)
+            int addedBarCount = 0;
+            while ((double)addedBarCount / (double)songLength < timePercent)
             {
-                predefinedGenerator[(int)trackType][barId] = true;
+                int barId = random.Next(0, songLength) / 2 * 2;
+                if (!predefinedGenerator[(int)trackType][barId])
+                {
+                    predefinedGenerator[(int)trackType][barId] = true;
+                    addedBarCount++;
+                }
+                if (!predefinedGenerator[(int)trackType][barId + 1])
+                {
+                    predefinedGenerator[(int)trackType][barId + 1] = true;
+                    addedBarCount++;
+                }
             }
         }
 
