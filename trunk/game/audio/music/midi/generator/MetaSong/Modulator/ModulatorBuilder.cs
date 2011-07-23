@@ -35,13 +35,12 @@ namespace AbrahmanAdventure.audio.midi.generator
             WaveFunction waveFunction2 = WaveFunctions.GetRandomWaveFunction(random);
             WaveFunction waveFunction3 = WaveFunctions.GetRandomWaveFunction(random);
 
+            double modulationWaveLengthMultiplicator = 2.0;//0.125;
+
             WavePack wavePack = new WavePack();
-            wavePack.Add(new Wave(random.NextDouble(), 1, phase1, waveFunction1));
-            wavePack.Add(new Wave(random.NextDouble(), 2, phase2, waveFunction2));
-            wavePack.Add(new Wave(random.NextDouble(), 3, phase3, waveFunction3));
-            /*wavePack.Add(new Wave(random.NextDouble(), 0.125, phase1, waveFunction1));
-            wavePack.Add(new Wave(random.NextDouble(), 0.25, phase2, waveFunction2));
-            wavePack.Add(new Wave(random.NextDouble(), 0.375, phase3, waveFunction3));*/
+            wavePack.Add(new Wave(random.NextDouble(), 1 * modulationWaveLengthMultiplicator, phase1, waveFunction1));
+            wavePack.Add(new Wave(random.NextDouble(), 2 * modulationWaveLengthMultiplicator, phase2, waveFunction2));
+            wavePack.Add(new Wave(random.NextDouble(), 4 * modulationWaveLengthMultiplicator, phase3, waveFunction3));
             wavePack.Normalize(1.0, true, 0.001, 2.0);
 
             return new Modulator(wavePack, modulationStrength);
