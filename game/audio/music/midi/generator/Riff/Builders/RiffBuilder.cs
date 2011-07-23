@@ -186,7 +186,7 @@ namespace AbrahmanAdventure.audio.midi.generator
                     {
                         currentModulationOffset = defaultKey;
                         if (!isOverrideKey)
-                            currentModulationOffset += modulator.GetModulationOffset(currentPosition);
+                            currentModulationOffset += modulator.GetModulationOffset(currentPosition * 4);
                         else
                             currentModulationOffset = 0;
                     }
