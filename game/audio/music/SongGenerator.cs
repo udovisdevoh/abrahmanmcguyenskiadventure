@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Track types
     /// </summary>
-    internal enum TrackType { Melody1, Melody2, Tenor, Bass, Snare, Kick, OtherDrum }
+    internal enum TrackType { Melody1, /*Melody2, Tenor,*/ Bass, Snare, Kick, OtherDrum }
 
     internal enum SongType { Menu, Level, Invincibility }
 
@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.audio
     internal static class SongGenerator
     {
         #region Constants
-        private const int instrumentTypeCount = 7;
+        private const int instrumentTypeCount = 5;
         #endregion
 
         #region Field and parts
@@ -50,7 +50,7 @@ namespace AbrahmanAdventure.audio
 
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
-            predefinedGenerator.Tempo = random.Next(80, 160);
+            predefinedGenerator.Tempo = random.Next(70, 140);
             predefinedGenerator.Modulation = random.NextDouble() * 0.75 + 0.25;
             predefinedGenerator.ScaleName = GetRandomScaleName(skillLevel, random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
@@ -69,14 +69,10 @@ namespace AbrahmanAdventure.audio
                 songLength = random.Next(8, 17) * 2;
             }
 
-            AddRandomTrack(predefinedGenerator, TrackType.Melody1, songLength, predefinedGenerator.Tempo, 0.25, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Melody2, songLength, predefinedGenerator.Tempo, 0.25, random);
-            /*AddRandomTrack(predefinedGenerator, TrackType.Melody3, songLength, predefinedGenerator.Tempo, 0.05, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Melody4, songLength, predefinedGenerator.Tempo, 0.05, random);*/
-
-            AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, 0.25, random);
-            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, 0.333, random);
-            //AddRandomTrack(predefinedGenerator, TrackType.Pad, songLength, predefinedGenerator.Tempo, 0.10, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Melody1, songLength, predefinedGenerator.Tempo, 0.5, random);
+            //AddRandomTrack(predefinedGenerator, TrackType.Melody2, songLength, predefinedGenerator.Tempo, 0.5, random);
+            //AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, 0.25, random);
             AddRandomTrack(predefinedGenerator, TrackType.Snare, songLength, predefinedGenerator.Tempo, 0.5, random);
             AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, 0.25, random);
             AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, 0.25, random);
@@ -95,6 +91,15 @@ namespace AbrahmanAdventure.audio
 
             #warning Must not always play
             int addedBarCount = 0;
+
+            /*if (trackType == TrackType.Snare || trackType == TrackType.Kick)
+            {
+                predefinedGenerator[(int)trackType][0] = true;
+                predefinedGenerator[(int)trackType][1] = true;
+                addedBarCount++;
+                addedBarCount++;
+            }*/
+
             while ((double)addedBarCount / (double)songLength < timePercent)
             {
                 int barId = random.Next(0, songLength) / 2 * 2;
@@ -120,11 +125,11 @@ namespace AbrahmanAdventure.audio
 
         private static string GetRandomMetaRiffPackName(TrackType trackType, int tempo, Random random)
         {
-            if (trackType == TrackType.Melody1 || trackType == TrackType.Melody2/* || trackType == TrackType.Melody3 || trackType == TrackType.Melody4*/)
+            if (trackType == TrackType.Melody1 /*|| trackType == TrackType.Melody2 || trackType == TrackType.Melody3 || trackType == TrackType.Melody4*/)
             {
                 return GetMelodicInstrumentNameList()[random.Next(GetMelodicInstrumentNameList().Count)];
             }
-            else if (trackType == TrackType.Tenor || trackType == TrackType.Bass)
+            else if (/*trackType == TrackType.Tenor || */trackType == TrackType.Bass)
             {
                 return GetBassInstrumentNameList()[random.Next(GetBassInstrumentNameList().Count)];
             }
@@ -156,7 +161,7 @@ namespace AbrahmanAdventure.audio
             }
             else if (trackType == TrackType.OtherDrum)
             {
-                if (random.Next(0, 6) == 1)
+                if (random.Next(0, 3) == 1)
                 {
                     return GetChromaticPercussionInstrumentNameList()[random.Next(GetChromaticPercussionInstrumentNameList().Count)];
                 }
@@ -195,7 +200,7 @@ namespace AbrahmanAdventure.audio
             {
                 slowSnareNameList = new List<string>();
                 slowSnareNameList.Add("DrumSnareDouble");
-                slowSnareNameList.Add("DrumSnareQuad");
+                //slowSnareNameList.Add("DrumSnareQuad");
             }
             return slowSnareNameList;
         }
@@ -206,7 +211,7 @@ namespace AbrahmanAdventure.audio
             {
                 fastSnareNameList = new List<string>();
                 fastSnareNameList.Add("DrumSnareQuad");
-                fastSnareNameList.Add("DrumSnareOcta");
+                //fastSnareNameList.Add("DrumSnareOcta");
             }
             return fastSnareNameList;
         }
@@ -216,7 +221,7 @@ namespace AbrahmanAdventure.audio
             if (melodicInstrumentNameList == null)
             {
                 melodicInstrumentNameList = new List<string>();
-                //melodicInstrumentNameList.Add("Arab");
+                melodicInstrumentNameList.Add("Arab");
                 melodicInstrumentNameList.Add("Church");
                 melodicInstrumentNameList.Add("GuitarFolk");
                 melodicInstrumentNameList.Add("GuitarFolkTernary");
@@ -235,9 +240,9 @@ namespace AbrahmanAdventure.audio
                 melodicInstrumentNameList.Add("MeditativeWest");
                 melodicInstrumentNameList.Add("Persian");
                 melodicInstrumentNameList.Add("PianoClassic");
-                //melodicInstrumentNameList.Add("SynthLead");
-                //melodicInstrumentNameList.Add("SynthLeadArpege");
-                //melodicInstrumentNameList.Add("TrumpetClassic");
+                melodicInstrumentNameList.Add("SynthLead");
+                melodicInstrumentNameList.Add("SynthLeadArpege");
+                melodicInstrumentNameList.Add("TrumpetClassic");
                 melodicInstrumentNameList.Add("ViolinCeltic");
             }
             return melodicInstrumentNameList;

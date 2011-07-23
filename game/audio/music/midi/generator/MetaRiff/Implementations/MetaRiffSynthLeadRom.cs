@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.audio.midi.generator
 
         public override int BuildMaximumVelocity(Random random)
         {
-            return 80;
+            return 70;
         }
 
         public override int BuildPreferedMidPitch(Random random)
