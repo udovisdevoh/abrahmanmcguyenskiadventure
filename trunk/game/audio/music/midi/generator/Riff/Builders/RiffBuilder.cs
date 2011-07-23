@@ -186,7 +186,7 @@ namespace AbrahmanAdventure.audio.midi.generator
                     {
                         currentModulationOffset = defaultKey;
                         if (!isOverrideKey)
-                            currentModulationOffset += modulator.GetModulationOffset(currentPosition * 4);
+                            currentModulationOffset += modulator.GetModulationOffset(currentPosition * 2);
                         else
                             currentModulationOffset = 0;
                     }
@@ -246,9 +246,15 @@ namespace AbrahmanAdventure.audio.midi.generator
         private int BuildPitch(double currentPosition, AbstractWave wave, Scale scale, int midPitch, int radius, bool isDrum)
         {
             int roundedPitch;
-            double y = wave[currentPosition];
+            double y = wave[currentPosition] * 7.0;
 
             roundedPitch = scale.GetRoundValue(y, radius);
+
+            while (roundedPitch > 12)
+                roundedPitch -= 12;
+
+            while (roundedPitch < 0)
+                roundedPitch += 12;
 
             roundedPitch += midPitch;
 
