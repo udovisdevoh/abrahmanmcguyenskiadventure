@@ -64,6 +64,7 @@
     <Compile Include="game\audio\music\midi\generator\MetaRiffPackBuilder.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\CompositeMetaRiffPack.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackArab.cs" />
+    <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackBass.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackBassSynth.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackChurch.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackDrumBassBinary.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackMeditativeThailand.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackMeditativeTibet.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackMeditativeWest.cs" />
+    <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackMelody.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackPad.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackPersian.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\Implementations\MetaRiffPackPianoClassic.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="game\audio\music\midi\generator\MetaRiffPack\MetaRiffPackLoader.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffBagPipePersian.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffBagPipeScottish.cs" />
+    <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffBass.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffBassSynth.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffBellChurch.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffBellTibet.cs" />
@@ -135,6 +138,7 @@
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffGuitarPunkTernary.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffHarpCeltic.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffHarpsichord.cs" />
+    <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffMelody.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffOrchestraHitHipHop.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffOrganChurch.cs" />
     <Compile Include="game\audio\music\midi\generator\MetaRiff\Implementations\MetaRiffPadAum.cs" />

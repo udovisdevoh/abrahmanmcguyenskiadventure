@@ -6,38 +6,40 @@ using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.audio.midi.generator
 {
-    internal class MetaRiffPadString : MetaRiff
+    internal class MetaRiffMelody : MetaRiff
     {
         public override int BuildPreferedMidiInstrument(Random random)
         {
-            return random.Next(48, 50);
+            int instrument = random.Next(0, 96);
+            if (instrument > 87)
+                instrument += 16;
+            return instrument;
         }
 
         public override int BuildMinimumVelocity(Random random)
         {
-            return 40;
+            return 10;
         }
 
         public override int BuildMaximumVelocity(Random random)
         {
-            return 40;
+            return 90;
         }
 
         public override int BuildPreferedMidPitch(Random random)
         {
-            return random.Next(50, 70);
+            return 63;
         }
 
         public override int BuildPreferedRadius(Random random)
         {
-            return random.Next(6, 16);
+            return random.Next(7, 24);
         }
 
         public override ScaleChooser BuildScaleChooser()
         {
             ScaleChooser scaleChooser = new ScaleChooser();
-            scaleChooser.Add(Scales.MajorPentatonic);
-            scaleChooser.Add(Scales.MinorPentatonic);
+            scaleChooser.Add(Scales.ArabicPentatonic);
             return scaleChooser;
         }
 
@@ -46,7 +48,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             double phase1 = random.NextDouble();
             double phase2 = random.NextDouble();
             double phase3 = random.NextDouble();
-
+            double phase4 = random.NextDouble();
 
             if (random.Next(0, 2) == 1)
                 phase1 *= -1.0;
@@ -54,15 +56,16 @@ namespace AbrahmanAdventure.audio.midi.generator
                 phase2 *= -1.0;
             if (random.Next(0, 2) == 1)
                 phase3 *= -1.0;
-
-            WaveFunction waveFunction1 = WaveFunctions.GetRandomWaveFunction(random);
-            WaveFunction waveFunction2 = WaveFunctions.GetRandomWaveFunction(random);
-            WaveFunction waveFunction3 = WaveFunctions.GetRandomWaveFunction(random);
+            if (random.Next(0, 2) == 1)
+                phase4 *= -1.0;
 
             WavePack wavePack = new WavePack();
-            wavePack.Add(new Wave(random.NextDouble(), 0.125 * random.Next(1, 3), phase1, waveFunction1));
-            wavePack.Add(new Wave(random.NextDouble(), 0.25 * random.Next(1, 3), phase2, waveFunction2));
-            wavePack.Add(new Wave(random.NextDouble(), 0.0625 * random.Next(1, 3), phase3, waveFunction3));
+            wavePack.Add(new Wave(random.NextDouble() * 0.45, 2 * random.Next(1, 3), phase1, WaveFunctions.Sine));
+            wavePack.Add(new Wave(random.NextDouble() * 0.45, 3 * random.Next(1, 3), phase2, WaveFunctions.Sine));
+            wavePack.Add(new Wave(random.NextDouble() * 0.45, 4, random.NextDouble(), WaveFunctions.Sine));
+            wavePack.Add(new Wave(random.NextDouble() * 0.45, 8 * random.Next(1, 3), phase3, WaveFunctions.Sine));
+            wavePack.Add(new Wave(random.NextDouble() * 0.45, 16 * random.Next(1, 3), phase4, WaveFunctions.Sine));
+
             wavePack.Normalize(1.0, true, 0.001, 2.0);
 
             return wavePack;
@@ -70,12 +73,25 @@ namespace AbrahmanAdventure.audio.midi.generator
 
         public override RythmPattern BuildRythmPattern(Random random)
         {
-            rythmPatternBuilderTimeSplit.MinimumNoteLength *= 4.0;
-            rythmPatternBuilderTimeSplit.MaximumNoteLength *= 16.0;
-            rythmPatternBuilderTimeSplit.DesiredRythmLength = 8;
+            rythmPatternBuilderTimeSplit.MaximumNoteLength *= 4.0;
+            rythmPatternBuilderTimeSplit.DesiredRythmLength = 0.5;
+
+            if (random.Next(0, 1) == 0)
+            {
+                rythmPatternBuilderTimeSplit.DesiredRythmLength *= 2;
+                if (random.Next(0, 1) == 0)
+                {
+                    rythmPatternBuilderTimeSplit.DesiredRythmLength *= 2;
+                    if (random.Next(0, 1) == 0)
+                    {
+                        rythmPatternBuilderTimeSplit.DesiredRythmLength *= 2;
+                    }
+                }
+            }
 
             rythmPatternBuilderTimeSplit.Random = random;
-            rythmPatternBuilderTimeSplit.IsAllowedTernary = false;
+            rythmPatternBuilderTimeSplit.IsAllowedTernary = random.Next(0, 3) == 1;
+            rythmPatternBuilderTimeSplit.TernaryProbability = 0.333;
             rythmPatternBuilderTimeSplit.IsAllowedQuinternary = false;
             RythmPattern rythmPattern = rythmPatternBuilderTimeSplit.Build();
             return rythmPattern;
@@ -84,8 +100,7 @@ namespace AbrahmanAdventure.audio.midi.generator
         public override IEnumerable<string> GetDescriptionTagList()
         {
             List<string> descriptionTagList = new List<string>();
-            descriptionTagList.Add("pad");
-            descriptionTagList.Add("string");
+            descriptionTagList.Add("melody");
             return descriptionTagList;
         }
 
@@ -96,7 +111,7 @@ namespace AbrahmanAdventure.audio.midi.generator
 
         public override int BuildPreferedTempo(Random random)
         {
-            return random.Next(73, 146);
+            return random.Next(70, 140);
         }
 
         public override bool IsUltraRigidDrum
