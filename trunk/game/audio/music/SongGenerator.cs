@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.audio
 
         private static List<string> fastSnareNameList = null;
 
-        private static IRiff invincibilitySong = BuildSong(4095, 0, SongType.Invincibility);
+        private static IRiff invincibilitySong = BuildSong(4096, 0, SongType.Invincibility);
         #endregion
 
         #region Internal Methods
@@ -62,8 +62,6 @@ namespace AbrahmanAdventure.audio
             }
             else
             {
-                if (songType == SongType.Menu)
-                    predefinedGenerator.ScaleName = "minorPentatonic";
                 songLength = random.Next(8, 17) * 2;
             }
 

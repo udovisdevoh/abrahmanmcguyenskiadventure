@@ -76,6 +76,15 @@ namespace AbrahmanAdventure.audio.midi.generator
             rythmPatternBuilderTimeSplit.MaximumNoteLength *= 4.0;
             rythmPatternBuilderTimeSplit.DesiredRythmLength = 0.5;
 
+            if (random.Next(0, 3) == 1)
+            {
+                rythmPatternBuilderTimeSplit.MinimumNoteLength /= 2.0;
+            }
+            else if (random.Next(0, 3) == 1)
+            {
+                rythmPatternBuilderTimeSplit.MinimumNoteLength *= 2.0;
+            }
+
             if (random.Next(0, 1) == 0)
             {
                 rythmPatternBuilderTimeSplit.DesiredRythmLength *= 2;
@@ -90,7 +99,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             }
 
             rythmPatternBuilderTimeSplit.Random = random;
-            rythmPatternBuilderTimeSplit.IsAllowedTernary = random.Next(0, 3) == 1;
+            rythmPatternBuilderTimeSplit.IsAllowedTernary = random.Next(0, 6) == 1;
             rythmPatternBuilderTimeSplit.TernaryProbability = 0.333;
             rythmPatternBuilderTimeSplit.IsAllowedQuinternary = false;
             RythmPattern rythmPattern = rythmPatternBuilderTimeSplit.Build();
