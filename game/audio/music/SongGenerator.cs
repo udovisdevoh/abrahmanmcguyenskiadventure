@@ -281,11 +281,11 @@ namespace AbrahmanAdventure.audio
             switch (skillLevel)
             {
                 case 0:
-                    minorProbability = 0.0;
+                    minorProbability = 0.5;
                     evilProbability = 0.0;
                     break;
                 case 1:
-                    minorProbability = 0.2;
+                    minorProbability = 0.5;
                     evilProbability = 0.0;
                     break;
                 case 2:
