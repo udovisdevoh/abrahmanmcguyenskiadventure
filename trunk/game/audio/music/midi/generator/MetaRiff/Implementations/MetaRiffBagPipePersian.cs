@@ -15,12 +15,12 @@ namespace AbrahmanAdventure.audio.midi.generator
 
         public override int BuildMinimumVelocity(Random random)
         {
-            return 35;
+            return 10;
         }
 
         public override int BuildMaximumVelocity(Random random)
         {
-            return 95;
+            return 60;
         }
 
         public override int BuildPreferedMidPitch(Random random)

@@ -76,12 +76,12 @@ namespace AbrahmanAdventure.audio.midi.generator
 
         public override int BuildMinimumVelocity(Random random)
         {
-            return 35;
+            return 10;
         }
 
         public override int BuildMaximumVelocity(Random random)
         {
-            return 110;
+            return 70;
         }
 
         public override bool IsDrum
