@@ -21,6 +21,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// Modulation strength (from 0: none to 1: full)
         /// </summary>
         private double modulationStrength;
+
+        private double modulationSpeed;
         #endregion
 
         #region Constructor
@@ -29,10 +31,11 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// </summary>
         /// <param name="wave">wave</param>
         /// <param name="modulationStrength">from 0 (none) to 1 (full)</param>
-        public Modulator(AbstractWave wave, double modulationStrength)
+        public Modulator(AbstractWave wave, double modulationStrength, double modulationSpeed)
         {
             this.wave = wave;
             this.modulationStrength = modulationStrength;
+            this.modulationSpeed = modulationSpeed;
         }
         #endregion
 
@@ -44,6 +47,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <returns>modulation offset</returns>
         public int GetModulationOffset(double position)
         {
+            position *= modulationSpeed;
+
             position = Math.Floor(position);
 
             double absoluteModulation = wave[position] * (12.0 * modulationStrength) - 6.0;
