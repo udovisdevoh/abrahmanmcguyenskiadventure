@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Track types
     /// </summary>
-    internal enum TrackType { Melody1, /*Melody2, Tenor,*/ Bass, Snare, Kick, OtherDrum }
+    internal enum TrackType { Melody, /*Melody2, Tenor,*/ Bass, Snare, Kick, OtherDrum }
 
     internal enum SongType { Menu, Level, Invincibility }
 
@@ -69,7 +69,7 @@ namespace AbrahmanAdventure.audio
                 songLength = random.Next(8, 17) * 2;
             }
 
-            AddRandomTrack(predefinedGenerator, TrackType.Melody1, songLength, predefinedGenerator.Tempo, 0.5, random);
+            AddRandomTrack(predefinedGenerator, TrackType.Melody, songLength, predefinedGenerator.Tempo, 0.5, random);
             //AddRandomTrack(predefinedGenerator, TrackType.Melody2, songLength, predefinedGenerator.Tempo, 0.5, random);
             //AddRandomTrack(predefinedGenerator, TrackType.Tenor, songLength, predefinedGenerator.Tempo, 0.5, random);
             AddRandomTrack(predefinedGenerator, TrackType.Bass, songLength, predefinedGenerator.Tempo, 0.25, random);
@@ -77,7 +77,8 @@ namespace AbrahmanAdventure.audio
             AddRandomTrack(predefinedGenerator, TrackType.Kick, songLength, predefinedGenerator.Tempo, 0.25, random);
             AddRandomTrack(predefinedGenerator, TrackType.OtherDrum, songLength, predefinedGenerator.Tempo, 0.25, random);
 
-            FillBlank(predefinedGenerator, (TrackType)random.Next(0, instrumentTypeCount), songLength, random);
+            //FillBlank(predefinedGenerator, (TrackType)random.Next(0, instrumentTypeCount), songLength, random);
+            FillBlank(predefinedGenerator, TrackType.Melody, songLength, random);
 
             MusicGenerator musicGenerator = new MusicGenerator(random);
             return musicGenerator.BuildSong(predefinedGenerator);
@@ -125,7 +126,7 @@ namespace AbrahmanAdventure.audio
 
         private static string GetRandomMetaRiffPackName(TrackType trackType, int tempo, Random random)
         {
-            if (trackType == TrackType.Melody1 /*|| trackType == TrackType.Melody2 || trackType == TrackType.Melody3 || trackType == TrackType.Melody4*/)
+            if (trackType == TrackType.Melody /*|| trackType == TrackType.Melody2 || trackType == TrackType.Melody3 || trackType == TrackType.Melody4*/)
             {
                 return GetMelodicInstrumentNameList()[random.Next(GetMelodicInstrumentNameList().Count)];
             }
