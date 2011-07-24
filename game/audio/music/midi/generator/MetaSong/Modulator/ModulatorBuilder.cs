@@ -43,7 +43,18 @@ namespace AbrahmanAdventure.audio.midi.generator
             wavePack.Add(new Wave(random.NextDouble(), 4 * modulationWaveLengthMultiplicator, phase3, waveFunction3));
             wavePack.Normalize(1.0, true, 0.001, 2.0);
 
-            return new Modulator(wavePack, modulationStrength);
+            double modulationSpeed = 1.0;
+            if (random.Next(0, 3) != 1)
+            {
+                modulationSpeed *= 2.0;
+                if (random.Next(0, 3) == 1)
+                {
+                    modulationSpeed *= 2.0;
+                }
+            }
+
+
+            return new Modulator(wavePack, modulationStrength, modulationSpeed);
         }
         #endregion
     }
