@@ -246,7 +246,7 @@ namespace AbrahmanAdventure.audio.midi.generator
         private int BuildPitch(double currentPosition, AbstractWave wave, Scale scale, int midPitch, int radius, bool isDrum)
         {
             int roundedPitch;
-            double y = wave[currentPosition] * 7.0;
+            double y = wave[currentPosition] * 12;
 
             roundedPitch = scale.GetRoundValue(y, radius);
 
