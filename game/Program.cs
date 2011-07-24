@@ -180,7 +180,7 @@ namespace AbrahmanAdventure
             gameMetaState = new GameMetaState();
             tutorialTalker = new TutorialTalker();
             songPlayer = new SongPlayer();
-            songPlayer.IRiff = SongGenerator.BuildSong(seedNextGameState, 0, SongType.Menu);
+            songPlayer.IRiff = SongGenerator.BuildSong(16, 0, SongType.Menu);
             songPlayer.PlayAsync();
 
             spriteBehaviorRandom = new Random();
