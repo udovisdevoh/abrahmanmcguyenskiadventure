@@ -138,6 +138,21 @@ namespace AbrahmanAdventure.sprites
                             spritePopulation.Remove(pipeSprite);
                             continue;
                         }
+                        else if (pipeSprite.TopBound < yPosition + 0.5)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (pipeSprite.TopBound < attachedGround[xPosition - 1.5] + 0.5)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (pipeSprite.TopBound < attachedGround[xPosition + 1.5] + 0.5)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
                     }
 
 
