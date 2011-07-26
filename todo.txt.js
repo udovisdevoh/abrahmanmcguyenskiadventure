@@ -16,6 +16,10 @@ add obese kids: shy guy behavior
 fix flashing in water
 
 
+Salvia powerup
+{
+	Bonus "3D" style lotus 3
+}
 
 
 ?teleporter to next level must be on a random ground, not just the top one
