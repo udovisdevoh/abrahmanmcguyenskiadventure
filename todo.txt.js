@@ -35,6 +35,21 @@ Salvia powerup
 
 (probably already done): remove block collision (side and bottom of block) for explosions
 
+Bonus achetable
+{
+	Réduire résistance à l'alcool (invincibilité dure plus longtemps)
+	Réduire résistance à la mescaline (plus de boules de feu)
+	Meilleurs cheveux de rasta (tomber plus lentement lorsqu'on plane)
+	Meilleur nage
+	Sauter plus haut
+	Courir plus vitte
+	Meilleure résistance aux monstres
+	Castor gruge plus large
+	Punch/kick plus fort
+	Punch/kick plus vitte
+	Punch/kick plus loin
+}
+
 Sprite dispatcher
 {
 	Blocks
