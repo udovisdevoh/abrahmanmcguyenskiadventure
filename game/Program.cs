@@ -131,8 +131,6 @@ namespace AbrahmanAdventure
 
         private SpriteViewer spriteViewer;
 
-        private HudViewer hudViewer;
-
         private JoystickManager joystickManager;
 
         private BeaverManager beaverManager;
@@ -188,7 +186,6 @@ namespace AbrahmanAdventure
 
             levelViewer = new LevelViewerSquareBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
-            hudViewer = new HudViewer(mainSurface);
 
             #region Some pre-caching
             SoundManager.PreCache();
@@ -634,7 +631,7 @@ namespace AbrahmanAdventure
                 #region We update the viewers
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
-                hudViewer.Update(playerSprite.Health, gameState.IsPlayerReady);
+                HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
                         if (sprite != playerSprite)
@@ -664,8 +661,8 @@ namespace AbrahmanAdventure
         /// </summary>
         internal void InitSurfaceViewPortRatioSettingsEtc()
         {
-            screenWidth = 640;
-            screenHeight = 480;
+            screenWidth = PersistentConfig.ScreenWidth;
+            screenHeight = PersistentConfig.ScreenHeight;
             tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
             tileSize = screenWidth / tileColumnCount;
             totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
@@ -677,6 +674,8 @@ namespace AbrahmanAdventure
             maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
             zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
+            HudViewer.InitCachedSurfaces();
+            GameMenu.ClearCache();
         }
 		#endregion
 
