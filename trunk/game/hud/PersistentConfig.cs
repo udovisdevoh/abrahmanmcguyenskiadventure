@@ -8,7 +8,7 @@ using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.hud
 {
-    internal static class PersistantConfig
+    internal static class PersistentConfig
     {
         #region Constants
         private const string configFileName = "./config.xml";
@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.hud
         #endregion
 
         #region Constructor
-        static PersistantConfig()
+        static PersistentConfig()
         {
             xmlDocument = new XmlDocument();
             if (File.Exists(configFileName))

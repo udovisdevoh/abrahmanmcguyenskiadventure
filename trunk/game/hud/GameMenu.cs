@@ -350,12 +350,12 @@ namespace AbrahmanAdventure.hud
                 {
                     SoundManager.Volume--;
                     SoundManager.Volume = Math.Max(0, SoundManager.Volume);
-                    PersistantConfig.SoundVolume = SoundManager.Volume;
+                    PersistentConfig.SoundVolume = SoundManager.Volume;
                 }
                 else if (currentMenuPositionY == 1)
                 {
                     SongPlayer.Volume--;
-                    PersistantConfig.MusicVolume = SongPlayer.Volume;
+                    PersistentConfig.MusicVolume = SongPlayer.Volume;
                 }
                 else
                 {
@@ -363,7 +363,7 @@ namespace AbrahmanAdventure.hud
                     {
                         TutorialTalker.Volume--;
                         TutorialTalker.Talk("ah");
-                        PersistantConfig.VoiceVolume = TutorialTalker.Volume;
+                        PersistentConfig.VoiceVolume = TutorialTalker.Volume;
                     }
                 }
             }
@@ -372,7 +372,7 @@ namespace AbrahmanAdventure.hud
                 if (currentMenuPositionY == 0)
                 {
                     Program.isFullScreen = !Program.isFullScreen;
-                    PersistantConfig.IsFullScreen = Program.isFullScreen;
+                    PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
                 }
             }
@@ -400,12 +400,12 @@ namespace AbrahmanAdventure.hud
                 {
                     SoundManager.Volume++;
                     SoundManager.Volume = Math.Min(16, SoundManager.Volume);
-                    PersistantConfig.SoundVolume = SoundManager.Volume;
+                    PersistentConfig.SoundVolume = SoundManager.Volume;
                 }
                 else if (currentMenuPositionY == 1)
                 {
                     SongPlayer.Volume++;
-                    PersistantConfig.MusicVolume = SongPlayer.Volume;
+                    PersistentConfig.MusicVolume = SongPlayer.Volume;
                 }
                 else
                 {
@@ -413,7 +413,7 @@ namespace AbrahmanAdventure.hud
                     {
                         TutorialTalker.Volume++;
                         TutorialTalker.Talk("ah");
-                        PersistantConfig.VoiceVolume = TutorialTalker.Volume;
+                        PersistentConfig.VoiceVolume = TutorialTalker.Volume;
                     }
                 }
             }
@@ -422,7 +422,7 @@ namespace AbrahmanAdventure.hud
                 if (currentMenuPositionY == 0)
                 {
                     Program.isFullScreen = !Program.isFullScreen;
-                    PersistantConfig.IsFullScreen = Program.isFullScreen;
+                    PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
                 }
             }
@@ -553,7 +553,7 @@ namespace AbrahmanAdventure.hud
                         currentSubMenu = SubMenu.HowTo;
                         break;
                     case 8:
-                        PersistantConfig.Clear(program);
+                        PersistentConfig.Clear(program);
                         break;
                     case 9: //exit
                         SongPlayer.StopSync();
@@ -593,7 +593,7 @@ namespace AbrahmanAdventure.hud
                 if (currentMenuPositionY == 0)
                 {
                     Program.isFullScreen = !Program.isFullScreen;
-                    PersistantConfig.IsFullScreen = Program.isFullScreen;
+                    PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
                 }
             }

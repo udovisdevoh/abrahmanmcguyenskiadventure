@@ -95,7 +95,7 @@ namespace AbrahmanAdventure
 
         public const double monsterDensityAdjustment = 0.5;
 
-        public static bool isFullScreen = PersistantConfig.IsFullScreen;
+        public static bool isFullScreen = PersistentConfig.IsFullScreen;
 
         public static int screenWidth;
 
@@ -175,7 +175,7 @@ namespace AbrahmanAdventure
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
-            int soundVolume = PersistantConfig.SoundVolume;
+            int soundVolume = PersistentConfig.SoundVolume;
             SongPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
             SongPlayer.PlayAsync();
 

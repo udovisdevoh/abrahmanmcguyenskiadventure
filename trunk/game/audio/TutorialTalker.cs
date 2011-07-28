@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.audio
         {
             listSpriteTalkedAbout = new HashSet<Type>();
             speechSynthesizer = new SpeechSynthesizer();
-            Volume = PersistantConfig.VoiceVolume;
+            Volume = PersistentConfig.VoiceVolume;
         }
         #endregion
 

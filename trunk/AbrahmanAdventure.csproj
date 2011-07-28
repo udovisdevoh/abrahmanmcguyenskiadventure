@@ -242,7 +242,7 @@
     <Compile Include="game\holes\HoleSet.cs" />
     <Compile Include="game\hud\EpisodeNameManager.cs" />
     <Compile Include="game\hud\HudViewer.cs" />
-    <Compile Include="game\hud\PersistantConfig.cs" />
+    <Compile Include="game\hud\PersistentConfig.cs" />
     <Compile Include="game\hud\PlanetViewer.cs" />
     <Compile Include="game\hud\SaverLoader.cs" />
     <Compile Include="game\joystick\JoystickManager.cs" />
