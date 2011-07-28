@@ -82,6 +82,51 @@ namespace AbrahmanAdventure.hud
         #endregion
 
         #region Properties
+        public static int JumpButton
+        {
+            get
+            {
+                if (IsConfigItemExist("jumpButton"))
+                    return int.Parse(GetConfigItem("jumpButton"));
+                else
+                    return 2;
+            }
+            set
+            {
+                SetConfigItem("jumpButton", value.ToString());
+            }
+        }
+
+        public static int AttackButton
+        {
+            get
+            {
+                if (IsConfigItemExist("attackButton"))
+                    return int.Parse(GetConfigItem("attackButton"));
+                else
+                    return 3;
+            }
+            set
+            {
+                SetConfigItem("attackButton", value.ToString());
+            }
+        }
+
+        public static int LeaveBeaverButton
+        {
+            get
+            {
+                if (IsConfigItemExist("leaveBeaverButton"))
+                    return int.Parse(GetConfigItem("leaveBeaverButton"));
+                else
+                    return 1;
+            }
+            set
+            {
+                SetConfigItem("leaveBeaverButton", value.ToString());
+            }
+        }
+
         public static int ScreenWidth
         {
             get
