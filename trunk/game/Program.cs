@@ -23,8 +23,6 @@ namespace AbrahmanAdventure
         #region Constants and static variables
         public const bool isBindViewOffsetToPlayer = true;
 
-        public const bool isFullScreen = false;
-
         public const bool isShowMenuOnStart = true;
 
         public const bool isHardwareSurface = true;
@@ -50,10 +48,6 @@ namespace AbrahmanAdventure
         public const bool isLimitMonsterSkillBySkillLevel = true;
 
         public const bool isTellPlanetName = false;
-
-        public const int screenWidth = 640;
-
-        public const int screenHeight = 480;
 
         public const int waveResolution = 1;
 
@@ -101,25 +95,31 @@ namespace AbrahmanAdventure
 
         public const double monsterDensityAdjustment = 0.5;
 
-        public static int tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
+        public static bool isFullScreen = PersistantConfig.IsFullScreen;
 
-        public static int tileSize = screenWidth / tileColumnCount;
+        public static int screenWidth;
 
-        public static int totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
+        public static int screenHeight;
 
-        public static int totalZoneHeight = Program.zoneHeightScreenCount * Program.screenHeight;
+        public static int tileColumnCount; //20 for 4/3 screen
 
-        public static int terrainColumnBufferRightCount = (int)(1.1 / zoneWidthScreenCount);
+        public static int tileSize;
 
-        public static int terrainColumnBufferLeftCount = (int)(0.1 / zoneWidthScreenCount);
+        public static int totalZoneWidth;
 
-        public static int totalHeightTileCount = totalZoneHeight / tileSize;
+        public static int totalZoneHeight;
+
+        public static int terrainColumnBufferRightCount;
+
+        public static int terrainColumnBufferLeftCount;
+
+        public static int totalHeightTileCount;
         
-        public static int tileRowCount = screenHeight / tileSize;
+        public static int tileRowCount;
 
-        public static double maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
+        public static double maxViewOffsetY;
 
-        public static double zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
+        public static double zoneColumnWidthTileCount;
         #endregion
 
         #region Fields and parts
@@ -167,6 +167,7 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
+            InitSurfaceViewPortRatioSettingsEtc();//Will affect mainSurface
             physics = new Physics();
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
@@ -184,8 +185,6 @@ namespace AbrahmanAdventure
             
             if (isFullScreen)
                 Cursor.Hide();
-
-            mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
 
             levelViewer = new LevelViewerSquareBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
@@ -658,6 +657,23 @@ namespace AbrahmanAdventure
             if (this.gameState != null)
                 gameState.IsExpired = true;
             this.seedNextGameState = seedNextGameState;
+        }
+
+        internal void InitSurfaceViewPortRatioSettingsEtc()
+        {
+            screenWidth = 640;
+            screenHeight = 480;
+            tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
+            tileSize = screenWidth / tileColumnCount;
+            totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
+            totalZoneHeight = Program.zoneHeightScreenCount * Program.screenHeight;
+            terrainColumnBufferRightCount = (int)(1.1 / zoneWidthScreenCount);
+            terrainColumnBufferLeftCount = (int)(0.1 / zoneWidthScreenCount);
+            totalHeightTileCount = totalZoneHeight / tileSize;
+            tileRowCount = screenHeight / tileSize;
+            maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
+            zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
+            mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
         }
 		#endregion
 
