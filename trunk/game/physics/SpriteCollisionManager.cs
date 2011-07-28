@@ -67,9 +67,9 @@ namespace AbrahmanAdventure.physics
                 else if (sprite is PlayerSprite && otherSprite is WhiskySprite && otherSprite.IsAlive)
                 {
                     powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
-                    program.SongPlayer.StopSync();
-                    program.SongPlayer.IRiff = SongGenerator.InvincibilitySong;
-                    program.SongPlayer.PlayAsync();
+                    SongPlayer.StopSync();
+                    SongPlayer.IRiff = SongGenerator.InvincibilitySong;
+                    SongPlayer.PlayAsync();
                 }
                 else if (sprite is PlayerSprite && otherSprite is MusicNoteSprite && otherSprite.IsAlive)
                 {

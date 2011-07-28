@@ -117,8 +117,6 @@ namespace AbrahmanAdventure
         
         public static int tileRowCount = screenHeight / tileSize;
 
-        public static int musicVolume = 8;
-
         public static double maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
 
         public static double zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
@@ -142,8 +140,6 @@ namespace AbrahmanAdventure
         private PipeManager pipeManager;
 
         private MonsterAi monsterAi;
-
-        private SongPlayer songPlayer;
 
         private DateTime previousDateTime = DateTime.Now;
 
@@ -178,9 +174,8 @@ namespace AbrahmanAdventure
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
-            songPlayer = new SongPlayer();
-            songPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
-            songPlayer.PlayAsync();
+            SongPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
+            SongPlayer.PlayAsync();
 
             spriteBehaviorRandom = new Random();
             #warning Put back random seed
@@ -420,7 +415,7 @@ namespace AbrahmanAdventure
                 if (gameState == null || gameState.IsExpired)
                 {
                     #region We regenerate game state because it is nonexistant or expired (changing environment)
-                    songPlayer.StopSync();
+                    SongPlayer.StopSync();
                     mainSurface.Fill(System.Drawing.Color.Black);
                     mainSurface.Update();
                     GC.Collect();
@@ -450,8 +445,8 @@ namespace AbrahmanAdventure
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
                     levelViewer.ClearCache();
                     GC.Collect();
-                    songPlayer.IRiff = gameState.Song;
-                    songPlayer.PlayAsync();
+                    SongPlayer.IRiff = gameState.Song;
+                    SongPlayer.PlayAsync();
                     #endregion
                 }
 
@@ -713,11 +708,6 @@ namespace AbrahmanAdventure
         {
             get { return gameState; }
             set { gameState = value; }
-        }
-
-        public SongPlayer SongPlayer
-        {
-            get { return songPlayer; }
         }
         #endregion
 

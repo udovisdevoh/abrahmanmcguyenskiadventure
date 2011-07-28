@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.audio.midi.generator
         {
             if (note.Velocity < 4)
                 return;
-            outputDevice.Send(new ChannelMessage(ChannelCommand.NoteOn, channel, note.Pitch, note.Velocity));
+            outputDevice.Send(new ChannelMessage(ChannelCommand.NoteOn, channel, note.Pitch, ((note.Velocity * SongPlayer.Volume) / 10)));
             if (OnNoteOn != null) OnNoteOn(note, null);
         }
 
