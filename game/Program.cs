@@ -66,11 +66,7 @@ namespace AbrahmanAdventure
         public const int squareZoneTileWidth = 1;
 
         public const int squareZoneTileHeight = 10;
-
-        public const double zoneWidthScreenCount = 0.025;
-        
-        public const double collisionDetectionResolution = 0.0625;
-        
+       
         public const double holeHeight = 100.0;
 
         public const double powerUpGrowthTime = 6.0;
@@ -94,6 +90,10 @@ namespace AbrahmanAdventure
         public const double minSizeForExtraVortex = 100.0;
 
         public const double monsterDensityAdjustment = 0.5;
+
+        public static double zoneWidthScreenCount = 0.025;
+
+        public static double collisionDetectionResolution = 0.0625;
 
         public static bool isFullScreen = PersistentConfig.IsFullScreen;
 
@@ -659,6 +659,9 @@ namespace AbrahmanAdventure
             this.seedNextGameState = seedNextGameState;
         }
 
+        /// <summary>
+        /// We call this when resolution changes or when we switch from windowed to fullscreen
+        /// </summary>
         internal void InitSurfaceViewPortRatioSettingsEtc()
         {
             screenWidth = 640;
