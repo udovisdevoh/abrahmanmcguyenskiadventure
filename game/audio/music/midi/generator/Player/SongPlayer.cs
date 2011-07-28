@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using AbrahmanAdventure.audio.midi;
 using AbrahmanAdventure.audio.midi.generator;
-using System.Threading;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure.audio
 {
@@ -37,7 +38,7 @@ namespace AbrahmanAdventure.audio
         /// <summary>
         /// Midi volume
         /// </summary>
-        private static int volume = 10;
+        private static int volume;
         #endregion
 
         #region Event
@@ -63,6 +64,7 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         static SongPlayer()
         {
+            volume = PersistantConfig.MusicVolume;
             riffPackPlayer = new RiffPackPlayer();
             riffPackPlayer.OnNoteOn += NoteOnHandler;
             riffPackPlayer.OnNoteOff += NoteOffHandler;

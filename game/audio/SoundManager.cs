@@ -5,6 +5,7 @@ using System.Text;
 using AbrahmanAdventure.sprites;
 //using System.Media;
 using SdlDotNet.Audio;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure.audio
 {
@@ -14,7 +15,7 @@ namespace AbrahmanAdventure.audio
     internal static class SoundManager
     {
         #region Fields and parts
-        private static int volume = 8;
+        private static int volume;
 
         private static Sound jumpSound;
 
@@ -80,6 +81,7 @@ namespace AbrahmanAdventure.audio
         #region Constructors
         static SoundManager()
         {
+            volume = PersistantConfig.SoundVolume;
             Mixer.SetAllChannelsVolume(volume * 8);
 
             Mixer.ChannelsAllocated = 64;
