@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {8,0,2,2,0,12};
+        private static int[] listMaxMenuItemCount = {9,0,2,2,0,12};
         #endregion
 
         #region Internal methods
@@ -116,7 +116,8 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Gamepad"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 mainSurface.Blit(GetFontText("Audio volume"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
                 mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
-                mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 8));
+                mainSurface.Blit(GetFontText("Reset config"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 8));
+                mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 9));
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
@@ -517,7 +518,10 @@ namespace AbrahmanAdventure.hud
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.HowTo;
                         break;
-                    case 8: //exit
+                    case 8:
+                        PersistantConfig.Clear();
+                        break;
+                    case 9: //exit
                         SongPlayer.StopSync();
                         Events.QuitApplication();
                         break;

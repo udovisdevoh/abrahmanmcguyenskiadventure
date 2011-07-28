@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.hud
 {
@@ -25,6 +26,21 @@ namespace AbrahmanAdventure.hud
                 xmlDocument.Load(configFileName);
             else
                 xmlDocument.AppendChild(xmlDocument.CreateElement("config"));
+        }
+        #endregion
+
+        #region Internal Methods
+        internal static void Clear()
+        {
+            if (File.Exists(configFileName))
+                File.Delete(configFileName);
+
+            xmlDocument = new XmlDocument();
+            xmlDocument.AppendChild(xmlDocument.CreateElement("config"));
+
+            SongPlayer.Volume = MusicVolume;
+            TutorialTalker.Volume = VoiceVolume;
+            SoundManager.Volume = SoundVolume;
         }
         #endregion
 
