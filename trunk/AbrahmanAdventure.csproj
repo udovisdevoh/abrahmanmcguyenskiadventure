@@ -244,6 +244,7 @@
     <Compile Include="game\hud\HudViewer.cs" />
     <Compile Include="game\hud\PersistentConfig.cs" />
     <Compile Include="game\hud\PlanetViewer.cs" />
+    <Compile Include="game\hud\ResolutionManager.cs" />
     <Compile Include="game\hud\SaverLoader.cs" />
     <Compile Include="game\joystick\JoystickManager.cs" />
     <Compile Include="game\GameState.cs" />

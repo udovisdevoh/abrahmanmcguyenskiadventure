@@ -42,6 +42,8 @@ namespace AbrahmanAdventure.hud
             TutorialTalker.Volume = VoiceVolume;
             SoundManager.Volume = SoundVolume;
             Program.isFullScreen = IsFullScreen;
+            Program.screenWidth = ScreenWidth;
+            Program.screenHeight = ScreenHeight;
             program.InitSurfaceViewPortRatioSettingsEtc();
         }
         #endregion
@@ -80,6 +82,36 @@ namespace AbrahmanAdventure.hud
         #endregion
 
         #region Properties
+        public static int ScreenWidth
+        {
+            get
+            {
+                if (IsConfigItemExist("screenWidth"))
+                    return int.Parse(GetConfigItem("screenWidth"));
+                else
+                    return 640;
+            }
+            set
+            {
+                SetConfigItem("screenWidth", value.ToString());
+            }
+        }
+
+        public static int ScreenHeight
+        {
+            get
+            {
+                if (IsConfigItemExist("screenHeight"))
+                    return int.Parse(GetConfigItem("screenHeight"));
+                else
+                    return 480;
+            }
+            set
+            {
+                SetConfigItem("screenHeight", value.ToString());
+            }
+        }
+
         public static int MusicVolume
         {
             get

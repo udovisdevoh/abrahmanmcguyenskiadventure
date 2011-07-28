@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {9,0,2,2,0,12};
+        private static int[] listMaxMenuItemCount = {9,1,2,2,0,12};
         #endregion
 
         #region Internal methods
@@ -179,8 +179,10 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
 
                 string isFullScreenText = (Program.isFullScreen) ? "on" : "off";
+                string resolutionText = Program.screenWidth + " x " + Program.screenHeight;
 
                 mainSurface.Blit(GetFontText("Fullscreen: " + isFullScreenText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                mainSurface.Blit(GetFontText("Resolution: " + resolutionText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
@@ -325,6 +327,12 @@ namespace AbrahmanAdventure.hud
         {
             return MenuFont.Render(text, color);
         }
+
+        internal static void ClearCache()
+        {
+            __titleScreen = null;
+            __menuFont = null;
+        }
         #endregion
 
         #region Private Methods
@@ -375,6 +383,10 @@ namespace AbrahmanAdventure.hud
                     PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
                 }
+                else
+                {
+                    ResolutionManager.ChangeResolution(-1,program);
+                }
             }
         }
 
@@ -424,6 +436,10 @@ namespace AbrahmanAdventure.hud
                     Program.isFullScreen = !Program.isFullScreen;
                     PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
+                }
+                else
+                {
+                    ResolutionManager.ChangeResolution(1,program);
                 }
             }
         }
@@ -595,6 +611,10 @@ namespace AbrahmanAdventure.hud
                     Program.isFullScreen = !Program.isFullScreen;
                     PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
+                }
+                else
+                {
+                    ResolutionManager.ChangeResolution(1,program);
                 }
             }
         }
