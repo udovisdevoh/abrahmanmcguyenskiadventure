@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.hud
     internal static class PersistentConfig
     {
         #region Constants
-        private const string configFileName = "./config.xml";
+        private static string configFileName;
         #endregion
 
         #region Fields and parts
@@ -21,6 +21,8 @@ namespace AbrahmanAdventure.hud
         #region Constructor
         static PersistentConfig()
         {
+            configFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "abrahmanConfig.xml");
+
             xmlDocument = new XmlDocument();
             if (File.Exists(configFileName))
                 xmlDocument.Load(configFileName);
