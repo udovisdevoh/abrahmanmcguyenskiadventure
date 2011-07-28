@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Reflection;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.sprites;
 
 namespace AbrahmanAdventure.hud
 {
@@ -12,6 +14,7 @@ namespace AbrahmanAdventure.hud
     /// </summary>
     internal static class ResolutionManager
     {
+        #region Internal Methods
         internal static void ChangeResolution(int incrementation, Program program)
         {
             Size[] listModes = Video.ListModes();
@@ -38,7 +41,9 @@ namespace AbrahmanAdventure.hud
             Program.screenHeight = newMode.Height;
             PersistentConfig.ScreenWidth = Program.screenWidth;
             PersistentConfig.ScreenHeight = Program.screenHeight;
+            program.LevelViewer.ClearCache();
             program.InitSurfaceViewPortRatioSettingsEtc();
         }
+        #endregion
     }
 }
