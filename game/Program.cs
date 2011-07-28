@@ -273,6 +273,7 @@ namespace AbrahmanAdventure
                 if (GameMenu.IsWaitingForJumpButtonRemap)
                 {
                     userInput.jumpButton = args.Button;
+                    PersistentConfig.JumpButton = userInput.jumpButton;
                     GameMenu.IsWaitingForJumpButtonRemap = false;
                     GameMenu.Dirthen();
                     return;
@@ -280,6 +281,7 @@ namespace AbrahmanAdventure
                 else if (GameMenu.IsWaitingForAttackButtonRemap)
                 {
                     userInput.attackButton = args.Button;
+                    PersistentConfig.AttackButton = userInput.attackButton;
                     GameMenu.IsWaitingForAttackButtonRemap = false;
                     GameMenu.Dirthen();
                     return;
@@ -287,6 +289,7 @@ namespace AbrahmanAdventure
                 else if (GameMenu.IsWaitingForLeaveBeaverButtonRemap)
                 {
                     userInput.leaveBeaverButton = args.Button;
+                    PersistentConfig.LeaveBeaverButton = userInput.leaveBeaverButton;
                     GameMenu.IsWaitingForLeaveBeaverButtonRemap = false;
                     GameMenu.Dirthen();
                     return;

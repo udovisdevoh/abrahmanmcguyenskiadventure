@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure
 {
@@ -28,10 +29,10 @@ namespace AbrahmanAdventure
 
         public bool isPressPageDown = false;
 
-        public int jumpButton = 2;
+        public int jumpButton = PersistentConfig.JumpButton;
 
-        public int attackButton = 3;
+        public int attackButton = PersistentConfig.AttackButton;
 
-        public int leaveBeaverButton = 1;
+        public int leaveBeaverButton = PersistentConfig.LeaveBeaverButton;
     }
 }
