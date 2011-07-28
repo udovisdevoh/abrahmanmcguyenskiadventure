@@ -81,7 +81,7 @@ namespace AbrahmanAdventure.audio
         #region Constructors
         static SoundManager()
         {
-            volume = PersistantConfig.SoundVolume;
+            volume = PersistentConfig.SoundVolume;
             Mixer.SetAllChannelsVolume(volume * 8);
 
             Mixer.ChannelsAllocated = 64;

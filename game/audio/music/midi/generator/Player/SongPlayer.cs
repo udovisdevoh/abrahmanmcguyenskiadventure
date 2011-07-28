@@ -64,7 +64,7 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         static SongPlayer()
         {
-            volume = PersistantConfig.MusicVolume;
+            volume = PersistentConfig.MusicVolume;
             riffPackPlayer = new RiffPackPlayer();
             riffPackPlayer.OnNoteOn += NoteOnHandler;
             riffPackPlayer.OnNoteOff += NoteOffHandler;
