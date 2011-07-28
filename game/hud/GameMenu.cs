@@ -172,6 +172,18 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
             }
+            else if (currentSubMenu == SubMenu.Display)
+            {
+                mainSurface.Fill(System.Drawing.Color.Black);
+
+                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+
+                string isFullScreenText = (Program.isFullScreen) ? "on" : "off";
+
+                mainSurface.Blit(GetFontText("Fullscreen: " + isFullScreenText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
+            }
             else if (currentSubMenu == SubMenu.Audio)
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
@@ -187,7 +199,7 @@ namespace AbrahmanAdventure.hud
                 string voiceVolumeBar = "";
                 for (int i = 0; i < TutorialTalker.Volume; i++)
                     voiceVolumeBar += "+";
-                
+
                 mainSurface.Blit(GetFontText("Sound / music volume"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
                 mainSurface.Blit(GetFontText("Sounds: " + soundVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
                 mainSurface.Blit(GetFontText("Music: " + musicVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
@@ -242,12 +254,12 @@ namespace AbrahmanAdventure.hud
                 }
                 else if (userInput.isPressLeft)
                 {
-                    MoveLeft();
+                    MoveLeft(program);
                     keyCycle.Fire();
                 }
                 else if (userInput.isPressRight)
                 {
-                    MoveRight();
+                    MoveRight(program);
                     keyCycle.Fire();
                 }
                 else if (userInput.isPressUp)
@@ -319,7 +331,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Moving left
         /// </summary>
-        private static void MoveLeft()
+        private static void MoveLeft(Program program)
         {
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
@@ -355,12 +367,21 @@ namespace AbrahmanAdventure.hud
                     }
                 }
             }
+            else if (currentSubMenu == SubMenu.Display)
+            {
+                if (currentMenuPositionY == 0)
+                {
+                    Program.isFullScreen = !Program.isFullScreen;
+                    PersistantConfig.IsFullScreen = Program.isFullScreen;
+                    program.InitSurfaceViewPortRatioSettingsEtc();
+                }
+            }
         }
 
         /// <summary>
         /// Moving right
         /// </summary>
-        private static void MoveRight()
+        private static void MoveRight(Program program)
         {
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
@@ -394,6 +415,15 @@ namespace AbrahmanAdventure.hud
                         TutorialTalker.Talk("ah");
                         PersistantConfig.VoiceVolume = TutorialTalker.Volume;
                     }
+                }
+            }
+            else if (currentSubMenu == SubMenu.Display)
+            {
+                if (currentMenuPositionY == 0)
+                {
+                    Program.isFullScreen = !Program.isFullScreen;
+                    PersistantConfig.IsFullScreen = Program.isFullScreen;
+                    program.InitSurfaceViewPortRatioSettingsEtc();
                 }
             }
         }
@@ -506,6 +536,10 @@ namespace AbrahmanAdventure.hud
                         program.IsShowMenu = false;
                         program.GameState.IsPlayerReady = false;
                         break;
+                    case 4:
+                        currentMenuPositionY = 0;
+                        currentSubMenu = SubMenu.Display;
+                        break;
                     case 5:
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.Controller;
@@ -519,7 +553,7 @@ namespace AbrahmanAdventure.hud
                         currentSubMenu = SubMenu.HowTo;
                         break;
                     case 8:
-                        PersistantConfig.Clear();
+                        PersistantConfig.Clear(program);
                         break;
                     case 9: //exit
                         SongPlayer.StopSync();
@@ -553,6 +587,15 @@ namespace AbrahmanAdventure.hud
                 currentMenuPositionY = 0;
                 program.IsPlayTutorialSounds = false;
                 program.IsShowMenu = false;
+            }
+            else if (currentSubMenu == SubMenu.Display)
+            {
+                if (currentMenuPositionY == 0)
+                {
+                    Program.isFullScreen = !Program.isFullScreen;
+                    PersistantConfig.IsFullScreen = Program.isFullScreen;
+                    program.InitSurfaceViewPortRatioSettingsEtc();
+                }
             }
         }
         #endregion

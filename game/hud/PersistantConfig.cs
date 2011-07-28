@@ -30,7 +30,7 @@ namespace AbrahmanAdventure.hud
         #endregion
 
         #region Internal Methods
-        internal static void Clear()
+        internal static void Clear(Program program)
         {
             if (File.Exists(configFileName))
                 File.Delete(configFileName);
@@ -41,6 +41,8 @@ namespace AbrahmanAdventure.hud
             SongPlayer.Volume = MusicVolume;
             TutorialTalker.Volume = VoiceVolume;
             SoundManager.Volume = SoundVolume;
+            Program.isFullScreen = IsFullScreen;
+            program.InitSurfaceViewPortRatioSettingsEtc();
         }
         #endregion
 
@@ -120,6 +122,21 @@ namespace AbrahmanAdventure.hud
             set
             {
                 SetConfigItem("voiceVolume", value.ToString());
+            }
+        }
+
+        public static bool IsFullScreen
+        {
+            get
+            {
+                if (IsConfigItemExist("isFullScreen"))
+                    return bool.Parse(GetConfigItem("isFullScreen"));
+                else
+                    return false;
+            }
+            set
+            {
+                SetConfigItem("isFullScreen", value.ToString());
             }
         }
         #endregion
