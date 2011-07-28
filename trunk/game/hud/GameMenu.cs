@@ -337,10 +337,12 @@ namespace AbrahmanAdventure.hud
                 {
                     SoundManager.Volume--;
                     SoundManager.Volume = Math.Max(0, SoundManager.Volume);
+                    PersistantConfig.SoundVolume = SoundManager.Volume;
                 }
                 else if (currentMenuPositionY == 1)
                 {
                     SongPlayer.Volume--;
+                    PersistantConfig.MusicVolume = SongPlayer.Volume;
                 }
                 else
                 {
@@ -348,6 +350,7 @@ namespace AbrahmanAdventure.hud
                     {
                         TutorialTalker.Volume--;
                         TutorialTalker.Talk("ah");
+                        PersistantConfig.VoiceVolume = TutorialTalker.Volume;
                     }
                 }
             }
@@ -375,10 +378,12 @@ namespace AbrahmanAdventure.hud
                 {
                     SoundManager.Volume++;
                     SoundManager.Volume = Math.Min(16, SoundManager.Volume);
+                    PersistantConfig.SoundVolume = SoundManager.Volume;
                 }
                 else if (currentMenuPositionY == 1)
                 {
                     SongPlayer.Volume++;
+                    PersistantConfig.MusicVolume = SongPlayer.Volume;
                 }
                 else
                 {
@@ -386,6 +391,7 @@ namespace AbrahmanAdventure.hud
                     {
                         TutorialTalker.Volume++;
                         TutorialTalker.Talk("ah");
+                        PersistantConfig.VoiceVolume = TutorialTalker.Volume;
                     }
                 }
             }

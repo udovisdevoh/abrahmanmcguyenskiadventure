@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Speech.Synthesis;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure.audio
 {
@@ -23,6 +24,7 @@ namespace AbrahmanAdventure.audio
         {
             listSpriteTalkedAbout = new HashSet<Type>();
             speechSynthesizer = new SpeechSynthesizer();
+            Volume = PersistantConfig.VoiceVolume;
         }
         #endregion
 

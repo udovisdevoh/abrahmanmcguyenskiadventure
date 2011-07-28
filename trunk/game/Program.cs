@@ -174,6 +174,7 @@ namespace AbrahmanAdventure
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
+            int soundVolume = PersistantConfig.SoundVolume;
             SongPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
             SongPlayer.PlayAsync();
 
