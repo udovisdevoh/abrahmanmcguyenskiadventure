@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {8,0,2,0,0,12};
+        private static int[] listMaxMenuItemCount = {8,0,2,2,0,12};
         #endregion
 
         #region Internal methods
@@ -114,7 +114,7 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Save game"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
                 mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
                 mainSurface.Blit(GetFontText("Gamepad"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
-                mainSurface.Blit(GetFontText("Audio"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                mainSurface.Blit(GetFontText("Audio volume"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
                 mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
                 mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 8));
 
@@ -170,6 +170,24 @@ namespace AbrahmanAdventure.hud
                
                 mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+            }
+            else if (currentSubMenu == SubMenu.Audio)
+            {
+                mainSurface.Fill(System.Drawing.Color.Black);
+
+                string soundVolumeBar = "";
+                for (int i = 0; i < SoundManager.Volume; i++)
+                    soundVolumeBar += "+";
+
+                string musicVolumeBar = "";
+                for (int i = 0; i < Program.musicVolume; i++)
+                    musicVolumeBar += "+";
+                
+                mainSurface.Blit(GetFontText("Sound / music volume"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                mainSurface.Blit(GetFontText("Sounds: " + soundVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                mainSurface.Blit(GetFontText("Music: " + musicVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
 
             isNeedRefresh = false;
@@ -308,6 +326,19 @@ namespace AbrahmanAdventure.hud
                 skillLevel--;
                 skillLevel = Math.Max(0, skillLevel);
             }
+            else if (currentSubMenu == SubMenu.Audio)
+            {
+                if (currentMenuPositionY == 0)
+                {
+                    SoundManager.Volume--;
+                    SoundManager.Volume = Math.Max(0, SoundManager.Volume);
+                }
+                else
+                {
+                    Program.musicVolume--;
+                    Program.musicVolume = Math.Max(0, Program.musicVolume);
+                }
+            }
         }
 
         /// <summary>
@@ -325,6 +356,19 @@ namespace AbrahmanAdventure.hud
             {
                 skillLevel++;
                 skillLevel = Math.Min(9, skillLevel);
+            }
+            else if (currentSubMenu == SubMenu.Audio)
+            {
+                if (currentMenuPositionY == 0)
+                {
+                    SoundManager.Volume++;
+                    SoundManager.Volume = Math.Min(16, SoundManager.Volume);
+                }
+                else
+                {
+                    Program.musicVolume++;
+                    Program.musicVolume = Math.Min(16, Program.musicVolume);
+                }
             }
         }
 
@@ -439,6 +483,10 @@ namespace AbrahmanAdventure.hud
                     case 5:
                         currentMenuPositionY = 0;
                         currentSubMenu = SubMenu.Controller;
+                        break;
+                    case 6:
+                        currentMenuPositionY = 0;
+                        currentSubMenu = SubMenu.Audio;
                         break;
                     case 7:
                         currentMenuPositionY = 0;
