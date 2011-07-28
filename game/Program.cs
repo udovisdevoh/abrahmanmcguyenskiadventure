@@ -117,6 +117,8 @@ namespace AbrahmanAdventure
         
         public static int tileRowCount = screenHeight / tileSize;
 
+        public static int musicVolume = 8;
+
         public static double maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
 
         public static double zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;

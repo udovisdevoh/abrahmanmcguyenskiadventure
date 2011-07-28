@@ -14,6 +14,8 @@ namespace AbrahmanAdventure.audio
     internal static class SoundManager
     {
         #region Fields and parts
+        private static int volume = 8;
+
         private static Sound jumpSound;
 
         private static Sound jumpDownSound;
@@ -78,7 +80,7 @@ namespace AbrahmanAdventure.audio
         #region Constructors
         static SoundManager()
         {
-            Mixer.SetAllChannelsVolume(64);
+            Mixer.SetAllChannelsVolume(volume * 8);
 
             Mixer.ChannelsAllocated = 64;
             jumpSound = LoadSound("./assets/sounds/Jump.ogg");
@@ -282,6 +284,18 @@ namespace AbrahmanAdventure.audio
         internal static void PlayDiveOutSound()
         {
             diveOutSound.Play();
+        }
+        #endregion
+
+        #region Properties
+        public static int Volume
+        {
+            get { return volume; }
+            set
+            {
+                volume = value;
+                Mixer.SetAllChannelsVolume(volume * 8);
+            }
         }
         #endregion
     }
