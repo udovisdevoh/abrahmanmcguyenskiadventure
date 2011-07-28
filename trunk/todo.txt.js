@@ -4,7 +4,7 @@ si ground transparent
 	soit on voit la délimitation des murs (une genre de ligne
 }
 
-create ruin structure style block dispatcher
+?create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
 
@@ -35,7 +35,7 @@ Salvia powerup
 
 (probably already done): remove block collision (side and bottom of block) for explosions
 
-Bonus achetable
+Bonus "achetable" gratuitement
 {
 	Réduire résistance à l'alcool (invincibilité dure plus longtemps)
 	Réduire résistance à la mescaline (plus de boules de feu)
@@ -112,20 +112,6 @@ create persistant config
 	whether it is fullscreen
 }
 
-
-Menu
-{
-	Display
-	{
-		Changer résolution (nécéssite restart)
-		Fullscreen?
-	}
-	Audio
-	{
-		Volume de musique et des sons
-	}
-}
-
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
 	Boss de la fin: grosse machine, ?puis vrai boss, contre sois-même?
@@ -167,51 +153,21 @@ plateformes de largeur diverse
 	do special jump (longer jump time)
 }?
 
+some levels could be inside a cave instead of being outside
+could maybe add some moutains in the background of some levels
+some water
 
 ?add bouncing notes?
-?add pipes or equivalent, must think about it first?
-{
-	could just be a teleporter to another level. You walk in it, and you go to another level, the game will remember the current level, so you can come back
-	//some levels could be inside a cave instead of being outside
-	//could maybe add some moutains in the background of some levels
-	
-	idée cool
-	{
-		Tu rentre dans un tuyau ou un teleporteur, warp vortex, plante grimpante, ou une porte
-		Chaque tuyau à un seed de départ (seed du level dans lequel se trouve le tuyau) et un seed de destination (seed du level généré).
-		Ça te téléporte dans un autre level à coté d'un tuyau, téléporteur, warp vortex ou porte dont le seed de destination est inversé par rapport au seed de source du tuyau de provenance
-		
-		dans les level, tu trouve des seed d'aladdium. Parfois il faut battre un monstre boss pour l'avoir,
-		parfois c'est caché
-		
-		certain pipes nécéssitent un nombre minimum de seeds pour entrer dedans. (plus gros, look différent) (le skill level des level pas encore visités augmente), affiche nombre minimum dessus
-		On ne peut utiliser des seeds d'aladdium que si elles proviennent d'un niveau au skill level actuel
-		Lorsque tu entre dans ces pipe, tu va au niveau suivant (plus de sorte de sprite, certains levels sont plus grands)
-		chaque seed d'Alladium à son Hash (genre md5) unique comme ça on ne peut pas pogner le même 2 fois)
-	}
-}
-
-mettre décorations anarchiques
-{
-	drapeaux etc
-}
 
 
 ?on doit pouvoir grimper sur les parroies verticales
 
 glisser: doit attaquer monstrers (ne doit plus glisser sur pente trop douce)
 
-fin de level
-{
-	Boss?
-	Fade out noir
-	Changement de level
-}
-
 
 ?add key combination for self death (when stucked)?
 
-
+Boss?
 Miniboss?
 
 
@@ -278,56 +234,4 @@ Monstres
 		Avec sweather attaché dans le cou
 		habit de tennis
 	}?
-}
-
-Musique générative
-{
-	Theme pour chaque level
-	{
-		Tempo de la chanson
-		
-		Si ternaire ou pas
-		
-		Kit d'instruments
-		
-		Mode de la chanson
-	}
-	
-	Ce qui influence la musique
-	{
-		si le joueur est "dopé", "saoul" ou "rasta", si rasta et en train de voler
-		
-		si invincible (sera autre chose, genre une sorte de dopage)
-		
-		si level est fini (genre de musique à la fin des level de smb1)
-		
-		skill level
-		
-		si dans l'eau
-		
-		si dans un pipe
-	
-		Lorsqu'on saute et qu'on est en train de retomber
-		{
-			Ça fait des descente de notes
-		}
-		
-		si timer de monster explosif (plus timer approche fin, plus intense, rapide, aigu, dissonant)
-		
-		Plus on va vitte, plus les notes sont courtes (drum surtout), exmple: position stationnaire: beat de hip hop très peu remplis. Course: Drum and bass
-		
-		Si on utilise ses armes / pieds / poings: encore plus de percussion
-		
-		Plus il y a de trous en proximité, aini que de monstres, plus il y a de dissonances
-		
-		Lorsque des monstres ont étés vaincus récement: + d'accords majeurs
-		
-		Au dessus d'un trou: plus de silences, avec des pad
-		
-		Si sol bas, plus de basse, moin d'instruments aigus
-		
-		Si sol haut et qu'on voit le background: beaucoup d'instruments, comme un gros orchestre
-		
-		Si on vient de battre un monstre difficile à battre (mini boss): modulation de la tonalité par en haut
-	}
 }
