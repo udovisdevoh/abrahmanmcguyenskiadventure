@@ -101,8 +101,8 @@ namespace AbrahmanAdventure
         /// <param name="seed">seed for random number generator</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress, TutorialTalker tutorialTalker)
-            : this(seed, skillLevel, null, surfaceToDrawLoadingProgress, tutorialTalker)
+        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress)
+            : this(seed, skillLevel, null, surfaceToDrawLoadingProgress)
         {
         }
 
@@ -113,8 +113,7 @@ namespace AbrahmanAdventure
         /// <param name="playerSprite">player sprite (if null, it will create a new one)</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        /// <param name="tutorialTalker">to tell planet's name</param>
-        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress, TutorialTalker tutorialTalker)
+        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
         {
             this.seed = seed;
             random = new Random(seed);
@@ -122,8 +121,8 @@ namespace AbrahmanAdventure
             colorTheme = new ColorTheme(random);
             backgroundColorHsl = new ColorHsl(random);
 
-            if (tutorialTalker != null && Program.isTellPlanetName)
-                tutorialTalker.Talk("Planet " + name);
+            if (Program.isTellPlanetName)
+                TutorialTalker.Talk("Planet " + name);
 
             Surface planetSurface = PlanetViewer.ShowPlanet(name, skillLevel, backgroundColorHsl, colorTheme, random);
 

@@ -10,16 +10,16 @@ namespace AbrahmanAdventure.audio
     /// <summary>
     /// Talks about tutorial stuff
     /// </summary>
-    internal class TutorialTalker
+    internal static class TutorialTalker
     {
         #region Fields and parts
-        private HashSet<Type> listSpriteTalkedAbout;
+        private static HashSet<Type> listSpriteTalkedAbout;
 
-        private SpeechSynthesizer speechSynthesizer;
+        private static SpeechSynthesizer speechSynthesizer;
         #endregion
 
         #region Constructor
-        public TutorialTalker()
+        static TutorialTalker()
         {
             listSpriteTalkedAbout = new HashSet<Type>();
             speechSynthesizer = new SpeechSynthesizer();
@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.audio
         #endregion
 
         #region Internal Methods
-        internal void TryTalkAbout(AbstractSprite sprite)
+        internal static void TryTalkAbout(AbstractSprite sprite)
         {
             if (speechSynthesizer.State != SynthesizerState.Ready)
                 return;
@@ -41,14 +41,26 @@ namespace AbrahmanAdventure.audio
             }
         }
 
-        internal void Talk(string comment)
+        internal static void Talk(string comment)
         {
             speechSynthesizer.SpeakAsync(comment);
         }
 
-        internal void Reset()
+        internal static void Reset()
         {
             listSpriteTalkedAbout.Clear();
+        }
+        #endregion
+
+        #region Properties
+        public static int Volume
+        {
+            get { return speechSynthesizer.Volume / 10; }
+            set
+            {     
+                if (value >= 0)
+                    speechSynthesizer.Volume = value * 10;
+            }
         }
         #endregion
     }

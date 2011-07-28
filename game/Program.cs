@@ -155,8 +155,6 @@ namespace AbrahmanAdventure
 
         private Physics physics;
 
-        private TutorialTalker tutorialTalker;
-
         private double viewOffsetX = -(Program.tileColumnCount / 2);
 
         private double viewOffsetY = 0.0;
@@ -180,7 +178,6 @@ namespace AbrahmanAdventure
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
-            tutorialTalker = new TutorialTalker();
             songPlayer = new SongPlayer();
             songPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
             songPlayer.PlayAsync();
@@ -434,7 +431,7 @@ namespace AbrahmanAdventure
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
                     }
-                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface, tutorialTalker);
+                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface);
                     gameMetaState.ApplyPlayerInfoToSprite(gameState.PlayerSprite);
                     List<int> listWarpBackSeed;
                     if (gameMetaState.TryGetWarpBackTargetSeed(gameState.Seed, out listWarpBackSeed))
@@ -647,7 +644,7 @@ namespace AbrahmanAdventure
                     foreach (AbstractSprite sprite in visibleSpriteList)
                         if (sprite != playerSprite)
                             if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 7.0)
-                                tutorialTalker.TryTalkAbout(sprite);
+                                TutorialTalker.TryTalkAbout(sprite);
                 #endregion
 
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);

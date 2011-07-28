@@ -182,10 +182,15 @@ namespace AbrahmanAdventure.hud
                 string musicVolumeBar = "";
                 for (int i = 0; i < Program.musicVolume; i++)
                     musicVolumeBar += "+";
+
+                string voiceVolumeBar = "";
+                for (int i = 0; i < TutorialTalker.Volume; i++)
+                    voiceVolumeBar += "+";
                 
                 mainSurface.Blit(GetFontText("Sound / music volume"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
                 mainSurface.Blit(GetFontText("Sounds: " + soundVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
                 mainSurface.Blit(GetFontText("Music: " + musicVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                mainSurface.Blit(GetFontText("Voice: " + voiceVolumeBar, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
@@ -333,10 +338,18 @@ namespace AbrahmanAdventure.hud
                     SoundManager.Volume--;
                     SoundManager.Volume = Math.Max(0, SoundManager.Volume);
                 }
-                else
+                else if (currentMenuPositionY == 1)
                 {
                     Program.musicVolume--;
                     Program.musicVolume = Math.Max(0, Program.musicVolume);
+                }
+                else
+                {
+                    if (TutorialTalker.Volume > 0)
+                    {
+                        TutorialTalker.Volume--;
+                        TutorialTalker.Talk("ah");
+                    }
                 }
             }
         }
@@ -364,10 +377,18 @@ namespace AbrahmanAdventure.hud
                     SoundManager.Volume++;
                     SoundManager.Volume = Math.Min(16, SoundManager.Volume);
                 }
-                else
+                else if (currentMenuPositionY == 1)
                 {
                     Program.musicVolume++;
                     Program.musicVolume = Math.Min(16, Program.musicVolume);
+                }
+                else
+                {
+                    if (TutorialTalker.Volume < 10)
+                    {
+                        TutorialTalker.Volume++;
+                        TutorialTalker.Talk("ah");
+                    }
                 }
             }
         }
