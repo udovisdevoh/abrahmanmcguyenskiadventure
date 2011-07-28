@@ -178,11 +178,11 @@ namespace AbrahmanAdventure.physics
                         beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);
 
                     #region Put back level's song at the end of invincibility
-                    if (program.SongPlayer.IRiff == SongGenerator.InvincibilitySong && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
+                    if (SongPlayer.IRiff == SongGenerator.InvincibilitySong && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
                     {
-                        program.SongPlayer.StopSync();
-                        program.SongPlayer.IRiff = gameState.Song;
-                        program.SongPlayer.PlayAsync();
+                        SongPlayer.StopSync();
+                        SongPlayer.IRiff = gameState.Song;
+                        SongPlayer.PlayAsync();
                     }
                     #endregion
                 }

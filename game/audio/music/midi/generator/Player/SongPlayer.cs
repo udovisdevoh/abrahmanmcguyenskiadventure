@@ -3,59 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.audio.midi;
+using AbrahmanAdventure.audio.midi.generator;
 using System.Threading;
 
-namespace AbrahmanAdventure.audio.midi.generator
+namespace AbrahmanAdventure.audio
 {
     /// <summary>
     /// Facade to play midi content
     /// </summary>
-    public class SongPlayer
+    public static class SongPlayer
     {
         #region Fields and parts
         /// <summary>
         /// Song player
         /// </summary>
-        private RiffPackPlayer riffPackPlayer;
+        private static RiffPackPlayer riffPackPlayer;
         
         /// <summary>
         /// Midi output device
         /// </summary>
-        private OutputDevice outputDevice = new OutputDevice(0);
+        private static OutputDevice outputDevice = new OutputDevice(0);
 
         /// <summary>
         /// IRiff to play
         /// </summary>
-        private IRiff iRiff = null;
+        private static IRiff iRiff = null;
 
         /// <summary>
         /// Playing thread
         /// </summary>
         private static Thread playingThread = null;
+
+        /// <summary>
+        /// Midi volume
+        /// </summary>
+        private static int volume = 10;
         #endregion
 
         #region Event
         /// <summary>
         /// When playing note
         /// </summary>
-        public event EventHandler OnNoteOn;
+        public static event EventHandler OnNoteOn;
 
         /// <summary>
         /// When stopping note
         /// </summary>
-        public event EventHandler OnNoteOff;
+        public static event EventHandler OnNoteOff;
 
         /// <summary>
         /// When black note time has passed
         /// </summary>
-        public event EventHandler OnBlackNoteTimeElapsed;
+        public static event EventHandler OnBlackNoteTimeElapsed;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Build midi player
         /// </summary>
-        public SongPlayer()
+        static SongPlayer()
         {
             riffPackPlayer = new RiffPackPlayer();
             riffPackPlayer.OnNoteOn += NoteOnHandler;
@@ -65,19 +71,19 @@ namespace AbrahmanAdventure.audio.midi.generator
         #endregion
 
         #region Public Methods
-        internal void PlayAsync()
+        internal static void PlayAsync()
         {
             if (IsPlaying || (playingThread != null && playingThread.IsAlive))
                 return;
             
             ClearEventHandlers();
-            playingThread = new Thread(this.PlaySync);
+            playingThread = new Thread(PlaySync);
             playingThread.IsBackground = true;
             //playingThread.Priority = ThreadPriority.BelowNormal;
             playingThread.Start();
         }
 
-        internal void StopSync()
+        internal static void StopSync()
         {
             if (!IsPlaying)
                 return;
@@ -99,11 +105,11 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Remove event listeners
         /// </summary>
-        public void ClearEventHandlers()
+        public static void ClearEventHandlers()
         {
-            this.OnNoteOn = null;
-            this.OnNoteOff = null;
-            this.OnBlackNoteTimeElapsed = null;
+            OnNoteOn = null;
+            OnNoteOff = null;
+            OnBlackNoteTimeElapsed = null;
         }
         #endregion
 
@@ -112,7 +118,7 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// Play a riff or a riff pack
         /// </summary>
         /// <param name="stateInfo">when method is started by threadPool</param>
-        private void PlaySync(object stateInfo)
+        private static void PlaySync(object stateInfo)
         {
             if (iRiff == null)
                 throw new MidiPlayerException("Must set IRiff before playing");
@@ -136,17 +142,17 @@ namespace AbrahmanAdventure.audio.midi.generator
         #endregion
 
         #region Event Handlers
-        private void NoteOnHandler(object source, EventArgs e)
+        private static void NoteOnHandler(object source, EventArgs e)
         {
             if (OnNoteOn != null) OnNoteOn(source, e);
         }
 
-        private void NoteOffHandler(object source, EventArgs e)
+        private static void NoteOffHandler(object source, EventArgs e)
         {
             if (OnNoteOff != null) OnNoteOff(source, e);
         }
 
-        private void BlackNoteTimeElapsedHandler(object source, EventArgs e)
+        private static void BlackNoteTimeElapsedHandler(object source, EventArgs e)
         {
             if (OnBlackNoteTimeElapsed != null) OnBlackNoteTimeElapsed(source, e);
         }
@@ -156,7 +162,7 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// IRiff to play
         /// </summary>
-        public IRiff IRiff
+        public static IRiff IRiff
         {
             get { return iRiff; }
             set { iRiff = value; }
@@ -165,9 +171,22 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Whether the player is playing
         /// </summary>
-        public bool IsPlaying
+        public static bool IsPlaying
         {
             get { return riffPackPlayer.IsPlaying; }
+        }
+
+        /// <summary>
+        /// Midi volume
+        /// </summary>
+        public static int Volume
+        {
+            get { return volume; }
+            set
+            {
+                if (value >= 0 && value <= 10)
+                    volume = value;
+            }
         }
         #endregion
     }

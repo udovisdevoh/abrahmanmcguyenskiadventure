@@ -180,7 +180,7 @@ namespace AbrahmanAdventure.hud
                     soundVolumeBar += "+";
 
                 string musicVolumeBar = "";
-                for (int i = 0; i < Program.musicVolume; i++)
+                for (int i = 0; i < SongPlayer.Volume; i++)
                     musicVolumeBar += "+";
 
                 string voiceVolumeBar = "";
@@ -340,8 +340,7 @@ namespace AbrahmanAdventure.hud
                 }
                 else if (currentMenuPositionY == 1)
                 {
-                    Program.musicVolume--;
-                    Program.musicVolume = Math.Max(0, Program.musicVolume);
+                    SongPlayer.Volume--;
                 }
                 else
                 {
@@ -379,8 +378,7 @@ namespace AbrahmanAdventure.hud
                 }
                 else if (currentMenuPositionY == 1)
                 {
-                    Program.musicVolume++;
-                    Program.musicVolume = Math.Min(16, Program.musicVolume);
+                    SongPlayer.Volume++;
                 }
                 else
                 {
@@ -514,7 +512,7 @@ namespace AbrahmanAdventure.hud
                         currentSubMenu = SubMenu.HowTo;
                         break;
                     case 8: //exit
-                        program.SongPlayer.StopSync();
+                        SongPlayer.StopSync();
                         Events.QuitApplication();
                         break;
                     default:
