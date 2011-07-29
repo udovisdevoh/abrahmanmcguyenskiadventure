@@ -265,7 +265,7 @@
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
     <Compile Include="game\physics\ExplosionManager.cs" />
-    <Compile Include="game\physics\FireBallToMonsterCollisionManager.cs" />
+    <Compile Include="game\physics\PlayerProjectileToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\FlyingSpriteManager.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
     <Compile Include="game\ground\IGroundHelper.cs" />

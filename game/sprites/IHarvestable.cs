@@ -10,5 +10,9 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     interface IHarvestable
     {
+        double ProjectileAttackStrengthCollision
+        {
+            get;
+        }
     }
 }

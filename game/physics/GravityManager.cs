@@ -21,9 +21,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference)
         {
-            if (!sprite.IsAffectedByGravity && sprite.IsAlive)
+            if (!sprite.IsAffectedByGravity && sprite.IsAlive || playerSpriteReference.CarriedSprite == sprite)
                 return;
 
             if (sprite.IGround != null) //No gravity, sprite is on a ground
@@ -100,7 +100,7 @@ namespace AbrahmanAdventure.physics
                     SoundManager.PlayHelmetBumpSound();
             }
 
-            if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null)
+            if (sprite.IsAlive && sprite is MonsterSprite && ((MonsterSprite)sprite).IsDieOnTouchGround && sprite.IGround != null && playerSpriteReference.CarriedSprite != sprite)
                 sprite.IsAlive = false;
         }
 

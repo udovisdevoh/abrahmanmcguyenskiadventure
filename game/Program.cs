@@ -501,16 +501,34 @@ namespace AbrahmanAdventure
                     {
                         if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
                         {
-                            if (playerSprite.IsDoped && !playerSprite.IsBeaver)
+                            if (userInput.isPressDown && playerSprite.IGround is IHarvestable && playerSprite.CarriedSprite == null)
                             {
-                                playerSprite.IsTryThrowingBall = true;
+                                playerSprite.CarriedSprite = (AbstractSprite)playerSprite.IGround;
+                                playerSprite.CarriedSprite.IsImpassable = false;
+
+                                playerSprite.CarriedSprite.AttackStrengthCollision = ((IHarvestable)playerSprite.CarriedSprite).ProjectileAttackStrengthCollision;
+
+                                if (playerSprite.CarriedSprite is MonsterSprite)
+                                {
+                                    ((MonsterSprite)playerSprite.CarriedSprite).IsCanDoDamageToPlayerWhenTouched = false;
+                                    ((MonsterSprite)playerSprite.CarriedSprite).IsDieOnTouchGround = true;
+                                }
+
+                                playerSprite.IGround = null;
                             }
                             else
                             {
-                                SoundManager.PlayAttemptSound();
-                                playerSprite.AttackingCycle.Fire();
+                                if (playerSprite.IsDoped && !playerSprite.IsBeaver)
+                                {
+                                    playerSprite.IsTryThrowingBall = true;
+                                }
+                                else
+                                {
+                                    SoundManager.PlayAttemptSound();
+                                    playerSprite.AttackingCycle.Fire();
+                                }
+                                playerSprite.IsNeedToAttackAgain = true;
                             }
-                            playerSprite.IsNeedToAttackAgain = true;
                         }
                     }
                     else

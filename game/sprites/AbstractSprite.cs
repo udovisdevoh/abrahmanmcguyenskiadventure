@@ -1104,6 +1104,7 @@ namespace AbrahmanAdventure.sprites
         public double AttackStrengthCollision
         {
             get { return attackStrengthCollision; }
+            set { attackStrengthCollision = value; }
         }
 
         /// <summary>

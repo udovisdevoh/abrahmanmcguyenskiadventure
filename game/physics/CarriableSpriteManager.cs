@@ -31,6 +31,13 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, double timeDelta)
         {
+            if (!carriedItem.IsAlive)
+            {
+                carrier.CarriedSprite = null;
+                return;
+            }
+
+            carriedItem.IGround = null;
             if (program.UserInput.isPressUp)
                 carriedItem.YPosition = carrier.YPosition - carrier.Height / 8.0;
             else
