@@ -288,6 +288,7 @@
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
     <Compile Include="game\sprites\ICarriable.cs" />
+    <Compile Include="game\sprites\IHarvestable.cs" />
     <Compile Include="game\sprites\IMovingGround.cs" />
     <Compile Include="game\sprites\monsters\DrillSprite.cs" />
     <Compile Include="game\sprites\monsters\HorseSprite.cs" />
