@@ -29,6 +29,8 @@ namespace AbrahmanAdventure.audio
 
         private static Sound attemptSound;
 
+        private static Sound harvestSound;
+
         private static Sound punchSound;
 
         private static Sound helmetBumpSound;
@@ -115,6 +117,7 @@ namespace AbrahmanAdventure.audio
             beaverHitSound = LoadSound("./assets/sounds/BeaverHit.ogg");
             diveInSound = LoadSound("./assets/sounds/DiveIn.ogg");
             diveOutSound = LoadSound("./assets/sounds/DiveOut.ogg");
+            harvestSound = LoadSound("./assets/sounds/Harvest.ogg");
         }
 
         /// <summary>
@@ -166,6 +169,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayAttemptSound()
         {
             attemptSound.Play();
+        }
+
+        internal static void PlayHarvesttSound()
+        {
+            harvestSound.Play();
         }
 
         internal static void PlayPunchSound()
@@ -286,6 +294,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayDiveOutSound()
         {
             diveOutSound.Play();
+        }
+
+        internal static void PlayHarvestSound()
+        {
+            harvestSound.Play();
         }
         #endregion
 
