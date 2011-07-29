@@ -59,6 +59,11 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private double rightBound;
 
+        /// <summary>
+        /// Width of a pillar that holds a transparent ground
+        /// </summary>
+        private double pillarWidth;
+
         private LevelBoundType leftBoundType;
 
         private LevelBoundType rightBoundType;
@@ -97,6 +102,8 @@ namespace AbrahmanAdventure.level
                 isUseBottomTexture = true;
             else
                 isUseBottomTexture = random.Next(0, 2) == 0;
+
+            pillarWidth = Program.collisionDetectionResolution;
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
             {
@@ -169,6 +176,14 @@ namespace AbrahmanAdventure.level
 
                 return yValue;
             }
+        }
+
+        /// <summary>
+        /// Width of a pillar that holds a transparent ground
+        /// </summary>
+        public double PillarWidth
+        {
+            get { return pillarWidth; }
         }
 
         private double GetOutBoundHeight(double xPosition, bool isRightBound)
