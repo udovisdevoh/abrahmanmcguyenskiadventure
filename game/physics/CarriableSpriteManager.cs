@@ -58,7 +58,7 @@ namespace AbrahmanAdventure.physics
                 {
                     carriedItem.IGround = carrier.IGround;
 
-                    if (program.UserInput.isPressDown && carriedItem.IGround != null) //Deposit carried item
+                    if (program.UserInput.isPressDown && carriedItem.IGround != null && !(carriedItem is IHarvestable)) //Deposit carried item, helmet only
                     {
                         ((MonsterSprite)carriedItem).KickedHelmetCycle.Fire();//We don't kick the helmet, but we must prevent further accicdental kick so next kick will wait
                         ((MonsterSprite)carriedItem).SpontaneousTransformationCycle.Fire();
@@ -70,9 +70,13 @@ namespace AbrahmanAdventure.physics
 
                         carriedItem.YPosition = carriedItem.IGround[carriedItem.XPosition];
                     }
-                    else if (program.UserInput.isPressUp) //We throw it up
+                    else if (program.UserInput.isPressUp || carriedItem is IHarvestable) //We throw it up (helmets or fat kids)
                     {
-                        SoundManager.PlayHelmetKickSound();
+                        if (carriedItem is IHarvestable)
+                            SoundManager.PlayThrowSound();
+                        else
+                            SoundManager.PlayHelmetKickSound();
+
                         ((MonsterSprite)carriedItem).KickedHelmetCycle.Fire();//We don't kick the helmet, but we must prevent further accicdental kick so next kick will wait
                         ((MonsterSprite)carriedItem).SpontaneousTransformationCycle.Fire();
 
@@ -82,12 +86,20 @@ namespace AbrahmanAdventure.physics
                         carriedItem.IGround = null;
                         carriedItem.YPosition = carrier.TopBound;
                         carriedItem.JumpingCycle.Fire();
-                        carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 2.0;
-
                         carriedItem.IsCurrentlyInFreeFallX = true;
-                        carriedItem.CurrentWalkingSpeed = carrier.CurrentWalkingSpeed;
+                        
+                        if (program.UserInput.isPressUp) //helmet or fat kid will be thrown up
+                        {
+                            carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 2.0;
+                            carriedItem.CurrentWalkingSpeed = carrier.CurrentWalkingSpeed;
+                        }
+                        else //fat kid will be thrown parabolically to the left or right
+                        {
+                            carriedItem.CurrentJumpAcceleration = carriedItem.StartingJumpAcceleration * 0.666;
+                            carriedItem.CurrentWalkingSpeed = carrier.CurrentWalkingSpeed + carrier.MaxWalkingSpeed * 1.5;
+                        }
                     }
-                    else //We throw it left or right
+                    else //We throw it left or right (helmets only)
                     {
                         spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, timeDelta);
                         ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
