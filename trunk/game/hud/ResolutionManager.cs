@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Reflection;
 using SdlDotNet.Graphics;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.hud
 {
@@ -42,9 +43,19 @@ namespace AbrahmanAdventure.hud
             PersistentConfig.ScreenWidth = Program.screenWidth;
             PersistentConfig.ScreenHeight = Program.screenHeight;
             program.LevelViewer.ClearCache();
-            program.GameState.IsPlayerReady = false;
-            program.GameState.Level.RenderGroundTextures();
-            program.GameState.Background.RenderSurface();
+            if (program.GameState != null)
+            {
+                program.GameState.IsPlayerReady = false;
+                program.GameState.Background.RenderSurface();
+                #warning Uncomment and implement
+                /*foreach (Ground ground in program.GameState.Level)
+                {
+                    if (ground.TopTexture != null)
+                        ground.TopTexture.RenderSurface();
+                    if (ground.BottomTexture != null)
+                        ground.BottomTexture.RenderSurface();
+                }*/
+            }
             program.InitSurfaceViewPortRatioSettingsEtc();
             SpriteDispatcher.PreCacheSpriteSurfaces();
         }
