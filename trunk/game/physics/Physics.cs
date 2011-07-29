@@ -128,7 +128,7 @@ namespace AbrahmanAdventure.physics
         {
             waterManager.Update(spriteToUpdate, gameState.WaterInfo);
 
-            walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+            walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, playerSpriteReference);
             
             if (spriteToUpdate is IFlyingOnEqualDistance)
                 flyingSpriteManager.Update((IFlyingOnEqualDistance)spriteToUpdate, playerSpriteReference, timeDelta);
@@ -138,7 +138,7 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate.IsFullGravityOnNextFrame)
                 gravityManager.ApplyFullGravityForce(spriteToUpdate, level, visibleSpriteList);
 
-            jumpingManager.Update(spriteToUpdate, timeDelta);
+            jumpingManager.Update(spriteToUpdate, playerSpriteReference, timeDelta);
             damageManager.Update(spriteToUpdate, timeDelta);
             deathManager.Update(spriteToUpdate, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState, levelViewer);
 

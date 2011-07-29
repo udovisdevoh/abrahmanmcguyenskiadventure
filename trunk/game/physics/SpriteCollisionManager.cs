@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.physics
                     {
                         beaverManager.UpdateJumpOnBeaver((PlayerSprite)sprite, (BeaverSprite)otherSprite);
                     }
-                    else
+                    else if (!(otherSprite is IMovingGround))
                     {
                         if (sprite is PlayerSprite 
                             && otherSprite is MonsterSprite

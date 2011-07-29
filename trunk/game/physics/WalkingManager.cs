@@ -20,7 +20,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList)
+        /// <param name="playerSpriteReference">reference to player sprite</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference)
         {
             if (sprite is StaticSprite)
                 return;
@@ -132,6 +133,13 @@ namespace AbrahmanAdventure.physics
                 sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed * 1.5);
             else
                 sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed);
+
+
+            if (sprite is IMovingGround && playerSpriteReference.IGround == sprite)
+            {
+                playerSpriteReference.XPosition += walkingDistance;
+                playerSpriteReference.YPosition = sprite.TopBound;
+            }
         }
 
         /// <summary>

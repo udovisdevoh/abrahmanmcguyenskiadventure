@@ -316,6 +316,12 @@ namespace AbrahmanAdventure.sprites
             totalHitTime = BuildHitTime();
             hitCycle = new Cycle(totalHitTime, false);
             punchedCycle = new Cycle(totalHitTime, false);
+
+            if (this is IMovingGround)
+            {
+                Bounciness = 0.0;
+                IsImpassable = true;
+            }
         }
         #endregion
 
