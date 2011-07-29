@@ -42,23 +42,90 @@ namespace AbrahmanAdventure.hud
             Program.screenHeight = newMode.Height;
             PersistentConfig.ScreenWidth = Program.screenWidth;
             PersistentConfig.ScreenHeight = Program.screenHeight;
-            program.LevelViewer.ClearCache();
-            if (program.GameState != null)
-            {
-                program.GameState.IsPlayerReady = false;
-                program.GameState.Background.RenderSurface();
-                #warning Uncomment and implement
-                /*foreach (Ground ground in program.GameState.Level)
-                {
-                    if (ground.TopTexture != null)
-                        ground.TopTexture.RenderSurface();
-                    if (ground.BottomTexture != null)
-                        ground.BottomTexture.RenderSurface();
-                }*/
-            }
-            program.InitSurfaceViewPortRatioSettingsEtc();
-            SpriteDispatcher.PreCacheSpriteSurfaces();
+
+            ResetAfterResolutionChange(program);
         }
+
+        internal static void ResetAfterResolutionChange(Program program)
+        {
+            program.LevelViewer.ClearCache();
+            program.InitSurfaceViewPortRatioSettingsEtc();
+            if (program.GameState != null)
+                program.GameState.IsExpired = true;
+            SurfaceSizeCache.Clear();
+            ClearAllCachedSpriteSurfaces();
+            //RenderAllSpriteSurfaces();
+            SpriteDispatcher.PreCacheSpriteSurfaces();
+            GC.Collect();
+        }
+        #endregion
+
+        #region Private Methods
+        private static void ClearAllCachedSpriteSurfaces()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (type.IsSubclassOf(typeof(AbstractSprite)) && !type.IsAbstract && !type.IsInterface)
+                {
+                    FieldInfo[] fieldList = type.GetFields(BindingFlags.NonPublic | BindingFlags.Static);
+
+                    foreach (FieldInfo fieldInfo in fieldList)
+                    {
+                        if (fieldInfo.FieldType == typeof(Surface))
+                        {
+                            fieldInfo.SetValue(null, null);
+                        }
+                    }
+                }
+            }
+        }
+
+        /*private static void RenderAllSpriteSurfaces()
+        {
+            Random random = new Random();
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (type.IsSubclassOf(typeof(AbstractSprite)) && !type.IsAbstract && !type.IsInterface)
+                {
+                    object[] constructorArgumentList;
+                    Type[] constructorArgumentTypeList;
+
+                    if (type == typeof(RiotControlSprite) || type == typeof(VortexSprite) || type == typeof(HelmetSprite))
+                    {
+                        constructorArgumentList = new object[4];
+                        constructorArgumentList[0] = 0.0;
+                        constructorArgumentList[1] = 0.0;
+                        constructorArgumentList[2] = random;
+                        constructorArgumentList[3] = true;
+
+                        constructorArgumentTypeList = new Type[4];
+                        constructorArgumentTypeList[0] = typeof(double);
+                        constructorArgumentTypeList[1] = typeof(double);
+                        constructorArgumentTypeList[2] = typeof(Random);
+                        constructorArgumentTypeList[3] = typeof(bool);
+                    }
+                    else
+                    {
+                        constructorArgumentList = new object[3];
+                        constructorArgumentList[0] = 0.0;
+                        constructorArgumentList[1] = 0.0;
+                        constructorArgumentList[2] = random;
+
+                        constructorArgumentTypeList = new Type[3];
+                        constructorArgumentTypeList[0] = typeof(double);
+                        constructorArgumentTypeList[1] = typeof(double);
+                        constructorArgumentTypeList[2] = typeof(Random);
+                    }
+
+
+                    ConstructorInfo constructorInfoGenericMonster = type.GetConstructor(constructorArgumentTypeList);
+
+                    AbstractSprite sprite = (AbstractSprite)constructorInfoGenericMonster.Invoke(constructorArgumentList);
+                }
+            }
+        }*/
         #endregion
     }
 }

@@ -70,11 +70,29 @@ namespace AbrahmanAdventure.level
         }
         #endregion
 
-        #region Internal Methods
+        #region Private Methods
+        /// <summary>
+        /// Build wave
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <returns>wave</returns>
+        private AbstractWave BuildWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+            for (int i = 1; i < 5; i++)
+            {
+                double amplitude = random.NextDouble() * 7.0 + 1.0;
+                double waveLength = (double)i * 60;
+                double phase = random.NextDouble() * 2.0 - 1.0;
+                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.Sine));
+            }
+            return wavePack;
+        }
+
         /// <summary>
         /// Render the surface from the waves
         /// </summary>
-        internal void RenderSurface()
+        private void RenderSurface()
         {
             backgroundWidth = Program.screenWidth * screenColumnCount;
             backgroundHeight = Program.screenHeight * screenRowCount;
@@ -115,26 +133,6 @@ namespace AbrahmanAdventure.level
 
                 surface.Blit(column, new Point(x, (int)verticalWaveOffset), column.GetRectangle());
             }
-        }
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Build wave
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <returns>wave</returns>
-        private AbstractWave BuildWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-            for (int i = 1; i < 5; i++)
-            {
-                double amplitude = random.NextDouble() * 7.0 + 1.0;
-                double waveLength = (double)i * 60;
-                double phase = random.NextDouble() * 2.0 - 1.0;
-                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.Sine));
-            }
-            return wavePack;
         }
         #endregion
 
