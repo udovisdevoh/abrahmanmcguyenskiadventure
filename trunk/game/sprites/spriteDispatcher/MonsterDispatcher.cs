@@ -50,6 +50,7 @@ namespace AbrahmanAdventure.sprites
             allPossibleDispatchableMonsterTypes.Add(new RiotControlSprite(0, 0, random, false));
             allPossibleDispatchableMonsterTypes.Add(new RonaldSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new SnakeSprite(0, 0, random));
+            allPossibleDispatchableMonsterTypes.Add(new KidSprite(0, 0, random));
 
             __temporarySpriteList = new Dictionary<MonsterSprite,double>();
         }
