@@ -104,14 +104,6 @@ fix add texture cache transparency bug
 
 Changer nom d'app
 
-create persistant config
-{
-	Save sound and music volues
-	Joystick buttons
-	screen resolution
-	whether it is fullscreen
-}
-
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
 	Boss de la fin: grosse machine, ?puis vrai boss, contre sois-même?
