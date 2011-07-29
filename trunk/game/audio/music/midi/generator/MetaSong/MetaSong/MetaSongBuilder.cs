@@ -35,6 +35,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// How many bars in total
         /// </summary>
         private int barCount = -1;
+
+        private int scaleCycleLength = 0;
         #endregion
 
         #region Public Methods
@@ -89,6 +91,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         {
             get { return metaRiffPack; }
             set { metaRiffPack = value; }
+        }
+
+        public int ScaleCycleLength
+        {
+            get { return scaleCycleLength; }
+            set { scaleCycleLength = value; }
         }
 
         /// <summary>

@@ -19,7 +19,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Facultative scale to override other scales
         /// </summary>
-        private Scale overridenScale = null;
+        private Scale overridenScale1 = null;
+
+        /// <summary>
+        /// Facultative scale to override other scales
+        /// </summary>
+        private Scale overridenScale2 = null;
 
         /// <summary>
         /// Whether we override key
@@ -30,6 +35,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// Facultative key to override (only works if IsOverrideKey)
         /// </summary>
         private int forcedModulationOffset;
+
+        private int scaleCycleLength = 0;
         #endregion
 
         #region Public Methods
@@ -66,10 +73,15 @@ namespace AbrahmanAdventure.audio.midi.generator
                     else
                         riffBuilder.MidPitch = GetMatchedMidPitch(riffBuilder.MidPitch, firstRiffBuilder.MidPitch);
 
-                    riffBuilder.Scale = firstRiffBuilder.Scale;
+                    riffBuilder.Scale1 = firstRiffBuilder.Scale1;
 
-                    if (overridenScale != null)
-                        riffBuilder.Scale = overridenScale;
+                    if (overridenScale1 != null)
+                        riffBuilder.Scale1 = overridenScale1;
+
+                    if (overridenScale2 != null)
+                        riffBuilder.Scale2 = overridenScale2;
+
+                    riffBuilder.ScaleCycleLength = scaleCycleLength;
                 }
 
                 riffPackBuilder.Add(riffBuilder);
@@ -171,10 +183,19 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Facultative scale to override other scales
         /// </summary>
-        public Scale OverridenScale
+        public Scale OverridenScale1
         {
-            get { return overridenScale; }
-            set { overridenScale = value; }
+            get { return overridenScale1; }
+            set { overridenScale1 = value; }
+        }
+
+        /// <summary>
+        /// Facultative scale to override other scales
+        /// </summary>
+        public Scale OverridenScale2
+        {
+            get { return overridenScale2; }
+            set { overridenScale2 = value; }
         }
 
         /// <summary>
@@ -193,6 +214,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         {
             get { return isOverrideKey; }
             set { isOverrideKey = value; }
+        }
+
+        public int ScaleCycleLength
+        {
+            get { return scaleCycleLength; }
+            set { scaleCycleLength = value; }
         }
         #endregion
 

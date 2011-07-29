@@ -296,7 +296,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             if (minorScaleNameList == null)
             {
                 minorScaleNameList = new List<string>();
-                minorScaleNameList.Add("gypsyPentatonic");
+                //minorScaleNameList.Add("gypsyPentatonic");
                 minorScaleNameList.Add("minorPentatonic");
             }
             return minorScaleNameList;
@@ -309,7 +309,7 @@ namespace AbrahmanAdventure.audio.midi.generator
                 evilScaleNameList = new List<string>();
                 evilScaleNameList.Add("japanese");
                 evilScaleNameList.Add("indonesian");
-                evilScaleNameList.Add("hexatonic");
+                //evilScaleNameList.Add("hexatonic");
                 evilScaleNameList.Add("octatonic");
             }
             return evilScaleNameList;
@@ -320,10 +320,10 @@ namespace AbrahmanAdventure.audio.midi.generator
             if (majorScaleNameList == null)
             {
                 majorScaleNameList = new List<string>();
-                majorScaleNameList.Add("chinese");
+                /*majorScaleNameList.Add("chinese");
                 majorScaleNameList.Add("indian");
                 majorScaleNameList.Add("arabicPentatonic");
-                majorScaleNameList.Add("blues");
+                majorScaleNameList.Add("blues");*/
                 majorScaleNameList.Add("majorPentatonic");
             }
             return majorScaleNameList;

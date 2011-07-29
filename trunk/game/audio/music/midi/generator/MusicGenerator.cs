@@ -47,8 +47,13 @@ namespace AbrahmanAdventure.audio.midi.generator
             metaSongBuilder.MetaRiffPack = metaRiffPackBuilder.Build(predefinedGenerator);
 
             if (predefinedGenerator.IsOverrideScale)
-                metaSongBuilder.MetaRiffPack.OverridenScale = Scales.GetScale(predefinedGenerator.ScaleName);
+            {
+                metaSongBuilder.MetaRiffPack.OverridenScale1 = Scales.GetScale(predefinedGenerator.ScaleName1);
+                metaSongBuilder.MetaRiffPack.OverridenScale2 = Scales.GetScale(predefinedGenerator.ScaleName2);
+                metaSongBuilder.MetaRiffPack.ScaleCycleLength = predefinedGenerator.ScaleCycleLength;
+            }
 
+            metaSongBuilder.ScaleCycleLength = predefinedGenerator.ScaleCycleLength;
             metaSongBuilder.MetaRiffPack.IsOverrideKey = predefinedGenerator.IsOverrideKey;
             if (predefinedGenerator.IsOverrideKey)
                 metaSongBuilder.MetaRiffPack.ForcedModulationOffset = predefinedGenerator.ForcedModulationOffset;

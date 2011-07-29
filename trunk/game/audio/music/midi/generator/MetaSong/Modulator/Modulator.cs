@@ -75,11 +75,11 @@ namespace AbrahmanAdventure.audio.midi.generator
             if (absoluteModulationDiscrete == -2)
                 absoluteModulationDiscrete = 0;
             if (absoluteModulationDiscrete == -3)
-                absoluteModulationDiscrete = -5;
-            if (absoluteModulationDiscrete == -4)
-                absoluteModulationDiscrete = -5;
-            if (absoluteModulationDiscrete == -6)
                 absoluteModulationDiscrete = -7;
+            if (absoluteModulationDiscrete == -4)
+                absoluteModulationDiscrete = -7;
+            if (absoluteModulationDiscrete == -6)
+                absoluteModulationDiscrete = -5;
 
 
 
