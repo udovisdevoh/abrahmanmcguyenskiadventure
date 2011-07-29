@@ -81,7 +81,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             //rythmPatternBuilderTimeSplit.MaximumNoteLength /= 2.0;
             rythmPatternBuilderTimeSplit.DesiredRythmLength = 0.25;
             rythmPatternBuilderTimeSplit.Random = random;
-            rythmPatternBuilderTimeSplit.IsAllowedTernary = true;
+            rythmPatternBuilderTimeSplit.IsAllowedTernary = random.Next(0, 2) == 1;
             rythmPatternBuilderTimeSplit.TernaryProbability = 0.6;
             rythmPatternBuilderTimeSplit.IsAllowedQuinternary = false;
             RythmPattern rythmPattern = rythmPatternBuilderTimeSplit.Build();

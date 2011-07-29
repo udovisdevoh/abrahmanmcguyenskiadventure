@@ -50,7 +50,7 @@ namespace AbrahmanAdventure.audio
 
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
-            predefinedGenerator.Tempo = random.Next(70, 140);
+            predefinedGenerator.Tempo = random.Next(70 + skillLevel / 2, 140 + skillLevel);
             predefinedGenerator.Modulation = random.NextDouble() * 0.75 + 0.25;
             predefinedGenerator.ScaleName = GetRandomScaleName(skillLevel, random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.audio
             }
             else
             {
-                barDensity = 0.5;
+                barDensity = Math.Min(1.0, 0.5 + (((double)skillLevel) / 20.0));//0.5 for easy, 1.0 for hard)
                 songLength = random.Next(8, 17) * 2;
             }
 

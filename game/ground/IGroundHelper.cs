@@ -335,7 +335,7 @@ namespace AbrahmanAdventure.physics
         #region Private Methods
         private static bool IsSlopeWalkable(Ground ground, double x, double waveOutputY)
         {
-            return Math.Abs(waveOutputY - ground[x + Program.collisionDetectionResolution]) < 1.0 && Math.Abs(waveOutputY - ground[x - Program.collisionDetectionResolution]) < 1.0;
+            return Math.Abs(waveOutputY - ground[x + ground.PillarWidth]) < 1.0 && Math.Abs(waveOutputY - ground[x - ground.PillarWidth]) < 1.0;
         }
         #endregion
     }
