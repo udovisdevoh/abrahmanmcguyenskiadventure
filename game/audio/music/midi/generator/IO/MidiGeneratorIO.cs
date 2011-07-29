@@ -54,7 +54,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             generatorNode.SetAttribute("IsOverrideScale",generator.IsOverrideScale.ToString());
             generatorNode.SetAttribute("IsOverrideTempo",generator.IsOverrideTempo.ToString());
             generatorNode.SetAttribute("Modulation", generator.Modulation.ToString(NumberFormatInfo.InvariantInfo));
-            generatorNode.SetAttribute("ScaleName",generator.ScaleName);
+            generatorNode.SetAttribute("ScaleName",generator.ScaleName1);
             generatorNode.SetAttribute("Tempo",generator.Tempo.ToString());
             generatorNode.SetAttribute("LyricsToMusicPhase", generator.LyricsToMusicPhase.ToString(NumberFormatInfo.InvariantInfo));
 
@@ -101,7 +101,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             predefinedGenerator.IsOverrideScale = bool.Parse(predefinedGeneratorElement.GetAttribute("IsOverrideScale"));
             predefinedGenerator.IsOverrideTempo = bool.Parse(predefinedGeneratorElement.GetAttribute("IsOverrideTempo"));
             predefinedGenerator.Modulation = double.Parse(predefinedGeneratorElement.GetAttribute("Modulation"),NumberFormatInfo.InvariantInfo);
-            predefinedGenerator.ScaleName = predefinedGeneratorElement.GetAttribute("ScaleName");
+            predefinedGenerator.ScaleName1 = predefinedGeneratorElement.GetAttribute("ScaleName");
             predefinedGenerator.Tempo = int.Parse(predefinedGeneratorElement.GetAttribute("Tempo"));
             predefinedGenerator.LyricsToMusicPhase = double.Parse(predefinedGeneratorElement.GetAttribute("LyricsToMusicPhase"), NumberFormatInfo.InvariantInfo);
 

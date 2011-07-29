@@ -145,7 +145,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             riffBuilder.DesiredRiffLength = 2;
             riffBuilder.PitchWave = BuildPitchOrVelocityWave(random);
             riffBuilder.RythmPattern = BuildRythmPattern(random);
-            riffBuilder.Scale = BuildScaleChooser().BuildPreferedScale(random);
+            riffBuilder.Scale1 = BuildScaleChooser().BuildPreferedScale(random);
             riffBuilder.MidiInstrument = BuildPreferedMidiInstrument(random);
             riffBuilder.VelocityWave = BuildPitchOrVelocityWave(random);
             riffBuilder.MinimumVelocity = BuildMinimumVelocity(random);

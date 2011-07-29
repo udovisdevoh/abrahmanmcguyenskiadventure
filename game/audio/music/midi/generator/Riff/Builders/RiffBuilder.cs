@@ -44,7 +44,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Music scale
         /// </summary>
-        private Scale scale;
+        private Scale scale1;
+
+        /// <summary>
+        /// Music scale
+        /// </summary>
+        private Scale scale2;
 
         /// <summary>
         /// Mid pitch
@@ -110,6 +115,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// Facultative key to override (only works if IsOverrideKey)
         /// </summary>
         private int forcedModulationOffset;
+
+        private int scaleCycleLength;
         #endregion
 
         #region Public Methods
@@ -126,7 +133,7 @@ namespace AbrahmanAdventure.audio.midi.generator
                 throw new RiffBuilderException("Missing VelocityWave property");
             else if (rythmPattern == null)
                 throw new RiffBuilderException("Missing RythmPattern property");
-            else if (scale == null)
+            else if (scale1 == null)
                 throw new RiffBuilderException("Missing Scale property");
             else if (desiredRiffLength == -1)
                 throw new RiffBuilderException("Missing DesiredRiffLength property");
@@ -168,7 +175,11 @@ namespace AbrahmanAdventure.audio.midi.generator
                     if (currentPosition + currentNoteLength > DesiredRiffLength)
                         currentNoteLength = DesiredRiffLength - currentPosition;
 
-                    currentPitch = BuildPitch(currentPosition, pitchWave, scale, midPitch, radius, isDrum);
+                    
+                    if (IsAlternateScale(currentPosition))
+                        currentPitch = BuildPitch(currentPosition, pitchWave, scale2, midPitch, radius, isDrum);
+                    else
+                        currentPitch = BuildPitch(currentPosition, pitchWave, scale1, midPitch, radius, isDrum);
 
                     currentVelocity = BuildVelocity(currentPosition, velocityWave, minimumVelocity, maximumVelocity);
 
@@ -212,6 +223,19 @@ namespace AbrahmanAdventure.audio.midi.generator
             riff.Tempo = Tempo;
 
             return riff;
+        }
+
+        private bool IsAlternateScale(double position)
+        {
+            if (scaleCycleLength <= 0)
+                return false;
+
+            position = (int)Math.Floor(position);
+
+            while (position > scaleCycleLength * 2)
+                position -= scaleCycleLength * 2;
+
+            return position > scaleCycleLength;
         }
         #endregion
 
@@ -323,10 +347,19 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Desired scale
         /// </summary>
-        public Scale Scale
+        public Scale Scale1
         {
-            get { return scale; }
-            set { scale = value; }
+            get { return scale1; }
+            set { scale1 = value; }
+        }
+
+        /// <summary>
+        /// Desired scale
+        /// </summary>
+        public Scale Scale2
+        {
+            get { return scale2; }
+            set { scale2 = value; }
         }
 
         /// <summary>
@@ -336,6 +369,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         {
             get{return desiredRiffLength;}
             set { desiredRiffLength = value; }
+        }
+
+        public int ScaleCycleLength
+        {
+            get { return scaleCycleLength; }
+            set {scaleCycleLength = value;}
         }
 
         /// <summary>

@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.audio
 
         private static List<string> fastSnareNameList = null;
 
-        private static IRiff invincibilitySong = BuildSong(2048, 0, SongType.Invincibility);
+        private static IRiff invincibilitySong = BuildSong(3048, 0, SongType.Invincibility);
         #endregion
 
         #region Internal Methods
@@ -52,21 +52,22 @@ namespace AbrahmanAdventure.audio
             predefinedGenerator.IsOverrideTempo = true;
             predefinedGenerator.Tempo = random.Next(70 + skillLevel / 2, 140 + skillLevel);
             predefinedGenerator.Modulation = random.NextDouble() * 0.75 + 0.25;
-            predefinedGenerator.ScaleName = GetRandomScaleName(skillLevel, random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
+            predefinedGenerator.ScaleName1 = GetRandomScaleName(Math.Max(0,skillLevel - random.Next(0,3)), random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
+            predefinedGenerator.ScaleName2 = GetRandomScaleName(skillLevel + random.Next(0, 3), random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
-            double barDensity;
+            predefinedGenerator.ScaleCycleLength = (int)Math.Round(Math.Pow(2.0, (double)random.Next(0, 5)));
+            
+            songLength = random.Next(8, 17) * 2;
+            double barDensity = Math.Min(1.0, 0.5 + (((double)skillLevel) / 20.0));//0.5 for easy, 1.0 for hard)
+
 
             if (songType == SongType.Invincibility)
             {
                 barDensity = 1.0;
                 songLength = 4;
-                predefinedGenerator.ScaleName = "majorPentatonic";
+                predefinedGenerator.ScaleName1 = "majorPentatonic";
+                predefinedGenerator.ScaleName2 = "majorPentatonic";
                 predefinedGenerator.Tempo = 280;
-            }
-            else
-            {
-                barDensity = Math.Min(1.0, 0.5 + (((double)skillLevel) / 20.0));//0.5 for easy, 1.0 for hard)
-                songLength = random.Next(8, 17) * 2;
             }
 
             AddRandomTrack(predefinedGenerator, TrackType.Melody, songLength, predefinedGenerator.Tempo, barDensity, random);

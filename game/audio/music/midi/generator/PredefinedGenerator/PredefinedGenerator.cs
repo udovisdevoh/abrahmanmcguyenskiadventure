@@ -31,7 +31,12 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Scale's name
         /// </summary>
-        private string scaleName;
+        private string scaleName1;
+
+        /// <summary>
+        /// Scale's name
+        /// </summary>
+        private string scaleName2;
 
         /// <summary>
         /// Tempo
@@ -70,6 +75,8 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// Override default modulation offset
         /// </summary>
         private int forcedModulationOffset;
+
+        private int scaleCycleLength = 0;
         #endregion
 
         #region Constructor
@@ -83,7 +90,7 @@ namespace AbrahmanAdventure.audio.midi.generator
             isOverrideScale = false;
             tempo = 120;
             modulation = 0.15;
-            scaleName = "minorPentatonic";
+            scaleName1 = "minorPentatonic";
             trackList = new List<PredefinedGeneratorTrack>();
             for (int i = 0; i < maxTrackCount; i++)
                 trackList.Add(new PredefinedGeneratorTrack("",barCount));
@@ -123,10 +130,25 @@ namespace AbrahmanAdventure.audio.midi.generator
         /// <summary>
         /// Scale's name
         /// </summary>
-        public string ScaleName
+        public string ScaleName1
         {
-            get { return scaleName; }
-            set { scaleName = value; }
+            get { return scaleName1; }
+            set { scaleName1 = value; }
+        }
+
+        /// <summary>
+        /// Scale's name
+        /// </summary>
+        public string ScaleName2
+        {
+            get { return scaleName2; }
+            set { scaleName2 = value; }
+        }
+
+        public int ScaleCycleLength
+        {
+            get { return scaleCycleLength; }
+            set { scaleCycleLength = value; }
         }
 
         /// <summary>
