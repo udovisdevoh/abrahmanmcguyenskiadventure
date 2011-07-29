@@ -11,7 +11,7 @@ add mullet powerup (could be infinite powerup)
 when tiny: jump higher (just enough so head is same height as when jump as not tiny)
 
 
-add obese kids: shy guy behavior
+
 
 fix flashing in water
 
@@ -159,14 +159,6 @@ Miniboss?
 
 Monstres
 {
-	?Comportement de shy guy?
-	{
-		?Enfant obese (4*4 tile)
-		{
-			donne des coups de bedaine
-		}?
-	}
-	
 	Bosses
 	{
 		Tom Cruise

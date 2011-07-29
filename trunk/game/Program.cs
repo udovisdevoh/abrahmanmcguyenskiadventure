@@ -495,7 +495,7 @@ namespace AbrahmanAdventure
                     #endregion
 
                     #region We manage attack input logic
-                    //Attacking logic
+                    //Attacking logic and harvesting logic
                     playerSprite.IsTryThrowingBall = false;
                     if (userInput.isPressAttack)
                     {
@@ -505,13 +505,15 @@ namespace AbrahmanAdventure
                             {
                                 playerSprite.CarriedSprite = (AbstractSprite)playerSprite.IGround;
                                 playerSprite.CarriedSprite.IsImpassable = false;
-
+                                //playerSprite.CarriedSprite.IsAnnihilateOnExitScreen = true;
                                 playerSprite.CarriedSprite.AttackStrengthCollision = ((IHarvestable)playerSprite.CarriedSprite).ProjectileAttackStrengthCollision;
 
                                 if (playerSprite.CarriedSprite is MonsterSprite)
                                 {
                                     ((MonsterSprite)playerSprite.CarriedSprite).IsCanDoDamageToPlayerWhenTouched = false;
                                     ((MonsterSprite)playerSprite.CarriedSprite).IsDieOnTouchGround = true;
+                                    ((MonsterSprite)playerSprite.CarriedSprite).IsFullSpeedAfterBounceNoAi = true;
+                                    //((MonsterSprite)playerSprite.CarriedSprite).IsNoAiAlwaysBounce = true;
                                 }
 
                                 playerSprite.IGround = null;

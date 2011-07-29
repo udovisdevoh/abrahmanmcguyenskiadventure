@@ -534,6 +534,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsFullSpeedAfterBounceNoAi
         {
             get { return isFullSpeedAfterBounceNoAi; }
+            set { isFullSpeedAfterBounceNoAi = value; }
         }
 
         /// <summary>
