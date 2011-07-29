@@ -408,7 +408,7 @@ namespace AbrahmanAdventure
             if (isShowMenu)
             {
                 GameMenu.ParseUserInput(userInput, this);
-                GameMenu.ShowMenu(mainSurface, userInput);
+                GameMenu.ShowMenu(mainSurface, userInput, this);
             }
             else //Main game loop starts here
             {
