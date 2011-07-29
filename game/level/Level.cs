@@ -133,6 +133,21 @@ namespace AbrahmanAdventure.level
             foreach (Ground ground in this)
                 ground.ClearBeaverDestruction();
         }
+
+        /// <summary>
+        /// Regenerate ground textures
+        /// </summary>
+        internal void RenderGroundTextures()
+        {
+            #warning Must uncomment and implement
+            /*foreach (Ground ground in this)
+            {
+                if (ground.TopTexture != null)
+                    ground.TopTexture.RenderTexture();
+                if (ground.BottomTexture != null)
+                    ground.BottomTexture.RenderTexture();
+            }*/
+        }
         #endregion
 
         #region Private Methods
