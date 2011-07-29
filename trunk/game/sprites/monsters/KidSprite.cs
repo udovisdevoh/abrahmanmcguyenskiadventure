@@ -6,7 +6,7 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    class KidSprite : MonsterSprite, IMovingGround
+    class KidSprite : MonsterSprite, IMovingGround, IHarvestable
     {
         #region Fields and parts
         private static Surface standRight;
