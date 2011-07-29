@@ -25,7 +25,8 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="sortedVisibleSpriteList">visible sprite sorted list</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList)
+        /// <param name="playerSpriteReference">player sprite</param>
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
         {
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
@@ -59,7 +60,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (otherSprite is MonsterSprite)
                 {
-                    if (!otherSprite.PunchedCycle.IsFired)
+                    if (!otherSprite.PunchedCycle.IsFired && otherSprite != playerSpriteReference.CarriedSprite)
                     {
                         MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
                         if (!monsterSprite.KickedHelmetCycle.IsFired)

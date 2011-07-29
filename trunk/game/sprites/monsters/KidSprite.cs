@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Foor kid, he's fat because he ate too much trans fats.";
+        private const string tutorialComment = "You can throw the fat kid. Jump on him, crouch and keep attack pressed then release.";
         #endregion
 
         #region Constructors
@@ -94,7 +94,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildSubjectiveOccurenceProbability()
         {
-            //return 100.0;
+            return 100.0;
             return 0.35;
         }
 
@@ -270,7 +270,13 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return dead;
 
-
+            if (IsDieOnTouchGround)
+            {
+                if (IsTryingToWalkRight)
+                    return hitRight;
+                else
+                    return hitLeft;
+            }
 
             if (CurrentJumpAcceleration != 0 && !HitCycle.IsFired)
             {
@@ -305,6 +311,13 @@ namespace AbrahmanAdventure.sprites
                         return standLeft;
                 }
             }
+        }
+        #endregion
+
+        #region IHarvestable Membres
+        public double ProjectileAttackStrengthCollision
+        {
+            get { return 2.0; }
         }
         #endregion
     }

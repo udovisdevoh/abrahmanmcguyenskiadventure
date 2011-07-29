@@ -584,6 +584,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsCanDoDamageToPlayerWhenTouched
         {
             get { return isCanDoDamageToPlayerWhenTouched; }
+            set { isCanDoDamageToPlayerWhenTouched = value; }
         }
 
         /// <summary>
@@ -640,6 +641,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsDieOnTouchGround
         {
             get { return isDieOnTouchGround; }
+            set { isDieOnTouchGround = value; }
         }
 
         /// <summary>

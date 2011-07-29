@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// Manages collisions between fireball and monsters
         /// </summary>
-        private FireBallToMonsterCollisionManager fireBallToMonsterCollisionManager = new FireBallToMonsterCollisionManager();
+        private PlayerProjectileToMonsterCollisionManager playerProjectileToMonsterCollisionManager = new PlayerProjectileToMonsterCollisionManager();
 
         /// <summary>
         /// Manages explosive sprites
@@ -133,7 +133,7 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate is IFlyingOnEqualDistance)
                 flyingSpriteManager.Update((IFlyingOnEqualDistance)spriteToUpdate, playerSpriteReference, timeDelta);
             else
-                gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList);
+                gravityManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, playerSpriteReference);
 
             if (spriteToUpdate.IsFullGravityOnNextFrame)
                 gravityManager.ApplyFullGravityForce(spriteToUpdate, level, visibleSpriteList);
@@ -149,7 +149,7 @@ namespace AbrahmanAdventure.physics
 
                 if (spriteToUpdate is PlayerSprite)
                 {
-                    battleManager.Update(spriteToUpdate, level, timeDelta, sortedVisibleSpriteList);
+                    battleManager.Update(spriteToUpdate, level, timeDelta, sortedVisibleSpriteList, playerSpriteReference);
                     if (((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.Increment(timeDelta);
 
@@ -202,7 +202,11 @@ namespace AbrahmanAdventure.physics
             }
             else if (spriteToUpdate is FireBallSprite)
             {
-                fireBallToMonsterCollisionManager.Update((FireBallSprite)spriteToUpdate, level, visibleSpriteList);
+                playerProjectileToMonsterCollisionManager.Update(spriteToUpdate, level, visibleSpriteList);
+            }
+            else if (spriteToUpdate is IHarvestable && spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsDieOnTouchGround)
+            {
+                playerProjectileToMonsterCollisionManager.Update(spriteToUpdate, level, visibleSpriteList);
             }
 
             if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive && visibleSpriteList.Contains(spriteToUpdate))

@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.physics
     /// <summary>
     /// Manages collisions between fireball and monster
     /// </summary>
-    class FireBallToMonsterCollisionManager
+    class PlayerProjectileToMonsterCollisionManager
     {
         /// <summary>
         /// Manages collisions between fireball and monster
@@ -19,21 +19,21 @@ namespace AbrahmanAdventure.physics
         /// <param name="fireBallSprite">fire ball</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
-        internal void Update(FireBallSprite fireBallSprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(AbstractSprite projectile, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
-            if (!fireBallSprite.IsAlive)
+            if (!projectile.IsAlive)
                 return;
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (fireBallSprite != otherSprite && !(otherSprite is PlayerSprite) && !(otherSprite is FireBallSprite) && !otherSprite.HitCycle.IsFired)
+                if (projectile != otherSprite && !(otherSprite is PlayerSprite) && !(otherSprite is FireBallSprite) && !otherSprite.HitCycle.IsFired)
                 {
-                    if (otherSprite is MonsterSprite && !(otherSprite is BeaverSprite) && Physics.IsDetectCollision(fireBallSprite, otherSprite))
+                    if (otherSprite is MonsterSprite && !(otherSprite is BeaverSprite) && Physics.IsDetectCollision(projectile, otherSprite))
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
-                        fireBallSprite.IsAlive = false;
-                        otherSprite.CurrentDamageReceiving = fireBallSprite.AttackStrengthCollision;
+                        projectile.IsAlive = false;
+                        otherSprite.CurrentDamageReceiving = projectile.AttackStrengthCollision;
                     }
                 }
             }
