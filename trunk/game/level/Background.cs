@@ -35,12 +35,22 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Height of the background (in pixels)
         /// </summary>
-        public static int backgroundHeight = Program.screenHeight * screenRowCount;
+        private int backgroundHeight;
 
         /// <summary>
         /// Width of the background (in pixels)
         /// </summary>
-        private static int backgroundWidth = Program.screenWidth * screenColumnCount;
+        private int backgroundWidth;
+
+        private AbstractWave horizontalWaveHue;
+
+        private AbstractWave horizontalWaveSaturation;
+
+        private AbstractWave horizontalWaveLightness;
+
+        private AbstractWave verticalWave;
+
+        private ColorHsl colorHsl;
         #endregion
 
         #region Constructor
@@ -51,49 +61,59 @@ namespace AbrahmanAdventure.level
         /// <param name="colorHsl">HSL color</param>
         public Background(Random random, ColorHsl colorHsl)
         {
-            AbstractWave horizontalWaveHue = BuildWave(random);
-            AbstractWave horizontalWaveSaturation = BuildWave(random);
-            AbstractWave horizontalWaveLightness = BuildWave(random);
-            AbstractWave verticalWave = BuildWave(random);
+            this.colorHsl = colorHsl;
+            horizontalWaveHue = BuildWave(random);
+            horizontalWaveSaturation = BuildWave(random);
+            horizontalWaveLightness = BuildWave(random);
+            verticalWave = BuildWave(random);
+            RenderSurface();
+        }
+        #endregion
 
+        #region Internal Methods
+        /// <summary>
+        /// Render the surface from the waves
+        /// </summary>
+        internal void RenderSurface()
+        {
+            backgroundWidth = Program.screenWidth * screenColumnCount;
+            backgroundHeight = Program.screenHeight * screenRowCount;
 
-            surface = new Surface(backgroundWidth,backgroundHeight,Program.bitDepth);
-            
+            surface = new Surface(backgroundWidth, backgroundHeight, Program.bitDepth);
             Surface column = null;
-            
             for (int x = 0; x < backgroundWidth; x++)
             {
-            	double relativeX = (double)x / (double)Program.screenWidth * 640.0;
-            	double verticalWaveOffset = verticalWave[relativeX] / 4.0;
-            	
-            	if (column == null)
-            	{
-            		column = new Surface(1, backgroundHeight,Program.bitDepth);
-	            	for (int y = 0; y < backgroundHeight; y++)
-	            	{
+                double relativeX = (double)x / (double)Program.screenWidth * 640.0;
+                double verticalWaveOffset = verticalWave[relativeX] / 4.0;
+
+                if (column == null)
+                {
+                    column = new Surface(1, backgroundHeight, Program.bitDepth);
+                    for (int y = 0; y < backgroundHeight; y++)
+                    {
                         double currentHue = colorHsl.Hue;
                         double currentSaturation = colorHsl.Saturation;
                         double currentLightness = colorHsl.Lightness;
-	            		double relativeY = (double)y / (double)Program.screenHeight * 480.0;
-           		
-	            		currentHue += horizontalWaveHue[relativeY];
-	            		currentSaturation += horizontalWaveSaturation[relativeY];
-	            		currentLightness += horizontalWaveLightness[relativeY];
-	            		
-	            		currentHue = Math.Max(0, currentHue);
-	            		currentSaturation = Math.Max(0, currentSaturation);
-	            		currentLightness = Math.Max(0, currentLightness);
-	            		
-	            		currentHue = Math.Min(255, currentHue);
-	            		currentSaturation = Math.Min(255, currentSaturation);
-	            		currentLightness = Math.Min(255, currentLightness);
-	            		
-	            		Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
-	            		column.Fill(new Rectangle(0,y,1,1), color);
-            		}
-            	}
+                        double relativeY = (double)y / (double)Program.screenHeight * 480.0;
 
-            	surface.Blit(column,new Point(x,(int)verticalWaveOffset), column.GetRectangle());
+                        currentHue += horizontalWaveHue[relativeY];
+                        currentSaturation += horizontalWaveSaturation[relativeY];
+                        currentLightness += horizontalWaveLightness[relativeY];
+
+                        currentHue = Math.Max(0, currentHue);
+                        currentSaturation = Math.Max(0, currentSaturation);
+                        currentLightness = Math.Max(0, currentLightness);
+
+                        currentHue = Math.Min(255, currentHue);
+                        currentSaturation = Math.Min(255, currentSaturation);
+                        currentLightness = Math.Min(255, currentLightness);
+
+                        Color color = ColorTheme.ColorFromHSV(currentHue, currentSaturation / 256.0, currentLightness / 256.0);
+                        column.Fill(new Rectangle(0, y, 1, 1), color);
+                    }
+                }
+
+                surface.Blit(column, new Point(x, (int)verticalWaveOffset), column.GetRectangle());
             }
         }
         #endregion
@@ -125,6 +145,16 @@ namespace AbrahmanAdventure.level
         public Surface Surface
         {
             get { return surface; }
+        }
+
+        public int BackgroundHeight
+        {
+            get { return backgroundHeight; }
+        }
+
+        public int BackgroundWidth
+        {
+            get { return backgroundWidth; }
         }
         #endregion
     }

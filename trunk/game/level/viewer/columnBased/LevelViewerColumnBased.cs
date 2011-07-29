@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.level
             int zoneColumnIndex = -((int)(viewOffsetX) / Program.totalZoneWidth);
             double offsetXPerZone = viewOffsetX % (double)Program.totalZoneWidth;
 
-            mainSurface.Blit(background.Surface, new Point(0,Background.backgroundHeight / -4), background.Surface.GetRectangle());
+            mainSurface.Blit(background.Surface, new Point(0,background.BackgroundHeight / -4), background.Surface.GetRectangle());
             
             for (int currentZoneOffset = -Program.terrainColumnBufferLeftCount; currentZoneOffset < Program.terrainColumnBufferRightCount; currentZoneOffset++)
             {

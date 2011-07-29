@@ -42,7 +42,9 @@ namespace AbrahmanAdventure.hud
             PersistentConfig.ScreenWidth = Program.screenWidth;
             PersistentConfig.ScreenHeight = Program.screenHeight;
             program.LevelViewer.ClearCache();
-            program.GameState.IsExpired = true;
+            program.GameState.IsPlayerReady = false;
+            program.GameState.Level.RenderGroundTextures();
+            program.GameState.Background.RenderSurface();
             program.InitSurfaceViewPortRatioSettingsEtc();
             SpriteDispatcher.PreCacheSpriteSurfaces();
         }

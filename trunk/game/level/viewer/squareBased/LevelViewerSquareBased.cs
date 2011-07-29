@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.level
         /// <param name="waterInfo">waterInfo</param>
         public void Update(Level level, ColorTheme colorTheme, Background background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
-            mainSurface.Blit(background.Surface, new Point(0, Background.backgroundHeight / -4), background.Surface.GetRectangle());
+            mainSurface.Blit(background.Surface, new Point(0, background.BackgroundHeight / -4), background.Surface.GetRectangle());
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);

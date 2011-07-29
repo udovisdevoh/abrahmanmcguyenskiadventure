@@ -176,13 +176,13 @@ namespace AbrahmanAdventure.hud
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
 
-                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 5));
+                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
 
-                if (program.GameState != null)
+                /*if (program.GameState != null)
                 {
                     mainSurface.Blit(GetFontText("The level will be restarted"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 3));
                     mainSurface.Blit(GetFontText("if you change the resolution"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
-                }
+                }*/
 
                 string isFullScreenText = (Program.isFullScreen) ? "on" : "off";
                 string resolutionText = Program.screenWidth + " x " + Program.screenHeight;
