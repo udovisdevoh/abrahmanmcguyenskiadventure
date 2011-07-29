@@ -17,8 +17,9 @@ namespace AbrahmanAdventure.physics
         /// Update jumping logic
         /// </summary>
         /// <param name="sprite">sprite</param>
+        /// <param name="playerSpriteReference">player sprite reference</param>
         /// <param name="timeDelta">time delta</param>
-        internal void Update(AbstractSprite sprite, double timeDelta)
+        internal void Update(AbstractSprite sprite, PlayerSprite playerSpriteReference, double timeDelta)
         {
             if (sprite is StaticSprite)
                 return;
@@ -27,6 +28,9 @@ namespace AbrahmanAdventure.physics
                 StartOrContinueJump(sprite, timeDelta);
 
             sprite.JumpingCycle.Increment(timeDelta / Math.Max(sprite.MaximumWalkingHeight, sprite.CurrentWalkingSpeed));
+
+            if (sprite is IMovingGround && playerSpriteReference.IGround == sprite)
+                playerSpriteReference.YPosition = sprite.TopBound;
         }
         #endregion
 

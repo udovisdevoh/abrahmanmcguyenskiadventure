@@ -6,7 +6,7 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    class KidSprite : MonsterSprite
+    class KidSprite : MonsterSprite, IMovingGround
     {
         #region Fields and parts
         private static Surface standRight;
@@ -39,6 +39,7 @@ namespace AbrahmanAdventure.sprites
         public KidSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
+
             if (standRight == null)
             {
                 standRight = BuildSpriteSurface("./assets/rendered/kid/kidStand.png");
@@ -68,17 +69,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingAcceleration()
         {
-            return 0.15;
+            return 0.14;
         }
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.27;
+            return 0.15;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.65;
+            return 0.45;
         }
 
         protected override double BuildStartingJumpAcceleration()
@@ -93,12 +94,13 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildSubjectiveOccurenceProbability()
         {
-            return 0.27;
+            return 100.0;
+            //return 0.27;
         }
 
         protected override double BuildWidth(Random random)
         {
-            return 1.34;
+            return 1.3;
         }
 
         protected override double BuildHeight(Random random)
