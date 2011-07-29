@@ -12,6 +12,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal static class IGroundHelper
     {
+        #region Private Methods
         /// <summary>
         /// Highest ground below sprite
         /// </summary>
@@ -148,7 +149,7 @@ namespace AbrahmanAdventure.physics
         /// <returns></returns>
         internal static bool IsTransparentAt(double waveOutputY, WaterInfo waterInfo, Ground ground, Level level, double x)
         {
-            return ground.IsTransparent && (waterInfo == null || waveOutputY < waterInfo.Height) && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
+            return ground.IsTransparent && IsSlopeWalkable(ground, x, waveOutputY) && (waterInfo == null || waveOutputY < waterInfo.Height) && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
         }
         
         /// <summary>
@@ -329,5 +330,13 @@ namespace AbrahmanAdventure.physics
             }
             return highestGround;
         }
+        #endregion
+
+        #region Private Methods
+        private static bool IsSlopeWalkable(Ground ground, double x, double waveOutputY)
+        {
+            return Math.Abs(waveOutputY - ground[x + Program.collisionDetectionResolution]) < 1.0 && Math.Abs(waveOutputY - ground[x - Program.collisionDetectionResolution]) < 1.0;
+        }
+        #endregion
     }
 }
