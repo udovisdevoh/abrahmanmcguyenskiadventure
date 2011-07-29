@@ -515,7 +515,7 @@ namespace AbrahmanAdventure
                                     ((MonsterSprite)playerSprite.CarriedSprite).IsFullSpeedAfterBounceNoAi = true;
                                     //((MonsterSprite)playerSprite.CarriedSprite).IsNoAiAlwaysBounce = true;
                                 }
-
+                                SoundManager.PlayHarvestSound();
                                 playerSprite.IGround = null;
                             }
                             else
@@ -529,8 +529,8 @@ namespace AbrahmanAdventure
                                     SoundManager.PlayAttemptSound();
                                     playerSprite.AttackingCycle.Fire();
                                 }
-                                playerSprite.IsNeedToAttackAgain = true;
                             }
+                            playerSprite.IsNeedToAttackAgain = true;
                         }
                     }
                     else
