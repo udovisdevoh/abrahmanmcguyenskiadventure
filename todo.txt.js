@@ -1,9 +1,3 @@
-si ground transparent
-{
-	soit on peut traverser les murs 
-	soit on voit la délimitation des murs (une genre de ligne
-}
-
 ?create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
