@@ -21,7 +21,12 @@ namespace AbrahmanAdventure.hud
         #region Constructor
         static PersistentConfig()
         {
-            configFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "abrahmanConfig.xml");
+            string configDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AbrahmanAdventure");
+
+            if (!Directory.Exists(configDirectory))
+                Directory.CreateDirectory(configDirectory);
+
+            configFileName = Path.Combine(configDirectory, "abrahmanConfig.xml");
 
             xmlDocument = new XmlDocument();
             if (File.Exists(configFileName))
@@ -46,6 +51,9 @@ namespace AbrahmanAdventure.hud
             Program.isFullScreen = IsFullScreen;
             Program.screenWidth = ScreenWidth;
             Program.screenHeight = ScreenHeight;
+            program.UserInput.attackButton = AttackButton;
+            program.UserInput.jumpButton = JumpButton;
+            program.UserInput.leaveBeaverButton = LeaveBeaverButton;
             program.InitSurfaceViewPortRatioSettingsEtc();
         }
         #endregion
