@@ -189,19 +189,7 @@ namespace AbrahmanAdventure
 
             #region Some pre-caching
             SoundManager.PreCache();
-            Random spriteCachingRandom = new Random();
-            MushroomSprite mushroom = new MushroomSprite(0, 0, spriteCachingRandom);
-            PeyoteSprite peyote = new PeyoteSprite(0, 0, spriteCachingRandom);
-            RastaHatSprite rastaHat = new RastaHatSprite(0, 0, spriteCachingRandom);
-            MusicNoteSprite musicNote = new MusicNoteSprite(0, 0, spriteCachingRandom);
-            WhiskySprite whisky = new WhiskySprite(0, 0, spriteCachingRandom);
-            ExplosionSprite explosion = new ExplosionSprite(0, 0, spriteCachingRandom);
-            HelmetSprite helmet = new HelmetSprite(0, 0, spriteCachingRandom, true);
-            BibleSprite bible = new BibleSprite(0, 0, spriteCachingRandom);
-            CrystalBallSprite crystalBall = new CrystalBallSprite(0, 0, spriteCachingRandom);
-            PillSprite pill = new PillSprite(0, 0, spriteCachingRandom);
-            BeaverSprite beaverSprite = new BeaverSprite(0, 0, spriteCachingRandom);
-            CornSprite cornSprite = new CornSprite(0, 0, spriteCachingRandom);
+            SpriteDispatcher.PreCacheSpriteSurfaces();
             //levelViewer.PreCache(level);
             #endregion
         }
