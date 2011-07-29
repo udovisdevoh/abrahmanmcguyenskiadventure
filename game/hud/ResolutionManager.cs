@@ -44,6 +44,7 @@ namespace AbrahmanAdventure.hud
             program.LevelViewer.ClearCache();
             program.GameState.IsExpired = true;
             program.InitSurfaceViewPortRatioSettingsEtc();
+            SpriteDispatcher.PreCacheSpriteSurfaces();
         }
         #endregion
     }
