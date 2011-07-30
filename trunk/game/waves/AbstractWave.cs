@@ -126,6 +126,20 @@ namespace AbrahmanAdventure.level
         {
             return (this[x - resolution] - this[x]) * tangentNormalizationMultiplicator + tangentNormalizationOffset;
         }
+
+        internal double GetHighestJumpingStep(double leftBound, double rightBound)
+        {
+            double highestJumpingStep = 0;
+            double walkingResolution = 0.25;
+            for (double x = leftBound; x <= rightBound; x += walkingResolution)
+            {
+                double currentJumpingStep = Math.Abs(this[x] - this[x + walkingResolution]);
+                if (currentJumpingStep > highestJumpingStep)
+                    highestJumpingStep = currentJumpingStep;
+            }
+
+            return highestJumpingStep;
+        }
         #endregion
     }
 }
