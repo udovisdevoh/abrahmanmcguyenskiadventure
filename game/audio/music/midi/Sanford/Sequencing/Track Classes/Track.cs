@@ -197,9 +197,7 @@ namespace AbrahmanAdventure.audio.midi
 
             #endregion
 
-#if(DEBUG)
             int oldCount = Count;
-#endif
 
             count += trk.Count - 1;
 
