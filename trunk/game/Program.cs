@@ -494,8 +494,7 @@ namespace AbrahmanAdventure
                     playerSprite.IsTryDigGround = playerSprite.IsCrouch && userInput.isPressAttack && playerSprite.IsBeaver && !playerSprite.IsNeedToAttackAgain;
                     #endregion
 
-                    #region We manage attack input logic
-                    //Attacking logic and harvesting logic
+                    #region We manage attack (and harvesting) input logic
                     playerSprite.IsTryThrowingBall = false;
                     if (userInput.isPressAttack)
                     {
@@ -513,6 +512,7 @@ namespace AbrahmanAdventure
                                     ((MonsterSprite)playerSprite.CarriedSprite).IsCanDoDamageToPlayerWhenTouched = false;
                                     ((MonsterSprite)playerSprite.CarriedSprite).IsDieOnTouchGround = true;
                                     ((MonsterSprite)playerSprite.CarriedSprite).IsFullSpeedAfterBounceNoAi = true;
+                                    ((MonsterSprite)playerSprite.CarriedSprite).IsNoAiChangeDirectionWhenStucked = false;
                                     //((MonsterSprite)playerSprite.CarriedSprite).IsNoAiAlwaysBounce = true;
                                 }
                                 SoundManager.PlayHarvestSound();

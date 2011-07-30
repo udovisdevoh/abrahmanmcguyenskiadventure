@@ -594,6 +594,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsNoAiChangeDirectionWhenStucked
         {
             get { return isNoAiChangeDirectionWhenStucked; }
+            set { isNoAiChangeDirectionWhenStucked = value; }
         }
 
         /// <summary>
