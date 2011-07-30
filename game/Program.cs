@@ -91,6 +91,8 @@ namespace AbrahmanAdventure
 
         public const double monsterDensityAdjustment = 0.5;
 
+        public const double maximumAllowedJumpingStep = 3.5;
+
         public static double zoneWidthScreenCount = 0.025;
 
         public static double collisionDetectionResolution = 0.0625;

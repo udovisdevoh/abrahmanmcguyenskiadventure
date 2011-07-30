@@ -76,9 +76,12 @@ namespace AbrahmanAdventure.level
             {
                 AbstractWave wave;
                 wave = WaveBuilder.BuildWavePack(random);
-
                 double normalizationFactor = (random.NextDouble() * 20) + 4;
                 wave.Normalize(normalizationFactor, false);
+
+                double highestJumpingStep = wave.GetHighestJumpingStep(leftBound,rightBound);
+                if (highestJumpingStep > Program.maximumAllowedJumpingStep)
+                    wave.Normalize(normalizationFactor / highestJumpingStep * Program.maximumAllowedJumpingStep);
 
                 BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i, leftBound, rightBound, leftBoundType, rightBoundType);
             }
