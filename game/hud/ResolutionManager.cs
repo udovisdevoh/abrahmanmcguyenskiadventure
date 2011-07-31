@@ -54,6 +54,7 @@ namespace AbrahmanAdventure.hud
                 program.GameState.IsExpired = true;
             SurfaceSizeCache.Clear();
             ClearAllCachedSpriteSurfaces();
+            SpriteGuide.ClearSpriteList();
             //RenderAllSpriteSurfaces();
             SpriteDispatcher.PreCacheSpriteSurfaces();
             GC.Collect();

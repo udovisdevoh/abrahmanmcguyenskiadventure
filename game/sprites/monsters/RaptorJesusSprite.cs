@@ -32,7 +32,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Beware rapture Jesus!";
+        private const string tutorialComment = "Beware of the raptor Jesus!";
         #endregion
 
         #region Constructors

@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Hey! You've got the beaver! Hop on so you can eat stuff and grind the ground when you're crouched.";
+        private const string tutorialComment = "Hop on, eat things, grind the ground when crouched.";
         #endregion
 
         #region Constructor

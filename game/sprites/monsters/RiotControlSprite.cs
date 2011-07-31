@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Beware of riot control police repression! Un coodmahtrak, sah fraap an tahbahrnahk!";
+        private const string tutorialComment = "Beware of riot control police repression!";
         #endregion
 
         #region Constructors

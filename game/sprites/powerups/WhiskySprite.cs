@@ -28,7 +28,7 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface scotch8;
 
-        private static string tutorialComment = "Hey! Drink the whisky and become invincible.";
+        private static string tutorialComment = "Drink the whisky and become invincible.";
 
         /// <summary>
         /// Cycle of growth
