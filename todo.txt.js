@@ -1,3 +1,8 @@
+inverted ground -> roof: for some underground (and fortress) levels
+background: texture (for some underground (and fortress) levels)
+
+
+
 ?create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
 
