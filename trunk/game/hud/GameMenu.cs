@@ -160,17 +160,35 @@ namespace AbrahmanAdventure.hud
             }
             else if (currentSubMenu == SubMenu.HowTo)
             {
-                mainSurface.Fill(System.Drawing.Color.Black);
+                mainSurface.Fill(System.Drawing.Color.White);
 
-                mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                mainSurface.Blit(GetFontText("How to play", System.Drawing.Color.Black), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
 
-                mainSurface.Blit(GetFontText("Arrows: (move)", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
-                mainSurface.Blit(GetFontText("Space: Jump", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
-                mainSurface.Blit(GetFontText("Ctrl: Attack / run / grab / dig", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
-                mainSurface.Blit(GetFontText("Alt: Jump out of beaver", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));                
-               
-                mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
-                mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                if (currentMenuPositionX < 0)
+                    currentMenuPositionX = SpriteGuide.SpriteList.Count;
+                else if (currentMenuPositionX > SpriteGuide.SpriteList.Count)
+                    currentMenuPositionX = 0;
+
+                if (currentMenuPositionX == 0)
+                {
+                    mainSurface.Blit(GetFontText("Arrows: (move)", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                    mainSurface.Blit(GetFontText("Space: Jump", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                    mainSurface.Blit(GetFontText("Ctrl: Attack / run / grab / dig", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                    mainSurface.Blit(GetFontText("Alt: Jump out of beaver", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+                    mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
+                    mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                }
+                else
+                {
+                    AbstractSprite spriteFromGuide = SpriteGuide.SpriteList[currentMenuPositionX - 1];
+                    System.Drawing.Color color = (spriteFromGuide is MonsterSprite && (spriteFromGuide is IExplodable || (((MonsterSprite)spriteFromGuide).IsCanDoDamageToPlayerWhenTouched && ((MonsterSprite)spriteFromGuide).AttackStrengthCollision > 0))) ? System.Drawing.Color.Red : System.Drawing.Color.Green;
+                    double xOffsetSprite, yOffsetSprite;
+                    Surface spriteSurface = spriteFromGuide.GetCurrentSurface(out xOffsetSprite, out yOffsetSprite);
+                    mainSurface.Blit(spriteSurface, new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1), spriteSurface.GetRectangle());
+                    mainSurface.Blit(GetFontText(spriteFromGuide.TutorialComment, color), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 10));
+                }
+
+                mainSurface.Blit(GetFontText("< Page " + (currentMenuPositionX + 1) + " of " + (SpriteGuide.Count + 1) + ">", System.Drawing.Color.Blue), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 13));
             }
             else if (currentSubMenu == SubMenu.Display)
             {
@@ -572,6 +590,7 @@ namespace AbrahmanAdventure.hud
                         break;
                     case 7:
                         currentMenuPositionY = 0;
+                        currentMenuPositionX = 0;
                         currentSubMenu = SubMenu.HowTo;
                         break;
                     case 8:

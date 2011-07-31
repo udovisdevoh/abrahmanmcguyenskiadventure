@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Don't let the pedophile priest touch your weener!";
+        private const string tutorialComment = "Don't let the pedophile priest touch your wiener!";
         #endregion
 
         #region Constructors

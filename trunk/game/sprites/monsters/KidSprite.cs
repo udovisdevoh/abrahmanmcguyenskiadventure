@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "You can throw the fat kid. Jump on him, crouch and keep attack pressed then release.";
+        private const string tutorialComment = "Throw: Jump on, crouch, keep attack pressed, release.";
         #endregion
 
         #region Constructors

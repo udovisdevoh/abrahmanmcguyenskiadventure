@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Hey! Get the mescaline peyote and throw fire balls.";
+        private const string tutorialComment = "Get the mescaline peyote and throw fire balls.";
         #endregion
 
         #region Constructor
