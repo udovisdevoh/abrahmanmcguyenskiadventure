@@ -144,76 +144,11 @@ namespace AbrahmanAdventure.level
                 Color waveColor = colorTheme.GetColor(themeColorId);
                 themeColorId--;
 
-                for (int x = 0; x < zoneWidth; x++)
-                {
-                    double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
-                    double waveOutputY = ground[waveInputX];
-
-                    int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
-
-                    if (waveOutputY > (double)(zoneY + Program.squareZoneTileHeight))
-                        continue;
-                    else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX, zoneY))
-                        continue;
-
-                    int groundYOnTile;
-
-                    groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
-
-                    #region Bottom Texture
-                    if (IGroundHelper.IsTransparentAt(waveOutputY, waterInfo, ground, level, waveInputX))
-                    {
-                        zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), transparentColor);
-                    }
-                    else
-                    {
-                        if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
-                        {
-                            textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
-
-                            int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
-                            int bottomSurfacePositionY = (groundYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
-                            
-                            int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
-
-                        DrawBottomTextureAgain:
-                            if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
-                                zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1,bottomSurfaceHeight));
-
-                            if (bottomSurfacePositionY + bottomSurfaceHeight < zoneHeight)
-                            {
-                                bottomSurfacePositionY += bottomSurfaceHeight;
-                                goto DrawBottomTextureAgain;
-                            }
-                        }
-                        else
-                        {
-                            zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), waveColor);
-                        }
-                    }
-                    #endregion
-
-                    #region Top texture
-                    if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
-                    {
-                        double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0 : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
-                        Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
-                        if (scaledSurface == null)
-                        {
-                            scaledSurface = ground.TopTexture.Surface.CreateScaledSurface(1.0, scaling);
-                            ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
-                        }
-                        if (groundYOnTile >= 0 || groundYOnTile + scaledSurface.GetHeight() <= zoneHeight)
-                            zoneSurface.Blit(scaledSurface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
-                    }
-                    else
-                    {
-                        if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
-                            zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
-                    }
-                    #endregion
-                }
+                DrawGround(zoneSurface, ground, waveColor, zoneX, zoneY, zoneWidth, zoneHeight, level, waterInfo);
             }
+
+            if (level.Ceiling != null)
+                DrawCeiling(zoneSurface, level.Ceiling, colorTheme.GetColor(level.Count - 1), zoneX, zoneY, zoneWidth, zoneHeight, level, waterInfo);
 
             #region Water
             if (waterInfo != null && waterInfo.Height <= zoneY + Program.squareZoneTileHeight)
@@ -284,6 +219,167 @@ namespace AbrahmanAdventure.level
         private Rectangle GetZoneRectangle()
         {
             return new Rectangle(0, 0, Program.tileSize * Program.squareZoneTileWidth, Program.tileSize * Program.squareZoneTileHeight);
+        }
+
+        /// <summary>
+        /// Draw ground on zone's surface
+        /// </summary>
+        /// <param name="zoneSurface">zone's surface</param>
+        /// <param name="ground">ground</param>
+        /// <param name="waveColor">wave's color</param>
+        /// <param name="zoneX">zone's X coordinates</param>
+        /// <param name="zoneY">zone's Y coordinates</param>
+        /// <param name="zoneWidth">zone's width</param>
+        /// <param name="zoneHeight">zone's height</param>
+        /// <param name="level">level</param>
+        /// <param name="waterInfo">info about water</param>
+        private void DrawGround(Surface zoneSurface, Ground ground, Color waveColor, int zoneX, int zoneY, int zoneWidth, int zoneHeight, Level level, WaterInfo waterInfo)
+        {
+            for (int x = 0; x < zoneWidth; x++)
+            {
+                double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
+                double waveOutputY = ground[waveInputX];
+
+                int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
+
+                if (waveOutputY > (double)(zoneY + Program.squareZoneTileHeight))
+                    continue;
+                else if (!IGroundHelper.IsHigherThanOtherGroundsInFront(ground, level, waveInputX, zoneY))
+                    continue;
+
+                int groundYOnTile;
+
+                groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
+
+                #region Bottom Texture
+                if (IGroundHelper.IsTransparentAt(waveOutputY, waterInfo, ground, level, waveInputX))
+                {
+                    zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), transparentColor);
+                }
+                else
+                {
+                    if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                    {
+                        textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
+
+                        int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
+                        int bottomSurfacePositionY = (groundYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
+
+                        int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
+
+                    DrawBottomTextureAgain:
+                        if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
+                            zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, bottomSurfaceHeight));
+
+                        if (bottomSurfacePositionY + bottomSurfaceHeight < zoneHeight)
+                        {
+                            bottomSurfacePositionY += bottomSurfaceHeight;
+                            goto DrawBottomTextureAgain;
+                        }
+                    }
+                    else
+                    {
+                        zoneSurface.Fill(new Rectangle(x, Math.Max(0, groundYOnTile), 1, zoneHeight), waveColor);
+                    }
+                }
+                #endregion
+
+                #region Top texture
+                if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
+                {
+                    double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0 : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
+                    Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
+                    if (scaledSurface == null)
+                    {
+                        scaledSurface = ground.TopTexture.Surface.CreateScaledSurface(1.0, scaling);
+                        ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
+                    }
+                    if (groundYOnTile >= 0 || groundYOnTile + scaledSurface.GetHeight() <= zoneHeight)
+                        zoneSurface.Blit(scaledSurface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
+                }
+                else
+                {
+                    if (groundYOnTile >= 0 || groundYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
+                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
+                }
+                #endregion
+            }
+        }
+
+        /// <summary>
+        /// Draw ceiling on zone's surface
+        /// </summary>
+        /// <param name="zoneSurface">zone's surface</param>
+        /// <param name="ground">ground</param>
+        /// <param name="waveColor">wave's color</param>
+        /// <param name="zoneX">zone's X coordinates</param>
+        /// <param name="zoneY">zone's Y coordinates</param>
+        /// <param name="zoneWidth">zone's width</param>
+        /// <param name="zoneHeight">zone's height</param>
+        /// <param name="level">level</param>
+        /// <param name="waterInfo">info about water</param>
+        private void DrawCeiling(Surface zoneSurface, Ground ground, Color waveColor, int zoneX, int zoneY, int zoneWidth, int zoneHeight, Level level, WaterInfo waterInfo)
+        {
+            for (int x = 0; x < zoneWidth; x++)
+            {
+                double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
+                double waveOutputY = ground[waveInputX];
+
+                int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
+
+                if (waveOutputY > (double)(zoneY + Program.squareZoneTileHeight))
+                    continue;
+
+                int ceilingYOnTile;
+
+                ceilingYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
+
+                #region Bottom Texture
+                if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                {
+                    textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
+
+                    int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
+                    int bottomSurfacePositionY = (ceilingYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
+
+                    int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
+
+                DrawBottomTextureAgain:
+                    if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
+                        zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, bottomSurfaceHeight));
+
+                    if (bottomSurfacePositionY + bottomSurfaceHeight < zoneHeight)
+                    {
+                        bottomSurfacePositionY += bottomSurfaceHeight;
+                        goto DrawBottomTextureAgain;
+                    }
+                }
+                else
+                {
+                    zoneSurface.Fill(new Rectangle(x, Math.Max(0, ceilingYOnTile), 1, zoneHeight), waveColor);
+                }
+                #endregion
+
+                #region Top texture
+                if (Program.isUseTopTextureThicknessScaling && ground.IsUseTopTextureThicknessScaling)
+                {
+                    double scaling = (Program.isUseWaveValueCache) ? ground.TopTexture.HorizontalThicknessWave.GetCachedValue(textureInputX) + 2.0 : ground.TopTexture.HorizontalThicknessWave[textureInputX] + 2.0;
+                    Surface scaledSurface = ground.TopTexture.GetCachedScaledSurface(scaling);
+                    if (scaledSurface == null)
+                    {
+                        scaledSurface = ground.TopTexture.Surface.CreateScaledSurface(1.0, scaling);
+                        ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
+                    }
+                    if (ceilingYOnTile >= 0 || ceilingYOnTile + scaledSurface.GetHeight() <= zoneHeight)
+                        zoneSurface.Blit(scaledSurface, new Point(x, ceilingYOnTile), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
+                }
+                else
+                {
+                    if (ceilingYOnTile >= 0 || ceilingYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
+                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, ceilingYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
+                }
+                #endregion
+            }
         }
         #endregion
     }

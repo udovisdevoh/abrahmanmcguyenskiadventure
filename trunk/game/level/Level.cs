@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.level
 {
@@ -16,6 +17,11 @@ namespace AbrahmanAdventure.level
         /// List of walkable grounds in the level
         /// </summary>
         private List<Ground> groundList;
+
+        /// <summary>
+        /// Celing of the level, can be null
+        /// </summary>
+        private Ground ceiling = null;
 
         /// <summary>
         /// Represents wave modelization of holes in a level
@@ -72,18 +78,15 @@ namespace AbrahmanAdventure.level
 
             holeSet = new HoleSet(random, skillLevel, levelWidth);
 
-            for (int i = 0; i < waveCount; i++)
+            int groundId;
+            for (groundId = 0; groundId < waveCount; groundId++)
+                AddGround(new Ground(BuildGroundWave(random), random, colorTheme.GetColor(waveCount - groundId - 1), holeSet, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
+
+            if (Program.isAlwaysCeiling || (Program.isAllowCeiling && random.Next(0, 4) == 1))
             {
-                AbstractWave wave;
-                wave = WaveBuilder.BuildWavePack(random);
-                double normalizationFactor = (random.NextDouble() * 20) + 4;
-                wave.Normalize(normalizationFactor, false);
-
-                double highestJumpingStep = wave.GetHighestJumpingStep(leftBound,rightBound);
-                if (highestJumpingStep > Program.maximumAllowedJumpingStep)
-                    wave.Normalize(normalizationFactor / highestJumpingStep * Program.maximumAllowedJumpingStep);
-
-                BuildNewGround(wave, random, colorTheme.GetColor(waveCount - i - 1), holeSet, seed, i, leftBound, rightBound, leftBoundType, rightBoundType);
+                //double highestXPoint = IGroundHelper.GetHighestXPoint(this, leftBound, rightBound);
+                ceiling = new Ground(BuildGroundWave(random), random, colorTheme.GetColor(waveCount - 1), holeSet, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
+                //ceiling.CeilingHeight = highestXPoint;
             }
         }
         #endregion
@@ -140,17 +143,6 @@ namespace AbrahmanAdventure.level
 
         #region Private Methods
         /// <summary>
-        /// Build new ground (internally)
-        /// </summary>
-        /// <param name="wave">wave</param>
-        /// <param name="random">random number generator</param>
-        /// <param name="color">color</param>
-        private void BuildNewGround(AbstractWave wave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
-        {
-            AddGround(new Ground(wave, random, color, holeSet, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
-        }
-
-        /// <summary>
         /// Build level bound
         /// </summary>
         /// <param name="random">random number generator</param>
@@ -169,6 +161,22 @@ namespace AbrahmanAdventure.level
         private LevelBoundType BuildBoundType(Random random)
         {
             return (LevelBoundType)random.Next(0, 4);
+        }
+
+        /// <summary>
+        /// Build a ground's (or ceiling's) wave pacl
+        /// </summary>
+        /// <returns></returns>
+        private AbstractWave BuildGroundWave(Random random)
+        {
+            AbstractWave wave = WaveBuilder.BuildWavePack(random);
+            double normalizationFactor = (random.NextDouble() * 20) + 4;
+            wave.Normalize(normalizationFactor, false);
+
+            double highestJumpingStep = wave.GetHighestJumpingStep(leftBound, rightBound);
+            if (highestJumpingStep > Program.maximumAllowedJumpingStep)
+                wave.Normalize(normalizationFactor / highestJumpingStep * Program.maximumAllowedJumpingStep);
+            return wave;
         }
         #endregion
 
@@ -197,6 +205,14 @@ namespace AbrahmanAdventure.level
         public Ground this[int index]
         {
             get { return groundList[index]; }
+        }
+
+        /// <summary>
+        /// Ceiling ground (can be null)
+        /// </summary>
+        public Ground Ceiling
+        {
+            get { return ceiling; }
         }
 
         /// <summary>
