@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -43,6 +44,13 @@ namespace AbrahmanAdventure.physics
                     sprite.XPosition = 0;
                     //sprite.YPosition = Program.totalHeightTileCount / -2;
                     sprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, sprite.XPosition)[sprite.XPosition];
+
+                    if (SongPlayer.IRiff == SongGenerator.InvincibilitySong) //If player died (in hole) while invincible
+                    {
+                        SongPlayer.StopSync();
+                        SongPlayer.IRiff = gameState.Song;
+                        SongPlayer.PlayAsync();
+                    }
 
                     sprite.IsAlive = true;
                     sprite.Health = ((PlayerSprite)sprite).DefaultHealth;
