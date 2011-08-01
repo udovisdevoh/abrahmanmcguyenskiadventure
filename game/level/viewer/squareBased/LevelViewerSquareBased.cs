@@ -335,29 +335,29 @@ namespace AbrahmanAdventure.level
                 ceilingYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
                 #region Bottom Texture
-                /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                 {
                     textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
-
                     int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
-                    int bottomSurfacePositionY = (ceilingYOnTile + ground.TopTexture.Surface.GetHeight()) / bottomSurfaceAligment * bottomSurfaceAligment;
+
+                    int bottomSurfacePositionY = (ceilingYOnTile /*- ground.TopTexture.Surface.GetHeight()*/) / bottomSurfaceAligment * bottomSurfaceAligment - ground.BottomTexture.Surface.GetHeight();
 
                     int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
 
-                //DrawBottomTextureAgain:
+                DrawBottomTextureAgain:
                     if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
                         zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, bottomSurfaceHeight));
 
-                    if (bottomSurfacePositionY + bottomSurfaceHeight < zoneHeight)
+                    if (bottomSurfacePositionY > 0)
                     {
-                        bottomSurfacePositionY += bottomSurfaceHeight;
+                        bottomSurfacePositionY -= bottomSurfaceHeight;
                         goto DrawBottomTextureAgain;
                     }
                 }
                 else
-                {*/
+                {
                     zoneSurface.Fill(new Rectangle(x, 0, 1, Math.Min(zoneHeight, ceilingYOnTile)), waveColor);
-                //}
+                }
                 #endregion
 
                 #region Top texture

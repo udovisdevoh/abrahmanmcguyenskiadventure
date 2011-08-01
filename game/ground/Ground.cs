@@ -69,6 +69,11 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private double pillarWidth;
 
+        /// <summary>
+        /// Height of the ceiling (if it is a ceiling)
+        /// </summary>
+        private double ceilingHeight = 0.0;
+
         private LevelBoundType leftBoundType;
 
         private LevelBoundType rightBoundType;
@@ -110,7 +115,7 @@ namespace AbrahmanAdventure.level
             if (Program.isAlwaysUseBottomTexture)
                 isUseBottomTexture = true;
             else
-                isUseBottomTexture = random.Next(0, 2) == 0;
+                isUseBottomTexture = !isCeiling && random.Next(0, 2) == 0;
 
             pillarWidth = Program.collisionDetectionResolution;
 
@@ -174,19 +179,39 @@ namespace AbrahmanAdventure.level
         {
             get
             {
-                if (xPosition < leftBound)
-                    return GetOutBoundHeight(xPosition, false);
-                else if (xPosition > rightBound)
-                    return GetOutBoundHeight(xPosition, true);
+                if (!isCeiling)
+                {
+                    if (xPosition < leftBound)
+                        return GetOutBoundHeight(xPosition, false);
+                    else if (xPosition > rightBound)
+                        return GetOutBoundHeight(xPosition, true);
+                }
 
                 double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
                 if (holeSet[xPosition, yValue])
-                    yValue = Program.holeHeight - yValue;
+                {
+                    if (isCeiling)
+                        yValue = yValue - Program.holeHeight;
+                    else
+                        yValue = Program.holeHeight - yValue;
+                }
 
-                yValue += beaverDestructionSet[xPosition];
+                if (isCeiling)
+                    yValue -= ceilingHeight;
+                else
+                    yValue += beaverDestructionSet[xPosition];
 
                 return yValue;
             }
+        }
+
+        /// <summary>
+        /// Height of the ceiling (if it is a ceiling)
+        /// </summary>
+        public double CeilingHeight
+        {
+            get { return ceilingHeight; }
+            set { ceilingHeight = value; }
         }
 
         /// <summary>
