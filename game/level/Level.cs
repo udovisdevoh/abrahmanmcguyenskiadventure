@@ -87,7 +87,7 @@ namespace AbrahmanAdventure.level
                 double highestXPoint = IGroundHelper.GetHighestXPoint(this, leftBound, rightBound);
                 ceiling = new Ground(BuildGroundWave(random), random, colorTheme.GetRandomColor(random), holeSet, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
                 double lowestXPoint = IGroundHelper.GetLowestXPoint(ceiling, leftBound, rightBound);
-                ceiling.CeilingHeight = Math.Abs(highestXPoint - lowestXPoint) + (double)random.Next(2, 6);
+                ceiling.CeilingHeight = Math.Abs(highestXPoint - lowestXPoint) + (double)random.Next(2, 5);
             }
         }
         #endregion

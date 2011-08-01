@@ -335,12 +335,12 @@ namespace AbrahmanAdventure.level
                 ceilingYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
                 #region Bottom Texture
-                if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                 {
                     textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
                     int bottomSurfaceAligment = Math.Min(Program.tileSize, ground.TopTexture.Surface.GetHeight());
 
-                    int bottomSurfacePositionY = (ceilingYOnTile /*- ground.TopTexture.Surface.GetHeight()*/) / bottomSurfaceAligment * bottomSurfaceAligment - ground.BottomTexture.Surface.GetHeight();
+                    int bottomSurfacePositionY = (ceilingYOnTile) / bottomSurfaceAligment * bottomSurfaceAligment - ground.BottomTexture.Surface.GetHeight();
 
                     int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
 
@@ -355,9 +355,9 @@ namespace AbrahmanAdventure.level
                     }
                 }
                 else
-                {
+                {*/
                     zoneSurface.Fill(new Rectangle(x, 0, 1, Math.Min(zoneHeight, ceilingYOnTile)), waveColor);
-                }
+                //}
                 #endregion
 
                 #region Top texture

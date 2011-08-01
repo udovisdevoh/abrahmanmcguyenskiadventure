@@ -54,6 +54,12 @@ namespace AbrahmanAdventure.sprites
                 if (yOffset > 0)
                     continue;
 
+                //To prevent some totems that can't be jumped over because they are on the tip of a sharp hill
+                if (ground[xPosition - 1.0] - (ground[xPosition] + yOffset) > 2.5)
+                    continue;
+                else if (ground[xPosition + 1.0] - (ground[xPosition] + yOffset) > 2.5)
+                    continue;
+
                 yPosition = Math.Round(sampledGroundYPosition + yOffset);
                 bool isCouldAddBlock;
 
