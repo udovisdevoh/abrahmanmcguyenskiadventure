@@ -327,7 +327,7 @@ namespace AbrahmanAdventure.level
 
                 int textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.TopTexture.Surface.GetWidth());
 
-                if (waveOutputY > (double)(zoneY + Program.squareZoneTileHeight))
+                if (waveOutputY < (double)zoneY)
                     continue;
 
                 int ceilingYOnTile;
@@ -335,7 +335,7 @@ namespace AbrahmanAdventure.level
                 ceilingYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
                 #region Bottom Texture
-                if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
+                /*if (Program.isUseBottomTexture && ground.IsUseBottomTexture)
                 {
                     textureInputX = Math.Abs((zoneX * zoneWidth + x) % ground.BottomTexture.Surface.GetWidth());
 
@@ -344,7 +344,7 @@ namespace AbrahmanAdventure.level
 
                     int bottomSurfaceHeight = ground.BottomTexture.Surface.GetHeight();
 
-                DrawBottomTextureAgain:
+                //DrawBottomTextureAgain:
                     if (bottomSurfacePositionY >= 0 || bottomSurfacePositionY + bottomSurfaceHeight <= zoneHeight || (bottomSurfacePositionY < 0 && bottomSurfaceHeight > zoneHeight))
                         zoneSurface.Blit(ground.BottomTexture.Surface, new Point(x, bottomSurfacePositionY), new Rectangle(textureInputX, 0, 1, bottomSurfaceHeight));
 
@@ -355,9 +355,9 @@ namespace AbrahmanAdventure.level
                     }
                 }
                 else
-                {
-                    zoneSurface.Fill(new Rectangle(x, Math.Max(0, ceilingYOnTile), 1, zoneHeight), waveColor);
-                }
+                {*/
+                    zoneSurface.Fill(new Rectangle(x, 0, 1, Math.Min(zoneHeight, ceilingYOnTile)), waveColor);
+                //}
                 #endregion
 
                 #region Top texture
@@ -371,12 +371,12 @@ namespace AbrahmanAdventure.level
                         ground.TopTexture.SetCachedScaledSurface(scaledSurface, scaling);
                     }
                     if (ceilingYOnTile >= 0 || ceilingYOnTile + scaledSurface.GetHeight() <= zoneHeight)
-                        zoneSurface.Blit(scaledSurface, new Point(x, ceilingYOnTile), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
+                        zoneSurface.Blit(scaledSurface, new Point(x, ceilingYOnTile - scaledSurface.GetHeight()), new Rectangle(textureInputX, 0, 1, scaledSurface.GetHeight()));
                 }
                 else
                 {
                     if (ceilingYOnTile >= 0 || ceilingYOnTile + ground.TopTexture.Surface.GetHeight() <= zoneHeight)
-                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, ceilingYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
+                        zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, ceilingYOnTile - ground.TopTexture.Surface.GetHeight()), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
                 }
                 #endregion
             }
