@@ -17,7 +17,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -264,6 +264,7 @@
     <Compile Include="game\physics\BeaverManager.cs" />
     <Compile Include="game\physics\BlockManager.cs" />
     <Compile Include="game\physics\CarriableSpriteManager.cs" />
+    <Compile Include="game\physics\CeilingCollisionManager.cs" />
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
     <Compile Include="game\physics\ExplosionManager.cs" />

@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.physics
         private PipeManager pipeManager = new PipeManager();
 
         /// <summary>
+        /// Manages ceiling collisions
+        /// </summary>
+        private CeilingCollisionManager ceilingCollisionManager = new CeilingCollisionManager();
+
+        /// <summary>
         /// Manges beaver hole digging
         /// </summary>
         private BeaverHoleDiggingManager beaverHoleDiggingManager = new BeaverHoleDiggingManager();
@@ -187,6 +192,9 @@ namespace AbrahmanAdventure.physics
                     #endregion
                 }
 
+                if (level.Ceiling != null)
+                    ceilingCollisionManager.Update(spriteToUpdate, level.Ceiling);
+
                 if (spriteToUpdate is IFluctuatingSafeDistance)
                     ((IFluctuatingSafeDistance)spriteToUpdate).FluctuatingSafeDistanceCycle.Increment(timeDelta);
             }
@@ -267,7 +275,6 @@ namespace AbrahmanAdventure.physics
             double slope = angleY1 - angleY2;
             if (slope >= sprite.MaximumWalkingHeight)
                 return true;
-
 
             #region We test collision with impassable sprites
             double yDesiredPosition = sprite.YPosition;
