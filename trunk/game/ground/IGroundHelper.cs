@@ -12,7 +12,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal static class IGroundHelper
     {
-        #region Private Methods
+        #region Internal Methods
         /// <summary>
         /// Highest ground below sprite
         /// </summary>
@@ -329,6 +329,54 @@ namespace AbrahmanAdventure.physics
                 }
             }
             return highestGround;
+        }
+
+        internal static double GetLowestXPoint(Ground ground, double leftBound, double rightBound)
+        {
+            bool isSet = false;
+            double lowestYPoint = 0;
+            for (double x = leftBound; x <= rightBound; x += Program.collisionDetectionResolution)
+            {
+                double currentY = ground[x];
+                if (!isSet || currentY > lowestYPoint)
+                {
+                    lowestYPoint = currentY;
+                    isSet = true;
+                }
+            }
+            return lowestYPoint;
+        }
+
+        internal static double GetHighestXPoint(Ground ground, double leftBound, double rightBound)
+        {
+            bool isSet = false;
+            double highestYPoint = 0;
+            for (double x = leftBound; x <= rightBound; x += Program.collisionDetectionResolution)
+            {
+                double currentY = ground[x];
+                if (!isSet || currentY < highestYPoint)
+                {
+                    highestYPoint = currentY;
+                    isSet = true;
+                }
+            }
+            return highestYPoint;
+        }
+
+        internal static double GetHighestXPoint(Level level, double leftBound, double rightBound)
+        {
+            bool isSet = false;
+            double highestYPoint = 0;
+            foreach (Ground ground in level)
+            {
+                double currentY = GetHighestXPoint(ground, leftBound, rightBound);
+                if (!isSet || currentY < highestYPoint)
+                {
+                    highestYPoint = currentY;
+                    isSet = true;
+                }
+            }
+            return highestYPoint;
         }
         #endregion
 

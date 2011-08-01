@@ -116,6 +116,11 @@ namespace AbrahmanAdventure.level
             else
                 return Color.FromArgb(255, v, p, q);
         }
+
+        internal Color GetRandomColor(Random random)
+        {
+            return colorList[random.Next(0, colorList.Count)];
+        }
         #endregion
 
         #region Private methods
