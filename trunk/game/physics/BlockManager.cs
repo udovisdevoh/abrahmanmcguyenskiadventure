@@ -80,6 +80,8 @@ namespace AbrahmanAdventure.physics
                     if (powerUpSprite is IGrowable)
                         ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                     spritePopulation.Add(powerUpSprite);
+                    powerUpSprite.XPosition = powerUpSprite.XPosition;//We reset previous position
+                    powerUpSprite.YPosition = powerUpSprite.YPosition;//We reset previous position
                 }
 
                 foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
