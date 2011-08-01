@@ -49,6 +49,10 @@ namespace AbrahmanAdventure
 
         public const bool isTellPlanetName = false;
 
+        public const bool isAllowCeiling = false;
+
+        public const bool isAlwaysCeiling = false;
+
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;

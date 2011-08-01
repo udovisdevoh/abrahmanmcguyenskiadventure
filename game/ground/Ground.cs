@@ -50,6 +50,11 @@ namespace AbrahmanAdventure.level
         private Ground previousFurther = null;
 
         /// <summary>
+        /// Whether ground is celing
+        /// </summary>
+        private bool isCeiling;
+
+        /// <summary>
         /// Left bound
         /// </summary>
         private double leftBound;
@@ -87,8 +92,9 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
         /// <param name="holeSet">represents wave modelization of holes in a level</param>
-        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
+        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, bool isCeiling, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
         {
+            this.isCeiling = isCeiling;
             this.holeSet = holeSet;
             this.leftBound = leftBound;
             this.rightBound = rightBound;
@@ -96,6 +102,9 @@ namespace AbrahmanAdventure.level
             this.rightBoundType = rightBoundType;
 
             topTexture = new Texture(random, color, 1.5, seed,groundId,true);
+            if (isCeiling)
+                topTexture.Surface = topTexture.Surface.CreateFlippedVerticalSurface();
+
             beaverDestructionSet = new BeaverDestructionSet();
 
             if (Program.isAlwaysUseBottomTexture)
@@ -108,10 +117,12 @@ namespace AbrahmanAdventure.level
             if (Program.isUseBottomTexture && isUseBottomTexture)
             {
                 bottomTexture = new Texture(random, color, 16, 0.75, seed, groundId, false);
+                if (isCeiling)
+                    bottomTexture.Surface = bottomTexture.Surface.CreateFlippedVerticalSurface();
             }
             
             this.terrainWave = terrainWave;
-            isTransparent = random.Next(0,5) == 0;
+            isTransparent = !isCeiling && random.Next(0,5) == 0;
         }
         #endregion
         
