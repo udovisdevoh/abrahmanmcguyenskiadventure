@@ -149,7 +149,7 @@ namespace AbrahmanAdventure.physics
         /// <returns></returns>
         internal static bool IsTransparentAt(double waveOutputY, WaterInfo waterInfo, Ground ground, Level level, double x)
         {
-            return ground.IsTransparent && IsSlopeWalkable(ground, x, waveOutputY) && (waterInfo == null || waveOutputY < waterInfo.Height) && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
+            return ground.IsTransparent && x >= level.LeftBound && x <= level.RightBound && IsSlopeWalkable(ground, x, waveOutputY) && (waterInfo == null || waveOutputY < waterInfo.Height) && IGroundHelper.IsHigherThanOtherGrounds(ground, level, x);
         }
         
         /// <summary>
