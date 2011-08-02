@@ -1,4 +1,15 @@
-background: texture (for some underground (and fortress) levels)
+?background: texture (for some underground (and fortress) levels): faire que c'est plus probable s'il y a un plafon?
+
+
+
+musique
+{
+	wave pour raisonnance
+	wave pour filter
+	wave pour force du delay
+	wave pour durée du delay
+	fave pour pitch du delay
+}
 
 
 
@@ -133,6 +144,7 @@ faire sprites volants qui suivent des path de wave ou de fonction mathématiques
 faire plateformes qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
 si rond, mettre sprite au centre et bras qui font tourner
 afficher path, ou pas, dépendant de la situation
+
 plateformes de largeur diverse
 
 

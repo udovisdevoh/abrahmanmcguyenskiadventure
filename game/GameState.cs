@@ -136,7 +136,11 @@ namespace AbrahmanAdventure
             if (skillLevel != 0 && random.Next(0, 7) == 1)
                 waterInfo = new WaterInfo(backgroundColorHsl, random);
 
-            background = new Sky(random, backgroundColorHsl);
+            if (random.Next(0,4) == 1)
+                background = new Wall(random, colorTheme.GetRandomColor(random));
+            else
+                background = new Sky(random, backgroundColorHsl);
+
             level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null);
             spritePopulation = new SpritePopulation();
 

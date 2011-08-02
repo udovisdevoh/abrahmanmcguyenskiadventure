@@ -160,10 +160,7 @@ namespace AbrahmanAdventure.level
         /// <returns>level bound</returns>
         private double BuildLevelBound(Random random, int skillLevel)
         {
-            if (skillLevel == 0)
-                return random.Next(0, 100 * (skillLevel + 1)) + 60;
-            else
-                return random.Next(0, (100 * (skillLevel + 1)) - 60) + 120;
+            return random.Next(0, 100 * (skillLevel + 1)) + 60;
         }
 
         /// <summary>

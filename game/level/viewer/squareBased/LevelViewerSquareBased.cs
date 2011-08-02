@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.level
         /// <param name="waterInfo">waterInfo</param>
         public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
-            mainSurface.Blit(background.Surface, new Point(0, background.BackgroundHeight / -4), background.Surface.GetRectangle());
+            viewBackground(mainSurface, background, viewOffsetX, viewOffsetY);
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);
@@ -379,6 +379,40 @@ namespace AbrahmanAdventure.level
                         zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, ceilingYOnTile - ground.TopTexture.Surface.GetHeight()), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
                 }
                 #endregion
+            }
+        }
+
+        /// <summary>
+        /// View background
+        /// </summary>
+        /// <param name="mainSurface">surface to draw on</param>
+        /// <param name="background">background</param>
+        /// <param name="viewOffsetX">x offset</param>
+        /// <param name="viewOffsetY">y offset</param>
+        private void viewBackground(Surface mainSurface, AbstractBackground background, double viewOffsetX, double viewOffsetY)
+        {
+            if (background is Sky)
+                mainSurface.Blit(background.Surface, new Point(0, background.BackgroundHeight / -4), background.Surface.GetRectangle());
+            else
+            {
+                int viewOffsetXInt = (int)(-viewOffsetX * Program.tileSize * 0.25);
+                int viewOffsetYInt = (int)(-viewOffsetY * Program.tileSize * 0.25);
+
+                while (viewOffsetXInt > Program.screenWidth)
+                    viewOffsetXInt -= Program.screenWidth;
+                while (viewOffsetXInt < 0)
+                    viewOffsetXInt += Program.screenWidth;
+
+                while (viewOffsetYInt > Program.screenHeight)
+                    viewOffsetYInt -= Program.screenHeight;
+                while (viewOffsetYInt < 0)
+                    viewOffsetYInt += Program.screenHeight;
+
+                /*mainSurface.Blit(background.Surface, new Point(viewOffsetXInt, viewOffsetYInt), background.Surface.GetRectangle());
+                mainSurface.Blit(background.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt), background.Surface.GetRectangle());
+
+                mainSurface.Blit(background.Surface, new Point(viewOffsetXInt, viewOffsetYInt - Program.screenHeight), background.Surface.GetRectangle());*/
+                mainSurface.Blit(background.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt - Program.screenHeight), background.Surface.GetRectangle());
             }
         }
         #endregion
