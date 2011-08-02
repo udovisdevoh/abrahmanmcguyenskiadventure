@@ -115,7 +115,7 @@ namespace AbrahmanAdventure.level
             if (Program.isAlwaysUseBottomTexture)
                 isUseBottomTexture = true;
             else
-                isUseBottomTexture = !isCeiling && random.Next(0, 2) == 0;
+                isUseBottomTexture = /*!isCeiling && */random.Next(0, 2) == 0;
 
             pillarWidth = Program.collisionDetectionResolution;
 
