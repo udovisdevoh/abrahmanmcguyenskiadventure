@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.level
         /// <param name="waterInfo">water info</param>
         /// <param name="viewOffsetX">view offset X</param>
         /// <param name="viewOffsetY">view offset Y</param>
-        void Update(Level level, ColorTheme colorTheme, Background background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY);
+        void Update(Level level, ColorTheme colorTheme, AbstractBackground background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY);
 
         /// <summary>
         /// Clear level viewer's cache within provided bounds
