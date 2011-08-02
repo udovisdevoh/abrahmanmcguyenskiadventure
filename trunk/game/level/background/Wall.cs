@@ -25,9 +25,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="colorHsl">HSL color</param>
-        public Wall(Random random, ColorHsl colorHsl)
+        public Wall(Random random, Color color)
         {
-            texture = new Texture(random, colorHsl.GetColor(), 1.0, random.Next(), 0, false);
+            texture = new Texture(random, color, 1.0, random.Next(), 0, false);
 
             int textureWidth = texture.Surface.GetWidth();
             int textureHeight = texture.Surface.GetHeight();
@@ -35,10 +35,10 @@ namespace AbrahmanAdventure.level
 
             int width = 0;
             int height = 0;
-            while (width < Program.screenWidth)
+            while (width < Program.screenWidth * 2)
             {
                 height = 0;
-                while (height < Program.screenHeight)
+                while (height < Program.screenHeight * 2)
                 {
                     height += textureHeight;
                 }
@@ -50,10 +50,10 @@ namespace AbrahmanAdventure.level
             surface = new Surface(width, height);
             width = 0;
             height = 0;
-            while (width < Program.screenWidth)
+            while (width < Program.screenWidth * 2)
             {
                 height = 0;
-                while (height < Program.screenHeight)
+                while (height < Program.screenHeight * 2)
                 {
                     surface.Blit(texture.Surface, new Point(width, height), texture.Surface.GetRectangle());
                     height += textureHeight;
@@ -64,8 +64,8 @@ namespace AbrahmanAdventure.level
 
 
 
-            double zoomX = (double)Program.screenWidth / (double)width;
-            double zoomY = (double)Program.screenHeight / (double)height;
+            double zoomX = (double)Program.screenWidth * 2.0 / (double)width;
+            double zoomY = (double)Program.screenHeight * 2.0 / (double)height;
 
             surface = surface.CreateScaledSurface(zoomX, zoomY, true);
             backgroundWidth = Program.screenWidth;
