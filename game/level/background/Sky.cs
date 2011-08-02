@@ -12,7 +12,7 @@ namespace AbrahmanAdventure.level
     /// <summary>
     /// Represents a background (in the back layer, sky, wall, mountains etc)
     /// </summary>
-    internal class Background
+    internal class Sky : AbstractBackground
     {
         #region Constants
         /// <summary>
@@ -26,22 +26,7 @@ namespace AbrahmanAdventure.level
         private const int screenRowCount = 2;
         #endregion
 
-        #region Fields and parts
-        /// <summary>
-        /// Background surface to blit
-        /// </summary>
-        private Surface surface;
-      
-        /// <summary>
-        /// Height of the background (in pixels)
-        /// </summary>
-        private int backgroundHeight;
-
-        /// <summary>
-        /// Width of the background (in pixels)
-        /// </summary>
-        private int backgroundWidth;
-
+        #region Fields and parts     
         private AbstractWave horizontalWaveHue;
 
         private AbstractWave horizontalWaveSaturation;
@@ -59,7 +44,7 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="colorHsl">HSL color</param>
-        public Background(Random random, ColorHsl colorHsl)
+        public Sky(Random random, ColorHsl colorHsl)
         {
             this.colorHsl = colorHsl;
             horizontalWaveHue = BuildWave(random);
@@ -133,26 +118,6 @@ namespace AbrahmanAdventure.level
 
                 surface.Blit(column, new Point(x, (int)verticalWaveOffset), column.GetRectangle());
             }
-        }
-        #endregion
-
-        #region Properties
-        /// <summary>
-        /// Get surface to blit
-        /// </summary>
-        public Surface Surface
-        {
-            get { return surface; }
-        }
-
-        public int BackgroundHeight
-        {
-            get { return backgroundHeight; }
-        }
-
-        public int BackgroundWidth
-        {
-            get { return backgroundWidth; }
         }
         #endregion
     }

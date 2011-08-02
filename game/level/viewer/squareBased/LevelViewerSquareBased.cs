@@ -60,7 +60,7 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="waterInfo">waterInfo</param>
-        public void Update(Level level, ColorTheme colorTheme, Background background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
+        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
             mainSurface.Blit(background.Surface, new Point(0, background.BackgroundHeight / -4), background.Surface.GetRectangle());
 

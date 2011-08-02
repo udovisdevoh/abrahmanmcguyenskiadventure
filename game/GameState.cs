@@ -52,7 +52,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Level's background
         /// </summary>
-        private Background background;
+        private AbstractBackground background;
 
         /// <summary>
         /// Water info (or null if no water)
@@ -136,7 +136,7 @@ namespace AbrahmanAdventure
             if (skillLevel != 0 && random.Next(0, 7) == 1)
                 waterInfo = new WaterInfo(backgroundColorHsl, random);
 
-            background = new Background(random, backgroundColorHsl);
+            background = new Sky(random, backgroundColorHsl);
             level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null);
             spritePopulation = new SpritePopulation();
 
@@ -355,7 +355,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Background
         /// </summary>
-        public Background Background
+        public AbstractBackground Background
         {
             get { return background; }
         }
