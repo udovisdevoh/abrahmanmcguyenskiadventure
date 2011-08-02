@@ -184,7 +184,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAvoidFall(Random random)
         {
-            return random.Next(0, 2) == 1;
+            return true;
         }
 
         protected override bool BuildIsInstantKickConvertedSprite()

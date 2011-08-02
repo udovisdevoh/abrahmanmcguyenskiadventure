@@ -49,7 +49,7 @@ namespace AbrahmanAdventure
 
         public const bool isTellPlanetName = false;
 
-        public const bool isAllowCeiling = false;
+        public const bool isAllowCeiling = true;
 
         public const bool isAlwaysCeiling = false;
 
@@ -100,6 +100,8 @@ namespace AbrahmanAdventure
         public static double zoneWidthScreenCount = 0.025;
 
         public static double collisionDetectionResolution = 0.0625;
+
+        public static double absoluteMaxCeilingHeight = 2.0;
 
         public static bool isFullScreen = PersistentConfig.IsFullScreen;
 

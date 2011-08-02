@@ -133,12 +133,12 @@ namespace AbrahmanAdventure
                 surfaceToDrawLoadingProgress.Update();
             }
 
-            background = new Background(random, backgroundColorHsl);
-            level = new Level(random, colorTheme, seed, skillLevel);
-            spritePopulation = new SpritePopulation();
-
             if (skillLevel != 0 && random.Next(0, 7) == 1)
                 waterInfo = new WaterInfo(backgroundColorHsl, random);
+
+            background = new Background(random, backgroundColorHsl);
+            level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null);
+            spritePopulation = new SpritePopulation();
 
             if (playerSprite != null)
                 this.playerSprite = playerSprite;

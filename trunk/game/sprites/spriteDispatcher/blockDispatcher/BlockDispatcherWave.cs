@@ -49,10 +49,24 @@ namespace AbrahmanAdventure.sprites
 
                 double yOffset = yDistanceFromGroundWave[xPosition];
 
-                if (yOffset > 0)
+                if (level.Ceiling != null && IGroundHelper.IsHigherThanOtherGrounds(ground, level, xPosition) && yOffset > 0)
+                    yOffset = -yOffset;
+                else if (yOffset > 0)
                     continue;
 
                 yPosition = Math.Round(sampledGroundYPosition + yOffset - minimumGroundDistance);
+
+                #region Must not be to close to ceiling
+                if (level.Ceiling != null)
+                {
+                    while (yPosition - 1 - level.Ceiling[xPosition] <= Program.absoluteMaxCeilingHeight)
+                        yPosition++;
+                    while (yPosition - 1 - level.Ceiling[xPosition - 1.5] <= Program.absoluteMaxCeilingHeight)
+                        yPosition++;
+                    while (yPosition - 1 - level.Ceiling[xPosition + 1.5] <= Program.absoluteMaxCeilingHeight)
+                        yPosition++;
+                }
+                #endregion
 
                 if (BlockDispatcher.IsHigherThanHigherGroundThan(xPosition, yPosition - 1.5, ground, level))
                     continue;
@@ -66,6 +80,7 @@ namespace AbrahmanAdventure.sprites
                     continue;
                 else if (yPosition >= ground[xPosition + 0.5] - minimumGroundDistance)
                     continue;
+
 
                 if (!addedBlockMemory.Contains((int)xPosition, (int)yPosition))
                 {
