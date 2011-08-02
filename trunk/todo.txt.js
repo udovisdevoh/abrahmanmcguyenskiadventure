@@ -1,4 +1,3 @@
-inverted ground -> roof: for some underground (and fortress) levels
 background: texture (for some underground (and fortress) levels)
 
 
@@ -30,7 +29,7 @@ Salvia powerup
 ?teleporter to next level must be on a random ground, not just the top one
 
 
-?skill level must influence ground wave normalization factor
+
 
 (probably already done): remove block collision (side and bottom of block) for explosions
 
