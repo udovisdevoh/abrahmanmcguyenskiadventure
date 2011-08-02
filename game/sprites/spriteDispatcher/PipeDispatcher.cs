@@ -162,6 +162,26 @@ namespace AbrahmanAdventure.sprites
                         continue;
                     }
 
+                    #region Must not be to close to ceiling
+                    if (level.Ceiling != null)
+                    {
+                        if (pipeSprite.TopBound - level.Ceiling[xPosition] <= Program.absoluteMaxCeilingHeight)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (pipeSprite.TopBound - level.Ceiling[xPosition - 2.0] <= Program.absoluteMaxCeilingHeight)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (pipeSprite.TopBound - level.Ceiling[xPosition + 2.0] <= Program.absoluteMaxCeilingHeight)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                    }
+                    #endregion
 
                     if (Math.Abs(attachedGround[xPosition - 2.0] - attachedGround[xPosition]) > maxSlopeHeight)
                     {

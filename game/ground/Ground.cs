@@ -133,25 +133,6 @@ namespace AbrahmanAdventure.level
         
         #region Public Methods
         /// <summary>
-        /// Whether ground is higher than other grounds in level
-        /// </summary>
-        /// <param name="level">level</param>
-        /// <param name="xInput">x value</param>
-        /// <returns>Whether ground is higher than other grounds</returns>
-        public bool IsHigherThanOtherGrounds(Ground ground, Level level, double xInput)
-        {
-        	double yOutput = terrainWave[xInput];
-        	
-        	foreach (Ground otherGround in level)
-        		if (otherGround != this)
-        			if (otherGround.terrainWave[xInput] < yOutput)
-        				return false;
-
-        	
-        	return true;
-        }
-
-        /// <summary>
         /// Remove beaver's holes
         /// </summary>
         public void ClearBeaverDestruction()

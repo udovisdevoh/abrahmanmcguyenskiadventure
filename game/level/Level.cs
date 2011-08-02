@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.level
         /// <param name="colorTheme">color theme</param>
         /// <param name="seed">seed</param>
         /// <param name="skillLevel">skill level</param>
-        public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel)
+        public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel, bool isWater)
         {
             this.skillLevel = skillLevel;
             groundList = new List<Ground>();
@@ -82,7 +82,16 @@ namespace AbrahmanAdventure.level
             for (groundId = 0; groundId < waveCount; groundId++)
                 AddGround(new Ground(BuildGroundWave(random), random, colorTheme.GetColor(waveCount - groundId - 1), holeSet, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
 
-            if (Program.isAlwaysCeiling || (Program.isAllowCeiling && random.Next(0, 4) == 1))
+            #region We determine whether there will be a ceiling in the level
+            //For water levels: 2/3, for no water levels: 1/2
+            bool isCeiling = (isWater) ? (random.Next(0, 3) != 1) : (random.Next(0, 2) == 1);
+            if (!Program.isAllowCeiling || skillLevel == 0)
+                isCeiling = false;
+            else if (Program.isAlwaysCeiling)
+                isCeiling = true;
+            #endregion
+
+            if (isCeiling)
             {
                 double highestXPoint = IGroundHelper.GetHighestXPoint(this, leftBound, rightBound);
                 ceiling = new Ground(BuildGroundWave(random), random, colorTheme.GetRandomColor(random), holeSet, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);

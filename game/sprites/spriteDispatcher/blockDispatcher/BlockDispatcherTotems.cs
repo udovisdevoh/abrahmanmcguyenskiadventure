@@ -51,7 +51,9 @@ namespace AbrahmanAdventure.sprites
 
                 double yOffset = yDistanceFromGroundWave[xPosition] + 6;
 
-                if (yOffset > 0)
+                /*if (level.Ceiling != null && IGroundHelper.IsHigherThanOtherGrounds(ground, level, xPosition) && yOffset > 0)
+                    yOffset = -yOffset;
+                else */if (yOffset > 0)
                     continue;
 
                 //To prevent some totems that can't be jumped over because they are on the tip of a sharp hill
@@ -59,6 +61,18 @@ namespace AbrahmanAdventure.sprites
                     continue;
                 else if (ground[xPosition + 1.0] - (ground[xPosition] + yOffset) > 2.5)
                     continue;
+
+                #region Must not be to close to ceiling
+                if (level.Ceiling != null)
+                {
+                    if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition] <= Program.absoluteMaxCeilingHeight)
+                        continue;
+                    else if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition - 1.5] <= Program.absoluteMaxCeilingHeight)
+                        continue;
+                    else if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition + 1.5] <= Program.absoluteMaxCeilingHeight)
+                        continue;
+                }
+                #endregion
 
                 yPosition = Math.Round(sampledGroundYPosition + yOffset);
                 bool isCouldAddBlock;
