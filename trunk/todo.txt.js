@@ -1,6 +1,4 @@
-?background: texture (for some underground (and fortress) levels): faire que c'est plus probable s'il y a un plafon?
-
-
+musique: 1 invincible song per episode
 
 musique
 {
