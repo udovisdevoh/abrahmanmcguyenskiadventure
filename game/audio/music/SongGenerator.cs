@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.audio
 
         private static List<string> fastSnareNameList = null;
 
-        private static IRiff invincibilitySong = BuildSong(3048, 0, SongType.Invincibility);
+        private static IRiff invincibilitySong = null;
         #endregion
 
         #region Internal Methods
@@ -84,6 +84,27 @@ namespace AbrahmanAdventure.audio
 
             MusicGenerator musicGenerator = new MusicGenerator(random);
             return musicGenerator.BuildSong(predefinedGenerator);
+        }
+
+        /// <summary>
+        /// Get invincibility song (or build it if it doesn't exist
+        /// </summary>
+        /// <param name="seed">seed</param>
+        /// <returns>invincibility song</returns>
+        internal static IRiff GetInvincibilitySong(int seed)
+        {
+            if (invincibilitySong == null)
+                invincibilitySong = BuildSong(seed, 0, SongType.Invincibility);
+
+            return invincibilitySong;
+        }
+
+        /// <summary>
+        /// Reset invincibility song
+        /// </summary>
+        internal static void ResetInvincibilitySong()
+        {
+            invincibilitySong = null;
         }
         #endregion
 
@@ -342,13 +363,6 @@ namespace AbrahmanAdventure.audio
             {
                 return Scales.GetRandomMajorScaleName(random);
             }
-        }
-        #endregion
-
-        #region Properties
-        public static IRiff InvincibilitySong
-        {
-            get { return invincibilitySong; }
         }
         #endregion
     }

@@ -20,14 +20,14 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
+        internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, WaterInfo waterInfo, Random random)
         {
             MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, random);
             VortexDispatcher.DispatchVortexes(level, spritePopulation, skillLevel, random);
             TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, random);
             MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, random);
             AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, random);
-            PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, random);
+            PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, random);
         }
 
         /// <summary>
@@ -39,6 +39,22 @@ namespace AbrahmanAdventure.sprites
         /// <returns>random ground</returns>
         internal static Ground GetRandomVisibleGround(Level level, Random random, double xPosition)
         {
+            return GetRandomVisibleGround(level, random, xPosition, false);
+        }
+
+        /// <summary>
+        /// Get random ground
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="random">random number generator</param>
+        /// <param name="xPosition">x position to be visible</param>
+        /// <param name="isConsiderCeilingAsGround">whether we consider ceiling as a ground like other grounds (default: false)</param>
+        /// <returns>random ground</returns>
+        internal static Ground GetRandomVisibleGround(Level level, Random random, double xPosition, bool isConsiderCeilingAsGround)
+        {
+            if (isConsiderCeilingAsGround && level.Ceiling != null && random.Next(0, level.Count + 1) == 1)
+                return level.Ceiling;
+
             Ground ground;
 
             int tryCount = 0;

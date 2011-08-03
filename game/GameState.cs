@@ -156,7 +156,7 @@ namespace AbrahmanAdventure
 
             this.playerSprite.YPosition = IGroundHelper.GetHighestGround(this.level, this.playerSprite.XPosition)[this.playerSprite.XPosition];
 
-            SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, random);
+            SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, waterInfo, random);
 
             song = SongGenerator.BuildSong(seed, skillLevel, SongType.Level);
 

@@ -1,12 +1,10 @@
-musique: 1 invincible song per episode
-
 musique
 {
 	wave pour raisonnance
 	wave pour filter
-	wave pour force du delay
+	wave pour force du delay ?(si threshold atteint, fait delay)?
 	wave pour durée du delay
-	fave pour pitch du delay
+	fave pour pitch du delay (octave)
 }
 
 

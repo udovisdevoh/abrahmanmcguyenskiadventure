@@ -529,10 +529,12 @@ namespace AbrahmanAdventure.hud
                 {
                     case 0: //new game
                         currentMenuPositionY = 0;
+                        SongGenerator.ResetInvincibilitySong();
                         currentSubMenu = SubMenu.EpisodeList;
                         break;
                     case 1: //Tutorial
                         program.IsPlayTutorialSounds = true;
+                        SongGenerator.ResetInvincibilitySong();
                         if (program.GameState != null)
                             program.GameState.PlayerSprite.ResetHealthAndPowerUps();
                         program.GameMetaState.SkillLevelForUnknownLevels = 0;
@@ -552,6 +554,7 @@ namespace AbrahmanAdventure.hud
                         Directory.SetCurrentDirectory(directory);
                         if (loadedGame != null)
                         {
+                            SongGenerator.ResetInvincibilitySong();
                             currentMenuPositionY = 0;
                             program.GameMetaState = loadedGame;
                             program.ChangeGameState(program.GameMetaState.PreviousSeed);

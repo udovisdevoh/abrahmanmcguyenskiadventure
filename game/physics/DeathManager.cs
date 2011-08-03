@@ -45,7 +45,7 @@ namespace AbrahmanAdventure.physics
                     //sprite.YPosition = Program.totalHeightTileCount / -2;
                     sprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, sprite.XPosition)[sprite.XPosition];
 
-                    if (SongPlayer.IRiff == SongGenerator.InvincibilitySong) //If player died (in hole) while invincible
+                    if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed)) //If player died (in hole) while invincible
                     {
                         SongPlayer.StopSync();
                         SongPlayer.IRiff = gameState.Song;
