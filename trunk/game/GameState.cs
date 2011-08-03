@@ -136,12 +136,15 @@ namespace AbrahmanAdventure
             if (skillLevel != 0 && random.Next(0, 7) == 1)
                 waterInfo = new WaterInfo(backgroundColorHsl, random);
 
-            if (random.Next(0,4) == 1)
+            level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null);
+
+            #region We set the background
+            if ((level.Ceiling == null && random.Next(0, 4) == 1) || (level.Ceiling != null && random.Next(0, 4) != 1))
                 background = new Wall(random, colorTheme.GetRandomColor(random));
             else
                 background = new Sky(random, backgroundColorHsl);
+            #endregion
 
-            level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null);
             spritePopulation = new SpritePopulation();
 
             if (playerSprite != null)
@@ -157,7 +160,6 @@ namespace AbrahmanAdventure
 
             song = SongGenerator.BuildSong(seed, skillLevel, SongType.Level);
 
-            #warning Eventually remove test sprites
             //AddHardCodedTestSprite();
         }
         #endregion
