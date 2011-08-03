@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="addedBlockMemory">memory of added blocks</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchPipes(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
+        internal static void DispatchPipes(Level level, SpritePopulation spritePopulation, int skillLevel, WaterInfo waterInfo, Random random)
         {
             double pipeDensity = random.NextDouble() * 0.01 + 0.02;
             int pipeCount = (int)Math.Round(pipeDensity * level.Size);
@@ -34,9 +34,9 @@ namespace AbrahmanAdventure.sprites
             int upwardPipeCount = (int)Math.Ceiling(((double)pipeCount) / 2.0);
             int downwardPipeCount = pipeCount - upwardPipeCount;
 
-            DispatchUpwardOrDownwardPipes(upwardPipeCount, level, spritePopulation, true, random);
+            DispatchUpwardOrDownwardPipes(upwardPipeCount, level, spritePopulation, true, waterInfo, random);
             if (downwardPipeCount > 0)
-                DispatchUpwardOrDownwardPipes(downwardPipeCount, level, spritePopulation, false, random);
+                DispatchUpwardOrDownwardPipes(downwardPipeCount, level, spritePopulation, false, waterInfo, random);
 
             List<PipeSprite> pipeList = GetPipeList(spritePopulation);
             pipeCount = pipeList.Count;
@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="level">level</param>
         /// <param name="spritePopulation">all other sprites</param>
         /// <param name="random">random number generator</param>
-        private static void DispatchUpwardOrDownwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, bool isUpward, Random random)
+        private static void DispatchUpwardOrDownwardPipes(int pipeCount, Level level, SpritePopulation spritePopulation, bool isUpward, WaterInfo waterInfo, Random random)
         {
             const int maxTryCount = 100;
             const double maxSlopeHeight = 1.5;
@@ -70,14 +70,19 @@ namespace AbrahmanAdventure.sprites
                 for (int tryCount = 0; tryCount < maxTryCount; tryCount++)
                 {
                     double xPosition = random.NextDouble() * level.Size + level.LeftBound;
-                    Ground attachedGround = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition);
+                    Ground attachedGround = SpriteDispatcher.GetRandomVisibleGround(level, random, xPosition, !isUpward);
 
                     double yPosition = attachedGround[xPosition];
 
                     PipeSprite pipeSprite = new PipeSprite(xPosition, yPosition, isUpward, random);
 
                     if (!isUpward)
-                        pipeSprite.TopBound = pipeSprite.YPosition + 1.0;
+                    {
+                        if (attachedGround != level.Ceiling)
+                            pipeSprite.TopBound = pipeSprite.YPosition + 1.0;
+                        else
+                            pipeSprite.TopBound = pipeSprite.YPosition;
+                    }
 
                     spritePopulation.Add(pipeSprite);
 
@@ -138,17 +143,22 @@ namespace AbrahmanAdventure.sprites
                             spritePopulation.Remove(pipeSprite);
                             continue;
                         }
-                        else if (pipeSprite.TopBound < yPosition + 0.5)
+                        else if (attachedGround == level.Ceiling && (waterInfo == null || waterInfo.HeightInDouble > pipeSprite.YPosition) && groundBelowPipe[xPosition] - pipeSprite.YPosition > 10.0)
                         {
                             spritePopulation.Remove(pipeSprite);
                             continue;
                         }
-                        else if (pipeSprite.TopBound < attachedGround[xPosition - 1.5] + 0.5)
+                        else if (attachedGround != level.Ceiling && pipeSprite.TopBound < yPosition + 0.5)
                         {
                             spritePopulation.Remove(pipeSprite);
                             continue;
                         }
-                        else if (pipeSprite.TopBound < attachedGround[xPosition + 1.5] + 0.5)
+                        else if (attachedGround != level.Ceiling && pipeSprite.TopBound < attachedGround[xPosition - 1.5] + 0.5)
+                        {
+                            spritePopulation.Remove(pipeSprite);
+                            continue;
+                        }
+                        else if (attachedGround != level.Ceiling && pipeSprite.TopBound < attachedGround[xPosition + 1.5] + 0.5)
                         {
                             spritePopulation.Remove(pipeSprite);
                             continue;
@@ -163,7 +173,7 @@ namespace AbrahmanAdventure.sprites
                     }
 
                     #region Must not be to close to ceiling
-                    if (level.Ceiling != null)
+                    if (level.Ceiling != null && attachedGround != level.Ceiling)
                     {
                         if (pipeSprite.TopBound - level.Ceiling[xPosition] <= Program.absoluteMaxCeilingHeight)
                         {

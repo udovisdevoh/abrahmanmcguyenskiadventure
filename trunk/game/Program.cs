@@ -440,6 +440,7 @@ namespace AbrahmanAdventure
                     gameState.PlayerSprite.XPosition = gameState.PlayerSprite.XPosition;//reset previous X
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
                     levelViewer.ClearCache();
+                    SongGenerator.GetInvincibilitySong(gameState.Seed);//We pre-render invincibility song if it's not pre-rendered (it will be the same for this episode)
                     GC.Collect();
                     SongPlayer.IRiff = gameState.Song;
                     SongPlayer.PlayAsync();
