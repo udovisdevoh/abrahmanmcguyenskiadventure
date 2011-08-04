@@ -285,6 +285,7 @@
     <Compile Include="game\physics\SpriteCollisionManager.cs" />
     <Compile Include="game\physics\SpriteConversionManager.cs" />
     <Compile Include="game\physics\UpDownCycleMoveManager.cs" />
+    <Compile Include="game\physics\ClimbableManager.cs" />
     <Compile Include="game\physics\WalkingManager.cs" />
     <Compile Include="game\physics\WaterManager.cs" />
     <Compile Include="game\Program.cs" />
