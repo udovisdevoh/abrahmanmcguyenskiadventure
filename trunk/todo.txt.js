@@ -5,6 +5,10 @@ lianes
 
 
 
+add block platforms that are only accessible by using vine
+
+
+
 faire des grands trous
 si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
 
@@ -44,7 +48,6 @@ add infinite fireball bonus powerup
 add mullet powerup (could be infinite powerup)
 ?add running powerup (to dash like sonic)
 
-when tiny: jump higher (just enough so head is same height as when jump as not tiny)
 
 
 
