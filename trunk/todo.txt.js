@@ -1,6 +1,5 @@
 colomn parallax
 
-équivalent de plante grimpante (powerup)
 
 lianes
 
