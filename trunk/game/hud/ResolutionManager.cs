@@ -57,6 +57,7 @@ namespace AbrahmanAdventure.hud
             SpriteGuide.ClearSpriteList();
             //RenderAllSpriteSurfaces();
             SpriteDispatcher.PreCacheSpriteSurfaces();
+            VineSprite.ClearCompositeSurfaces();
             GC.Collect();
         }
         #endregion

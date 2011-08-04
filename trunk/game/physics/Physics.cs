@@ -226,6 +226,9 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate is IGrowable && ((IGrowable)spriteToUpdate).GrowthCycle.IsFired)
                 ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
 
+            if (spriteToUpdate is VineSprite)
+                ((VineSprite)spriteToUpdate).TryGrow(timeDelta);
+
             if (spriteToUpdate is IExplodable)
                 explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
             else if (spriteToUpdate is ExplosionSprite && spriteToUpdate.IsAlive)

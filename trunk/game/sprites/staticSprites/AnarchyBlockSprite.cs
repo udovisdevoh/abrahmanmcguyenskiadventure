@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Content of an anarchy block
     /// </summary>
-    enum BlockContent { MusicNote, Whisky, RastaHat, Peyote, Beaver, Undefined };
+    enum BlockContent { MusicNote, Whisky, RastaHat, Peyote, Beaver, Vine, Undefined };
 
     /// <summary>
     /// Anarchy block sprite
@@ -95,7 +95,12 @@ namespace AbrahmanAdventure.sprites
                 else if (blockContentId == 4)
                     this.blockContent = BlockContent.Beaver;
                 else
-                    this.blockContent = BlockContent.MusicNote;
+                {
+                    if (random.Next(0, 3) == 1)
+                        this.blockContent = BlockContent.Vine;
+                    else
+                        this.blockContent = BlockContent.MusicNote;
+                }
             }
 
             isFinalized = false;
@@ -208,6 +213,10 @@ namespace AbrahmanAdventure.sprites
                     BeaverSprite beaverSprite = new BeaverSprite(XPosition, TopBound, random);
                     beaverSprite.IsWalkEnabled = false;
                     return beaverSprite;
+                case BlockContent.Vine:
+                    VineSprite vineSprite = new VineSprite(XPosition, TopBound, random);
+                    vineSprite.Height = 0.0;
+                    return vineSprite;
                 default:
                     if (playerSprite.Health == playerSprite.MaxHealth)
                     {
