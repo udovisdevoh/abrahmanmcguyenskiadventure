@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
@@ -11,7 +12,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class ClimbableManager
     {
-        internal void Update(IClimbable climbable, PlayerSprite playerSpriteReference, double timeDelta)
+        internal void Update(IClimbable climbable, Level level, PlayerSprite playerSpriteReference, double timeDelta)
         {            
             if (!climbable.IsGrowing)
                 return;
@@ -23,6 +24,11 @@ namespace AbrahmanAdventure.physics
             if (climbable.Height >= climbable.MaxHeight)
             {
                 climbable.Height = climbable.MaxHeight;
+                climbable.IsGrowing = false;
+            }
+            else if (level.Ceiling != null && climbable.YPosition - climbable.Height <= level.Ceiling[climbable.XPosition])
+            {
+                climbable.Height = climbable.XPosition - level.Ceiling[climbable.XPosition];
                 climbable.IsGrowing = false;
             }
 

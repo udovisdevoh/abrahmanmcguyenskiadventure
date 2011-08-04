@@ -1,4 +1,21 @@
+fix this: climbable.Height = climbable.XPosition - level.Ceiling[climbable.XPosition];
+
+
+put back random cloud sides
+
 add block platforms that are only accessible by using vine, add great walls that can only be crossed by vine
+
+
+fireballs must not bounce when crossing IClimbable
+
+relocate
+{
+	#warning Move this somewhere else
+	#region We manage climbing
+}
+
+
+some trampolines must be on blocks or add bouncing blocks
 
 
 

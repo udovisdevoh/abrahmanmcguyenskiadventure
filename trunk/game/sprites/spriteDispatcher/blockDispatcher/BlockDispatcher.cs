@@ -34,6 +34,7 @@ namespace AbrahmanAdventure.sprites
                 else
                     BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
             }
+
             return addedBlockMemory;
         }
 

@@ -36,6 +36,8 @@ namespace AbrahmanAdventure.sprites
 
         private BlockContent blockContent;
 
+        private double vineHeight = 0.0;
+
         /// <summary>
         /// Tutorial's comment
         /// </summary>
@@ -97,7 +99,10 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     if (random.Next(0, 3) == 1)
+                    {
                         this.blockContent = BlockContent.Vine;
+                        vineHeight = (double)random.Next(Program.vineMinHeight, Program.vineMaxHeight);
+                    }
                     else
                         this.blockContent = BlockContent.MusicNote;
                 }
@@ -215,6 +220,7 @@ namespace AbrahmanAdventure.sprites
                     return beaverSprite;
                 case BlockContent.Vine:
                     VineSprite vineSprite = new VineSprite(XPosition, TopBound, random);
+                    vineSprite.MaxHeight = vineHeight;
                     vineSprite.Height = 0.0;
                     return vineSprite;
                 default:
@@ -248,6 +254,11 @@ namespace AbrahmanAdventure.sprites
         public BlockContent BlockContent
         {
             get { return blockContent; }
+        }
+
+        public double VineHeight
+        {
+            get { return vineHeight; }
         }
         #endregion
     }
