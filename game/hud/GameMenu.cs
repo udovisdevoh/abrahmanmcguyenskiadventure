@@ -194,7 +194,7 @@ namespace AbrahmanAdventure.hud
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
 
-                mainSurface.Blit(GetFontText("Display"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 5));
+                mainSurface.Blit(GetFontText("Display (" + Video.VideoDriver + ")"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 5));
 
                 if (program.GameState != null)
                 {

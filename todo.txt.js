@@ -1,3 +1,27 @@
+colomn parallax
+
+équivalent de plante grimpante (powerup)
+
+lianes
+
+
+
+faire des grands trous
+si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
+
+faire sprites volants
+faire sprites volants qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
+faire plateformes qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
+si rond, mettre sprite au centre et bras qui font tourner
+afficher path, ou pas, dépendant de la situation
+
+plateformes de largeur diverse
+
+
+
+could maybe add some moutains in the background of some levels
+
+
 musique
 {
 	wave pour raisonnance
@@ -8,7 +32,7 @@ musique
 }
 
 
-colomn parallax
+
 
 
 ?create ruin structure style block dispatcher
@@ -38,9 +62,6 @@ Salvia powerup
 ?teleporter to next level must be on a random ground, not just the top one
 
 
-
-
-(probably already done): remove block collision (side and bottom of block) for explosions
 
 Bonus "achetable" gratuitement
 {
@@ -105,11 +126,7 @@ Sprite dispatcher
 
 nuages qu'on peut marcher dessus
 
-équivalent de plante grimpante
-
 fix add texture cache transparency bug
-
-Changer nom d'app
 
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
@@ -133,17 +150,6 @@ collision detection
 }
 
 
-faire des grands trous
-si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
-
-
-faire sprites volants
-faire sprites volants qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
-faire plateformes qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
-si rond, mettre sprite au centre et bras qui font tourner
-afficher path, ou pas, dépendant de la situation
-
-plateformes de largeur diverse
 
 
 
@@ -153,9 +159,9 @@ plateformes de largeur diverse
 	do special jump (longer jump time)
 }?
 
-some levels could be inside a cave instead of being outside
-could maybe add some moutains in the background of some levels
-some water
+
+
+
 
 ?add bouncing notes?
 
@@ -184,7 +190,6 @@ Monstres
 		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
 	}
 	
-	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
 	
 	millitaire de l'armé américaine
 	
@@ -208,12 +213,15 @@ Monstres
 		marche en faisant comme s'il nageait (avec ses bras)
 	}
 	
-	Texan
+	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
 	{
-		Chapeau de cowboy
-		Ceinture à boucle
-		bottes de cowboy
-		Arme: une carabine
+		Texan
+		{
+			Chapeau de cowboy
+			Ceinture à boucle
+			bottes de cowboy
+			Arme: une carabine
+		}
 	}
 	
 	T Party
