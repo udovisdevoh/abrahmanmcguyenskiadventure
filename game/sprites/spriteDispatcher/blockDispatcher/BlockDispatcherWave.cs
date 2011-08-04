@@ -102,15 +102,13 @@ namespace AbrahmanAdventure.sprites
                 }
             }
         }
-        #endregion
 
-        #region Private Methods
         /// <summary>
         /// For block dispatcher, build wave for block segment distance from ground
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <returns>wave for block segment distance from ground</returns>
-        private static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
+        internal static AbstractWave BuildBlockYDistanceFromGroundWave(Random random)
         {
             WavePack wavePack = new WavePack();
             do

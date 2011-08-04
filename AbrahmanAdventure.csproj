@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <StartupObject>AbrahmanAdventure.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -342,6 +343,7 @@
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherRuins.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherTotems.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\CloudDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherWave.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MonsterDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MusicNoteDispatcher.cs" />

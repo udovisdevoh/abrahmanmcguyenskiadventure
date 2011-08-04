@@ -31,5 +31,15 @@ namespace AbrahmanAdventure.sprites
         {
             get;
         }
+
+        double XPosition
+        {
+            get;
+        }
+
+        double YPosition
+        {
+            get;
+        }
     }
 }

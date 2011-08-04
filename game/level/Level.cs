@@ -226,6 +226,14 @@ namespace AbrahmanAdventure.level
         }
 
         /// <summary>
+        /// Hole set
+        /// </summary>
+        public HoleSet HoleSet
+        {
+            get { return holeSet; }
+        }
+
+        /// <summary>
         /// Left bound
         /// </summary>
         public double LeftBound

@@ -28,6 +28,7 @@ namespace AbrahmanAdventure.sprites
             MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, random);
             AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, random);
             PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, random);
+            CloudDispatcher.DispatchBlocks(level, spritePopulation, addedBlockMemory, random);
         }
 
         /// <summary>

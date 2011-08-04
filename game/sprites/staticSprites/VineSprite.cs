@@ -55,7 +55,6 @@ namespace AbrahmanAdventure.sprites
             {
                 componentSurface = BuildSpriteSurface("./assets/rendered/staticSprites/vine.png");
             }
-            maxHeight = (double)random.Next(7, 32);
         }
         #endregion
 
@@ -74,6 +73,7 @@ namespace AbrahmanAdventure.sprites
         public double MaxHeight
         {
             get { return maxHeight; }
+            set { maxHeight = value; }
         }
         #endregion
 
