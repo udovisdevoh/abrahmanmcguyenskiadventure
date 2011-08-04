@@ -621,6 +621,14 @@ namespace AbrahmanAdventure.sprites
                 else
                     return height;
             }
+
+            set
+            {
+                if (isTiny && (!(this is PlayerSprite) || !((PlayerSprite)this).IsBeaver))
+                    height = value * 2.0;
+                else
+                    height = value;
+            }
         }
 
         /// <summary>

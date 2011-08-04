@@ -293,6 +293,7 @@
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\effects\ExplosionSprite.cs" />
     <Compile Include="game\sprites\ICarriable.cs" />
+    <Compile Include="game\sprites\IClimbable.cs" />
     <Compile Include="game\sprites\IHarvestable.cs" />
     <Compile Include="game\sprites\IMovingGround.cs" />
     <Compile Include="game\sprites\monsters\DrillSprite.cs" />
@@ -355,6 +356,7 @@
     <Compile Include="game\sprites\staticSprites\IBumpable.cs" />
     <Compile Include="game\sprites\staticSprites\PipeSprite.cs" />
     <Compile Include="game\sprites\staticSprites\TrampolineSprite.cs" />
+    <Compile Include="game\sprites\staticSprites\VineSprite.cs" />
     <Compile Include="game\sprites\staticSprites\VortexSprite.cs" />
     <Compile Include="game\SurfaceSizeCache.cs" />
     <Compile Include="game\textGenerator\LineGenerator.cs" />
@@ -852,6 +854,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\shisha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\staticSprites\vine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\priest\stand.png">
