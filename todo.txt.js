@@ -8,6 +8,8 @@ musique
 }
 
 
+colomn parallax
+
 
 ?create ruin structure style block dispatcher
 fusionner wave et totem (si wave positive: totem)
