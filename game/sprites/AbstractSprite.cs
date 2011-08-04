@@ -85,6 +85,11 @@ namespace AbrahmanAdventure.sprites
         private bool isNeedToJumpAgain = false;
 
         /// <summary>
+        /// Whether sprite is on vine
+        /// </summary>
+        private IClimbable climbingOn = null;
+
+        /// <summary>
         /// Whether player currently needs to release and press attack to attack again
         /// </summary>
         private bool isNeedToAttackAgain = false;
@@ -682,6 +687,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isPointingLeft; }
             set { isPointingLeft = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is on vine
+        /// </summary>
+        public IClimbable ClimbingOn
+        {
+            get { return climbingOn; }
+            set { climbingOn = value; }
         }
 
         /// <summary>

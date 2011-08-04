@@ -26,11 +26,6 @@ namespace AbrahmanAdventure.sprites
         private double maxHeight;
 
         /// <summary>
-        /// Current precise height
-        /// </summary>
-        private double preciseHeight;
-
-        /// <summary>
         /// Whether vine is currently growing
         /// </summary>
         private bool isGrowing;
@@ -60,28 +55,11 @@ namespace AbrahmanAdventure.sprites
             {
                 componentSurface = BuildSpriteSurface("./assets/rendered/staticSprites/vine.png");
             }
-            maxHeight = (double)random.Next(7, 64);
+            maxHeight = (double)random.Next(7, 32);
         }
         #endregion
 
         #region Internal Methods
-        /// <summary>
-        /// The plant will grow if needed
-        /// </summary>
-        internal void TryGrow(double timeDelta)
-        {
-            if (isGrowing)
-            {
-                Height += growthSpeed * timeDelta;
-            }
-
-            if (Height >= maxHeight)
-            {
-                isGrowing = false;
-                Height = maxHeight;
-            }
-        }
-
         internal static void ClearCompositeSurfaces()
         {
             compositeSurfaceCache.Clear();
@@ -113,6 +91,12 @@ namespace AbrahmanAdventure.sprites
         protected override bool BuildIsAnnihilateOnExitScreen()
         {
             return false;
+        }
+
+        public bool IsGrowing
+        {
+            get { return isGrowing; }
+            set { isGrowing = value; }
         }
 
         protected override double BuildMaxHealth()
@@ -170,6 +154,11 @@ namespace AbrahmanAdventure.sprites
             }
 
             return currentSurface;
+        }
+
+        public double GrowthSpeed
+        {
+            get { return growthSpeed; }
         }
         #endregion
 

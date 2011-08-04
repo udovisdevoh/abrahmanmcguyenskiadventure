@@ -35,6 +35,11 @@ namespace AbrahmanAdventure.physics
         private BattleManager battleManager = new BattleManager();
 
         /// <summary>
+        /// Manages vines and stuff like that
+        /// </summary>
+        private ClimbableManager climbableManager = new ClimbableManager();
+
+        /// <summary>
         /// Manages flying sprites
         /// </summary>
         private FlyingSpriteManager flyingSpriteManager = new FlyingSpriteManager();
@@ -170,6 +175,13 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired && spriteToUpdate.IGround != null)
                         ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
 
+                    #region We manage climbing
+                    if (spriteToUpdate.IsTryToWalkUp && spriteToUpdate.ClimbingOn != null)
+                        spriteToUpdate.YPosition -= spriteToUpdate.MaxWalkingSpeed / 3.0;
+                    else if (program.UserInput.isPressDown && spriteToUpdate.ClimbingOn != null)
+                        spriteToUpdate.YPosition += spriteToUpdate.MaxWalkingSpeed / 3.0;
+                    #endregion
+
                     if (spriteToUpdate.IGround is PipeSprite && program.UserInput.isPressDown && ((PipeSprite)spriteToUpdate.IGround).IsUpSide && ((PipeSprite)spriteToUpdate.IGround).LinkedPipe != null && pipeManager.IsWithinPipeXRange((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround))
                         pipeManager.SchedulePipeTeleportation((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround);
 
@@ -226,8 +238,8 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate is IGrowable && ((IGrowable)spriteToUpdate).GrowthCycle.IsFired)
                 ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
 
-            if (spriteToUpdate is VineSprite)
-                ((VineSprite)spriteToUpdate).TryGrow(timeDelta);
+            if (spriteToUpdate is IClimbable)
+                climbableManager.Update((IClimbable)spriteToUpdate, playerSpriteReference, timeDelta);
 
             if (spriteToUpdate is IExplodable)
                 explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);

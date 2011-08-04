@@ -51,10 +51,18 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, AbstractSprite playerSpriteReference, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
+            sprite.ClimbingOn = null;
+
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)
                     continue;
+
+                if (otherSprite is IClimbable && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
+                {
+                    sprite.IGround = null;
+                    sprite.ClimbingOn = (IClimbable)otherSprite;
+                }
 
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {

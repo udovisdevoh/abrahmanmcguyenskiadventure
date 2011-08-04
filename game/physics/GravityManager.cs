@@ -26,6 +26,12 @@ namespace AbrahmanAdventure.physics
             if (!sprite.IsAffectedByGravity && sprite.IsAlive || playerSpriteReference.CarriedSprite == sprite)
                 return;
 
+            if (sprite.ClimbingOn != null && sprite.CurrentJumpAcceleration < 0)
+            {
+                sprite.CurrentJumpAcceleration = 0;
+                return;
+            }
+
             if (sprite.IGround != null) //No gravity, sprite is on a ground
             {
                 sprite.CurrentJumpAcceleration = 0;

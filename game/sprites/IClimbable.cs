@@ -10,5 +10,26 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     interface IClimbable
     {
+        bool IsGrowing
+        {
+            get;
+            set;
+        }
+
+        double Height
+        {
+            get;
+            set;
+        }
+
+        double MaxHeight
+        {
+            get;
+        }
+
+        double GrowthSpeed
+        {
+            get;
+        }
     }
 }
