@@ -1,11 +1,4 @@
-colomn parallax
-
-
-lianes
-
-
-
-add block platforms that are only accessible by using vine
+add block platforms that are only accessible by using vine, add great walls that can only be crossed by vine
 
 
 
@@ -22,7 +15,17 @@ plateformes de largeur diverse
 
 
 
-could maybe add some moutains in the background of some levels
+
+
+colomn parallax
+
+
+lianes
+
+
+
+
+could maybe add some parallax moutains in the background of some levels
 
 
 musique
@@ -80,51 +83,6 @@ Bonus "achetable" gratuitement
 	Punch/kick plus loin
 }
 
-Sprite dispatcher
-{
-	Blocks
-	{
-		Wave of horizontal segments
-		{
-			Vertical Waves to dispatch block segments (could be sineish or not)
-			Wave for block segment width
-			Wave for distance between segments
-			Voir SMB1 1-1
-		}
-		
-		Vertical structure
-		{
-			Wave for distance between horizontal segments
-			Wave for horizontal segment width
-			Voir SMB1 5-2, (flat on ground: see SMB3 W2-Quicksand)
-		}
-		
-		Unbreakable block ground wave
-		{
-			Wave of unbreakable blocks going from ground up
-			Voir SMB1 6-1
-			
-			-Also add optional wave qui va creuser la structure de block par en dessous
-			Voir SMB1 6-1
-			
-			-Also add option wave qui va séparer la structure en colonnes
-			Voir SMB1 1-2
-			
-			(for breakable version, see SMB3 2-3
-		}
-		
-		Unbreakable block roof wave
-		{
-			Could also be a Ground (wave ground), but on top (new feature, inverted ground on top)
-			
-			Voir SMB3 W1Fortress
-		}
-		
-		continuer à checker level de SMB3 à partir de W3
-	}
-	
-	SMB3 6-10: great wall
-}
 
 nuages qu'on peut marcher dessus
 
@@ -181,6 +139,22 @@ Miniboss?
 
 Monstres
 {
+	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
+	{
+		Texan
+		{
+			Chapeau de cowboy
+			Ceinture à boucle
+			bottes de cowboy
+			Arme: une carabine
+		}
+	}
+	
+	équivalent de boo
+	{
+		?Avocat fantôme (tient une balance)
+	}
+	
 	Bosses
 	{
 		Tom Cruise
@@ -192,7 +166,6 @@ Monstres
 		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
 	}
 	
-	
 	millitaire de l'armé américaine
 	
 	truc chinois de censure
@@ -202,28 +175,12 @@ Monstres
 		?genre de journaliste qui tient un micro et qui essaie de te pogner au vol)
 	}
 	
-	équivalent de boo
-	{
-		?Avocat
-	}
-	
 	Rcmp
 	
 	Trijambiste
 	{
 		3 jambes
 		marche en faisant comme s'il nageait (avec ses bras)
-	}
-	
-	équivalent de bow-wow (chien en laisse, rond noir avec des grosses dents)
-	{
-		Texan
-		{
-			Chapeau de cowboy
-			Ceinture à boucle
-			bottes de cowboy
-			Arme: une carabine
-		}
 	}
 	
 	T Party
