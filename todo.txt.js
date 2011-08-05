@@ -1,10 +1,12 @@
+some trampolines must be on blocks (and clouds)
+
+
+
 add great walls that can only be crossed by vine
 
 
 lianes
 
-
-some trampolines must be on blocks or add bouncing blocks
 
 
 
