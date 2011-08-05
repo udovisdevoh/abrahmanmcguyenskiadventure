@@ -65,11 +65,11 @@ namespace AbrahmanAdventure.sprites
                 #region Must not be to close to ceiling
                 if (level.Ceiling != null)
                 {
-                    if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition] <= Program.absoluteMaxCeilingHeight)
+                    if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition] <= Program.absoluteMaxCeilingHeight + 1)
                         continue;
-                    else if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition - 1.5] <= Program.absoluteMaxCeilingHeight)
+                    else if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition - 1.5] <= Program.absoluteMaxCeilingHeight + 1)
                         continue;
-                    else if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition + 1.5] <= Program.absoluteMaxCeilingHeight)
+                    else if (ground[xPosition] + yOffset - 1 - level.Ceiling[xPosition + 1.5] <= Program.absoluteMaxCeilingHeight + 1)
                         continue;
                 }
                 #endregion

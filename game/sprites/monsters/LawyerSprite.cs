@@ -48,6 +48,7 @@ namespace AbrahmanAdventure.sprites
             flyingSpeed = random.NextDouble() * 0.1 + 0.045;
             MaxWalkingSpeed = random.NextDouble() * 0.02 + 0.10;
             safeYDistanceFromPlayer = random.NextDouble() * 1.8 - 0.9;
+            IsCrossGrounds = true;
         }
         #endregion
 

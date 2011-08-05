@@ -1,15 +1,3 @@
-some trampolines must be on blocks (and clouds)
-
-
-
-add great walls that can only be crossed by vine
-
-
-lianes
-
-
-
-
 faire des grands trous
 si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
 
@@ -20,6 +8,19 @@ si rond, mettre sprite au centre et bras qui font tourner
 afficher path, ou pas, dépendant de la situation
 
 plateformes de largeur diverse
+
+
+
+
+some trampolines must be on blocks (and clouds)
+
+
+
+add great walls that can only be crossed by vine
+
+
+lianes
+
 
 
 
