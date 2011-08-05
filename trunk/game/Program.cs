@@ -71,7 +71,7 @@ namespace AbrahmanAdventure
 
         public const int squareZoneTileHeight = 10;
 
-        public const int vineMinHeight = 7;
+        public const int vineMinHeight = 10;
 
         public const int vineMaxHeight = 36;
        
