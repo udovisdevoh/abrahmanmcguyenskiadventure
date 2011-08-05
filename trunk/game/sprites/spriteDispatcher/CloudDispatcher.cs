@@ -133,19 +133,21 @@ namespace AbrahmanAdventure.sprites
             else if (level.HoleSet[x, y])
                 return;
 
-            StaticSprite blockSprite = new BrickSprite(x, y, random, false);
+            CloudSprite cloudSprite = new CloudSprite(x, y, random);
 
-            spritePopulation.Add(blockSprite);
+            spritePopulation.Add(cloudSprite);
 
-            IGround groundBelowBlock = IGroundHelper.GetHighestVisibleIGroundBelowSprite(blockSprite, level, null, false);
+            IGround groundBelowBlock = IGroundHelper.GetHighestVisibleIGroundBelowSprite(cloudSprite, level, null, false);
 
-            if (groundBelowBlock == null || groundBelowBlock[x] - blockSprite.YPosition < Program.maxCloudHeightFromGround)
+            if (groundBelowBlock == null || groundBelowBlock[x] - cloudSprite.YPosition < Program.maxCloudHeightFromGround)
                 isCouldAdd = false;
+            else if (!IGroundHelper.IsHigherThanOtherGrounds((Ground)groundBelowBlock, level, x))
+                return;
 
             if (isCouldAdd)
                 addedBlockMemory.Add((int)x, (int)y);
             else
-                spritePopulation.Remove(blockSprite);
+                spritePopulation.Remove(cloudSprite);
         }
 
         /// <summary>
