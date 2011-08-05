@@ -12,7 +12,16 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class ClimbableManager
     {
-        internal void Update(IClimbable climbable, Level level, PlayerSprite playerSpriteReference, double timeDelta)
+        internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable)
+        {
+            if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && potentialClimbable is IClimbable && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
+            {
+                sprite.IGround = null;
+                sprite.ClimbingOn = (IClimbable)potentialClimbable;
+            }
+        }
+
+        internal void UpdateClimbable(IClimbable climbable, PlayerSprite playerSpriteReference, double timeDelta)
         {            
             if (!climbable.IsGrowing)
                 return;
@@ -26,16 +35,27 @@ namespace AbrahmanAdventure.physics
                 climbable.Height = climbable.MaxHeight;
                 climbable.IsGrowing = false;
             }
-            else if (level.Ceiling != null && climbable.YPosition - climbable.Height <= level.Ceiling[climbable.XPosition])
-            {
-                climbable.Height = climbable.XPosition - level.Ceiling[climbable.XPosition];
-                climbable.IsGrowing = false;
-            }
 
             if (playerSpriteReference.ClimbingOn == climbable)
             {
                 playerSpriteReference.YPosition -= (climbable.Height - previousHeight);
             }
+        }
+
+        internal void ClimbUp(PlayerSprite playerSprite)
+        {
+            playerSprite.YPosition -= playerSprite.MaxWalkingSpeed / 3.0;
+
+            if (playerSprite.YPosition < playerSprite.ClimbingOn.TopBound)
+                playerSprite.YPositionKeepPrevious = playerSprite.ClimbingOn.TopBound + 0.01;
+
+            playerSprite.CurrentWalkingSpeed = 0.0;
+        }
+
+        internal void ClimbDown(PlayerSprite playerSprite)
+        {
+            playerSprite.YPosition += playerSprite.MaxWalkingSpeed / 3.0;
+            playerSprite.CurrentWalkingSpeed = 0.0;
         }
     }
 }

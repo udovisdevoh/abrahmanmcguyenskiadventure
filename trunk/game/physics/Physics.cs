@@ -175,20 +175,6 @@ namespace AbrahmanAdventure.physics
                     if (((PlayerSprite)spriteToUpdate).FromVortexCycle.IsFired && spriteToUpdate.IGround != null)
                         ((PlayerSprite)spriteToUpdate).FromVortexCycle.Increment(timeDelta);
 
-                    #warning Move this somewhere else
-                    #region We manage climbing
-                    if (spriteToUpdate.IsTryToWalkUp && spriteToUpdate.ClimbingOn != null)
-                    {
-                        spriteToUpdate.YPosition -= spriteToUpdate.MaxWalkingSpeed / 3.0;
-                        spriteToUpdate.CurrentWalkingSpeed = 0.0;
-                    }
-                    else if (program.UserInput.isPressDown && spriteToUpdate.ClimbingOn != null)
-                    {
-                        spriteToUpdate.YPosition += spriteToUpdate.MaxWalkingSpeed / 3.0;
-                        spriteToUpdate.CurrentWalkingSpeed = 0.0;
-                    }
-                    #endregion
-
                     if (spriteToUpdate.IGround is PipeSprite && program.UserInput.isPressDown && ((PipeSprite)spriteToUpdate.IGround).IsUpSide && ((PipeSprite)spriteToUpdate.IGround).LinkedPipe != null && pipeManager.IsWithinPipeXRange((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround))
                         pipeManager.SchedulePipeTeleportation((PlayerSprite)spriteToUpdate, (PipeSprite)spriteToUpdate.IGround);
 
@@ -246,7 +232,7 @@ namespace AbrahmanAdventure.physics
                 ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
 
             if (spriteToUpdate is IClimbable)
-                climbableManager.Update((IClimbable)spriteToUpdate, level, playerSpriteReference, timeDelta);
+                climbableManager.UpdateClimbable((IClimbable)spriteToUpdate, playerSpriteReference, timeDelta);
 
             if (spriteToUpdate is IExplodable)
                 explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
