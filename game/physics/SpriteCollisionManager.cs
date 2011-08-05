@@ -31,6 +31,11 @@ namespace AbrahmanAdventure.physics
         private PowerUpManager powerUpManager = new PowerUpManager();
 
         /// <summary>
+        /// Manage vines and stuff like that
+        /// </summary>
+        private ClimbableManager climbableManager = new ClimbableManager();
+
+        /// <summary>
         /// To convert sprites
         /// </summary>
         private SpriteConversionManager spriteConverter = new SpriteConversionManager();
@@ -58,11 +63,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)
                     continue;
 
-                if (otherSprite is IClimbable && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
-                {
-                    sprite.IGround = null;
-                    sprite.ClimbingOn = (IClimbable)otherSprite;
-                }
+                climbableManager.UpdateClimber(sprite, otherSprite);
 
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {

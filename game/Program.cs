@@ -151,6 +151,8 @@ namespace AbrahmanAdventure
 
         private PipeManager pipeManager;
 
+        private ClimbableManager climbableManager;
+
         private MonsterAi monsterAi;
 
         private DateTime previousDateTime = DateTime.Now;
@@ -184,6 +186,7 @@ namespace AbrahmanAdventure
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
             beaverManager = new BeaverManager();
+            climbableManager = new ClimbableManager();
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
@@ -623,6 +626,17 @@ namespace AbrahmanAdventure
                             playerSprite.CurrentWalkingSpeed -= playerSprite.WalkingAcceleration;
                             playerSprite.CurrentWalkingSpeed = Math.Max(0, playerSprite.CurrentWalkingSpeed);
                         }
+                    }
+                    #endregion
+
+                    #region We manage climbing input logic
+                    if (playerSprite.IsTryToWalkUp && playerSprite.ClimbingOn != null)
+                    {
+                        climbableManager.ClimbUp(playerSprite);
+                    }
+                    else if (userInput.isPressDown && playerSprite.ClimbingOn != null)
+                    {
+                        climbableManager.ClimbDown(playerSprite);
                     }
                     #endregion
 

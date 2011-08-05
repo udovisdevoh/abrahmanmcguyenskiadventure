@@ -32,7 +32,7 @@ namespace AbrahmanAdventure.sprites
 
             AbstractWave yDistaceFromVineTopWave = BlockDispatcherWave.BuildBlockYDistanceFromGroundWave(random);
 
-            double cloudHeightOffset = (double)random.Next(-2, 7);
+            double cloudHeightOffset = (double)random.Next(-1, 7);
 
             foreach (AnarchyBlockSprite block in blocksContainingVine)
             {
@@ -130,16 +130,10 @@ namespace AbrahmanAdventure.sprites
                 return;
             else if (level.Ceiling != null && y - 1 <= level.Ceiling[x])
                 return;
+            else if (level.HoleSet[x, y])
+                return;
 
-            StaticSprite blockSprite;
-            /*if (random.NextDouble() < BlockDispatcher.anarchyBlockProbability)
-                blockSprite = new AnarchyBlockSprite(x, y, random, false);
-            else if (random.NextDouble() < BlockDispatcher.hiddenAnarchyBlockProbability)
-                blockSprite = new AnarchyBlockSprite(x, y, random, true);
-            else if (random.NextDouble() < BlockDispatcher.indestructibleBlockProbability)*/
-                blockSprite = new BrickSprite(x, y, random, false);
-            /*else
-                blockSprite = new BrickSprite(x, y, random, true);*/
+            StaticSprite blockSprite = new BrickSprite(x, y, random, false);
 
             spritePopulation.Add(blockSprite);
 

@@ -59,13 +59,25 @@ namespace AbrahmanAdventure.physics
                             SoundManager.PlayDiveOutSound();
                     }
                 }
-                else if (sprite.IGround != null || sprite.ClimbingOn != null)
+                else if (sprite.IGround != null)
                 {
                     sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                     sprite.IGround = null;
                     if (sprite is PlayerSprite)
                         SoundManager.PlayJumpSound();
+                }
+                else if (sprite.ClimbingOn != null)
+                {
+                    if (!sprite.IsNeedToJumpAgain && sprite.IsAlive)
+                    {
+                        sprite.JumpingCycle.Reset();
+                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                        sprite.IGround = null;
+                        sprite.IsNeedToJumpAgain = true;
+                        if (sprite is PlayerSprite)
+                            SoundManager.PlayJumpSound();
+                    }
                 }
 
                 if (sprite.CurrentJumpAcceleration < 0)

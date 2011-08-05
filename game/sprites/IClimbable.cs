@@ -41,5 +41,10 @@ namespace AbrahmanAdventure.sprites
         {
             get;
         }
+
+        double TopBound
+        {
+            get;
+        }
     }
 }

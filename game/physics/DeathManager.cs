@@ -77,7 +77,7 @@ namespace AbrahmanAdventure.physics
                     {
                         if (otherSprite is AnarchyBlockSprite)
                             ((AnarchyBlockSprite)otherSprite).IsFinalized = false;
-                        else if (otherSprite is PeyoteSprite || otherSprite is RastaHatSprite || otherSprite is WhiskySprite || otherSprite is MushroomSprite || otherSprite is BeaverSprite)
+                        else if (otherSprite is PeyoteSprite || otherSprite is RastaHatSprite || otherSprite is WhiskySprite || otherSprite is MushroomSprite || otherSprite is BeaverSprite || otherSprite is VineSprite)
                         {
                             otherSprite.IsAlive = false;
                             otherSprite.YPosition = Program.totalHeightTileCount + 1.0;
