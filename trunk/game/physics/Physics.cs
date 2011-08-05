@@ -232,7 +232,7 @@ namespace AbrahmanAdventure.physics
                 ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
 
             if (spriteToUpdate is IClimbable)
-                climbableManager.UpdateClimbable((IClimbable)spriteToUpdate, playerSpriteReference, timeDelta);
+                climbableManager.UpdateClimbable((IClimbable)spriteToUpdate, playerSpriteReference, level, timeDelta);
 
             if (spriteToUpdate is IExplodable)
                 explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);

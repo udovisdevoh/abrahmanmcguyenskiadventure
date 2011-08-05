@@ -14,6 +14,9 @@ namespace AbrahmanAdventure.physics
     {
         internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable, IClimbable wasClimbingOnAtPreviousFrame, UserInput userInput)
         {
+            if (sprite.YPosition >= potentialClimbable.YPosition && userInput.isPressDown)
+                return;
+
             if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
             {
                 if (sprite is MonsterSprite || userInput.isPressUp || wasClimbingOnAtPreviousFrame == potentialClimbable)
@@ -24,7 +27,7 @@ namespace AbrahmanAdventure.physics
             }
         }
 
-        internal void UpdateClimbable(IClimbable climbable, PlayerSprite playerSpriteReference, double timeDelta)
+        internal void UpdateClimbable(IClimbable climbable, PlayerSprite playerSpriteReference, Level level, double timeDelta)
         {            
             if (!climbable.IsGrowing)
                 return;
@@ -36,6 +39,10 @@ namespace AbrahmanAdventure.physics
             if (climbable.Height >= climbable.MaxHeight)
             {
                 climbable.Height = climbable.MaxHeight;
+                climbable.IsGrowing = false;
+            }
+            else if (level.Ceiling != null && climbable.YPosition - climbable.Height <= level.Ceiling[climbable.XPosition])
+            {
                 climbable.IsGrowing = false;
             }
 

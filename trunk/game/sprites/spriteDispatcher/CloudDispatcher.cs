@@ -158,12 +158,18 @@ namespace AbrahmanAdventure.sprites
             if (random.Next(0, 8) == 1)
             {
                 double bonusYDistance = (double)random.Next(3, 6);
+                if (level.Ceiling != null && y - bonusYDistance < level.Ceiling[x])
+                    return;
+
                 BlockContent blockContent = (BlockContent)random.Next(1, 5);
                 AnarchyBlockSprite anarchyBlock = new AnarchyBlockSprite(x, y - bonusYDistance, random, blockContent, false);
                 spritePopulation.Add(anarchyBlock);
             }
             else
             {
+                if (level.Ceiling != null && y - musicNoteYDistance < level.Ceiling[x])
+                    return;
+
                 MusicNoteSprite musicNoteSprite = new MusicNoteSprite(x, y - musicNoteYDistance, random);
                 spritePopulation.Add(musicNoteSprite);
             }
