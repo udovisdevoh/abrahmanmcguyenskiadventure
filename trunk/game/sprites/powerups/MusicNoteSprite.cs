@@ -57,7 +57,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsAffectedByGravity()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsAnnihilateOnExitScreen()
