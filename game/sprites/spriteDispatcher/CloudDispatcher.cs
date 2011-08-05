@@ -7,7 +7,7 @@ using AbrahmanAdventure.physics;
 
 namespace AbrahmanAdventure.sprites
 {
-    enum CloudSidePosition { Right, Left, Bilateral, None }
+    enum CloudSidePosition { Right, Left, Bilateral }
 
     /// <summary>
     /// To dispatch blocks that are only reachable by climbing a vine
@@ -36,13 +36,11 @@ namespace AbrahmanAdventure.sprites
 
             foreach (AnarchyBlockSprite block in blocksContainingVine)
             {
-                CloudSidePosition cloudSidePosition = (CloudSidePosition)random.Next(0, 4);
-                
-                #warning Remove forced bilateral
-                cloudSidePosition = CloudSidePosition.Bilateral;
+                CloudSidePosition cloudSidePosition = (CloudSidePosition)random.Next(0, 3);
 
                 int minSegmentWidth = random.Next(1, 7);
                 int maxSegmentWidth = Math.Max(minSegmentWidth, random.Next(7, 20));
+                double musicNoteYDistance = (double)random.Next(1, 5);
 
                 double absoluteVineHeigth = block.YPosition - block.VineHeight;
 
@@ -52,10 +50,10 @@ namespace AbrahmanAdventure.sprites
                     continue;
 
                 if (cloudSidePosition == CloudSidePosition.Right || cloudSidePosition == CloudSidePosition.Bilateral)
-                    DispatchCloudsOnSideOfVine(true, level, block.XPosition, absoluteVineHeigth + cloudHeightOffset, spritePopulation, addedBlockMemory, yDistaceFromVineTopWave, groundBelowVineTop, minSegmentWidth, maxSegmentWidth, random);
+                    DispatchCloudsOnSideOfVine(true, musicNoteYDistance, level, block.XPosition, absoluteVineHeigth + cloudHeightOffset, spritePopulation, addedBlockMemory, yDistaceFromVineTopWave, groundBelowVineTop, minSegmentWidth, maxSegmentWidth, random);
                 
                 if (cloudSidePosition == CloudSidePosition.Left || cloudSidePosition == CloudSidePosition.Bilateral)
-                    DispatchCloudsOnSideOfVine(false, level, block.XPosition, absoluteVineHeigth + cloudHeightOffset, spritePopulation, addedBlockMemory, yDistaceFromVineTopWave, groundBelowVineTop, minSegmentWidth, maxSegmentWidth, random);
+                    DispatchCloudsOnSideOfVine(false, musicNoteYDistance, level, block.XPosition, absoluteVineHeigth + cloudHeightOffset, spritePopulation, addedBlockMemory, yDistaceFromVineTopWave, groundBelowVineTop, minSegmentWidth, maxSegmentWidth, random);
             }
 
         }
@@ -74,7 +72,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yDistaceFromVineTopWave"></param>
         /// <param name="groundBelowVineTop">ground below vine's top</param>
         /// <param name="random">random number generator</param>
-        private static void DispatchCloudsOnSideOfVine(bool isOnRightSide, Level level, double vineX, double absoluteVineHeigthPlusCloudHeightOffset, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, AbstractWave yDistaceFromVineTopWave, Ground groundBelowVineTop, int minSegmentWidth, int maxSegmentWidth, Random random)
+        private static void DispatchCloudsOnSideOfVine(bool isOnRightSide, double musicNoteYDistance, Level level, double vineX, double absoluteVineHeigthPlusCloudHeightOffset, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, AbstractWave yDistaceFromVineTopWave, Ground groundBelowVineTop, int minSegmentWidth, int maxSegmentWidth, Random random)
         {
             double xDistanceFromVine = (double)random.Next(0, 5);
             double width = (double)random.Next(7, 32);
@@ -104,7 +102,7 @@ namespace AbrahmanAdventure.sprites
                 }
 
                 y = Math.Round(yDistaceFromVineTopWave[x] + absoluteVineHeigthPlusCloudHeightOffset);
-                TryDispatchSingleCloud(level, x, y, spritePopulation, addedBlockMemory, groundBelowVineTop, random);
+                TryDispatchSingleCloud(level, x, y, musicNoteYDistance, spritePopulation, addedBlockMemory, groundBelowVineTop, random);
 
                 segmentWidth--;
             }
@@ -120,7 +118,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="addedBlockMemory">added blocks</param>
         /// <param name="yDistaceFromVineTopWave">shape of the cloud set</param>
         /// <param name="random">random number generator</param>
-        private static void TryDispatchSingleCloud(Level level, double x, double y, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, Ground groundBelowVineTop, Random random)
+        private static void TryDispatchSingleCloud(Level level, double x, double y, double musicNoteYDistance, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, Ground groundBelowVineTop, Random random)
         {
             bool isCouldAdd = true;
 
@@ -145,9 +143,30 @@ namespace AbrahmanAdventure.sprites
                 return;
 
             if (isCouldAdd)
+            {
                 addedBlockMemory.Add((int)x, (int)y);
+
+                if (random.Next(0, 3) == 1)
+                    TryDispatchPowerup(level, x, y, musicNoteYDistance, spritePopulation, addedBlockMemory, random);
+            }
             else
                 spritePopulation.Remove(cloudSprite);
+        }
+
+        private static void TryDispatchPowerup(Level level, double x, double y, double musicNoteYDistance, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, Random random)
+        {
+            if (random.Next(0, 8) == 1)
+            {
+                double bonusYDistance = (double)random.Next(3, 6);
+                BlockContent blockContent = (BlockContent)random.Next(1, 5);
+                AnarchyBlockSprite anarchyBlock = new AnarchyBlockSprite(x, y - bonusYDistance, random, blockContent, false);
+                spritePopulation.Add(anarchyBlock);
+            }
+            else
+            {
+                MusicNoteSprite musicNoteSprite = new MusicNoteSprite(x, y - musicNoteYDistance, random);
+                spritePopulation.Add(musicNoteSprite);
+            }
         }
 
         /// <summary>
