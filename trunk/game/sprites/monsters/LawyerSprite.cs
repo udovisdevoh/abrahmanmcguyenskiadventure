@@ -6,19 +6,26 @@ using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
-    class FarmerSprite : MonsterSprite, IProjectileShooter, IFlyingOnEqualDistance
+    /// <summary>
+    /// Lawyer sprite
+    /// </summary>
+    internal class LawyerSprite : MonsterSprite, IFlyingOnEqualDistance
     {
         #region Fields and parts
-        private Cycle shootingCycle;
+        private static Surface standingRight;
 
-        private static Surface standRight;
+        private static Surface standingLeft;
 
         private static Surface deadSurface;
+
+        private double safeYDistanceFromPlayer;
+
+        private double flyingSpeed;
 
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "The monsanto farmer will throw evil corn at you.";
+        private const string tutorialComment = "Don't let the lawyer sue you!";
         #endregion
 
         #region Constructors
@@ -28,23 +35,26 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public FarmerSprite(double xPosition, double yPosition, Random random)
+        public LawyerSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            shootingCycle = new Cycle(MaxShootingTimeBetween, false);
-            shootingCycle.Fire();
-            if (standRight == null)
+            if (standingRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/farmer/farmer.png");
-                deadSurface = standRight.CreateFlippedVerticalSurface();
+                standingRight = BuildSpriteSurface("./assets/rendered/lawyer/lawyer.png");
+                standingLeft = standingRight.CreateFlippedHorizontalSurface();
+                deadSurface = standingRight.CreateFlippedVerticalSurface();
             }
+
+            flyingSpeed = random.NextDouble() * 0.1 + 0.045;
+            MaxWalkingSpeed = random.NextDouble() * 0.02 + 0.10;
+            safeYDistanceFromPlayer = random.NextDouble() * 1.8 - 0.9;
         }
         #endregion
 
         #region Overrides
         protected override bool BuildIsJumpableOn()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsAiEnabled()
@@ -54,12 +64,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsCanJump(Random random)
         {
-            return random.Next(0,2) == 1;
+            return false;
         }
 
         protected override bool BuildIsAvoidFall(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsToggleWalkWhenJumpedOn()
@@ -69,12 +79,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsFleeWhenAttacked(Random random)
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsInstantKickConvertedSprite()
@@ -99,7 +109,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsJumpableOnEvenByBeaver()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsCanDoDamageToPlayerWhenTouched()
@@ -109,8 +119,10 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsNoAiChangeDirectionWhenStucked()
         {
-            return true;
+            return false;
         }
+
+
 
         protected override bool BuildIsNoAiDieWhenStucked()
         {
@@ -144,7 +156,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildJumpProbability()
         {
-            return 0.10;
+            return 0;
         }
 
         protected override double BuildChangeDirectionNoAiCycleLength()
@@ -169,7 +181,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 0.5;
+            return 100.0;
         }
 
         protected override double BuildJumpingTime()
@@ -219,7 +231,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return 1.71;
+            return 1.15;
         }
 
         protected override double BuildHeight(Random random)
@@ -229,12 +241,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildSafeDistanceAi()
         {
-            return 4.0;
+            return 0.0;
         }
 
         protected override double BuildSubjectiveOccurenceProbability()
         {
-            return 1.0;
+            return 0.5;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
@@ -244,67 +256,27 @@ namespace AbrahmanAdventure.sprites
             if (!IsAlive)
                 return deadSurface;
 
-            return standRight;
-        }
-        #endregion
-
-        #region IProjectileShooter Members
-        public AbstractSprite GetProjectile(Random random)
-        {
-            CornSprite cornSprite = new CornSprite(XPosition, TopBound, random);
-            cornSprite.IGround = null;
-            cornSprite.CurrentJumpAcceleration = 0.25;
-            cornSprite.IsCurrentlyInFreeFallX = true;
-            cornSprite.CurrentWalkingSpeed = CurrentWalkingSpeed;
-            cornSprite.JumpingCycle.Fire();
-            return cornSprite;
-        }
-
-        public Cycle ShootingCycle
-        {
-            get { return shootingCycle; }
-        }
-
-        public Type ProjectileType
-        {
-            get { return typeof(CornSprite); }
-        }
-
-        public int MaxProjectileCountPerScreen
-        {
-            get { return 4; }
-        }
-
-        public double MinShootingTimeBetween
-        {
-            get { return 50.0; }
-        }
-
-        public double MaxShootingTimeBetween
-        {
-            get { return 100.0; }
-        }
-
-        public double MaxShootingDistance
-        {
-            get { return 30.0; }
+            if (IsTryingToWalkRight)
+                return standingRight;
+            else
+                return standingLeft;
         }
         #endregion
 
         #region IFlyingOnXWave Members
         public double SafeYDistanceFromPlayer
         {
-            get { return 4; }
+            get { return safeYDistanceFromPlayer; }
         }
 
         public double FlyingYSpeed
         {
-            get { return 0.05; }
+            get { return flyingSpeed; }
         }
 
         public bool IsOnlyMoveWhenNotBeingLookedAt
         {
-            get { return false; }
+            get { return true; }
         }
         #endregion
     }

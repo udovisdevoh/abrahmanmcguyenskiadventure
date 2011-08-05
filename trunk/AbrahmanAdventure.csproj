@@ -314,6 +314,7 @@
     <Compile Include="game\sprites\monsters\IUpDownCycleMove.cs" />
     <Compile Include="game\sprites\monsters\JewSprite.cs" />
     <Compile Include="game\sprites\monsters\KidSprite.cs" />
+    <Compile Include="game\sprites\monsters\LawyerSprite.cs" />
     <Compile Include="game\sprites\monsters\MonsterSprite.cs" />
     <Compile Include="game\sprites\Cycle.cs" />
     <Compile Include="game\sprites\monsters\MormonSprite.cs" />
@@ -789,6 +790,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\kid\kidWalk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\lawyer\lawyer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\mormon\MormonAttack.png">

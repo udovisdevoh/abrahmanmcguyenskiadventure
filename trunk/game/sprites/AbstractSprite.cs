@@ -932,6 +932,7 @@ namespace AbrahmanAdventure.sprites
         public double MaxWalkingSpeed
         {
             get { return maxWalkingSpeed; }
+            set { maxWalkingSpeed = value; }
         }
 
         /// <summary>

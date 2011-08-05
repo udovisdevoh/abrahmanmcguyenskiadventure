@@ -139,7 +139,7 @@ namespace AbrahmanAdventure.physics
             waterManager.Update(spriteToUpdate, gameState.WaterInfo);
 
             walkingManager.Update(spriteToUpdate, level, timeDelta, visibleSpriteList, playerSpriteReference);
-            
+
             if (spriteToUpdate is IFlyingOnEqualDistance)
                 flyingSpriteManager.Update((IFlyingOnEqualDistance)spriteToUpdate, playerSpriteReference, timeDelta);
             else

@@ -36,5 +36,21 @@ namespace AbrahmanAdventure.sprites
         {
             get;
         }
+
+        /// <summary>
+        /// X Position
+        /// </summary>
+        double XPosition
+        {
+            get;
+        }
+
+        /// <summary>
+        /// If true, behave like a boo
+        /// </summary>
+        bool IsOnlyMoveWhenNotBeingLookedAt
+        {
+            get;
+        }
     }
 }
