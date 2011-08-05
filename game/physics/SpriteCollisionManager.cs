@@ -56,6 +56,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, AbstractSprite playerSpriteReference, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
+            IClimbable wasClimbingOnAtPreviousFrame = sprite.ClimbingOn;
             sprite.ClimbingOn = null;
 
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
@@ -63,7 +64,8 @@ namespace AbrahmanAdventure.physics
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)
                     continue;
 
-                climbableManager.UpdateClimber(sprite, otherSprite);
+                if (otherSprite is IClimbable)
+                    climbableManager.UpdateClimber(sprite, otherSprite, wasClimbingOnAtPreviousFrame, program.UserInput);
 
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {

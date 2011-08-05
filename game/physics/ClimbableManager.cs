@@ -12,12 +12,15 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class ClimbableManager
     {
-        internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable)
+        internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable, IClimbable wasClimbingOnAtPreviousFrame, UserInput userInput)
         {
-            if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && potentialClimbable is IClimbable && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
+            if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
             {
-                sprite.IGround = null;
-                sprite.ClimbingOn = (IClimbable)potentialClimbable;
+                if (sprite is MonsterSprite || userInput.isPressUp || wasClimbingOnAtPreviousFrame == potentialClimbable)
+                {
+                    sprite.IGround = null;
+                    sprite.ClimbingOn = (IClimbable)potentialClimbable;
+                }
             }
         }
 

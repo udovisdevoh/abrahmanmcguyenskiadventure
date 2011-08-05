@@ -75,6 +75,7 @@ namespace AbrahmanAdventure.physics
                         sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                         sprite.IGround = null;
                         sprite.IsNeedToJumpAgain = true;
+                        sprite.ClimbingOn = null;
                         if (sprite is PlayerSprite)
                             SoundManager.PlayJumpSound();
                     }

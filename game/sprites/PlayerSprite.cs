@@ -2257,15 +2257,31 @@ namespace AbrahmanAdventure.sprites
             
             if (ThrowBallCycle.IsFired)
             {
-                if (IsTryingToWalkRight)
+                if (IsCrouch)
                 {
-                    xOffset = 0.2;
-                    return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                    if (IsTryingToWalkRight)
+                    {
+                        xOffset = 0.2;
+                        return GetCrouchedAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                    }
+                    else
+                    {
+                        xOffset = -0.2;
+                        return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                    }
                 }
                 else
                 {
-                    xOffset = -0.2;
-                    return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                    if (IsTryingToWalkRight)
+                    {
+                        xOffset = 0.2;
+                        return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                    }
+                    else
+                    {
+                        xOffset = -0.2;
+                        return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                    }
                 }
             }
             else if (AttackingCycle.IsFired)
