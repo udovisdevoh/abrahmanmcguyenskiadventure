@@ -356,6 +356,7 @@
     <Compile Include="game\sprites\staticSprites\AnarchyBlockSprite.cs" />
     <Compile Include="game\sprites\staticSprites\BrickSprite.cs" />
     <Compile Include="game\sprites\StaticSprite.cs" />
+    <Compile Include="game\sprites\staticSprites\CloudSprite.cs" />
     <Compile Include="game\sprites\staticSprites\IBumpable.cs" />
     <Compile Include="game\sprites\staticSprites\PipeSprite.cs" />
     <Compile Include="game\sprites\staticSprites\TrampolineSprite.cs" />
@@ -857,6 +858,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\shisha.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\staticSprites\cloud.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\staticSprites\vine.png">

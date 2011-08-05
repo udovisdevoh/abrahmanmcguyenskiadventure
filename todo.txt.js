@@ -1,10 +1,9 @@
 put back random cloud sides -> #warning Remove forced bilateral
 
-add great walls that can only be crossed by vine
-
-
 
 add notes on clouds, add powerup block on clouds
+
+add great walls that can only be crossed by vine
 
 
 lianes
