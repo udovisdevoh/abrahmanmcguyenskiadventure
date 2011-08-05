@@ -158,11 +158,6 @@ Monstres
 		}
 	}
 	
-	équivalent de boo
-	{
-		?Avocat fantôme (tient une balance)
-	}
-	
 	Bosses
 	{
 		Tom Cruise

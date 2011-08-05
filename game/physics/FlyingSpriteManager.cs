@@ -13,6 +13,16 @@ namespace AbrahmanAdventure.physics
     {
         internal void Update(IFlyingOnEqualDistance flyingSprite, AbstractSprite playerSprite, double timeDelta)
         {
+            #region We manage the behavior of a boo that stops when being looked at
+            if (flyingSprite.IsOnlyMoveWhenNotBeingLookedAt)
+            {
+                if ((playerSprite.IsTryingToWalkRight && flyingSprite.XPosition > playerSprite.XPosition) || (!playerSprite.IsTryingToWalkRight && flyingSprite.XPosition < playerSprite.XPosition))
+                {
+                    return;
+                }
+            }
+            #endregion
+
             if (flyingSprite.YPosition > playerSprite.YPosition - flyingSprite.SafeYDistanceFromPlayer * 0.75)
             {
                 flyingSprite.YPosition -= flyingSprite.FlyingYSpeed * timeDelta;

@@ -125,6 +125,17 @@ namespace AbrahmanAdventure.ai
                         monster.IsTryingToWalkRight = false;
                 }
 
+                #region We manage the behavior of a boo that stops when being looked at
+                if (monster is IFlyingOnEqualDistance && ((IFlyingOnEqualDistance)monster).IsOnlyMoveWhenNotBeingLookedAt)
+                {
+                    if ((player.IsTryingToWalkRight && player.XPosition < monster.XPosition) || (!player.IsTryingToWalkRight && player.XPosition > monster.XPosition))
+                    {
+                        monster.IsTryingToWalk = false;
+                        monster.CurrentWalkingSpeed = 0.0;
+                    }
+                }
+                #endregion
+
                 if (wasTryingToWalkRight != monster.IsTryingToWalkRight)
                     monster.CurrentWalkingSpeed = 0.0;
 
