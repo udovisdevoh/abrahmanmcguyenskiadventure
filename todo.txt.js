@@ -7,6 +7,9 @@ add great walls that can only be crossed by vine
 add notes on clouds, add powerup block on clouds
 
 
+lianes
+
+
 some trampolines must be on blocks or add bouncing blocks
 
 
@@ -29,7 +32,7 @@ plateformes de largeur diverse
 colomn parallax
 
 
-lianes
+
 
 
 
