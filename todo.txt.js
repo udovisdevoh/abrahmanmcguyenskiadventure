@@ -159,6 +159,8 @@ Monstres
 		}
 	}
 	
+	Rcmp
+	
 	Bosses
 	{
 		Tom Cruise
@@ -178,8 +180,6 @@ Monstres
 	{
 		?genre de journaliste qui tient un micro et qui essaie de te pogner au vol)
 	}
-	
-	Rcmp
 	
 	Trijambiste
 	{
