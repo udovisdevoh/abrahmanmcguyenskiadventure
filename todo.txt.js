@@ -1,3 +1,6 @@
+remove stuff like: getfartestwalkingdistancenocollision
+
+
 faire des grands trous
 si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
 
@@ -141,6 +144,7 @@ glisser: doit attaquer monstrers (ne doit plus glisser sur pente trop douce)
 
 
 ?add key combination for self death (when stucked)?
+
 
 Boss?
 Miniboss?
