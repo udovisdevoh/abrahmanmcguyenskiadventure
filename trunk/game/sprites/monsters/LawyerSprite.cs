@@ -123,8 +123,6 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-
-
         protected override bool BuildIsNoAiDieWhenStucked()
         {
             return false;
