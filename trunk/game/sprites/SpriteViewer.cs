@@ -51,8 +51,13 @@ namespace AbrahmanAdventure.sprites
         /// <param name="isOddFrame">whether frame is odd</param>
         private void ShowSprite(AbstractSprite sprite, double viewOffsetX, double viewOffsetY, bool isOddFrame)
         {
-            if (isOddFrame && (sprite.HitCycle.IsFired || sprite is PlayerSprite && ((PlayerSprite)sprite).FromVortexCycle.IsFired))
-                return;
+            if (isOddFrame)
+            {
+                if (sprite.HitCycle.IsFired || sprite is PlayerSprite && ((PlayerSprite)sprite).FromVortexCycle.IsFired)
+                    return;
+                else if (sprite is LawyerSprite)
+                    return;
+            }
 
             double specialOffsetX, specialOffsetY;
 

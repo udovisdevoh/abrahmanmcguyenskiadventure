@@ -101,7 +101,6 @@ namespace AbrahmanAdventure.sprites
                     segmentWidth = (double)random.Next(minSegmentWidth, maxSegmentWidth);
                 }
 
-                y = Math.Round(yDistaceFromVineTopWave[x] + absoluteVineHeigthPlusCloudHeightOffset);
                 TryDispatchSingleCloud(level, x, y, musicNoteYDistance, spritePopulation, addedBlockMemory, groundBelowVineTop, random);
 
                 segmentWidth--;

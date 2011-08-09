@@ -258,6 +258,10 @@ namespace AbrahmanAdventure.sprites
                 skillDispatchRatio += 0.333;
             if (this is IExplodable)
                 skillDispatchRatio += 1.5;
+            if (IsCrossGrounds)
+                skillDispatchRatio += 0.5;
+            if (!isJumpableOn)
+                skillDispatchRatio += 0.5;
 
             return skillDispatchRatio;
         }
