@@ -1,3 +1,7 @@
+lianes
+
+
+
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
 
 ?remove stuff like: getfartestwalkingdistancenocollision?
@@ -23,8 +27,6 @@ some trampolines must be on blocks (and clouds)
 
 add great walls that can only be crossed by vine
 
-
-lianes
 
 
 
