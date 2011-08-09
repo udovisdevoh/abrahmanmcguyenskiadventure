@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D28254B5-E02D-4885-B91C-924220F45F7E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -286,6 +286,7 @@
     <Compile Include="game\physics\DamageManager.cs" />
     <Compile Include="game\physics\DeathManager.cs" />
     <Compile Include="game\physics\ExplosionManager.cs" />
+    <Compile Include="game\physics\LianaManager.cs" />
     <Compile Include="game\physics\PlayerProjectileToMonsterCollisionManager.cs" />
     <Compile Include="game\physics\FlyingSpriteManager.cs" />
     <Compile Include="game\physics\GravityManager.cs" />
@@ -301,7 +302,7 @@
     <Compile Include="game\physics\SpriteCollisionManager.cs" />
     <Compile Include="game\physics\SpriteConversionManager.cs" />
     <Compile Include="game\physics\UpDownCycleMoveManager.cs" />
-    <Compile Include="game\physics\ClimbableManager.cs" />
+    <Compile Include="game\physics\IClimbableManager.cs" />
     <Compile Include="game\physics\WalkingManager.cs" />
     <Compile Include="game\physics\WaterManager.cs" />
     <Compile Include="game\Program.cs" />
@@ -362,6 +363,7 @@
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherTotems.cs" />
     <Compile Include="game\sprites\spriteDispatcher\CloudDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\blockDispatcher\BlockDispatcherWave.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\LianaDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MonsterDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\MusicNoteDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\PipeDispatcher.cs" />

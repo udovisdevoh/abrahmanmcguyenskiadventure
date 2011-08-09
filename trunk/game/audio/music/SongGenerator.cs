@@ -113,7 +113,6 @@ namespace AbrahmanAdventure.audio
         {
             predefinedGenerator[(int)trackType].MetaRiffPackName = GetRandomMetaRiffPackName(trackType, tempo, random);
 
-            #warning Must not always play
             int addedBarCount = 0;
 
             /*if (trackType == TrackType.Snare || trackType == TrackType.Kick)

@@ -36,7 +36,7 @@ namespace AbrahmanAdventure.textGenerator
                     }
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return "Undefined";
             }

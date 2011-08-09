@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// Manage vines and stuff like that
         /// </summary>
-        private ClimbableManager climbableManager = new ClimbableManager();
+        private IClimbableManager climbableManager = new IClimbableManager();
 
         /// <summary>
         /// To convert sprites

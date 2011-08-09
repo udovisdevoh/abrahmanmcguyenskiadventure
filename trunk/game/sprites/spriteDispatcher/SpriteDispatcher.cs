@@ -29,6 +29,7 @@ namespace AbrahmanAdventure.sprites
             AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, random);
             PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, random);
             CloudDispatcher.DispatchBlocks(level, spritePopulation, addedBlockMemory, random);
+            LianaDispatcher.DispatchLianas(level, spritePopulation, waterInfo, random);
         }
 
         /// <summary>

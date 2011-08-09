@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.physics
     /// <summary>
     /// Manages growth of vines and stuff like that
     /// </summary>
-    internal class ClimbableManager
+    internal class IClimbableManager
     {
         internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable, IClimbable wasClimbingOnAtPreviousFrame, UserInput userInput)
         {
@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.physics
 
             if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
             {
-                if (sprite is MonsterSprite || userInput.isPressUp || wasClimbingOnAtPreviousFrame == potentialClimbable)
+                if (sprite is MonsterSprite || userInput.isPressUp || (!((IClimbable)potentialClimbable).IsPlayerNeedToWalkUpToBind && !userInput.isPressJump) || wasClimbingOnAtPreviousFrame == potentialClimbable)
                 {
                     sprite.IGround = null;
                     sprite.ClimbingOn = (IClimbable)potentialClimbable;
