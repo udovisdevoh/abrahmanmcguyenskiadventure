@@ -10,5 +10,11 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     interface IMathSprite
     {
+        /// <summary>
+        /// Whether Math sprite is in collision with other sprite
+        /// </summary>
+        /// <param name="otherSprite">other sprite</param>
+        /// <returns>Whether Math sprite is in collision with other sprite</returns>
+        bool IsDetectCollision(AbstractSprite otherSprite);
     }
 }

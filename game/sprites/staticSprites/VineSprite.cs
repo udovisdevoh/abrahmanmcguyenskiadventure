@@ -160,6 +160,11 @@ namespace AbrahmanAdventure.sprites
         {
             get { return growthSpeed; }
         }
+
+        public bool IsPlayerNeedToWalkUpToBind
+        {
+            get { return true; }
+        }
         #endregion
 
         #region Private Methods

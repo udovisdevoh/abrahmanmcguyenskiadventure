@@ -46,5 +46,10 @@ namespace AbrahmanAdventure.sprites
         {
             get;
         }
+
+        bool IsPlayerNeedToWalkUpToBind
+        {
+            get;
+        }
     }
 }

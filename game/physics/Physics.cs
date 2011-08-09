@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// Manages vines and stuff like that
         /// </summary>
-        private ClimbableManager climbableManager = new ClimbableManager();
+        private IClimbableManager climbableManager = new IClimbableManager();
 
         /// <summary>
         /// Manages flying sprites
@@ -48,6 +48,11 @@ namespace AbrahmanAdventure.physics
         /// Manages damage logic
         /// </summary>
         private DamageManager damageManager = new DamageManager();
+
+        /// <summary>
+        /// Manages lianas
+        /// </summary>
+        private LianaManager lianaManager = new LianaManager();
 
         /// <summary>
         /// Manages death logic
@@ -232,7 +237,11 @@ namespace AbrahmanAdventure.physics
                 ((IGrowable)spriteToUpdate).GrowthCycle.Increment(timeDelta);
 
             if (spriteToUpdate is IClimbable)
+            {
                 climbableManager.UpdateClimbable((IClimbable)spriteToUpdate, playerSpriteReference, level, timeDelta);
+                if (spriteToUpdate is LianaSprite)
+                    lianaManager.UpdateLiana((LianaSprite)spriteToUpdate, playerSpriteReference, timeDelta);
+            }
 
             if (spriteToUpdate is IExplodable)
                 explosionManager.UpdateExplodable((IExplodable)spriteToUpdate, playerSpriteReference, spritePopulation, timeDelta, random);
@@ -337,6 +346,11 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether sprites are in collision</returns>
         internal static bool IsDetectCollision(AbstractSprite sprite1, AbstractSprite sprite2)
         {
+            if (sprite1 is IMathSprite)
+                return ((IMathSprite)sprite1).IsDetectCollision(sprite2);
+            else if (sprite2 is IMathSprite)
+                return ((IMathSprite)sprite2).IsDetectCollision(sprite1);
+
             bool isHorizontalCollision = (sprite1.RightBound > sprite2.LeftBound && sprite1.LeftBound < sprite2.LeftBound)
                                       || (sprite2.LeftBound < sprite1.RightBound && sprite2.RightBound > sprite1.RightBound)
                                       || (sprite2.RightBound > sprite1.LeftBound && sprite2.LeftBound < sprite2.LeftBound)

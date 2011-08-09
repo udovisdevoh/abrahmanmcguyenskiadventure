@@ -151,7 +151,7 @@ namespace AbrahmanAdventure
 
         private PipeManager pipeManager;
 
-        private ClimbableManager climbableManager;
+        private IClimbableManager climbableManager;
 
         private MonsterAi monsterAi;
 
@@ -186,7 +186,7 @@ namespace AbrahmanAdventure
             monsterAi = new MonsterAi();
             joystickManager = new JoystickManager();
             beaverManager = new BeaverManager();
-            climbableManager = new ClimbableManager();
+            climbableManager = new IClimbableManager();
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
@@ -195,7 +195,6 @@ namespace AbrahmanAdventure
             SongPlayer.PlayAsync();
 
             spriteBehaviorRandom = new Random();
-            #warning Put back random seed
             seedNextGameState = new Random().Next();        
             
             if (isFullScreen)
@@ -404,7 +403,6 @@ namespace AbrahmanAdventure
             #warning ?Must prevent sprite to suicide by jumping torward the lowest ground under the ground, over the secondary texture or color
         	#warning Create decorations (columns, trees)
         	#warning Create paralax effect (rendered map, decorations)
-            #warning Must allow user to setup input (keyboard / joystick) config
             #warning Must prevent sprite from faling on the tip of a sharp surface and get stucked on it, or half on a clif and stucked on it            
 
             if (joystickManager.DefaultJoystickForRealAxes != null)

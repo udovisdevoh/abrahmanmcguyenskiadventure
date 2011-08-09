@@ -84,6 +84,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsFired
         {
             get { return isFired; }
+            set { isFired = value; }
         }
 
         public double TotalTimeLength
