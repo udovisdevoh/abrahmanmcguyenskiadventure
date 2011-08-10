@@ -22,8 +22,11 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void DispatchLianas(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
         {
+            return;
+            List<LianaSprite> listAddedLiana = new List<LianaSprite>();
             const int maxTryCount = 100;
             const double minGroundDistance = 5.0;
+            const double maxGroundDistance = 15.0;
             double density = random.NextDouble() * 0.15;
             int countToAdd = (int)Math.Round(level.Size * density);
 
@@ -49,7 +52,13 @@ namespace AbrahmanAdventure.sprites
 
                 Ground groundBelow = (Ground)IGroundHelper.GetHighestVisibleIGroundBelowSprite(lianaSprite, level, null, false);
 
-                if (groundBelow == null || groundBelow == attachedGround || groundBelow[xPosition] - attachedGround[xPosition] <= minGroundDistance)
+                if (groundBelow == null || groundBelow == attachedGround)
+                    isCanAdd = false;
+                else if (groundBelow[xPosition] - attachedGround[xPosition] <= minGroundDistance)
+                    isCanAdd = false;
+                else if (groundBelow[xPosition] - attachedGround[xPosition] >= maxGroundDistance)
+                    isCanAdd = false;
+                else if (!IsAtReasonableDistanceFromOtherLianas(lianaSprite, listAddedLiana))
                     isCanAdd = false;
 
                 if (!isCanAdd)
@@ -61,9 +70,27 @@ namespace AbrahmanAdventure.sprites
                         goto tryAgain;
                     }
                 }
+                else
+                {
+                    listAddedLiana.Add(lianaSprite);
+                }
 
                 countToAdd--;
             }
+        }
+        #endregion
+
+        #region Private Methods
+        private static bool IsAtReasonableDistanceFromOtherLianas(LianaSprite lianaSprite, List<LianaSprite> listAddedLiana)
+        {
+            foreach (LianaSprite otherLiana in listAddedLiana)
+            {
+                if (Math.Abs(lianaSprite.XPosition - otherLiana.XPosition) <= 9.0)
+                    return false;
+                else if (Math.Abs(lianaSprite.YPosition - otherLiana.YPosition) <= 9.0)
+                    return false;
+            }
+            return true;
         }
         #endregion
     }
