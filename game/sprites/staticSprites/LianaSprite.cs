@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.sprites
 
         private const double maxRadius = 5.0;
 
-        private const double slope = 0.2;
+        private const double slope = 0.1;
 
         private const double power = 2.0;
 
@@ -66,8 +66,6 @@ namespace AbrahmanAdventure.sprites
             int totalHeight = (int)(Height * Program.tileSize);
             int totalWidth = (int)(Width * Program.tileSize);
             Surface surface = new Surface(totalWidth, totalHeight, Program.bitDepth);
-            #warning Remove red Fill()
-            surface.Fill(Color.Red);
             surface.Transparent = true;
             int ropeDiameter = Program.tileSize / 8;
             int ropeRadius = ropeDiameter / 2;
@@ -144,12 +142,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return 4.0;
+            return 8.0;
         }
 
         protected override double BuildHeight(Random random)
         {
-            return 14.0;
+            return 9.0;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
@@ -196,6 +194,10 @@ namespace AbrahmanAdventure.sprites
             else if (otherSprite.YPosition < TopBound + 0.25)
                 return false;
             else if (!(otherSprite is PlayerSprite))
+                return false;
+            else if (otherSprite.RightBound < LeftBound)
+                return false;
+            else if (otherSprite.LeftBound > RightBound)
                 return false;
 
             double lowestYJunction = Math.Min(otherSprite.YPosition, YPosition);
