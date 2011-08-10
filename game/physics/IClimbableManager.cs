@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.physics
 
             if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
             {
-                if (sprite is MonsterSprite || userInput.isPressUp || (!((IClimbable)potentialClimbable).IsPlayerNeedToWalkUpToBind && !userInput.isPressJump) || wasClimbingOnAtPreviousFrame == potentialClimbable)
+                if (sprite is MonsterSprite || userInput.isPressUp || !((IClimbable)potentialClimbable).IsPlayerNeedToWalkUpToBind || wasClimbingOnAtPreviousFrame == potentialClimbable)
                 {
                     sprite.IGround = null;
                     sprite.ClimbingOn = (IClimbable)potentialClimbable;

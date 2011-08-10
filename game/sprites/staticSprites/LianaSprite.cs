@@ -42,8 +42,9 @@ namespace AbrahmanAdventure.sprites
         public LianaSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            movementCycle = new Cycle(cycleLength, true);
-            //movementCycle.Fire();
+            movementCycle = new Cycle(cycleLength, true, true);
+            #warning Must not move already, remove movementCycle.Fire();
+            movementCycle.Fire();
 
             if (internalSurfaceCache == null)
                 internalSurfaceCache = new Dictionary<int, Surface>();
@@ -65,6 +66,8 @@ namespace AbrahmanAdventure.sprites
             int totalHeight = (int)(Height * Program.tileSize);
             int totalWidth = (int)(Width * Program.tileSize);
             Surface surface = new Surface(totalWidth, totalHeight, Program.bitDepth);
+            #warning Remove red Fill()
+            surface.Fill(Color.Red);
             surface.Transparent = true;
             int ropeDiameter = Program.tileSize / 8;
             int ropeRadius = ropeDiameter / 2;
@@ -190,7 +193,7 @@ namespace AbrahmanAdventure.sprites
         {
             if (otherSprite.TopBound > YPosition)
                 return false;
-            else if (otherSprite.YPosition < TopBound)
+            else if (otherSprite.YPosition < TopBound + 0.25)
                 return false;
             else if (!(otherSprite is PlayerSprite))
                 return false;
@@ -199,9 +202,7 @@ namespace AbrahmanAdventure.sprites
             double xPositionAt = GetXPositionAt(lowestYJunction);
 
             bool isXCollision = otherSprite.LeftBound <= xPositionAt && otherSprite.RightBound >= xPositionAt;
-            if (isXCollision)
-            {
-            }
+
             return isXCollision;
         }
         #endregion
