@@ -22,9 +22,8 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void DispatchLianas(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
         {
-            return;
             const int maxTryCount = 100;
-            const double maxGroundDistance = 4.0;
+            const double minGroundDistance = 5.0;
             double density = random.NextDouble() * 0.15;
             int countToAdd = (int)Math.Round(level.Size * density);
 
@@ -50,7 +49,7 @@ namespace AbrahmanAdventure.sprites
 
                 Ground groundBelow = (Ground)IGroundHelper.GetHighestVisibleIGroundBelowSprite(lianaSprite, level, null, false);
 
-                if (groundBelow == null || groundBelow == attachedGround || (!level.HoleSet[xPosition, groundBelow[xPosition]] && groundBelow[xPosition] - attachedGround[xPosition] < maxGroundDistance))
+                if (groundBelow == null || groundBelow == attachedGround || groundBelow[xPosition] - attachedGround[xPosition] <= minGroundDistance)
                     isCanAdd = false;
 
                 if (!isCanAdd)

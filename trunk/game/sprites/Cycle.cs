@@ -14,12 +14,21 @@ namespace AbrahmanAdventure.sprites
 
         private bool isAutoReset;
 
+        private bool isBounceBack;
+
         private bool isFired;
+
+        private bool isBackwards = false;
         #endregion
 
         #region Constructor
-        public Cycle(double totalTimeLength, bool isAutoReset)
+        public Cycle(double totalTimeLength, bool isAutoReset): this(totalTimeLength, isAutoReset, false)
         {
+        }
+
+        public Cycle(double totalTimeLength, bool isAutoReset, bool isBounceBack)
+        {
+            this.isBounceBack = isBounceBack;
             this.totalTimeLength = totalTimeLength;
             this.isAutoReset = isAutoReset;
             currentValue = 0;
@@ -29,10 +38,34 @@ namespace AbrahmanAdventure.sprites
         #region Public Methods
         public void Increment(double incrementTime)
         {
-            currentValue += incrementTime;
+            if (isBackwards)
+            {
+                currentValue -= incrementTime;
+                if (currentValue < 0)
+                {
+                    currentValue = Math.Abs(currentValue);
+                    isBackwards = false;
+                }
+            }
+            else
+                currentValue += incrementTime;
+
             if (isAutoReset && totalTimeLength != 0)
+            {
                 while (currentValue > totalTimeLength)
-                    currentValue -= totalTimeLength;
+                {
+                    if (isBounceBack)
+                    {
+                        currentValue = totalTimeLength - (currentValue - totalTimeLength);
+                        isBackwards = true;
+                        break;
+                    }
+                    else
+                    {
+                        currentValue -= totalTimeLength;
+                    }
+                }
+            }
             else if (currentValue >= totalTimeLength)
                 isFired = false;
         }

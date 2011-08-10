@@ -13,11 +13,7 @@ namespace AbrahmanAdventure.sprites
         #region Fields and parts
         private static Surface right1Surface;
 
-        private static Surface left1Surface;
-
         private static Surface right2Surface;
-
-        private static Surface left2Surface;
 
         private static Surface deadSurface;
 
@@ -275,10 +271,10 @@ namespace AbrahmanAdventure.sprites
 
         private Surface GetSurface2()
         {
-            if (right1Surface == null)
-                right1Surface = BuildSpriteSurface("./assets/rendered/hamburger/hamburger2.png");
+            if (right2Surface == null)
+                right2Surface = BuildSpriteSurface("./assets/rendered/hamburger/hamburger2.png");
 
-            return right1Surface;
+            return right2Surface;
         }
 
         private Surface GetDeadSurface()
