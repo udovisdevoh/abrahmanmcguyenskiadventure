@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.sprites
             List<LianaSprite> listAddedLiana = new List<LianaSprite>();
             const int maxTryCount = 100;
             const double minGroundDistance = 5.0;
-            const double maxGroundDistance = 15.0;
+            const double maxGroundDistance = 11.0;
             double density = random.NextDouble() * 0.15;
             int countToAdd = (int)Math.Round(level.Size * density);
 
@@ -53,6 +53,8 @@ namespace AbrahmanAdventure.sprites
                 Ground groundBelow = (Ground)IGroundHelper.GetHighestVisibleIGroundBelowSprite(lianaSprite, level, null, false);
 
                 if (groundBelow == null || groundBelow == attachedGround)
+                    isCanAdd = false;
+                else if (!IGroundHelper.IsGroundVisible(attachedGround, level, xPosition))
                     isCanAdd = false;
                 else if (groundBelow[xPosition] - attachedGround[xPosition] <= minGroundDistance)
                     isCanAdd = false;
