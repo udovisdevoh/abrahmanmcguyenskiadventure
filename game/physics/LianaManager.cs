@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.physics
             if (playerSpriteReference.ClimbingOn == lianaSprite)
             {
                 double yOnLiana = playerSpriteReference.YPosition - (lianaSprite.YPosition - lianaSprite.Height);
-                playerSpriteReference.XPosition = lianaSprite.GetXPositionAt(yOnLiana);
+                playerSpriteReference.XPosition = lianaSprite.GetXPositionAt(yOnLiana) + lianaSprite.XPosition;
                 lianaSprite.MovementCycle.IsFired = true;
             }
         }

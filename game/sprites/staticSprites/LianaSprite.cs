@@ -201,9 +201,9 @@ namespace AbrahmanAdventure.sprites
                 return false;
 
             double lowestYJunction = Math.Min(otherSprite.YPosition, YPosition);
-            double xPositionAt = GetXPositionAt(lowestYJunction);
+            double xPositionAt = GetXPositionAt(lowestYJunction) + XPosition;
 
-            bool isXCollision = otherSprite.LeftBound <= xPositionAt && otherSprite.RightBound >= xPositionAt;
+            bool isXCollision = Math.Abs(otherSprite.XPosition - xPositionAt) <= otherSprite.Width;
 
             return isXCollision;
         }
