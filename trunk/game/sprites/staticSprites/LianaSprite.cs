@@ -94,9 +94,9 @@ namespace AbrahmanAdventure.sprites
             double multiplier = ((double)frameId - cycleLength / 2.0) / (cycleLength / 2.0);
 
             if (multiplier >= 0)
-                multiplier = Math.Pow(multiplier, 0.85) * maxRadius;
+                multiplier = Math.Pow(multiplier, 0.95) * maxRadius;
             else
-                multiplier = Math.Pow(Math.Abs(multiplier), 0.85) * -maxRadius;
+                multiplier = Math.Pow(Math.Abs(multiplier), 0.95) * -maxRadius;
 
             return Math.Pow(yOnLiana * slope, power) * multiplier;
         }
