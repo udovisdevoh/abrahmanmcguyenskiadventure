@@ -91,7 +91,13 @@ namespace AbrahmanAdventure.sprites
 
         internal double GetXPositionAt(double yOnLiana, int frameId)
         {
-            double multiplier = ((double)frameId - cycleLength / 2.0) / (cycleLength / 2.0) * maxRadius;
+            double multiplier = ((double)frameId - cycleLength / 2.0) / (cycleLength / 2.0);
+
+            if (multiplier >= 0)
+                multiplier = Math.Pow(multiplier, 0.85) * maxRadius;
+            else
+                multiplier = Math.Pow(Math.Abs(multiplier), 0.85) * -maxRadius;
+
             return Math.Pow(yOnLiana * slope, power) * multiplier;
         }
         #endregion
@@ -183,6 +189,11 @@ namespace AbrahmanAdventure.sprites
         public double GrowthSpeed
         {
             get { return 0.0; }
+        }
+
+        public bool IsNeedToBeInAirToBind
+        {
+            get { return true; }
         }
         #endregion
 

@@ -12,6 +12,11 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class IClimbableManager
     {
+        #region Fields and Parts
+        private LianaManager lianaManager = new LianaManager();
+        #endregion
+
+        #region Internal Methods
         internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable, IClimbable wasClimbingOnAtPreviousFrame, UserInput userInput)
         {
             if (sprite.YPosition >= potentialClimbable.YPosition && userInput.isPressDown)
@@ -21,8 +26,12 @@ namespace AbrahmanAdventure.physics
             {
                 if (sprite is MonsterSprite || userInput.isPressUp || !((IClimbable)potentialClimbable).IsPlayerNeedToWalkUpToBind || wasClimbingOnAtPreviousFrame == potentialClimbable)
                 {
-                    sprite.IGround = null;
-                    sprite.ClimbingOn = (IClimbable)potentialClimbable;
+                    if (!((IClimbable)potentialClimbable).IsNeedToBeInAirToBind || sprite.IGround == null)
+                    {
+                        if (sprite.IGround != null && Math.Abs(sprite.YPosition - sprite.IGround[sprite.XPosition]) >= sprite.MinimumFallingHeight)
+                            sprite.IGround = null;
+                        sprite.IClimbingOn = (IClimbable)potentialClimbable;
+                    }
                 }
             }
         }
@@ -46,7 +55,7 @@ namespace AbrahmanAdventure.physics
                 climbable.IsGrowing = false;
             }
 
-            if (playerSpriteReference.ClimbingOn == climbable)
+            if (playerSpriteReference.IClimbingOn == climbable)
             {
                 playerSpriteReference.YPosition -= (climbable.Height - previousHeight);
             }
@@ -56,16 +65,21 @@ namespace AbrahmanAdventure.physics
         {
             playerSprite.YPosition -= playerSprite.MaxWalkingSpeed / 3.0;
 
-            if (playerSprite.YPosition < playerSprite.ClimbingOn.TopBound)
-                playerSprite.YPositionKeepPrevious = playerSprite.ClimbingOn.TopBound + 0.01;
+            if (playerSprite.YPosition < playerSprite.IClimbingOn.TopBound)
+                playerSprite.YPositionKeepPrevious = playerSprite.IClimbingOn.TopBound + 0.01;
 
             playerSprite.CurrentWalkingSpeed = 0.0;
+
+            if (playerSprite.IClimbingOn is LianaSprite)
+                lianaManager.UpdateXPositionOnMovingLiana(playerSprite, (LianaSprite)playerSprite.IClimbingOn);
         }
 
         internal void ClimbDown(PlayerSprite playerSprite)
         {
             playerSprite.YPosition += playerSprite.MaxWalkingSpeed / 3.0;
+            playerSprite.YPositionKeepPrevious = Math.Min(playerSprite.IClimbingOn.YPosition, playerSprite.YPosition);
             playerSprite.CurrentWalkingSpeed = 0.0;
         }
+        #endregion
     }
 }

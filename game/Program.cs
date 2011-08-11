@@ -624,11 +624,11 @@ namespace AbrahmanAdventure
                     #endregion
 
                     #region We manage climbing input logic
-                    if (playerSprite.IsTryToWalkUp && playerSprite.ClimbingOn != null)
+                    if (playerSprite.IsTryToWalkUp && playerSprite.IClimbingOn != null)
                     {
                         climbableManager.ClimbUp(playerSprite);
                     }
-                    else if (userInput.isPressDown && playerSprite.ClimbingOn != null)
+                    else if (userInput.isPressDown && playerSprite.IClimbingOn != null)
                     {
                         climbableManager.ClimbDown(playerSprite);
                     }

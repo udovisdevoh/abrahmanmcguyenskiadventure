@@ -56,8 +56,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite sprite, AbstractSprite playerSpriteReference, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
-            IClimbable wasClimbingOnAtPreviousFrame = sprite.ClimbingOn;
-            sprite.ClimbingOn = null;
+            #region We unassign sprite.IClimbingOn if needed (it will be re-assigned later if there is a collision detection with vine or liana)
+            IClimbable wasClimbingOnAtPreviousFrame = sprite.IClimbingOn;
+            if (sprite.IClimbingOn != null && (!(sprite.IClimbingOn is LianaSprite) || sprite.YPosition > sprite.IClimbingOn.YPosition || sprite.YPosition < sprite.IClimbingOn.TopBound))
+                sprite.IClimbingOn = null;
+            #endregion
 
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {

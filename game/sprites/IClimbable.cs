@@ -51,5 +51,10 @@ namespace AbrahmanAdventure.sprites
         {
             get;
         }
+
+        bool IsNeedToBeInAirToBind
+        {
+            get;
+        }
     }
 }
