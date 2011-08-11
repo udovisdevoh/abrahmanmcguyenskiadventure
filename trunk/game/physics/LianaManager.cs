@@ -33,11 +33,11 @@ namespace AbrahmanAdventure.physics
         {
             if (sprite.IsTryingToWalkRight)
             {
-                sprite.XPosition += 2.0;
+                sprite.XPosition += 1.0;
             }
             else
             {
-                sprite.XPosition -= 2.0;
+                sprite.XPosition -= 1.0;
             }
         }
     }
