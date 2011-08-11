@@ -211,10 +211,25 @@ namespace AbrahmanAdventure.sprites
             else if (otherSprite.LeftBound > RightBound)
                 return false;
 
-            double lowestYJunction = Math.Min(otherSprite.YPosition, YPosition);
-            double xPositionAt = GetXPositionAt(lowestYJunction) + XPosition;
+            double lowestYJunction = Math.Min(otherSprite.YPosition - (YPosition - Height), Height);//Math.Min(otherSprite.YPosition, YPosition);
+            double highestYJunction = Math.Max(otherSprite.TopBound - TopBound, 0);//Math.Max(otherSprite.TopBound, TopBound);
 
-            bool isXCollision = Math.Abs(otherSprite.XPosition - xPositionAt) <= otherSprite.Width;
+            double xPositionAtFoot = GetXPositionAt(lowestYJunction) + XPosition;
+            double xPositionAtHead = GetXPositionAt(highestYJunction) + XPosition;
+
+            bool isXCollision = false;
+            if (Math.Abs(otherSprite.XPosition - xPositionAtFoot) <= otherSprite.Width)
+                isXCollision = true;
+            else if (Math.Abs(otherSprite.XPosition - xPositionAtHead) <= otherSprite.Width)
+                isXCollision = true;
+            else if (otherSprite.XPositionPrevious >= xPositionAtHead && otherSprite.XPosition <= xPositionAtHead)
+                isXCollision = true;
+            else if (otherSprite.XPositionPrevious <= xPositionAtHead && otherSprite.XPosition >= xPositionAtHead)
+                isXCollision = true;
+            else if (otherSprite.XPositionPrevious >= xPositionAtFoot && otherSprite.XPosition <= xPositionAtFoot)
+                isXCollision = true;
+            else if (otherSprite.XPositionPrevious <= xPositionAtFoot && otherSprite.XPosition >= xPositionAtFoot)
+                isXCollision = true;
 
             return isXCollision;
         }
