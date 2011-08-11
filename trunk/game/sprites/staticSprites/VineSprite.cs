@@ -165,6 +165,11 @@ namespace AbrahmanAdventure.sprites
         {
             get { return true; }
         }
+
+        public bool IsNeedToBeInAirToBind
+        {
+            get { return false; }
+        }
         #endregion
 
         #region Private Methods

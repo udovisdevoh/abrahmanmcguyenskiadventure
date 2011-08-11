@@ -12,6 +12,13 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class JumpingManager
     {
+        #region Fields and parts
+        /// <summary>
+        /// Manages liana stuff
+        /// </summary>
+        private LianaManager lianaManager = new LianaManager();
+        #endregion
+
         #region Internal Methods
         /// <summary>
         /// Update jumping logic
@@ -67,7 +74,7 @@ namespace AbrahmanAdventure.physics
                     if (sprite is PlayerSprite)
                         SoundManager.PlayJumpSound();
                 }
-                else if (sprite.ClimbingOn != null)
+                else if (sprite.IClimbingOn != null)
                 {
                     if (!sprite.IsNeedToJumpAgain && sprite.IsAlive)
                     {
@@ -75,7 +82,11 @@ namespace AbrahmanAdventure.physics
                         sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                         sprite.IGround = null;
                         sprite.IsNeedToJumpAgain = true;
-                        sprite.ClimbingOn = null;
+
+                        if (sprite.IClimbingOn is LianaSprite)
+                            lianaManager.ForeceLeaveLianaRange(sprite, (LianaSprite)sprite.IClimbingOn);
+
+                        sprite.IClimbingOn = null;
                         if (sprite is PlayerSprite)
                             SoundManager.PlayJumpSound();
                     }

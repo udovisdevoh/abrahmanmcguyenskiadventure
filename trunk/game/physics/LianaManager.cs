@@ -16,11 +16,28 @@ namespace AbrahmanAdventure.physics
             if (lianaSprite.MovementCycle.IsFired)
                 lianaSprite.MovementCycle.Increment(timeDelta);
 
-            if (playerSpriteReference.ClimbingOn == lianaSprite)
+            if (playerSpriteReference.IClimbingOn == lianaSprite)
             {
-                double yOnLiana = playerSpriteReference.YPosition - (lianaSprite.YPosition - lianaSprite.Height);
-                playerSpriteReference.XPosition = lianaSprite.GetXPositionAt(yOnLiana) + lianaSprite.XPosition;
+                UpdateXPositionOnMovingLiana(playerSpriteReference, lianaSprite);
                 lianaSprite.MovementCycle.IsFired = true;
+            }
+        }
+
+        internal void UpdateXPositionOnMovingLiana(PlayerSprite playerSprite, LianaSprite lianaSprite)
+        {
+            double yOnLiana = playerSprite.YPosition - (lianaSprite.YPosition - lianaSprite.Height);
+            playerSprite.XPosition = lianaSprite.GetXPositionAt(yOnLiana) + lianaSprite.XPosition;
+        }
+
+        internal void ForeceLeaveLianaRange(AbstractSprite sprite, LianaSprite lianaSprite)
+        {
+            if (sprite.IsTryingToWalkRight)
+            {
+                sprite.XPosition += 2.0;
+            }
+            else
+            {
+                sprite.XPosition -= 2.0;
             }
         }
     }
