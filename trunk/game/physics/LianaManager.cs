@@ -13,13 +13,26 @@ namespace AbrahmanAdventure.physics
     {
         internal void UpdateLiana(LianaSprite lianaSprite, PlayerSprite playerSpriteReference, double timeDelta)
         {
+            double heightBeforeMovement = -1;//Warning, must not keep this value
             if (lianaSprite.MovementCycle.IsFired)
+            {
+                heightBeforeMovement = lianaSprite.GetAdjustedHeight();
                 lianaSprite.MovementCycle.Increment(timeDelta * 1.5);
+            }
 
             if (playerSpriteReference.IClimbingOn == lianaSprite)
             {
+                if (!lianaSprite.MovementCycle.IsFired)
+                {
+                    lianaSprite.MovementCycle.IsFired = true;
+                    return;
+                }
+
                 UpdateXPositionOnMovingLiana(playerSpriteReference, lianaSprite);
-                lianaSprite.MovementCycle.IsFired = true;
+                double heightAfterMovement = lianaSprite.GetAdjustedHeight();
+                double fluctuationOffset = (-heightBeforeMovement + heightAfterMovement);
+                double fluctuationRatio = (playerSpriteReference.YPosition - (lianaSprite.YPosition - lianaSprite.Height) - playerSpriteReference.Height / 2.0) / lianaSprite.Height;
+                playerSpriteReference.YPosition += fluctuationOffset * fluctuationRatio;
             }
         }
 

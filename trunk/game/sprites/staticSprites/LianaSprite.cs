@@ -81,12 +81,6 @@ namespace AbrahmanAdventure.sprites
 
             return surface;
         }
-
-        private double GetAdjustedHeight(int frameId)
-        {
-            double multiplier = ((double)frameId - cycleLength / 2.0) / (cycleLength / 2.0);
-            return Height - Math.Abs(multiplier) * 2.0;
-        }
         #endregion
 
         #region Internal Instance Methods
@@ -106,6 +100,17 @@ namespace AbrahmanAdventure.sprites
                 multiplier = Math.Pow(Math.Abs(multiplier), 0.95) * -maxRadius;
 
             return Math.Pow(yOnLiana * slope, power) * multiplier;
+        }
+
+        internal double GetAdjustedHeight()
+        {
+            return GetAdjustedHeight((int)MovementCycle.CurrentValue);
+        }
+
+        internal double GetAdjustedHeight(int frameId)
+        {
+            double multiplier = ((double)frameId - cycleLength / 2.0) / (cycleLength / 2.0);
+            return Height - Math.Abs(multiplier) * 2.0;
         }
         #endregion
 
@@ -207,15 +212,15 @@ namespace AbrahmanAdventure.sprites
         #region IMathSprite Membres
         public bool IsDetectCollision(AbstractSprite otherSprite)
         {
-            if (otherSprite.TopBound > YPosition)
-                return false;
-            else if (otherSprite.YPosition < TopBound + 0.25)
+            if (otherSprite.YPosition < TopBound + 0.25)
                 return false;
             else if (!(otherSprite is PlayerSprite))
                 return false;
             else if (otherSprite.RightBound < LeftBound)
                 return false;
             else if (otherSprite.LeftBound > RightBound)
+                return false;
+            else if (otherSprite.TopBound > YPosition - Height + GetAdjustedHeight((int)MovementCycle.CurrentValue))
                 return false;
 
             double lowestYJunction = Math.Min(otherSprite.YPosition - (YPosition - Height), Height);//Math.Min(otherSprite.YPosition, YPosition);
