@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.physics
             if (sprite.YPosition >= potentialClimbable.YPosition && userInput.isPressDown)
                 return;
 
-            if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver))
+            if (!(sprite is FireBallSprite) && !(sprite is BeaverSprite) && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).IsBeaver || potentialClimbable is LianaSprite))
             {
                 if (sprite is MonsterSprite || userInput.isPressUp || !((IClimbable)potentialClimbable).IsPlayerNeedToWalkUpToBind || wasClimbingOnAtPreviousFrame == potentialClimbable)
                 {
