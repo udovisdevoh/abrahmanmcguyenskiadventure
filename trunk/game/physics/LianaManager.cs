@@ -14,7 +14,7 @@ namespace AbrahmanAdventure.physics
         internal void UpdateLiana(LianaSprite lianaSprite, PlayerSprite playerSpriteReference, double timeDelta)
         {
             if (lianaSprite.MovementCycle.IsFired)
-                lianaSprite.MovementCycle.Increment(timeDelta);
+                lianaSprite.MovementCycle.Increment(timeDelta * 1.5);
 
             if (playerSpriteReference.IClimbingOn == lianaSprite)
             {
@@ -33,11 +33,11 @@ namespace AbrahmanAdventure.physics
         {
             if (sprite.IsTryingToWalkRight)
             {
-                sprite.XPosition += 1.0;
+                sprite.XPosition += (sprite.Width + 1.0);
             }
             else
             {
-                sprite.XPosition -= 1.0;
+                sprite.XPosition -= (sprite.Width + 1.0);
             }
         }
     }
