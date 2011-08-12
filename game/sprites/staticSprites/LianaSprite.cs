@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.sprites
 
         private const int surfaceCount = 50;
 
-        private const double maxRadius = 5.0;
+        private const double maxRadius = 8.5;
 
         private const double slope = 0.1;
 
@@ -43,8 +43,6 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             movementCycle = new Cycle(cycleLength, true, true);
-            #warning Must not move already, remove movementCycle.Fire();
-            movementCycle.Fire();
 
             if (internalSurfaceCache == null)
                 internalSurfaceCache = new Dictionary<int, Surface>();
@@ -71,7 +69,10 @@ namespace AbrahmanAdventure.sprites
             int ropeRadius = ropeDiameter / 2;
 
             int y = 0;
-            for (double yByTile = 0; yByTile < Height; yByTile+= (1.0 / Program.tileSize))
+
+            double adjustedHeight = GetAdjustedHeight(frameId);
+
+            for (double yByTile = 0; yByTile < adjustedHeight; yByTile += (1.0 / Program.tileSize))
             {
                 int x = (int)Math.Round((GetXPositionAt(yByTile, frameId) + Width / 2.0) * (double)Program.tileSize);
                 surface.Fill(new Rectangle(x - ropeRadius, y, ropeDiameter, 1), Color.Wheat);
@@ -79,6 +80,12 @@ namespace AbrahmanAdventure.sprites
             }
 
             return surface;
+        }
+
+        private double GetAdjustedHeight(int frameId)
+        {
+            double multiplier = ((double)frameId - cycleLength / 2.0) / (cycleLength / 2.0);
+            return Height - Math.Abs(multiplier) * 2.0;
         }
         #endregion
 
@@ -148,7 +155,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWidth(Random random)
         {
-            return 8.0;
+            return 9.0;
         }
 
         protected override double BuildHeight(Random random)
