@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.physics
 
         internal void UpdateXPositionOnMovingLiana(PlayerSprite playerSprite, LianaSprite lianaSprite)
         {
-            double yOnLiana = playerSprite.YPosition - (lianaSprite.YPosition - lianaSprite.Height);
+            double yOnLiana = playerSprite.YPosition - (lianaSprite.YPosition - lianaSprite.Height) - playerSprite.Height / 2.0;
             playerSprite.XPosition = lianaSprite.GetXPositionAt(yOnLiana) + lianaSprite.XPosition;
         }
 

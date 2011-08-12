@@ -22,7 +22,6 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void DispatchLianas(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
         {
-            return;
             List<LianaSprite> listAddedLiana = new List<LianaSprite>();
             const int maxTryCount = 255;
             const double minGroundDistance = 9.5;
