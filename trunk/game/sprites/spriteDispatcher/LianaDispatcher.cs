@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.sprites
             const int maxTryCount = 255;
             const double minGroundDistance = 9.5;
             const double maxGroundDistance = 15.0;
-            double density = random.NextDouble() * 0.15;
+            double density = random.NextDouble() * 0.2;
             int countToAdd = (int)Math.Round(level.Size * density);
 
             while (countToAdd > 0)

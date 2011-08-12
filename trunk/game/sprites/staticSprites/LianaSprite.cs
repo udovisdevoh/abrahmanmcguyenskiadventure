@@ -69,13 +69,23 @@ namespace AbrahmanAdventure.sprites
             int ropeRadius = ropeDiameter / 2;
 
             int y = 0;
-
+            
             double adjustedHeight = GetAdjustedHeight(frameId);
+
+            int ropeSegmentHeight = Program.tileSize / 8;
 
             for (double yByTile = 0; yByTile < adjustedHeight; yByTile += (1.0 / Program.tileSize))
             {
                 int x = (int)Math.Round((GetXPositionAt(yByTile, frameId) + Width / 2.0) * (double)Program.tileSize);
                 surface.Fill(new Rectangle(x - ropeRadius, y, ropeDiameter, 1), Color.Wheat);
+
+                #region We draw the diagonal line
+                double yOfRealFullHeight = y / adjustedHeight * Height;
+                int ropeSegmentPosition = (int)(yOfRealFullHeight % (double)ropeDiameter);
+                surface.Draw(new Point(x + Math.Max(0, ropeSegmentPosition - 1) - ropeRadius, y), Color.FromArgb(255, 1, 1, 1));
+                surface.Draw(new Point(x + ropeSegmentPosition - ropeRadius, y), Color.FromArgb(255,1,1,1));
+                #endregion
+
                 y++;
             }
 

@@ -25,6 +25,11 @@ namespace AbrahmanAdventure.physics
                 if (!lianaSprite.MovementCycle.IsFired)
                 {
                     lianaSprite.MovementCycle.IsFired = true;
+                    UpdateXPositionOnMovingLiana(playerSpriteReference, lianaSprite);
+                    playerSpriteReference.JumpingCycle.StopAndReset();
+                    playerSpriteReference.CurrentJumpAcceleration = 0.0;
+                    playerSpriteReference.CurrentWalkingSpeed = 0.0;
+                    playerSpriteReference.IsNeedToJumpAgain = true;
                     return;
                 }
 
