@@ -80,7 +80,12 @@ namespace AbrahmanAdventure.physics
         internal void ClimbDown(PlayerSprite playerSprite)
         {
             playerSprite.YPosition += playerSprite.MaxWalkingSpeed / 3.0;
-            playerSprite.YPositionKeepPrevious = Math.Min(playerSprite.IClimbingOn.YPosition, playerSprite.YPosition);
+            
+            if (playerSprite.IClimbingOn is LianaSprite)
+                playerSprite.YPositionKeepPrevious = Math.Min(playerSprite.IClimbingOn.YPosition - playerSprite.IClimbingOn.Height + ((LianaSprite)playerSprite.IClimbingOn).GetAdjustedHeight(), playerSprite.YPosition);
+            else
+                playerSprite.YPositionKeepPrevious = Math.Min(playerSprite.IClimbingOn.YPosition, playerSprite.YPosition);
+
             playerSprite.CurrentWalkingSpeed = 0.0;
         }
         #endregion

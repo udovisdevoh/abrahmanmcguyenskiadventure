@@ -60,7 +60,6 @@ namespace AbrahmanAdventure.physics
                             if (sprite.IsAlive && !sprite.IsCrossGrounds)
                             {
                                 sprite.IGround = lowestVisibleGround;
-                                sprite.IgnoreThisIClimbable = null;
                                 sprite.YPosition = sprite.IGround[sprite.XPosition];
                                 sprite.CurrentJumpAcceleration = 0;
                             }
@@ -94,7 +93,6 @@ namespace AbrahmanAdventure.physics
                     {
                         sprite.YPosition = closestDownGroundHeight;
                         sprite.IGround = closestDownGround;
-                        sprite.IgnoreThisIClimbable = null;
                     }
                 }
             }
@@ -170,9 +168,13 @@ namespace AbrahmanAdventure.physics
             if (sprite.IsInWater && sprite.IsAlive && !(sprite is FireBallSprite))
                 maxFallingSpeed = Program.waterMaxFallingSpeed;
 
-            if (speed < 0 && Math.Abs(speed) > maxFallingSpeed)
+            if (speed < 0)
             {
-                speed = -maxFallingSpeed;
+                sprite.IgnoreThisIClimbable = null;
+                if (Math.Abs(speed) > maxFallingSpeed)
+                {
+                    speed = -maxFallingSpeed;
+                }
             }
 
             if (speed > 0 && sprite.IsInWater)
