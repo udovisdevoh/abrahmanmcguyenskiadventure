@@ -60,6 +60,7 @@ namespace AbrahmanAdventure.physics
                             if (sprite.IsAlive && !sprite.IsCrossGrounds)
                             {
                                 sprite.IGround = lowestVisibleGround;
+                                sprite.IgnoreThisIClimbable = null;
                                 sprite.YPosition = sprite.IGround[sprite.XPosition];
                                 sprite.CurrentJumpAcceleration = 0;
                             }
@@ -93,6 +94,7 @@ namespace AbrahmanAdventure.physics
                     {
                         sprite.YPosition = closestDownGroundHeight;
                         sprite.IGround = closestDownGround;
+                        sprite.IgnoreThisIClimbable = null;
                     }
                 }
             }

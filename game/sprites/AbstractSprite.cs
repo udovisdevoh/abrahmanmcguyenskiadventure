@@ -40,6 +40,11 @@ namespace AbrahmanAdventure.sprites
         private Cycle punchedCycle;
 
         /// <summary>
+        /// Ignore this climbable until touch ground
+        /// </summary>
+        private IClimbable ignoreThisIClimbable = null;
+
+        /// <summary>
         /// To which sprite collection the sprite belongs
         /// </summary>
         private SpritePopulation __parentSpriteCollection;
@@ -720,6 +725,15 @@ namespace AbrahmanAdventure.sprites
                     iGround = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// Ignore this climbable until touch ground
+        /// </summary>
+        public IClimbable IgnoreThisIClimbable
+        {
+            get { return ignoreThisIClimbable; }
+            set { ignoreThisIClimbable = value; }
         }
 
         /// <summary>
