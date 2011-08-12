@@ -29,7 +29,7 @@ add great walls that can only be crossed by vine
 
 
 
-colomn parallax
+column parallax
 
 
 
