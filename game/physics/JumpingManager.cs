@@ -83,9 +83,6 @@ namespace AbrahmanAdventure.physics
                         sprite.IGround = null;
                         sprite.IsNeedToJumpAgain = true;
 
-                        /*if (sprite.IClimbingOn is LianaSprite)
-                            lianaManager.ForeceLeaveLianaRange(sprite, (LianaSprite)sprite.IClimbingOn);*/
-
                         if (sprite.IClimbingOn is LianaSprite)
                             sprite.IgnoreThisIClimbable = sprite.IClimbingOn;
                         sprite.IClimbingOn = null;
