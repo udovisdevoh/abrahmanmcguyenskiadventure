@@ -181,6 +181,7 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
+            movementCycle.CurrentValue = Math.Max(0, movementCycle.CurrentValue);
             return internalSurfaceCache[(int)Math.Round(movementCycle.CurrentValue)];
         }
 

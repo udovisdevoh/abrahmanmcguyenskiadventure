@@ -30,9 +30,12 @@ namespace AbrahmanAdventure.physics
                     {
                         if (sprite.IgnoreThisIClimbable != potentialClimbable)
                         {
-                            if (sprite.IGround != null && Math.Abs(sprite.YPosition - sprite.IGround[sprite.XPosition]) >= sprite.MinimumFallingHeight)
-                                sprite.IGround = null;
-                            sprite.IClimbingOn = (IClimbable)potentialClimbable;
+                            if (!(potentialClimbable is LianaSprite) || !sprite.IsInWater)
+                            {
+                                if (sprite.IGround != null && Math.Abs(sprite.YPosition - sprite.IGround[sprite.XPosition]) >= sprite.MinimumFallingHeight)
+                                    sprite.IGround = null;
+                                sprite.IClimbingOn = (IClimbable)potentialClimbable;
+                            }
                         }
                     }
                 }
