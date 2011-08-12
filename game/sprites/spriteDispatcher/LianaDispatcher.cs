@@ -61,6 +61,8 @@ namespace AbrahmanAdventure.sprites
                     isCanAdd = false;
                 else if (!IsAtReasonableDistanceFromOtherLianas(lianaSprite, listAddedLiana))
                     isCanAdd = false;
+                else if (waterInfo != null && yPosition >= waterInfo.HeightInDouble)
+                    isCanAdd = false;
 
                 if (!isCanAdd)
                 {
