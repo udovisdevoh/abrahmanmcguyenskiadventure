@@ -1,3 +1,7 @@
+no hole when too close to ceiling
+hide mouse when fullscreen
+prevent screen saver
+
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
 
 ?remove stuff like: getfartestwalkingdistancenocollision?
