@@ -406,6 +406,10 @@ namespace AbrahmanAdventure.hud
                     Program.isFullScreen = !Program.isFullScreen;
                     PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
+                    if (Program.isFullScreen)
+                        Cursor.Hide();
+                    else
+                        Cursor.Show();
                 }
                 else
                 {
@@ -460,6 +464,10 @@ namespace AbrahmanAdventure.hud
                     Program.isFullScreen = !Program.isFullScreen;
                     PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
+                    if (Program.isFullScreen)
+                        Cursor.Hide();
+                    else
+                        Cursor.Show();
                 }
                 else
                 {
@@ -641,6 +649,10 @@ namespace AbrahmanAdventure.hud
                     Program.isFullScreen = !Program.isFullScreen;
                     PersistentConfig.IsFullScreen = Program.isFullScreen;
                     program.InitSurfaceViewPortRatioSettingsEtc();
+                    if (Program.isFullScreen)
+                        Cursor.Hide();
+                    else
+                        Cursor.Show();
                 }
                 else
                 {
