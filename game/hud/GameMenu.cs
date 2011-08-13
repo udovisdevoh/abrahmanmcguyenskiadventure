@@ -577,7 +577,8 @@ namespace AbrahmanAdventure.hud
                             Cursor.Hide();
                         Directory.SetCurrentDirectory(directory2);
                         program.IsShowMenu = false;
-                        program.GameState.IsPlayerReady = false;
+                        if (program.GameState != null)
+                            program.GameState.IsPlayerReady = false;
                         break;
                     case 4:
                         currentMenuPositionY = 0;
