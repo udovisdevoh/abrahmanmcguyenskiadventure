@@ -181,42 +181,45 @@ namespace AbrahmanAdventure.physics
             if (Physics.IsSpriteInDeadZone(sprite, monsterSprite))
                 return;
 
-            if (sprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
+            if (monsterSprite.IsAlive)
             {
-                SoundManager.PlayHitSound();
-                monsterSprite.IsAlive = false;
-                monsterSprite.JumpingCycle.Fire();
-            }
-            else if (monsterSprite.IsCanDoDamageToPlayerWhenTouched)
-            {
-                if (!monsterSprite.IsCanDoDamageWhenInFreeFall && (monsterSprite.IsCurrentlyInFreeFallX || monsterSprite.IsCurrentlyInFreeFallY))
-                    return;
-
-                sprite.HitCycle.Fire();
-
-                if (sprite.IsBeaver)
+                if (sprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                 {
-                    SoundManager.PlayBeaverHitSound();
-                    sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                    sprite.IGround = null;
-                    sprite.JumpingCycle.Fire();
-                    sprite.IsBeaver = false;
-                    BeaverSprite beaverSprite = new BeaverSprite(sprite.XPosition, sprite.YPosition, random);
-                    spritePopulation.Add(beaverSprite);
-                    beaverSprite.IsWalkEnabled = true;
+                    SoundManager.PlayHitSound();
+                    monsterSprite.IsAlive = false;
+                    monsterSprite.JumpingCycle.Fire();
                 }
-                else
+                else if (monsterSprite.IsCanDoDamageToPlayerWhenTouched)
                 {
-                    if (sprite is PlayerSprite && !sprite.IsTiny)
-                        ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
+                    if (!monsterSprite.IsCanDoDamageWhenInFreeFall && (monsterSprite.IsCurrentlyInFreeFallX || monsterSprite.IsCurrentlyInFreeFallY))
+                        return;
 
-                    SoundManager.PlayHit2Sound();
-                    if (sprite.IsDoped)
-                        sprite.IsDoped = false;
-                    if (sprite.IsRasta)
-                        sprite.IsRasta = false;
-                    sprite.IsTiny = true;
-                    sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                    sprite.HitCycle.Fire();
+
+                    if (sprite.IsBeaver)
+                    {
+                        SoundManager.PlayBeaverHitSound();
+                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                        sprite.IGround = null;
+                        sprite.JumpingCycle.Fire();
+                        sprite.IsBeaver = false;
+                        BeaverSprite beaverSprite = new BeaverSprite(sprite.XPosition, sprite.YPosition, random);
+                        spritePopulation.Add(beaverSprite);
+                        beaverSprite.IsWalkEnabled = true;
+                    }
+                    else
+                    {
+                        if (sprite is PlayerSprite && !sprite.IsTiny)
+                            ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
+
+                        SoundManager.PlayHit2Sound();
+                        if (sprite.IsDoped)
+                            sprite.IsDoped = false;
+                        if (sprite.IsRasta)
+                            sprite.IsRasta = false;
+                        sprite.IsTiny = true;
+                        sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                    }
                 }
             }
         }
