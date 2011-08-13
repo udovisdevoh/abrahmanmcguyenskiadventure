@@ -103,6 +103,8 @@ namespace AbrahmanAdventure
 
         public const double maxCloudHeightFromGround = 7;
 
+        public const double addedDistanceBetweenHighestGroundAndCeilingIfAboveHole = 3.0;
+
         public static double zoneWidthScreenCount = 0.025;
 
         public static double collisionDetectionResolution = 0.0625;

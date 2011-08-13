@@ -331,13 +331,18 @@ namespace AbrahmanAdventure.physics
             return highestGround;
         }
 
-        internal static double GetLowestXPoint(Ground ground, double leftBound, double rightBound)
+        internal static double GetLowestXPoint(Ground ground, Level level, double leftBound, double rightBound, double addedHeightIfAboveHole)
         {
             bool isSet = false;
             double lowestYPoint = 0;
             for (double x = leftBound; x <= rightBound; x += Program.collisionDetectionResolution)
             {
+                Ground groundBelowCeiling = IGroundHelper.GetHighestGround(level, x);
                 double currentY = ground[x];
+
+                if (groundBelowCeiling.IsHoleAt(x))
+                    currentY +=addedHeightIfAboveHole;
+
                 if (!isSet || currentY > lowestYPoint)
                 {
                     lowestYPoint = currentY;
