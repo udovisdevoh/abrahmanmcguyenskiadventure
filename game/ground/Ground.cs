@@ -131,11 +131,11 @@ namespace AbrahmanAdventure.level
         }
         #endregion
         
-        #region Public Methods
+        #region Internal Methods
         /// <summary>
         /// Remove beaver's holes
         /// </summary>
-        public void ClearBeaverDestruction()
+        internal void ClearBeaverDestruction()
         {
             beaverDestructionSet.Clear();
         }
@@ -144,9 +144,20 @@ namespace AbrahmanAdventure.level
         /// Dig hole at X position
         /// </summary>
         /// <param name="holeXPosition"></param>
-        public void DigHole(double holeXPosition)
+        internal void DigHole(double holeXPosition)
         {
             beaverDestructionSet.Dig(holeXPosition);
+        }
+
+        /// <summary>
+        /// Whether there is a hole at X position
+        /// </summary>
+        /// <param name="xPosition">X position</param>
+        /// <returns>Whether there is a hole at X position</returns>
+        internal bool IsHoleAt(double xPosition)
+        {
+            double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
+            return holeSet[xPosition, yValue];
         }
         #endregion
 
