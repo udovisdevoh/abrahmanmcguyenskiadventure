@@ -308,6 +308,8 @@ namespace AbrahmanAdventure
                 userInput.isPressJump = true;
             else if (args.Button == userInput.leaveBeaverButton)
                 userInput.isPressLeaveBeaver = true;
+
+            WinNative.SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED);
         }
 
         public void OnJoystickButtonUp(object sender, JoystickButtonEventArgs args)
@@ -388,11 +390,13 @@ namespace AbrahmanAdventure
             }
 
             joystickManager.DefaultJoystickForRealAxes = null;
+            WinNative.SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED);
         }
 
         public void OnJoystickAxisMotion(object sender, JoystickAxisEventArgs args)
         {
             joystickManager.DefaultJoystickForRealAxes = joystickManager[args.Device];
+            WinNative.SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED);
         }
         #endregion
 
