@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.physics
             {
                 int ballCount = 0;
                 foreach (AbstractSprite otherSprite in visibleSpriteList)
-                    if (otherSprite is FireBallSprite)
+                    if (otherSprite is IPlayerProjectile)
                         ballCount++;
 
                 if (ballCount < Program.maxPlayerFireBallPerScreen)

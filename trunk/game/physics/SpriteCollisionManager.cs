@@ -104,7 +104,7 @@ namespace AbrahmanAdventure.physics
                 {
                     blockManager.UpdateBlockCollision(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, random);
                 }
-                else if (sprite.IGround == null && sprite.IsAlive && !(sprite is FireBallSprite) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
+                else if (sprite.IGround == null && sprite.IsAlive && !(sprite is IPlayerProjectile) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
                     if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0)
                     {

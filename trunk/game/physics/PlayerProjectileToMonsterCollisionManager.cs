@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.physics
 
             foreach (AbstractSprite otherSprite in visibleSpriteList)
             {
-                if (projectile != otherSprite && !(otherSprite is PlayerSprite) && !(otherSprite is FireBallSprite) && !otherSprite.HitCycle.IsFired)
+                if (projectile != otherSprite && !(otherSprite is PlayerSprite) && !(otherSprite is IPlayerProjectile) && !otherSprite.HitCycle.IsFired)
                 {
                     if (otherSprite is MonsterSprite && !(otherSprite is BeaverSprite) && Physics.IsDetectCollision(projectile, otherSprite))
                     {
