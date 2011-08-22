@@ -45,6 +45,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsTiny = false;
             playerSprite.IsRasta = false;
             playerSprite.IsDoped = true;
+            playerSprite.IsNinja = false;
             peyoteSprite.IsAlive = false;
             peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
@@ -64,8 +65,29 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsTiny = false;
             playerSprite.IsDoped = false;
             playerSprite.IsRasta = true;
+            playerSprite.IsNinja = false;
             rastaHatSprite.IsAlive = false;
             rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
+        /// <summary>
+        /// Touch ninja bandana
+        /// </summary>
+        /// <param name="playerSprite">player sprite</param>
+        /// <param name="rastaHatSprite">rasta hat</param>
+        internal void UpdateTouchBandana(PlayerSprite playerSprite, BandanaSprite bandanaSprite)
+        {
+            SoundManager.PlayGongSound();
+            playerSprite.PowerUpAnimationCycle.Fire();
+            if (playerSprite.IsTiny)
+                playerSprite.ChangingSizeAnimationCycle.Fire();
+            playerSprite.Health = playerSprite.MaxHealth;
+            playerSprite.IsTiny = false;
+            playerSprite.IsDoped = false;
+            playerSprite.IsRasta = false;
+            playerSprite.IsNinja = true;
+            bandanaSprite.IsAlive = false;
+            bandanaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         /// <summary>

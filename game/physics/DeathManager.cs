@@ -57,6 +57,7 @@ namespace AbrahmanAdventure.physics
                     ((PlayerSprite)sprite).IsDoped = false;
                     ((PlayerSprite)sprite).IsRasta = false;
                     ((PlayerSprite)sprite).IsBeaver = false;
+                    ((PlayerSprite)sprite).IsNinja = false;
                     ((PlayerSprite)sprite).InvincibilityCycle.StopAndReset();
                     ((PlayerSprite)sprite).HitCycle.StopAndReset();
                     ((PlayerSprite)sprite).PunchedCycle.StopAndReset();

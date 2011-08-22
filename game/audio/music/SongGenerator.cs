@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.audio
     /// </summary>
     internal enum TrackType { Melody, /*Melody2, Tenor,*/ Pad, Bass, Snare, Kick, OtherDrum }
 
-    internal enum SongType { Menu, Level, Invincibility }
+    internal enum SongType { Menu, Level, Invincibility, Ninja }
 
     /// <summary>
     /// To generate songs
@@ -34,6 +34,8 @@ namespace AbrahmanAdventure.audio
         private static List<string> fastSnareNameList = null;
 
         private static IRiff invincibilitySong = null;
+
+        private static IRiff ninjaSong = null;
         #endregion
 
         #region Internal Methods
@@ -69,6 +71,22 @@ namespace AbrahmanAdventure.audio
                 predefinedGenerator.ScaleName2 = "majorPentatonic";
                 predefinedGenerator.Tempo = 280;
             }
+            else if (songType == SongType.Ninja)
+            {
+                predefinedGenerator.ScaleName1 = "japanese";
+                predefinedGenerator.ScaleName2 = "japanese";
+
+                if (random.NextDouble() > 0.75)
+                {
+                    if (random.Next(0,2) == 1)
+                        predefinedGenerator.ScaleName1 = "chinese";
+                    else
+                        predefinedGenerator.ScaleName2 = "chinese";
+                }
+
+                songLength = 8;
+                predefinedGenerator.Modulation = random.NextDouble() * 0.3 + 0.1;
+            }
 
             AddRandomTrack(predefinedGenerator, TrackType.Melody, songLength, predefinedGenerator.Tempo, barDensity, random);
             //AddRandomTrack(predefinedGenerator, TrackType.Melody2, songLength, predefinedGenerator.Tempo, barDensity, random);
@@ -97,6 +115,27 @@ namespace AbrahmanAdventure.audio
                 invincibilitySong = BuildSong(seed, 0, SongType.Invincibility);
 
             return invincibilitySong;
+        }
+
+        /// <summary>
+        /// Reset ninja song
+        /// </summary>
+        internal static void ResetNinjaSong()
+        {
+            ninjaSong = null;
+        }
+
+        /// <summary>
+        /// Get invincibility song (or build it if it doesn't exist
+        /// </summary>
+        /// <param name="seed">seed</param>
+        /// <returns>invincibility song</returns>
+        internal static IRiff GetNinjaSong(int seed)
+        {
+            if (ninjaSong == null)
+                ninjaSong = BuildSong(seed, 0, SongType.Ninja);
+
+            return ninjaSong;
         }
 
         /// <summary>

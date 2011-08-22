@@ -37,6 +37,11 @@ namespace AbrahmanAdventure
         private bool isDoped = false;
 
         /// <summary>
+        /// Whether player is currently a ninja
+        /// </summary>
+        private bool isNinja = false;
+
+        /// <summary>
         /// Skill level for unexplored levels
         /// </summary>
         private int skillLevelForUnknownLevels;
@@ -76,6 +81,7 @@ namespace AbrahmanAdventure
             isRasta = playerSprite.IsRasta;
             isTiny = playerSprite.IsTiny;
             isBeaver = playerSprite.IsBeaver;
+            isNinja = playerSprite.IsNinja;
             health = playerSprite.Health;
         }
 
@@ -89,6 +95,7 @@ namespace AbrahmanAdventure
             playerSprite.IsRasta = isRasta;
             playerSprite.IsTiny = isTiny;
             playerSprite.IsBeaver = isBeaver;
+            playerSprite.IsNinja = isNinja;
             playerSprite.Health = health;
         }
         
@@ -184,6 +191,15 @@ namespace AbrahmanAdventure
         {
             get { return isBeaver; }
             set { isBeaver = value; }
+        }
+
+        /// <summary>
+        /// Whether player is currently a ninja
+        /// </summary>
+        public bool IsNinja
+        {
+            get { return isNinja; }
+            set { isNinja = value; }
         }
 
         /// <summary>

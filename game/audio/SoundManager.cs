@@ -31,6 +31,8 @@ namespace AbrahmanAdventure.audio
 
         private static Sound harvestSound;
 
+        private static Sound gongSound;
+
         private static Sound punchSound;
 
         private static Sound helmetBumpSound;
@@ -118,6 +120,7 @@ namespace AbrahmanAdventure.audio
             diveInSound = LoadSound("./assets/sounds/DiveIn.ogg");
             diveOutSound = LoadSound("./assets/sounds/DiveOut.ogg");
             harvestSound = LoadSound("./assets/sounds/Harvest.ogg");
+            gongSound = LoadSound("./assets/sounds/Gong.ogg");
         }
 
         /// <summary>
@@ -299,6 +302,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayHarvestSound()
         {
             harvestSound.Play();
+        }
+
+        internal static void PlayGongSound()
+        {
+            gongSound.Play();
         }
         #endregion
 
