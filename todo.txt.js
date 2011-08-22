@@ -10,6 +10,8 @@ ninja
 	lorsque jump: spin (rotation)
 	
 	lorsque press bouton du castor, lance un corde (liane)
+	
+	si immobile et press attack: spin nunchaku
 }
 
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
