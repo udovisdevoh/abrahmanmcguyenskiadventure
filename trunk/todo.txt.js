@@ -16,6 +16,12 @@ ninja
 	don't fall when having side collision
 	
 	play ninja music (japanese pentatonic)
+	
+	powerup: probabilité selon skill level
+	{
+		Ninja: fréquent si skill level assez élevé, sinon, très râre
+		autres powerups etc
+	}
 }
 
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
