@@ -446,6 +446,11 @@ namespace AbrahmanAdventure.sprites
         private bool isTryThrowingBall = false;
 
         /// <summary>
+        /// Whether sprite is currently trying to throw a shuriken
+        /// </summary>
+        private bool isTryThrowingShuriken = false;
+
+        /// <summary>
         /// Default health
         /// </summary>
         private double defaultHealth = 0.5;

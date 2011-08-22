@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Content of an anarchy block
     /// </summary>
-    enum BlockContent { MusicNote, Whisky, RastaHat, Peyote, Beaver, Vine, Undefined };
+    enum BlockContent { MusicNote, Whisky, RastaHat, Peyote, Beaver, Vine, Bandana, Undefined };
 
     /// <summary>
     /// Anarchy block sprite
@@ -107,6 +107,9 @@ namespace AbrahmanAdventure.sprites
                         this.blockContent = BlockContent.MusicNote;
                 }
             }
+
+            #warning Must disable this line (eventually)
+            this.blockContent = BlockContent.Bandana;
 
             isFinalized = false;
 
@@ -223,6 +226,26 @@ namespace AbrahmanAdventure.sprites
                     vineSprite.MaxHeight = vineHeight;
                     vineSprite.Height = 0.0;
                     return vineSprite;
+                case BlockContent.Bandana:
+                    if (playerSprite.Health == playerSprite.MaxHealth)
+                    {
+                        if (((PlayerSprite)playerSprite).IsDoped || ((PlayerSprite)playerSprite).IsNinja)
+                        {
+                            BandanaSprite bandanaSprite = new BandanaSprite(XPosition, TopBound, random);
+                            return bandanaSprite;
+                        }
+                        else
+                        {
+                            PeyoteSprite peyoteSprite = new PeyoteSprite(XPosition, TopBound, random);
+                            return peyoteSprite;
+                        }
+                    }
+                    else
+                    {
+                        MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
+                        mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                        return mushroomSprite;
+                    }
                 default:
                     if (playerSprite.Health == playerSprite.MaxHealth)
                     {

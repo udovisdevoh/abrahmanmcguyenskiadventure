@@ -33,13 +33,20 @@ namespace AbrahmanAdventure.physics
                     playerSprite.ThrowBallCycle.Fire();
                     SoundManager.PlayFireBallSound();
                     double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
-                    FireBallSprite fireBallSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
-                    fireBallSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-                    fireBallSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + fireBallSprite.MaxWalkingSpeed;
-                    fireBallSprite.CurrentJumpAcceleration = -30;
-                    fireBallSprite.IsCurrentlyInFreeFallX = true;
-                    fireBallSprite.IsCurrentlyInFreeFallY = true;
-                    spritePopulation.Add(fireBallSprite);
+                    
+                    IPlayerProjectile fireBallOrShurikenSprite;
+
+                    if (playerSprite.IsDoped)
+                        fireBallOrShurikenSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
+                    else
+                        fireBallOrShurikenSprite = new ShurikenSprite(xPosition, playerSprite.TopBound + 0.33, random);
+
+                    fireBallOrShurikenSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                    fireBallOrShurikenSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + fireBallOrShurikenSprite.MaxWalkingSpeed;
+                    fireBallOrShurikenSprite.CurrentJumpAcceleration = -30;
+                    fireBallOrShurikenSprite.IsCurrentlyInFreeFallX = true;
+                    fireBallOrShurikenSprite.IsCurrentlyInFreeFallY = true;
+                    spritePopulation.Add((AbstractSprite)fireBallOrShurikenSprite);
                 }
             }
         }
