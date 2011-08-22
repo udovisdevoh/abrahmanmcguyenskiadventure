@@ -276,6 +276,7 @@
     <Compile Include="game\level\viewer\squareBased\LevelViewerCacheSquareBased.cs" />
     <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
+    <Compile Include="game\sprites\powerups\BandanaSprite.cs" />
     <Compile Include="game\sprites\projectiles\IPlayerProjectile.cs" />
     <Compile Include="game\sprites\projectiles\ShurikenSprite.cs" />
     <Compile Include="game\WinNative.cs" />
