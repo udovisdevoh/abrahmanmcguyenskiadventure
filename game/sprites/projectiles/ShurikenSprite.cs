@@ -7,9 +7,9 @@ using SdlDotNet.Graphics;
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
-    /// Represents a ball made of faire
+    /// Represents a ninja's shuriken
     /// </summary>
-    internal class FireBallSprite : MonsterSprite, IPlayerProjectile
+    internal class ShurikenSprite : MonsterSprite, IPlayerProjectile
     {
         #region Fields and parts
         private static Surface surface1;
@@ -29,13 +29,13 @@ namespace AbrahmanAdventure.sprites
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
-        public FireBallSprite(double xPosition, double yPosition, Random random)
+        public ShurikenSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
             if (surface1 == null || surface2 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/fireBall1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/fireBall2.png");
+                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/shuriken1.png");
+                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/shuriken2.png");
             }
         }
         #endregion

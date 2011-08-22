@@ -218,7 +218,7 @@ namespace AbrahmanAdventure.physics
             {
                 helmetCollisionManager.Update((HelmetSprite)spriteToUpdate, playerSpriteReference, level, spritePopulation, visibleSpriteList, random);
             }
-            else if (spriteToUpdate is FireBallSprite)
+            else if (spriteToUpdate is IPlayerProjectile)
             {
                 playerProjectileToMonsterCollisionManager.Update(spriteToUpdate, level, visibleSpriteList);
             }

@@ -276,6 +276,8 @@
     <Compile Include="game\level\viewer\squareBased\LevelViewerCacheSquareBased.cs" />
     <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
+    <Compile Include="game\sprites\projectiles\IPlayerProjectile.cs" />
+    <Compile Include="game\sprites\projectiles\ShurikenSprite.cs" />
     <Compile Include="game\WinNative.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
@@ -855,6 +857,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\Nebulae.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\powerups\bandana.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\mushroom.png">

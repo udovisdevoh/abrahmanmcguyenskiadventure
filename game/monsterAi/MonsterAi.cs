@@ -163,7 +163,7 @@ namespace AbrahmanAdventure.ai
                     }
                     else if (monster.IsNoAiDieWhenStucked)
                     {
-                        if (monster is FireBallSprite)
+                        if (monster is IPlayerProjectile)
                             SoundManager.PlayHelmetBumpSound();
                         else if (monster is CrystalBallSprite)
                             SoundManager.PlayGlassBreakSound();
