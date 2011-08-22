@@ -1,3 +1,17 @@
+ninja
+{
+	lorsque obtient powerup: bandeau blanc avec point rouge
+	
+	lance des shuriken (même comportement que boules de feu)
+	si boules de feu lancées, donne coup de poing et coup de pied (doped)
+	si shuriken lancées, donne coup de katana
+	si déjà jump: possibilité de double jump
+	
+	lorsque jump: spin (rotation)
+	
+	lorsque press bouton du castor, lance un corde (liane)
+}
+
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
 
 ?remove stuff like: getfartestwalkingdistancenocollision?
