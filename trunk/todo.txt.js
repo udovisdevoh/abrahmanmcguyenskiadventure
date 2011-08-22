@@ -12,6 +12,10 @@ ninja
 	lorsque press bouton du castor, lance un corde (liane)
 	
 	si immobile et press attack: spin nunchaku
+	
+	don't fall when having side collision
+	
+	play ninja music (japanese pentatonic)
 }
 
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
