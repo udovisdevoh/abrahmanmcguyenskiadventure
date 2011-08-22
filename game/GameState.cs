@@ -75,6 +75,11 @@ namespace AbrahmanAdventure
         private int seed;
 
         /// <summary>
+        /// Current skill level
+        /// </summary>
+        private int skillLevel;
+
+        /// <summary>
         /// Whether player is ready to play (has moved or jumped)
         /// </summary>
         private bool isPlayerReady = false;
@@ -116,6 +121,7 @@ namespace AbrahmanAdventure
         public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
         {
             this.seed = seed;
+            this.skillLevel = skillLevel;
             random = new Random(seed);
             name = WordGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
@@ -406,6 +412,14 @@ namespace AbrahmanAdventure
         public int Seed
         {
             get { return seed; }
+        }
+
+        /// <summary>
+        /// Current skill level
+        /// </summary>
+        public int SkillLevel
+        {
+            get { return skillLevel; }
         }
         #endregion
     }

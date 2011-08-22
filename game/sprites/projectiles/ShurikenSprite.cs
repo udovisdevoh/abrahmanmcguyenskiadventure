@@ -37,6 +37,7 @@ namespace AbrahmanAdventure.sprites
                 surface1 = BuildSpriteSurface("./assets/rendered/projectiles/shuriken1.png");
                 surface2 = BuildSpriteSurface("./assets/rendered/projectiles/shuriken2.png");
             }
+            IsVulnerableToPunch = false;
         }
         #endregion
 
@@ -143,7 +144,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsVulnerableToInvincibility()
         {
-            return true;
+            return false;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)

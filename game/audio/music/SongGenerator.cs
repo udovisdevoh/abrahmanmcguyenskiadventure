@@ -84,6 +84,9 @@ namespace AbrahmanAdventure.audio
                         predefinedGenerator.ScaleName2 = "chinese";
                 }
 
+                barDensity *= 1.5;
+                barDensity = Math.Min(1.0, barDensity);
+
                 songLength = 8;
                 predefinedGenerator.Modulation = random.NextDouble() * 0.3 + 0.1;
             }
@@ -130,10 +133,10 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         /// <param name="seed">seed</param>
         /// <returns>invincibility song</returns>
-        internal static IRiff GetNinjaSong(int seed)
+        internal static IRiff GetNinjaSong(int seed, int skillLevel)
         {
             if (ninjaSong == null)
-                ninjaSong = BuildSong(seed, 0, SongType.Ninja);
+                ninjaSong = BuildSong(seed, skillLevel, SongType.Ninja);
 
             return ninjaSong;
         }

@@ -451,9 +451,12 @@ namespace AbrahmanAdventure
                     levelViewer.ClearCache();
                     SongGenerator.GetInvincibilitySong(gameState.Seed);//We pre-render invincibility song if it's not pre-rendered (it will be the same for this episode)
                     SongGenerator.ResetNinjaSong();
-                    SongGenerator.GetNinjaSong(gameState.Seed);//We pre-render ninja song if it's not pre-rendered (it will be the same for this episode)
+                    SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);//We pre-render ninja song if it's not pre-rendered (it will be the same for this episode)
                     GC.Collect();
-                    SongPlayer.IRiff = gameState.Song;
+                    if (gameMetaState.IsNinja)
+                        SongPlayer.IRiff = SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);
+                    else
+                        SongPlayer.IRiff = gameState.Song;
                     SongPlayer.PlayAsync();
                     #endregion
                 }
@@ -540,9 +543,14 @@ namespace AbrahmanAdventure
                             }
                             else
                             {
-                                if (playerSprite.IsDoped && !playerSprite.IsBeaver)
+                                if ((playerSprite.IsDoped || playerSprite.IsNinja) && !playerSprite.IsBeaver)
                                 {
                                     playerSprite.IsTryThrowingBall = true;
+                                    if (playerSprite.IsNinja)
+                                    {
+                                        SoundManager.PlayAttemptSound();
+                                        playerSprite.AttackingCycle.Fire();
+                                    }
                                 }
                                 else
                                 {
