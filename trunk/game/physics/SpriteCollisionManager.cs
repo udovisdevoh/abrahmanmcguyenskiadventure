@@ -96,6 +96,16 @@ namespace AbrahmanAdventure.physics
                 {
                     powerUpManager.UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
                 }
+                else if (sprite is PlayerSprite && otherSprite is BandanaSprite && otherSprite.IsAlive)
+                {
+                    powerUpManager.UpdateTouchBandana((PlayerSprite)sprite, (BandanaSprite)otherSprite);
+                    if (SongPlayer.IRiff != SongGenerator.GetNinjaSong(gameState.Seed))
+                    {
+                        SongPlayer.StopSync();
+                        SongPlayer.IRiff = SongGenerator.GetNinjaSong(gameState.Seed);
+                        SongPlayer.PlayAsync();
+                    }
+                }
                 else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp && !((PlayerSprite)sprite).FromVortexCycle.IsFired && (sprite.IGround != null || sprite.YPosition <= otherSprite.YPosition))
                 {
                     UpdateGoToVortex((PlayerSprite)sprite, (VortexSprite)otherSprite, program, gameMetaState, gameState);
@@ -120,7 +130,7 @@ namespace AbrahmanAdventure.physics
                             || sprite is PlayerSprite && ((otherSprite is MonsterSprite) && !((MonsterSprite)otherSprite).IsJumpableOnEvenByBeaver))
                         {
                             //It is impossible to jump on this sprite
-                            UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta, spritePopulation, random);
+                            UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
                         }
                         else
                         {
@@ -141,7 +151,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
-                    UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, timeDelta, spritePopulation, random);
+                    UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
                 }
             }
         }
@@ -173,7 +183,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">monster</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta, SpritePopulation spritePopulation, Random random)
+        private void UpdateDirectCollision(PlayerSprite sprite, MonsterSprite monsterSprite, Level level, GameState gameState, double timeDelta, SpritePopulation spritePopulation, Random random)
         {
             if (sprite.HitCycle.IsFired || monsterSprite.KickedHelmetCycle.IsFired || sprite.FromVortexCycle.IsFired)
                 return;
@@ -217,6 +227,16 @@ namespace AbrahmanAdventure.physics
                             sprite.IsDoped = false;
                         if (sprite.IsRasta)
                             sprite.IsRasta = false;
+                        if (sprite.IsNinja)
+                        {
+                            sprite.IsNinja = false;
+                            if (SongPlayer.IRiff != gameState.Song)
+                            {
+                                SongPlayer.StopSync();
+                                SongPlayer.IRiff = gameState.Song;
+                                SongPlayer.PlayAsync();
+                            }
+                        }
                         sprite.IsTiny = true;
                         sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
                     }
