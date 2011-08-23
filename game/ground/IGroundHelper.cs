@@ -90,7 +90,7 @@ namespace AbrahmanAdventure.physics
         {
             IGround lowestGroundAboveSprite = null;
             double lowestHeight = -1;
-            double spriteY = sprite.YPosition - 0.1;
+            double spriteY = sprite.TopBound - 0.1;
 
             foreach (Ground ground in level)
             {
