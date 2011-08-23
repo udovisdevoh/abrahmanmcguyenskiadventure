@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Astrology is bullshit!";
+        private const string tutorialComment = "Beware the astrologist.\nAstrology is pure bullshit.";
         #endregion
 
         #region Constructor
