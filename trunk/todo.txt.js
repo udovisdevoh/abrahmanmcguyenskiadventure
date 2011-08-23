@@ -1,5 +1,7 @@
 ninja
 {
+	dire comment lancer cordes (dans HowTo), ainsi que autres skills de ninja
+
 	lorsque obtient powerup: bandeau blanc avec point rouge
 	
 	lance des shuriken (même comportement que boules de feu)
