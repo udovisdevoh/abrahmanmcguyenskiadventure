@@ -5,8 +5,6 @@ ninja
 	si boules de feu lancées, donne coup de poing et coup de pied (doped)
 	?si déjà jump: possibilité de double jump?->?aussi: dire dans howto?
 	
-	lorsque jump: spin (rotation)
-	
 	si immobile et press attack: spin nunchaku
 	{
 		?Si monstre AI ?(et possiblement pas d'ai: change de direction) et distance suffisante (pour réaction du bohomme), n'avance pas?
