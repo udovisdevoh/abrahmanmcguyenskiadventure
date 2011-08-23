@@ -37,6 +37,22 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface standingNinjaDopedRightSurface;
 
+        private static Surface crouchedNinjaRight;
+
+        private static Surface crouchedNinjaLeft;
+
+        private static Surface crouchedNinjaHitRight;
+
+        private static Surface crouchedNinjaHitLeft;
+
+        private static Surface crouchedNinjaDopedRight;
+
+        private static Surface crouchedNinjaDopedLeft;
+
+        private static Surface crouchedNinjaDopedHitRight;
+
+        private static Surface crouchedNinjaDopedHitLeft;
+
         private static Surface walking1LeftSurface;
 
         private static Surface walking1LeftSurfaceRasta;
@@ -582,6 +598,14 @@ namespace AbrahmanAdventure.sprites
             walking1NinjaDopedLeftSurface = walking1NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
             walking2NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2NinjaDoped.png");
             walking2NinjaDopedLeftSurface = walking2NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+            crouchedNinjaRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedNinja.png");
+            crouchedNinjaLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
+            crouchedNinjaHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
+            crouchedNinjaHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
+            crouchedNinjaDopedRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedNinja.png");
+            crouchedNinjaDopedLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
+            crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
+            crouchedNinjaDopedHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
 
             standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinja.png");
             standingNinjaLeftSurface = standingNinjaRightSurface.CreateFlippedHorizontalSurface();
@@ -617,14 +641,14 @@ namespace AbrahmanAdventure.sprites
             GetStandingLeftSurface(true, false, false);
             GetStandingLeftSurface(true, true, false);
 
-            GetCrouchedLeftSurface(false, false);
-            GetCrouchedLeftSurface(false, true);
-            GetCrouchedLeftSurface(true, false);
-            GetCrouchedLeftSurface(true, true);
-            GetCrouchedRightSurface(false, false);
-            GetCrouchedRightSurface(false, true);
-            GetCrouchedRightSurface(true, false);
-            GetCrouchedRightSurface(true, true);
+            GetCrouchedLeftSurface(false, false, false);
+            GetCrouchedLeftSurface(false, true, false);
+            GetCrouchedLeftSurface(true, false, false);
+            GetCrouchedLeftSurface(true, true, false);
+            GetCrouchedRightSurface(false, false, false);
+            GetCrouchedRightSurface(false, true, false);
+            GetCrouchedRightSurface(true, false, false);
+            GetCrouchedRightSurface(true, true, false);
 
             GetCrouchedHitRightSurface(false);
             GetCrouchedHitRightSurface(true);
@@ -920,9 +944,16 @@ namespace AbrahmanAdventure.sprites
             return standingLeftSurfaceRasta;
         }
 
-        private Surface GetCrouchedRightSurface(bool isDoped, bool isRasta)
+        private Surface GetCrouchedRightSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return crouchedNinjaDopedRight;
+                else
+                    return crouchedNinjaRight;
+            }
+            else if (isDoped && isRasta)
                 return GetCrouchedRightSurfaceRastaDoped();
             else if (isRasta)
                 return GetCrouchedRightSurfaceRasta();
@@ -951,9 +982,16 @@ namespace AbrahmanAdventure.sprites
             return crouchedRightSurfaceRasta;
         }
 
-        private Surface GetCrouchedLeftSurface(bool isDoped, bool isRasta)
+        private Surface GetCrouchedLeftSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return crouchedNinjaDopedLeft;
+                else
+                    return crouchedNinjaLeft;
+            }
+            else if (isDoped && isRasta)
                 return GetCrouchedLeftSurfaceRastaDoped();
             else if (isRasta)
                 return GetCrouchedLeftSurfaceRasta();
@@ -961,7 +999,7 @@ namespace AbrahmanAdventure.sprites
                 return GetCrouchedLeftSurfaceDoped();
 
             if (crouchedLeftSurface == null)
-                crouchedLeftSurface = GetCrouchedRightSurface(false, isRasta).CreateFlippedHorizontalSurface();
+                crouchedLeftSurface = GetCrouchedRightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
 
             return crouchedLeftSurface;
         }
@@ -2578,7 +2616,7 @@ namespace AbrahmanAdventure.sprites
                             else
                                 return rastaFlyCrouchedRight;
                         }
-                        return GetCrouchedRightSurface(isShowDopedColor, isRasta);
+                        return GetCrouchedRightSurface(isShowDopedColor, isRasta,isNinja);
                     }
                     else
                     {
@@ -2590,7 +2628,7 @@ namespace AbrahmanAdventure.sprites
                             else
                                 return rastaFlyCrouchedLeft;
                         }
-                        return GetCrouchedLeftSurface(isShowDopedColor, isRasta);
+                        return GetCrouchedLeftSurface(isShowDopedColor, isRasta, isNinja);
                     }
                 }
             }
