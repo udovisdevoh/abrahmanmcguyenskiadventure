@@ -31,7 +31,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Beware of the pedophile clown.";
+        private const string tutorialComment = "Beware of the evil clown.\nHe will try to sell you rotten meat of\nmistreated industrially raised cows feeded\nwith hormons and antibiotics\nwhile they swim in 3 feet deep of their own feces.\nI'm lovin' it.";
         #endregion
 
         #region Constructors

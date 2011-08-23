@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Get the bandana and become a ninja.";
+        private const string tutorialComment = "Get the bandana and become a ninja.\nPress Alt or 3rd button to throw your grappler up.\nPress attack to use your katana and throw shuriken.\nKeep attack pressed while standing still\nto use your nunchaku.";
         #endregion
 
         #region Constructor

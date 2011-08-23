@@ -162,7 +162,7 @@ namespace AbrahmanAdventure.hud
             {
                 mainSurface.Fill(System.Drawing.Color.White);
 
-                mainSurface.Blit(GetFontText("How to play", System.Drawing.Color.Black), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                mainSurface.Blit(GetFontText("How to play", System.Drawing.Color.Black), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 4));
 
                 if (currentMenuPositionX < 0)
                     currentMenuPositionX = SpriteGuide.SpriteList.Count;
@@ -174,21 +174,28 @@ namespace AbrahmanAdventure.hud
                     mainSurface.Blit(GetFontText("Arrows: (move)", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
                     mainSurface.Blit(GetFontText("Space: Jump", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
                     mainSurface.Blit(GetFontText("Ctrl: Attack / run / grab / dig", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
-                    mainSurface.Blit(GetFontText("Alt: Jump out of beaver", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+                    mainSurface.Blit(GetFontText("Alt: Jump out of beaver, throw ninja grappler up", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
                     mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                     mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
                 }
                 else
                 {
                     AbstractSprite spriteFromGuide = SpriteGuide.SpriteList[currentMenuPositionX - 1];
-                    System.Drawing.Color color = (spriteFromGuide is MonsterSprite && (spriteFromGuide is IExplodable || (((MonsterSprite)spriteFromGuide).IsCanDoDamageToPlayerWhenTouched && ((MonsterSprite)spriteFromGuide).AttackStrengthCollision > 0))) ? System.Drawing.Color.Red : System.Drawing.Color.Green;
+                    System.Drawing.Color color = (spriteFromGuide is MonsterSprite && (spriteFromGuide is IExplodable || (((MonsterSprite)spriteFromGuide).IsCanDoDamageToPlayerWhenTouched && ((MonsterSprite)spriteFromGuide).AttackStrengthCollision > 0))) ? System.Drawing.Color.DarkRed : System.Drawing.Color.Green;
                     double xOffsetSprite, yOffsetSprite;
                     Surface spriteSurface = spriteFromGuide.GetCurrentSurface(out xOffsetSprite, out yOffsetSprite);
-                    mainSurface.Blit(spriteSurface, new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1), spriteSurface.GetRectangle());
-                    mainSurface.Blit(GetFontText(spriteFromGuide.TutorialComment, color), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 10));
+                    mainSurface.Blit(spriteSurface, new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2), spriteSurface.GetRectangle());
+
+                    string[] lineList = spriteFromGuide.TutorialComment.Split('\n');
+                    int lineOffset = 0;
+                    foreach (string line in lineList)
+                    {
+                        mainSurface.Blit(GetFontText(line, color), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * (8 + lineOffset)));
+                        lineOffset++;
+                    }
                 }
 
-                mainSurface.Blit(GetFontText("< Page " + (currentMenuPositionX + 1) + " of " + (SpriteGuide.Count + 1) + ">", System.Drawing.Color.Blue), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 13));
+                mainSurface.Blit(GetFontText("< Page " + (currentMenuPositionX + 1) + " of " + (SpriteGuide.Count + 1) + ">", System.Drawing.Color.Blue), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 14));
             }
             else if (currentSubMenu == SubMenu.Display)
             {

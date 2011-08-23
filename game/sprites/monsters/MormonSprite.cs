@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "The christian will throw fairy tale books at you.";
+        private const string tutorialComment = "The book worshipping christian fundamentalist\nwill throw his paper God at you.";
         #endregion
 
         #region Constructor

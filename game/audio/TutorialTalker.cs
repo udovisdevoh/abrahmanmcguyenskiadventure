@@ -39,7 +39,7 @@ namespace AbrahmanAdventure.audio
             {
                 listSpriteTalkedAbout.Add(spriteType);
                 if (sprite.TutorialComment != null)
-                    speechSynthesizer.SpeakAsync(sprite.TutorialComment);
+                    speechSynthesizer.SpeakAsync(sprite.TutorialComment.Replace('\n', ' '));
             }
         }
 
