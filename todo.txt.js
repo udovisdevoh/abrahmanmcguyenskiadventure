@@ -1,6 +1,6 @@
 ninja
 {
-	dire comment lancer cordes (dans HowTo), ainsi que autres skills de ninja
+	dire comment lancer cordes (dans HowTo), ainsi que autres skills de ninja (nunchaku, shuriken, katana, double jump)
 
 	lorsque obtient powerup: bandeau blanc avec point rouge
 	
@@ -10,8 +10,6 @@ ninja
 	si déjà jump: possibilité de double jump
 	
 	lorsque jump: spin (rotation)
-	
-	lorsque press bouton du castor, lance un corde (liane)
 	
 	si immobile et press attack: spin nunchaku
 	
