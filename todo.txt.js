@@ -3,19 +3,17 @@ ninja
 	dire comment lancer cordes (dans HowTo), ainsi que autres skills de ninja (nunchaku, shuriken, katana, double jump)
 
 	lorsque obtient powerup: bandeau blanc avec point rouge
+
+	donne coup de katana	
 	
-	lance des shuriken (même comportement que boules de feu)
 	si boules de feu lancées, donne coup de poing et coup de pied (doped)
-	si shuriken lancées, donne coup de katana
-	si déjà jump: possibilité de double jump
+	?si déjà jump: possibilité de double jump?
 	
 	lorsque jump: spin (rotation)
 	
 	si immobile et press attack: spin nunchaku
 	
 	don't fall when having side collision
-	
-	play ninja music (japanese pentatonic)
 	
 	powerup: probabilité selon skill level
 	{
