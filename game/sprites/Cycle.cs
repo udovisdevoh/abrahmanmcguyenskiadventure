@@ -125,6 +125,11 @@ namespace AbrahmanAdventure.sprites
             get { return totalTimeLength; }
             set { totalTimeLength = value; }
         }
+
+        internal void Reverse()
+        {
+            isBackwards = !isBackwards;
+        }
         #endregion
     }
 }

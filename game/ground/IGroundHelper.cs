@@ -72,13 +72,10 @@ namespace AbrahmanAdventure.physics
                             double currentHeight = otherSprite.TopBound;
                             if (sprite.YPosition <= currentHeight)
                             {
-                                if (otherSprite.TopBound <= currentHeight)
+                                if (highestHeight == -1 || currentHeight < highestHeight)
                                 {
-                                    if (highestHeight == -1 || currentHeight < highestHeight)
-                                    {
-                                        highestHeight = currentHeight;
-                                        highestIGroundBelowSprite = otherSprite;
-                                    }
+                                    highestHeight = currentHeight;
+                                    highestIGroundBelowSprite = otherSprite;
                                 }
                             }
                         }
@@ -87,6 +84,60 @@ namespace AbrahmanAdventure.physics
             }
 
             return highestIGroundBelowSprite;
+        }
+
+        internal static IGround GetLowestVisibleIGroundAboveSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList, bool isConsiderSpriteGround)
+        {
+            IGround lowestGroundAboveSprite = null;
+            double lowestHeight = -1;
+            double spriteY = sprite.YPosition - 0.1;
+
+            foreach (Ground ground in level)
+            {
+                double currentHeight = ground[sprite.XPosition];
+
+                if (spriteY >= currentHeight)
+                {
+                    if (lowestHeight == -1 || currentHeight > lowestHeight)
+                    {
+                        if (IsGroundVisible(ground, level, sprite.XPosition))
+                        {
+                            lowestHeight = currentHeight;
+                            lowestGroundAboveSprite = ground;
+                        }
+                    }
+                }
+            }
+
+            if (isConsiderSpriteGround)
+            {
+                foreach (AbstractSprite otherSprite in visibleSpriteList)
+                {
+                    if (otherSprite.IsImpassable && otherSprite.IsAlive)
+                    {
+                        bool isHorizontalCollision = (sprite.RightBound > otherSprite.LeftBound && sprite.LeftBound < otherSprite.LeftBound) || (sprite.LeftBound < otherSprite.RightBound && sprite.LeftBound > otherSprite.LeftBound);
+                        isHorizontalCollision |= sprite.RightBound == otherSprite.RightBound;
+                        isHorizontalCollision |= sprite.LeftBound == otherSprite.LeftBound;
+                        isHorizontalCollision |= sprite.LeftBound > otherSprite.LeftBound && sprite.RightBound < otherSprite.RightBound;
+                        isHorizontalCollision |= sprite.LeftBound < otherSprite.LeftBound && sprite.RightBound > otherSprite.RightBound;
+
+                        if (isHorizontalCollision)
+                        {
+                            double currentHeight = otherSprite.TopBound;
+                            if (spriteY >= currentHeight)
+                            {
+                                if (lowestHeight == -1 || currentHeight > lowestHeight)
+                                {
+                                    lowestHeight = currentHeight;
+                                    lowestGroundAboveSprite = otherSprite;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return lowestGroundAboveSprite;
         }
 
         /// <summary>

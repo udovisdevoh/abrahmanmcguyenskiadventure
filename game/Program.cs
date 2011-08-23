@@ -448,6 +448,7 @@ namespace AbrahmanAdventure
                     gameState.PlayerSprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, gameState.PlayerSprite.XPosition)[gameState.PlayerSprite.XPosition];
                     gameState.PlayerSprite.XPosition = gameState.PlayerSprite.XPosition;//reset previous X
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
+                    LianaManager.ResetNinjaRope();
                     levelViewer.ClearCache();
                     SongGenerator.GetInvincibilitySong(gameState.Seed);//We pre-render invincibility song if it's not pre-rendered (it will be the same for this episode)
                     SongGenerator.ResetNinjaSong();
@@ -480,7 +481,7 @@ namespace AbrahmanAdventure
                 {
                     #region We manage jumping input logic
                     playerSprite.IsTryingToJump = false;
-                    if (userInput.isPressJump || userInput.isPressLeaveBeaver)
+                    if (userInput.isPressJump || (userInput.isPressLeaveBeaver && !playerSprite.IsNinja))
                     {
                         //We manage jumping from one ground to a lower ground
                         if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)
@@ -650,9 +651,22 @@ namespace AbrahmanAdventure
                     }
                     #endregion
 
-                    #region We manage the "leave beaver" input logic
-                    if (userInput.isPressLeaveBeaver && playerSprite.IsBeaver)
-                        beaverManager.LeaveBeaver(playerSprite, spritePopulation);
+                    #region We manage the "leave beaver" and throw ninja rope input logic 
+                    playerSprite.IsTryThrowNinjaRope = false;
+                    if (userInput.isPressLeaveBeaver)
+                    {
+                        if (playerSprite.IsBeaver)
+                            beaverManager.LeaveBeaver(playerSprite, spritePopulation);
+                        else if (playerSprite.IsNinja && !playerSprite.IsNeedToPressThrowNinjaRopeAgain)
+                        {
+                            playerSprite.IsTryThrowNinjaRope = true;
+                            playerSprite.IsNeedToPressThrowNinjaRopeAgain = true;
+                        }
+                    }
+                    else
+                    {
+                        playerSprite.IsNeedToPressThrowNinjaRopeAgain = false;
+                    }
                     #endregion
 
                     if (gameState.IsPlayerReady)
