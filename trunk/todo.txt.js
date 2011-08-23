@@ -18,6 +18,7 @@ ninja
 	{
 		Ninja: fréquent si skill level assez élevé, sinon, très râre
 		autres powerups etc
+		Anarchy block: enlevé banadana forcé
 	}
 }
 
