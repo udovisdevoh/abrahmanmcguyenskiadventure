@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -11,6 +13,8 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class LianaManager
     {
+        private static LianaSprite ninjaRope = null;
+
         internal void UpdateLiana(LianaSprite lianaSprite, PlayerSprite playerSpriteReference, double timeDelta)
         {
             double heightBeforeMovement = -1;//Warning, must not keep this value
@@ -57,6 +61,58 @@ namespace AbrahmanAdventure.physics
             {
                 sprite.XPosition -= (sprite.Width + 1.0);
             }
+        }
+
+        internal static void ResetNinjaRope()
+        {
+            ninjaRope = null;
+        }
+
+        internal void TryThrowNinjaRope(PlayerSprite playerSprite, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        {
+            if (ninjaRope != null)
+            {
+                spritePopulation.Remove(ninjaRope);
+                if (playerSprite.IClimbingOn == ninjaRope)
+                    playerSprite.IClimbingOn = null;
+            }
+
+            IGround attachedGround = IGroundHelper.GetLowestVisibleIGroundAboveSprite(playerSprite, level, visibleSpriteList, true);
+
+            if (attachedGround == null)
+                return;
+
+            double yPosition = attachedGround[playerSprite.XPosition];
+
+            if (Math.Abs(playerSprite.YPosition - yPosition) > 20)
+                return;
+
+            ninjaRope = new LianaSprite(playerSprite.XPosition, yPosition, random);
+
+            if (playerSprite.IsTryingToWalkRight)
+                ninjaRope.MovementCycle.CurrentValue = ninjaRope.MovementCycle.TotalTimeLength * 0.375;
+            else
+            {
+                ninjaRope.MovementCycle.CurrentValue = ninjaRope.MovementCycle.TotalTimeLength * 0.625;
+                ninjaRope.MovementCycle.Reverse();
+            }
+
+            spritePopulation.Add(ninjaRope);
+
+            ninjaRope.YPosition += ninjaRope.Height;
+
+            if (attachedGround is StaticSprite)
+                ninjaRope.YPosition += ((StaticSprite)attachedGround).Height;
+
+            if (ninjaRope.YPosition > playerSprite.TopBound)
+            {
+                playerSprite.IGround = null;
+                playerSprite.IClimbingOn = ninjaRope;
+                if (playerSprite.YPosition > ninjaRope.YPosition)
+                    playerSprite.YPositionKeepPrevious = ninjaRope.YPosition;
+            }
+
+            SoundManager.PlayThrowSound();
         }
     }
 }

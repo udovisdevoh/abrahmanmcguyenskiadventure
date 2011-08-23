@@ -446,6 +446,11 @@ namespace AbrahmanAdventure.sprites
         private bool isTryThrowingBall = false;
 
         /// <summary>
+        /// Whether sprite is tryting to throw a ninja's rope
+        /// </summary>
+        private bool isTryThrowNinjaRope = false;
+
+        /// <summary>
         /// Whether sprite is currently trying to throw a shuriken
         /// </summary>
         private bool isTryThrowingShuriken = false;
@@ -2731,6 +2736,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryThrowingBall; }
             set { isTryThrowingBall = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is trying to throw a ninja's rope
+        /// </summary>
+        public bool IsTryThrowNinjaRope
+        {
+            get { return isTryThrowNinjaRope; }
+            set { isTryThrowNinjaRope = value; }
         }
 
         /// <summary>

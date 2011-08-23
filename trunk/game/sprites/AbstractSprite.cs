@@ -100,6 +100,11 @@ namespace AbrahmanAdventure.sprites
         private bool isNeedToAttackAgain = false;
 
         /// <summary>
+        /// Whether player currently needs to release and press throw ninja rope again
+        /// </summary>
+        private bool isNeedToPressThrowNinjaRopeAgain;
+
+        /// <summary>
         /// Whether sprite is currently running
         /// </summary>
         private bool isRunning = false;
@@ -792,6 +797,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isNeedToAttackAgain; }
             set { isNeedToAttackAgain = value; }
+        }
+
+        /// <summary>
+        /// Whether player currently needs to release and press throw ninja rope again
+        /// </summary>
+        public bool IsNeedToPressThrowNinjaRopeAgain
+        {
+            get { return isNeedToPressThrowNinjaRopeAgain; }
+            set { isNeedToPressThrowNinjaRopeAgain = value; }
         }
 
         /// <summary>

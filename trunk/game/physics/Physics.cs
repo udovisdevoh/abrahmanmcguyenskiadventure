@@ -192,6 +192,9 @@ namespace AbrahmanAdventure.physics
                     if (spriteToUpdate.IsTryDigGround)
                         beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);
 
+                    if (((PlayerSprite)spriteToUpdate).IsTryThrowNinjaRope)
+                        lianaManager.TryThrowNinjaRope((PlayerSprite)spriteToUpdate, level, spritePopulation, visibleSpriteList, random);
+
                     #region Put back level's song at the end of invincibility
                     if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed) && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
                     {
