@@ -34,6 +34,16 @@ namespace AbrahmanAdventure.physics
             if (sprite.IsTryingToJump)
                 StartOrContinueJump(sprite, timeDelta);
 
+            #region We manage ninja flip cycle
+            if (sprite is PlayerSprite && sprite.IGround == null && sprite.IClimbingOn == null && ((PlayerSprite)sprite).IsNinja && ((PlayerSprite)sprite).NinjaFlipCycle.IsFired)
+            {
+                if (sprite.IsInWater)
+                    ((PlayerSprite)sprite).NinjaFlipCycle.StopAndReset();
+                else
+                    ((PlayerSprite)sprite).NinjaFlipCycle.Increment(timeDelta);
+            }
+            #endregion
+
             sprite.JumpingCycle.Increment(timeDelta / Math.Max(sprite.MaximumWalkingHeight, sprite.CurrentWalkingSpeed));
 
             if (sprite is IMovingGround && playerSpriteReference.IGround == sprite)
@@ -72,7 +82,11 @@ namespace AbrahmanAdventure.physics
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
                     sprite.IGround = null;
                     if (sprite is PlayerSprite)
+                    {
+                        if (((PlayerSprite)sprite).IsNinja)
+                            ((PlayerSprite)sprite).NinjaFlipCycle.Fire();
                         SoundManager.PlayJumpSound();
+                    }
                 }
                 else if (sprite.IClimbingOn != null)
                 {
@@ -87,7 +101,11 @@ namespace AbrahmanAdventure.physics
                             sprite.IgnoreThisIClimbable = sprite.IClimbingOn;
                         sprite.IClimbingOn = null;
                         if (sprite is PlayerSprite)
+                        {
+                            if (((PlayerSprite)sprite).IsNinja)
+                                ((PlayerSprite)sprite).NinjaFlipCycle.Fire();
                             SoundManager.PlayJumpSound();
+                        }
                     }
                 }
 

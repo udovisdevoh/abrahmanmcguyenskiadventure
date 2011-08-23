@@ -53,6 +53,70 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface crouchedNinjaDopedHitLeft;
 
+        private static Surface ninjaFlipRight1;
+
+        private static Surface ninjaFlipRight2;
+
+        private static Surface ninjaFlipRight3;
+
+        private static Surface ninjaFlipRight4;
+
+        private static Surface ninjaFlipRight5;
+
+        private static Surface ninjaFlipRight6;
+
+        private static Surface ninjaFlipRight7;
+
+        private static Surface ninjaFlipRight8;
+
+        private static Surface ninjaFlipLeft1;
+
+        private static Surface ninjaFlipLeft2;
+
+        private static Surface ninjaFlipLeft3;
+
+        private static Surface ninjaFlipLeft4;
+
+        private static Surface ninjaFlipLeft5;
+
+        private static Surface ninjaFlipLeft6;
+
+        private static Surface ninjaFlipLeft7;
+
+        private static Surface ninjaFlipLeft8;
+
+        private static Surface ninjaFlipDopedRight1;
+
+        private static Surface ninjaFlipDopedRight2;
+
+        private static Surface ninjaFlipDopedRight3;
+
+        private static Surface ninjaFlipDopedRight4;
+
+        private static Surface ninjaFlipDopedRight5;
+
+        private static Surface ninjaFlipDopedRight6;
+
+        private static Surface ninjaFlipDopedRight7;
+
+        private static Surface ninjaFlipDopedRight8;
+
+        private static Surface ninjaFlipDopedLeft1;
+
+        private static Surface ninjaFlipDopedLeft2;
+
+        private static Surface ninjaFlipDopedLeft3;
+
+        private static Surface ninjaFlipDopedLeft4;
+
+        private static Surface ninjaFlipDopedLeft5;
+
+        private static Surface ninjaFlipDopedLeft6;
+
+        private static Surface ninjaFlipDopedLeft7;
+
+        private static Surface ninjaFlipDopedLeft8;
+
         private static Surface walking1LeftSurface;
 
         private static Surface walking1LeftSurfaceRasta;
@@ -454,6 +518,8 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle fromVortexCycle;
 
+        private Cycle ninjaFlipCycle;
+
         /// <summary>
         /// When sprite is currently moving from one pipe to another (destination pipe)
         /// This value is normally null
@@ -517,6 +583,7 @@ namespace AbrahmanAdventure.sprites
             throwBallCycle = new Cycle(2.5, false);
             invincibilityCycle = new Cycle(400, false);
             fromVortexCycle = new Cycle(15, false);
+            ninjaFlipCycle = new Cycle(15, true);
 
             if (beaverStandTallRight == null)
             {
@@ -606,11 +673,46 @@ namespace AbrahmanAdventure.sprites
             crouchedNinjaDopedLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
             crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
             crouchedNinjaDopedHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
-
             standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinja.png");
             standingNinjaLeftSurface = standingNinjaRightSurface.CreateFlippedHorizontalSurface();
             standingNinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinjaDoped.png");
             standingNinjaDopedLeftSurface = standingNinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+            
+            ninjaFlipRight1 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinja.png");
+            ninjaFlipRight2 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinja45.png");
+            ninjaFlipRight3 = ninjaFlipRight1.CreateRotatedSurface(270);
+            ninjaFlipRight4 = ninjaFlipRight2.CreateRotatedSurface(270);
+            ninjaFlipRight5 = ninjaFlipRight1.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+            ninjaFlipRight6 = ninjaFlipRight2.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+            ninjaFlipRight7 = ninjaFlipRight3.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+            ninjaFlipRight8 = ninjaFlipRight4.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+
+            ninjaFlipDopedRight1 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinjaDoped.png");
+            ninjaFlipDopedRight2 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinja45Doped.png");
+            ninjaFlipDopedRight3 = ninjaFlipDopedRight1.CreateRotatedSurface(270);
+            ninjaFlipDopedRight4 = ninjaFlipDopedRight2.CreateRotatedSurface(270);
+            ninjaFlipDopedRight5 = ninjaFlipDopedRight1.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+            ninjaFlipDopedRight6 = ninjaFlipDopedRight2.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+            ninjaFlipDopedRight7 = ninjaFlipDopedRight3.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+            ninjaFlipDopedRight8 = ninjaFlipDopedRight4.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+
+            ninjaFlipLeft1 = ninjaFlipRight1.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft2 = ninjaFlipRight2.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft3 = ninjaFlipRight3.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft4 = ninjaFlipRight4.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft5 = ninjaFlipRight5.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft6 = ninjaFlipRight6.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft7 = ninjaFlipRight7.CreateFlippedHorizontalSurface();
+            ninjaFlipLeft8 = ninjaFlipRight8.CreateFlippedHorizontalSurface();
+
+            ninjaFlipDopedLeft1 = ninjaFlipDopedRight1.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft2 = ninjaFlipDopedRight2.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft3 = ninjaFlipDopedRight3.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft4 = ninjaFlipDopedRight4.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft5 = ninjaFlipDopedRight5.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft6 = ninjaFlipDopedRight6.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft7 = ninjaFlipDopedRight7.CreateFlippedHorizontalSurface();
+            ninjaFlipDopedLeft8 = ninjaFlipDopedRight8.CreateFlippedHorizontalSurface();
 
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
@@ -2220,6 +2322,107 @@ namespace AbrahmanAdventure.sprites
             
             return standSurface;
         }
+
+        private Surface GetNinjaFlipSurface(bool isShowDopedColor, out double xOffset)
+        {
+            int ninjaFlipRotationId = ninjaFlipCycle.GetCycleDivision(8);
+            if (IsTryingToWalkRight)
+            {
+                xOffset = -0.1;
+                if (isShowDopedColor)
+                {
+                    switch (ninjaFlipRotationId)
+                    {
+                        case 0:
+                            return ninjaFlipDopedRight1;
+                        case 1:
+                            return ninjaFlipDopedRight2;
+                        case 2:
+                            return ninjaFlipDopedRight3;
+                        case 3:
+                            return ninjaFlipDopedRight4;
+                        case 4:
+                            return ninjaFlipDopedRight5;
+                        case 5:
+                            return ninjaFlipDopedRight6;
+                        case 6:
+                            return ninjaFlipDopedRight7;
+                        default:
+                            return ninjaFlipDopedRight8;
+                    }
+                }
+                else
+                {
+                    switch (ninjaFlipRotationId)
+                    {
+                        case 0:
+                            return ninjaFlipRight1;
+                        case 1:
+                            return ninjaFlipRight2;
+                        case 2:
+                            return ninjaFlipRight3;
+                        case 3:
+                            return ninjaFlipRight4;
+                        case 4:
+                            return ninjaFlipRight5;
+                        case 5:
+                            return ninjaFlipRight6;
+                        case 6:
+                            return ninjaFlipRight7;
+                        default:
+                            return ninjaFlipRight8;
+                    }
+                }
+            }
+            else
+            {
+                xOffset = 0.1;
+                if (isShowDopedColor)
+                {
+                    switch (ninjaFlipRotationId)
+                    {
+                        case 0:
+                            return ninjaFlipDopedLeft1;
+                        case 1:
+                            return ninjaFlipDopedLeft2;
+                        case 2:
+                            return ninjaFlipDopedLeft3;
+                        case 3:
+                            return ninjaFlipDopedLeft4;
+                        case 4:
+                            return ninjaFlipDopedLeft5;
+                        case 5:
+                            return ninjaFlipDopedLeft6;
+                        case 6:
+                            return ninjaFlipDopedLeft7;
+                        default:
+                            return ninjaFlipDopedLeft8;
+                    }
+                }
+                else
+                {
+                    switch (ninjaFlipRotationId)
+                    {
+                        case 0:
+                            return ninjaFlipLeft1;
+                        case 1:
+                            return ninjaFlipLeft2;
+                        case 2:
+                            return ninjaFlipLeft3;
+                        case 3:
+                            return ninjaFlipLeft4;
+                        case 4:
+                            return ninjaFlipLeft5;
+                        case 5:
+                            return ninjaFlipLeft6;
+                        case 6:
+                            return ninjaFlipLeft7;
+                        default:
+                            return ninjaFlipLeft8;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Internal Methods
@@ -2388,7 +2591,7 @@ namespace AbrahmanAdventure.sprites
 
 
             
-            if (ThrowBallCycle.IsFired)
+            if (ThrowBallCycle.IsFired && !isNinja)
             {
                 if (IsCrouch)
                 {
@@ -2673,25 +2876,36 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     #region Not tiny
-                    if (IsTryingToWalkRight)
+                    if (isNinja)
                     {
-                        if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
-                        {
-                            xOffset = -0.33;
-                            return GetFlyRightSurface(isShowDopedColor);
-                        }
-                        else
-                            return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja);
+                        #region Jumping or falling AS ninja
+                        return GetNinjaFlipSurface(isShowDopedColor, out xOffset);
+                        #endregion
                     }
                     else
                     {
-                        if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                        #region Jumping or falling NOT as ninja
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = 0.33;
-                            return GetFlyLeftSurface(isShowDopedColor);
+                            if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            {
+                                xOffset = -0.33;
+                                return GetFlyRightSurface(isShowDopedColor);
+                            }
+                            else
+                                return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja);
                         }
                         else
-                            return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja);
+                        {
+                            if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            {
+                                xOffset = 0.33;
+                                return GetFlyLeftSurface(isShowDopedColor);
+                            }
+                            else
+                                return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja);
+                        }
+                        #endregion
                     }
                     #endregion
                 }
@@ -2921,6 +3135,14 @@ namespace AbrahmanAdventure.sprites
         public Cycle FromVortexCycle
         {
             get { return fromVortexCycle; }
+        }
+
+        /// <summary>
+        /// Ninja flip cycle
+        /// </summary>
+        public Cycle NinjaFlipCycle
+        {
+            get { return ninjaFlipCycle; }
         }
         #endregion
     }
