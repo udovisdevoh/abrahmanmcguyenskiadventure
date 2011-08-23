@@ -13,6 +13,30 @@ namespace AbrahmanAdventure.sprites
     internal class PlayerSprite : AbstractSprite
     {
         #region Fields and parts
+        private static Surface walking1NinjaLeftSurface;
+
+        private static Surface walking2NinjaLeftSurface;
+
+        private static Surface walking1NinjaRightSurface;
+
+        private static Surface walking2NinjaRightSurface;
+
+        private static Surface walking1NinjaDopedLeftSurface;
+
+        private static Surface walking2NinjaDopedLeftSurface;
+
+        private static Surface walking1NinjaDopedRightSurface;
+
+        private static Surface walking2NinjaDopedRightSurface;
+
+        private static Surface standingNinjaLeftSurface;
+
+        private static Surface standingNinjaRightSurface;
+
+        private static Surface standingNinjaDopedLeftSurface;
+
+        private static Surface standingNinjaDopedRightSurface;
+
         private static Surface walking1LeftSurface;
 
         private static Surface walking1LeftSurfaceRasta;
@@ -550,34 +574,48 @@ namespace AbrahmanAdventure.sprites
                 rastaFlyCrouchedLeft = rastaFlyCrouchedRight.CreateFlippedHorizontalSurface();
             }
 
+            walking1NinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1Ninja.png");
+            walking1NinjaLeftSurface = walking1NinjaRightSurface.CreateFlippedHorizontalSurface();
+            walking2NinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2Ninja.png");
+            walking2NinjaLeftSurface = walking2NinjaRightSurface.CreateFlippedHorizontalSurface();
+            walking1NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1NinjaDoped.png");
+            walking1NinjaDopedLeftSurface = walking1NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+            walking2NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2NinjaDoped.png");
+            walking2NinjaDopedLeftSurface = walking2NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+
+            standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinja.png");
+            standingNinjaLeftSurface = standingNinjaRightSurface.CreateFlippedHorizontalSurface();
+            standingNinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinjaDoped.png");
+            standingNinjaDopedLeftSurface = standingNinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
 
-            GetWalking1RightSurface(false, false);
-            GetWalking1RightSurface(true, false);
-            GetWalking1RightSurface(false, true);
-            GetWalking1RightSurface(true, true);
-            GetWalking2RightSurface(false, false);
-            GetWalking2RightSurface(true, false);
-            GetWalking2RightSurface(false, true);
-            GetWalking2RightSurface(true, true);
-            GetWalking1LeftSurface(false, false);
-            GetWalking1LeftSurface(true, false);
-            GetWalking1LeftSurface(false, true);
-            GetWalking1LeftSurface(true, true);
-            GetWalking2LeftSurface(false, false);
-            GetWalking2LeftSurface(true, false);
-            GetWalking2LeftSurface(false, true);
-            GetWalking2LeftSurface(true, true);
+            GetWalking1RightSurface(false, false, false);
+            GetWalking1RightSurface(true, false, false);
+            GetWalking1RightSurface(false, true, false);
+            GetWalking1RightSurface(true, true, false);
+            GetWalking2RightSurface(false, false, false);
+            GetWalking2RightSurface(true, false, false);
+            GetWalking2RightSurface(false, true, false);
+            GetWalking2RightSurface(true, true, false);
+            GetWalking1LeftSurface(false, false,false);
+            GetWalking1LeftSurface(true, false, false);
+            GetWalking1LeftSurface(false, true, false);
+            GetWalking1LeftSurface(true, true, false);
+            GetWalking2LeftSurface(false, false, false);
+            GetWalking2LeftSurface(true, false, false);
+            GetWalking2LeftSurface(false, true, false);
+            GetWalking2LeftSurface(true, true, false);
 
-            GetStandingRightSurface(false, false);
-            GetStandingRightSurface(false, true);
-            GetStandingRightSurface(true, false);
-            GetStandingRightSurface(true, true);
-            GetStandingLeftSurface(false, false);
-            GetStandingLeftSurface(false, true);
-            GetStandingLeftSurface(true, false);
-            GetStandingLeftSurface(true, true);
+            GetStandingRightSurface(false, false, false);
+            GetStandingRightSurface(false, true, false);
+            GetStandingRightSurface(true, false, false);
+            GetStandingRightSurface(true, true, false);
+            GetStandingLeftSurface(false, false, false);
+            GetStandingLeftSurface(false, true, false);
+            GetStandingLeftSurface(true, false, false);
+            GetStandingLeftSurface(true, true, false);
 
             GetCrouchedLeftSurface(false, false);
             GetCrouchedLeftSurface(false, true);
@@ -695,9 +733,16 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Private Methods
-        private Surface GetWalking1RightSurface(bool isDoped, bool isRasta)
+        private Surface GetWalking1RightSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return walking1NinjaDopedRightSurface;
+                else
+                    return walking1NinjaRightSurface;
+            }
+            else if (isDoped && isRasta)
                 return GetWalking1RightSurfaceRastaDoped();
             else if (isRasta)
                 return GetWalking1RightSurfaceRasta();
@@ -723,9 +768,16 @@ namespace AbrahmanAdventure.sprites
             return walking1RightSurfaceRasta;
         }
 
-        private Surface GetWalking1LeftSurface(bool isDoped, bool isRasta)
+        private Surface GetWalking1LeftSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return walking1NinjaDopedLeftSurface;
+                else
+                    return walking1NinjaLeftSurface;
+            }
+            else if (isDoped && isRasta)
                 return GetWalking1LeftSurfaceRastaDoped();
             else if (isRasta)
                 return GetWalking1LeftSurfaceRasta();
@@ -733,7 +785,7 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking1LeftSurfaceDoped();
 
             if (walking1LeftSurface == null)
-                walking1LeftSurface = GetWalking1RightSurface(false, isRasta).CreateFlippedHorizontalSurface();
+                walking1LeftSurface = GetWalking1RightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
 
             return walking1LeftSurface;
         }
@@ -754,8 +806,15 @@ namespace AbrahmanAdventure.sprites
             return walking1LeftSurfaceRasta;
         }
 
-        private Surface GetWalking2LeftSurface(bool isDoped, bool isRasta)
+        private Surface GetWalking2LeftSurface(bool isDoped, bool isRasta, bool isNinja)
         {
+            if (isNinja)
+            {
+                if (isDoped)
+                    return walking2NinjaDopedLeftSurface;
+                else
+                    return walking2NinjaLeftSurface;
+            }
             if (isDoped && isRasta)
                 return GetWalking2LeftSurfaceRastaDoped();
             else if (isRasta)
@@ -764,7 +823,7 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking2LeftSurfaceDoped();
 
             if (walking2LeftSurface == null)
-                walking2LeftSurface = GetWalking2RightSurface(false, isRasta).CreateFlippedHorizontalSurface();
+                walking2LeftSurface = GetWalking2RightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
 
             return walking2LeftSurface;
         }
@@ -785,9 +844,16 @@ namespace AbrahmanAdventure.sprites
             return walking2LeftSurfaceRasta;
         }
 
-        private Surface GetWalking2RightSurface(bool isDoped, bool isRasta)
+        private Surface GetWalking2RightSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return walking2NinjaDopedRightSurface;
+                else
+                    return walking2NinjaRightSurface;
+            }
+            else if (isDoped && isRasta)
                 return GetWalking2RightSurfaceRastaDoped();
             else if (isRasta)
                 return GetWalking2RightSurfaceRasta();
@@ -816,9 +882,16 @@ namespace AbrahmanAdventure.sprites
             return walking2RightSurfaceRasta;
         }
 
-        private Surface GetStandingLeftSurface(bool isDoped, bool isRasta)
+        private Surface GetStandingLeftSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return standingNinjaDopedLeftSurface;
+                else
+                    return standingNinjaLeftSurface;
+            }
+            else if (isDoped && isRasta)
                 return GetStandingLeftSurfaceDopedRasta();
             else if (isRasta)
                 return GetStandingLeftSurfaceRasta();
@@ -826,7 +899,7 @@ namespace AbrahmanAdventure.sprites
                 return GetStandingLeftSurfaceDoped();
 
             if (standingLeftSurface == null)
-                standingLeftSurface = GetStandingRightSurface(false, isRasta).CreateFlippedHorizontalSurface();
+                standingLeftSurface = GetStandingRightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
 
             return standingLeftSurface;
         }
@@ -953,9 +1026,16 @@ namespace AbrahmanAdventure.sprites
             return hitLeftSurface;
         }
 
-        private Surface GetStandingRightSurface(bool isDoped, bool isRasta)
+        private Surface GetStandingRightSurface(bool isDoped, bool isRasta, bool isNinja)
         {
-            if (isDoped && isRasta)
+            if (isNinja)
+            {
+                if (isDoped)
+                    return standingNinjaDopedRightSurface;
+                else
+                    return standingNinjaRightSurface;
+            }
+            else if (isDoped && isRasta)
                 return GetStandingRightSurfaceDopedRasta();
             else if (isRasta)
                 return GetStandingRightSurfaceRasta();
@@ -2563,7 +2643,7 @@ namespace AbrahmanAdventure.sprites
                             return GetFlyRightSurface(isShowDopedColor);
                         }
                         else
-                            return GetWalking1RightSurface(isShowDopedColor, isRasta);
+                            return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja);
                     }
                     else
                     {
@@ -2573,7 +2653,7 @@ namespace AbrahmanAdventure.sprites
                             return GetFlyLeftSurface(isShowDopedColor);
                         }
                         else
-                            return GetWalking1LeftSurface(isShowDopedColor, isRasta);
+                            return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja);
                     }
                     #endregion
                 }
@@ -2640,9 +2720,9 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
-                            return GetWalking1RightSurface(isShowDopedColor, isRasta);
+                            return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja);
                         else
-                            return GetWalking1LeftSurface(isShowDopedColor, isRasta);
+                            return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja);
                     }
                     else if (cycleDivision == 3)
                     {
@@ -2655,16 +2735,16 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
-                            return GetWalking2RightSurface(isShowDopedColor, isRasta);
+                            return GetWalking2RightSurface(isShowDopedColor, isRasta, isNinja);
                         else
-                            return GetWalking2LeftSurface(isShowDopedColor, isRasta);
+                            return GetWalking2LeftSurface(isShowDopedColor, isRasta, isNinja);
                     }
                     else
                     {
                         if (IsTryingToWalkRight)
-                            return GetStandingRightSurface(isShowDopedColor, isRasta);
+                            return GetStandingRightSurface(isShowDopedColor, isRasta, isNinja);
                         else
-                            return GetStandingLeftSurface(isShowDopedColor, isRasta);
+                            return GetStandingLeftSurface(isShowDopedColor, isRasta, isNinja);
                     }
                     #endregion
                 }
@@ -2683,9 +2763,9 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     if (IsTryingToWalkRight)
-                        return GetStandingRightSurface(isShowDopedColor, isRasta);
+                        return GetStandingRightSurface(isShowDopedColor, isRasta, isNinja);
                     else
-                        return GetStandingLeftSurface(isShowDopedColor, isRasta);
+                        return GetStandingLeftSurface(isShowDopedColor, isRasta, isNinja);
                 }
                 #endregion
             }
