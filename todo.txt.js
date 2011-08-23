@@ -1,17 +1,16 @@
 ninja
 {
-	dire comment lancer cordes (dans HowTo), ainsi que autres skills de ninja (nunchaku, shuriken, katana, double jump)
-
-	lorsque obtient powerup: bandeau blanc avec point rouge
-
 	donne coup de katana	
 	
 	si boules de feu lancées, donne coup de poing et coup de pied (doped)
-	?si déjà jump: possibilité de double jump?
+	?si déjà jump: possibilité de double jump?->?aussi: dire dans howto?
 	
 	lorsque jump: spin (rotation)
 	
 	si immobile et press attack: spin nunchaku
+	{
+		?Si monstre AI ?(et possiblement pas d'ai: change de direction) et distance suffisante (pour réaction du bohomme), n'avance pas?
+	}
 	
 	don't fall when having side collision
 	
