@@ -1180,7 +1180,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double RightPunchBound
         {
-            get { return RightBound + 1.2; }
+            get
+            {
+                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja)
+                    return RightBound + Program.swordRange;
+                else
+                    return RightBound + 1.2;
+            }
         }
 
         /// <summary>
@@ -1188,7 +1194,13 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         public double LeftPunchBound
         {
-            get { return LeftBound - 1.2; }
+            get
+            {
+                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja)
+                    return LeftBound - Program.swordRange;
+                else
+                    return LeftBound - 1.2;
+            }
         }
 
         /// <summary>
