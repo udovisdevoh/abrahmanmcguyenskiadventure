@@ -77,7 +77,7 @@ namespace AbrahmanAdventure.physics
                     playerSprite.IClimbingOn = null;
             }
 
-            IGround attachedGround = IGroundHelper.GetLowestVisibleIGroundAboveSprite(playerSprite, level, visibleSpriteList, true);
+            IGround attachedGround = IGroundHelper.GetLowestVisibleIGroundAboveSprite(playerSprite, level, visibleSpriteList, true, true);
 
             if (attachedGround == null)
                 return;

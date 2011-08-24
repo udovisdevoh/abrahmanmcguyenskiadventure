@@ -50,6 +50,9 @@ namespace AbrahmanAdventure.audio
             PredefinedGenerator predefinedGenerator = new PredefinedGenerator();
             int songLength;
 
+            if (songType == SongType.Ninja)
+                skillLevel += 3;
+
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
             predefinedGenerator.Tempo = random.Next(70 + skillLevel / 2, 140 + skillLevel);
@@ -83,12 +86,8 @@ namespace AbrahmanAdventure.audio
                     else
                         predefinedGenerator.ScaleName2 = "chinese";
                 }
-
-                barDensity *= 1.5;
-                barDensity = Math.Min(1.0, barDensity);
-
                 songLength = 8;
-                predefinedGenerator.Modulation = random.NextDouble() * 0.3 + 0.1;
+                predefinedGenerator.Modulation = random.NextDouble() * 0.15 + 0.05;
             }
 
             AddRandomTrack(predefinedGenerator, TrackType.Melody, songLength, predefinedGenerator.Tempo, barDensity, random);

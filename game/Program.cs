@@ -549,7 +549,7 @@ namespace AbrahmanAdventure
                                     playerSprite.IsTryThrowingBall = true;
                                     if (playerSprite.IsNinja)
                                     {
-                                        SoundManager.PlayAttemptSound();
+                                        SoundManager.PlaySwordSound();
                                         playerSprite.AttackingCycle.Fire();
                                     }
                                 }

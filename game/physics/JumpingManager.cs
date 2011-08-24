@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.physics
             #region We manage ninja flip cycle
             if (sprite is PlayerSprite && sprite.IGround == null && sprite.IClimbingOn == null && ((PlayerSprite)sprite).IsNinja && ((PlayerSprite)sprite).NinjaFlipCycle.IsFired)
             {
-                if (sprite.IsInWater)
+                if (sprite.IsInWater || sprite.AttackingCycle.IsFired)
                     ((PlayerSprite)sprite).NinjaFlipCycle.StopAndReset();
                 else
                     ((PlayerSprite)sprite).NinjaFlipCycle.Increment(timeDelta);
