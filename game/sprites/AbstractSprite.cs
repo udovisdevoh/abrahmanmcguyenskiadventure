@@ -1182,7 +1182,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja)
+                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver))
                     return RightBound + Program.swordRange;
                 else
                     return RightBound + 1.2;
@@ -1196,7 +1196,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja)
+                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver))
                     return LeftBound - Program.swordRange;
                 else
                     return LeftBound - 1.2;
