@@ -20,6 +20,9 @@ ninja
 	}
 }
 
+faire video youtube promotionnel
+demander à AVGN (et autres personnes du genre) de faire review du jeux
+
 optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
 
 ?remove stuff like: getfartestwalkingdistancenocollision?
