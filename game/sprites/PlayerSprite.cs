@@ -2946,73 +2946,249 @@ namespace AbrahmanAdventure.sprites
                 else if (IGround == null)
                 {
                     #region In air
-                    if (isShowTiny)
+                    if (isNinja)
                     {
-                        #region Tiny
+                        #region Ninja
                         if (IsTryingToWalkRight)
                         {
-                            if (attackCycleDivision < 4)
+                            if (CurrentJumpAcceleration <= 0)
                             {
-                                xOffset = 0.35;
-                                yOffset = 0.1;
-                                return GetKickFrame2RightSurfaceTiny(isShowDopedColor);
+                                if (attackCycleDivision >= 6)
+                                {
+                                    xOffset = 0.7;
+                                    yOffset = 0.5;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump3Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump3Right;
+                                    }
+                                }
+                                else if (attackCycleDivision >= 3)
+                                {
+                                    xOffset = 0.44;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump2Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump2Right;
+                                    }
+                                }
+                                else
+                                {
+                                    xOffset = -0.4;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump1Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump1Right;
+                                    }
+                                }
                             }
                             else
                             {
-                                xOffset = -0.2;
-                                yOffset = 0.0;
-                                return GetKickFrame1RightSurfaceTiny(isShowDopedColor);
+                                if (attackCycleDivision >= 6)
+                                {
+                                    xOffset = -0.4;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump1Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump1Right;
+                                    }
+                                }
+                                else if (attackCycleDivision >= 3)
+                                {
+                                    xOffset = 0.44;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump2Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump2Right;
+                                    }
+                                }
+                                else
+                                {
+                                    xOffset = 0.7;
+                                    yOffset = 0.5;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump3Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump3Right;
+                                    }
+                                }
                             }
                         }
                         else
                         {
-                            if (attackCycleDivision < 4)
+                            if (CurrentJumpAcceleration <= 0)
                             {
-                                xOffset = -0.35;
-                                yOffset = 0.1;
-                                return GetKickFrame2LeftSurfaceTiny(isShowDopedColor);
+                                if (attackCycleDivision >= 6)
+                                {
+                                    xOffset = -0.7;
+                                    yOffset = 0.5;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump3Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump3Left;
+                                    }
+                                }
+                                else if (attackCycleDivision >= 3)
+                                {
+                                    xOffset = -0.44;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump2Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump2Left;
+                                    }
+                                }
+                                else
+                                {
+                                    xOffset = 0.4;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump1Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump1Left;
+                                    }
+                                }
                             }
                             else
                             {
-                                xOffset = 0.2;
-                                yOffset = 0.0;
-                                return GetKickFrame1LeftSurfaceTiny(isShowDopedColor);
+                                if (attackCycleDivision >= 6)
+                                {
+                                    xOffset = 0.4;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump1Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump1Left;
+                                    }
+                                }
+                                else if (attackCycleDivision >= 3)
+                                {
+                                    xOffset = -0.44;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump2Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump2Left;
+                                    }
+                                }
+                                else
+                                {
+                                    xOffset = -0.7;
+                                    yOffset = 0.5;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaJump3Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaJump3Left;
+                                    }
+                                }
                             }
                         }
                         #endregion
                     }
                     else
                     {
-                        #region Not tiny
-                        if (IsTryingToWalkRight)
+                        #region Not Ninja
+                        if (isShowTiny)
                         {
-                            if (attackCycleDivision < 4)
+                            #region Tiny
+                            if (IsTryingToWalkRight)
                             {
-                                xOffset = 0.35;
-                                yOffset = 0.1;
-                                return GetKickFrame2RightSurface(isShowDopedColor, isRasta);
+                                if (attackCycleDivision < 4)
+                                {
+                                    xOffset = 0.35;
+                                    yOffset = 0.1;
+                                    return GetKickFrame2RightSurfaceTiny(isShowDopedColor);
+                                }
+                                else
+                                {
+                                    xOffset = -0.2;
+                                    yOffset = 0.0;
+                                    return GetKickFrame1RightSurfaceTiny(isShowDopedColor);
+                                }
                             }
                             else
                             {
-                                xOffset = -0.2;
-                                yOffset = 0.0;
-                                return GetKickFrame1RightSurface(isShowDopedColor, isRasta);
+                                if (attackCycleDivision < 4)
+                                {
+                                    xOffset = -0.35;
+                                    yOffset = 0.1;
+                                    return GetKickFrame2LeftSurfaceTiny(isShowDopedColor);
+                                }
+                                else
+                                {
+                                    xOffset = 0.2;
+                                    yOffset = 0.0;
+                                    return GetKickFrame1LeftSurfaceTiny(isShowDopedColor);
+                                }
                             }
+                            #endregion
                         }
                         else
                         {
-                            if (attackCycleDivision < 4)
+                            #region Not tiny
+                            if (IsTryingToWalkRight)
                             {
-                                xOffset = -0.35;
-                                yOffset = 0.1;
-                                return GetKickFrame2LeftSurface(isShowDopedColor, isRasta);
+                                if (attackCycleDivision < 4)
+                                {
+                                    xOffset = 0.35;
+                                    yOffset = 0.1;
+                                    return GetKickFrame2RightSurface(isShowDopedColor, isRasta);
+                                }
+                                else
+                                {
+                                    xOffset = -0.2;
+                                    yOffset = 0.0;
+                                    return GetKickFrame1RightSurface(isShowDopedColor, isRasta);
+                                }
                             }
                             else
                             {
-                                xOffset = 0.2;
-                                yOffset = 0.0;
-                                return GetKickFrame1LeftSurface(isShowDopedColor, isRasta);
+                                if (attackCycleDivision < 4)
+                                {
+                                    xOffset = -0.35;
+                                    yOffset = 0.1;
+                                    return GetKickFrame2LeftSurface(isShowDopedColor, isRasta);
+                                }
+                                else
+                                {
+                                    xOffset = 0.2;
+                                    yOffset = 0.0;
+                                    return GetKickFrame1LeftSurface(isShowDopedColor, isRasta);
+                                }
                             }
+                            #endregion
                         }
                         #endregion
                     }
