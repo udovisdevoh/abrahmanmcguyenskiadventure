@@ -117,6 +117,78 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface ninjaFlipDopedLeft8;
 
+        private static Surface ninjaKatanaStand1Right;
+
+        private static Surface ninjaKatanaStand2Right;
+
+        private static Surface ninjaKatanaStand3Right;
+
+        private static Surface ninjaDopedKatanaStand1Right;
+
+        private static Surface ninjaDopedKatanaStand2Right;
+
+        private static Surface ninjaDopedKatanaStand3Right;
+
+        private static Surface ninjaKatanaStand1Left;
+
+        private static Surface ninjaKatanaStand2Left;
+
+        private static Surface ninjaKatanaStand3Left;
+
+        private static Surface ninjaDopedKatanaStand1Left;
+
+        private static Surface ninjaDopedKatanaStand2Left;
+
+        private static Surface ninjaDopedKatanaStand3Left;
+
+        private static Surface ninjaKatanaJump1Right;
+
+        private static Surface ninjaKatanaJump2Right;
+
+        private static Surface ninjaKatanaJump3Right;
+
+        private static Surface ninjaDopedKatanaJump1Right;
+
+        private static Surface ninjaDopedKatanaJump2Right;
+
+        private static Surface ninjaDopedKatanaJump3Right;
+
+        private static Surface ninjaKatanaJump1Left;
+
+        private static Surface ninjaKatanaJump2Left;
+
+        private static Surface ninjaKatanaJump3Left;
+
+        private static Surface ninjaDopedKatanaJump1Left;
+
+        private static Surface ninjaDopedKatanaJump2Left;
+
+        private static Surface ninjaDopedKatanaJump3Left;
+
+        private static Surface ninjaKatanaCrouched1Right;
+
+        private static Surface ninjaKatanaCrouched2Right;
+
+        private static Surface ninjaKatanaCrouched3Right;
+
+        private static Surface ninjaDopedKatanaCrouched1Right;
+
+        private static Surface ninjaDopedKatanaCrouched2Right;
+
+        private static Surface ninjaDopedKatanaCrouched3Right;
+
+        private static Surface ninjaKatanaCrouched1Left;
+
+        private static Surface ninjaKatanaCrouched2Left;
+
+        private static Surface ninjaKatanaCrouched3Left;
+
+        private static Surface ninjaDopedKatanaCrouched1Left;
+
+        private static Surface ninjaDopedKatanaCrouched2Left;
+
+        private static Surface ninjaDopedKatanaCrouched3Left;
+
         private static Surface walking1LeftSurface;
 
         private static Surface walking1LeftSurfaceRasta;
@@ -713,6 +785,45 @@ namespace AbrahmanAdventure.sprites
             ninjaFlipDopedLeft6 = ninjaFlipDopedRight6.CreateFlippedHorizontalSurface();
             ninjaFlipDopedLeft7 = ninjaFlipDopedRight7.CreateFlippedHorizontalSurface();
             ninjaFlipDopedLeft8 = ninjaFlipDopedRight8.CreateFlippedHorizontalSurface();
+
+            ninjaKatanaStand1Right = BuildSpriteSurface("./assets/rendered/abrahman/katana1Ninja.png");
+            ninjaKatanaStand2Right = BuildSpriteSurface("./assets/rendered/abrahman/katana2Ninja.png");
+            ninjaKatanaStand3Right = BuildSpriteSurface("./assets/rendered/abrahman/katana3Ninja.png");
+            ninjaDopedKatanaStand1Right = BuildSpriteSurface("./assets/rendered/abrahman/katana1NinjaDoped.png");
+            ninjaDopedKatanaStand2Right = BuildSpriteSurface("./assets/rendered/abrahman/katana2NinjaDoped.png");
+            ninjaDopedKatanaStand3Right = BuildSpriteSurface("./assets/rendered/abrahman/katana3NinjaDoped.png");
+            ninjaKatanaStand1Left = ninjaKatanaStand1Right.CreateFlippedHorizontalSurface();
+            ninjaKatanaStand2Left = ninjaKatanaStand2Right.CreateFlippedHorizontalSurface();
+            ninjaKatanaStand3Left = ninjaKatanaStand3Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaStand1Left = ninjaDopedKatanaStand1Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaStand2Left = ninjaDopedKatanaStand2Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaStand3Left = ninjaDopedKatanaStand3Right.CreateFlippedHorizontalSurface();
+
+            ninjaKatanaJump1Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump1Ninja.png");
+            ninjaKatanaJump2Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump2Ninja.png");
+            ninjaKatanaJump3Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump3Ninja.png");
+            ninjaDopedKatanaJump1Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump1NinjaDoped.png");
+            ninjaDopedKatanaJump2Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump2NinjaDoped.png");
+            ninjaDopedKatanaJump3Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump3NinjaDoped.png");
+            ninjaKatanaJump1Left = ninjaKatanaJump1Right.CreateFlippedHorizontalSurface();
+            ninjaKatanaJump2Left = ninjaKatanaJump2Right.CreateFlippedHorizontalSurface();
+            ninjaKatanaJump3Left = ninjaKatanaJump3Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaJump1Left = ninjaDopedKatanaJump1Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaJump2Left = ninjaDopedKatanaJump2Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaJump3Left = ninjaDopedKatanaJump3Right.CreateFlippedHorizontalSurface();
+
+            ninjaKatanaCrouched1Right = BuildSpriteSurface("./assets/rendered/abrahman/sword1CrouchedNinja.png");
+            ninjaKatanaCrouched2Right = BuildSpriteSurface("./assets/rendered/abrahman/sword2CrouchedNinja.png");
+            ninjaKatanaCrouched3Right = BuildSpriteSurface("./assets/rendered/abrahman/sword3CrouchedNinja.png");
+            ninjaDopedKatanaCrouched1Right = BuildSpriteSurface("./assets/rendered/abrahman/sword1CrouchedNinjaDoped.png");
+            ninjaDopedKatanaCrouched2Right = BuildSpriteSurface("./assets/rendered/abrahman/sword2CrouchedNinjaDoped.png");
+            ninjaDopedKatanaCrouched3Right = BuildSpriteSurface("./assets/rendered/abrahman/sword3CrouchedNinjaDoped.png");
+            ninjaKatanaCrouched1Left = ninjaKatanaCrouched1Right.CreateFlippedHorizontalSurface();
+            ninjaKatanaCrouched2Left = ninjaKatanaCrouched2Right.CreateFlippedHorizontalSurface();
+            ninjaKatanaCrouched3Left = ninjaKatanaCrouched3Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaCrouched1Left = ninjaDopedKatanaCrouched1Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaCrouched2Left = ninjaDopedKatanaCrouched2Right.CreateFlippedHorizontalSurface();
+            ninjaDopedKatanaCrouched3Left = ninjaDopedKatanaCrouched3Right.CreateFlippedHorizontalSurface();
 
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
