@@ -567,6 +567,46 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverCrouchedTinyDopedLeft;
 
+        private static Surface beaverStandTallNinjaRight;
+
+        private static Surface beaverWalkTallNinjaRight;
+
+        private static Surface beaverAttackTallNinjaRight;
+
+        private static Surface beaverHitTallNinjaRight;
+
+        private static Surface beaverCrouchedTallNinjaRight;
+
+        private static Surface beaverStandTallNinjaDopedRight;
+
+        private static Surface beaverWalkTallNinjaDopedRight;
+
+        private static Surface beaverAttackTallNinjaDopedRight;
+
+        private static Surface beaverHitTallNinjaDopedRight;
+
+        private static Surface beaverCrouchedTallNinjaDopedRight;
+
+        private static Surface beaverStandTallNinjaLeft;
+
+        private static Surface beaverWalkTallNinjaLeft;
+
+        private static Surface beaverAttackTallNinjaLeft;
+
+        private static Surface beaverHitTallNinjaLeft;
+
+        private static Surface beaverCrouchedTallNinjaLeft;
+
+        private static Surface beaverStandTallNinjaDopedLeft;
+
+        private static Surface beaverWalkTallNinjaDopedLeft;
+
+        private static Surface beaverAttackTallNinjaDopedLeft;
+
+        private static Surface beaverHitTallNinjaDopedLeft;
+
+        private static Surface beaverCrouchedTallNinjaDopedLeft;
+
         private static Surface rastaFlyCrouchedRight;
 
         private static Surface rastaFlyCrouchedLeft;
@@ -727,6 +767,27 @@ namespace AbrahmanAdventure.sprites
                 rastaFlyCrouchedDopedLeft = rastaFlyCrouchedDopedRight.CreateFlippedHorizontalSurface();
                 rastaFlyCrouchedRight = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlyCrouched.png");
                 rastaFlyCrouchedLeft = rastaFlyCrouchedRight.CreateFlippedHorizontalSurface();
+
+                beaverStandTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallNinja.png");
+                beaverStandTallNinjaLeft = beaverStandTallNinjaRight.CreateFlippedHorizontalSurface();
+                beaverWalkTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallNinja.png");
+                beaverWalkTallNinjaLeft = beaverWalkTallNinjaRight.CreateFlippedHorizontalSurface();
+                beaverAttackTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallNinja.png");
+                beaverAttackTallNinjaLeft = beaverAttackTallNinjaRight.CreateFlippedHorizontalSurface();
+                beaverHitTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallNinja.png");
+                beaverHitTallNinjaLeft = beaverHitTallNinjaRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallNinja.png");
+                beaverCrouchedTallNinjaLeft = beaverCrouchedTallNinjaRight.CreateFlippedHorizontalSurface();
+                beaverStandTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallNinjaDoped.png");
+                beaverStandTallNinjaDopedLeft = beaverStandTallNinjaDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallNinjaDoped.png");
+                beaverWalkTallNinjaDopedLeft = beaverWalkTallNinjaDopedRight.CreateFlippedHorizontalSurface();
+                beaverAttackTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallNinjaDoped.png");
+                beaverAttackTallNinjaDopedLeft = beaverAttackTallNinjaDopedRight.CreateFlippedHorizontalSurface();
+                beaverHitTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallNinjaDoped.png");
+                beaverHitTallNinjaDopedLeft = beaverHitTallNinjaDopedRight.CreateFlippedHorizontalSurface();
+                beaverCrouchedTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallNinjaDoped.png");
+                beaverCrouchedTallNinjaDopedLeft = beaverCrouchedTallNinjaDopedRight.CreateFlippedHorizontalSurface();
             }
 
             walking1NinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1Ninja.png");
@@ -2321,6 +2382,35 @@ namespace AbrahmanAdventure.sprites
                         crouchedSurfaceLeft = beaverCrouchedTallRastaLeft;
                         hitSurfaceRight = beaverHitTallRastaRight;
                         hitSurfaceLeft = beaverHitTallRastaLeft;
+                    }
+                }
+                else if (isNinja)
+                {
+                    if (isShowDopedColor)
+                    {
+                        standSurfaceRight = beaverStandTallNinjaDopedRight;
+                        standSurfaceLeft = beaverStandTallNinjaDopedLeft;
+                        walkSurfaceRight = beaverWalkTallNinjaDopedRight;
+                        walkSurfaceLeft = beaverWalkTallNinjaDopedLeft;
+                        attackSurfaceRight = beaverAttackTallNinjaDopedRight;
+                        attackSurfaceLeft = beaverAttackTallNinjaDopedLeft;
+                        crouchedSurfaceRight = beaverCrouchedTallNinjaDopedRight;
+                        crouchedSurfaceLeft = beaverCrouchedTallNinjaDopedLeft;
+                        hitSurfaceRight = beaverHitTallNinjaDopedRight;
+                        hitSurfaceLeft = beaverHitTallNinjaDopedLeft;
+                    }
+                    else
+                    {
+                        standSurfaceRight = beaverStandTallNinjaRight;
+                        standSurfaceLeft = beaverStandTallNinjaLeft;
+                        walkSurfaceRight = beaverWalkTallNinjaRight;
+                        walkSurfaceLeft = beaverWalkTallNinjaLeft;
+                        attackSurfaceRight = beaverAttackTallNinjaRight;
+                        attackSurfaceLeft = beaverAttackTallNinjaLeft;
+                        crouchedSurfaceRight = beaverCrouchedTallNinjaRight;
+                        crouchedSurfaceLeft = beaverCrouchedTallNinjaLeft;
+                        hitSurfaceRight = beaverHitTallNinjaRight;
+                        hitSurfaceLeft = beaverHitTallNinjaLeft;
                     }
                 }
                 else
