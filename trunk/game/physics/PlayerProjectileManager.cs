@@ -31,13 +31,15 @@ namespace AbrahmanAdventure.physics
                 if (ballCount < Program.maxPlayerFireBallPerScreen)
                 {
                     playerSprite.ThrowBallCycle.Fire();
-                    SoundManager.PlayFireBallSound();
                     double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
                     
                     IPlayerProjectile fireBallOrShurikenSprite;
 
                     if (playerSprite.IsDoped)
+                    {
+                        SoundManager.PlayFireBallSound();
                         fireBallOrShurikenSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
+                    }
                     else
                         fireBallOrShurikenSprite = new ShurikenSprite(xPosition, playerSprite.TopBound + 0.33, random);
 

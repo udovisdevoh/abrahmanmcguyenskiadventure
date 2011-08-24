@@ -86,7 +86,7 @@ namespace AbrahmanAdventure.physics
             return highestIGroundBelowSprite;
         }
 
-        internal static IGround GetLowestVisibleIGroundAboveSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList, bool isConsiderSpriteGround)
+        internal static IGround GetLowestVisibleIGroundAboveSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList, bool isConsiderSpriteGround, bool isConsiderCeiling)
         {
             IGround lowestGroundAboveSprite = null;
             double lowestHeight = -1;
@@ -105,6 +105,19 @@ namespace AbrahmanAdventure.physics
                             lowestHeight = currentHeight;
                             lowestGroundAboveSprite = ground;
                         }
+                    }
+                }
+            }
+
+            if (isConsiderCeiling && level.Ceiling != null)
+            {
+                double currentHeight = level.Ceiling[sprite.XPosition];
+                if (spriteY >= currentHeight)
+                {
+                    if (lowestHeight == -1 || currentHeight > lowestHeight)
+                    {
+                        lowestHeight = currentHeight;
+                        lowestGroundAboveSprite = level.Ceiling;
                     }
                 }
             }

@@ -82,6 +82,10 @@ namespace AbrahmanAdventure.audio
         private static Sound diveInSound;
         
         private static Sound diveOutSound;
+
+        private static Sound goreSound;
+
+        private static Sound swordSound;
         #endregion
 
         #region Constructors
@@ -124,6 +128,8 @@ namespace AbrahmanAdventure.audio
             harvestSound = LoadSound("./assets/sounds/Harvest.ogg");
             gongSound = LoadSound("./assets/sounds/Gong.ogg");
             arrowHitSound = LoadSound("./assets/sounds/ArrowHit.ogg");
+            goreSound = LoadSound("./assets/sounds/Gore.ogg");
+            swordSound = LoadSound("./assets/sounds/Sword.ogg");
         }
 
         /// <summary>
@@ -315,6 +321,16 @@ namespace AbrahmanAdventure.audio
         internal static void PlayArrowHitSound()
         {
             arrowHitSound.Play();
+        }
+
+        internal static void PlayGoreSound()
+        {
+            goreSound.Play();
+        }
+
+        internal static void PlaySwordSound()
+        {
+            swordSound.Play();
         }
         #endregion
 
