@@ -37,6 +37,7 @@ namespace AbrahmanAdventure.sprites
                 surface1 = BuildSpriteSurface("./assets/rendered/projectiles/fireBall1.png");
                 surface2 = BuildSpriteSurface("./assets/rendered/projectiles/fireBall2.png");
             }
+            IsVulnerableToPunch = false;
         }
         #endregion
 
