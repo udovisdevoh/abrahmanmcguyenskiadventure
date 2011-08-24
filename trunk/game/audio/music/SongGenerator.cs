@@ -87,7 +87,7 @@ namespace AbrahmanAdventure.audio
                         predefinedGenerator.ScaleName2 = "chinese";
                 }
                 songLength = 8;
-                predefinedGenerator.Modulation = random.NextDouble() * 0.15 + 0.05;
+                predefinedGenerator.Modulation = random.NextDouble() * 0.1;
             }
 
             AddRandomTrack(predefinedGenerator, TrackType.Melody, songLength, predefinedGenerator.Tempo, barDensity, random);
