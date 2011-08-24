@@ -18,6 +18,8 @@ ninja
 		autres powerups etc
 		Anarchy block: enlevé banadana forcé
 	}
+	
+	si beaver, peut quand même lancer shuriken
 }
 
 faire video youtube promotionnel
