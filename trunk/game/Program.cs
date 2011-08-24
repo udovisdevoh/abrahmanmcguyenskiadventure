@@ -105,7 +105,7 @@ namespace AbrahmanAdventure
 
         public const double addedDistanceBetweenHighestGroundAndCeilingIfAboveHole = 3.0;
 
-        public const double swordRange = 2.2;
+        public const double swordRange = 1.8;
 
         public static double zoneWidthScreenCount = 0.025;
 
