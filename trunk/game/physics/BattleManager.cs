@@ -58,6 +58,11 @@ namespace AbrahmanAdventure.physics
                     powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
                     break;
                 }
+                else if (otherSprite is BandanaSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                {
+                    powerUpManager.UpdateTouchBandana((PlayerSprite)sprite, (BandanaSprite)otherSprite);
+                    break;
+                }
                 else if (otherSprite is MonsterSprite)
                 {
                     if (!otherSprite.PunchedCycle.IsFired && otherSprite != playerSpriteReference.CarriedSprite)
