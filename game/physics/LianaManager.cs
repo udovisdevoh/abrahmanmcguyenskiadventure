@@ -70,13 +70,6 @@ namespace AbrahmanAdventure.physics
 
         internal void TryThrowNinjaRope(PlayerSprite playerSprite, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
-            if (ninjaRope != null)
-            {
-                spritePopulation.Remove(ninjaRope);
-                if (playerSprite.IClimbingOn == ninjaRope)
-                    playerSprite.IClimbingOn = null;
-            }
-
             IGround attachedGround = IGroundHelper.GetLowestVisibleIGroundAboveSprite(playerSprite, level, visibleSpriteList, true, true);
 
             if (attachedGround == null)
@@ -86,6 +79,13 @@ namespace AbrahmanAdventure.physics
 
             if (Math.Abs(playerSprite.YPosition - yPosition) > 20)
                 return;
+
+            if (ninjaRope != null)
+            {
+                spritePopulation.Remove(ninjaRope);
+                if (playerSprite.IClimbingOn == ninjaRope)
+                    playerSprite.IClimbingOn = null;
+            }
 
             ninjaRope = new LianaSprite(playerSprite.XPosition, yPosition, random);
 
