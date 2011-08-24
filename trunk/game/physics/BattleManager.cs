@@ -70,10 +70,15 @@ namespace AbrahmanAdventure.physics
                         MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
                         if (!monsterSprite.KickedHelmetCycle.IsFired)
                         {
-                            if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
-                                SoundManager.PlayBeaverAttackSound();
-                            else
-                                SoundManager.PlayPunchSound();
+                            if (sprite is PlayerSprite)
+                            {
+                                if (((PlayerSprite)sprite).IsBeaver)
+                                    SoundManager.PlayBeaverAttackSound();
+                                else if (((PlayerSprite)sprite).IsNinja)
+                                    SoundManager.PlayGoreSound();
+                                else
+                                    SoundManager.PlayPunchSound();
+                            }
 
                             if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                             {

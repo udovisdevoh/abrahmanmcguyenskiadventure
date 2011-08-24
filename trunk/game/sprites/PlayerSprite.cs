@@ -2827,31 +2827,119 @@ namespace AbrahmanAdventure.sprites
                 if (IsCrouch)
                 {
                     #region Crouched
-                    if (IsTryingToWalkRight)
+                    if (isNinja)
                     {
-                        if (attackCycleDivision >= 4)
+                        #region Ninja
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = 0.6;
-                            return GetCrouchedAttackFrame2RightSurface(isShowDopedColor, isRasta);
+                            if (attackCycleDivision >= 6)
+                            {
+                                xOffset = -0.4;
+                                if (isShowDopedColor)
+                                {
+                                    return ninjaDopedKatanaCrouched1Right;
+                                }
+                                else
+                                {
+                                    return ninjaKatanaCrouched1Right;
+                                }
+                            }
+                            else if (attackCycleDivision >= 3)
+                            {
+                                xOffset = 0.44;
+                                if (isShowDopedColor)
+                                {
+                                    return ninjaDopedKatanaCrouched2Right;
+                                }
+                                else
+                                {
+                                    return ninjaKatanaCrouched2Right;
+                                }
+                            }
+                            else
+                            {
+                                xOffset = 0.7;
+                                if (isShowDopedColor)
+                                {
+                                    return ninjaDopedKatanaCrouched3Right;
+                                }
+                                else
+                                {
+                                    return ninjaKatanaCrouched3Right;
+                                }
+                            }
                         }
                         else
                         {
-                            xOffset = 0.2;
-                            return GetCrouchedAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                            if (attackCycleDivision >= 6)
+                            {
+                                xOffset = 0.4;
+                                if (isShowDopedColor)
+                                {
+                                    return ninjaDopedKatanaCrouched1Left;
+                                }
+                                else
+                                {
+                                    return ninjaKatanaCrouched1Left;
+                                }
+                            }
+                            else if (attackCycleDivision >= 3)
+                            {
+                                xOffset = -0.44;
+                                if (isShowDopedColor)
+                                {
+                                    return ninjaDopedKatanaCrouched2Left;
+                                }
+                                else
+                                {
+                                    return ninjaKatanaCrouched2Left;
+                                }
+                            }
+                            else
+                            {
+                                xOffset = -0.7;
+                                if (isShowDopedColor)
+                                {
+                                    return ninjaDopedKatanaCrouched3Left;
+                                }
+                                else
+                                {
+                                    return ninjaKatanaCrouched3Left;
+                                }
+                            }
                         }
+                        #endregion
                     }
                     else
                     {
-                        if (attackCycleDivision >= 4)
+                        #region Not Ninja
+                        if (IsTryingToWalkRight)
                         {
-                            xOffset = -0.6;
-                            return GetCrouchedAttackFrame2LeftSurface(isShowDopedColor, isRasta);
+                            if (attackCycleDivision >= 4)
+                            {
+                                xOffset = 0.6;
+                                return GetCrouchedAttackFrame2RightSurface(isShowDopedColor, isRasta);
+                            }
+                            else
+                            {
+                                xOffset = 0.2;
+                                return GetCrouchedAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                            }
                         }
                         else
                         {
-                            xOffset = -0.2;
-                            return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                            if (attackCycleDivision >= 4)
+                            {
+                                xOffset = -0.6;
+                                return GetCrouchedAttackFrame2LeftSurface(isShowDopedColor, isRasta);
+                            }
+                            else
+                            {
+                                xOffset = -0.2;
+                                return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                            }
                         }
+                        #endregion
                     }
                     #endregion
                 }
