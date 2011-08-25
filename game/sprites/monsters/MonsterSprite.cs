@@ -709,6 +709,7 @@ namespace AbrahmanAdventure.sprites
         public double SafeDistanceAi
         {
             get { return safeDistanceAi; }
+            set { safeDistanceAi = value; }
         }
 
         /// <summary>
