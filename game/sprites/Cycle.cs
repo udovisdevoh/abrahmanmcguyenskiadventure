@@ -19,6 +19,8 @@ namespace AbrahmanAdventure.sprites
         private bool isFired;
 
         private bool isBackwards = false;
+
+        private bool isAllowGoBeyond = false;
         #endregion
 
         #region Constructor
@@ -27,10 +29,16 @@ namespace AbrahmanAdventure.sprites
         }
 
         public Cycle(double totalTimeLength, bool isAutoReset, bool isBounceBack)
+            :this(totalTimeLength,isAutoReset, isBounceBack, false)
+        {
+        }
+
+        public Cycle(double totalTimeLength, bool isAutoReset, bool isBounceBack, bool isAllowGoBeyond)
         {
             this.isBounceBack = isBounceBack;
             this.totalTimeLength = totalTimeLength;
             this.isAutoReset = isAutoReset;
+            this.isAllowGoBeyond = isAllowGoBeyond;
             currentValue = 0;
         }
         #endregion
@@ -52,7 +60,7 @@ namespace AbrahmanAdventure.sprites
 
             if (isAutoReset && totalTimeLength != 0)
             {
-                while (currentValue > totalTimeLength)
+                while (!isAllowGoBeyond && currentValue > totalTimeLength)
                 {
                     if (isBounceBack)
                     {
@@ -66,7 +74,7 @@ namespace AbrahmanAdventure.sprites
                     }
                 }
             }
-            else if (currentValue >= totalTimeLength)
+            else if (currentValue >= totalTimeLength && !isAllowGoBeyond)
                 isFired = false;
         }
 

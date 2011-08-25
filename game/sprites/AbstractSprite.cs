@@ -327,7 +327,7 @@ namespace AbrahmanAdventure.sprites
             isVulnerableToPunch = BuildIsVulnerableToPunch();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
-            attackingCycle = new Cycle(BuildAttackingTime(), false);
+            attackingCycle = new Cycle(BuildAttackingTime(), false, false, true);
             totalHitTime = BuildHitTime();
             hitCycle = new Cycle(totalHitTime, false);
             punchedCycle = new Cycle(totalHitTime, false);
@@ -1183,7 +1183,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver))
+                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver) && !((PlayerSprite)this).IsTryUseNunchaku)
                     return RightBound + Program.swordRange;
                 else
                     return RightBound + 1.2;
