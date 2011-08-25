@@ -70,6 +70,9 @@ namespace AbrahmanAdventure.physics
 
         internal void TryThrowNinjaRope(PlayerSprite playerSprite, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
         {
+            if (playerSprite.IsInWater)
+                return;
+
             IGround attachedGround = IGroundHelper.GetLowestVisibleIGroundAboveSprite(playerSprite, level, visibleSpriteList, true, true);
 
             if (attachedGround == null)
