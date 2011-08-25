@@ -198,7 +198,10 @@ namespace AbrahmanAdventure.physics
                         lianaManager.TryThrowNinjaRope((PlayerSprite)spriteToUpdate, level, spritePopulation, visibleSpriteList, random);
 
                     if (((PlayerSprite)spriteToUpdate).IsTryUseNunchaku)
-                        ((PlayerSprite)spriteToUpdate).NunchakuCycle.Increment(timeDelta);
+                    {
+                        if (((PlayerSprite)spriteToUpdate).NunchakuCycle.Increment(timeDelta))
+                            SoundManager.PlayNunchakuSound();
+                    }
 
                     #region Put back level's song at the end of invincibility
                     if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed) && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))

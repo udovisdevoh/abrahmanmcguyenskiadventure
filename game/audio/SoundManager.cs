@@ -86,6 +86,8 @@ namespace AbrahmanAdventure.audio
         private static Sound goreSound;
 
         private static Sound swordSound;
+
+        private static Sound nunchakuSound;
         #endregion
 
         #region Constructors
@@ -130,6 +132,7 @@ namespace AbrahmanAdventure.audio
             arrowHitSound = LoadSound("./assets/sounds/ArrowHit.ogg");
             goreSound = LoadSound("./assets/sounds/Gore.ogg");
             swordSound = LoadSound("./assets/sounds/Sword.ogg");
+            nunchakuSound = LoadSound("./assets/sounds/Nunchaku.ogg");
         }
 
         /// <summary>
@@ -331,6 +334,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlaySwordSound()
         {
             swordSound.Play();
+        }
+
+        internal static void PlayNunchakuSound()
+        {
+            nunchakuSound.Play();
         }
         #endregion
 

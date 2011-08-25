@@ -44,8 +44,14 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Public Methods
-        public void Increment(double incrementTime)
+        /// <summary>
+        /// Returns true if cycle has reseted
+        /// </summary>
+        /// <param name="incrementTime">incrementation time</param>
+        /// <returns>whether cycle has reseted</returns>
+        public bool Increment(double incrementTime)
         {
+            bool isReseted = false;
             if (isBackwards)
             {
                 currentValue -= incrementTime;
@@ -72,10 +78,13 @@ namespace AbrahmanAdventure.sprites
                     {
                         currentValue -= totalTimeLength;
                     }
+                    isReseted = true;
                 }
             }
             else if (currentValue >= totalTimeLength && !isAllowGoBeyond)
                 isFired = false;
+
+            return isReseted;
         }
 
         public void Reset()

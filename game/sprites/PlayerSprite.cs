@@ -847,7 +847,7 @@ namespace AbrahmanAdventure.sprites
             invincibilityCycle = new Cycle(400, false);
             fromVortexCycle = new Cycle(15, false);
             ninjaFlipCycle = new Cycle(15, true);
-            nunchakuCycle = new Cycle(15, true);
+            nunchakuCycle = new Cycle(7, true);
 
             if (beaverStandTallRight == null)
             {
