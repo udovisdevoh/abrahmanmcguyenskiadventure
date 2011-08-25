@@ -8,11 +8,6 @@ ninja
 	}
 	
 	don't fall when having side collision
-	
-	si rasta ou ninja
-	{
-		si perd castor: frame de hit doit être avec rasta hat ou armure de ninja (crouché aussi)
-	}
 }
 
 faire video youtube promotionnel
