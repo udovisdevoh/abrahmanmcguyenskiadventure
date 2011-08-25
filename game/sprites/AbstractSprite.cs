@@ -1183,10 +1183,15 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver) && !((PlayerSprite)this).IsTryUseNunchaku)
-                    return RightBound + Program.swordRange;
+                if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver))
+                {
+                    if (((PlayerSprite)this).IsTryUseNunchaku)
+                        return RightBound + Program.nunchakuRange;
+                    else
+                        return RightBound + Program.swordRange;
+                }
                 else
-                    return RightBound + 1.2;
+                    return RightBound + Program.punchRange;
             }
         }
 
@@ -1198,9 +1203,14 @@ namespace AbrahmanAdventure.sprites
             get
             {
                 if (this is PlayerSprite && ((PlayerSprite)this).IsNinja && !(((PlayerSprite)this).IsBeaver))
-                    return LeftBound - Program.swordRange;
+                {
+                    if (((PlayerSprite)this).IsTryUseNunchaku)
+                        return LeftBound - Program.nunchakuRange;
+                    else
+                        return LeftBound - Program.swordRange;
+                }
                 else
-                    return LeftBound - 1.2;
+                    return LeftBound - Program.punchRange;
             }
         }
 

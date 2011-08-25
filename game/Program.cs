@@ -105,6 +105,10 @@ namespace AbrahmanAdventure
 
         public const double addedDistanceBetweenHighestGroundAndCeilingIfAboveHole = 3.0;
 
+        public const double nunchakuRange = 0.8;
+
+        public const double punchRange = 1.2;
+
         public const double swordRange = 1.8;
 
         public static double zoneWidthScreenCount = 0.025;
@@ -552,7 +556,8 @@ namespace AbrahmanAdventure
                                 if ((playerSprite.IsDoped && !playerSprite.IsBeaver) || playerSprite.IsNinja)
                                 {
                                     #region Throwing balls or shuriken, and if ninja and not on beaver, fire attack cycle (sword)
-                                    playerSprite.IsTryThrowingBall = true;
+                                    #warning Uncomment next line
+                                    //playerSprite.IsTryThrowingBall = true;
                                     if (playerSprite.IsNinja)
                                     {
                                         if (playerSprite.IsBeaver)
@@ -585,7 +590,7 @@ namespace AbrahmanAdventure
                     {
                         if (playerSprite.IsNinja && userInput.isPressAttack && !playerSprite.IsBeaver && playerSprite.CurrentWalkingSpeed <= 0.07)
                         {
-                            if (playerSprite.AttackingCycle.CurrentValue >= playerSprite.AttackingCycle.TotalTimeLength * 3.0)
+                            if (playerSprite.AttackingCycle.CurrentValue >= playerSprite.AttackingCycle.TotalTimeLength * 5.0)
                                 playerSprite.IsTryUseNunchaku = true;
                         }
                         else
