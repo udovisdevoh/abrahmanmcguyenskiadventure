@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Change level by going through the vortex (press up)";
+        private const string tutorialComment = "Change level by going through the vortex (press up).\nBlue vortexes goes to next level.\nRed vortexes goes to next level\nwith an increase of skill level.\nYellow vortexes leads you to where you came from.";
 
         /// <summary>
         /// Seed for destination world
