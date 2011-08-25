@@ -1049,67 +1049,67 @@ namespace AbrahmanAdventure.sprites
 
             ninjaDopedCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku1Left = ninjaDopedCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku2Left = ninjaDopedCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku3Left = ninjaDopedCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku4Left = ninjaDopedCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku5Left = ninjaDopedCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku6Left = ninjaDopedCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku7Left = ninjaDopedCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8CrouchedNinjaDoped.png");
             ninjaDopedCrouchedNunchaku8Left = ninjaDopedCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
             ninjaDopedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
             ninjaDopedNunchaku1Left = ninjaDopedNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2NinjaDoped.png");
             ninjaDopedNunchaku2Left = ninjaDopedNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3NinjaDoped.png");
             ninjaDopedNunchaku3Left = ninjaDopedNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4NinjaDoped.png");
             ninjaDopedNunchaku4Left = ninjaDopedNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5NinjaDoped.png");
             ninjaDopedNunchaku5Left = ninjaDopedNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6NinjaDoped.png");
             ninjaDopedNunchaku6Left = ninjaDopedNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7NinjaDoped.png");
             ninjaDopedNunchaku7Left = ninjaDopedNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8NinjaDoped.png");
             ninjaDopedNunchaku8Left = ninjaDopedNunchaku8Right.CreateFlippedHorizontalSurface();
             ninjaCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
             ninjaCrouchedNunchaku1Left = ninjaCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2CrouchedNinja.png");
             ninjaCrouchedNunchaku2Left = ninjaCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3CrouchedNinja.png");
             ninjaCrouchedNunchaku3Left = ninjaCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4CrouchedNinja.png");
             ninjaCrouchedNunchaku4Left = ninjaCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5CrouchedNinja.png");
             ninjaCrouchedNunchaku5Left = ninjaCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6CrouchedNinja.png");
             ninjaCrouchedNunchaku6Left = ninjaCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7CrouchedNinja.png");
             ninjaCrouchedNunchaku7Left = ninjaCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8CrouchedNinja.png");
             ninjaCrouchedNunchaku8Left = ninjaCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
             ninjaNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
             ninjaNunchaku1Left = ninjaNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2Ninja.png");
             ninjaNunchaku2Left = ninjaNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3Ninja.png");
             ninjaNunchaku3Left = ninjaNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4Ninja.png");
             ninjaNunchaku4Left = ninjaNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5Ninja.png");
             ninjaNunchaku5Left = ninjaNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6Ninja.png");
             ninjaNunchaku6Left = ninjaNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7Ninja.png");
             ninjaNunchaku7Left = ninjaNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8Ninja.png");
             ninjaNunchaku8Left = ninjaNunchaku8Right.CreateFlippedHorizontalSurface();
 
             #region We preload the textures that use lazy initialization
@@ -2850,6 +2850,272 @@ namespace AbrahmanAdventure.sprites
                 }
             }
         }
+
+        private Surface GetNunchakuSurface(bool isShowDopedColor, bool isCrouched, bool isTryingToWalkRight, out double xOffset)
+        {
+            int cycleFrame = nunchakuCycle.GetCycleDivision(8.0);
+
+            //xOffset = 0.03125;
+
+            if (isCrouched)
+            {
+                if (isTryingToWalkRight)
+                {
+                    if (isShowDopedColor)
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = 0.09375;
+                                return ninjaDopedCrouchedNunchaku1Right;
+                            case 1:
+                                xOffset = 0.109375;
+                                return ninjaDopedCrouchedNunchaku2Right;
+                            case 2:
+                                xOffset = 0.109375;
+                                return ninjaDopedCrouchedNunchaku3Right;
+                            case 3:
+                                xOffset = 0.109375;
+                                return ninjaDopedCrouchedNunchaku4Right;
+                            case 4:
+                                xOffset = 0.09375;
+                                return ninjaDopedCrouchedNunchaku5Right;
+                            case 5:
+                                xOffset = 0.03125;
+                                return ninjaDopedCrouchedNunchaku6Right;
+                            case 6:
+                                xOffset = 0.03125;
+                                return ninjaDopedCrouchedNunchaku7Right;
+                            default:
+                                xOffset = 0.03125;
+                                return ninjaDopedCrouchedNunchaku8Right;
+                        }
+                    }
+                    else
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = 0.09375;
+                                return ninjaCrouchedNunchaku1Right;
+                            case 1:
+                                xOffset = 0.109375;
+                                return ninjaCrouchedNunchaku2Right;
+                            case 2:
+                                xOffset = 0.109375;
+                                return ninjaCrouchedNunchaku3Right;
+                            case 3:
+                                xOffset = 0.109375;
+                                return ninjaCrouchedNunchaku4Right;
+                            case 4:
+                                xOffset = 0.09375;
+                                return ninjaCrouchedNunchaku5Right;
+                            case 5:
+                                xOffset = 0.03125;
+                                return ninjaCrouchedNunchaku6Right;
+                            case 6:
+                                xOffset = 0.03125;
+                                return ninjaCrouchedNunchaku7Right;
+                            default:
+                                xOffset = 0.03125;
+                                return ninjaCrouchedNunchaku8Right;
+                        }
+                    }
+                }
+                else
+                {
+                    if (isShowDopedColor)
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = -0.09375;
+                                return ninjaDopedCrouchedNunchaku1Left;
+                            case 1:
+                                xOffset = -0.109375;
+                                return ninjaDopedCrouchedNunchaku2Left;
+                            case 2:
+                                xOffset = -0.109375;
+                                return ninjaDopedCrouchedNunchaku3Left;
+                            case 3:
+                                xOffset = -0.109375;
+                                return ninjaDopedCrouchedNunchaku4Left;
+                            case 4:
+                                xOffset = -0.09375;
+                                return ninjaDopedCrouchedNunchaku5Left;
+                            case 5:
+                                xOffset = -0.03125;
+                                return ninjaDopedCrouchedNunchaku6Left;
+                            case 6:
+                                xOffset = -0.03125;
+                                return ninjaDopedCrouchedNunchaku7Left;
+                            default:
+                                xOffset = -0.03125;
+                                return ninjaDopedCrouchedNunchaku8Left;
+                        }
+                    }
+                    else
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = -0.09375;
+                                return ninjaCrouchedNunchaku1Left;
+                            case 1:
+                                xOffset = -0.109375;
+                                return ninjaCrouchedNunchaku2Left;
+                            case 2:
+                                xOffset = -0.109375;
+                                return ninjaCrouchedNunchaku3Left;
+                            case 3:
+                                xOffset = -0.109375;
+                                return ninjaCrouchedNunchaku4Left;
+                            case 4:
+                                xOffset = -0.09375;
+                                return ninjaCrouchedNunchaku5Left;
+                            case 5:
+                                xOffset = -0.03125;
+                                return ninjaCrouchedNunchaku6Left;
+                            case 6:
+                                xOffset = -0.03125;
+                                return ninjaCrouchedNunchaku7Left;
+                            default:
+                                xOffset = -0.03125;
+                                return ninjaCrouchedNunchaku8Left;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isTryingToWalkRight)
+                {
+                    if (isShowDopedColor)
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = 0.078125;
+                                return ninjaDopedNunchaku1Right;
+                            case 1:
+                                xOffset = 0.125;
+                                return ninjaDopedNunchaku2Right;
+                            case 2:
+                                xOffset = 0.125;
+                                return ninjaDopedNunchaku3Right;
+                            case 3:
+                                xOffset = 0.125;
+                                return ninjaDopedNunchaku4Right;
+                            case 4:
+                                xOffset = 0.078125;
+                                return ninjaDopedNunchaku5Right;
+                            case 5:
+                                xOffset = 0.0625;
+                                return ninjaDopedNunchaku6Right;
+                            case 6:
+                                xOffset = 0.0625;
+                                return ninjaDopedNunchaku7Right;
+                            default:
+                                xOffset = 0.0625;
+                                return ninjaDopedNunchaku8Right;
+                        }
+                    }
+                    else
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = 0.078125;
+                                return ninjaNunchaku1Right;
+                            case 1:
+                                xOffset = 0.125;
+                                return ninjaNunchaku2Right;
+                            case 2:
+                                xOffset = 0.125;
+                                return ninjaNunchaku3Right;
+                            case 3:
+                                xOffset = 0.125;
+                                return ninjaNunchaku4Right;
+                            case 4:
+                                xOffset = 0.078125;
+                                return ninjaNunchaku5Right;
+                            case 5:
+                                xOffset = 0.0625;
+                                return ninjaNunchaku6Right;
+                            case 6:
+                                xOffset = 0.0625;
+                                return ninjaNunchaku7Right;
+                            default:
+                                xOffset = 0.0625;
+                                return ninjaNunchaku8Right;
+                        }
+                    }
+                }
+                else
+                {
+                    if (isShowDopedColor)
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = -0.078125;
+                                return ninjaDopedNunchaku1Left;
+                            case 1:
+                                xOffset = -0.125;
+                                return ninjaDopedNunchaku2Left;
+                            case 2:
+                                xOffset = -0.125;
+                                return ninjaDopedNunchaku3Left;
+                            case 3:
+                                xOffset = -0.125;
+                                return ninjaDopedNunchaku4Left;
+                            case 4:
+                                xOffset = -0.078125;
+                                return ninjaDopedNunchaku5Left;
+                            case 5:
+                                xOffset = -0.0625;
+                                return ninjaDopedNunchaku6Left;
+                            case 6:
+                                xOffset = -0.0625;
+                                return ninjaDopedNunchaku7Left;
+                            default:
+                                xOffset = -0.0625;
+                                return ninjaDopedNunchaku8Left;
+                        }
+                    }
+                    else
+                    {
+                        switch (cycleFrame)
+                        {
+                            case 0:
+                                xOffset = -0.078125;
+                                return ninjaNunchaku1Left;
+                            case 1:
+                                xOffset = -0.125;
+                                return ninjaNunchaku2Left;
+                            case 2:
+                                xOffset = -0.125;
+                                return ninjaNunchaku3Left;
+                            case 3:
+                                xOffset = -0.125;
+                                return ninjaNunchaku4Left;
+                            case 4:
+                                xOffset = -0.078125;
+                                return ninjaNunchaku5Left;
+                            case 5:
+                                xOffset = -0.0625;
+                                return ninjaNunchaku6Left;
+                            case 6:
+                                xOffset = -0.0625;
+                                return ninjaNunchaku7Left;
+                            default:
+                                xOffset = -0.0625;
+                                return ninjaNunchaku8Left;
+                        }
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Internal Methods
@@ -3056,83 +3322,94 @@ namespace AbrahmanAdventure.sprites
                     if (isNinja)
                     {
                         #region Ninja
-                        if (IsTryingToWalkRight)
+                        if (isTryUseNunchaku)
                         {
-                            if (attackCycleDivision >= 6)
-                            {
-                                xOffset = -0.4;
-                                if (isShowDopedColor)
-                                {
-                                    return ninjaDopedKatanaCrouched1Right;
-                                }
-                                else
-                                {
-                                    return ninjaKatanaCrouched1Right;
-                                }
-                            }
-                            else if (attackCycleDivision >= 3)
-                            {
-                                xOffset = 0.44;
-                                if (isShowDopedColor)
-                                {
-                                    return ninjaDopedKatanaCrouched2Right;
-                                }
-                                else
-                                {
-                                    return ninjaKatanaCrouched2Right;
-                                }
-                            }
-                            else
-                            {
-                                xOffset = 0.7;
-                                if (isShowDopedColor)
-                                {
-                                    return ninjaDopedKatanaCrouched3Right;
-                                }
-                                else
-                                {
-                                    return ninjaKatanaCrouched3Right;
-                                }
-                            }
+                            #region Nunchaku
+                            return GetNunchakuSurface(isShowDopedColor, true, IsTryingToWalkRight, out xOffset);
+                            #endregion
                         }
                         else
                         {
-                            if (attackCycleDivision >= 6)
+                            #region Not nunchaku
+                            if (IsTryingToWalkRight)
                             {
-                                xOffset = 0.4;
-                                if (isShowDopedColor)
+                                if (attackCycleDivision >= 6)
                                 {
-                                    return ninjaDopedKatanaCrouched1Left;
+                                    xOffset = -0.4;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaCrouched1Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaCrouched1Right;
+                                    }
+                                }
+                                else if (attackCycleDivision >= 3)
+                                {
+                                    xOffset = 0.44;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaCrouched2Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaCrouched2Right;
+                                    }
                                 }
                                 else
                                 {
-                                    return ninjaKatanaCrouched1Left;
-                                }
-                            }
-                            else if (attackCycleDivision >= 3)
-                            {
-                                xOffset = -0.44;
-                                if (isShowDopedColor)
-                                {
-                                    return ninjaDopedKatanaCrouched2Left;
-                                }
-                                else
-                                {
-                                    return ninjaKatanaCrouched2Left;
+                                    xOffset = 0.7;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaCrouched3Right;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaCrouched3Right;
+                                    }
                                 }
                             }
                             else
                             {
-                                xOffset = -0.7;
-                                if (isShowDopedColor)
+                                if (attackCycleDivision >= 6)
                                 {
-                                    return ninjaDopedKatanaCrouched3Left;
+                                    xOffset = 0.4;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaCrouched1Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaCrouched1Left;
+                                    }
+                                }
+                                else if (attackCycleDivision >= 3)
+                                {
+                                    xOffset = -0.44;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaCrouched2Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaCrouched2Left;
+                                    }
                                 }
                                 else
                                 {
-                                    return ninjaKatanaCrouched3Left;
+                                    xOffset = -0.7;
+                                    if (isShowDopedColor)
+                                    {
+                                        return ninjaDopedKatanaCrouched3Left;
+                                    }
+                                    else
+                                    {
+                                        return ninjaKatanaCrouched3Left;
+                                    }
                                 }
                             }
+                            #endregion
                         }
                         #endregion
                     }
@@ -3460,83 +3737,94 @@ namespace AbrahmanAdventure.sprites
                         if (isNinja)
                         {
                             #region Ninja
-                            if (IsTryingToWalkRight)
+                            if (isTryUseNunchaku)
                             {
-                                if (attackCycleDivision >= 6)
-                                {
-                                    xOffset = -0.4;
-                                    if (isShowDopedColor)
-                                    {
-                                        return ninjaDopedKatanaStand1Right;
-                                    }
-                                    else
-                                    {
-                                        return ninjaKatanaStand1Right;
-                                    }
-                                }
-                                else if (attackCycleDivision >= 3)
-                                {
-                                    xOffset = 0.44;
-                                    if (isShowDopedColor)
-                                    {
-                                        return ninjaDopedKatanaStand2Right;
-                                    }
-                                    else
-                                    {
-                                        return ninjaKatanaStand2Right;   
-                                    }
-                                }
-                                else
-                                {
-                                    xOffset = 0.7;
-                                    if (isShowDopedColor)
-                                    {
-                                        return ninjaDopedKatanaStand3Right;
-                                    }
-                                    else
-                                    {
-                                        return ninjaKatanaStand3Right;
-                                    }
-                                }
+                                #region Nunchaku
+                                return GetNunchakuSurface(isShowDopedColor, false, IsTryingToWalkRight, out xOffset);
+                                #endregion
                             }
                             else
                             {
-                                if (attackCycleDivision >= 6)
+                                #region Not using nunchakus
+                                if (IsTryingToWalkRight)
                                 {
-                                    xOffset = 0.4;
-                                    if (isShowDopedColor)
+                                    if (attackCycleDivision >= 6)
                                     {
-                                        return ninjaDopedKatanaStand1Left;
+                                        xOffset = -0.4;
+                                        if (isShowDopedColor)
+                                        {
+                                            return ninjaDopedKatanaStand1Right;
+                                        }
+                                        else
+                                        {
+                                            return ninjaKatanaStand1Right;
+                                        }
+                                    }
+                                    else if (attackCycleDivision >= 3)
+                                    {
+                                        xOffset = 0.44;
+                                        if (isShowDopedColor)
+                                        {
+                                            return ninjaDopedKatanaStand2Right;
+                                        }
+                                        else
+                                        {
+                                            return ninjaKatanaStand2Right;
+                                        }
                                     }
                                     else
                                     {
-                                        return ninjaKatanaStand1Left;
-                                    }
-                                }
-                                else if (attackCycleDivision >= 3)
-                                {
-                                    xOffset = -0.44;
-                                    if (isShowDopedColor)
-                                    {
-                                        return ninjaDopedKatanaStand2Left;
-                                    }
-                                    else
-                                    {
-                                        return ninjaKatanaStand2Left;
+                                        xOffset = 0.7;
+                                        if (isShowDopedColor)
+                                        {
+                                            return ninjaDopedKatanaStand3Right;
+                                        }
+                                        else
+                                        {
+                                            return ninjaKatanaStand3Right;
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    xOffset = -0.7;
-                                    if (isShowDopedColor)
+                                    if (attackCycleDivision >= 6)
                                     {
-                                        return ninjaDopedKatanaStand3Left;
+                                        xOffset = 0.4;
+                                        if (isShowDopedColor)
+                                        {
+                                            return ninjaDopedKatanaStand1Left;
+                                        }
+                                        else
+                                        {
+                                            return ninjaKatanaStand1Left;
+                                        }
+                                    }
+                                    else if (attackCycleDivision >= 3)
+                                    {
+                                        xOffset = -0.44;
+                                        if (isShowDopedColor)
+                                        {
+                                            return ninjaDopedKatanaStand2Left;
+                                        }
+                                        else
+                                        {
+                                            return ninjaKatanaStand2Left;
+                                        }
                                     }
                                     else
                                     {
-                                        return ninjaKatanaStand3Left;
+                                        xOffset = -0.7;
+                                        if (isShowDopedColor)
+                                        {
+                                            return ninjaDopedKatanaStand3Left;
+                                        }
+                                        else
+                                        {
+                                            return ninjaKatanaStand3Left;
+                                        }
                                     }
                                 }
+                                #endregion
                             }
                             #endregion
                         }
