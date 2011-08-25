@@ -115,6 +115,8 @@ namespace AbrahmanAdventure.physics
                     playerSprite.YPositionKeepPrevious = ninjaRope.YPosition;
             }
 
+            playerSprite.IsNeedToPressThrowNinjaRopeAgain = true;
+
             SoundManager.PlayArrowHitSound();
         }
     }
