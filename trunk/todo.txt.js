@@ -1,5 +1,7 @@
 si rasta: musique spéciale
 
+?si pese down, ne grab pas liane?
+
 ninja
 {	
 	doit être facile de quitter la corde même si en haut (press left and right)
