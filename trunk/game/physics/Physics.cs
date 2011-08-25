@@ -164,7 +164,9 @@ namespace AbrahmanAdventure.physics
 
                 if (spriteToUpdate is PlayerSprite)
                 {
-                    battleManager.Update(spriteToUpdate, level, timeDelta, sortedVisibleSpriteList, playerSpriteReference);
+                    if (spriteToUpdate.AttackingCycle.IsFired && ((!spriteToUpdate.AttackingCycle.IsFinished && spriteToUpdate.AttackingCycle.GetCycleDivision(8) >= 4) || ((PlayerSprite)spriteToUpdate).IsTryUseNunchaku))
+                        battleManager.Update((PlayerSprite)spriteToUpdate, level, timeDelta, sortedVisibleSpriteList, playerSpriteReference);
+
                     if (((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.Increment(timeDelta);
 
@@ -194,6 +196,9 @@ namespace AbrahmanAdventure.physics
 
                     if (((PlayerSprite)spriteToUpdate).IsTryThrowNinjaRope)
                         lianaManager.TryThrowNinjaRope((PlayerSprite)spriteToUpdate, level, spritePopulation, visibleSpriteList, random);
+
+                    if (((PlayerSprite)spriteToUpdate).IsTryUseNunchaku)
+                        ((PlayerSprite)spriteToUpdate).NunchakuCycle.Increment(timeDelta);
 
                     #region Put back level's song at the end of invincibility
                     if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed) && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
@@ -419,52 +424,52 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite1">sprite 1</param>
         /// <param name="sprite2">sprite 2</param>
         /// <returns>Whether sprite 1 is punching or kicking sprite 2</returns>
-        internal static bool IsDetectCollisionPunchOrKick(AbstractSprite sprite1, AbstractSprite sprite2)
+        internal static bool IsDetectCollisionPunchOrKick(PlayerSprite playerSprite, AbstractSprite sprite2)
         {
-            if (sprite1.AttackingCycle.IsFired)
+            bool isHorizontalCollision, isVerticalCollision;
+
+            if (playerSprite.IsTryingToWalkRight)
             {
-                int attackCycleDivision = sprite1.AttackingCycle.GetCycleDivision(8);
-                if (attackCycleDivision >= 4)
-                {
-                    bool isHorizontalCollision, isVerticalCollision;
-
-                    if (sprite1.IsTryingToWalkRight)
-                    {
-                        isHorizontalCollision = (sprite1.RightPunchBound > sprite2.LeftBound && sprite1.LeftBound < sprite2.LeftBound);
-                    }
-                    else
-                    {
-                        isHorizontalCollision = (sprite1.LeftPunchBound < sprite2.RightBound && sprite1.RightBound > sprite2.RightBound);
-                    }
-
-                    double sprite1TopBound, sprite1BottomBound;
-
-                    if (sprite1.IsTiny)
-                    {
-                        sprite1TopBound = sprite1.TopBound;
-                        sprite1BottomBound = sprite1.YPosition;
-                    }
-                    else if (sprite1.IGround == null || sprite1.IsCrouch)
-                    {
-                        sprite1TopBound = sprite1.YPosition - sprite1.Height / 2.0;
-                        if (sprite1 is PlayerSprite && ((PlayerSprite)sprite1).IsNinja)
-                            sprite1BottomBound = sprite1.YPosition + 0.5;
-                        else
-                            sprite1BottomBound = sprite1.YPosition;
-                    }
-                    else
-                    {
-                        sprite1TopBound = sprite1.TopBound;
-                        sprite1BottomBound = sprite1.YPosition - sprite1.Height / 2.0;
-                    }
-
-                    isVerticalCollision = (sprite1TopBound > sprite2.TopBound && sprite1.TopBound < sprite2.YPosition)
-                                        || (sprite1BottomBound > sprite2.TopBound && sprite1.TopBound < sprite2.YPosition);
-
-                    return isHorizontalCollision && isVerticalCollision;
-                }
+                isHorizontalCollision = (playerSprite.RightPunchBound > sprite2.LeftBound && playerSprite.LeftBound < sprite2.LeftBound);
             }
-            return false;
+            else
+            {
+                isHorizontalCollision = (playerSprite.LeftPunchBound < sprite2.RightBound && playerSprite.RightBound > sprite2.RightBound);
+            }
+
+            double sprite1TopBound, sprite1BottomBound;
+
+            if (playerSprite.IsTryUseNunchaku)
+            {
+                if (playerSprite.IsCrouch)
+                    sprite1TopBound = playerSprite.TopBound - playerSprite.Height / 2.0;
+                else
+                    sprite1TopBound = playerSprite.TopBound;
+                sprite1BottomBound = playerSprite.YPosition;
+            }
+            else if (playerSprite.IsTiny)
+            {
+                sprite1TopBound = playerSprite.TopBound;
+                sprite1BottomBound = playerSprite.YPosition;
+            }
+            else if (playerSprite.IGround == null || playerSprite.IsCrouch)
+            {
+                sprite1TopBound = playerSprite.YPosition - playerSprite.Height / 2.0;
+                if (playerSprite.IsNinja && playerSprite.IsCrouch)
+                    sprite1BottomBound = playerSprite.YPosition + 0.5;
+                else
+                    sprite1BottomBound = playerSprite.YPosition;
+            }
+            else
+            {
+                sprite1TopBound = playerSprite.TopBound;
+                sprite1BottomBound = playerSprite.YPosition - playerSprite.Height / 2.0;
+            }
+
+            isVerticalCollision = (sprite1TopBound > sprite2.TopBound && playerSprite.TopBound < sprite2.YPosition)
+                                || (sprite1BottomBound > sprite2.TopBound && playerSprite.TopBound < sprite2.YPosition);
+
+            return isHorizontalCollision && isVerticalCollision;
         }
 
         /// <summary>

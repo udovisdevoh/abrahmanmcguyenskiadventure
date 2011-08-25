@@ -520,14 +520,16 @@ namespace AbrahmanAdventure
                     playerSprite.IsTryDigGround = playerSprite.IsCrouch && userInput.isPressAttack && playerSprite.IsBeaver && !playerSprite.IsNeedToAttackAgain;
                     #endregion
 
-                    #region We manage attack (and harvesting) input logic
+                    #region We manage attack, nunchaku and harvesting input logic
                     playerSprite.IsTryThrowingBall = false;
+                    playerSprite.IsTryUseNunchaku = false;
                     if (userInput.isPressAttack)
                     {
                         if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)
                         {
                             if (userInput.isPressDown && playerSprite.IGround is IHarvestable && playerSprite.CarriedSprite == null)
                             {
+                                #region Harvesting stuff like fat kids
                                 playerSprite.CarriedSprite = (AbstractSprite)playerSprite.IGround;
                                 playerSprite.CarriedSprite.IsImpassable = false;
                                 //playerSprite.CarriedSprite.IsAnnihilateOnExitScreen = true;
@@ -543,11 +545,13 @@ namespace AbrahmanAdventure
                                 }
                                 SoundManager.PlayHarvestSound();
                                 playerSprite.IGround = null;
+                                #endregion
                             }
                             else
                             {
                                 if ((playerSprite.IsDoped && !playerSprite.IsBeaver) || playerSprite.IsNinja)
                                 {
+                                    #region Throwing balls or shuriken, and if ninja and not on beaver, fire attack cycle (sword)
                                     playerSprite.IsTryThrowingBall = true;
                                     if (playerSprite.IsNinja)
                                     {
@@ -557,11 +561,14 @@ namespace AbrahmanAdventure
                                             SoundManager.PlaySwordSound();
                                         playerSprite.AttackingCycle.Fire();
                                     }
+                                    #endregion
                                 }
                                 else
                                 {
+                                    #region Standard punch attempt
                                     SoundManager.PlayAttemptSound();
                                     playerSprite.AttackingCycle.Fire();
+                                    #endregion
                                 }
                             }
                             playerSprite.IsNeedToAttackAgain = true;
@@ -571,10 +578,21 @@ namespace AbrahmanAdventure
                     {
                         playerSprite.IsNeedToAttackAgain = false;
                     }
+
                     if (playerSprite.AttackingCycle.IsFired)
                         playerSprite.AttackingCycle.Increment(timeDelta);
                     if (playerSprite.AttackingCycle.IsFinished && playerSprite.IGround != null)
-                        playerSprite.AttackingCycle.Reset();
+                    {
+                        if (playerSprite.IsNinja && userInput.isPressAttack && !playerSprite.IsBeaver && playerSprite.CurrentWalkingSpeed <= 0.07)
+                        {
+                            if (playerSprite.AttackingCycle.CurrentValue >= playerSprite.AttackingCycle.TotalTimeLength * 3.0)
+                                playerSprite.IsTryUseNunchaku = true;
+                        }
+                        else
+                        {
+                            playerSprite.AttackingCycle.StopAndReset();
+                        }
+                    }
                     #endregion
 
                     #region We manage walking input logic

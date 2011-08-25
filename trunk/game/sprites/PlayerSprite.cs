@@ -205,6 +205,134 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface ninjaHitLeft;
 
+        private static Surface ninjaNunchaku1Right;
+
+        private static Surface ninjaNunchaku2Right;
+
+        private static Surface ninjaNunchaku3Right;
+
+        private static Surface ninjaNunchaku4Right;
+
+        private static Surface ninjaNunchaku5Right;
+
+        private static Surface ninjaNunchaku6Right;
+
+        private static Surface ninjaNunchaku7Right;
+
+        private static Surface ninjaNunchaku8Right;
+
+        private static Surface ninjaCrouchedNunchaku1Right;
+
+        private static Surface ninjaCrouchedNunchaku2Right;
+
+        private static Surface ninjaCrouchedNunchaku3Right;
+
+        private static Surface ninjaCrouchedNunchaku4Right;
+
+        private static Surface ninjaCrouchedNunchaku5Right;
+
+        private static Surface ninjaCrouchedNunchaku6Right;
+
+        private static Surface ninjaCrouchedNunchaku7Right;
+
+        private static Surface ninjaCrouchedNunchaku8Right;
+
+        private static Surface ninjaDopedNunchaku1Right;
+
+        private static Surface ninjaDopedNunchaku2Right;
+
+        private static Surface ninjaDopedNunchaku3Right;
+
+        private static Surface ninjaDopedNunchaku4Right;
+
+        private static Surface ninjaDopedNunchaku5Right;
+
+        private static Surface ninjaDopedNunchaku6Right;
+
+        private static Surface ninjaDopedNunchaku7Right;
+
+        private static Surface ninjaDopedNunchaku8Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku1Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku2Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku3Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku4Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku5Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku6Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku7Right;
+
+        private static Surface ninjaDopedCrouchedNunchaku8Right;
+
+        private static Surface ninjaNunchaku1Left;
+
+        private static Surface ninjaNunchaku2Left;
+
+        private static Surface ninjaNunchaku3Left;
+
+        private static Surface ninjaNunchaku4Left;
+
+        private static Surface ninjaNunchaku5Left;
+
+        private static Surface ninjaNunchaku6Left;
+
+        private static Surface ninjaNunchaku7Left;
+
+        private static Surface ninjaNunchaku8Left;
+
+        private static Surface ninjaCrouchedNunchaku1Left;
+
+        private static Surface ninjaCrouchedNunchaku2Left;
+
+        private static Surface ninjaCrouchedNunchaku3Left;
+
+        private static Surface ninjaCrouchedNunchaku4Left;
+
+        private static Surface ninjaCrouchedNunchaku5Left;
+
+        private static Surface ninjaCrouchedNunchaku6Left;
+
+        private static Surface ninjaCrouchedNunchaku7Left;
+
+        private static Surface ninjaCrouchedNunchaku8Left;
+
+        private static Surface ninjaDopedNunchaku1Left;
+
+        private static Surface ninjaDopedNunchaku2Left;
+
+        private static Surface ninjaDopedNunchaku3Left;
+
+        private static Surface ninjaDopedNunchaku4Left;
+
+        private static Surface ninjaDopedNunchaku5Left;
+
+        private static Surface ninjaDopedNunchaku6Left;
+
+        private static Surface ninjaDopedNunchaku7Left;
+
+        private static Surface ninjaDopedNunchaku8Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku1Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku2Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku3Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku4Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku5Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku6Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku7Left;
+
+        private static Surface ninjaDopedCrouchedNunchaku8Left;
+
         private static Surface walking1LeftSurface;
 
         private static Surface walking1LeftSurfaceRasta;
@@ -648,11 +776,18 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle ninjaFlipCycle;
 
+        private Cycle nunchakuCycle;
+
         /// <summary>
         /// When sprite is currently moving from one pipe to another (destination pipe)
         /// This value is normally null
         /// </summary>
         private PipeSprite destinationPipe = null;
+
+        /// <summary>
+        /// Latest beaver that was left voluntarily by ninja
+        /// </summary>
+        private BeaverSprite latestNinjaBeaver = null;
 
         /// <summary>
         /// Whether sprite can throw fire balls
@@ -680,14 +815,14 @@ namespace AbrahmanAdventure.sprites
         private bool isTryThrowingBall = false;
 
         /// <summary>
+        /// Whether sprite is currently using nunchaku
+        /// </summary>
+        private bool isTryUseNunchaku = false;
+
+        /// <summary>
         /// Whether sprite is tryting to throw a ninja's rope
         /// </summary>
         private bool isTryThrowNinjaRope = false;
-
-        /// <summary>
-        /// Whether sprite is currently trying to throw a shuriken
-        /// </summary>
-        private bool isTryThrowingShuriken = false;
 
         /// <summary>
         /// Default health
@@ -712,6 +847,7 @@ namespace AbrahmanAdventure.sprites
             invincibilityCycle = new Cycle(400, false);
             fromVortexCycle = new Cycle(15, false);
             ninjaFlipCycle = new Cycle(15, true);
+            nunchakuCycle = new Cycle(15, true);
 
             if (beaverStandTallRight == null)
             {
@@ -910,6 +1046,71 @@ namespace AbrahmanAdventure.sprites
             ninjaCrouchedHitLeft = ninjaCrouchedHitRight.CreateFlippedHorizontalSurface();
             ninjaHitRight = BuildSpriteSurface("./assets/rendered/abrahman/hitNinja.png");
             ninjaHitLeft = ninjaHitRight.CreateFlippedHorizontalSurface();
+
+            ninjaDopedCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku1Left = ninjaDopedCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku2Left = ninjaDopedCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku3Left = ninjaDopedCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku4Left = ninjaDopedCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku5Left = ninjaDopedCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku6Left = ninjaDopedCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku7Left = ninjaDopedCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
+            ninjaDopedCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
+            ninjaDopedCrouchedNunchaku8Left = ninjaDopedCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku1Left = ninjaDopedNunchaku1Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku2Left = ninjaDopedNunchaku2Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku3Left = ninjaDopedNunchaku3Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku4Left = ninjaDopedNunchaku4Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku5Left = ninjaDopedNunchaku5Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku6Left = ninjaDopedNunchaku6Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku7Left = ninjaDopedNunchaku7Right.CreateFlippedHorizontalSurface();
+            ninjaDopedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
+            ninjaDopedNunchaku8Left = ninjaDopedNunchaku8Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku1Left = ninjaCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku2Left = ninjaCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku3Left = ninjaCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku4Left = ninjaCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku5Left = ninjaCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku6Left = ninjaCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku7Left = ninjaCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
+            ninjaCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
+            ninjaCrouchedNunchaku8Left = ninjaCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku1Left = ninjaNunchaku1Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku2Left = ninjaNunchaku2Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku3Left = ninjaNunchaku3Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku4Left = ninjaNunchaku4Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku5Left = ninjaNunchaku5Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku6Left = ninjaNunchaku6Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku7Left = ninjaNunchaku7Right.CreateFlippedHorizontalSurface();
+            ninjaNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
+            ninjaNunchaku8Left = ninjaNunchaku8Right.CreateFlippedHorizontalSurface();
 
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
@@ -3688,6 +3889,15 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Whether sprite is currently using nunchakus
+        /// </summary>
+        public bool IsTryUseNunchaku
+        {
+            get { return isTryUseNunchaku; }
+            set { isTryUseNunchaku = value; }
+        }
+
+        /// <summary>
         /// Whether sprite is trying to throw a ninja's rope
         /// </summary>
         public bool IsTryThrowNinjaRope
@@ -3760,6 +3970,23 @@ namespace AbrahmanAdventure.sprites
         public Cycle NinjaFlipCycle
         {
             get { return ninjaFlipCycle; }
+        }
+
+        /// <summary>
+        /// Nunchaku spin cycle
+        /// </summary>
+        public Cycle NunchakuCycle
+        {
+            get { return nunchakuCycle; }
+        }
+
+        /// <summary>
+        /// Latest beaver that was left voluntarily by ninja
+        /// </summary>
+        public BeaverSprite LatestNinjaBeaver
+        {
+            get { return latestNinjaBeaver; }
+            set { latestNinjaBeaver = value; }
         }
         #endregion
     }

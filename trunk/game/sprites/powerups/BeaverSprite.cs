@@ -11,6 +11,12 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class BeaverSprite : MonsterSprite, IGrowable
     {
+        #region Constants
+        public const double DefaultMaxWalkingSpeed = 0.35;
+
+        public const double DefaultStartingJumpAcceleration = 5.0;
+        #endregion
+
         #region Fields and parts
         private static Surface standRight;
 
@@ -114,7 +120,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.35;
+            return DefaultMaxWalkingSpeed;
         }
 
         protected override double BuildMaxRunningSpeed()
@@ -124,7 +130,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildStartingJumpAcceleration()
         {
-            return 5.0;
+            return DefaultStartingJumpAcceleration;
         }
 
         protected override double BuildAttackingTime()

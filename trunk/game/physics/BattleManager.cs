@@ -26,41 +26,41 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="sortedVisibleSpriteList">visible sprite sorted list</param>
         /// <param name="playerSpriteReference">player sprite</param>
-        internal void Update(AbstractSprite sprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
+        internal void Update(PlayerSprite playerSprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
         {
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
-                if (sprite == otherSprite || !otherSprite.IsAlive || !otherSprite.IsVulnerableToPunch || !Physics.IsDetectCollisionPunchOrKick(sprite, otherSprite))
+                if (playerSprite == otherSprite || !otherSprite.IsAlive || !otherSprite.IsVulnerableToPunch || !Physics.IsDetectCollisionPunchOrKick(playerSprite, otherSprite))
                     continue;
 
-                if (otherSprite is MushroomSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                if (otherSprite is MushroomSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                    powerUpManager.UpdateTouchMushroom(playerSprite, (MushroomSprite)otherSprite);
                     break;
                 }
-                else if (otherSprite is RastaHatSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                else if (otherSprite is RastaHatSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
+                    powerUpManager.UpdateTouchRastaHat(playerSprite, (RastaHatSprite)otherSprite);
                     break;
                 }
-                else if (otherSprite is PeyoteSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                else if (otherSprite is PeyoteSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchPeyote((PlayerSprite)sprite, (PeyoteSprite)otherSprite);
+                    powerUpManager.UpdateTouchPeyote(playerSprite, (PeyoteSprite)otherSprite);
                     break;
                 }
-                else if (otherSprite is MusicNoteSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                else if (otherSprite is MusicNoteSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
+                    powerUpManager.UpdateTouchMusicNote(playerSprite, (MusicNoteSprite)otherSprite);
                     break;
                 }
-                else if (otherSprite is WhiskySprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                else if (otherSprite is WhiskySprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
+                    powerUpManager.UpdateTouchWhisky(playerSprite, (WhiskySprite)otherSprite);
                     break;
                 }
-                else if (otherSprite is BandanaSprite && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBeaver)
+                else if (otherSprite is BandanaSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchBandana((PlayerSprite)sprite, (BandanaSprite)otherSprite);
+                    powerUpManager.UpdateTouchBandana(playerSprite, (BandanaSprite)otherSprite);
                     break;
                 }
                 else if (otherSprite is MonsterSprite)
@@ -70,17 +70,14 @@ namespace AbrahmanAdventure.physics
                         MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
                         if (!monsterSprite.KickedHelmetCycle.IsFired)
                         {
-                            if (sprite is PlayerSprite)
-                            {
-                                if (((PlayerSprite)sprite).IsBeaver)
+                                if (playerSprite.IsBeaver)
                                     SoundManager.PlayBeaverAttackSound();
-                                else if (((PlayerSprite)sprite).IsNinja)
+                                else if (playerSprite.IsNinja)
                                     SoundManager.PlayGoreSound();
                                 else
                                     SoundManager.PlayPunchSound();
-                            }
 
-                            if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
+                            if (playerSprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                             {
                                 monsterSprite.IsAlive = false;
                                 monsterSprite.JumpingCycle.Fire();
@@ -89,10 +86,10 @@ namespace AbrahmanAdventure.physics
                             {
                                 monsterSprite.HitCycle.Fire();
                                 monsterSprite.PunchedCycle.Fire();
-                                monsterSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                                monsterSprite.CurrentDamageReceiving = playerSprite.AttackStrengthCollision;
                             }
 
-                            monsterSprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                            monsterSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;
                             monsterSprite.JumpingCycle.Reset();
                             monsterSprite.JumpingCycle.Fire();
 
