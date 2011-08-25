@@ -1,8 +1,5 @@
 ninja
-{
-	donne coup de katana	
-	
-	si boules de feu lancées, donne coup de poing et coup de pied (doped)
+{	
 	?si déjà jump: possibilité de double jump?->?aussi: dire dans howto?
 	
 	si immobile et press attack: spin nunchaku
@@ -12,14 +9,11 @@ ninja
 	
 	don't fall when having side collision
 	
-	powerup: probabilité selon skill level
+	si ninja
 	{
-		Ninja: fréquent si skill level assez élevé, sinon, très râre
-		autres powerups etc
-		Anarchy block: enlevé banadana forcé
+		le castor a un bandeau et devient un castor ninja (avec des yeux de chinois)
+		le dernier castor que tu as monté dessus te suis pour être en dessous de tois (sauf si tu le perd pcq tu as reçu une attaque)
 	}
-	
-	si beaver, peut quand même lancer shuriken
 }
 
 faire video youtube promotionnel
