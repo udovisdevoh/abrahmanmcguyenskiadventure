@@ -236,9 +236,13 @@ namespace AbrahmanAdventure.physics
                                 SongPlayer.IRiff = gameState.Song;
                                 SongPlayer.PlayAsync();
                             }
+                            //Only lose ninja status, no damage
                         }
-                        sprite.IsTiny = true;
-                        sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                        else
+                        {
+                            sprite.IsTiny = true;
+                            sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
+                        }
                     }
                 }
             }

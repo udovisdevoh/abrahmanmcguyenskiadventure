@@ -546,12 +546,15 @@ namespace AbrahmanAdventure
                             }
                             else
                             {
-                                if ((playerSprite.IsDoped || playerSprite.IsNinja) && !playerSprite.IsBeaver)
+                                if ((playerSprite.IsDoped && !playerSprite.IsBeaver) || playerSprite.IsNinja)
                                 {
                                     playerSprite.IsTryThrowingBall = true;
                                     if (playerSprite.IsNinja)
                                     {
-                                        SoundManager.PlaySwordSound();
+                                        if (playerSprite.IsBeaver)
+                                            SoundManager.PlayAttemptSound();
+                                        else
+                                            SoundManager.PlaySwordSound();
                                         playerSprite.AttackingCycle.Fire();
                                     }
                                 }
