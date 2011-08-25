@@ -556,8 +556,7 @@ namespace AbrahmanAdventure
                                 if ((playerSprite.IsDoped && !playerSprite.IsBeaver) || playerSprite.IsNinja)
                                 {
                                     #region Throwing balls or shuriken, and if ninja and not on beaver, fire attack cycle (sword)
-                                    #warning Uncomment next line
-                                    //playerSprite.IsTryThrowingBall = true;
+                                    playerSprite.IsTryThrowingBall = true;
                                     if (playerSprite.IsNinja)
                                     {
                                         if (playerSprite.IsBeaver)
