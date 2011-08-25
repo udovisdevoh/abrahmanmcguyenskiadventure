@@ -1,3 +1,5 @@
+si rasta: musique spéciale
+
 ninja
 {	
 	doit être facile de quitter la corde même si en haut (press left and right)
