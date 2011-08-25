@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Eat that mushroom, it's good!";
+        private const string tutorialComment = "Eat that psilocybin hallucinogenic mushroom.\nIt's 100% natural and it's good!";
         #endregion
 
         #region Constructor
