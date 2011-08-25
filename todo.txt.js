@@ -9,10 +9,9 @@ ninja
 	
 	don't fall when having side collision
 	
-	si ninja
+	si rasta ou ninja
 	{
-		le castor a un bandeau et devient un castor ninja (avec des yeux de chinois)
-		le dernier castor que tu as monté dessus te suis pour être en dessous de tois (sauf si tu le perd pcq tu as reçu une attaque)
+		si perd castor: frame de hit doit être avec rasta hat ou armure de ninja (crouché aussi)
 	}
 }
 
