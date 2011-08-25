@@ -26,6 +26,20 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface dead;
 
+        private static Surface standRightNinja;
+
+        private static Surface standLeftNinja;
+
+        private static Surface walkRightNinja;
+
+        private static Surface walkLeftNinja;
+
+        private static Surface hitRightNinja;
+
+        private static Surface hitLeftNinja;
+
+        private static Surface deadNinja;
+
         /// <summary>
         /// Cycle of growth
         /// </summary>
@@ -61,8 +75,19 @@ namespace AbrahmanAdventure.sprites
 
                 dead = hitRight.CreateFlippedVerticalSurface();
 
-                IsVulnerableToPunch = false;
+
+                standRightNinja = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandNinja.png");
+                standLeftNinja = standRightNinja.CreateFlippedHorizontalSurface();
+
+                walkRightNinja = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkNinja.png");
+                walkLeftNinja = walkRightNinja.CreateFlippedHorizontalSurface();
+
+                hitRightNinja = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitNinja.png");
+                hitLeftNinja = hitRightNinja.CreateFlippedHorizontalSurface();
+
+                deadNinja = hitRightNinja.CreateFlippedVerticalSurface();
             }
+            IsVulnerableToPunch = false;
         }
         #endregion
 
@@ -273,31 +298,64 @@ namespace AbrahmanAdventure.sprites
 
             int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
-            if (!IsAlive)
-                return dead;
+            if (IsAiEnabled)
+            {
+                if (!IsAlive)
+                    return deadNinja;
 
-            if (cycleDivision == 1 || cycleDivision == 3)
-            {
-                if (IsTryingToWalkRight)
-                    return walkRight;
-                else
-                    return walkLeft;
-            }
-            else
-            {
-                if (HitCycle.IsFired)
+                if (cycleDivision == 1 || cycleDivision == 3)
                 {
                     if (IsTryingToWalkRight)
-                        return hitRight;
+                        return walkRightNinja;
                     else
-                        return hitLeft;
+                        return walkLeftNinja;
                 }
                 else
                 {
-                    if (IsTryingToWalkRight)
-                        return standRight;
+                    if (HitCycle.IsFired)
+                    {
+                        if (IsTryingToWalkRight)
+                            return hitRightNinja;
+                        else
+                            return hitLeftNinja;
+                    }
                     else
-                        return standLeft;
+                    {
+                        if (IsTryingToWalkRight)
+                            return standRightNinja;
+                        else
+                            return standLeftNinja;
+                    }
+                }
+            }
+            else
+            {
+                if (!IsAlive)
+                    return dead;
+
+                if (cycleDivision == 1 || cycleDivision == 3)
+                {
+                    if (IsTryingToWalkRight)
+                        return walkRight;
+                    else
+                        return walkLeft;
+                }
+                else
+                {
+                    if (HitCycle.IsFired)
+                    {
+                        if (IsTryingToWalkRight)
+                            return hitRight;
+                        else
+                            return hitLeft;
+                    }
+                    else
+                    {
+                        if (IsTryingToWalkRight)
+                            return standRight;
+                        else
+                            return standLeft;
+                    }
                 }
             }
         }

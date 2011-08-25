@@ -496,6 +496,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsCanJump
         {
             get { return isCanJump; }
+            set { isCanJump = value; }
         }
 
         /// <summary>
@@ -512,6 +513,7 @@ namespace AbrahmanAdventure.sprites
         public bool IsAiEnabled
         {
             get { return isAiEnabled; }
+            set { isAiEnabled = value; }
         }
 
         /// <summary>
