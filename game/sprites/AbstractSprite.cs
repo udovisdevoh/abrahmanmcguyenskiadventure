@@ -952,6 +952,7 @@ namespace AbrahmanAdventure.sprites
         public double StartingJumpAcceleration
         {
             get { return startingJumpAcceleration; }
+            set { startingJumpAcceleration = value; }
         }
 
         /// <summary>

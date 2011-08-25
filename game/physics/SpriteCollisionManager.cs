@@ -132,6 +132,10 @@ namespace AbrahmanAdventure.physics
                             //It is impossible to jump on this sprite
                             UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
                         }
+                        else if (sprite is BeaverSprite && ((BeaverSprite)sprite).IsAiEnabled && otherSprite is PlayerSprite)
+                        {
+                            //The AI controlled ninja beaver won't bounce on the player
+                        }
                         else
                         {
                             UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);

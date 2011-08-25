@@ -67,6 +67,9 @@ namespace AbrahmanAdventure.ai
                 else if (TryGetSlopeRatio(monster, level, timeDelta, monster.IsTryingToWalkRight, visibleSpriteList, out slope) && (slope < -6 || (slope > 6 && monster.IsAvoidFall)))
                     monster.IsTryingToJump = true;
 
+                if (monster is BeaverSprite && playerMonsterDistanceX < monster.Width)
+                    monster.IsTryingToJump = false;
+
                 /*if (player.IsGrounded && monster.Ground != player.Ground && monster.YPosition > player.YPosition)
                     monster.IsTryingToJump = true;*/
 

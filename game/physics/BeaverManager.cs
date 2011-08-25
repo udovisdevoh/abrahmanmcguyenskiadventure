@@ -46,7 +46,20 @@ namespace AbrahmanAdventure.physics
             spritePopulation.Add(beaverSprite);
             if (beaverSprite.IGround == null)
                 beaverSprite.IsCurrentlyInFreeFallX = true;
-            beaverSprite.IsWalkEnabled = false;
+
+            if (playerSprite.IsNinja)
+            {
+                beaverSprite.IsAiEnabled = true;
+                beaverSprite.MaxWalkingSpeed = playerSprite.MaxRunningSpeed;
+                beaverSprite.IsAvoidFall = true;
+                beaverSprite.IsCanJump = true;
+                beaverSprite.StartingJumpAcceleration = playerSprite.StartingJumpAcceleration * 1.2;
+            }
+            else
+            {
+                beaverSprite.IsWalkEnabled = false;
+            }
+
             playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;
 
             beaverSprite.IsTryingToWalkRight = playerSprite.IsTryingToWalkRight;
