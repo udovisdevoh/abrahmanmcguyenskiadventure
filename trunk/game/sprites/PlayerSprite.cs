@@ -954,10 +954,10 @@ namespace AbrahmanAdventure.sprites
             crouchedNinjaLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
             crouchedNinjaHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
             crouchedNinjaHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
-            crouchedNinjaDopedRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedNinja.png");
-            crouchedNinjaDopedLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
-            crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
-            crouchedNinjaDopedHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
+            crouchedNinjaDopedRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedNinjaDoped.png");
+            crouchedNinjaDopedLeft = crouchedNinjaDopedRight.CreateFlippedHorizontalSurface();
+            crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinjaDoped.png");
+            crouchedNinjaDopedHitLeft = crouchedNinjaDopedHitRight.CreateFlippedHorizontalSurface();
             standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinja.png");
             standingNinjaLeftSurface = standingNinjaRightSurface.CreateFlippedHorizontalSurface();
             standingNinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinjaDoped.png");

@@ -46,7 +46,6 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         internal void LeaveBeaver(PlayerSprite playerSprite, SpritePopulation spritePopulation)
         {
-
             playerSprite.IsBeaver = false;
             BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, random);
             spritePopulation.Add(beaverSprite);
@@ -64,6 +63,7 @@ namespace AbrahmanAdventure.physics
                 beaverSprite.IsAvoidFall = true;
                 beaverSprite.IsCanJump = true;
                 beaverSprite.StartingJumpAcceleration = playerSprite.StartingJumpAcceleration * 1.2;
+                beaverSprite.SafeDistanceAi = 3.5;
                 playerSprite.LatestNinjaBeaver = beaverSprite;
             }
             else
@@ -95,6 +95,7 @@ namespace AbrahmanAdventure.physics
             beaverSprite.IsAvoidFall = false;
             beaverSprite.StartingJumpAcceleration = BeaverSprite.DefaultStartingJumpAcceleration;
             beaverSprite.IsWalkEnabled = false;
+            beaverSprite.SafeDistanceAi = 0.0;
         }
         #endregion
     }
