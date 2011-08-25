@@ -223,7 +223,7 @@ namespace AbrahmanAdventure.physics
                     }
                     else
                     {
-                        if (sprite is PlayerSprite && !sprite.IsTiny)
+                        if (sprite is PlayerSprite && !sprite.IsTiny && !sprite.IsNinja)
                             ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
 
                         SoundManager.PlayHit2Sound();

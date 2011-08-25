@@ -189,6 +189,22 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface ninjaDopedKatanaCrouched3Left;
 
+        private static Surface ninjaDopedCrouchedHitRight;
+
+        private static Surface ninjaDopedCrouchedHitLeft;
+
+        private static Surface ninjaDopedHitRight;
+
+        private static Surface ninjaDopedHitLeft;
+
+        private static Surface ninjaCrouchedHitRight;
+
+        private static Surface ninjaCrouchedHitLeft;
+
+        private static Surface ninjaHitRight;
+
+        private static Surface ninjaHitLeft;
+
         private static Surface walking1LeftSurface;
 
         private static Surface walking1LeftSurfaceRasta;
@@ -885,6 +901,15 @@ namespace AbrahmanAdventure.sprites
             ninjaDopedKatanaCrouched1Left = ninjaDopedKatanaCrouched1Right.CreateFlippedHorizontalSurface();
             ninjaDopedKatanaCrouched2Left = ninjaDopedKatanaCrouched2Right.CreateFlippedHorizontalSurface();
             ninjaDopedKatanaCrouched3Left = ninjaDopedKatanaCrouched3Right.CreateFlippedHorizontalSurface();
+
+            ninjaDopedCrouchedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinjaDoped.png");
+            ninjaDopedCrouchedHitLeft = ninjaDopedCrouchedHitRight.CreateFlippedHorizontalSurface();
+            ninjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/hitNinjaDoped.png");
+            ninjaDopedHitLeft = ninjaDopedHitRight.CreateFlippedHorizontalSurface();
+            ninjaCrouchedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
+            ninjaCrouchedHitLeft = ninjaCrouchedHitRight.CreateFlippedHorizontalSurface();
+            ninjaHitRight = BuildSpriteSurface("./assets/rendered/abrahman/hitNinja.png");
+            ninjaHitLeft = ninjaHitRight.CreateFlippedHorizontalSurface();
 
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
@@ -3357,10 +3382,30 @@ namespace AbrahmanAdventure.sprites
             {
                 if (HitCycle.IsFired && !isRasta)
                 {
-                    if (IsTryingToWalkRight)
-                        return GetCrouchedHitRightSurface(isShowDopedColor);
+                    if (isNinja)
+                    {
+                        if (isShowDopedColor)
+                        {
+                            if (IsTryingToWalkRight)
+                                return ninjaDopedCrouchedHitRight;
+                            else
+                                return ninjaDopedCrouchedHitLeft;
+                        }
+                        else
+                        {
+                            if (IsTryingToWalkRight)
+                                return ninjaCrouchedHitRight;
+                            else
+                                return ninjaCrouchedHitLeft;
+                        }
+                    }
                     else
-                        return GetCrouchedHitLeftSurface(isShowDopedColor);
+                    {
+                        if (IsTryingToWalkRight)
+                            return GetCrouchedHitRightSurface(isShowDopedColor);
+                        else
+                            return GetCrouchedHitLeftSurface(isShowDopedColor);
+                    }
                 }
                 else
                 {
@@ -3397,7 +3442,24 @@ namespace AbrahmanAdventure.sprites
                 #region Jumping or falling while being hit
                 if (HitCycle.IsFired && !isRasta)
                 {
-                    if (isShowTiny)
+                    if (isNinja)
+                    {
+                        if (isShowDopedColor)
+                        {
+                            if (IsTryingToWalkRight)
+                                return ninjaDopedHitRight;
+                            else
+                                return ninjaDopedHitLeft;
+                        }
+                        else
+                        {
+                            if (IsTryingToWalkRight)
+                                return ninjaHitRight;
+                            else
+                                return ninjaHitLeft;
+                        }
+                    }
+                    else if (isShowTiny)
                     {
                         #region Tiny
                         if (IsTryingToWalkRight)
@@ -3476,7 +3538,7 @@ namespace AbrahmanAdventure.sprites
                     #region Tiny
                     if (cycleDivision == 1)
                     {
-                        if (HitCycle.IsFired && !isRasta)
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurfaceTiny(isShowDopedColor);
@@ -3491,7 +3553,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     else if (cycleDivision == 3)
                     {
-                        if (HitCycle.IsFired && !isRasta)
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurfaceTiny(isShowDopedColor);
@@ -3518,7 +3580,7 @@ namespace AbrahmanAdventure.sprites
                     #region Not tiny
                     if (cycleDivision == 1)
                     {
-                        if (HitCycle.IsFired && !isRasta)
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurface(isShowDopedColor);
@@ -3533,7 +3595,7 @@ namespace AbrahmanAdventure.sprites
                     }
                     else if (cycleDivision == 3)
                     {
-                        if (HitCycle.IsFired && !isRasta)
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
                             if (IsTryingToWalkRight)
                                 return GetHitRightSurface(isShowDopedColor);
