@@ -1,13 +1,10 @@
 ninja
 {	
+	doit être facile de quitter la corde même si en haut (press left and right)
+
 	?si déjà jump: possibilité de double jump?->?aussi: dire dans howto?
 	
-	si immobile et press attack: spin nunchaku
-	{
-		?Si monstre AI ?(et possiblement pas d'ai: change de direction) et distance suffisante (pour réaction du bohomme), n'avance pas?
-	}
-	
-	don't fall when having side collision
+	?don't fall when having side collision
 }
 
 faire video youtube promotionnel
