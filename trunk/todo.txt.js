@@ -1,3 +1,31 @@
+meta-monde
+{
+	une planete par épisode
+	
+	musique lorsque sur map de metamonde
+	
+	map de la planete (avec terrain et perlin noise)
+	
+	Bonus "achetable" gratuitement
+	{
+		Réduire résistance à l'alcool (invincibilité dure plus longtemps)
+		Réduire résistance à la mescaline (plus de boules de feu)
+		Meilleurs cheveux de rasta (tomber plus lentement lorsqu'on plane)
+		Meilleur nage
+		Sauter plus haut
+		Courir plus vitte
+		Meilleure résistance aux monstres
+		Castor gruge plus large
+		Punch/kick plus fort
+		Punch/kick plus vitte
+		Punch/kick plus loin
+	}
+}
+
+à la fin d'un level: toujours exponentiel (haut ou bas) pour éviter portails inaccessible
+
+enlever barre d'énergie
+
 si rasta: musique spéciale
 
 ?si pese down, ne grab pas liane?
@@ -96,23 +124,8 @@ Salvia powerup
 
 
 
-Bonus "achetable" gratuitement
-{
-	Réduire résistance à l'alcool (invincibilité dure plus longtemps)
-	Réduire résistance à la mescaline (plus de boules de feu)
-	Meilleurs cheveux de rasta (tomber plus lentement lorsqu'on plane)
-	Meilleur nage
-	Sauter plus haut
-	Courir plus vitte
-	Meilleure résistance aux monstres
-	Castor gruge plus large
-	Punch/kick plus fort
-	Punch/kick plus vitte
-	Punch/kick plus loin
-}
 
 
-nuages qu'on peut marcher dessus
 
 fix add texture cache transparency bug
 

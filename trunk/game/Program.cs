@@ -53,6 +53,8 @@ namespace AbrahmanAdventure
 
         public const bool isAlwaysCeiling = false;
 
+        public const bool isShowHealthBar = false;
+
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;
@@ -722,7 +724,8 @@ namespace AbrahmanAdventure
                 #region We update the viewers
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
-                HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
+                if (Program.isShowHealthBar)
+                    HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
                         if (sprite != playerSprite)

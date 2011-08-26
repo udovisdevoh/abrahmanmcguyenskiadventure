@@ -106,6 +106,12 @@ namespace AbrahmanAdventure.physics
                     block.HitCycle.Fire();
                     block.IsAlive = false;
                     block.IsAffectedByGravity = true;
+
+                    if (playerSpriteReference.IGround == block)
+                    {
+                        playerSpriteReference.IGround = null;
+                        playerSpriteReference.HitCycle.Fire();
+                    }
                 }
             }
             else
