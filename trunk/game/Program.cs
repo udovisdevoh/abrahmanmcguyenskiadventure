@@ -55,6 +55,8 @@ namespace AbrahmanAdventure
 
         public const bool isShowHealthBar = false;
 
+        public const bool isAllowExtraVortex = false;
+
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;

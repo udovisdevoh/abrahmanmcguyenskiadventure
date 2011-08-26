@@ -23,7 +23,7 @@ namespace AbrahmanAdventure.sprites
         internal static void DispatchVortexes(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
         {
             bool isAddExtraVortex = false;
-            if (level.Size > Program.minSizeForExtraVortex)
+            if (Program.isAllowExtraVortex && level.Size > Program.minSizeForExtraVortex)
                 isAddExtraVortex = random.Next(0, 6) == 1;
 
             bool isIncrementSkill = random.Next(0, skillLevel +1) == 0;
@@ -45,10 +45,16 @@ namespace AbrahmanAdventure.sprites
         /// <param name="isIncrementSkill">whether we will increment skill when going into this vortex</param>
         private static void AddVortexToNextLevel(Level level, SpritePopulation spritePopulation, Random random, bool isIncrementSkill)
         {
-            double xPosition = level.RightBound - 2.0;
+            double xPosition = level.RightBound - 1.0;
+            Ground highestGround;
+            double highestGroundY;
 
-            while (IGroundHelper.GetHighestGround(level, xPosition)[xPosition] >= Program.holeHeight / 2.0)
+            do
+            {
                 xPosition -= 1.0;
+                highestGround = IGroundHelper.GetHighestGround(level, xPosition);
+                highestGroundY = highestGround[xPosition];
+            } while (highestGroundY >= Program.holeHeight / 2.0 || highestGround.IsHoleAt(xPosition)); 
 
             VortexSprite vortexSprite = new VortexSprite(xPosition, Program.totalHeightTileCount / -2, random, true);
 
