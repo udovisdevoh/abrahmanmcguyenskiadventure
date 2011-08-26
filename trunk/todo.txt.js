@@ -2,7 +2,7 @@ meta-monde
 {
 	une planete par épisode
 	
-	musique lorsque sur map de metamonde
+	musique lorsque sur map de meta-monde
 	
 	map de la planete (avec terrain et perlin noise)
 	
@@ -23,8 +23,6 @@ meta-monde
 }
 
 à la fin d'un level: toujours exponentiel (haut ou bas) pour éviter portails inaccessible
-
-enlever barre d'énergie
 
 si rasta: musique spéciale
 
