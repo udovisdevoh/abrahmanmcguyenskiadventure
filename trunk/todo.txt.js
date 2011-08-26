@@ -1,12 +1,3 @@
-vortex dispatcher
-{
-	Remove 2nd vortex
-	
-	make sure vortex is not inside hole
-}
-
-ninja should be able to slay lawyers, muslims and oil drils with his sword
-
 meta-monde
 {
 	do some UML for conceptualization
