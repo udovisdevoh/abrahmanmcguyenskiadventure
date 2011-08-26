@@ -9,16 +9,23 @@ meta-monde
 	Bonus "achetable" gratuitement
 	{
 		Réduire résistance à l'alcool (invincibilité dure plus longtemps)
-		Réduire résistance à la mescaline (plus de boules de feu)
+		Réduire résistance à la mescaline (plus de boules de feu et de shuriken)
 		Meilleurs cheveux de rasta (tomber plus lentement lorsqu'on plane)
+		voler comme rasta lorsque ninja
 		Meilleur nage
 		Sauter plus haut
 		Courir plus vitte
 		Meilleure résistance aux monstres
 		Castor gruge plus large
-		Punch/kick plus fort
-		Punch/kick plus vitte
-		Punch/kick plus loin
+		Punch/kick/katana plus fort
+		Punch/kick/katana plus vitte
+		Punch/kick/katana plus loin (modifier offset pour réfleter range)
+	}
+	
+	trucs spéciaux de manipulation du temps
+	{
+		?ralentir le temps lorsque court vite (time delta réduit pour tout sauf player)?
+		?inverser le temps (time delta négatif)?
 	}
 }
 
