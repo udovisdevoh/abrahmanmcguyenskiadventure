@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Beware the member of a religion of peace.\nHe will try to peacefully explode on you.";
+        private const string tutorialComment = "Beware the member of a religion of peace.\nHe will try to peacefully explode on you.\nYou cannot do damage to this enemy directly.";
         #endregion
 
         #region Constructor
@@ -52,7 +52,6 @@ namespace AbrahmanAdventure.sprites
         {
             minDistanceFromPlayerToStartCountDown = 5;
             countDownCycle = new Cycle(125, false);
-
             if (standRight == null)
             {
                 standRight = BuildSpriteSurface("./assets/rendered/muslim/muslimStand.png");
@@ -201,7 +200,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 100;
+            return 100.0;
         }
 
         protected override double BuildJumpingTime()
