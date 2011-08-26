@@ -442,7 +442,7 @@ namespace AbrahmanAdventure.physics
 
             double sprite1TopBound, sprite1BottomBound;
 
-            if (playerSprite.IsTryUseNunchaku)
+            if (/*playerSprite.IsTryUseNunchaku || */playerSprite.IsNinja && !playerSprite.IsBeaver)
             {
                 if (playerSprite.IsCrouch)
                     sprite1TopBound = playerSprite.TopBound - playerSprite.Height / 2.0;
