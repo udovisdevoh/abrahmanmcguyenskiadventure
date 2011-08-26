@@ -37,18 +37,18 @@ namespace AbrahmanAdventure.physics
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void UpdateBlockCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void UpdateBlockCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, Random random)
         {
             double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
             sprite.IsCurrentlyInFreeFallX = false;
             sprite.IsCurrentlyInFreeFallY = false;
             if (angleFromSpritePreviousPositionToBlock >= 45 && angleFromSpritePreviousPositionToBlock <= 135 && sprite.IGround == null && IsSufficientXCollision(sprite,block))
             {
-                UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, random);
+                UpdateJumpUnderBlock(sprite, block, spritePopulation, level, visibleSpriteList, playerSpriteReference, random);
             }
             else
             {
-                ManageBlockSideCollision(sprite, block, spritePopulation, visibleSpriteList, level, random);
+                ManageBlockSideCollision(sprite, block, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
             }
         }
 
@@ -61,7 +61,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="level">level</param>
         /// <param name="random">random number generator</param>
-        internal void TryOpenOrBreakBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, Random random)
+        internal void TryOpenOrBreakBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
         {
             AbstractSprite powerUpSprite = null;
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
@@ -76,7 +76,7 @@ namespace AbrahmanAdventure.physics
                 else
                 {
                     SoundManager.PlayGrowSound();
-                    powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(sprite, random);
+                    powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(playerSpriteReference, random);
                     if (powerUpSprite is IGrowable)
                         ((IGrowable)powerUpSprite).GrowthCycle.Fire();
                     spritePopulation.Add(powerUpSprite);
@@ -137,7 +137,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of currently visible sprites</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, Random random)
         {
             if (sprite.YPosition < block.YPosition)
                 return;
@@ -161,7 +161,7 @@ namespace AbrahmanAdventure.physics
             }
 
             sprite.IsNeedToJumpAgain = true;
-            TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
+            TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="random">random number generator</param>
-        private void ManageBlockSideCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, Random random)
+        private void ManageBlockSideCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
         {
             //Side collision
             if (sprite.XPosition < block.XPosition)
@@ -215,7 +215,7 @@ namespace AbrahmanAdventure.physics
                 sprite.IGround = null;
 
             if (sprite is HelmetSprite)
-                TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, random);
+                TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
         }
 
         /// <summary>

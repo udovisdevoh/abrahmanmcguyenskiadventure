@@ -195,14 +195,14 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Internal Methods
-        internal AbstractSprite GetPowerUpSprite(AbstractSprite playerSprite, Random random)
+        internal AbstractSprite GetPowerUpSprite(PlayerSprite playerSprite, Random random)
         {
             switch (BlockContent)
             {
                 case BlockContent.Whisky:
                     return new WhiskySprite(XPosition, TopBound, random);
                 case BlockContent.RastaHat:
-                    if (((PlayerSprite)playerSprite).IsDoped || ((PlayerSprite)playerSprite).IsRasta || ((PlayerSprite)playerSprite).IsNinja)
+                    if (playerSprite.IsDoped || playerSprite.IsRasta || playerSprite.IsNinja)
                     {
                         BandanaSprite bandanaSprite = new BandanaSprite(XPosition, TopBound, random);
                         return bandanaSprite;
@@ -221,7 +221,7 @@ namespace AbrahmanAdventure.sprites
                         return mushroomSprite;
                     }
                 case BlockContent.Beaver:
-                    if (((PlayerSprite)playerSprite).IsBeaver)
+                    if (playerSprite.IsBeaver)
                     {
                         MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
                         mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
@@ -239,7 +239,7 @@ namespace AbrahmanAdventure.sprites
                     vineSprite.Height = 0.0;
                     return vineSprite;
                 default: //Peyote
-                    if (((PlayerSprite)playerSprite).IsDoped || ((PlayerSprite)playerSprite).IsRasta || ((PlayerSprite)playerSprite).IsNinja)
+                    if (playerSprite.IsDoped || playerSprite.IsRasta || playerSprite.IsNinja)
                     {
                         BandanaSprite bandanaSprite = new BandanaSprite(XPosition, TopBound, random);
                         return bandanaSprite;
