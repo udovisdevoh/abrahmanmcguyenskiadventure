@@ -276,8 +276,6 @@ namespace AbrahmanAdventure.sprites
                 skillDispatchRatio += 0.5;
             if (isResistantToPlayerProjectile)
                 skillDispatchRatio += 1.0;
-            if (isResistantToPlayerProjectile)
-                skillDispatchRatio += 1.0;
             if (isVulnerableToKatanaButNotPunch)
                 skillDispatchRatio += 1.0;
 
