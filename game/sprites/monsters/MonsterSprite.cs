@@ -183,6 +183,16 @@ namespace AbrahmanAdventure.sprites
         /// BUT they have a foot in the middle and can give you damage anyways. [Width of the foot]
         /// </summary>
         private bool isUseBottomHitCollisionDeadZoneExceptionRadius;
+
+        /// <summary>
+        /// Whether sprite is vulnerable to katana but not vulnerable to punch
+        /// </summary>
+        private bool isVulnerableToKatanaButNotPunch;
+
+        /// <summary>
+        /// Whether sprite can resist fireballs and shurikens
+        /// </summary>
+        private bool isResistantToPlayerProjectile;
         #endregion
 
         #region Constructors
@@ -224,6 +234,8 @@ namespace AbrahmanAdventure.sprites
             isMakeSoundWhenTouchGround = BuildIsMakeSoundWhenTouchGround();
             isCanDoDamageWhenInFreeFall = BuildIsCanDoDamageWhenInFreeFall();
             skillDispatchRatio = BuildSkillDispatchRatio();
+            isVulnerableToKatanaButNotPunch = false;
+            isResistantToPlayerProjectile = false;
             if (isNoAiChangeDirectionByCycle)
                 changeDirectionNoAiCycle.Fire();
         }
@@ -238,7 +250,7 @@ namespace AbrahmanAdventure.sprites
         {
             double skillDispatchRatio = 0;
 
-            if (MaxHealth < 10.0)
+            if (!isVulnerableToKatanaButNotPunch && !isResistantToPlayerProjectile && MaxHealth < 10.0)
                 skillDispatchRatio += MaxHealth;
             if (isCanDoDamageToPlayerWhenTouched && AttackStrengthCollision < 10.0)
                 skillDispatchRatio += AttackStrengthCollision;
@@ -262,6 +274,12 @@ namespace AbrahmanAdventure.sprites
                 skillDispatchRatio += 0.5;
             if (!isJumpableOn)
                 skillDispatchRatio += 0.5;
+            if (isResistantToPlayerProjectile)
+                skillDispatchRatio += 1.0;
+            if (isResistantToPlayerProjectile)
+                skillDispatchRatio += 1.0;
+            if (isVulnerableToKatanaButNotPunch)
+                skillDispatchRatio += 1.0;
 
             return skillDispatchRatio;
         }
@@ -693,6 +711,24 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isUseBottomHitCollisionDeadZoneExceptionRadius; }
             set { isUseBottomHitCollisionDeadZoneExceptionRadius = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is vulnerable to katana but not vulnerable to punch
+        /// </summary>
+        public bool IsVulnerableToKatanaButNotPunch
+        {
+            get { return isVulnerableToKatanaButNotPunch; }
+            set { isVulnerableToKatanaButNotPunch = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite can resist fireballs and shurikens
+        /// </summary>
+        public bool IsResistantToPlayerProjectile
+        {
+            get { return isResistantToPlayerProjectile; }
+            set { isResistantToPlayerProjectile = value; }
         }
 
         /// <summary>

@@ -33,7 +33,11 @@ namespace AbrahmanAdventure.physics
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
                         projectile.IsAlive = false;
-                        otherSprite.CurrentDamageReceiving = projectile.AttackStrengthCollision;
+
+                        if (!(otherSprite is MonsterSprite) || !(((MonsterSprite)otherSprite).IsResistantToPlayerProjectile))
+                        {
+                            otherSprite.CurrentDamageReceiving = projectile.AttackStrengthCollision;
+                        }
                     }
                 }
             }

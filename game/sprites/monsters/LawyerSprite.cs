@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Don't let the lawyer sue you!";
+        private const string tutorialComment = "Don't let the lawyer sue you!\nYou can only slay this enemy with\nclosed range ninja weapons.";
         #endregion
 
         #region Constructors
@@ -49,6 +49,8 @@ namespace AbrahmanAdventure.sprites
             MaxWalkingSpeed = random.NextDouble() * 0.02 + 0.10;
             safeYDistanceFromPlayer = random.NextDouble() * 1.8 - 0.9;
             IsCrossGrounds = true;
+            IsVulnerableToKatanaButNotPunch = true;
+            IsResistantToPlayerProjectile = true;
         }
         #endregion
 
@@ -180,7 +182,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxHealth()
         {
-            return 100.0;
+            return 0.5;
         }
 
         protected override double BuildJumpingTime()

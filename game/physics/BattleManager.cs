@@ -84,9 +84,12 @@ namespace AbrahmanAdventure.physics
                             }
                             else
                             {
-                                monsterSprite.HitCycle.Fire();
-                                monsterSprite.PunchedCycle.Fire();
-                                monsterSprite.CurrentDamageReceiving = playerSprite.AttackStrengthCollision;
+                                if (!monsterSprite.IsVulnerableToKatanaButNotPunch || (playerSprite.IsNinja && !playerSprite.IsBeaver))
+                                {
+                                    monsterSprite.HitCycle.Fire();
+                                    monsterSprite.PunchedCycle.Fire();
+                                    monsterSprite.CurrentDamageReceiving = playerSprite.AttackStrengthCollision;
+                                }
                             }
 
                             monsterSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;

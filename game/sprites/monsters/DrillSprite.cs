@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Beware of the oil drill!";
+        private const string tutorialComment = "Beware of the oil drill!\nYou can only destroy them\nwith fireball and ninja weapons.";
         #endregion
 
         #region Static parts
@@ -84,6 +84,7 @@ namespace AbrahmanAdventure.sprites
             alwaysActiveRangeCycleStart = upDownCycleLength * 0.45;
             alwaysActiveRangeCycleStop = upDownCycleLength * 0.55;
             ZIndex = -1;
+            IsVulnerableToKatanaButNotPunch = true;
 
             if (black1 == null)
             {
