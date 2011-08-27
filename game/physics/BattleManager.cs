@@ -84,8 +84,14 @@ namespace AbrahmanAdventure.physics
                             }
                             else
                             {
-                                if (!monsterSprite.IsVulnerableToKatanaButNotPunch || (playerSprite.IsNinja && !playerSprite.IsBeaver))
+                                if (monsterSprite is ICarriable && monsterSprite.IsToggleWalkWhenJumpedOn && !monsterSprite.IsWalkEnabled && playerSprite.CarriedSprite == null && monsterSprite.IsAlive)
                                 {
+                                    //We carry it
+                                    playerSprite.CarriedSprite = monsterSprite;
+                                }
+                                else if (!monsterSprite.IsVulnerableToKatanaButNotPunch || (playerSprite.IsNinja && !playerSprite.IsBeaver))
+                                {
+                                    //We attack it
                                     monsterSprite.HitCycle.Fire();
                                     monsterSprite.PunchedCycle.Fire();
                                     monsterSprite.CurrentDamageReceiving = playerSprite.AttackStrengthCollision;
