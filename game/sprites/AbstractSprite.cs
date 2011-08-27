@@ -549,7 +549,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (this is IUpDownCycleMove)
+                if (this is IUpDownCycleMove && this.IsAlive)
                     return yPosition + ((IUpDownCycleMove)this).GetCurrentUpDownCycleHeightOffset();
 
                 return yPosition;
@@ -584,7 +584,7 @@ namespace AbrahmanAdventure.sprites
         {
             get
             {
-                if (this is IUpDownCycleMove)
+                if (this is IUpDownCycleMove && this.IsAlive)
                     return yPositionPrevious + ((IUpDownCycleMove)this).GetCurrentUpDownCycleHeightOffset();
 
                 return yPositionPrevious;
