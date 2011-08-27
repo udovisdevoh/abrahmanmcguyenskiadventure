@@ -1,6 +1,32 @@
 meta-monde
 {
-	do some UML for conceptualization
+	faire sprite d'abrahman sur la map (tous les grandeurs, powerups et avec castor)
+
+	générer map
+	{
+		générer terrain avec perlin noise
+		{
+			eau, montagnes etc
+		}
+		
+		générer emplacement des levels et des "places de bonus"
+		{
+			icone de level, tenir compte de ces infos
+			{
+				si toit
+				si eau
+				si mur
+			}
+			
+			icone de place de bonus (voir Bonus "achetable" gratuitement)
+		}
+		
+		générer routes entre les levels en utilisant aStar
+		{
+			générer un chemin unique du 1er au dernier level (chemin le plus court, ne passe pas nécéssairement par tous les levels)
+			plugger les levels restants pour faire autres chemins courts (début à la fin) qui passent par d'autres levels
+		}
+	}
 	
 	une planete par épisode
 	
