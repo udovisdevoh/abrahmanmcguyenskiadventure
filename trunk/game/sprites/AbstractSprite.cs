@@ -90,6 +90,11 @@ namespace AbrahmanAdventure.sprites
         private bool isNeedToJumpAgain = false;
 
         /// <summary>
+        /// Whether sprite is not drawn if dead
+        /// </summary>
+        private bool isInvisibleIfDead = false;
+
+        /// <summary>
         /// Whether sprite is on vine
         /// </summary>
         private IClimbable iClimbingOn = null;
@@ -944,6 +949,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isFullGravityOnNextFrame; }
             set { isFullGravityOnNextFrame = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is not drawn if dead
+        /// </summary>
+        public bool IsInvisibleIfDead
+        {
+            get { return isInvisibleIfDead; }
+            set { isInvisibleIfDead = value; }
         }
 
         /// <summary>

@@ -58,6 +58,9 @@ namespace AbrahmanAdventure.sprites
                 else if (sprite is LawyerSprite)
                     return;
             }
+            
+            if (!sprite.IsAlive && sprite.IsInvisibleIfDead)
+                return;
 
             double specialOffsetX, specialOffsetY;
 
