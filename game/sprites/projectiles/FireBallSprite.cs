@@ -144,7 +144,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsVulnerableToInvincibility()
         {
-            return true;
+            return false;
         }
 
         public override AbstractSprite GetConverstionSprite(Random random)
