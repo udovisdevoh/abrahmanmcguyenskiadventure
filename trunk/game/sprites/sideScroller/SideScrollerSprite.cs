@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a sprite
     /// </summary>
-    internal abstract class SideScrollerSprite : IGround,  IComparable<SideScrollerSprite>
+    internal abstract class SideScrollerSprite : AbstractSprite, IGround,  IComparable<SideScrollerSprite>
     {
         #region Fields and parts
         /// <summary>
