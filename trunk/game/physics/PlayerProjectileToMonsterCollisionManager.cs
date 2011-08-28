@@ -19,12 +19,12 @@ namespace AbrahmanAdventure.physics
         /// <param name="fireBallSprite">fire ball</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
-        internal void Update(AbstractSprite projectile, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(SideScrollerSprite projectile, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
         {
             if (!projectile.IsAlive)
                 return;
 
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            foreach (SideScrollerSprite otherSprite in visibleSpriteList)
             {
                 if (projectile != otherSprite && !(otherSprite is PlayerSprite) && !(otherSprite is IPlayerProjectile) && !otherSprite.HitCycle.IsFired)
                 {

@@ -23,7 +23,7 @@ namespace AbrahmanAdventure.ai
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void Update(MonsterSprite monster, PlayerSprite player, Level level, double timeDelta, HashSet<SideScrollerSprite> visibleSpriteList, Random random)
         {
             double slope;
             monster.IsTryingToWalk = false;
@@ -218,7 +218,7 @@ namespace AbrahmanAdventure.ai
         /// <param name="slope">slope ratio</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <returns>whether could get slope ratio or not</returns>
-        private bool TryGetSlopeRatio(AbstractSprite monster, Level level, double timeDelta, bool isWalkingRight, HashSet<AbstractSprite> visibleSpriteList, out double slope)
+        private bool TryGetSlopeRatio(SideScrollerSprite monster, Level level, double timeDelta, bool isWalkingRight, HashSet<SideScrollerSprite> visibleSpriteList, out double slope)
         {
             slope = 0;
             IGround groundToTestSlope = monster.IGround;
@@ -228,7 +228,7 @@ namespace AbrahmanAdventure.ai
             if (groundToTestSlope == null)
                 return false;
 
-            if (groundToTestSlope is AbstractSprite)
+            if (groundToTestSlope is SideScrollerSprite)
             {
                 slope = 0.0;
                 return true;

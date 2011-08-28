@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class UpDownCycleMoveManager
     {
-        internal void update(IUpDownCycleMove upDownMovingSprite, AbstractSprite playerSprite, double timeDelta)
+        internal void update(IUpDownCycleMove upDownMovingSprite, SideScrollerSprite playerSprite, double timeDelta)
         {
             if (upDownMovingSprite.UpDownCycle.CurrentValue < upDownMovingSprite.AlwaysActiveRangeCycleStart)
                 upDownMovingSprite.UpDownCycle.Increment(timeDelta);

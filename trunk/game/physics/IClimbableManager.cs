@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.physics
         #endregion
 
         #region Internal Methods
-        internal void UpdateClimber(AbstractSprite sprite, AbstractSprite potentialClimbable, IClimbable wasClimbingOnAtPreviousFrame, UserInput userInput)
+        internal void UpdateClimber(SideScrollerSprite sprite, SideScrollerSprite potentialClimbable, IClimbable wasClimbingOnAtPreviousFrame, UserInput userInput)
         {
             if (sprite.YPosition >= potentialClimbable.YPosition && userInput.isPressDown)
                 return;

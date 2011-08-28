@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">Sprite</param>
         /// <param name="timeDelta">Time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, double timeDelta)
+        internal void Update(SideScrollerSprite sprite, double timeDelta)
         {
             sprite.HitCycle.Increment(timeDelta);
             sprite.PunchedCycle.Increment(timeDelta);

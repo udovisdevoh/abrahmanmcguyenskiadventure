@@ -475,8 +475,8 @@ namespace AbrahmanAdventure
                 SpritePopulation spritePopulation = gameState.SpritePopulation;
                 PlayerSprite playerSprite = gameState.PlayerSprite;
                 Level level = gameState.Level;
-                HashSet<AbstractSprite> toUpdateSpriteList;
-                HashSet<AbstractSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
+                HashSet<SideScrollerSprite> toUpdateSpriteList;
+                HashSet<SideScrollerSprite> visibleSpriteList = spritePopulation.GetVisibleSpriteList(viewOffsetX, viewOffsetY, out toUpdateSpriteList);
 
                 //We process the time multiplicator
                 double timeDelta = Math.Max(0, ((TimeSpan)(DateTime.Now - previousDateTime)).TotalMilliseconds / 32.0);
@@ -538,7 +538,7 @@ namespace AbrahmanAdventure
                             if (userInput.isPressDown && playerSprite.IGround is IHarvestable && playerSprite.CarriedSprite == null)
                             {
                                 #region Harvesting stuff like fat kids
-                                playerSprite.CarriedSprite = (AbstractSprite)playerSprite.IGround;
+                                playerSprite.CarriedSprite = (SideScrollerSprite)playerSprite.IGround;
                                 playerSprite.CarriedSprite.IsImpassable = false;
                                 //playerSprite.CarriedSprite.IsAnnihilateOnExitScreen = true;
                                 playerSprite.CarriedSprite.AttackStrengthCollision = ((IHarvestable)playerSprite.CarriedSprite).ProjectileAttackStrengthCollision;
@@ -703,7 +703,7 @@ namespace AbrahmanAdventure
                     if (gameState.IsPlayerReady)
                     {
                         physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
-                        foreach (AbstractSprite sprite in toUpdateSpriteList)
+                        foreach (SideScrollerSprite sprite in toUpdateSpriteList)
                             if (sprite != playerSprite)
                             {
                                 physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
@@ -729,7 +729,7 @@ namespace AbrahmanAdventure
                 if (Program.isShowHealthBar)
                     HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
-                    foreach (AbstractSprite sprite in visibleSpriteList)
+                    foreach (SideScrollerSprite sprite in visibleSpriteList)
                         if (sprite != playerSprite)
                             if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 7.0)
                                 TutorialTalker.TryTalkAbout(sprite);

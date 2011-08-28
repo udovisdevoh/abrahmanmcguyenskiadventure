@@ -16,22 +16,22 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// List of sprites
         /// </summary>
-        private static List<AbstractSprite> __spriteList;
+        private static List<SideScrollerSprite> __spriteList;
 
         private static Random random = new Random();
         #endregion
 
         #region Private Methods
-        private static List<AbstractSprite> BuildSpriteList()
+        private static List<SideScrollerSprite> BuildSpriteList()
         {
             List<MonsterSprite> monsterSpriteList = new List<MonsterSprite>();
-            List<AbstractSprite> staticSpriteList = new List<AbstractSprite>();
-            List<AbstractSprite> spriteList = new List<AbstractSprite>();
+            List<SideScrollerSprite> staticSpriteList = new List<SideScrollerSprite>();
+            List<SideScrollerSprite> spriteList = new List<SideScrollerSprite>();
 
             Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (Type type in assembly.GetTypes())
             {
-                if (type.IsSubclassOf(typeof(AbstractSprite)) && !type.IsAbstract && !type.IsInterface)
+                if (type.IsSubclassOf(typeof(SideScrollerSprite)) && !type.IsAbstract && !type.IsInterface)
                 {
                     object[] constructorArgumentList;
                     Type[] constructorArgumentTypeList;
@@ -64,7 +64,7 @@ namespace AbrahmanAdventure.hud
                     }
                     ConstructorInfo constructorInfo = type.GetConstructor(constructorArgumentTypeList);
 
-                    AbstractSprite sprite = (AbstractSprite)constructorInfo.Invoke(constructorArgumentList);
+                    SideScrollerSprite sprite = (SideScrollerSprite)constructorInfo.Invoke(constructorArgumentList);
 
                     if (sprite.TutorialComment != null)
                     {
@@ -82,7 +82,7 @@ namespace AbrahmanAdventure.hud
 
             monsterSpriteList = new List<MonsterSprite>(from sprite in monsterSpriteList orderby sprite.SkillDispatchRatio select sprite);
 
-            foreach (AbstractSprite sprite in staticSpriteList)
+            foreach (SideScrollerSprite sprite in staticSpriteList)
                 spriteList.Add(sprite);
 
             foreach (MonsterSprite sprite in monsterSpriteList)
@@ -100,7 +100,7 @@ namespace AbrahmanAdventure.hud
         #endregion
 
         #region Properties
-        public static List<AbstractSprite> SpriteList
+        public static List<SideScrollerSprite> SpriteList
         {
             get
             {
