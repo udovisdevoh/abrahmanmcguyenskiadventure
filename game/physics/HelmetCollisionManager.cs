@@ -29,12 +29,12 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">all the sprites in game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(HelmetSprite helmet, PlayerSprite playerSpriteReference, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void Update(HelmetSprite helmet, PlayerSprite playerSpriteReference, Level level, SpritePopulation spritePopulation, HashSet<SideScrollerSprite> visibleSpriteList, Random random)
         {
             if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX && helmet != playerSpriteReference.CarriedSprite)
                 return;
 
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            foreach (SideScrollerSprite otherSprite in visibleSpriteList)
             {
                 if (helmet != otherSprite && !(otherSprite is PlayerSprite) && !otherSprite.HitCycle.IsFired && !(otherSprite is IPlayerProjectile))
                 {

@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.audio
     /// </summary>
     internal enum TrackType { Melody, /*Melody2, Tenor,*/ Pad, Bass, Snare, Kick, OtherDrum }
 
-    internal enum SongType { Menu, Level, Invincibility, Ninja }
+    internal enum SongType { Menu, Level, Invincibility, Ninja, Map }
 
     /// <summary>
     /// To generate songs
@@ -61,6 +61,9 @@ namespace AbrahmanAdventure.audio
             predefinedGenerator.ScaleName2 = GetRandomScaleName(skillLevel + random.Next(0, 3), random);//predefinedGenerator.ScaleName = Scales.GetRandomPentatonicScaleName(random);//predefinedGenerator.ScaleName = Scales.GetRandomScaleName(random);
             predefinedGenerator.IsOverrideKey = false;
             predefinedGenerator.ScaleCycleLength = (int)Math.Round(Math.Pow(2.0, (double)random.Next(0, 5)));
+
+            if (songType == SongType.Map)
+                predefinedGenerator.Tempo -= 25;
             
             songLength = random.Next(8, 17) * 2;
             double barDensity = Math.Min(1.0, 0.5 + (((double)skillLevel) / 20.0));//0.5 for easy, 1.0 for hard)

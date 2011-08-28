@@ -19,17 +19,17 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// List of currently visible sprites
         /// </summary>
-        private HashSet<AbstractSprite> visibleSpriteList = new HashSet<AbstractSprite>();
+        private HashSet<SideScrollerSprite> visibleSpriteList = new HashSet<SideScrollerSprite>();
 
         /// <summary>
         /// List of currently visible sprites + some other sprites that are not visible yet but close
         /// </summary>
-        private HashSet<AbstractSprite> __toUpdateSpriteList = new HashSet<AbstractSprite>();
+        private HashSet<SideScrollerSprite> __toUpdateSpriteList = new HashSet<SideScrollerSprite>();
 
         /// <summary>
         /// List of all the sprites
         /// </summary>
-        private HashSet<AbstractSprite> __allSpriteList = new HashSet<AbstractSprite>();
+        private HashSet<SideScrollerSprite> __allSpriteList = new HashSet<SideScrollerSprite>();
         #endregion
 
         #region Public Methods
@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.sprites
         /// Add sprite to population
         /// </summary>
         /// <param name="sprite">sprite to add</param>
-        internal void Add(AbstractSprite sprite)
+        internal void Add(SideScrollerSprite sprite)
         {
             sprite.ParentSpriteCollection = this;
             RemoveSpatialHashing(sprite);
@@ -48,7 +48,7 @@ namespace AbrahmanAdventure.sprites
         /// Remove sprite from population
         /// </summary>
         /// <param name="sprite">sprite to remove</param>
-        internal void Remove(AbstractSprite sprite)
+        internal void Remove(SideScrollerSprite sprite)
         {
             RemoveSpatialHashing(sprite);
             sprite.ParentSpriteCollection = null;
@@ -58,7 +58,7 @@ namespace AbrahmanAdventure.sprites
         /// Do not use directly
         /// </summary>
         /// <param name="sprite">sprite</param>
-        internal void SetSpatialHashing(AbstractSprite sprite)
+        internal void SetSpatialHashing(SideScrollerSprite sprite)
         {
             int leftMostBucketId = GetLeftMostBucketId(sprite);
             int rightMostBucketId = GetRightMostBucketId(sprite);
@@ -80,7 +80,7 @@ namespace AbrahmanAdventure.sprites
         /// Do not use directly
         /// </summary>
         /// <param name="sprite">sprite</param>
-        internal void RemoveSpatialHashing(AbstractSprite sprite)
+        internal void RemoveSpatialHashing(SideScrollerSprite sprite)
         {
             foreach (Bucket bucket in sprite.ParentBucketList)
                 bucket.Remove(sprite);
@@ -94,7 +94,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="viewOffsetY">view offset on Y coordinates</param>
         /// <param name="toUpdateSpriteList">List of currently visible sprites + some other sprites that are not visible yet but close</param>
         /// <returns>List of currently visible sprites</returns>
-        internal HashSet<AbstractSprite> GetVisibleSpriteList(double viewOffsetX, double viewOffsetY, out HashSet<AbstractSprite> toUpdateSpriteList)
+        internal HashSet<SideScrollerSprite> GetVisibleSpriteList(double viewOffsetX, double viewOffsetY, out HashSet<SideScrollerSprite> toUpdateSpriteList)
         {
             int leftMostViewableBucketId = ((int)Math.Floor(viewOffsetX)) / Program.spatialHashingBucketWidth;
             int rightMostViewableBucketId = ((int)Math.Ceiling(viewOffsetX + Program.tileColumnCount)) / Program.spatialHashingBucketWidth;
@@ -106,7 +106,7 @@ namespace AbrahmanAdventure.sprites
             for (int bucketId = leftMostViewableBucketId; bucketId <= rightMostViewableBucketId; bucketId++)
             {
                 Bucket bucket = this[bucketId];
-                foreach (AbstractSprite sprite in bucket)
+                foreach (SideScrollerSprite sprite in bucket)
                 {
                     if (sprite.YPosition >= viewOffsetY && sprite.YPosition <= viewOffsetY + (double)Program.tileRowCount + sprite.Height + 2.0)
                         visibleSpriteList.Add(sprite);
@@ -126,7 +126,7 @@ namespace AbrahmanAdventure.sprites
                 for (int bucketId = broadLeftBound; bucketId < leftMostViewableBucketId; bucketId++)
                 {
                     Bucket bucket = this[bucketId];
-                    foreach (AbstractSprite sprite in bucket)
+                    foreach (SideScrollerSprite sprite in bucket)
                     {
                         toUpdateSpriteList.Add(sprite);
                     }
@@ -135,7 +135,7 @@ namespace AbrahmanAdventure.sprites
                 for (int bucketId = rightMostViewableBucketId + 1; bucketId <= broadRightBound; bucketId++)
                 {
                     Bucket bucket = this[bucketId];
-                    foreach (AbstractSprite sprite in bucket)
+                    foreach (SideScrollerSprite sprite in bucket)
                     {
                         toUpdateSpriteList.Add(sprite);
                     }
@@ -157,7 +157,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <returns>index of bucket at the leftmost for buckets that will contain sprite</returns>
-        private int GetLeftMostBucketId(AbstractSprite sprite)
+        private int GetLeftMostBucketId(SideScrollerSprite sprite)
         {
             return ((int)Math.Floor(sprite.XPosition - sprite.Width / 2.0)) / Program.spatialHashingBucketWidth;
         }
@@ -167,7 +167,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <returns>index of bucket at the rightmost for buckets that will contain sprite</returns>
-        private int GetRightMostBucketId(AbstractSprite sprite)
+        private int GetRightMostBucketId(SideScrollerSprite sprite)
         {
             return ((int)Math.Ceiling(sprite.XPosition + sprite.Width / 2.0)) / Program.spatialHashingBucketWidth;
         }
@@ -193,13 +193,13 @@ namespace AbrahmanAdventure.sprites
             }
         }
 
-        public HashSet<AbstractSprite> AllSpriteList
+        public HashSet<SideScrollerSprite> AllSpriteList
         {
             get
             {
                 __allSpriteList.Clear();
                 foreach (Bucket bucket in bucketList.Values)
-                    foreach (AbstractSprite sprite in bucket)
+                    foreach (SideScrollerSprite sprite in bucket)
                         __allSpriteList.Add(sprite);
                 return __allSpriteList;
             }

@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class FlyingSpriteManager
     {
-        internal void Update(IFlyingOnEqualDistance flyingSprite, AbstractSprite playerSprite, double timeDelta)
+        internal void Update(IFlyingOnEqualDistance flyingSprite, SideScrollerSprite playerSprite, double timeDelta)
         {
             #region We manage the behavior of a boo that stops when being looked at
             if (flyingSprite.IsOnlyMoveWhenNotBeingLookedAt)

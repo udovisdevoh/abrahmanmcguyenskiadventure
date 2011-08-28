@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.XPosition = lianaSprite.GetXPositionAt(yOnLiana) + lianaSprite.XPosition;
         }
 
-        internal void ForeceLeaveLianaRange(AbstractSprite sprite, LianaSprite lianaSprite)
+        internal void ForeceLeaveLianaRange(SideScrollerSprite sprite, LianaSprite lianaSprite)
         {
             if (sprite.IsTryingToWalkRight)
             {
@@ -68,7 +68,7 @@ namespace AbrahmanAdventure.physics
             ninjaRope = null;
         }
 
-        internal void TryThrowNinjaRope(PlayerSprite playerSprite, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void TryThrowNinjaRope(PlayerSprite playerSprite, Level level, SpritePopulation spritePopulation, HashSet<SideScrollerSprite> visibleSpriteList, Random random)
         {
             if (playerSprite.IsInWater)
                 return;

@@ -26,9 +26,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="sortedVisibleSpriteList">visible sprite sorted list</param>
         /// <param name="playerSpriteReference">player sprite</param>
-        internal void Update(PlayerSprite playerSprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
+        internal void Update(PlayerSprite playerSprite, Level level, double timeDelta, List<SideScrollerSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
         {
-            foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
+            foreach (SideScrollerSprite otherSprite in sortedVisibleSpriteList)
             {
                 if (playerSprite == otherSprite || !otherSprite.IsAlive || !otherSprite.IsVulnerableToPunch || !Physics.IsDetectCollisionPunchOrKick(playerSprite, otherSprite))
                     continue;

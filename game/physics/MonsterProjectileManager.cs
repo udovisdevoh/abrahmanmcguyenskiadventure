@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="playerSprite">player sprite</param>
-        internal void Update(IProjectileShooter iProjectileShooter, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSprite, double timeDelta, Random random)
+        internal void Update(IProjectileShooter iProjectileShooter, SpritePopulation spritePopulation, HashSet<SideScrollerSprite> visibleSpriteList, PlayerSprite playerSprite, double timeDelta, Random random)
         {
             if (Math.Abs(playerSprite.XPosition - iProjectileShooter.XPosition) > iProjectileShooter.MaxShootingDistance)
                 return;
@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.physics
             if (iProjectileShooter.ShootingCycle.IsFinished)
             {
                 SoundManager.PlayThrowSound();
-                AbstractSprite projectile = iProjectileShooter.GetProjectile(random);
+                SideScrollerSprite projectile = iProjectileShooter.GetProjectile(random);
 
                 projectile.JumpingCycle.Fire();
                 projectile.CurrentJumpAcceleration = projectile.StartingJumpAcceleration;
@@ -59,11 +59,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="iProjectileShooter">projectile shooter</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <returns>How many projectiles on screen that may be thrown by the projectile shooter</returns>
-        private int CountProjectileOfShooterOnScreen(IProjectileShooter iProjectileShooter, HashSet<AbstractSprite> visibleSpriteList)
+        private int CountProjectileOfShooterOnScreen(IProjectileShooter iProjectileShooter, HashSet<SideScrollerSprite> visibleSpriteList)
         {
             int count = 0;
             Type projectileType = iProjectileShooter.ProjectileType;
-            foreach (AbstractSprite sprite in visibleSpriteList)
+            foreach (SideScrollerSprite sprite in visibleSpriteList)
                 if (sprite.GetType() == projectileType)
                     count++;
 

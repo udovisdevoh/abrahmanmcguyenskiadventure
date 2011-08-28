@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">List of visible sprites</param>
         /// <returns>Highest ground below sprite</returns>
-        internal static IGround GetHighestVisibleIGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal static IGround GetHighestVisibleIGroundBelowSprite(SideScrollerSprite sprite, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
         {
             return GetHighestVisibleIGroundBelowSprite(sprite, level, visibleSpriteList, true);
         }
@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">List of visible sprites</param>
         /// <param name="isAllowSpriteGround">consider sprite IGrounds too (default: true)</param>
         /// <returns>Highest ground below sprite</returns>
-        internal static IGround GetHighestVisibleIGroundBelowSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList, bool isAllowSpriteGround)
+        internal static IGround GetHighestVisibleIGroundBelowSprite(SideScrollerSprite sprite, Level level, HashSet<SideScrollerSprite> visibleSpriteList, bool isAllowSpriteGround)
         {
             IGround highestIGroundBelowSprite = null;
             double highestHeight = -1;
@@ -57,7 +57,7 @@ namespace AbrahmanAdventure.physics
 
             if (isAllowSpriteGround)
             {
-                foreach (AbstractSprite otherSprite in visibleSpriteList)
+                foreach (SideScrollerSprite otherSprite in visibleSpriteList)
                 {
                     if (otherSprite.IsImpassable && otherSprite.IsAlive)
                     {
@@ -86,7 +86,7 @@ namespace AbrahmanAdventure.physics
             return highestIGroundBelowSprite;
         }
 
-        internal static IGround GetLowestVisibleIGroundAboveSprite(AbstractSprite sprite, Level level, HashSet<AbstractSprite> visibleSpriteList, bool isConsiderSpriteGround, bool isConsiderCeiling)
+        internal static IGround GetLowestVisibleIGroundAboveSprite(SideScrollerSprite sprite, Level level, HashSet<SideScrollerSprite> visibleSpriteList, bool isConsiderSpriteGround, bool isConsiderCeiling)
         {
             IGround lowestGroundAboveSprite = null;
             double lowestHeight = -1;
@@ -124,7 +124,7 @@ namespace AbrahmanAdventure.physics
 
             if (isConsiderSpriteGround)
             {
-                foreach (AbstractSprite otherSprite in visibleSpriteList)
+                foreach (SideScrollerSprite otherSprite in visibleSpriteList)
                 {
                     if (otherSprite.IsImpassable && otherSprite.IsAlive)
                     {
@@ -183,7 +183,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="level">level</param>
         /// <returns>lowest visible ground for current sprite, or null if nothing found</returns>
-        internal static Ground GetLowestVisibleGround(AbstractSprite sprite, Level level)
+        internal static Ground GetLowestVisibleGround(SideScrollerSprite sprite, Level level)
         {
             Ground lowestGround = null;
             double lowestHeight = double.NegativeInfinity;
@@ -265,7 +265,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <returns>frontmost ground having accessible walking height for sprite</returns>
-        internal static IGround GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal static IGround GetFrontmostGroundHavingAccessibleWalkingHeightForSprite(SideScrollerSprite sprite, IGround iGround, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
         {
             IGround frontMostGroundHavingAccessibleWalkingHeightForSprite = null;
             double groundHeight = iGround[sprite.XPosition];
@@ -286,7 +286,7 @@ namespace AbrahmanAdventure.physics
                 }
             }
 
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            foreach (SideScrollerSprite otherSprite in visibleSpriteList)
             {
                 if (otherSprite.IsImpassable && otherSprite.IsAlive)
                 {
@@ -316,7 +316,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <returns>highest ground having accessible walking height for sprite</returns>
-        internal static IGround GetHighestGroundHavingAccessibleWalkingHeightForSprite(AbstractSprite sprite, IGround iGround, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal static IGround GetHighestGroundHavingAccessibleWalkingHeightForSprite(SideScrollerSprite sprite, IGround iGround, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
         {
         	double groundHeight = iGround[sprite.XPosition];
             double highestHeight = double.PositiveInfinity;
@@ -333,7 +333,7 @@ namespace AbrahmanAdventure.physics
                 }
             }
 
-            foreach (AbstractSprite otherSprite in visibleSpriteList)
+            foreach (SideScrollerSprite otherSprite in visibleSpriteList)
             {
                 if (otherSprite.IsImpassable && otherSprite.IsAlive)
                 {
@@ -368,11 +368,11 @@ namespace AbrahmanAdventure.physics
         /// <returns>Whether topGround's height is stacked on bottomGround's height</returns>
         internal static bool IsSpriteIGroundHeightStackedOn(IGround topGround, IGround bottomGround)
         {
-            if (!(topGround is AbstractSprite) || !(bottomGround is AbstractSprite))
+            if (!(topGround is SideScrollerSprite) || !(bottomGround is SideScrollerSprite))
                 return false;
 
-            AbstractSprite topSprite = (AbstractSprite)topGround;
-            AbstractSprite bottomSprite = (AbstractSprite)bottomGround;
+            SideScrollerSprite topSprite = (SideScrollerSprite)topGround;
+            SideScrollerSprite bottomSprite = (SideScrollerSprite)bottomGround;
 
             return bottomSprite.TopBound - topSprite.YPosition < 0.1;
         }
