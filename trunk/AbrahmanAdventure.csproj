@@ -1075,6 +1075,11 @@
     <Content Include="assets\rendered\lawyer\lawyer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\map\Pyramid.png" />
+    <Content Include="assets\rendered\map\ResearchCenter.png" />
+    <Content Include="assets\rendered\map\StarPort.png" />
+    <Content Include="assets\rendered\map\Temple.png" />
+    <Content Include="assets\rendered\map\TempleOfReligions.png" />
     <Content Include="assets\rendered\mormon\MormonAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
