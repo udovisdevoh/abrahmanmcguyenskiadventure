@@ -13,9 +13,9 @@ meta-monde
 		{
 			icone de level, tenir compte de ces infos
 			{
-				si toit
-				si eau
-				si mur
+				si toit (icône différente)
+				si eau ?(doit être sur eau sur map)
+				si mur ?(doit être près d'une dénivellation prononcée)
 			}
 			
 			icone de place de bonus (voir Bonus "achetable" gratuitement)
