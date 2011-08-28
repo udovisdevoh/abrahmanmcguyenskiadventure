@@ -69,7 +69,7 @@ namespace AbrahmanAdventure.hud
             Assembly assembly = Assembly.GetExecutingAssembly();
             foreach (Type type in assembly.GetTypes())
             {
-                if (type.IsSubclassOf(typeof(SideScrollerSprite)) && !type.IsAbstract && !type.IsInterface)
+                if (type.IsSubclassOf(typeof(AbstractSprite)) && !type.IsAbstract && !type.IsInterface)
                 {
                     FieldInfo[] fieldList = type.GetFields(BindingFlags.NonPublic | BindingFlags.Static);
 

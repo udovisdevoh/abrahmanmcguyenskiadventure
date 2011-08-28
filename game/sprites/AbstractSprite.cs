@@ -5,10 +5,7 @@ using System.Text;
 
 namespace AbrahmanAdventure.sprites
 {
-    /// <summary>
-    /// Sprite viewed on map
-    /// </summary>
-    internal abstract class MapSprite : AbstractSprite
+    abstract class AbstractSprite
     {
     }
 }
