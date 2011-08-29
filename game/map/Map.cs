@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.map
 {
@@ -26,6 +27,11 @@ namespace AbrahmanAdventure.map
         /// Abrahman on map
         /// </summary>
         private AbrahmanOnMap abrahmanOnMap;
+
+        /// <summary>
+        /// Rendered surface of the map
+        /// </summary>
+        private Surface renderedSurface;
         #endregion
     }
 }
