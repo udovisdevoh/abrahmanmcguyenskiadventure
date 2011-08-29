@@ -12,6 +12,9 @@ namespace AbrahmanAdventure.map
     internal class BitMatrix
     {
         #region Constants
+        /// <summary>
+        /// Length of a word
+        /// </summary>
         private const int wordSize = 32;
         #endregion
 
