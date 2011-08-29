@@ -20,6 +20,11 @@ namespace AbrahmanAdventure.map
         private string name;
 
         /// <summary>
+        /// Bit matrix for collision
+        /// </summary>
+        private BitMatrix collisionBitMatrix;
+
+        /// <summary>
         /// List of map sprites
         /// </summary>
         private List<MapSprite> listMapSprite;
