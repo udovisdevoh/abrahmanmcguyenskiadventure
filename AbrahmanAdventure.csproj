@@ -276,6 +276,7 @@
     <Compile Include="game\level\viewer\squareBased\LevelViewerCacheSquareBased.cs" />
     <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
+    <Compile Include="game\map\Map.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\sprites\map\AbrahmanOnMap.cs" />
     <Compile Include="game\sprites\map\MapSprite.cs" />
