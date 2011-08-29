@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.audio.midi.generator;
 using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.map
@@ -32,6 +33,11 @@ namespace AbrahmanAdventure.map
         /// Rendered surface of the map
         /// </summary>
         private Surface renderedSurface;
+
+        /// <summary>
+        /// Song played on the map
+        /// </summary>
+        private IRiff song;
         #endregion
     }
 }
