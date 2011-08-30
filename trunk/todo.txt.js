@@ -1,5 +1,7 @@
 ?si pese down et jump, lâche liane et ne la repogne pas
 
+bug: si ninja puis new game: ninja et tiny
+
 meta-monde
 {
 	faire sprite d'abrahman sur la map (tous les grandeurs, powerups et avec castor)
