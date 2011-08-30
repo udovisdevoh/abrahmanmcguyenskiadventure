@@ -17,9 +17,11 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructor
-        public AbrahmanOnMap(AbrahmanOnMapSpriteType abrahmanOnMapSpriteType)
+        public AbrahmanOnMap(double xPosition, double yPosition, AbrahmanOnMapSpriteType abrahmanOnMapSpriteType)
         {
             this.abrahmanOnMapSpriteType = abrahmanOnMapSpriteType;
+            XPosition = xPosition;
+            YPosition = yPosition;
         }
         #endregion
     }
