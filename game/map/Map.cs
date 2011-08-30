@@ -71,7 +71,7 @@ namespace AbrahmanAdventure.map
         /// Create map
         /// </summary>
         /// <param name="random">random number generator</param>
-        public Map(Random random)
+        public Map(Random random, int skillLevelOfFirstLevel)
         {
             name = WordGenerator.GenerateName(random);
 
@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.map
             abrahmanOnMap = new AbrahmanOnMap(random.NextDouble() * width, random.NextDouble() * height, AbrahmanOnMapSpriteType.Tiny);
             listMapSprite.Add(abrahmanOnMap);
 
-            //AddLevelSprites(random);
+            AddLevelSprites(random, skillLevelOfFirstLevel);
         }
         #endregion
 
@@ -100,10 +100,12 @@ namespace AbrahmanAdventure.map
         /// <param name="random">random number generator</param>
         private void AddLevelSprites(Random random, int skillLevelOfFirstLevel)
         {
+            #warning Fix next line: skill level must be incremented in a non-linear way
+            int skillLevel = skillLevelOfFirstLevel;
             int levelCount = random.Next(4, 11);
             for (int i = 0; i < levelCount; i++)
             {
-                LevelSprite levelSprite = new LevelSprite(random.NextDouble() * width, random.NextDouble() * height, i, skillLevelOfFirstLevel, random);
+                LevelSprite levelSprite = new LevelSprite(random.NextDouble() * width, random.NextDouble() * height, i, skillLevel, random);
                 listMapSprite.Add(levelSprite);
             }
         }
