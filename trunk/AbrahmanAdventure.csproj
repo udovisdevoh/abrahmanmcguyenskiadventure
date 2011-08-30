@@ -280,6 +280,7 @@
     <Compile Include="game\map\Map.cs" />
     <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\sprites\map\AbrahmanOnMap.cs" />
+    <Compile Include="game\sprites\map\LevelSprite.cs" />
     <Compile Include="game\sprites\map\MapSprite.cs" />
     <Compile Include="game\sprites\sideScroller\powerups\BandanaSprite.cs" />
     <Compile Include="game\sprites\sideScroller\projectiles\IPlayerProjectile.cs" />
