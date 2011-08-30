@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using SdlDotNet.Graphics;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.audio;
 using AbrahmanAdventure.audio.midi.generator;
 using AbrahmanAdventure.textGenerator;
 
@@ -71,12 +73,14 @@ namespace AbrahmanAdventure.map
         /// Create map
         /// </summary>
         /// <param name="random">random number generator</param>
-        public Map(Random random, int skillLevelOfFirstLevel)
+        public Map(Random random, int skillLevelOfFirstLevel, PlayerSprite playerSprite)
         {
             name = WordGenerator.GenerateName(random);
 
             width = 20.0;
             height = 15.0;
+
+            song = SongGenerator.BuildSong(random.Next(), skillLevelOfFirstLevel, SongType.Map);
 
             int collisionBitMatrixWidth = (int)(width * 32);
             int collisionBitMatrixHeight = (int)(height * 32);
@@ -84,12 +88,19 @@ namespace AbrahmanAdventure.map
 
             widthInPixels = (int)(width * Program.tileSize);
             heightInPixels = (int)(height * Program.tileSize);
-            renderedSurface = new Surface(widthInPixels, heightInPixels, Program.bitDepth);
 
-            abrahmanOnMap = new AbrahmanOnMap(random.NextDouble() * width, random.NextDouble() * height, AbrahmanOnMapSpriteType.Tiny);
+            abrahmanOnMap = new AbrahmanOnMap(random.NextDouble() * (width - 2.0) + 1.0, random.NextDouble() * (height - 2.0) + 1.0, playerSprite);
             listMapSprite.Add(abrahmanOnMap);
 
+            listMapSprite = new List<MapSprite>();
             AddLevelSprites(random, skillLevelOfFirstLevel);
+
+            renderedSurface = new Surface(widthInPixels, heightInPixels, Program.bitDepth);
+            foreach (MapSprite mapSprite in listMapSprite)
+            {
+                Point positionOnScreen = new Point((int)(mapSprite.XPosition * Program.tileSize), (int)(mapSprite.YPosition * Program.tileSize));
+                renderedSurface.Blit(mapSprite.GetSurface(), positionOnScreen, renderedSurface.GetRectangle());
+            }
         }
         #endregion
 
@@ -100,14 +111,68 @@ namespace AbrahmanAdventure.map
         /// <param name="random">random number generator</param>
         private void AddLevelSprites(Random random, int skillLevelOfFirstLevel)
         {
-            #warning Fix next line: skill level must be incremented in a non-linear way
-            int skillLevel = skillLevelOfFirstLevel;
             int levelCount = random.Next(4, 11);
+            
+            int skillLevel = skillLevelOfFirstLevel;
+
+            double xPosition = -1;
+            double yPosition = -1;
+
             for (int i = 0; i < levelCount; i++)
             {
-                LevelSprite levelSprite = new LevelSprite(random.NextDouble() * width, random.NextDouble() * height, i, skillLevel, random);
+                bool isIncrementSkill = random.Next(0, skillLevel + 1) == 0;
+
+                if (isIncrementSkill)
+                    skillLevel++;
+
+                if (xPosition == -1 || yPosition == -1)
+                {
+                    xPosition = random.NextDouble() * (width - 2.0) + 1.0;
+                    yPosition = random.NextDouble() * (height - 2.0) + 1.0;
+                }
+                else
+                {
+                    double xLevelDistance, yLevelDistance;
+                    int tryCount = 10000;
+                    do
+                    {
+                        xLevelDistance = random.NextDouble() * 2.0 + 1.0;
+                        yLevelDistance = random.NextDouble() * 2.0 + 1.0;
+
+                        if (random.Next(0, 2) == 1)
+                            xLevelDistance = -xLevelDistance;
+
+                        if (random.Next(0, 2) == 1)
+                            yLevelDistance = -yLevelDistance;
+
+                        tryCount--;
+                    } while (tryCount > 0 && (isCloseFromAnotherLevel(xPosition + xLevelDistance, yPosition + yLevelDistance, listMapSprite, 1.5) || xPosition + xLevelDistance <= 1.0 || yPosition + yLevelDistance <= 1.0 || xPosition + xLevelDistance >= width - 1.0 || yPosition + yLevelDistance >= height - 1.0));
+
+                    xPosition += xLevelDistance;
+                    yPosition += yLevelDistance;
+                }
+
+                LevelSprite levelSprite = new LevelSprite(xPosition, yPosition, i, skillLevel, random);
                 listMapSprite.Add(levelSprite);
             }
+        }
+
+        /// <summary>
+        /// Whether level is close to another level
+        /// </summary>
+        /// <param name="xPosition">x Position</param>
+        /// <param name="yPosition">y Position</param>
+        /// <param name="listMapSprite">other levels</param>
+        /// <param name="maxDistance">max distance</param>
+        /// <returns>Whether level is close to another level</returns>
+        private bool isCloseFromAnotherLevel(double xPosition, double yPosition, List<MapSprite> listMapSprite, double maxDistance)
+        {
+            foreach (MapSprite otherMapSprite in listMapSprite)
+            {
+                if (Math.Sqrt(Math.Pow(xPosition - otherMapSprite.XPosition, 2.0) + Math.Pow(yPosition - otherMapSprite.YPosition, 2.0)) >= maxDistance)
+                    return true;
+            }
+            return false;
         }
         #endregion
     }
