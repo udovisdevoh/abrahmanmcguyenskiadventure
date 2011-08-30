@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SdlDotNet.Graphics;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -34,6 +35,14 @@ namespace AbrahmanAdventure.sprites
             get { return yPosition; }
             set { yPosition = value; }
         }
+        #endregion
+
+        #region Abstract Methods
+        /// <summary>
+        /// Get surface
+        /// </summary>
+        /// <returns>surface</returns>
+        internal abstract Surface GetSurface();
         #endregion
     }
 }
