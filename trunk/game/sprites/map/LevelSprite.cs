@@ -13,15 +13,19 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class LevelSprite : MapSprite
     {
-        #region Fields and parts
+        #region Instance fields and parts
         private int levelId;
 
         private int levelSeed;
 
         private int skillLevel;
 
-        private LevelIcon levelIcon;
+        private bool isFinished;
 
+        private LevelIcon levelIcon;
+        #endregion
+
+        #region Static fields and parts
         private static Surface pyramidSurface, starPortSurface, temple2012Surface, templeOfReligionsSurface;
         #endregion
 
@@ -34,6 +38,7 @@ namespace AbrahmanAdventure.sprites
             this.skillLevel = skillLevel;
             levelSeed = random.Next();
             levelIcon = (LevelIcon)random.Next(0, 4);
+            isFinished = false;
 
             if (pyramidSurface == null)
             {
@@ -59,6 +64,14 @@ namespace AbrahmanAdventure.sprites
                 default:
                     return templeOfReligionsSurface;
             }
+        }
+        #endregion
+
+        #region Properties
+        public bool IsFinished
+        {
+            get { return isFinished; }
+            set { isFinished = value; }
         }
         #endregion
     }
