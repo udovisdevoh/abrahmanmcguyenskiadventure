@@ -15,6 +15,13 @@ meta-monde
 
 	générer map
 	{
+		zones concentriques ou adjacentes
+		{
+			map avec zones concentriques ou adjacentes.
+			chaque level est une porte pour sortire d'une zone concentrique
+			si level fini, on peut marcher sur le sprite de level sans collision
+		}
+	
 		générer terrain avec perlin noise
 		{
 			eau, montagnes etc
