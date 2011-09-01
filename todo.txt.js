@@ -1,3 +1,10 @@
+arbres
+{
+	sur map et dans level
+	(générer arbre pour une planete)
+	si beaucoup d'arbres sur map, beaucoup d'arbres dans planete (peut être triangle waves sur un layer de parallax)
+}
+
 ?si pese down et jump, lâche liane et ne la repogne pas
 
 bug: si ninja puis new game: ninja et tiny
