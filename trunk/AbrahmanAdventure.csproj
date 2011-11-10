@@ -276,7 +276,6 @@
     <Compile Include="game\level\viewer\squareBased\LevelViewerCacheSquareBased.cs" />
     <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
-    <Compile Include="game\sprites\AbstractSprite.cs" />
     <Compile Include="game\sprites\sideScroller\powerups\BandanaSprite.cs" />
     <Compile Include="game\sprites\sideScroller\projectiles\IPlayerProjectile.cs" />
     <Compile Include="game\sprites\sideScroller\projectiles\ShurikenSprite.cs" />
@@ -312,7 +311,7 @@
     <Compile Include="game\physics\WaterManager.cs" />
     <Compile Include="game\Program.cs" />
     <Compile Include="game\level\background\Sky.cs" />
-    <Compile Include="game\sprites\sideScroller\SideScrollerSprite.cs" />
+    <Compile Include="game\sprites\sideScroller\AbstractSprite.cs" />
     <Compile Include="game\spatialHashing\Bucket.cs" />
     <Compile Include="game\sprites\sideScroller\effects\ExplosionSprite.cs" />
     <Compile Include="game\sprites\sideScroller\ICarriable.cs" />

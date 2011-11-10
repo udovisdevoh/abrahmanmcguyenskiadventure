@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.physics
 
             if (monster.SpontaneousTransformationCycle.IsFinished)
             {
-                SideScrollerSprite newSprite = monster.GetConverstionSprite(random);
+                AbstractSprite newSprite = monster.GetConverstionSprite(random);
                 if (newSprite == null)
                     return;
 

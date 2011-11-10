@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.physics
 {
     internal class WaterManager
     {
-        internal void Update(SideScrollerSprite spriteToUpdate, WaterInfo waterInfo)
+        internal void Update(AbstractSprite spriteToUpdate, WaterInfo waterInfo)
         {
             if (waterInfo == null)
             {

@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a player
     /// </summary>
-    internal class PlayerSprite : SideScrollerSprite
+    internal class PlayerSprite : AbstractSprite
     {
         #region Fields and parts
         private static Surface walking1NinjaLeftSurface;

@@ -115,7 +115,7 @@ namespace AbrahmanAdventure.sprites
                                 isCouldAddBlock = true;
                                 totalBlockAdded++;
 
-                                foreach (SideScrollerSprite otherSprite in spritePopulation.AllSpriteList)
+                                foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
                                 {
                                     if (otherSprite is VortexSprite && Physics.IsDetectCollision(blockSprite, otherSprite))
                                     {

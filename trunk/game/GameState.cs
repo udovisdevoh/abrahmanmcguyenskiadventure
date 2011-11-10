@@ -292,7 +292,7 @@ namespace AbrahmanAdventure
             foreach (int seed in listWarpBackSeed)
             {
                 bool isFoundIndenticalVortex = false;
-                foreach (SideScrollerSprite sprite in spritePopulation.AllSpriteList)
+                foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
                     if (sprite is VortexSprite && ((VortexSprite)sprite).DestinationSeed == seed)
                         isFoundIndenticalVortex = true;
                 if (!isFoundIndenticalVortex)
@@ -311,7 +311,7 @@ namespace AbrahmanAdventure
         /// <param name="seed">seed</param>
         internal void MovePlayerToVortexGoingToSeed(int seed)
         {
-            foreach (SideScrollerSprite sprite in spritePopulation.AllSpriteList)
+            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
                 if (sprite is VortexSprite && ((VortexSprite)sprite).DestinationSeed == seed)
                 {
                     playerSprite.XPosition = sprite.XPosition;

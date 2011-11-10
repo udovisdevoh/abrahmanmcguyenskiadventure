@@ -17,7 +17,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="spriteToUpdate">sprite</param>
         /// <param name="ceiling">ceiling</param>
-        internal void Update(SideScrollerSprite sprite, Ground ceiling)
+        internal void Update(AbstractSprite sprite, Ground ceiling)
         {
             double ceilingHeight = ceiling[sprite.XPosition];
             if (sprite.TopBound < ceilingHeight)

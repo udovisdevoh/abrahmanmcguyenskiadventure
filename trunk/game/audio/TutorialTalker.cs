@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.audio
         #endregion
 
         #region Internal Methods
-        internal static void TryTalkAbout(SideScrollerSprite sprite)
+        internal static void TryTalkAbout(AbstractSprite sprite)
         {
             if (speechSynthesizer.State != SynthesizerState.Ready)
                 return;

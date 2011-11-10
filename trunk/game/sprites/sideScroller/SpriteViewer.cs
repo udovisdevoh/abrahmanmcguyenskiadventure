@@ -33,9 +33,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="isOddFrame">whether frame is odd</param>
         /// <param name="playerSprite">player's sprite</param>
         /// <param name="visibleSpriteList">list of currently visible sprites</param>
-        internal void Update(double viewOffsetX, double viewOffsetY, List<SideScrollerSprite> visibleSpriteList, bool isOddFrame)
+        internal void Update(double viewOffsetX, double viewOffsetY, List<AbstractSprite> visibleSpriteList, bool isOddFrame)
         {
-            foreach (SideScrollerSprite sprite in visibleSpriteList)
+            foreach (AbstractSprite sprite in visibleSpriteList)
                 if (!(sprite is PlayerSprite) || ((PlayerSprite)sprite).DestinationPipe == null)
                     ShowSprite(sprite, viewOffsetX, viewOffsetY, isOddFrame);
         }
@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="viewOffsetX">view offset X</param>
         /// <param name="viewOffsetY">view offset Y</param>
         /// <param name="isOddFrame">whether frame is odd</param>
-        private void ShowSprite(SideScrollerSprite sprite, double viewOffsetX, double viewOffsetY, bool isOddFrame)
+        private void ShowSprite(AbstractSprite sprite, double viewOffsetX, double viewOffsetY, bool isOddFrame)
         {
             if (isOddFrame)
             {

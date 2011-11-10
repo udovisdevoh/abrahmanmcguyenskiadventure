@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a sprite
     /// </summary>
-    internal abstract class SideScrollerSprite : AbstractSprite, IGround,  IComparable<SideScrollerSprite>
+    internal abstract class AbstractSprite : IGround,  IComparable<AbstractSprite>
     {
         #region Fields and parts
         /// <summary>
@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Sprite carried by this sprite
         /// </summary>
-        private SideScrollerSprite carriedSprite;
+        private AbstractSprite carriedSprite;
 
         /// <summary>
         /// Whether sprite is currently tiny
@@ -307,7 +307,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="xPosition">x position</param>
         /// <param name="yPosition">y position</param>
-        public SideScrollerSprite(double xPosition, double yPosition, Random random)
+        public AbstractSprite(double xPosition, double yPosition, Random random)
         {
             maxHealth = BuildMaxHealth();
             this.xPosition = xPosition;
@@ -342,6 +342,26 @@ namespace AbrahmanAdventure.sprites
                 Bounciness = 0.0;
                 IsImpassable = true;
             }
+        }
+        #endregion
+
+        #region Protected Methods
+        /// <summary>
+        /// Build sprite's surface from file name
+        /// </summary>
+        /// <param name="fileName">file name</param>
+        /// <returns>sprite's surface</returns>
+        protected Surface BuildSpriteSurface(string fileName)
+        {
+            Surface spriteSurface = new Surface(fileName);
+
+            if (Program.screenHeight != 480)
+            {
+                double zoom = (double)Program.screenHeight / 480.0;
+                spriteSurface = spriteSurface.CreateScaledSurface(zoom);
+            }
+
+            return spriteSurface;
         }
         #endregion
 
@@ -487,7 +507,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Sprite carried by this sprite
         /// </summary>
-        public SideScrollerSprite CarriedSprite
+        public AbstractSprite CarriedSprite
         {
             get { return carriedSprite; }
             set { carriedSprite = value; }
@@ -1283,7 +1303,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region IComparable<AbstractSprite> Membres
-        public int CompareTo(SideScrollerSprite other)
+        public int CompareTo(AbstractSprite other)
         {
             return (int)(sortingIndex * 100.0 - other.sortingIndex * 100.0);
         }

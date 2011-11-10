@@ -180,7 +180,7 @@ namespace AbrahmanAdventure.hud
                 }
                 else
                 {
-                    SideScrollerSprite spriteFromGuide = SpriteGuide.SpriteList[currentMenuPositionX - 1];
+                    AbstractSprite spriteFromGuide = SpriteGuide.SpriteList[currentMenuPositionX - 1];
                     System.Drawing.Color color = (spriteFromGuide is MonsterSprite && (spriteFromGuide is IExplodable || (((MonsterSprite)spriteFromGuide).IsCanDoDamageToPlayerWhenTouched && ((MonsterSprite)spriteFromGuide).AttackStrengthCollision > 0))) ? System.Drawing.Color.DarkRed : System.Drawing.Color.Green;
                     double xOffsetSprite, yOffsetSprite;
                     Surface spriteSurface = spriteFromGuide.GetCurrentSurface(out xOffsetSprite, out yOffsetSprite);

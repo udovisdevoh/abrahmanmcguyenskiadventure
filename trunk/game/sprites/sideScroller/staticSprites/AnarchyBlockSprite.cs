@@ -195,7 +195,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Internal Methods
-        internal SideScrollerSprite GetPowerUpSprite(PlayerSprite playerSprite, Random random)
+        internal AbstractSprite GetPowerUpSprite(PlayerSprite playerSprite, Random random)
         {
             switch (BlockContent)
             {

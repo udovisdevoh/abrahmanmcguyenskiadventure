@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// List of sprites sorted by distance to last used sprite
         /// </summary>
-        private static List<SideScrollerSprite> __sortedListSprite = new List<SideScrollerSprite>();
+        private static List<AbstractSprite> __sortedListSprite = new List<AbstractSprite>();
         #endregion
 
         #region Internal Methods
@@ -25,11 +25,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="unsortedSpriteList">unsorted list of sprites</param>
         /// <returns>sorted (by distance to sprite) list of sprites</returns>
-        internal static List<SideScrollerSprite> SortByDistanceToSprite(SideScrollerSprite sprite, HashSet<SideScrollerSprite> unsortedSpriteList)
+        internal static List<AbstractSprite> SortByDistanceToSprite(AbstractSprite sprite, HashSet<AbstractSprite> unsortedSpriteList)
         {
             __sortedListSprite.Clear();
 
-            foreach (SideScrollerSprite otherSprite in unsortedSpriteList)
+            foreach (AbstractSprite otherSprite in unsortedSpriteList)
             {
                 otherSprite.SortingIndex = (int)(GetHorizontalDistance(sprite, otherSprite) * 32.0);
                 __sortedListSprite.Add(otherSprite);
@@ -44,11 +44,11 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="unsortedSpriteList">unsorted list of sprites</param>
         /// <returns>sorted (by ZIndex) list of sprites</returns>
-        internal static List<SideScrollerSprite> SortByZIndex(HashSet<SideScrollerSprite> unsortedSpriteList)
+        internal static List<AbstractSprite> SortByZIndex(HashSet<AbstractSprite> unsortedSpriteList)
         {
             __sortedListSprite.Clear();
 
-            foreach (SideScrollerSprite otherSprite in unsortedSpriteList)
+            foreach (AbstractSprite otherSprite in unsortedSpriteList)
             {
                 otherSprite.SortingIndex = otherSprite.ZIndex;
                 __sortedListSprite.Add(otherSprite);
@@ -64,7 +64,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite 1</param>
         /// <param name="otherSprite">sprite 2</param>
         /// <returns>Exact distance between sprites</returns>
-        internal static int GetExactDistancePixel(SideScrollerSprite sprite, SideScrollerSprite otherSprite)
+        internal static int GetExactDistancePixel(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return (int)(Math.Sqrt(Math.Pow(sprite.XPosition - otherSprite.XPosition, 2.0) + Math.Pow(sprite.YPosition - otherSprite.YPosition, 2.0)) * 32.0);
         }
@@ -75,19 +75,19 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite 1</param>
         /// <param name="otherSprite">sprite 2</param>
         /// <returns>Exact distance between sprites</returns>
-        internal static double GetExactDistanceTile(SideScrollerSprite sprite, SideScrollerSprite otherSprite)
+        internal static double GetExactDistanceTile(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Sqrt(Math.Pow(sprite.XPosition - otherSprite.XPosition, 2.0) + Math.Pow(sprite.YPosition - otherSprite.YPosition, 2.0));
         }
         #endregion
 
         #region Private Methods
-        private static double GetHorizontalDistance(SideScrollerSprite sprite, SideScrollerSprite otherSprite)
+        private static double GetHorizontalDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Abs(sprite.XPosition - otherSprite.XPosition);
         }
 
-        private static double GetApproximateDistance(SideScrollerSprite sprite, SideScrollerSprite otherSprite)
+        private static double GetApproximateDistance(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             return Math.Max(Math.Abs(sprite.XPosition - otherSprite.XPosition), Math.Abs(sprite.YPosition - otherSprite.YPosition));
         }

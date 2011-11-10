@@ -231,7 +231,7 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
-        public override SideScrollerSprite GetConverstionSprite(Random random)
+        public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;
         }

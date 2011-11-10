@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(PlayerSprite playerSprite, Level level, ILevelViewer levelViewer, HashSet<SideScrollerSprite> visibleSpriteList)
+        internal void Update(PlayerSprite playerSprite, Level level, ILevelViewer levelViewer, HashSet<AbstractSprite> visibleSpriteList)
         {
             if (!(playerSprite.IGround is Ground))
                 return;

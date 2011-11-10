@@ -23,7 +23,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(SideScrollerSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<SideScrollerSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
+        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
         {
             if (sprite.YPosition > Program.totalHeightTileCount / 2 + 3)
                 sprite.IsAlive = false;
@@ -74,7 +74,7 @@ namespace AbrahmanAdventure.physics
                     gameState.IsPlayerReady = false;
 
                     #region We remove powerups after player dies
-                    foreach (SideScrollerSprite otherSprite in spritePopulation.AllSpriteList)
+                    foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
                     {
                         if (otherSprite is AnarchyBlockSprite)
                             ((AnarchyBlockSprite)otherSprite).IsFinalized = false;

@@ -15,6 +15,6 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="otherSprite">other sprite</param>
         /// <returns>Whether Math sprite is in collision with other sprite</returns>
-        bool IsDetectCollision(SideScrollerSprite otherSprite);
+        bool IsDetectCollision(AbstractSprite otherSprite);
     }
 }

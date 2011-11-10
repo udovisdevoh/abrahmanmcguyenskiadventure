@@ -278,7 +278,7 @@ namespace AbrahmanAdventure.sprites
         /// <returns>Whether pipe sprite is in acceptable distance to other sprites</returns>
         private static bool IsInAcceptableDistanceToOtherSprites(PipeSprite pipeSprite, SpritePopulation spritePopulation)
         {
-            foreach (SideScrollerSprite otherSprite in spritePopulation.AllSpriteList)
+            foreach (AbstractSprite otherSprite in spritePopulation.AllSpriteList)
             {
                 if (pipeSprite == otherSprite)
                     continue;
@@ -310,7 +310,7 @@ namespace AbrahmanAdventure.sprites
         private static List<PipeSprite> GetPipeList(SpritePopulation spritePopulation)
         {
             List<PipeSprite> pipeList = new List<PipeSprite>();
-            foreach (SideScrollerSprite sprite in spritePopulation.AllSpriteList)
+            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
                 if (sprite is PipeSprite)
                     pipeList.Add((PipeSprite)sprite);
             return pipeList;

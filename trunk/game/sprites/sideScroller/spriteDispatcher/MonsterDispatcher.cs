@@ -16,7 +16,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// All possible monster types
         /// </summary>
-        private static List<SideScrollerSprite> allPossibleDispatchableMonsterTypes;
+        private static List<AbstractSprite> allPossibleDispatchableMonsterTypes;
 
         /// <summary>
         /// To be used temporarly without recreating the list
@@ -31,7 +31,7 @@ namespace AbrahmanAdventure.sprites
         static MonsterDispatcher()
         {
             Random random = new Random();
-            allPossibleDispatchableMonsterTypes = new List<SideScrollerSprite>();
+            allPossibleDispatchableMonsterTypes = new List<AbstractSprite>();
             allPossibleDispatchableMonsterTypes.Add(new BlobSprite(0,0, random));
             allPossibleDispatchableMonsterTypes.Add(new DoctorSprite(0,0,random));
             allPossibleDispatchableMonsterTypes.Add(new FarmerSprite(0, 0, random));
@@ -200,11 +200,11 @@ namespace AbrahmanAdventure.sprites
         /// <param name="isUseSubjectiveProbability">whether we use subjective probability</param>
         /// <returns>Random sprite (having dispatch ratio lower than maxDispatchRatioPerMonster) from list
         /// Or null if nothing could be found</returns>
-        private static MonsterSprite GetRandomSpriteFrom(IEnumerable<SideScrollerSprite> listToLookInto, double maxDispatchRatioPerMonster, bool isUseSubjectiveProbability, Random random)
+        private static MonsterSprite GetRandomSpriteFrom(IEnumerable<AbstractSprite> listToLookInto, double maxDispatchRatioPerMonster, bool isUseSubjectiveProbability, Random random)
         {
             __temporarySpriteList.Clear();
 
-            foreach (SideScrollerSprite sprite in listToLookInto)
+            foreach (AbstractSprite sprite in listToLookInto)
             {
                 if (sprite is MonsterSprite && (!Program.isLimitMonsterSkillBySkillLevel || ((MonsterSprite)sprite).SkillDispatchRatio <= maxDispatchRatioPerMonster) && IsContainType(sprite.GetType(), allPossibleDispatchableMonsterTypes))
                 {
@@ -241,9 +241,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="type">type</param>
         /// <param name="allPossibleDispatchableMonsterTypes">list</param>
         /// <returns>Whether list contains provided type</returns>
-        private static bool IsContainType(Type type, List<SideScrollerSprite> allPossibleDispatchableMonsterTypes)
+        private static bool IsContainType(Type type, List<AbstractSprite> allPossibleDispatchableMonsterTypes)
         {
-            foreach (SideScrollerSprite otherSprite in allPossibleDispatchableMonsterTypes)
+            foreach (AbstractSprite otherSprite in allPossibleDispatchableMonsterTypes)
                 if (otherSprite.GetType() == type)
                     return true;
             return false;

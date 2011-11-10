@@ -37,7 +37,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="anarchyBlockSprite">block</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void UpdateBlockCollision(SideScrollerSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<SideScrollerSprite> visibleSpriteList, PlayerSprite playerSpriteReference, Random random)
+        internal void UpdateBlockCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, Random random)
         {
             double angleFromSpritePreviousPositionToBlock = Physics.GetAngleDegree(sprite.XPositionPrevious, sprite.TopBoundPrevious + block.Height, block.XPosition, block.YPosition);
             sprite.IsCurrentlyInFreeFallX = false;
@@ -61,9 +61,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="level">level</param>
         /// <param name="random">random number generator</param>
-        internal void TryOpenOrBreakBlock(SideScrollerSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<SideScrollerSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
+        internal void TryOpenOrBreakBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
         {
-            SideScrollerSprite powerUpSprite = null;
+            AbstractSprite powerUpSprite = null;
             if (block is AnarchyBlockSprite && !((AnarchyBlockSprite)block).IsFinalized)
             {
                 ((AnarchyBlockSprite)block).BumpCycle.Fire();
@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.physics
                     powerUpSprite.YPosition = powerUpSprite.YPosition;//We reset previous position
                 }
 
-                foreach (SideScrollerSprite spriteStackedOnBlock in visibleSpriteList)
+                foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
                     if (IsSpriteStackedOn(spriteStackedOnBlock, block, powerUpSprite))
                         UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
             }
@@ -96,7 +96,7 @@ namespace AbrahmanAdventure.physics
                     if (block is IBumpable)
                         ((IBumpable)block).BumpCycle.Fire();
 
-                    foreach (SideScrollerSprite spriteStackedOnBlock in visibleSpriteList)
+                    foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
                         if (IsSpriteStackedOn(spriteStackedOnBlock, block, powerUpSprite))
                             UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
                 }
@@ -120,7 +120,7 @@ namespace AbrahmanAdventure.physics
             }
         }
 
-        private bool IsSpriteStackedOn(SideScrollerSprite sprite, StaticSprite block, SideScrollerSprite powerUpSprite)
+        private bool IsSpriteStackedOn(AbstractSprite sprite, StaticSprite block, AbstractSprite powerUpSprite)
         {
             if (powerUpSprite == sprite || !(sprite is MonsterSprite))
                 return false;
@@ -143,7 +143,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of currently visible sprites</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpUnderBlock(SideScrollerSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<SideScrollerSprite> visibleSpriteList, PlayerSprite playerSpriteReference, Random random)
+        private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, Random random)
         {
             if (sprite.YPosition < block.YPosition)
                 return;
@@ -179,11 +179,11 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="spritePopulation">all the sprites in the level</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpUnderBlockReachSpriteStackedOnBlock(SideScrollerSprite jumper, MonsterSprite monsterSprite, Level level, HashSet<SideScrollerSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        private void UpdateJumpUnderBlockReachSpriteStackedOnBlock(AbstractSprite jumper, MonsterSprite monsterSprite, Level level, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
             if (monsterSprite.IsEnableJumpOnConversion)
             {
-                SideScrollerSprite jumpedOnConvertedSprite = monsterSprite.GetConverstionSprite(random);
+                AbstractSprite jumpedOnConvertedSprite = monsterSprite.GetConverstionSprite(random);
                 if (jumpedOnConvertedSprite != null)
                     spriteConverter.PerformSpriteConversion(jumper, monsterSprite, jumpedOnConvertedSprite, spritePopulation);
             }
@@ -208,7 +208,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="random">random number generator</param>
-        private void ManageBlockSideCollision(SideScrollerSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<SideScrollerSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
+        private void ManageBlockSideCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
         {
             //Side collision
             if (sprite.XPosition < block.XPosition)
@@ -217,7 +217,7 @@ namespace AbrahmanAdventure.physics
                 sprite.LeftBoundKeepPrevious = block.RightBound;// + 0.1;
             sprite.CurrentWalkingSpeed = 0;
 
-            if (sprite.IGround is SideScrollerSprite)
+            if (sprite.IGround is AbstractSprite)
                 sprite.IGround = null;
 
             if (sprite is HelmetSprite)
@@ -230,7 +230,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="block">block</param>
         /// <returns>If sufficient X collision, sprite can jump under block to open or break it</returns>
-        private bool IsSufficientXCollision(SideScrollerSprite sprite, StaticSprite block)
+        private bool IsSufficientXCollision(AbstractSprite sprite, StaticSprite block)
         {
             bool sufficientCollision = sprite.RightBound > block.LeftBound + sufficientXCollisionPadding && sprite.LeftBound < block.LeftBound;
             sufficientCollision |= sprite.LeftBound < block.RightBound - sufficientXCollisionPadding && sprite.RightBound > block.RightBound;

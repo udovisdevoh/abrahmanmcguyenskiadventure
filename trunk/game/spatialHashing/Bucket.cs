@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a spatial hashing bucket
     /// </summary>
-    internal class Bucket : HashSet<SideScrollerSprite>
+    internal class Bucket : HashSet<AbstractSprite>
     {
     }
 }

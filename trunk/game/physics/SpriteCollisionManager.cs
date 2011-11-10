@@ -54,7 +54,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameMetaState">game meta state</param>
         /// <param name="gameState">game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(SideScrollerSprite sprite, PlayerSprite playerSpriteReference, Level level, double timeDelta, HashSet<SideScrollerSprite> visibleSpriteList, List<SideScrollerSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
+        internal void Update(AbstractSprite sprite, PlayerSprite playerSpriteReference, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, List<AbstractSprite> sortedVisibleSpriteList, SpritePopulation spritePopulation, Program program, GameMetaState gameMetaState, GameState gameState, Random random)
         {
             #region We unassign sprite.IClimbingOn if needed (it will be re-assigned later if there is a collision detection with vine or liana)
             IClimbable wasClimbingOnAtPreviousFrame = sprite.IClimbingOn;
@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.physics
                 sprite.IClimbingOn = null;
             #endregion
 
-            foreach (SideScrollerSprite otherSprite in sortedVisibleSpriteList)
+            foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
                 if (sprite == otherSprite || !Physics.IsDetectCollision(sprite, otherSprite) || otherSprite == sprite.CarriedSprite)
                     continue;
@@ -261,7 +261,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpOnSprite(SideScrollerSprite sprite, SideScrollerSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
+        private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
         {
             if (Physics.IsSpriteInDeadZone(otherSprite, sprite))
                 return;
@@ -302,7 +302,7 @@ namespace AbrahmanAdventure.physics
 
                             if (((MonsterSprite)otherSprite).IsEnableJumpOnConversion && (!(sprite is PlayerSprite) || !((PlayerSprite)sprite).InvincibilityCycle.IsFired)) //If sprite is converted into another sprite when getting jumped on
                             {
-                                SideScrollerSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
+                                AbstractSprite jumpedOnConvertedSprite = ((MonsterSprite)otherSprite).GetConverstionSprite(random);
                                 if (jumpedOnConvertedSprite != null)
                                     spriteConverter.PerformSpriteConversion(sprite, otherSprite, jumpedOnConvertedSprite, spritePopulation);                                
                             }
@@ -339,7 +339,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">kicked</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        public void KickOrStopHelmet(SideScrollerSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        public void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
         {
             if (monsterSprite.KickedHelmetCycle.IsFired)
                 return;
