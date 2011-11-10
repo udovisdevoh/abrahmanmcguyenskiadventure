@@ -11,7 +11,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a monster
     /// </summary>
-    abstract class MonsterSprite : SideScrollerSprite
+    abstract class MonsterSprite : AbstractSprite
     {
         #region Fields and parts
         /// <summary>
@@ -439,7 +439,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <returns>Sprite when converted to another sprite (default: null)</returns>
-        public abstract SideScrollerSprite GetConverstionSprite(Random random);
+        public abstract AbstractSprite GetConverstionSprite(Random random);
         #endregion
 
         #region Override methods

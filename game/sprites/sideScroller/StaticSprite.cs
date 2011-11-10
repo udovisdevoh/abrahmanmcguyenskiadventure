@@ -8,7 +8,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Sprite not moving, not affected by gravity
     /// </summary>
-    abstract class StaticSprite : SideScrollerSprite
+    abstract class StaticSprite : AbstractSprite
     {
         #region Fields and parts
         /// <summary>

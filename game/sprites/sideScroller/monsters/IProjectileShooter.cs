@@ -15,7 +15,7 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <param name="random">random</param>
         /// <returns>Get projectile</returns>
-        SideScrollerSprite GetProjectile(Random random);
+        AbstractSprite GetProjectile(Random random);
 
         /// <summary>
         /// Shooting cycle

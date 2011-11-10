@@ -139,7 +139,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="random">random number generator</param>
-        internal void Update(SideScrollerSprite spriteToUpdate, PlayerSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<SideScrollerSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, PlayerSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
             waterManager.Update(spriteToUpdate, gameState.WaterInfo);
 
@@ -159,7 +159,7 @@ namespace AbrahmanAdventure.physics
 
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
             {
-                List<SideScrollerSprite> sortedVisibleSpriteList = SpriteDistanceSorter.SortByDistanceToSprite(spriteToUpdate, visibleSpriteList);
+                List<AbstractSprite> sortedVisibleSpriteList = SpriteDistanceSorter.SortByDistanceToSprite(spriteToUpdate, visibleSpriteList);
                 spriteCollisionManager.Update(spriteToUpdate, playerSpriteReference, level, timeDelta, visibleSpriteList, sortedVisibleSpriteList, spritePopulation, program, gameMetaState, gameState, random);
 
                 if (spriteToUpdate is PlayerSprite)
@@ -272,7 +272,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="xDesiredPosition">desired x position for sprite</param>
         /// <param name="level">level to look into</param>
         /// <returns>Whether collision was detected</returns>
-        internal static bool IsDetectCollision(SideScrollerSprite sprite, double xDesiredPosition, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
+        internal static bool IsDetectCollision(AbstractSprite sprite, double xDesiredPosition, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             IGround referenceGround;
 
@@ -311,7 +311,7 @@ namespace AbrahmanAdventure.physics
             double yDesiredPosition = sprite.YPosition;
             if (sprite.IGround is Ground)
                 yDesiredPosition = sprite.IGround[xDesiredPosition];
-            foreach (SideScrollerSprite otherSprite in visibleSpriteList)
+            foreach (AbstractSprite otherSprite in visibleSpriteList)
                 if (sprite != otherSprite && otherSprite.IsImpassable)
                     if (Physics.IsDetectCollision(sprite, xDesiredPosition, yDesiredPosition, 0.46, otherSprite))
                         return true;
@@ -341,9 +341,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="ground">ground</param>
         /// <param name="walkingDistance">walking distance (could be negative)</param>
         /// <returns>ratio of a slope at sprite's position going in sprite's current direction. 0: flat, 1: 45% going down, -1: -45% going up</returns>
-        internal static double GetSlopeRatio(SideScrollerSprite sprite, IGround ground, double walkingDistance, bool isRight)
+        internal static double GetSlopeRatio(AbstractSprite sprite, IGround ground, double walkingDistance, bool isRight)
         {
-            if (ground is SideScrollerSprite)
+            if (ground is AbstractSprite)
                 return 0.0;
 
             if (isRight)
@@ -358,7 +358,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite1">sprite 1</param>
         /// <param name="sprite2">sprite 2</param>
         /// <returns>Whether sprites are in collision</returns>
-        internal static bool IsDetectCollision(SideScrollerSprite sprite1, SideScrollerSprite sprite2)
+        internal static bool IsDetectCollision(AbstractSprite sprite1, AbstractSprite sprite2)
         {
             if (sprite1 is IMathSprite)
                 return ((IMathSprite)sprite1).IsDetectCollision(sprite2);
@@ -394,7 +394,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite1WidthMultiplicator">virtual width multiplicator for sprite 1 (we simulate a different width</param>
         /// <param name="sprite2">sprite 2</param>
         /// <returns>Whether there is collision from sprite with virtual position to other sprite with real position</returns>
-        internal static bool IsDetectCollision(SideScrollerSprite sprite1, double virtualX, double virtualY, double sprite1WidthMultiplicator, SideScrollerSprite sprite2)
+        internal static bool IsDetectCollision(AbstractSprite sprite1, double virtualX, double virtualY, double sprite1WidthMultiplicator, AbstractSprite sprite2)
         {
             double sprite1RightBound = virtualX + sprite1.Width / 2.0 * sprite1WidthMultiplicator;
             double sprite1LeftBound = virtualX - sprite1.Width / 2.0 * sprite1WidthMultiplicator;
@@ -427,7 +427,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite1">sprite 1</param>
         /// <param name="sprite2">sprite 2</param>
         /// <returns>Whether sprite 1 is punching or kicking sprite 2</returns>
-        internal static bool IsDetectCollisionPunchOrKick(PlayerSprite playerSprite, SideScrollerSprite sprite2)
+        internal static bool IsDetectCollisionPunchOrKick(PlayerSprite playerSprite, AbstractSprite sprite2)
         {
             bool isHorizontalCollision, isVerticalCollision;
 
@@ -499,7 +499,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="otherSprite">other sprite</param>
         /// <returns>Whether sprite is in dead zone of other spirte (for instance, a raptor's dead zone (where raptor can't hit)</returns>
-        internal static bool IsSpriteInDeadZone(SideScrollerSprite sprite, SideScrollerSprite otherSprite)
+        internal static bool IsSpriteInDeadZone(AbstractSprite sprite, AbstractSprite otherSprite)
         {
             if (!(otherSprite is MonsterSprite))
                 return false;

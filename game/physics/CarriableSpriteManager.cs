@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="program">program</param>
         /// <param name="timeDelta">time delta</param>
-        internal void UpdateCarriedSprite(SideScrollerSprite carrier, SideScrollerSprite carriedItem, Level level, Program program, double timeDelta)
+        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, double timeDelta)
         {
             if (!carriedItem.IsAlive)
             {

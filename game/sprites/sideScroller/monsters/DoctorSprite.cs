@@ -166,7 +166,7 @@ namespace AbrahmanAdventure.sprites
             return 0.0;
         }
 
-        public override SideScrollerSprite GetConverstionSprite(Random random)
+        public override AbstractSprite GetConverstionSprite(Random random)
         {
             return null;
         }
@@ -302,7 +302,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region IProjectileShooter Members
-        public SideScrollerSprite GetProjectile(Random random)
+        public AbstractSprite GetProjectile(Random random)
         {
             return new PillSprite(XPosition, TopBound + Height / 3.5, random);
         }

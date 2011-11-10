@@ -182,7 +182,7 @@ namespace AbrahmanAdventure.sprites
         private static List<AnarchyBlockSprite> GetBlocksThatContainVine(SpritePopulation spritePopulation)
         {
             List<AnarchyBlockSprite> blockList = new List<AnarchyBlockSprite>();
-            foreach (SideScrollerSprite sprite in spritePopulation.AllSpriteList)
+            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
             {
                 if (sprite is AnarchyBlockSprite)
                 {

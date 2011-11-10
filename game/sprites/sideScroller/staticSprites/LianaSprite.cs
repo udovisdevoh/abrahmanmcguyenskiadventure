@@ -221,7 +221,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region IMathSprite Membres
-        public bool IsDetectCollision(SideScrollerSprite otherSprite)
+        public bool IsDetectCollision(AbstractSprite otherSprite)
         {
             if (otherSprite.YPosition < TopBound + 0.25)
                 return false;

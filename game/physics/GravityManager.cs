@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(SideScrollerSprite sprite, Level level, double timeDelta, HashSet<SideScrollerSprite> visibleSpriteList, PlayerSprite playerSpriteReference)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference)
         {
             if (!sprite.IsAffectedByGravity && sprite.IsAlive || playerSpriteReference.CarriedSprite == sprite)
                 return;
@@ -118,7 +118,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void ApplyFullGravityForce(SideScrollerSprite spriteToUpdate, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
+        internal void ApplyFullGravityForce(AbstractSprite spriteToUpdate, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             spriteToUpdate.IsFullGravityOnNextFrame = false;
             IGround ground = IGroundHelper.GetHighestVisibleIGroundBelowSprite(spriteToUpdate, level, visibleSpriteList, false);
@@ -136,7 +136,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void ApplyGravityAcceleration(SideScrollerSprite sprite, double timeDelta)
+        private void ApplyGravityAcceleration(AbstractSprite sprite, double timeDelta)
         {
             double speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
             if (speed < 0 && sprite is PlayerSprite && ((PlayerSprite)sprite).IsRasta && sprite.IsTryingToJump)
@@ -156,7 +156,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void ApplyGravityMovement(SideScrollerSprite sprite, double timeDelta)
+        private void ApplyGravityMovement(AbstractSprite sprite, double timeDelta)
         {
             double speed = sprite.CurrentJumpAcceleration / 50 * timeDelta;
 

@@ -19,12 +19,12 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void Update(PlayerSprite playerSprite, HashSet<SideScrollerSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        internal void Update(PlayerSprite playerSprite, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
             if (playerSprite.IsTryThrowingBall)
             {
                 int ballCount = 0;
-                foreach (SideScrollerSprite otherSprite in visibleSpriteList)
+                foreach (AbstractSprite otherSprite in visibleSpriteList)
                     if (otherSprite is IPlayerProjectile)
                         ballCount++;
 
@@ -48,7 +48,7 @@ namespace AbrahmanAdventure.physics
                     fireBallOrShurikenSprite.CurrentJumpAcceleration = -30;
                     fireBallOrShurikenSprite.IsCurrentlyInFreeFallX = true;
                     fireBallOrShurikenSprite.IsCurrentlyInFreeFallY = true;
-                    spritePopulation.Add((SideScrollerSprite)fireBallOrShurikenSprite);
+                    spritePopulation.Add((AbstractSprite)fireBallOrShurikenSprite);
                 }
             }
         }

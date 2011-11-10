@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="playerSpriteReference">reference to player sprite</param>
-        internal void Update(SideScrollerSprite sprite, Level level, double timeDelta, HashSet<SideScrollerSprite> visibleSpriteList, PlayerSprite playerSpriteReference)
+        internal void Update(AbstractSprite sprite, Level level, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference)
         {
             if (sprite is StaticSprite)
                 return;
@@ -96,9 +96,9 @@ namespace AbrahmanAdventure.physics
                     }
 
                     //We sometimes make fall the sprite
-                    if (sprite.IGround is SideScrollerSprite)
+                    if (sprite.IGround is AbstractSprite)
                     {
-                        SideScrollerSprite spriteGround = (SideScrollerSprite)sprite.IGround;
+                        AbstractSprite spriteGround = (AbstractSprite)sprite.IGround;
                         if (sprite.RightBound < spriteGround.LeftBound || sprite.LeftBound > spriteGround.RightBound)
                             sprite.IGround = null;
                     }
@@ -149,7 +149,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="desiredDistance">desired walking distance</param>
         /// <param name="level">level</param>
         /// <returns>farthest walking distance without collision</returns>
-        internal double GetFarthestWalkingDistanceNoCollision(SideScrollerSprite sprite, double desiredDistance, Level level, HashSet<SideScrollerSprite> visibleSpriteList)
+        internal double GetFarthestWalkingDistanceNoCollision(AbstractSprite sprite, double desiredDistance, Level level, HashSet<AbstractSprite> visibleSpriteList)
         {
             if (sprite.IsCrossGrounds)
                 return desiredDistance;
