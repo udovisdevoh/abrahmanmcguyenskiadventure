@@ -42,7 +42,14 @@ namespace AbrahmanAdventure.sprites
             IsCrossGrounds = true;
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
-                surface = BuildSpriteSurface("./assets/rendered/powerups/rastaHat.png");
+            {
+                if (Program.screenHeight > 720)
+                    surface = BuildSpriteSurface("./assets/rendered/1080/powerups/rastaHat.png");
+                else if (Program.screenHeight > 480)
+                    surface = BuildSpriteSurface("./assets/rendered/720/powerups/rastaHat.png");
+                else
+                    surface = BuildSpriteSurface("./assets/rendered/480/powerups/rastaHat.png");
+            }
             ChangeDirectionNoAiCycle.CurrentValue = random.NextDouble() * ChangeDirectionNoAiCycle.TotalTimeLength;
         }
         #endregion

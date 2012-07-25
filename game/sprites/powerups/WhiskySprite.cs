@@ -49,9 +49,25 @@ namespace AbrahmanAdventure.sprites
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (scotch1 == null)
             {
-                scotch1 = BuildSpriteSurface("./assets/rendered/powerups/scotch1.png");
-                scotch2 = BuildSpriteSurface("./assets/rendered/powerups/scotch2.png");
-                scotch3 = BuildSpriteSurface("./assets/rendered/powerups/scotch3.png");
+                if (Program.screenHeight > 720)
+                {
+                    scotch1 = BuildSpriteSurface("./assets/rendered/1080/powerups/scotch1.png");
+                    scotch2 = BuildSpriteSurface("./assets/rendered/1080/powerups/scotch2.png");
+                    scotch3 = BuildSpriteSurface("./assets/rendered/1080/powerups/scotch3.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    scotch1 = BuildSpriteSurface("./assets/rendered/720/powerups/scotch1.png");
+                    scotch2 = BuildSpriteSurface("./assets/rendered/720/powerups/scotch2.png");
+                    scotch3 = BuildSpriteSurface("./assets/rendered/720/powerups/scotch3.png");
+                }
+                else
+                {
+                    scotch1 = BuildSpriteSurface("./assets/rendered/480/powerups/scotch1.png");
+                    scotch2 = BuildSpriteSurface("./assets/rendered/480/powerups/scotch2.png");
+                    scotch3 = BuildSpriteSurface("./assets/rendered/480/powerups/scotch3.png");
+                }
+
                 scotch4 = scotch2.CreateFlippedVerticalSurface();
                 scotch5 = scotch1.CreateFlippedVerticalSurface();
                 scotch6 = scotch4.CreateFlippedHorizontalSurface();
