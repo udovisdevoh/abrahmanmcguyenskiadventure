@@ -113,10 +113,27 @@ namespace AbrahmanAdventure.sprites
 
             if (surface1 == null || surface2 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/anarchyBlock1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/anarchyBlock2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/anarchyBlock3.png");
-                surfaceBrick = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/anarchyBlock1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/anarchyBlock2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/anarchyBlock3.png");
+                    surfaceBrick = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock1.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/staticSprites/anarchyBlock1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/staticSprites/anarchyBlock2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/720/staticSprites/anarchyBlock3.png");
+                    surfaceBrick = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock1.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/staticSprites/anarchyBlock1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/staticSprites/anarchyBlock2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/480/staticSprites/anarchyBlock3.png");
+                    surfaceBrick = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock1.png");
+                }
             }
 
             bumpCycle = new Cycle(10, false);

@@ -102,15 +102,42 @@ namespace AbrahmanAdventure.sprites
             ZIndex = -1;
             if (surface1 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3.png");
-                surface1b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1b.png");
-                surface2b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2b.png");
-                surface3b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3b.png");
-                surface1c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1c.png");
-                surface2c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2c.png");
-                surface3c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3c.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex3.png");
+                    surface1b = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex1b.png");
+                    surface2b = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex2b.png");
+                    surface3b = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex3b.png");
+                    surface1c = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex1c.png");
+                    surface2c = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex2c.png");
+                    surface3c = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex3c.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex3.png");
+                    surface1b = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex1b.png");
+                    surface2b = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex2b.png");
+                    surface3b = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex3b.png");
+                    surface1c = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex1c.png");
+                    surface2c = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex2c.png");
+                    surface3c = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex3c.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex3.png");
+                    surface1b = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex1b.png");
+                    surface2b = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex2b.png");
+                    surface3b = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex3b.png");
+                    surface1c = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex1c.png");
+                    surface2c = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex2c.png");
+                    surface3c = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex3c.png");
+                }
             }
         }
 
@@ -133,15 +160,42 @@ namespace AbrahmanAdventure.sprites
             ZIndex = -1;
             if (surface1 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3.png");
-                surface1b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1b.png");
-                surface2b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2b.png");
-                surface3b = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3b.png");
-                surface1c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex1c.png");
-                surface2c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex2c.png");
-                surface3c = BuildSpriteSurface("./assets/rendered/staticSprites/vortex3c.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex3.png");
+                    surface1b = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex1b.png");
+                    surface2b = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex2b.png");
+                    surface3b = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex3b.png");
+                    surface1c = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex1c.png");
+                    surface2c = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex2c.png");
+                    surface3c = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vortex3c.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex3.png");
+                    surface1b = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex1b.png");
+                    surface2b = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex2b.png");
+                    surface3b = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex3b.png");
+                    surface1c = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex1c.png");
+                    surface2c = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex2c.png");
+                    surface3c = BuildSpriteSurface("./assets/rendered/720/staticSprites/vortex3c.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex3.png");
+                    surface1b = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex1b.png");
+                    surface2b = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex2b.png");
+                    surface3b = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex3b.png");
+                    surface1c = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex1c.png");
+                    surface2c = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex2c.png");
+                    surface3c = BuildSpriteSurface("./assets/rendered/480/staticSprites/vortex3c.png");
+                }
             }
         }
         #endregion

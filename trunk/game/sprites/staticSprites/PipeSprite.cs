@@ -49,7 +49,13 @@ namespace AbrahmanAdventure.sprites
             this.isUpSide = isUpSide;
             if (upSideSurface == null)
             {
-                upSideSurface = BuildSpriteSurface("./assets/rendered/staticSprites/pipe.png");
+                if (Program.screenHeight > 720)
+                    upSideSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/pipe.png");
+                else if (Program.screenHeight > 480)
+                    upSideSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/pipe.png");
+                else
+                    upSideSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/pipe.png");
+
                 downSideSurface = upSideSurface.CreateFlippedVerticalSurface();
             }
 

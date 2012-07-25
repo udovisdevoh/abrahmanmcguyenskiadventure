@@ -355,11 +355,34 @@ namespace AbrahmanAdventure.sprites
         {
             Surface spriteSurface = new Surface(fileName);
 
-            if (Program.screenHeight != 480)
+            if (Program.screenHeight == 1080)
+            {
+                //don't resize
+            }
+            else if (Program.screenHeight == 720)
+            {
+                //don't resize
+            }
+            else if (Program.screenHeight == 480)
+            {
+                //don't resize
+            }
+            else if (Program.screenHeight > 720)
+            {
+                double zoom = (double)Program.screenHeight / 1080.0;
+                spriteSurface = spriteSurface.CreateScaledSurface(zoom);
+            }
+            else if (Program.screenHeight > 480)
+            {
+                double zoom = (double)Program.screenHeight / 720.0;
+                spriteSurface = spriteSurface.CreateScaledSurface(zoom);
+            }
+            else //smaller than 480
             {
                 double zoom = (double)Program.screenHeight / 480.0;
                 spriteSurface = spriteSurface.CreateScaledSurface(zoom);
             }
+
 
             return spriteSurface;
         }

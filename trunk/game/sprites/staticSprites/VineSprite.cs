@@ -53,7 +53,12 @@ namespace AbrahmanAdventure.sprites
             isGrowing = true;
             if (componentSurface == null)
             {
-                componentSurface = BuildSpriteSurface("./assets/rendered/staticSprites/vine.png");
+                if (Program.screenHeight > 720)
+                    componentSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/vine.png");
+                else if (Program.screenHeight > 480)
+                    componentSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/vine.png");
+                else
+                    componentSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/vine.png");
             }
         }
         #endregion

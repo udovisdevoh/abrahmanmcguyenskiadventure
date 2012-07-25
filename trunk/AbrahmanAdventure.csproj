@@ -442,10 +442,130 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\rendered\1080\powerups\mushroom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\anarchyBlock1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\anarchyBlock2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\anarchyBlock3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\brickBlock1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\brickBlock2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\brickBlock3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\cloud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\pipe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\trampoline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex1b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex1c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex2b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex2c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex3b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\staticSprites\vortex3c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\1080\TitleScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\TitleScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\powerups\mushroom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\anarchyBlock1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\anarchyBlock2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\anarchyBlock3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\brickBlock1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\brickBlock2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\brickBlock3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\cloud.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\pipe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\trampoline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex1b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex1c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex2b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex2c.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex3b.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\staticSprites\vortex3c.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\720\TitleScreen.png">
@@ -555,126 +675,6 @@
     </Content>
     <Content Include="assets\rendered\abrahman\kick2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStand.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStand45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStand45Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaver.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaver45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaver45Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverDoped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverNinja.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverNinja45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverRasta.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverRasta45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverTiny.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandBeaverTiny45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandDoped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandNinja.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandNinja45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandRasta.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandRasta45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandTiny.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapStandTiny45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk145.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk145Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Beaver.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Beaver45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Beaver45Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverDoped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverNinja.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverNinja45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverRasta.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverRasta45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverTiny.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1BeaverTiny45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Ninja.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Ninja45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Rasta.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Rasta45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Tiny.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk1Tiny45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk245.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk245Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Beaver.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Beaver45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Beaver45Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverDoped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverNinja.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverNinja45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverRasta.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverRasta45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverTiny.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2BeaverTiny45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Doped.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Ninja.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Ninja45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Rasta.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Rasta45.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Tiny.png">
-    </Content>
-    <Content Include="assets\rendered\abrahman\MapWalk2Tiny45.png">
     </Content>
     <Content Include="assets\rendered\abrahman\nunchaku1CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1207,11 +1207,6 @@
     <Content Include="assets\rendered\lawyer\lawyer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\map\Pyramid.png" />
-    <Content Include="assets\rendered\map\ResearchCenter.png" />
-    <Content Include="assets\rendered\map\StarPort.png" />
-    <Content Include="assets\rendered\map\Temple.png" />
-    <Content Include="assets\rendered\map\TempleOfReligions.png" />
     <Content Include="assets\rendered\mormon\MormonAttack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1257,7 +1252,7 @@
     <Content Include="assets\rendered\powerups\bandana.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\powerups\mushroom.png">
+    <Content Include="assets\rendered\480\powerups\mushroom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\powerups\musicNote1.png">
@@ -1293,10 +1288,10 @@
     <Content Include="assets\rendered\projectiles\shuriken2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\cloud.png">
+    <Content Include="assets\rendered\480\staticSprites\cloud.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vine.png">
+    <Content Include="assets\rendered\480\staticSprites\vine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\priest\stand.png">
@@ -1501,58 +1496,55 @@
     <Content Include="assets\rendered\Sphere.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\anarchyBlock1.png">
+    <Content Include="assets\rendered\480\staticSprites\anarchyBlock1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\anarchyBlock2.png">
+    <Content Include="assets\rendered\480\staticSprites\anarchyBlock2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\anarchyBlock3.png">
+    <Content Include="assets\rendered\480\staticSprites\anarchyBlock3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\brick.png">
+    <Content Include="assets\rendered\480\staticSprites\brickBlock1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\brickBlock1.png">
+    <Content Include="assets\rendered\480\staticSprites\brickBlock2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\brickBlock2.png">
+    <Content Include="assets\rendered\480\staticSprites\brickBlock3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\brickBlock3.png">
+    <Content Include="assets\rendered\480\staticSprites\pipe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\pipe.png">
+    <Content Include="assets\rendered\480\staticSprites\trampoline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\trampoline.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex1.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex1b.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex1b.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex1c.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex1c.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex2.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex2b.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex2b.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex2c.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex2c.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex3.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex3b.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\staticSprites\vortex3b.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\staticSprites\vortex3c.png">
+    <Content Include="assets\rendered\480\staticSprites\vortex3c.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\sounds\ArrowHit.ogg">
