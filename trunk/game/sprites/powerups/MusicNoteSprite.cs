@@ -41,8 +41,21 @@ namespace AbrahmanAdventure.sprites
             spinCycle = new Cycle(64, true);
             if (surface1 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/powerups/musicNote1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/powerups/musicNote2.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/powerups/musicNote1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/powerups/musicNote2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/powerups/musicNote1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/powerups/musicNote2.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/powerups/musicNote1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/powerups/musicNote2.png");
+                }
                 surface3 = surface2.CreateFlippedHorizontalSurface();
                 surface4 = surface1.CreateFlippedHorizontalSurface();
             }

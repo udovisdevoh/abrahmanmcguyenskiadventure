@@ -34,7 +34,14 @@ namespace AbrahmanAdventure.sprites
         {
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (surface == null)
-                surface = BuildSpriteSurface("./assets/rendered/powerups/peyote.png");
+            {
+                if (Program.screenHeight > 720)
+                    surface = BuildSpriteSurface("./assets/rendered/1080/powerups/peyote.png");
+                else if (Program.screenHeight > 480)
+                    surface = BuildSpriteSurface("./assets/rendered/720/powerups/peyote.png");
+                else
+                    surface = BuildSpriteSurface("./assets/rendered/480/powerups/peyote.png");
+            }
         }
         #endregion
 
