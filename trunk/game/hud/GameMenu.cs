@@ -687,7 +687,12 @@ namespace AbrahmanAdventure.hud
             {
                 if (__titleScreen == null)
                 {
-                    __titleScreen = new Surface("./assets/rendered/TitleScreen.png");
+                    if (Program.screenHeight > 480)
+                        __titleScreen = new Surface("./assets/rendered/720/TitleScreen.png");
+                    else if (Program.screenHeight > 720)
+                        __titleScreen = new Surface("./assets/rendered/1080/TitleScreen.png");
+                    else
+                        __titleScreen = new Surface("./assets/rendered/480/TitleScreen.png");
 
                     if (__titleScreen.Width != Program.screenWidth)
                     {
