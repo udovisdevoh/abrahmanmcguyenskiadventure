@@ -35,7 +35,12 @@ namespace AbrahmanAdventure.sprites
             IsDestructible = false;
             if (surface == null)
             {
-                surface = BuildSpriteSurface("./assets/rendered/staticSprites/cloud.png");
+                if (Program.screenHeight > 720)
+                    surface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/cloud.png");
+                else if (Program.screenHeight > 480)
+                    surface = BuildSpriteSurface("./assets/rendered/720/staticSprites/cloud.png");
+                else
+                    surface = BuildSpriteSurface("./assets/rendered/480/staticSprites/cloud.png");
             }
         }
         #endregion

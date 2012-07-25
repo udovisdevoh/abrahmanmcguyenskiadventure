@@ -41,9 +41,24 @@ namespace AbrahmanAdventure.sprites
             bumpCycle = new Cycle(10, false);
             if (destructibleSurface == null || indestructibleSurface == null)
             {
-                indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
-                destructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
-                destroyedSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock3.png");
+                if (Program.screenHeight > 720)
+                {
+                    indestructibleSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock2.png");
+                    destructibleSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock1.png");
+                    destroyedSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock3.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    indestructibleSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock2.png");
+                    destructibleSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock1.png");
+                    destroyedSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock3.png");
+                }
+                else
+                {
+                    indestructibleSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock2.png");
+                    destructibleSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock1.png");
+                    destroyedSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock3.png");
+                }
             }
         }
 
@@ -60,9 +75,24 @@ namespace AbrahmanAdventure.sprites
             bumpCycle = new Cycle(10, false);
             if (destructibleSurface == null || indestructibleSurface == null)
             {
-                indestructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock2.png");
-                destructibleSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock1.png");
-                destroyedSurface = BuildSpriteSurface("./assets/rendered/staticSprites/brickBlock3.png");
+                if (Program.screenHeight > 720)
+                {
+                    indestructibleSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock2.png");
+                    destructibleSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock1.png");
+                    destroyedSurface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/brickBlock3.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    indestructibleSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock2.png");
+                    destructibleSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock1.png");
+                    destroyedSurface = BuildSpriteSurface("./assets/rendered/720/staticSprites/brickBlock3.png");
+                }
+                else
+                {
+                    indestructibleSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock2.png");
+                    destructibleSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock1.png");
+                    destroyedSurface = BuildSpriteSurface("./assets/rendered/480/staticSprites/brickBlock3.png");
+                }
             }
         }
         #endregion

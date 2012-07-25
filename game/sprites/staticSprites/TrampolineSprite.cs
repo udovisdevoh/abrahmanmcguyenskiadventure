@@ -30,7 +30,12 @@ namespace AbrahmanAdventure.sprites
         public TrampolineSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            surface = BuildSpriteSurface("./assets/rendered/staticSprites/trampoline.png");
+            if (Program.screenHeight > 720)
+                surface = BuildSpriteSurface("./assets/rendered/1080/staticSprites/trampoline.png");
+            else if (Program.screenHeight > 480)
+                surface = BuildSpriteSurface("./assets/rendered/720/staticSprites/trampoline.png");
+            else
+                surface = BuildSpriteSurface("./assets/rendered/480/staticSprites/trampoline.png");
         }
         #endregion
 
