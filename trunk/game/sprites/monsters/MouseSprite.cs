@@ -44,13 +44,27 @@ namespace AbrahmanAdventure.sprites
         {
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/mouse/mouseStand.png");
-                standLeft = standRight.CreateFlippedHorizontalSurface();
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/mouse/mouseStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/mouse/mouseWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/1080/mouse/mouseHit.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/mouse/mouseStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/mouse/mouseWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/720/mouse/mouseHit.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/mouse/mouseStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/mouse/mouseWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/480/mouse/mouseHit.png");
+                }
 
-                walkRight = BuildSpriteSurface("./assets/rendered/mouse/mouseWalk.png");
-                walkLeft = walkRight.CreateFlippedHorizontalSurface();
-
-                hitRight = BuildSpriteSurface("./assets/rendered/mouse/mouseHit.png");
+                standLeft = standRight.CreateFlippedHorizontalSurface();                
+                walkLeft = walkRight.CreateFlippedHorizontalSurface();                
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
 
                 dead = hitRight.CreateFlippedVerticalSurface();
