@@ -42,9 +42,25 @@ namespace AbrahmanAdventure.sprites
             IsCrossGrounds = true;
             if (surface1 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/effects/explosion1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/effects/explosion2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/effects/explosion3.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/effects/explosion1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/effects/explosion2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/1080/effects/explosion3.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/effects/explosion1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/effects/explosion2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/720/effects/explosion3.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/effects/explosion1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/effects/explosion2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/480/effects/explosion3.png");
+                }
+
             }
         }
         #endregion
