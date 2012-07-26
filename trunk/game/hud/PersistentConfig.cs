@@ -144,7 +144,7 @@ namespace AbrahmanAdventure.hud
                 if (IsConfigItemExist("screenWidth"))
                     return int.Parse(GetConfigItem("screenWidth"));
                 else
-                    return 640;
+                    return 1280;
             }
             set
             {
@@ -159,7 +159,7 @@ namespace AbrahmanAdventure.hud
                 if (IsConfigItemExist("screenHeight"))
                     return int.Parse(GetConfigItem("screenHeight"));
                 else
-                    return 480;
+                    return 720;
             }
             set
             {
