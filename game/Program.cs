@@ -31,7 +31,7 @@ namespace AbrahmanAdventure
 
         public const bool isLimitFrameSkip = false;
 
-        public const bool isAlwaysUseBottomTexture = false;
+        public const bool isAlwaysUseBottomTexture = true;
 
         public const bool isUseBumpMapLightness = false;
 
