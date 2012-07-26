@@ -40,9 +40,24 @@ namespace AbrahmanAdventure.sprites
         {
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/horse/horse1.png");
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/horse/horse1.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/horse/horse2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/horse/horse1.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/horse/horse2.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/horse/horse1.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/horse/horse2.png");
+                }
+                
+
                 standLeft = standRight.CreateFlippedHorizontalSurface();
-                walkRight = BuildSpriteSurface("./assets/rendered/horse/horse2.png");
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
                 deadSurface = standRight.CreateFlippedVerticalSurface();
             }
