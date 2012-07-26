@@ -770,7 +770,7 @@ namespace AbrahmanAdventure
             maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
             zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
-            Video.WindowCaption = "Abrahman McGuyenski Adventure";
+            Video.WindowCaption = "Abrahman McGuyenski's Adventure";
             HudViewer.InitCachedSurfaces();
             GameMenu.ClearCache();
         }

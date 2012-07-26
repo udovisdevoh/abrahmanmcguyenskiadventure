@@ -212,6 +212,11 @@ namespace AbrahmanAdventure.hud
                 string isFullScreenText = (Program.isFullScreen) ? "on" : "off";
                 string resolutionText = Program.screenWidth + " x " + Program.screenHeight;
 
+                if (Program.screenWidth == 1920 && Program.screenHeight == 1080)
+                    resolutionText = "1080p full HD";
+                else if (Program.screenWidth == 1280 && Program.screenHeight == 720)
+                    resolutionText = "720p HD";
+
                 mainSurface.Blit(GetFontText("Fullscreen: " + isFullScreenText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
                 mainSurface.Blit(GetFontText("Resolution: " + resolutionText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
 

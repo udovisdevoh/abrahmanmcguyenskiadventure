@@ -20,6 +20,14 @@ namespace AbrahmanAdventure.hud
         {
             Size[] listModes = Video.ListModes();
 
+            //We remove screen size that are neither 16/9 nor 4/3
+            List<Size> trimmedListModes = new List<Size>();
+            foreach (Size size in listModes)
+                if ((((double)(size.Width) / (double)(size.Height) == 4.0 / 3.0) && size.Width <= 640) || (((double)size.Width / (double)size.Height == 16.0 / 9.0) && size.Width > 640))
+                    trimmedListModes.Add(size);
+            listModes = trimmedListModes.ToArray();
+
+
             int index = 0;
             foreach (Size size in listModes)
             {
