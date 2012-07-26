@@ -44,10 +44,23 @@ namespace AbrahmanAdventure.sprites
             shootingCycle.Fire();
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/gypsy/GypsyStand.png");
-                standLeft = standRight.CreateFlippedHorizontalSurface();
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/gypsy/GypsyStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/gypsy/GypsyWalk.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/gypsy/GypsyStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/gypsy/GypsyWalk.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/gypsy/GypsyStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/gypsy/GypsyWalk.png");
+                }
 
-                walkRight = BuildSpriteSurface("./assets/rendered/gypsy/GypsyWalk.png");
+                standLeft = standRight.CreateFlippedHorizontalSurface();
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
 
                 deadSurface = walkRight.CreateFlippedVerticalSurface();
