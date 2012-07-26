@@ -292,7 +292,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetRight1Surface()
         {
             if (right1Surface == null)
-                right1Surface = BuildSpriteSurface("./assets/rendered/blob/blob1.png");
+            {
+                if (Program.screenHeight > 720)
+                    right1Surface = BuildSpriteSurface("./assets/rendered/1080/blob/blob1.png");
+                else if (Program.screenHeight > 480)
+                    right1Surface = BuildSpriteSurface("./assets/rendered/720/blob/blob1.png");
+                else
+                    right1Surface = BuildSpriteSurface("./assets/rendered/480/blob/blob1.png");
+            }
 
             return right1Surface;
         }
@@ -308,7 +315,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetRight2Surface()
         {
             if (right2Surface == null)
-                right2Surface = BuildSpriteSurface("./assets/rendered/blob/blob2.png");
+            {
+                if (Program.screenHeight > 720)
+                    right2Surface = BuildSpriteSurface("./assets/rendered/1080/blob/blob2.png");
+                else if (Program.screenHeight > 480)
+                    right2Surface = BuildSpriteSurface("./assets/rendered/720/blob/blob2.png");
+                else
+                    right2Surface = BuildSpriteSurface("./assets/rendered/480/blob/blob2.png");
+            }
 
             return right2Surface;
         }
