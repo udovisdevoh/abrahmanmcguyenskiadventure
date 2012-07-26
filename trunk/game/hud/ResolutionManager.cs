@@ -25,6 +25,11 @@ namespace AbrahmanAdventure.hud
             foreach (Size size in listModes)
                 if ((((double)(size.Width) / (double)(size.Height) == 4.0 / 3.0) && size.Width <= 640) || (((double)size.Width / (double)size.Height == 16.0 / 9.0) && size.Width > 640))
                     trimmedListModes.Add(size);
+
+            foreach (Size size in listModes)
+                if (!((((double)(size.Width) / (double)(size.Height) == 4.0 / 3.0) && size.Width <= 640) || (((double)size.Width / (double)size.Height == 16.0 / 9.0) && size.Width > 640)))
+                    trimmedListModes.Add(size);
+
             listModes = trimmedListModes.ToArray();
 
 
