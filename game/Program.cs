@@ -57,6 +57,8 @@ namespace AbrahmanAdventure
 
         public const bool isAllowExtraVortex = false;
 
+        public const bool isEnableParallelTextureRendering = true;
+
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;

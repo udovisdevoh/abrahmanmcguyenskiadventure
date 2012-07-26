@@ -82,6 +82,12 @@ namespace AbrahmanAdventure.level
             for (groundId = 0; groundId < waveCount; groundId++)
                 AddGround(new Ground(BuildGroundWave(random), random, colorTheme.GetColor(waveCount - groundId - 1), holeSet, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
 
+            if (Program.isEnableParallelTextureRendering)
+            {
+                ParallelTextureRenderer parallelTextureRenderer = new ParallelTextureRenderer();
+                parallelTextureRenderer.Render(groundList);
+            }
+
             #region We determine whether there will be a ceiling in the level
             //For water levels: 2/3, for no water levels: 1/2
             bool isCeiling = (isWater) ? (random.Next(0, 3) != 1) : (random.Next(0, 2) == 1);

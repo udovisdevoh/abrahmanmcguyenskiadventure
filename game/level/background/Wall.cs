@@ -27,7 +27,7 @@ namespace AbrahmanAdventure.level
         /// <param name="colorHsl">HSL color</param>
         public Wall(Random random, Color color)
         {
-            texture = new Texture(random, color, 1.0, random.Next(), 0, false);
+            texture = new Texture(random, color, 1.0, true, random.Next(), 0, false);
 
             int textureWidth = texture.Surface.GetWidth();
             int textureHeight = texture.Surface.GetHeight();
