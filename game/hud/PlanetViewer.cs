@@ -31,23 +31,25 @@ namespace AbrahmanAdventure.hud
         /// <param name="random">random number generator</param>
         internal static Surface ShowPlanet(string name, int skillLevel, ColorHsl backgroundColorHsl, ColorTheme colorTheme, Random random)
         {
-            Surface planetSurface = new Surface(640, 480, 32, true);
+            short planetSurfaceWidth = (short)(Program.screenWidth * 480 / Program.screenHeight);
+
+            Surface planetSurface = new Surface(planetSurfaceWidth, 480, 32, true);
 
             bool isShowNebulae = random.Next(0, 2) == 1;
 
             if (isShowNebulae)
                 DrawNebulae(planetSurface, random);
-            DrawStars(planetSurface, random);
+            DrawStars(planetSurface, random, planetSurfaceWidth);
             
             if (!isShowNebulae)
                 DrawSun(planetSurface, random);
 
             Surface planetNameSurface = LargeFont640Res.Render(name + " - (skill level: " + (skillLevel + 1) + ")", System.Drawing.Color.White);
-            planetSurface.Blit(planetNameSurface, new System.Drawing.Point(640 / 2 - planetNameSurface.GetWidth() / 2, 480 / 12 * 11));
+            planetSurface.Blit(planetNameSurface, new System.Drawing.Point(planetSurfaceWidth / 2 - planetNameSurface.GetWidth() / 2, 480 / 12 * 11));
 
             System.Drawing.Color waterColor = backgroundColorHsl.GetColor();
 
-            planetSurface.Draw(new Circle(640 / 2, 480 / 2, 480 / 3), waterColor, true, true);
+            planetSurface.Draw(new Circle((short)(planetSurfaceWidth / 2), 480 / 2, 480 / 3), waterColor, true, true);
 
             Surface shadeSphere = new Surface("./assets/rendered/Sphere.png");
             double scaling = ((double)480 / 1.5) / (double)shadeSphere.Width * 1.01;
@@ -55,12 +57,12 @@ namespace AbrahmanAdventure.hud
 
             for (int i = 0; i < 4; i++)
                 if (random.Next(0, 7) != 0)
-                    DrawContinent(planetSurface, colorTheme, random);
+                    DrawContinent(planetSurface, colorTheme, random, planetSurfaceWidth);
 
             if (random.Next(0, 7) != 0)
-                DrawClouds(planetSurface, random);
+                DrawClouds(planetSurface, random, planetSurfaceWidth);
 
-            planetSurface.Blit(shadeSphere, new System.Drawing.Point(640 / 2 - shadeSphere.Width / 2, 480 / 2 - shadeSphere.Height / 2));
+            planetSurface.Blit(shadeSphere, new System.Drawing.Point(planetSurfaceWidth / 2 - shadeSphere.Width / 2, 480 / 2 - shadeSphere.Height / 2));
 
             if (planetSurface.GetWidth() != Program.screenWidth || planetSurface.GetHeight() != Program.screenHeight)
             {
@@ -138,7 +140,7 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         /// <param name="mainSurface">main surface</param>
         /// <param name="random">random number generator</param>
-        private static void DrawStars(Surface surface, Random random)
+        private static void DrawStars(Surface surface, Random random, short planetSurfaceWidth)
         {
             int totalStarCount = 640 * 480 / random.Next(100, 500);
 
@@ -146,7 +148,7 @@ namespace AbrahmanAdventure.hud
             System.Drawing.Color color;
             for (int i = 0; i < totalStarCount; i++)
             {
-                point = new System.Drawing.Point(random.Next(0, 640), random.Next(0, 480));
+                point = new System.Drawing.Point(random.Next(0, planetSurfaceWidth), random.Next(0, 480));
                 int starLightness = random.Next(0, 256);
                 color = System.Drawing.Color.FromArgb(starLightness, starLightness, starLightness);
                 surface.Draw(point, color);
@@ -159,10 +161,10 @@ namespace AbrahmanAdventure.hud
         /// <param name="mainSurface">main surface</param>
         /// <param name="colorTheme">color theme</param>
         /// <param name="random">random number generator</param>
-        private static void DrawContinent(Surface mainSurface, ColorTheme colorTheme, Random random)
+        private static void DrawContinent(Surface mainSurface, ColorTheme colorTheme, Random random, short planetSurfaceWidth)
         {
             int totalPointCount = 38400;
-            int pointX = random.Next(640);
+            int pointX = random.Next(planetSurfaceWidth);
             int pointY = random.Next(480);
 
             int changeColorRate = random.Next(1, 10);
@@ -186,10 +188,10 @@ namespace AbrahmanAdventure.hud
                 pointX += random.Next(-1, 2) * pointRadius;
                 pointY += random.Next(-1, 2) * pointRadius;
 
-                if (pointX < 640 / 2 - 480 / 3)
-                    pointX = 640 / 2 + 480 / 3;
-                else if (pointX > 640 / 2 + 480 / 3)
-                    pointX = 640 / 2 - 480 / 3;
+                if (pointX < planetSurfaceWidth / 2 - 480 / 3)
+                    pointX = planetSurfaceWidth / 2 + 480 / 3;
+                else if (pointX > planetSurfaceWidth / 2 + 480 / 3)
+                    pointX = planetSurfaceWidth / 2 - 480 / 3;
 
                 if (pointY < 480 / 2 - 480 / 3)
                     pointY = 480 / 2 + 480 / 3;
@@ -206,7 +208,7 @@ namespace AbrahmanAdventure.hud
 
                 Circle currentPoint = new Circle((short)pointX, (short)pointY, (short)pointRadius);
 
-                if (Math.Sqrt(Math.Pow(Math.Abs(pointX - 640 / 2), 2.0) + Math.Pow(Math.Abs(pointY - 480 / 2), 2.0)) <= 480 / 3)
+                if (Math.Sqrt(Math.Pow(Math.Abs(pointX - planetSurfaceWidth / 2), 2.0) + Math.Pow(Math.Abs(pointY - 480 / 2), 2.0)) <= 480 / 3)
                 {
                     mainSurface.Draw(currentPoint, continentColor, true, true);
                 }
@@ -218,10 +220,10 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         /// <param name="mainSurface">main surface</param>
         /// <param name="random">random number generator</param>
-        private static void DrawClouds(Surface mainSurface, Random random)
+        private static void DrawClouds(Surface mainSurface, Random random, short planetSurfaceWidth)
         {
             int totalPointCount = (640 * 480) / 16;
-            int pointX = random.Next(640);
+            int pointX = random.Next(planetSurfaceWidth);
             int pointY = random.Next(480);
 
             System.Drawing.Color transparentWhite = System.Drawing.Color.FromArgb(16, random.Next(230, 256), random.Next(230, 256), random.Next(230, 256));
@@ -242,10 +244,10 @@ namespace AbrahmanAdventure.hud
                 pointX += random.Next(-minHorizontalMovement, maxHorizontalMovement + 1);
                 pointY += random.Next(-minVerticalMovement, maxVerticalMovement + 1);
 
-                if (pointX < 640 / 2 - 480 / 3)
-                    pointX = 640 / 2 + 480 / 3;
-                else if (pointX > 640 / 2 + 480 / 3)
-                    pointX = 640 / 2 - 480 / 3;
+                if (pointX < planetSurfaceWidth / 2 - 480 / 3)
+                    pointX = planetSurfaceWidth / 2 + 480 / 3;
+                else if (pointX > planetSurfaceWidth / 2 + 480 / 3)
+                    pointX = planetSurfaceWidth / 2 - 480 / 3;
 
                 if (pointY < 480 / 2 - 480 / 3)
                     pointY = 480 / 2 + 480 / 3;
@@ -255,7 +257,7 @@ namespace AbrahmanAdventure.hud
                 int pointRadius = random.Next(1, maxRadiusSize);
                 Circle currentPoint = new Circle((short)pointX, (short)pointY, (short)pointRadius);
 
-                if (Math.Sqrt(Math.Pow(Math.Abs(pointX - 640 / 2), 2.0) + Math.Pow(Math.Abs(pointY - 480 / 2), 2.0)) <= 480 / 3)
+                if (Math.Sqrt(Math.Pow(Math.Abs(pointX - planetSurfaceWidth / 2), 2.0) + Math.Pow(Math.Abs(pointY - 480 / 2), 2.0)) <= 480 / 3)
                 {
                     mainSurface.Draw(currentPoint, transparentWhite, true, true);
                 }
