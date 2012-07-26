@@ -106,7 +106,7 @@ namespace AbrahmanAdventure.level
             this.leftBoundType = leftBoundType;
             this.rightBoundType = rightBoundType;
 
-            topTexture = new Texture(random, color, 1.5, seed,groundId,true);
+            topTexture = new Texture(random, color, 1.5, (!Program.isEnableParallelTextureRendering || isCeiling), seed, groundId, true);
             if (isCeiling)
                 topTexture.Surface = topTexture.Surface.CreateFlippedVerticalSurface();
 
@@ -121,7 +121,7 @@ namespace AbrahmanAdventure.level
 
             if (Program.isUseBottomTexture && isUseBottomTexture)
             {
-                bottomTexture = new Texture(random, color, 16, 0.75, seed, groundId, false);
+                bottomTexture = new Texture(random, color, 16, 0.75, (!Program.isEnableParallelTextureRendering || isCeiling), seed, groundId, false);
                 if (isCeiling)
                     bottomTexture.Surface = bottomTexture.Surface.CreateFlippedVerticalSurface();
             }

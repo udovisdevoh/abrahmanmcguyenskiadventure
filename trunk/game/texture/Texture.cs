@@ -14,6 +14,10 @@ namespace AbrahmanAdventure.level
     /// </summary>
     internal class Texture
     {
+        #region Events
+        public event EventHandler RenderingComplete;
+        #endregion
+
         #region Fields and parts
         /// <summary>
         /// Main color
@@ -40,6 +44,8 @@ namespace AbrahmanAdventure.level
 
         private AbstractWave yOffsetInputWave;
 
+        private bool isRendered = false;
+
         private bool isHueMultiply;
 
         private bool isSaturationMultiply;
@@ -56,6 +62,18 @@ namespace AbrahmanAdventure.level
 
         private bool isBumpMapLightness;
 
+        private bool isTop;
+
+        private int seed;
+
+        private int groundId;
+
+        private int surfaceWidth;
+
+        private int surfaceHeight;
+
+        private double waveStrengthMultiplicator;
+
         private Dictionary<int, Surface> scalingCache = new Dictionary<int, Surface>();
         #endregion
 
@@ -64,8 +82,9 @@ namespace AbrahmanAdventure.level
         /// Create a random texture
         /// </summary>
         /// <param name="random">random number generator</param>
-        public Texture(Random random, int seed, int groundId)
-            : this(random, Color.Empty, 1.0, seed, groundId, true)
+        /// <param name="isRenderOnCreation">whether we render the texture when it's created</param>
+        public Texture(Random random, bool isRenderOnCreation, int seed, int groundId)
+            : this(random, Color.Empty, 1.0, isRenderOnCreation, seed, groundId, true)
         {
         }
 
@@ -74,8 +93,9 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
-        public Texture(Random random, Color color, double waveStrengthMultiplicator, int seed, int groundId, bool isTop)
-            : this(random, color, -1, waveStrengthMultiplicator, seed, groundId, isTop)
+        /// <param name="isRenderOnCreation">whether we render the texture when it's created</param>
+        public Texture(Random random, Color color, double waveStrengthMultiplicator, bool isRenderOnCreation, int seed, int groundId, bool isTop)
+            : this(random, color, -1, waveStrengthMultiplicator, isRenderOnCreation, seed, groundId, isTop)
         {
         }
 
@@ -85,7 +105,8 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">main color</param>
         /// <param name="defaultHeight">default height (how manu tiles)</param>
-        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, int seed, int groundId, bool isTop)
+        /// <param name="isRenderOnCreation">whether we render the texture when it's created</param>
+        public Texture(Random random, Color color, int defaultHeight, double waveStrengthMultiplicator, bool isRenderOnCreation, int seed, int groundId, bool isTop)
         {
             if (color == Color.Empty)
                 color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
@@ -142,6 +163,114 @@ namespace AbrahmanAdventure.level
                 yOffsetInputWave.Normalize(surfaceWidth / 16.0 * (double)random.Next(1, 5));
             }
 
+            this.isTop = isTop;
+            this.seed = seed;
+            this.groundId = groundId;
+            this.waveStrengthMultiplicator = waveStrengthMultiplicator;
+            this.surfaceWidth = surfaceWidth;
+            this.surfaceHeight = surfaceHeight;
+
+            if (isRenderOnCreation)
+                Render();
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Build wave
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="waveLengthMultiplicator">if -1, 0 or 1: ignored.</param>
+        /// <returns>wave</returns>
+        private AbstractWave BuildWave(Random random, int waveLengthMultiplicator)
+        {
+            WavePack wavePack = new WavePack();
+
+            int waveCount = random.Next(2, 24);
+
+            for (int i = 1; i < 5; i++)
+            {
+                double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5)) * random.Next(1, 3) / random.Next(1,3);
+                double amplitude = random.NextDouble();
+                double phase = random.NextDouble() * 2.0 - 1.0;
+
+                if (waveLengthMultiplicator > 1)
+                    waveLength *= waveLengthMultiplicator;
+
+                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
+            }
+
+            wavePack.Normalize(random.NextDouble() + 0.5);
+
+            return wavePack;
+        }
+
+        private AbstractWave BuildThicknessWave(Random random)
+        {
+            WavePack wavePack = new WavePack();
+
+            int waveCount = random.Next(2, 24);
+
+            for (int i = 1; i < 5; i++)
+            {
+                double waveLength = (double)Program.tileSize * (double)random.Next(1, 5);
+                double amplitude = random.NextDouble();
+                double phase = random.NextDouble() * 2.0 - 1.0;
+
+                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
+            }
+
+            wavePack.Normalize(random.NextDouble() * 0.75 + 0.15);
+
+            return wavePack;
+        }
+
+        private int GetRoundedScaling(double scaling)
+        {
+            return (int)(scaling * 20.0);
+        }
+
+        /*private double GetWaveContribution(bool isMultiply, bool isUseTangent, double xInput, AbstractWave wave, double waveStrengthMultiplicator)
+        {
+            #warning Use this
+            double contributionValue;
+
+            if (isUseTangent)
+                contributionValue = wave.GetTangentValue(xInput, 1.0);
+            else
+                contributionValue = wave[xInput];
+
+            //if (isMultiply)
+            //{
+            //    contributionValue += 1.0;
+            //    contributionValue *= 0.5;
+            //}
+
+            contributionValue *= waveStrengthMultiplicator;
+
+            return contributionValue;
+        }*/
+        #endregion
+
+        #region Public Methods
+        internal Surface GetCachedScaledSurface(double scaling)
+        {
+            Surface scaledSurface;
+            if (scalingCache.TryGetValue(GetRoundedScaling(scaling), out scaledSurface))
+                return scaledSurface;
+            return null;
+        }
+
+        internal void SetCachedScaledSurface(Surface scaledSurface, double scaling)
+        {
+            scalingCache.Add(GetRoundedScaling(scaling), scaledSurface);
+        }
+
+        /// <summary>
+        /// Render the texture itself (from wave packs)
+        /// </summary>
+        internal void Render()
+        {
             if (!Program.isUseTextureCache || !TextureCache.TryGetCachedSurface(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, out surface))
             {
                 if (isBumpMapLightness)
@@ -251,98 +380,8 @@ namespace AbrahmanAdventure.level
                 if (Program.isUseTextureCache)
                     TextureCache.AddSurfaceToCache(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, surface);
             }
-        }
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Build wave
-        /// </summary>
-        /// <param name="random">random number generator</param>
-        /// <param name="waveLengthMultiplicator">if -1, 0 or 1: ignored.</param>
-        /// <returns>wave</returns>
-        private AbstractWave BuildWave(Random random, int waveLengthMultiplicator)
-        {
-            WavePack wavePack = new WavePack();
-
-            int waveCount = random.Next(2, 24);
-
-            for (int i = 1; i < 5; i++)
-            {
-                double waveLength = (double)Program.tileSize / ((double)random.Next(1, 5)) * random.Next(1, 3) / random.Next(1,3);
-                double amplitude = random.NextDouble();
-                double phase = random.NextDouble() * 2.0 - 1.0;
-
-                if (waveLengthMultiplicator > 1)
-                    waveLength *= waveLengthMultiplicator;
-
-                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
-            }
-
-            wavePack.Normalize(random.NextDouble() + 0.5);
-
-            return wavePack;
-        }
-
-        private AbstractWave BuildThicknessWave(Random random)
-        {
-            WavePack wavePack = new WavePack();
-
-            int waveCount = random.Next(2, 24);
-
-            for (int i = 1; i < 5; i++)
-            {
-                double waveLength = (double)Program.tileSize * (double)random.Next(1, 5);
-                double amplitude = random.NextDouble();
-                double phase = random.NextDouble() * 2.0 - 1.0;
-
-                wavePack.Add(new Wave(amplitude, waveLength, phase, WaveFunctions.GetRandomWaveFunction(random, random.Next(0, 2) == 0, random.Next(0, 2) == 0)));
-            }
-
-            wavePack.Normalize(random.NextDouble() * 0.75 + 0.15);
-
-            return wavePack;
-        }
-
-        private int GetRoundedScaling(double scaling)
-        {
-            return (int)(scaling * 20.0);
-        }
-
-        /*private double GetWaveContribution(bool isMultiply, bool isUseTangent, double xInput, AbstractWave wave, double waveStrengthMultiplicator)
-        {
-            #warning Use this
-            double contributionValue;
-
-            if (isUseTangent)
-                contributionValue = wave.GetTangentValue(xInput, 1.0);
-            else
-                contributionValue = wave[xInput];
-
-            //if (isMultiply)
-            //{
-            //    contributionValue += 1.0;
-            //    contributionValue *= 0.5;
-            //}
-
-            contributionValue *= waveStrengthMultiplicator;
-
-            return contributionValue;
-        }*/
-        #endregion
-
-        #region Public Methods
-        internal Surface GetCachedScaledSurface(double scaling)
-        {
-            Surface scaledSurface;
-            if (scalingCache.TryGetValue(GetRoundedScaling(scaling), out scaledSurface))
-                return scaledSurface;
-            return null;
-        }
-
-        internal void SetCachedScaledSurface(Surface scaledSurface, double scaling)
-        {
-            scalingCache.Add(GetRoundedScaling(scaling), scaledSurface);
+            isRendered = true;
+            if (RenderingComplete != null) RenderingComplete(this, null);
         }
         #endregion
 
@@ -354,6 +393,11 @@ namespace AbrahmanAdventure.level
         {
             get { return surface; }
             set { surface = value; }
+        }
+
+        public bool IsRendered
+        {
+            get { return isRendered; }
         }
 
         public AbstractWave HorizontalThicknessWave
