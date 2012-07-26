@@ -44,10 +44,26 @@ namespace AbrahmanAdventure.sprites
         {
             if (deadSurface == null)
             {
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/priest/stand.png");
+                if (Program.screenHeight > 720)
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/1080/priest/stand.png");
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/1080/priest/walk1.png");
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/1080/priest/walk2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/720/priest/stand.png");
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/720/priest/walk1.png");
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/720/priest/walk2.png");
+                }
+                else
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/480/priest/stand.png");
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/480/priest/walk1.png");
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/480/priest/walk2.png");
+                }
+
                 standingLeftSurface = standingRightSurface.CreateFlippedHorizontalSurface();
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk1.png");
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/priest/walk2.png");
                 walking1LeftSurface = walking1RightSurface.CreateFlippedHorizontalSurface();
                 walking2LeftSurface = walking2RightSurface.CreateFlippedHorizontalSurface();
                 deadSurface = walking1RightSurface.CreateFlippedVerticalSurface();
