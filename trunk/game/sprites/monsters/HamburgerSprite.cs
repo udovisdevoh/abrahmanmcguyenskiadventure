@@ -264,7 +264,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetSurface1()
         {
             if (right1Surface == null)
-                right1Surface = BuildSpriteSurface("./assets/rendered/hamburger/hamburger1.png");
+            {
+                if (Program.screenHeight > 720)
+                    right1Surface = BuildSpriteSurface("./assets/rendered/1080/hamburger/hamburger1.png");
+                else if (Program.screenHeight > 480)
+                    right1Surface = BuildSpriteSurface("./assets/rendered/720/hamburger/hamburger1.png");
+                else
+                    right1Surface = BuildSpriteSurface("./assets/rendered/480/hamburger/hamburger1.png");
+            }
 
             return right1Surface;
         }
@@ -272,7 +279,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetSurface2()
         {
             if (right2Surface == null)
-                right2Surface = BuildSpriteSurface("./assets/rendered/hamburger/hamburger2.png");
+            {
+                if (Program.screenHeight > 720)
+                    right2Surface = BuildSpriteSurface("./assets/rendered/1080/hamburger/hamburger2.png");
+                else if (Program.screenHeight > 480)
+                    right2Surface = BuildSpriteSurface("./assets/rendered/720/hamburger/hamburger2.png");
+                else
+                    right2Surface = BuildSpriteSurface("./assets/rendered/480/hamburger/hamburger2.png");
+            }
 
             return right2Surface;
         }
