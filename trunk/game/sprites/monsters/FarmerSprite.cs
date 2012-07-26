@@ -35,7 +35,13 @@ namespace AbrahmanAdventure.sprites
             shootingCycle.Fire();
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/farmer/farmer.png");
+                if (Program.screenHeight > 720)
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/farmer/farmer.png");
+                else if (Program.screenHeight > 480)
+                    standRight = BuildSpriteSurface("./assets/rendered/720/farmer/farmer.png");
+                else
+                    standRight = BuildSpriteSurface("./assets/rendered/480/farmer/farmer.png");
+
                 deadSurface = standRight.CreateFlippedVerticalSurface();
             }
         }

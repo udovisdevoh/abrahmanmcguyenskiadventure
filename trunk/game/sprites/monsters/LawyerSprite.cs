@@ -40,7 +40,13 @@ namespace AbrahmanAdventure.sprites
         {
             if (standingRight == null)
             {
-                standingRight = BuildSpriteSurface("./assets/rendered/lawyer/lawyer.png");
+                if (Program.screenHeight > 720)
+                    standingRight = BuildSpriteSurface("./assets/rendered/1080/lawyer/lawyer.png");
+                else if (Program.screenHeight > 480)
+                    standingRight = BuildSpriteSurface("./assets/rendered/720/lawyer/lawyer.png");
+                else
+                    standingRight = BuildSpriteSurface("./assets/rendered/480/lawyer/lawyer.png");
+
                 standingLeft = standingRight.CreateFlippedHorizontalSurface();
                 deadSurface = standingRight.CreateFlippedVerticalSurface();
             }
