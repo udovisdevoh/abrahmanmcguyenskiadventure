@@ -160,7 +160,7 @@ namespace AbrahmanAdventure.hud
             }
             else if (currentSubMenu == SubMenu.HowTo)
             {
-                mainSurface.Fill(System.Drawing.Color.Black);
+                mainSurface.Fill(System.Drawing.Color.White);
 
                 mainSurface.Blit(GetFontText("How to play", System.Drawing.Color.Black), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 4));
 
