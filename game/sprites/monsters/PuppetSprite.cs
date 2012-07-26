@@ -48,13 +48,27 @@ namespace AbrahmanAdventure.sprites
             fluctuatingSafeDistanceCycle.Fire();
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/puppet/puppetStand.png");
-                standLeft = standRight.CreateFlippedHorizontalSurface();
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/puppet/puppetStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/1080/puppet/puppetHit.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/puppet/puppetWalk.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/puppet/puppetStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/720/puppet/puppetHit.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/puppet/puppetWalk.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/puppet/puppetStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/480/puppet/puppetHit.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/puppet/puppetWalk.png");
+                }
 
-                hitRight = BuildSpriteSurface("./assets/rendered/puppet/puppetHit.png");
+                standLeft = standRight.CreateFlippedHorizontalSurface();                
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
-
-                walkRight = BuildSpriteSurface("./assets/rendered/puppet/puppetWalk.png");
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
 
                 deadSurface = hitRight.CreateFlippedVerticalSurface();
