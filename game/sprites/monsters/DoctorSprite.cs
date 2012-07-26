@@ -44,10 +44,23 @@ namespace AbrahmanAdventure.sprites
             shootingCycle.Fire();
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/doctor/DoctorStand.png");
-                standLeft = standRight.CreateFlippedHorizontalSurface();
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/doctor/DoctorStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/doctor/DoctorWalk.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/doctor/DoctorStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/doctor/DoctorWalk.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/doctor/DoctorStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/doctor/DoctorWalk.png");
+                }
 
-                walkRight = BuildSpriteSurface("./assets/rendered/doctor/DoctorWalk.png");
+                standLeft = standRight.CreateFlippedHorizontalSurface();
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
 
                 deadSurface = walkRight.CreateFlippedVerticalSurface();
