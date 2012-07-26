@@ -160,7 +160,7 @@ namespace AbrahmanAdventure.hud
             }
             else if (currentSubMenu == SubMenu.HowTo)
             {
-                mainSurface.Fill(System.Drawing.Color.White);
+                mainSurface.Fill(System.Drawing.Color.Black);
 
                 mainSurface.Blit(GetFontText("How to play", System.Drawing.Color.Black), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 4));
 
@@ -692,10 +692,10 @@ namespace AbrahmanAdventure.hud
             {
                 if (__titleScreen == null)
                 {
-                    if (Program.screenHeight > 480)
-                        __titleScreen = new Surface("./assets/rendered/720/TitleScreen.png");
-                    else if (Program.screenHeight > 720)
+                    if (Program.screenHeight > 720)
                         __titleScreen = new Surface("./assets/rendered/1080/TitleScreen.png");
+                    else if (Program.screenHeight > 480)
+                        __titleScreen = new Surface("./assets/rendered/720/TitleScreen.png");
                     else
                         __titleScreen = new Surface("./assets/rendered/480/TitleScreen.png");
 
