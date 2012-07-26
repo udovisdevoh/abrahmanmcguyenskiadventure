@@ -88,12 +88,35 @@ namespace AbrahmanAdventure.sprites
 
             if (black1 == null)
             {
-                black1 = BuildSpriteSurface("./assets/rendered/drill/drill1b.png");
-                black2 = BuildSpriteSurface("./assets/rendered/drill/drill2b.png");
-                black3 = BuildSpriteSurface("./assets/rendered/drill/drill3b.png");
-                white1 = BuildSpriteSurface("./assets/rendered/drill/drill1a.png");
-                white2 = BuildSpriteSurface("./assets/rendered/drill/drill2a.png");
-                white3 = BuildSpriteSurface("./assets/rendered/drill/drill3a.png");
+                if (Program.screenHeight > 720)
+                {
+                    black1 = BuildSpriteSurface("./assets/rendered/1080/drill/drill1b.png");
+                    black2 = BuildSpriteSurface("./assets/rendered/1080/drill/drill2b.png");
+                    black3 = BuildSpriteSurface("./assets/rendered/1080/drill/drill3b.png");
+                    white1 = BuildSpriteSurface("./assets/rendered/1080/drill/drill1a.png");
+                    white2 = BuildSpriteSurface("./assets/rendered/1080/drill/drill2a.png");
+                    white3 = BuildSpriteSurface("./assets/rendered/1080/drill/drill3a.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    black1 = BuildSpriteSurface("./assets/rendered/720/drill/drill1b.png");
+                    black2 = BuildSpriteSurface("./assets/rendered/720/drill/drill2b.png");
+                    black3 = BuildSpriteSurface("./assets/rendered/720/drill/drill3b.png");
+                    white1 = BuildSpriteSurface("./assets/rendered/720/drill/drill1a.png");
+                    white2 = BuildSpriteSurface("./assets/rendered/720/drill/drill2a.png");
+                    white3 = BuildSpriteSurface("./assets/rendered/720/drill/drill3a.png");
+                }
+                else
+                {
+                    black1 = BuildSpriteSurface("./assets/rendered/480/drill/drill1b.png");
+                    black2 = BuildSpriteSurface("./assets/rendered/480/drill/drill2b.png");
+                    black3 = BuildSpriteSurface("./assets/rendered/480/drill/drill3b.png");
+                    white1 = BuildSpriteSurface("./assets/rendered/480/drill/drill1a.png");
+                    white2 = BuildSpriteSurface("./assets/rendered/480/drill/drill2a.png");
+                    white3 = BuildSpriteSurface("./assets/rendered/480/drill/drill3a.png");
+                }
+
+
                 black1d = black1.CreateFlippedVerticalSurface();
                 black2d = black2.CreateFlippedVerticalSurface();
                 black3d = black3.CreateFlippedVerticalSurface();
