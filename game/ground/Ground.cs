@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.level
             beaverDestructionSet = new BeaverDestructionSet();
 
             if (Program.isAlwaysUseBottomTexture)
-                isUseBottomTexture = true;
+                isUseBottomTexture = !isCeiling;
             else
                 isUseBottomTexture = /*!isCeiling && */random.Next(0, 2) == 0;
 
