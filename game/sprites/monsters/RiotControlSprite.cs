@@ -87,7 +87,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalkingRightSurface()
         {
             if (walkingRightSurface == null)
-                walkingRightSurface = BuildSpriteSurface("./assets/rendered/riotControl/walk.png");
+            {
+                if (Program.screenHeight > 720)
+                    walkingRightSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/walk.png");
+                else if (Program.screenHeight > 480)
+                    walkingRightSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/walk.png");
+                else
+                    walkingRightSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/walk.png");
+            }
             return walkingRightSurface;
         }
 
@@ -102,7 +109,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurface()
         {
             if (walking2RightSurface == null)
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/riotControl/walk2.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/walk2.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/walk2.png");
+                else
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/walk2.png");
+            }
             return walking2RightSurface;
         }
 
@@ -133,7 +147,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurface()
         {
             if (standingRightSurface == null)
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/riotControl/stand.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/stand.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/stand.png");
+                else
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/stand.png");
+            }
 
             return standingRightSurface;
         }
@@ -141,7 +162,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStanding2RightSurface()
         {
             if (standing2RightSurface == null)
-                standing2RightSurface = BuildSpriteSurface("./assets/rendered/riotControl/stand2.png");
+            {
+                if (Program.screenHeight > 720)
+                    standing2RightSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/stand2.png");
+                else if (Program.screenHeight > 480)
+                    standing2RightSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/stand2.png");
+                else
+                    standing2RightSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/stand2.png");
+            }
 
             return standing2RightSurface;
         }
