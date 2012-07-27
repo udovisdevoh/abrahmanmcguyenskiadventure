@@ -54,16 +54,31 @@ namespace AbrahmanAdventure.sprites
             countDownCycle = new Cycle(125, false);
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/muslim/muslimStand.png");
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/muslim/muslimStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/1080/muslim/muslimHit.png");
+                    walk1Right = BuildSpriteSurface("./assets/rendered/1080/muslim/muslimWalk1.png");
+                    walk2Right = BuildSpriteSurface("./assets/rendered/1080/muslim/muslimWalk2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/muslim/muslimStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/720/muslim/muslimHit.png");
+                    walk1Right = BuildSpriteSurface("./assets/rendered/720/muslim/muslimWalk1.png");
+                    walk2Right = BuildSpriteSurface("./assets/rendered/720/muslim/muslimWalk2.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/muslim/muslimStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/480/muslim/muslimHit.png");
+                    walk1Right = BuildSpriteSurface("./assets/rendered/480/muslim/muslimWalk1.png");
+                    walk2Right = BuildSpriteSurface("./assets/rendered/480/muslim/muslimWalk2.png");
+                }
+
                 standLeft = standRight.CreateFlippedHorizontalSurface();
-
-                hitRight = BuildSpriteSurface("./assets/rendered/muslim/muslimHit.png");
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
-
-                walk1Right = BuildSpriteSurface("./assets/rendered/muslim/muslimWalk1.png");
                 walk1Left = walk1Right.CreateFlippedHorizontalSurface();
-                
-                walk2Right = BuildSpriteSurface("./assets/rendered/muslim/muslimWalk2.png");
                 walk2Left = walk1Right.CreateFlippedHorizontalSurface();
 
                 deadSurface = standRight.CreateFlippedVerticalSurface();
