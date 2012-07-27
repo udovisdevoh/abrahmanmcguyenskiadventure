@@ -19,38 +19,39 @@ namespace AbrahmanAdventure.level
         {
             visitorThread = Thread.CurrentThread;
 
-            List<Thread> threadList = new List<Thread>();
 
             foreach (Ground ground in groundList)
             {
                 if (ground.TopTexture != null && !ground.TopTexture.IsRendered)
-                {
                     remainingCount++;
-                    ground.TopTexture.RenderingComplete += TextureRenderingCompleteHandler;
-                    Thread workerThread = new Thread(ground.TopTexture.Render);
-                    threadList.Add(workerThread);
-                }
 
                 if (ground.BottomTexture != null && !ground.BottomTexture.IsRendered)
-                {
                     remainingCount++;
-                    ground.BottomTexture.RenderingComplete += TextureRenderingCompleteHandler;
-                    Thread workerThread = new Thread(ground.BottomTexture.Render);
-                    threadList.Add(workerThread);
-                }
             }
 
-            foreach (Thread thread in threadList)
-                thread.Start();
+            foreach (Ground ground in groundList)
+            {
+                if (ground.TopTexture != null && !ground.TopTexture.IsRendered)
+                    ThreadPool.QueueUserWorkItem(ThreadPoolCallBackRenderTexture, ground.TopTexture);
 
-            visitorThread.Suspend();
+                if (ground.BottomTexture != null && !ground.BottomTexture.IsRendered)
+                    ThreadPool.QueueUserWorkItem(ThreadPoolCallBackRenderTexture, ground.BottomTexture);
+            }
+
+            lock (this)
+            {
+                if (remainingCount > 0)
+                    visitorThread.Suspend();
+            }
 
         }
         #endregion
 
         #region Event Handlers
-        private void TextureRenderingCompleteHandler(object sender, EventArgs e)
+        private void ThreadPoolCallBackRenderTexture(object threadContext)
         {
+            Texture texture = (Texture)threadContext;
+            texture.Render();
             remainingCount--;
 
             if (remainingCount <= 0)
