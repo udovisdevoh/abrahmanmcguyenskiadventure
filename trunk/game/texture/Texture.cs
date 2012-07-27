@@ -14,10 +14,6 @@ namespace AbrahmanAdventure.level
     /// </summary>
     internal class Texture
     {
-        #region Events
-        public event EventHandler RenderingComplete;
-        #endregion
-
         #region Fields and parts
         /// <summary>
         /// Main color
@@ -381,7 +377,6 @@ namespace AbrahmanAdventure.level
                     TextureCache.AddSurfaceToCache(seed, groundId, isTop, Program.screenWidth, Program.screenHeight, surface);
             }
             isRendered = true;
-            if (RenderingComplete != null) RenderingComplete(this, null);
         }
         #endregion
 
