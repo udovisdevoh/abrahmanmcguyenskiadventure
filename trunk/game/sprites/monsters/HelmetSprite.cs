@@ -81,84 +81,169 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking1aSurface()
         {
             if (walking1aSurface == null)
-                walking1aSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1aSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet.png");
+                else if (Program.screenHeight > 480)
+                    walking1aSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet.png");
+                else
+                    walking1aSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet.png");
+
+            }
             return walking1aSurface;
         }
 
         private Surface GetWalking1bSurface()
         {
             if (walking1bSurface == null)
-                walking1bSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmetb.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1bSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmetb.png");
+                else if (Program.screenHeight > 480)
+                    walking1bSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmetb.png");
+                else
+                    walking1bSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmetb.png");
+            }
             return walking1bSurface;
         }
 
         private Surface GetWalking1cSurface()
         {
             if (walking1cSurface == null)
-                walking1cSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmetc.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1cSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmetc.png");
+                else if (Program.screenHeight > 480)
+                    walking1cSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmetc.png");
+                else
+                    walking1cSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmetc.png");
+            }
             return walking1cSurface;
         }
 
         private Surface GetWalking1dSurface()
         {
             if (walking1dSurface == null)
-                walking1dSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmetd.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1dSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmetd.png");
+                else if (Program.screenHeight > 480)
+                    walking1dSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmetd.png");
+                else
+                    walking1dSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmetd.png");
+            }
             return walking1dSurface;
         }
 
         private Surface GetWalking1eSurface()
         {
             if (walking1eSurface == null)
-                walking1eSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet1e.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1eSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet1e.png");
+                else if (Program.screenHeight > 480)
+                    walking1eSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet1e.png");
+                else
+                    walking1eSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet1e.png");
+            }
             return walking1eSurface;
         }
 
         private Surface GetWalking1fSurface()
         {
             if (walking1fSurface == null)
-                walking1fSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet1f.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1fSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet1f.png");
+                else if (Program.screenHeight > 480)
+                    walking1fSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet1f.png");
+                else
+                    walking1fSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet1f.png");
+            }
             return walking1fSurface;
         }
 
         private Surface GetWalking2aSurface()
         {
             if (walking2aSurface == null)
-                walking2aSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2aSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet2.png");
+                else if (Program.screenHeight > 480)
+                    walking2aSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet2.png");
+                else
+                    walking2aSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet2.png");
+            }
             return walking2aSurface;
         }
 
         private Surface GetWalking2bSurface()
         {
             if (walking2bSurface == null)
-                walking2bSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2b.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2bSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet2b.png");
+                else if (Program.screenHeight > 480)
+                    walking2bSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet2b.png");
+                else
+                    walking2bSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet2b.png");
+            }
             return walking2bSurface;
         }
 
         private Surface GetWalking2cSurface()
         {
             if (walking2cSurface == null)
-                walking2cSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2c.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2cSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet2c.png");
+                else if (Program.screenHeight > 480)
+                    walking2cSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet2c.png");
+                else
+                    walking2cSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet2c.png");
+            }
             return walking2cSurface;
         }
 
         private Surface GetWalking2dSurface()
         {
             if (walking2dSurface == null)
-                walking2dSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2d.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2dSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet2d.png");
+                else if (Program.screenHeight > 480)
+                    walking2dSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet2d.png");
+                else
+                    walking2dSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet2d.png");
+            }
             return walking2dSurface;
         }
 
         private Surface GetWalking2eSurface()
         {
             if (walking2eSurface == null)
-                walking2eSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2e.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2eSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet2e.png");
+                else if (Program.screenHeight > 480)
+                    walking2eSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet2e.png");
+                else
+                    walking2eSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet2e.png");
+            }
             return walking2eSurface;
         }
 
         private Surface GetWalking2fSurface()
         {
             if (walking2fSurface == null)
-                walking2fSurface = BuildSpriteSurface("./assets/rendered/riotControl/helmet2f.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2fSurface = BuildSpriteSurface("./assets/rendered/1080/riotControl/helmet2f.png");
+                else if (Program.screenHeight > 480)
+                    walking2fSurface = BuildSpriteSurface("./assets/rendered/720/riotControl/helmet2f.png");
+                else
+                    walking2fSurface = BuildSpriteSurface("./assets/rendered/480/riotControl/helmet2f.png");
+            }
             return walking2fSurface;
         }
    
