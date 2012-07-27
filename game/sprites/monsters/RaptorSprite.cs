@@ -65,7 +65,20 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking1RightSurface()
         {
             if (walking1RightSurface == null)
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/raptor/walk1.png");
+            {
+                if (Program.screenHeight > 720)
+                {
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/1080/raptor/walk1.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/720/raptor/walk1.png");
+                }
+                else
+                {
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/480/raptor/walk1.png");
+                }
+            }
             return walking1RightSurface;
         }
 
@@ -88,8 +101,20 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurface()
         {
             if (walking2RightSurface == null)
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/raptor/walk2.png");
-
+            {
+                if (Program.screenHeight > 720)
+                {
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/1080/raptor/walk2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/720/raptor/walk2.png");
+                }
+                else
+                {
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/480/raptor/walk2.png");
+                }
+            }
             return walking2RightSurface;
         }
 
@@ -104,16 +129,40 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurface()
         {
             if (standingRightSurface == null)
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/raptor/stand.png");
-
+            {
+                if (Program.screenHeight > 720)
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/1080/raptor/stand.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/720/raptor/stand.png");
+                }
+                else
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/480/raptor/stand.png");
+                }
+            }
             return standingRightSurface;
         }
 
         private Surface GetHitRightSurface()
         {
             if (hitRightSurface == null)
-                hitRightSurface = BuildSpriteSurface("./assets/rendered/raptor/hit.png");
-
+            {
+                if (Program.screenHeight > 720)
+                {
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/1080/raptor/hit.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/720/raptor/hit.png");
+                }
+                else
+                {
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/480/raptor/hit.png");
+                }
+            }
             return hitRightSurface;
         }
 
