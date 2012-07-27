@@ -52,16 +52,31 @@ namespace AbrahmanAdventure.sprites
             shootingCycle.Fire();
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/mormon/MormonStand.png");
-                standLeft = standRight.CreateFlippedHorizontalSurface();
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/mormon/MormonStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/1080/mormon/MormonHit.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/mormon/MormonWalk.png");
+                    attackRight = BuildSpriteSurface("./assets/rendered/1080/mormon/MormonAttack.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/mormon/MormonStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/720/mormon/MormonHit.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/mormon/MormonWalk.png");
+                    attackRight = BuildSpriteSurface("./assets/rendered/720/mormon/MormonAttack.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/mormon/MormonStand.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/480/mormon/MormonHit.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/mormon/MormonWalk.png");
+                    attackRight = BuildSpriteSurface("./assets/rendered/480/mormon/MormonAttack.png");
+                }
 
-                hitRight = BuildSpriteSurface("./assets/rendered/mormon/MormonHit.png");
-                hitLeft = hitRight.CreateFlippedHorizontalSurface();
-
-                walkRight = BuildSpriteSurface("./assets/rendered/mormon/MormonWalk.png");
+                standLeft = standRight.CreateFlippedHorizontalSurface();                
+                hitLeft = hitRight.CreateFlippedHorizontalSurface();                
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
-
-                attackRight = BuildSpriteSurface("./assets/rendered/mormon/MormonAttack.png");
                 attackLeft = attackRight.CreateFlippedHorizontalSurface();
 
                 deadSurface = hitRight.CreateFlippedVerticalSurface();
