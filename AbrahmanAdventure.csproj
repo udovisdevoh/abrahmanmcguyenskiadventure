@@ -611,6 +611,33 @@
     <Content Include="assets\rendered\1080\priest\walk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\1080\projectiles\bible1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\bible2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\bible3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\crystalBall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\fireBall1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\fireBall2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\pill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\shuriken1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\projectiles\shuriken2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\1080\puppet\puppetHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -900,6 +927,33 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\720\priest\walk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\bible1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\bible2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\bible3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\crystalBall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\fireBall1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\fireBall2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\pill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\shuriken1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\projectiles\shuriken2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\720\puppet\puppetHit.png">
@@ -1712,10 +1766,10 @@
     <Content Include="assets\rendered\480\powerups\scotch3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\shuriken1.png">
+    <Content Include="assets\rendered\480\projectiles\shuriken1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\shuriken2.png">
+    <Content Include="assets\rendered\480\projectiles\shuriken2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\staticSprites\cloud.png">
@@ -1733,22 +1787,22 @@
     <Content Include="assets\rendered\480\priest\walk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\bible1.png">
+    <Content Include="assets\rendered\480\projectiles\bible1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\bible2.png">
+    <Content Include="assets\rendered\480\projectiles\bible2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\bible3.png">
+    <Content Include="assets\rendered\480\projectiles\bible3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\crystalBall.png">
+    <Content Include="assets\rendered\480\projectiles\crystalBall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\fireBall1.png">
+    <Content Include="assets\rendered\480\projectiles\fireBall1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\fireBall2.png">
+    <Content Include="assets\rendered\480\projectiles\fireBall2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\puppet\puppetHit.png">
@@ -1835,7 +1889,7 @@
     <Content Include="assets\rendered\480\jew\walk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\projectiles\pill.png">
+    <Content Include="assets\rendered\480\projectiles\pill.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\raptor\hit.png">

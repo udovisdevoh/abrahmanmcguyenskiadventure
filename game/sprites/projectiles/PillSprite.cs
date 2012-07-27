@@ -33,7 +33,13 @@ namespace AbrahmanAdventure.sprites
             IsCrossGrounds = true;
             if (surfaceRight == null)
             {
-                surfaceRight = BuildSpriteSurface("./assets/rendered/projectiles/pill.png");
+                if (Program.screenHeight > 720)
+                    surfaceRight = BuildSpriteSurface("./assets/rendered/1080/projectiles/pill.png");
+                else if (Program.screenHeight > 480)
+                    surfaceRight = BuildSpriteSurface("./assets/rendered/720/projectiles/pill.png");
+                else
+                    surfaceRight = BuildSpriteSurface("./assets/rendered/480/projectiles/pill.png");
+
                 surfaceLeft = surfaceRight.CreateFlippedHorizontalSurface();
             }
         }

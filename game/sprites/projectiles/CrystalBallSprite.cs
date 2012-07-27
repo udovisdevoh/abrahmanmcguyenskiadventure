@@ -28,7 +28,14 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random)
         {
             if (surface == null)
-                surface = BuildSpriteSurface("./assets/rendered/projectiles/crystalBall.png");
+            {
+                if (Program.screenHeight > 720)
+                    surface = BuildSpriteSurface("./assets/rendered/1080/projectiles/crystalBall.png");
+                else if (Program.screenHeight > 480)
+                    surface = BuildSpriteSurface("./assets/rendered/720/projectiles/crystalBall.png");
+                else
+                    surface = BuildSpriteSurface("./assets/rendered/480/projectiles/crystalBall.png");
+            }
         }
         #endregion
 
