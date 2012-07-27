@@ -48,13 +48,27 @@ namespace AbrahmanAdventure.sprites
             shootingCycle.Fire();
             if (standRight == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/ronald/ronaldStand.png");
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/ronald/ronaldStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/ronald/ronaldWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/1080/ronald/ronaldHit.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/ronald/ronaldStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/ronald/ronaldWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/720/ronald/ronaldHit.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/ronald/ronaldStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/ronald/ronaldWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/480/ronald/ronaldHit.png");
+                }
+
                 standLeft = standRight.CreateFlippedHorizontalSurface();
-
-                walkRight = BuildSpriteSurface("./assets/rendered/ronald/ronaldWalk.png");
-                walkLeft = walkRight.CreateFlippedHorizontalSurface();
-
-                hitRight = BuildSpriteSurface("./assets/rendered/ronald/ronaldHit.png");
+                walkLeft = walkRight.CreateFlippedHorizontalSurface();                
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
 
                 dead = hitRight.CreateFlippedVerticalSurface();
