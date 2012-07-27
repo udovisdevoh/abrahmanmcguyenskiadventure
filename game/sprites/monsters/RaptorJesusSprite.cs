@@ -66,7 +66,21 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking1RightSurface()
         {
             if (walking1RightSurface == null)
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/raptorJesus/walk1.png");
+            {
+                if (Program.screenHeight > 720)
+                {
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/1080/raptorJesus/walk1.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/720/raptorJesus/walk1.png");
+                }
+                else
+                {
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/480/raptorJesus/walk1.png");
+                }
+            }
+
             return walking1RightSurface;
         }
 
@@ -89,7 +103,20 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurface()
         {
             if (walking2RightSurface == null)
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/raptorJesus/walk2.png");
+            {
+                if (Program.screenHeight > 720)
+                {
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/1080/raptorJesus/walk2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/720/raptorJesus/walk2.png");
+                }
+                else
+                {
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/480/raptorJesus/walk2.png");
+                }
+            }
 
             return walking2RightSurface;
         }
@@ -105,7 +132,20 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurface()
         {
             if (standingRightSurface == null)
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/raptorJesus/stand.png");
+            {
+                if (Program.screenHeight > 720)
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/1080/raptorJesus/stand.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/720/raptorJesus/stand.png");
+                }
+                else
+                {
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/480/raptorJesus/stand.png");
+                }
+            }
 
             return standingRightSurface;
         }
@@ -113,7 +153,20 @@ namespace AbrahmanAdventure.sprites
         private Surface GetHitRightSurface()
         {
             if (hitRightSurface == null)
-                hitRightSurface = BuildSpriteSurface("./assets/rendered/raptorJesus/hit.png");
+            {
+                if (Program.screenHeight > 720)
+                {
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/1080/raptorJesus/hit.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/720/raptorJesus/hit.png");
+                }
+                else
+                {
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/480/raptorJesus/hit.png");
+                }
+            }
 
             return hitRightSurface;
         }
