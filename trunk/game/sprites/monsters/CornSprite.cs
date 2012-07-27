@@ -52,14 +52,33 @@ namespace AbrahmanAdventure.sprites
             MaxFallingSpeed = 0.2;
             if (standSurfaceRight == null)
             {
-                standSurfaceRight = BuildSpriteSurface("./assets/rendered/corn/cornStand.png");
-                standSurfaceLeft = standSurfaceRight.CreateFlippedHorizontalSurface();
-                walkSurfaceRight = BuildSpriteSurface("./assets/rendered/corn/cornWalk.png");
-                walkSurfaceLeft = walkSurfaceRight.CreateFlippedHorizontalSurface();
+                if (Program.screenHeight > 720)
+                {
+                    standSurfaceRight = BuildSpriteSurface("./assets/rendered/1080/corn/cornStand.png");
+                    walkSurfaceRight = BuildSpriteSurface("./assets/rendered/1080/corn/cornWalk.png");
+                    rotate1 = BuildSpriteSurface("./assets/rendered/1080/corn/corn1.png");
+                    rotate2 = BuildSpriteSurface("./assets/rendered/1080/corn/corn2.png");
+                    rotate3 = BuildSpriteSurface("./assets/rendered/1080/corn/corn3.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standSurfaceRight = BuildSpriteSurface("./assets/rendered/720/corn/cornStand.png");
+                    walkSurfaceRight = BuildSpriteSurface("./assets/rendered/720/corn/cornWalk.png");
+                    rotate1 = BuildSpriteSurface("./assets/rendered/720/corn/corn1.png");
+                    rotate2 = BuildSpriteSurface("./assets/rendered/720/corn/corn2.png");
+                    rotate3 = BuildSpriteSurface("./assets/rendered/720/corn/corn3.png");
+                }
+                else
+                {
+                    standSurfaceRight = BuildSpriteSurface("./assets/rendered/480/corn/cornStand.png");
+                    walkSurfaceRight = BuildSpriteSurface("./assets/rendered/480/corn/cornWalk.png");
+                    rotate1 = BuildSpriteSurface("./assets/rendered/480/corn/corn1.png");
+                    rotate2 = BuildSpriteSurface("./assets/rendered/480/corn/corn2.png");
+                    rotate3 = BuildSpriteSurface("./assets/rendered/480/corn/corn3.png");
+                }
 
-                rotate1 = BuildSpriteSurface("./assets/rendered/corn/corn1.png");
-                rotate2 = BuildSpriteSurface("./assets/rendered/corn/corn2.png");
-                rotate3 = BuildSpriteSurface("./assets/rendered/corn/corn3.png");
+                standSurfaceLeft = standSurfaceRight.CreateFlippedHorizontalSurface();
+                walkSurfaceLeft = walkSurfaceRight.CreateFlippedHorizontalSurface();
                 rotate4 = rotate2.CreateFlippedHorizontalSurface();
                 rotate5 = rotate1.CreateFlippedHorizontalSurface();
                 rotate6 = rotate4.CreateFlippedVerticalSurface();
