@@ -34,8 +34,21 @@ namespace AbrahmanAdventure.sprites
         {
             if (surface1 == null || surface2 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/shuriken1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/shuriken2.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/projectiles/shuriken1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/projectiles/shuriken2.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/projectiles/shuriken1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/projectiles/shuriken2.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/projectiles/shuriken1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/projectiles/shuriken2.png");
+                }
             }
             IsVulnerableToPunch = false;
             IsInvisibleIfDead = true;

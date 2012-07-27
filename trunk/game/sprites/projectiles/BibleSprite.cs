@@ -46,9 +46,26 @@ namespace AbrahmanAdventure.sprites
         {
             if (surface1 == null)
             {
-                surface1 = BuildSpriteSurface("./assets/rendered/projectiles/bible1.png");
-                surface2 = BuildSpriteSurface("./assets/rendered/projectiles/bible2.png");
-                surface3 = BuildSpriteSurface("./assets/rendered/projectiles/bible3.png");
+                if (Program.screenHeight > 720)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/1080/projectiles/bible1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/1080/projectiles/bible2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/1080/projectiles/bible3.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/720/projectiles/bible1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/720/projectiles/bible2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/720/projectiles/bible3.png");
+                }
+                else
+                {
+                    surface1 = BuildSpriteSurface("./assets/rendered/480/projectiles/bible1.png");
+                    surface2 = BuildSpriteSurface("./assets/rendered/480/projectiles/bible2.png");
+                    surface3 = BuildSpriteSurface("./assets/rendered/480/projectiles/bible3.png");
+                }
+
+
                 surface4 = surface2.CreateFlippedVerticalSurface();
                 surface5 = surface1.CreateFlippedVerticalSurface();
                 surface6 = surface4.CreateFlippedHorizontalSurface();
