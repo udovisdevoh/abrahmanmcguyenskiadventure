@@ -851,36 +851,128 @@ namespace AbrahmanAdventure.sprites
 
             if (beaverStandTallRight == null)
             {
-                beaverStandTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTall.png");
-                beaverWalkTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTall.png");
-                beaverAttackTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTall.png");
-                beaverHitTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTall.png");
-                beaverCrouchedTallRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTall.png");
-                beaverStandTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallDoped.png");
-                beaverWalkTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallDoped.png");
-                beaverAttackTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallDoped.png");
-                beaverHitTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallDoped.png");
-                beaverCrouchedTallDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallDoped.png");
-                beaverStandTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallRasta.png");
-                beaverWalkTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRasta.png");
-                beaverAttackTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallRasta.png");
-                beaverHitTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallRasta.png");
-                beaverCrouchedTallRastaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallRasta.png");
-                beaverStandTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallRastaDoped.png");
-                beaverWalkTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaDoped.png");
-                beaverAttackTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallRastaDoped.png");
-                beaverHitTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallRastaDoped.png");
-                beaverCrouchedTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallRastaDoped.png");
-                beaverStandTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTiny.png");
-                beaverWalkTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTiny.png");
-                beaverAttackTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTiny.png");
-                beaverHitTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTiny.png");
-                beaverCrouchedTinyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTiny.png");
-                beaverStandTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTinyDoped.png");
-                beaverWalkTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTinyDoped.png");
-                beaverAttackTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTinyDoped.png");
-                beaverHitTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTinyDoped.png");
-                beaverCrouchedTinyDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTinyDoped.png");
+                string resolutionPath;
+
+                if (Program.screenHeight > 720)
+                    resolutionPath = "1080";
+                else if (Program.screenHeight > 480)
+                    resolutionPath = "720";
+                else
+                    resolutionPath = "480";
+
+                beaverStandTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTall.png");
+                beaverWalkTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTall.png");
+                beaverAttackTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTall.png");
+                beaverHitTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTall.png");
+                beaverCrouchedTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTall.png");
+                beaverStandTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallDoped.png");
+                beaverWalkTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallDoped.png");
+                beaverAttackTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallDoped.png");
+                beaverHitTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallDoped.png");
+                beaverCrouchedTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallDoped.png");
+                beaverStandTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallRasta.png");
+                beaverWalkTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRasta.png");
+                beaverAttackTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallRasta.png");
+                beaverHitTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallRasta.png");
+                beaverCrouchedTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallRasta.png");
+                beaverStandTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallRastaDoped.png");
+                beaverWalkTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRastaDoped.png");
+                beaverAttackTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallRastaDoped.png");
+                beaverHitTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallRastaDoped.png");
+                beaverCrouchedTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallRastaDoped.png");
+                beaverStandTinyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTiny.png");
+                beaverWalkTinyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTiny.png");
+                beaverAttackTinyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTiny.png");
+                beaverHitTinyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTiny.png");
+                beaverCrouchedTinyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTiny.png");
+                beaverStandTinyDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTinyDoped.png");
+                beaverWalkTinyDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTinyDoped.png");
+                beaverAttackTinyDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTinyDoped.png");
+                beaverHitTinyDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTinyDoped.png");
+                beaverCrouchedTinyDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTinyDoped.png");
+                ninjaKatanaStand1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/katana1Ninja.png");
+                ninjaKatanaStand2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/katana2Ninja.png");
+                ninjaKatanaStand3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/katana3Ninja.png");
+                ninjaDopedKatanaStand1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/katana1NinjaDoped.png");
+                ninjaDopedKatanaStand2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/katana2NinjaDoped.png");
+                ninjaDopedKatanaStand3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/katana3NinjaDoped.png");
+                ninjaKatanaJump1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/swordJump1Ninja.png");
+                ninjaKatanaJump2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/swordJump2Ninja.png");
+                ninjaKatanaJump3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/swordJump3Ninja.png");
+                ninjaDopedKatanaJump1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/swordJump1NinjaDoped.png");
+                ninjaDopedKatanaJump2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/swordJump2NinjaDoped.png");
+                ninjaDopedKatanaJump3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/swordJump3NinjaDoped.png");
+                ninjaKatanaCrouched1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/sword1CrouchedNinja.png");
+                ninjaKatanaCrouched2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/sword2CrouchedNinja.png");
+                ninjaKatanaCrouched3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/sword3CrouchedNinja.png");
+                ninjaDopedKatanaCrouched1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/sword1CrouchedNinjaDoped.png");
+                ninjaDopedKatanaCrouched2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/sword2CrouchedNinjaDoped.png");
+                ninjaDopedKatanaCrouched3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/sword3CrouchedNinjaDoped.png");
+                ninjaFlipRight1 = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/flipNinja.png");
+                ninjaFlipRight2 = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/flipNinja45.png");
+                ninjaFlipDopedRight1 = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/flipNinjaDoped.png");
+                ninjaFlipDopedRight2 = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/flipNinja45Doped.png");
+                ninjaDopedCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku1CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku2CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku3CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku4CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku5CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku6CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku7CrouchedNinjaDoped.png");
+                ninjaDopedCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku8CrouchedNinjaDoped.png");
+                ninjaDopedNunchaku1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku1NinjaDoped.png");
+                ninjaDopedNunchaku2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku2NinjaDoped.png");
+                ninjaDopedNunchaku3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku3NinjaDoped.png");
+                ninjaDopedNunchaku4Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku4NinjaDoped.png");
+                ninjaDopedNunchaku5Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku5NinjaDoped.png");
+                ninjaDopedNunchaku6Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku6NinjaDoped.png");
+                ninjaDopedNunchaku7Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku7NinjaDoped.png");
+                ninjaDopedNunchaku8Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku8NinjaDoped.png");
+                ninjaCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku1CrouchedNinja.png");
+                rastaFlyCrouchedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/rastaFlyCrouched.png");
+                rastaFlyCrouchedDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/rastaFlyCrouchedDoped.png");
+                beaverStandTallRastaDopedFlyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRastaDopedFly.png");
+                beaverStandTallRastaFlyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRastaFly.png");
+                beaverStandTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallNinja.png");
+                beaverWalkTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallNinja.png");
+                beaverAttackTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallNinja.png");
+                beaverHitTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallNinja.png");
+                beaverCrouchedTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallNinja.png");
+                beaverStandTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallNinjaDoped.png");
+                beaverWalkTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallNinjaDoped.png");
+                beaverAttackTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallNinjaDoped.png");
+                beaverHitTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallNinjaDoped.png");
+                beaverCrouchedTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallNinjaDoped.png");
+                ninjaDopedCrouchedHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedHitNinjaDoped.png");
+                ninjaDopedHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/hitNinjaDoped.png");
+                ninjaCrouchedHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedHitNinja.png");
+                ninjaHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/hitNinja.png");
+                ninjaCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku2CrouchedNinja.png");
+                ninjaCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku3CrouchedNinja.png");
+                ninjaCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku4CrouchedNinja.png");
+                ninjaCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku5CrouchedNinja.png");
+                ninjaCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku6CrouchedNinja.png");
+                ninjaCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku7CrouchedNinja.png");
+                ninjaCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku8CrouchedNinja.png");
+                ninjaNunchaku1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku1Ninja.png");
+                ninjaNunchaku2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku2Ninja.png");
+                ninjaNunchaku3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku3Ninja.png");
+                ninjaNunchaku4Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku4Ninja.png");
+                ninjaNunchaku5Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku5Ninja.png");
+                ninjaNunchaku6Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku6Ninja.png");
+                ninjaNunchaku7Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku7Ninja.png");
+                ninjaNunchaku8Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/nunchaku8Ninja.png");
+                walking1NinjaRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk1Ninja.png");
+                walking2NinjaRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk2Ninja.png");
+                walking1NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk1NinjaDoped.png");
+                walking2NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk2NinjaDoped.png");
+                crouchedNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedNinja.png");
+                crouchedNinjaHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedHitNinja.png");
+                crouchedNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedNinjaDoped.png");
+                crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedHitNinjaDoped.png");
+                standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/standNinja.png");
+                standingNinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/standNinjaDoped.png");
+
                 beaverStandTallLeft = beaverStandTallRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallLeft = beaverWalkTallRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallLeft = beaverAttackTallRight.CreateFlippedHorizontalSurface();
@@ -911,206 +1003,113 @@ namespace AbrahmanAdventure.sprites
                 beaverAttackTinyDopedLeft = beaverAttackTinyDopedRight.CreateFlippedHorizontalSurface();
                 beaverHitTinyDopedLeft = beaverHitTinyDopedRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTinyDopedLeft = beaverCrouchedTinyDopedRight.CreateFlippedHorizontalSurface();
-                beaverStandTallRastaFlyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaFly.png");
                 beaverStandTallRastaFlyLeft = beaverStandTallRastaFlyRight.CreateFlippedHorizontalSurface();
-                beaverStandTallRastaDopedFlyRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallRastaDopedFly.png");
                 beaverStandTallRastaDopedFlyLeft = beaverStandTallRastaDopedFlyRight.CreateFlippedHorizontalSurface();
-                rastaFlyCrouchedDopedRight = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlyCrouchedDoped.png");
                 rastaFlyCrouchedDopedLeft = rastaFlyCrouchedDopedRight.CreateFlippedHorizontalSurface();
-                rastaFlyCrouchedRight = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlyCrouched.png");
                 rastaFlyCrouchedLeft = rastaFlyCrouchedRight.CreateFlippedHorizontalSurface();
-
-                beaverStandTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallNinja.png");
                 beaverStandTallNinjaLeft = beaverStandTallNinjaRight.CreateFlippedHorizontalSurface();
-                beaverWalkTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallNinja.png");
                 beaverWalkTallNinjaLeft = beaverWalkTallNinjaRight.CreateFlippedHorizontalSurface();
-                beaverAttackTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallNinja.png");
                 beaverAttackTallNinjaLeft = beaverAttackTallNinjaRight.CreateFlippedHorizontalSurface();
-                beaverHitTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallNinja.png");
                 beaverHitTallNinjaLeft = beaverHitTallNinjaRight.CreateFlippedHorizontalSurface();
-                beaverCrouchedTallNinjaRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallNinja.png");
                 beaverCrouchedTallNinjaLeft = beaverCrouchedTallNinjaRight.CreateFlippedHorizontalSurface();
-                beaverStandTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandStandTallNinjaDoped.png");
                 beaverStandTallNinjaDopedLeft = beaverStandTallNinjaDopedRight.CreateFlippedHorizontalSurface();
-                beaverWalkTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkStandTallNinjaDoped.png");
                 beaverWalkTallNinjaDopedLeft = beaverWalkTallNinjaDopedRight.CreateFlippedHorizontalSurface();
-                beaverAttackTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverAttackStandTallNinjaDoped.png");
                 beaverAttackTallNinjaDopedLeft = beaverAttackTallNinjaDopedRight.CreateFlippedHorizontalSurface();
-                beaverHitTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitStandTallNinjaDoped.png");
                 beaverHitTallNinjaDopedLeft = beaverHitTallNinjaDopedRight.CreateFlippedHorizontalSurface();
-                beaverCrouchedTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverCrouchedStandTallNinjaDoped.png");
                 beaverCrouchedTallNinjaDopedLeft = beaverCrouchedTallNinjaDopedRight.CreateFlippedHorizontalSurface();
+                walking1NinjaLeftSurface = walking1NinjaRightSurface.CreateFlippedHorizontalSurface();
+                walking2NinjaLeftSurface = walking2NinjaRightSurface.CreateFlippedHorizontalSurface();
+                walking1NinjaDopedLeftSurface = walking1NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+                walking2NinjaDopedLeftSurface = walking2NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+                crouchedNinjaLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
+                crouchedNinjaHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
+                crouchedNinjaDopedLeft = crouchedNinjaDopedRight.CreateFlippedHorizontalSurface();
+                crouchedNinjaDopedHitLeft = crouchedNinjaDopedHitRight.CreateFlippedHorizontalSurface();
+                standingNinjaLeftSurface = standingNinjaRightSurface.CreateFlippedHorizontalSurface();
+                standingNinjaDopedLeftSurface = standingNinjaDopedRightSurface.CreateFlippedHorizontalSurface();
+                ninjaFlipRight3 = ninjaFlipRight1.CreateRotatedSurface(270);
+                ninjaFlipRight4 = ninjaFlipRight2.CreateRotatedSurface(270);
+                ninjaFlipRight5 = ninjaFlipRight1.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipRight6 = ninjaFlipRight2.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipRight7 = ninjaFlipRight3.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipRight8 = ninjaFlipRight4.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipDopedRight3 = ninjaFlipDopedRight1.CreateRotatedSurface(270);
+                ninjaFlipDopedRight4 = ninjaFlipDopedRight2.CreateRotatedSurface(270);
+                ninjaFlipDopedRight5 = ninjaFlipDopedRight1.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipDopedRight6 = ninjaFlipDopedRight2.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipDopedRight7 = ninjaFlipDopedRight3.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipDopedRight8 = ninjaFlipDopedRight4.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
+                ninjaFlipLeft1 = ninjaFlipRight1.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft2 = ninjaFlipRight2.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft3 = ninjaFlipRight3.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft4 = ninjaFlipRight4.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft5 = ninjaFlipRight5.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft6 = ninjaFlipRight6.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft7 = ninjaFlipRight7.CreateFlippedHorizontalSurface();
+                ninjaFlipLeft8 = ninjaFlipRight8.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft1 = ninjaFlipDopedRight1.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft2 = ninjaFlipDopedRight2.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft3 = ninjaFlipDopedRight3.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft4 = ninjaFlipDopedRight4.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft5 = ninjaFlipDopedRight5.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft6 = ninjaFlipDopedRight6.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft7 = ninjaFlipDopedRight7.CreateFlippedHorizontalSurface();
+                ninjaFlipDopedLeft8 = ninjaFlipDopedRight8.CreateFlippedHorizontalSurface();
+                ninjaKatanaStand1Left = ninjaKatanaStand1Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaStand2Left = ninjaKatanaStand2Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaStand3Left = ninjaKatanaStand3Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaStand1Left = ninjaDopedKatanaStand1Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaStand2Left = ninjaDopedKatanaStand2Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaStand3Left = ninjaDopedKatanaStand3Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaJump1Left = ninjaKatanaJump1Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaJump2Left = ninjaKatanaJump2Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaJump3Left = ninjaKatanaJump3Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaJump1Left = ninjaDopedKatanaJump1Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaJump2Left = ninjaDopedKatanaJump2Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaJump3Left = ninjaDopedKatanaJump3Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaCrouched1Left = ninjaKatanaCrouched1Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaCrouched2Left = ninjaKatanaCrouched2Right.CreateFlippedHorizontalSurface();
+                ninjaKatanaCrouched3Left = ninjaKatanaCrouched3Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaCrouched1Left = ninjaDopedKatanaCrouched1Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaCrouched2Left = ninjaDopedKatanaCrouched2Right.CreateFlippedHorizontalSurface();
+                ninjaDopedKatanaCrouched3Left = ninjaDopedKatanaCrouched3Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedHitLeft = ninjaDopedCrouchedHitRight.CreateFlippedHorizontalSurface();
+                ninjaDopedHitLeft = ninjaDopedHitRight.CreateFlippedHorizontalSurface();
+                ninjaCrouchedHitLeft = ninjaCrouchedHitRight.CreateFlippedHorizontalSurface();
+                ninjaHitLeft = ninjaHitRight.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku1Left = ninjaDopedCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku2Left = ninjaDopedCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku3Left = ninjaDopedCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku4Left = ninjaDopedCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku5Left = ninjaDopedCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku6Left = ninjaDopedCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku7Left = ninjaDopedCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
+                ninjaDopedCrouchedNunchaku8Left = ninjaDopedCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku1Left = ninjaDopedNunchaku1Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku2Left = ninjaDopedNunchaku2Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku3Left = ninjaDopedNunchaku3Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku4Left = ninjaDopedNunchaku4Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku5Left = ninjaDopedNunchaku5Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku6Left = ninjaDopedNunchaku6Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku7Left = ninjaDopedNunchaku7Right.CreateFlippedHorizontalSurface();
+                ninjaDopedNunchaku8Left = ninjaDopedNunchaku8Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku1Left = ninjaCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku2Left = ninjaCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku3Left = ninjaCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku4Left = ninjaCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku5Left = ninjaCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku6Left = ninjaCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku7Left = ninjaCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
+                ninjaCrouchedNunchaku8Left = ninjaCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku1Left = ninjaNunchaku1Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku2Left = ninjaNunchaku2Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku3Left = ninjaNunchaku3Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku4Left = ninjaNunchaku4Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku5Left = ninjaNunchaku5Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku6Left = ninjaNunchaku6Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku7Left = ninjaNunchaku7Right.CreateFlippedHorizontalSurface();
+                ninjaNunchaku8Left = ninjaNunchaku8Right.CreateFlippedHorizontalSurface();
             }
-
-            walking1NinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1Ninja.png");
-            walking1NinjaLeftSurface = walking1NinjaRightSurface.CreateFlippedHorizontalSurface();
-            walking2NinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2Ninja.png");
-            walking2NinjaLeftSurface = walking2NinjaRightSurface.CreateFlippedHorizontalSurface();
-            walking1NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1NinjaDoped.png");
-            walking1NinjaDopedLeftSurface = walking1NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
-            walking2NinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2NinjaDoped.png");
-            walking2NinjaDopedLeftSurface = walking2NinjaDopedRightSurface.CreateFlippedHorizontalSurface();
-            crouchedNinjaRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedNinja.png");
-            crouchedNinjaLeft = crouchedNinjaRight.CreateFlippedHorizontalSurface();
-            crouchedNinjaHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
-            crouchedNinjaHitLeft = crouchedNinjaHitRight.CreateFlippedHorizontalSurface();
-            crouchedNinjaDopedRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedNinjaDoped.png");
-            crouchedNinjaDopedLeft = crouchedNinjaDopedRight.CreateFlippedHorizontalSurface();
-            crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinjaDoped.png");
-            crouchedNinjaDopedHitLeft = crouchedNinjaDopedHitRight.CreateFlippedHorizontalSurface();
-            standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinja.png");
-            standingNinjaLeftSurface = standingNinjaRightSurface.CreateFlippedHorizontalSurface();
-            standingNinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/standNinjaDoped.png");
-            standingNinjaDopedLeftSurface = standingNinjaDopedRightSurface.CreateFlippedHorizontalSurface();
-            
-            ninjaFlipRight1 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinja.png");
-            ninjaFlipRight2 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinja45.png");
-            ninjaFlipRight3 = ninjaFlipRight1.CreateRotatedSurface(270);
-            ninjaFlipRight4 = ninjaFlipRight2.CreateRotatedSurface(270);
-            ninjaFlipRight5 = ninjaFlipRight1.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-            ninjaFlipRight6 = ninjaFlipRight2.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-            ninjaFlipRight7 = ninjaFlipRight3.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-            ninjaFlipRight8 = ninjaFlipRight4.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-
-            ninjaFlipDopedRight1 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinjaDoped.png");
-            ninjaFlipDopedRight2 = BuildSpriteSurface("./assets/rendered/abrahman/flipNinja45Doped.png");
-            ninjaFlipDopedRight3 = ninjaFlipDopedRight1.CreateRotatedSurface(270);
-            ninjaFlipDopedRight4 = ninjaFlipDopedRight2.CreateRotatedSurface(270);
-            ninjaFlipDopedRight5 = ninjaFlipDopedRight1.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-            ninjaFlipDopedRight6 = ninjaFlipDopedRight2.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-            ninjaFlipDopedRight7 = ninjaFlipDopedRight3.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-            ninjaFlipDopedRight8 = ninjaFlipDopedRight4.CreateFlippedHorizontalSurface().CreateFlippedVerticalSurface();
-
-            ninjaFlipLeft1 = ninjaFlipRight1.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft2 = ninjaFlipRight2.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft3 = ninjaFlipRight3.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft4 = ninjaFlipRight4.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft5 = ninjaFlipRight5.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft6 = ninjaFlipRight6.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft7 = ninjaFlipRight7.CreateFlippedHorizontalSurface();
-            ninjaFlipLeft8 = ninjaFlipRight8.CreateFlippedHorizontalSurface();
-
-            ninjaFlipDopedLeft1 = ninjaFlipDopedRight1.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft2 = ninjaFlipDopedRight2.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft3 = ninjaFlipDopedRight3.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft4 = ninjaFlipDopedRight4.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft5 = ninjaFlipDopedRight5.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft6 = ninjaFlipDopedRight6.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft7 = ninjaFlipDopedRight7.CreateFlippedHorizontalSurface();
-            ninjaFlipDopedLeft8 = ninjaFlipDopedRight8.CreateFlippedHorizontalSurface();
-
-            ninjaKatanaStand1Right = BuildSpriteSurface("./assets/rendered/abrahman/katana1Ninja.png");
-            ninjaKatanaStand2Right = BuildSpriteSurface("./assets/rendered/abrahman/katana2Ninja.png");
-            ninjaKatanaStand3Right = BuildSpriteSurface("./assets/rendered/abrahman/katana3Ninja.png");
-            ninjaDopedKatanaStand1Right = BuildSpriteSurface("./assets/rendered/abrahman/katana1NinjaDoped.png");
-            ninjaDopedKatanaStand2Right = BuildSpriteSurface("./assets/rendered/abrahman/katana2NinjaDoped.png");
-            ninjaDopedKatanaStand3Right = BuildSpriteSurface("./assets/rendered/abrahman/katana3NinjaDoped.png");
-            ninjaKatanaStand1Left = ninjaKatanaStand1Right.CreateFlippedHorizontalSurface();
-            ninjaKatanaStand2Left = ninjaKatanaStand2Right.CreateFlippedHorizontalSurface();
-            ninjaKatanaStand3Left = ninjaKatanaStand3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaStand1Left = ninjaDopedKatanaStand1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaStand2Left = ninjaDopedKatanaStand2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaStand3Left = ninjaDopedKatanaStand3Right.CreateFlippedHorizontalSurface();
-
-            ninjaKatanaJump1Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump1Ninja.png");
-            ninjaKatanaJump2Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump2Ninja.png");
-            ninjaKatanaJump3Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump3Ninja.png");
-            ninjaDopedKatanaJump1Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump1NinjaDoped.png");
-            ninjaDopedKatanaJump2Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump2NinjaDoped.png");
-            ninjaDopedKatanaJump3Right = BuildSpriteSurface("./assets/rendered/abrahman/swordJump3NinjaDoped.png");
-            ninjaKatanaJump1Left = ninjaKatanaJump1Right.CreateFlippedHorizontalSurface();
-            ninjaKatanaJump2Left = ninjaKatanaJump2Right.CreateFlippedHorizontalSurface();
-            ninjaKatanaJump3Left = ninjaKatanaJump3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaJump1Left = ninjaDopedKatanaJump1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaJump2Left = ninjaDopedKatanaJump2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaJump3Left = ninjaDopedKatanaJump3Right.CreateFlippedHorizontalSurface();
-
-            ninjaKatanaCrouched1Right = BuildSpriteSurface("./assets/rendered/abrahman/sword1CrouchedNinja.png");
-            ninjaKatanaCrouched2Right = BuildSpriteSurface("./assets/rendered/abrahman/sword2CrouchedNinja.png");
-            ninjaKatanaCrouched3Right = BuildSpriteSurface("./assets/rendered/abrahman/sword3CrouchedNinja.png");
-            ninjaDopedKatanaCrouched1Right = BuildSpriteSurface("./assets/rendered/abrahman/sword1CrouchedNinjaDoped.png");
-            ninjaDopedKatanaCrouched2Right = BuildSpriteSurface("./assets/rendered/abrahman/sword2CrouchedNinjaDoped.png");
-            ninjaDopedKatanaCrouched3Right = BuildSpriteSurface("./assets/rendered/abrahman/sword3CrouchedNinjaDoped.png");
-            ninjaKatanaCrouched1Left = ninjaKatanaCrouched1Right.CreateFlippedHorizontalSurface();
-            ninjaKatanaCrouched2Left = ninjaKatanaCrouched2Right.CreateFlippedHorizontalSurface();
-            ninjaKatanaCrouched3Left = ninjaKatanaCrouched3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaCrouched1Left = ninjaDopedKatanaCrouched1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaCrouched2Left = ninjaDopedKatanaCrouched2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedKatanaCrouched3Left = ninjaDopedKatanaCrouched3Right.CreateFlippedHorizontalSurface();
-
-            ninjaDopedCrouchedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinjaDoped.png");
-            ninjaDopedCrouchedHitLeft = ninjaDopedCrouchedHitRight.CreateFlippedHorizontalSurface();
-            ninjaDopedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/hitNinjaDoped.png");
-            ninjaDopedHitLeft = ninjaDopedHitRight.CreateFlippedHorizontalSurface();
-            ninjaCrouchedHitRight = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitNinja.png");
-            ninjaCrouchedHitLeft = ninjaCrouchedHitRight.CreateFlippedHorizontalSurface();
-            ninjaHitRight = BuildSpriteSurface("./assets/rendered/abrahman/hitNinja.png");
-            ninjaHitLeft = ninjaHitRight.CreateFlippedHorizontalSurface();
-
-            ninjaDopedCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku1Left = ninjaDopedCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku2Left = ninjaDopedCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku3Left = ninjaDopedCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku4Left = ninjaDopedCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku5Left = ninjaDopedCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku6Left = ninjaDopedCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku7Left = ninjaDopedCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaDopedCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8CrouchedNinjaDoped.png");
-            ninjaDopedCrouchedNunchaku8Left = ninjaDopedCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1NinjaDoped.png");
-            ninjaDopedNunchaku1Left = ninjaDopedNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2NinjaDoped.png");
-            ninjaDopedNunchaku2Left = ninjaDopedNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3NinjaDoped.png");
-            ninjaDopedNunchaku3Left = ninjaDopedNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4NinjaDoped.png");
-            ninjaDopedNunchaku4Left = ninjaDopedNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5NinjaDoped.png");
-            ninjaDopedNunchaku5Left = ninjaDopedNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6NinjaDoped.png");
-            ninjaDopedNunchaku6Left = ninjaDopedNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7NinjaDoped.png");
-            ninjaDopedNunchaku7Left = ninjaDopedNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaDopedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8NinjaDoped.png");
-            ninjaDopedNunchaku8Left = ninjaDopedNunchaku8Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1CrouchedNinja.png");
-            ninjaCrouchedNunchaku1Left = ninjaCrouchedNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2CrouchedNinja.png");
-            ninjaCrouchedNunchaku2Left = ninjaCrouchedNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3CrouchedNinja.png");
-            ninjaCrouchedNunchaku3Left = ninjaCrouchedNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4CrouchedNinja.png");
-            ninjaCrouchedNunchaku4Left = ninjaCrouchedNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5CrouchedNinja.png");
-            ninjaCrouchedNunchaku5Left = ninjaCrouchedNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6CrouchedNinja.png");
-            ninjaCrouchedNunchaku6Left = ninjaCrouchedNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7CrouchedNinja.png");
-            ninjaCrouchedNunchaku7Left = ninjaCrouchedNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaCrouchedNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8CrouchedNinja.png");
-            ninjaCrouchedNunchaku8Left = ninjaCrouchedNunchaku8Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku1Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku1Ninja.png");
-            ninjaNunchaku1Left = ninjaNunchaku1Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku2Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku2Ninja.png");
-            ninjaNunchaku2Left = ninjaNunchaku2Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku3Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku3Ninja.png");
-            ninjaNunchaku3Left = ninjaNunchaku3Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku4Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku4Ninja.png");
-            ninjaNunchaku4Left = ninjaNunchaku4Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku5Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku5Ninja.png");
-            ninjaNunchaku5Left = ninjaNunchaku5Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku6Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku6Ninja.png");
-            ninjaNunchaku6Left = ninjaNunchaku6Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku7Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku7Ninja.png");
-            ninjaNunchaku7Left = ninjaNunchaku7Right.CreateFlippedHorizontalSurface();
-            ninjaNunchaku8Right = BuildSpriteSurface("./assets/rendered/abrahman/nunchaku8Ninja.png");
-            ninjaNunchaku8Left = ninjaNunchaku8Right.CreateFlippedHorizontalSurface();
 
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
@@ -1274,21 +1273,44 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking1RightSurfaceDoped();
 
             if (walking1RightSurface == null)
-                walking1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk1.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/walk1.png");
+                else if (Program.screenHeight > 480)
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/walk1.png");
+                else
+                    walking1RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/walk1.png");
+            }
+                
             return walking1RightSurface;
         }
 
         private Surface GetWalking1RightSurfaceRastaDoped()
         {
             if (walking1RightSurfaceRastaDoped == null)
-                walking1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaWalk1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaWalk1doped.png");
+                else if (Program.screenHeight > 480)
+                    walking1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaWalk1doped.png");
+                else
+                    walking1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaWalk1doped.png");
+            }
+
             return walking1RightSurfaceRastaDoped;
         }
 
         private Surface GetWalking1RightSurfaceRasta()
         {
             if (walking1RightSurfaceRasta == null)
-                walking1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaWalk1.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaWalk1.png");
+                else if (Program.screenHeight > 480)
+                    walking1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaWalk1.png");
+                else
+                    walking1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaWalk1.png");
+            }
             return walking1RightSurfaceRasta;
         }
 
@@ -1385,7 +1407,14 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking2RightSurfaceDoped();
 
             if (walking2RightSurface == null)
-                walking2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/walk2.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/walk2.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/walk2.png");
+                else
+                    walking2RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/walk2.png");
+            }
 
             return walking2RightSurface;
         }
@@ -1393,7 +1422,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurfaceRastaDoped()
         {
             if (walking2RightSurfaceRastaDoped == null)
-                walking2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaWalk2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaWalk2doped.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaWalk2doped.png");
+                else
+                    walking2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaWalk2doped.png");
+            }
 
             return walking2RightSurfaceRastaDoped;
         }
@@ -1401,7 +1437,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurfaceRasta()
         {
             if (walking2RightSurfaceRasta == null)
-                walking2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaWalk2.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaWalk2.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaWalk2.png");
+                else
+                    walking2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaWalk2.png");
+            }
 
             return walking2RightSurfaceRasta;
         }
@@ -1461,7 +1504,14 @@ namespace AbrahmanAdventure.sprites
                 return GetCrouchedRightSurfaceDoped();
 
             if (crouchedRightSurface == null)
-                crouchedRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouched.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedRightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouched.png");
+                else if (Program.screenHeight > 480)
+                    crouchedRightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/crouched.png");
+                else
+                    crouchedRightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/crouched.png");
+            }
 
             return crouchedRightSurface;
         }
@@ -1469,7 +1519,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedRightSurfaceRastaDoped()
         {
             if (crouchedRightSurfaceRastaDoped == null)
-                crouchedRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCroucheddoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaCroucheddoped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaCroucheddoped.png");
+                else
+                    crouchedRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaCroucheddoped.png");
+            }
 
             return crouchedRightSurfaceRastaDoped;
         }
@@ -1477,7 +1534,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedRightSurfaceRasta()
         {
             if (crouchedRightSurfaceRasta == null)
-                crouchedRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouched.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaCrouched.png");
+                else if (Program.screenHeight > 480)
+                    crouchedRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaCrouched.png");
+                else
+                    crouchedRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaCrouched.png");
+            }
 
             return crouchedRightSurfaceRasta;
         }
@@ -1526,7 +1590,14 @@ namespace AbrahmanAdventure.sprites
                 return GetCrouchedHitRightSurfaceDoped();
 
             if (crouchedHitRightSurface == null)
-                crouchedHitRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHit.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedHitRightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouchedHit.png");
+                else if (Program.screenHeight > 480)
+                    crouchedHitRightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/crouchedHit.png");
+                else
+                    crouchedHitRightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/crouchedHit.png");
+            }
 
             return crouchedHitRightSurface;
         }
@@ -1548,7 +1619,14 @@ namespace AbrahmanAdventure.sprites
                 return GetHitRightSurfaceDoped();
 
             if (hitRightSurface == null)
-                hitRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/hit.png");
+            {
+                if (Program.screenHeight > 720)
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/hit.png");
+                else if (Program.screenHeight > 480)
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/hit.png");
+                else
+                    hitRightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/hit.png");
+            }
 
             return hitRightSurface;
         }
@@ -1581,7 +1659,14 @@ namespace AbrahmanAdventure.sprites
                 return GetStandingRightSurfaceDoped();
 
             if (standingRightSurface == null)
-                standingRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/stand.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/stand.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/stand.png");
+                else
+                    standingRightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/stand.png");
+            }
 
             return standingRightSurface;
         }
@@ -1589,7 +1674,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurfaceRasta()
         {
             if (standingRightSurfaceRasta == null)
-                standingRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaStand.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaStand.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaStand.png");
+                else
+                    standingRightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaStand.png");
+            }
 
             return standingRightSurfaceRasta;
         }
@@ -1597,7 +1689,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurfaceDopedRasta()
         {
             if (standingRightSurfaceRastaDoped == null)
-                standingRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaStanddoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaStanddoped.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaStanddoped.png");
+                else
+                    standingRightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaStanddoped.png");
+            }
 
             return standingRightSurfaceRastaDoped;
         }
@@ -1612,7 +1711,14 @@ namespace AbrahmanAdventure.sprites
                 return GetAttackFrame2RightSurfaceDoped();
 
             if (attackFrame2RightSurface == null)
-                attackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch2.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/punch2.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/punch2.png");
+                else
+                    attackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/punch2.png");
+            }
 
             return attackFrame2RightSurface;
         }
@@ -1620,7 +1726,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame2RightSurfaceRastaDoped()
         {
             if (attackFrame2RightSurfaceRastaDoped == null)
-                attackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaPunch2doped.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaPunch2doped.png");
+                else
+                    attackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaPunch2doped.png");
+            }
 
             return attackFrame2RightSurfaceRastaDoped;
         }
@@ -1628,7 +1741,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame2RightSurfaceRasta()
         {
             if (attackFrame2RightSurfaceRasta == null)
-                attackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch2.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaPunch2.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaPunch2.png");
+                else
+                    attackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaPunch2.png");
+            }
 
             return attackFrame2RightSurfaceRasta;
         }
@@ -1643,7 +1763,14 @@ namespace AbrahmanAdventure.sprites
                 return GetAttackFrame1RightSurfaceDoped();
 
             if (attackFrame1RightSurface == null)
-                attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/punch1.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/punch1.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/punch1.png");
+                else
+                    attackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/punch1.png");
+            }
 
             return attackFrame1RightSurface;
         }
@@ -1651,7 +1778,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame1RightSurfaceRastaDoped()
         {
             if (attackFrame1RightSurfaceRastaDoped == null)
-                attackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaPunch1doped.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaPunch1doped.png");
+                else
+                    attackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaPunch1doped.png");
+            }
 
             return attackFrame1RightSurfaceRastaDoped;
         }
@@ -1659,7 +1793,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame1RightSurfaceRasta()
         {
             if (attackFrame1RightSurfaceRasta == null)
-                attackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaPunch1.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaPunch1.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaPunch1.png");
+                else
+                    attackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaPunch1.png");
+            }
 
             return attackFrame1RightSurfaceRasta;
         }
@@ -1674,7 +1815,14 @@ namespace AbrahmanAdventure.sprites
                 return GetCrouchedAttackFrame1RightSurfaceDoped();
 
             if (crouchedAttackFrame1RightSurface == null)
-                crouchedAttackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch1.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouchedPunch1.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/crouchedPunch1.png");
+                else
+                    crouchedAttackFrame1RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/crouchedPunch1.png");
+            }
 
             return crouchedAttackFrame1RightSurface;
         }
@@ -1682,7 +1830,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame1RightSurfaceRastaDoped()
         {
             if (crouchedAttackFrame1RightSurfaceRastaDoped == null)
-                crouchedAttackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaCrouchedPunch1doped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaCrouchedPunch1doped.png");
+                else
+                    crouchedAttackFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaCrouchedPunch1doped.png");
+            }
 
             return crouchedAttackFrame1RightSurfaceRastaDoped;
         }
@@ -1690,7 +1845,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame1RightSurfaceRasta()
         {
             if (crouchedAttackFrame1RightSurfaceRasta == null)
-                crouchedAttackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch1.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaCrouchedPunch1.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaCrouchedPunch1.png");
+                else
+                    crouchedAttackFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaCrouchedPunch1.png");
+            }
 
             return crouchedAttackFrame1RightSurfaceRasta;
         }
@@ -1705,7 +1867,14 @@ namespace AbrahmanAdventure.sprites
                 return GetCrouchedAttackFrame2RightSurfaceDoped();
 
             if (crouchedAttackFrame2RightSurface == null)
-                crouchedAttackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch2.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouchedPunch2.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/crouchedPunch2.png");
+                else
+                    crouchedAttackFrame2RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/crouchedPunch2.png");
+            }
 
             return crouchedAttackFrame2RightSurface;
         }
@@ -1713,7 +1882,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame2RightSurfaceRastaDoped()
         {
             if (crouchedAttackFrame2RightSurfaceRastaDoped == null)
-                crouchedAttackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaCrouchedPunch2doped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaCrouchedPunch2doped.png");
+                else
+                    crouchedAttackFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaCrouchedPunch2doped.png");
+            }
 
             return crouchedAttackFrame2RightSurfaceRastaDoped;
         }
@@ -1721,7 +1897,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame2RightSurfaceRasta()
         {
             if (crouchedAttackFrame2RightSurfaceRasta == null)
-                crouchedAttackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaCrouchedPunch2.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaCrouchedPunch2.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaCrouchedPunch2.png");
+                else
+                    crouchedAttackFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaCrouchedPunch2.png");
+            }
 
             return crouchedAttackFrame2RightSurfaceRasta;
         }
@@ -1891,7 +2074,14 @@ namespace AbrahmanAdventure.sprites
                 return GetKickFrame2RightSurfaceDoped();
 
             if (kickFrame2RightSurface == null)
-                kickFrame2RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick2.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame2RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/kick2.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame2RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/kick2.png");
+                else
+                    kickFrame2RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/kick2.png");
+            }
 
             return kickFrame2RightSurface;
         }
@@ -1899,7 +2089,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame2RightSurfaceRastaDoped()
         {
             if (kickFrame2RightSurfaceRastaDoped == null)
-                kickFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaKick2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaKick2doped.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaKick2doped.png");
+                else
+                    kickFrame2RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaKick2doped.png");
+            }
 
             return kickFrame2RightSurfaceRastaDoped;
         }
@@ -1907,7 +2104,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame2RightSurfaceRasta()
         {
             if (kickFrame2RightSurfaceRasta == null)
-                kickFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaKick2.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaKick2.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaKick2.png");
+                else
+                    kickFrame2RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaKick2.png");
+            }
 
             return kickFrame2RightSurfaceRasta;
         }
@@ -1953,7 +2157,14 @@ namespace AbrahmanAdventure.sprites
                 return GetKickFrame1RightSurfaceDoped();
 
             if (kickFrame1RightSurface == null)
-                kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/abrahman/kick1.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/kick1.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/kick1.png");
+                else
+                    kickFrame1RightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/kick1.png");
+            }
 
             return kickFrame1RightSurface;
         }
@@ -1961,7 +2172,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame1RightSurfaceRastaDoped()
         {
             if (kickFrame1RightSurfaceRastaDoped == null)
-                kickFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaKick1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaKick1doped.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaKick1doped.png");
+                else
+                    kickFrame1RightSurfaceRastaDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaKick1doped.png");
+            }
 
             return kickFrame1RightSurfaceRastaDoped;
         }
@@ -1969,7 +2187,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame1RightSurfaceRasta()
         {
             if (kickFrame1RightSurfaceRasta == null)
-                kickFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/abrahman/rastaKick1.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaKick1.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaKick1.png");
+                else
+                    kickFrame1RightSurfaceRasta = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaKick1.png");
+            }
 
             return kickFrame1RightSurfaceRasta;
         }
@@ -1997,14 +2222,28 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking2RightSurfaceTinyDoped();
 
             if (walking2RightSurfaceTiny == null)
-                walking2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk2.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyWalk2.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyWalk2.png");
+                else
+                    walking2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyWalk2.png");
+            }
             return walking2RightSurfaceTiny;
         }
 
         private Surface GetWalking2RightSurfaceTinyDoped()
         {
             if (walking2RightSurfaceTinyDoped == null)
-                walking2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyWalk2doped.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyWalk2doped.png");
+                else
+                    walking2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyWalk2doped.png");
+            }
             return walking2RightSurfaceTinyDoped;
         }
 
@@ -2028,7 +2267,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking1RightSurfaceTinyDoped()
         {
             if (walking1RightSurfaceTinyDoped == null)
-                walking1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyWalk1doped.png");
+                else if (Program.screenHeight > 480)
+                    walking1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyWalk1doped.png");
+                else
+                    walking1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyWalk1doped.png");
+            }
             return walking1RightSurfaceTinyDoped;
         }
 
@@ -2038,14 +2284,28 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking1RightSurfaceTinyDoped();
 
             if (walking1RightSurfaceTiny == null)
-                walking1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyWalk1.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyWalk1.png");
+                else if (Program.screenHeight > 480)
+                    walking1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyWalk1.png");
+                else
+                    walking1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyWalk1.png");
+            }
             return walking1RightSurfaceTiny;
         }
 
         private Surface GetWalking1RightSurfaceDoped()
         {
             if (walking1RightSurfaceDoped == null)
-                walking1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/walk1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/walk1doped.png");
+                else if (Program.screenHeight > 480)
+                    walking1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/walk1doped.png");
+                else
+                    walking1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/walk1doped.png");
+            }
             return walking1RightSurfaceDoped;
         }
 
@@ -2068,7 +2328,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetWalking2RightSurfaceDoped()
         {
             if (walking2RightSurfaceDoped == null)
-                walking2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/walk2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    walking2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/walk2doped.png");
+                else if (Program.screenHeight > 480)
+                    walking2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/walk2doped.png");
+                else
+                    walking2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/walk2doped.png");
+            }
 
             return walking2RightSurfaceDoped;
         }
@@ -2084,7 +2351,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedRightSurfaceDoped()
         {
             if (crouchedRightSurfaceDoped == null)
-                crouchedRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/croucheddoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/croucheddoped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/croucheddoped.png");
+                else
+                    crouchedRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/croucheddoped.png");
+            }
 
             return crouchedRightSurfaceDoped;
         }
@@ -2100,7 +2374,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedHitRightSurfaceDoped()
         {
             if (crouchedHitRightSurfaceDoped == null)
-                crouchedHitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/crouchedHitdoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedHitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouchedHitdoped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedHitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/crouchedHitdoped.png");
+                else
+                    crouchedHitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/crouchedHitdoped.png");
+            }
 
             return crouchedHitRightSurfaceDoped;
         }
@@ -2116,7 +2397,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetHitRightSurfaceDoped()
         {
             if (hitRightSurfaceDoped == null)
-                hitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/hitdoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    hitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/hitdoped.png");
+                else if (Program.screenHeight > 480)
+                    hitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/hitdoped.png");
+                else
+                    hitRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/hitdoped.png");
+            }
 
             return hitRightSurfaceDoped;
         }
@@ -2132,7 +2420,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurfaceDoped()
         {
             if (standingRightSurfaceDoped == null)
-                standingRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/standdoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/standdoped.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/standdoped.png");
+                else
+                    standingRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/standdoped.png");
+            }
 
             return standingRightSurfaceDoped;
         }
@@ -2140,7 +2435,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame2RightSurfaceDoped()
         {
             if (attackFrame2RightSurfaceDoped == null)
-                attackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/punch2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/punch2doped.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/punch2doped.png");
+                else
+                    attackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/punch2doped.png");
+            }
 
             return attackFrame2RightSurfaceDoped;
         }
@@ -2148,7 +2450,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame1RightSurfaceDoped()
         {
             if (attackFrame1RightSurfaceDoped == null)
-                attackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/punch1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/punch1doped.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/punch1doped.png");
+                else
+                    attackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/punch1doped.png");
+            }
 
             return attackFrame1RightSurfaceDoped;
         }
@@ -2156,7 +2465,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame1RightSurfaceDoped()
         {
             if (crouchedAttackFrame1RightSurfaceDoped == null)
-                crouchedAttackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouchedPunch1doped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/crouchedPunch1doped.png");
+                else
+                    crouchedAttackFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/crouchedPunch1doped.png");
+            }
 
             return crouchedAttackFrame1RightSurfaceDoped;
         }
@@ -2164,7 +2480,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetCrouchedAttackFrame2RightSurfaceDoped()
         {
             if (crouchedAttackFrame2RightSurfaceDoped == null)
-                crouchedAttackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/crouchedPunch2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    crouchedAttackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/crouchedPunch2doped.png");
+                else if (Program.screenHeight > 480)
+                    crouchedAttackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/crouchedPunch2doped.png");
+                else
+                    crouchedAttackFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/crouchedPunch2doped.png");
+            }
 
             return crouchedAttackFrame2RightSurfaceDoped;
         }
@@ -2212,7 +2535,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame2RightSurfaceDoped()
         {
             if (kickFrame2RightSurfaceDoped == null)
-                kickFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/kick2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/kick2doped.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/kick2doped.png");
+                else
+                    kickFrame2RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/kick2doped.png");
+            }
 
             return kickFrame2RightSurfaceDoped;
         }
@@ -2228,7 +2558,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame1RightSurfaceDoped()
         {
             if (kickFrame1RightSurfaceDoped == null)
-                kickFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/kick1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/kick1doped.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/kick1doped.png");
+                else
+                    kickFrame1RightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/kick1doped.png");
+            }
 
             return kickFrame1RightSurfaceDoped;
         }
@@ -2277,7 +2614,14 @@ namespace AbrahmanAdventure.sprites
                 return GetStandingRightSurfaceTinyDoped();
 
             if (standingRightSurfaceTiny == null)
-                standingRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyStand.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyStand.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyStand.png");
+                else
+                    standingRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyStand.png");
+            }
 
             return standingRightSurfaceTiny;
         }
@@ -2285,7 +2629,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetStandingRightSurfaceTinyDoped()
         {
             if (standingRightSurfaceTinyDoped == null)
-                standingRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyStanddoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    standingRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyStanddoped.png");
+                else if (Program.screenHeight > 480)
+                    standingRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyStanddoped.png");
+                else
+                    standingRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyStanddoped.png");
+            }
 
             return standingRightSurfaceTinyDoped;
         }
@@ -2315,7 +2666,14 @@ namespace AbrahmanAdventure.sprites
                 return GetKickFrame1RightSurfaceTinyDoped();
 
             if (kickFrame1RightSurfaceTiny == null)
-                kickFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyKick1.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyKick1.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyKick1.png");
+                else
+                    kickFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyKick1.png");
+            }
 
             return kickFrame1RightSurfaceTiny;
         }
@@ -2323,7 +2681,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame1RightSurfaceTinyDoped()
         {
             if (kickFrame1RightSurfaceTinyDoped == null)
-                kickFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyKick1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyKick1doped.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyKick1doped.png");
+                else
+                    kickFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyKick1doped.png");
+            }
 
             return kickFrame1RightSurfaceTinyDoped;
         }
@@ -2334,7 +2699,14 @@ namespace AbrahmanAdventure.sprites
                 return GetKickFrame2RightSurfaceTinyDoped();
 
             if (kickFrame2RightSurfaceTiny == null)
-                kickFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyKick2.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyKick2.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyKick2.png");
+                else
+                    kickFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyKick2.png");
+            }
 
             return kickFrame2RightSurfaceTiny;
         }
@@ -2342,7 +2714,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetKickFrame2RightSurfaceTinyDoped()
         {
             if (kickFrame2RightSurfaceTinyDoped == null)
-                kickFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyKick2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    kickFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyKick2doped.png");
+                else if (Program.screenHeight > 480)
+                    kickFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyKick2doped.png");
+                else
+                    kickFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyKick2doped.png");
+            }
 
             return kickFrame2RightSurfaceTinyDoped;
         }
@@ -2399,7 +2778,14 @@ namespace AbrahmanAdventure.sprites
                 return GetAttackFrame1RightSurfaceTinyDoped();
 
             if (attackFrame1RightSurfaceTiny == null)
-                attackFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch1.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyPunch1.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyPunch1.png");
+                else
+                    attackFrame1RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyPunch1.png");
+            }
 
             return attackFrame1RightSurfaceTiny;
         }
@@ -2407,7 +2793,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame1RightSurfaceTinyDoped()
         {
             if (attackFrame1RightSurfaceTinyDoped == null)
-                attackFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch1doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyPunch1doped.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyPunch1doped.png");
+                else
+                    attackFrame1RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyPunch1doped.png");
+            }
 
             return attackFrame1RightSurfaceTinyDoped;
         }
@@ -2418,7 +2811,14 @@ namespace AbrahmanAdventure.sprites
                 return GetAttackFrame2RightSurfaceTinyDoped();
 
             if (attackFrame2RightSurfaceTiny == null)
-                attackFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch2.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyPunch2.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyPunch2.png");
+                else
+                    attackFrame2RightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyPunch2.png");
+            }
 
             return attackFrame2RightSurfaceTiny;
         }
@@ -2426,7 +2826,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetAttackFrame2RightSurfaceTinyDoped()
         {
             if (attackFrame2RightSurfaceTinyDoped == null)
-                attackFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyPunch2doped.png");
+            {
+                if (Program.screenHeight > 720)
+                    attackFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyPunch2doped.png");
+                else if (Program.screenHeight > 480)
+                    attackFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyPunch2doped.png");
+                else
+                    attackFrame2RightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyPunch2doped.png");
+            }
 
             return attackFrame2RightSurfaceTinyDoped;
         }
@@ -2456,7 +2863,14 @@ namespace AbrahmanAdventure.sprites
                 return GetHitRightSurfaceTinyDoped();
 
             if (hitRightSurfaceTiny == null)
-                hitRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/abrahman/tinyHit.png");
+            {
+                if (Program.screenHeight > 720)
+                    hitRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyHit.png");
+                else if (Program.screenHeight > 480)
+                    hitRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyHit.png");
+                else
+                    hitRightSurfaceTiny = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyHit.png");
+            }
 
             return hitRightSurfaceTiny;
         }
@@ -2464,7 +2878,14 @@ namespace AbrahmanAdventure.sprites
         private Surface GetHitRightSurfaceTinyDoped()
         {
             if (hitRightSurfaceTinyDoped == null)
-                hitRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/abrahman/tinyHitdoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    hitRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/tinyHitdoped.png");
+                else if (Program.screenHeight > 480)
+                    hitRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/tinyHitdoped.png");
+                else
+                    hitRightSurfaceTinyDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/tinyHitdoped.png");
+            }
 
             return hitRightSurfaceTinyDoped;
         }
@@ -2492,14 +2913,28 @@ namespace AbrahmanAdventure.sprites
                 return GetFlyRightSurfaceDoped();
 
             if (flyRightSurface == null)
-                flyRightSurface = BuildSpriteSurface("./assets/rendered/abrahman/rastaFly.png");
+            {
+                if (Program.screenHeight > 720)
+                    flyRightSurface = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaFly.png");
+                else if (Program.screenHeight > 480)
+                    flyRightSurface = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaFly.png");
+                else
+                    flyRightSurface = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaFly.png");
+            }
             return flyRightSurface;
         }
 
         private Surface GetFlyRightSurfaceDoped()
         {
             if (flyRightSurfaceDoped == null)
-                flyRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/abrahman/rastaFlydoped.png");
+            {
+                if (Program.screenHeight > 720)
+                    flyRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/1080/abrahman/rastaFlydoped.png");
+                else if (Program.screenHeight > 480)
+                    flyRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/720/abrahman/rastaFlydoped.png");
+                else
+                    flyRightSurfaceDoped = BuildSpriteSurface("./assets/rendered/480/abrahman/rastaFlydoped.png");
+            }
             return flyRightSurfaceDoped;
         }
 

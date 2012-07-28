@@ -443,6 +443,438 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\rendered\1080\abrahman\crouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\croucheddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedHitNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedHitNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\crouchedPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\flipNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\flipNinja45.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\flipNinja45Doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\flipNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\hit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\hitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\hitNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\hitNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\katana1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\katana1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\katana2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\katana2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\katana3Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\katana3NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\kick1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\kick1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\kick2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\kick2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku1CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku1CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku2CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku2CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku3CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku3CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku3Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku3NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku4CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku4CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku4Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku4NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku5CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku5CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku5Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku5NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku6CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku6CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku6Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku6NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku7CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku7CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku7Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku7NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku8CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku8CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku8Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\nunchaku8NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\punch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\punch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\punch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\punch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCroucheddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouchedHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouchedHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouchedPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouchedPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouchedPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaCrouchedPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaFly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaFlyCrouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaFlyCrouchedDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaFlydoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaKick1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaKick1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaKick2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaKick2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaStanddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaWalk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaWalk1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaWalk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\rastaWalk2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\stand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\standdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\standNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\standNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\sword1CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\sword1CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\sword2CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\sword2CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\sword3CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\sword3CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\swordJump1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\swordJump1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\swordJump2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\swordJump2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\swordJump3Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\swordJump3NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyKick1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyKick1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyKick2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyKick2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyStanddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyWalk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyWalk1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyWalk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\tinyWalk2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\walk2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverAttack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverAttackNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverCrouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverCrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverHitNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverStandNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverWalk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\beaver\BeaverWalkNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\1080\blob\blob1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -794,7 +1226,443 @@
     <Content Include="assets\rendered\1080\TitleScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\480\beaver\BeaverAttack.png" />
+    <Content Include="assets\rendered\480\beaver\BeaverAttackNinja.png" />
+    <Content Include="assets\rendered\480\beaver\BeaverCrouched.png" />
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedNinja.png" />
     <Content Include="assets\rendered\480\TitleScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\croucheddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedHitNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedHitNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\crouchedPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\flipNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\flipNinja45.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\flipNinja45Doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\flipNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\hit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\hitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\hitNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\hitNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\katana1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\katana1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\katana2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\katana2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\katana3Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\katana3NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\kick1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\kick1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\kick2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\kick2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku1CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku1CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku2CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku2CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku3CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku3CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku3Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku3NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku4CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku4CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku4Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku4NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku5CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku5CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku5Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku5NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku6CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku6CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku6Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku6NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku7CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku7CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku7Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku7NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku8CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku8CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku8Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\nunchaku8NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\punch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\punch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\punch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\punch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCroucheddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouchedHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouchedHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouchedPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouchedPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouchedPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaCrouchedPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaFly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaFlyCrouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaFlyCrouchedDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaFlydoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaKick1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaKick1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaKick2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaKick2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaStanddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaWalk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaWalk1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaWalk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\rastaWalk2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\stand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\standdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\standNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\standNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\sword1CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\sword1CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\sword2CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\sword2CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\sword3CrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\sword3CrouchedNinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\swordJump1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\swordJump1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\swordJump2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\swordJump2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\swordJump3Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\swordJump3NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyHitdoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyKick1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyKick1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyKick2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyKick2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyPunch1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyPunch1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyPunch2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyStanddoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyWalk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyWalk1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyWalk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\tinyWalk2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk1doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk1Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk1NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk2doped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk2Ninja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\walk2NinjaDoped.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverAttack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverAttackNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverCrouched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverCrouchedNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverHit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverHitNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverStand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverStandNinja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverWalk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\beaver\BeaverWalkNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\720\blob\blob1.png">
@@ -1160,562 +2028,526 @@
     <Content Include="assets\rendered\720\TitleScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\block.png">
+    <Content Include="assets\rendered\480\abrahman\crouched.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\blockdoped.png">
+    <Content Include="assets\rendered\480\abrahman\croucheddoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\blockNinja.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\blockNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedHitdoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouched.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedHitNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedBlock.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedHitNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedBlockdoped.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedBlockNinja.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedBlockNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedPunch1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\croucheddoped.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedPunch1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedHit.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedPunch2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedHitdoped.png">
+    <Content Include="assets\rendered\480\abrahman\crouchedPunch2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedHitNinja.png">
+    <Content Include="assets\rendered\480\abrahman\flipNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedHitNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\flipNinja45.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\flipNinja45Doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\flipNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedPunch1.png">
+    <Content Include="assets\rendered\480\abrahman\hitdoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedPunch1doped.png">
+    <Content Include="assets\rendered\480\abrahman\hitNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedPunch2.png">
+    <Content Include="assets\rendered\480\abrahman\hitNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\crouchedPunch2doped.png">
+    <Content Include="assets\rendered\480\abrahman\katana1Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\flipNinja.png">
+    <Content Include="assets\rendered\480\abrahman\katana1NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\flipNinja45.png">
+    <Content Include="assets\rendered\480\abrahman\katana2Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\flipNinja45Doped.png">
+    <Content Include="assets\rendered\480\abrahman\katana2NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\flipNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\katana3Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\hitdoped.png">
+    <Content Include="assets\rendered\480\abrahman\katana3NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\hitNinja.png">
+    <Content Include="assets\rendered\480\abrahman\kick1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\hitNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\kick2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\katana1Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku1CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\katana1NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku1CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\katana2Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku1Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\katana2NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku1NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\katana3Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku2CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\katana3NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku2CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\kick1doped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku2Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\kick2doped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku2NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku1CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku3CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku1CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku3CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku1Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku3Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku1NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku3NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku2CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku4CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku2CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku4CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku2Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku4Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku2NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku4NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku3CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku5CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku3CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku5CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku3Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku5Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku3NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku5NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku4CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku6CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku4CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku6CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku4Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku6Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku4NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku6NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku5CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku7CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku5CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku7CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku5Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku7Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku5NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku7NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku6CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku8CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku6CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku8CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku6Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku8Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku6NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\nunchaku8NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku7CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\punch1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku7CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\punch2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku7Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouched.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku7NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCroucheddoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku8CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouchedHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku8CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouchedHitdoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku8Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouchedPunch1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\nunchaku8NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouchedPunch1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\punch1doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouchedPunch2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\punch2doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaCrouchedPunch2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouched.png">
+    <Content Include="assets\rendered\480\abrahman\rastaFly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCroucheddoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaFlyCrouched.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouchedHit.png">
+    <Content Include="assets\rendered\480\abrahman\rastaFlyCrouchedDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouchedHitdoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaFlydoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouchedPunch1.png">
+    <Content Include="assets\rendered\480\abrahman\rastaHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouchedPunch1doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaHitdoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouchedPunch2.png">
+    <Content Include="assets\rendered\480\abrahman\rastaKick1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaCrouchedPunch2doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaKick1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaFly.png">
+    <Content Include="assets\rendered\480\abrahman\rastaKick2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaFlyCrouched.png">
+    <Content Include="assets\rendered\480\abrahman\rastaKick2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaFlyCrouchedDoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaPunch1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaFlydoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaPunch1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaHit.png">
+    <Content Include="assets\rendered\480\abrahman\rastaPunch2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaHitdoped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaPunch2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaKick1.png">
+    <Content Include="assets\rendered\480\abrahman\rastaStand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaKick1doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaStanddoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaKick2.png">
+    <Content Include="assets\rendered\480\abrahman\rastaWalk1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaKick2doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaWalk1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaPunch1.png">
+    <Content Include="assets\rendered\480\abrahman\rastaWalk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaPunch1doped.png">
+    <Content Include="assets\rendered\480\abrahman\rastaWalk2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaPunch2.png">
+    <Content Include="assets\rendered\480\abrahman\standdoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaPunch2doped.png">
+    <Content Include="assets\rendered\480\abrahman\standNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaStand.png">
+    <Content Include="assets\rendered\480\abrahman\standNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaStanddoped.png">
+    <Content Include="assets\rendered\480\abrahman\sword1CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaWalk1.png">
+    <Content Include="assets\rendered\480\abrahman\sword1CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaWalk1doped.png">
+    <Content Include="assets\rendered\480\abrahman\sword2CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaWalk2.png">
+    <Content Include="assets\rendered\480\abrahman\sword2CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\rastaWalk2doped.png">
+    <Content Include="assets\rendered\480\abrahman\sword3CrouchedNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\standdoped.png">
+    <Content Include="assets\rendered\480\abrahman\sword3CrouchedNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\standNinja.png">
+    <Content Include="assets\rendered\480\abrahman\swordJump1Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\standNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\swordJump1NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\sword1CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\swordJump2Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\sword1CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\swordJump2NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\sword2CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\swordJump3Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\sword2CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\swordJump3NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\sword3CrouchedNinja.png">
+    <Content Include="assets\rendered\480\abrahman\tinyHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\sword3CrouchedNinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyHitdoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\swordJump1Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\tinyKick1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\swordJump1NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyKick1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\swordJump2Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\tinyKick2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\swordJump2NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyKick2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\swordJump3Ninja.png">
+    <Content Include="assets\rendered\480\abrahman\tinyPunch1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\swordJump3NinjaDoped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyPunch1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyHit.png">
+    <Content Include="assets\rendered\480\abrahman\tinyPunch2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyHitdoped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyPunch2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyKick1.png">
+    <Content Include="assets\rendered\480\abrahman\tinyStand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyKick1doped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyStanddoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyKick2.png">
+    <Content Include="assets\rendered\480\abrahman\tinyWalk1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyKick2doped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyWalk1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyPunch1.png">
+    <Content Include="assets\rendered\480\abrahman\tinyWalk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyPunch1doped.png">
+    <Content Include="assets\rendered\480\abrahman\tinyWalk2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyPunch2.png">
+    <Content Include="assets\rendered\480\abrahman\walk1doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyPunch2doped.png">
+    <Content Include="assets\rendered\480\abrahman\walk1Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyStand.png">
+    <Content Include="assets\rendered\480\abrahman\walk1NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyStanddoped.png">
+    <Content Include="assets\rendered\480\abrahman\walk2doped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyWalk1.png">
+    <Content Include="assets\rendered\480\abrahman\walk2Ninja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyWalk1doped.png">
+    <Content Include="assets\rendered\480\abrahman\walk2NinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyWalk2.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\tinyWalk2doped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTallDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk1doped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTallNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk1Ninja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTallNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk1NinjaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTallRasta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk2doped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTallRastaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk2Ninja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTiny.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk2NinjaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverAttackStandTinyDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttack.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTallDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTall.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTallNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTallDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTallNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTallNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTallRasta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTallNinjaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTallRastaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTallRasta.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTiny.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTallRastaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverCrouchedStandTinyDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTiny.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverAttackStandTinyDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouched.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTallDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTall.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTallNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTallDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTallNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTallNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTallRasta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTallNinjaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTallRastaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTallRasta.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTiny.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTallRastaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverHitStandTinyDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTiny.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverCrouchedStandTinyDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHit.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTallDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTall.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTallNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTallDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTallNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTallNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTallRasta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTallNinjaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTallRastaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTallRasta.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTiny.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTallRastaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverStandStandTinyDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTiny.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverHitStandTinyDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStand.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTall.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallNinja.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTallDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallNinjaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTallNinja.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallRasta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTallNinjaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallRastaDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTallRasta.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallRastaDopedFly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTallRastaDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTallRastaFly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTiny.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTiny.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\beaver\BeaverStandStandTinyDoped.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalk.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkNinja.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTall.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallDoped.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallNinja.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallNinjaDoped.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallRasta.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallRastaDoped.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallRastaDopedFly.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTallRastaFly.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTiny.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="assets\rendered\beaver\BeaverWalkStandTinyDoped.png">
+    <Content Include="assets\rendered\480\beaver\BeaverWalkStandTinyDoped.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\corn\corn1.png">
@@ -1934,28 +2766,28 @@
     <Content Include="assets\rendered\480\riotControl\helmet2f.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\hit.png">
+    <Content Include="assets\rendered\480\abrahman\hit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\kick1.png">
+    <Content Include="assets\rendered\480\abrahman\kick1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\kick2.png">
+    <Content Include="assets\rendered\480\abrahman\kick2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\punch1.png">
+    <Content Include="assets\rendered\480\abrahman\punch1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\punch2.png">
+    <Content Include="assets\rendered\480\abrahman\punch2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\stand.png">
+    <Content Include="assets\rendered\480\abrahman\stand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk1.png">
+    <Content Include="assets\rendered\480\abrahman\walk1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\abrahman\walk2.png">
+    <Content Include="assets\rendered\480\abrahman\walk2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\blob\blob1.png">
