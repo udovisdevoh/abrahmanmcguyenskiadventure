@@ -70,25 +70,40 @@ namespace AbrahmanAdventure.sprites
             growthCycle = new Cycle(Program.powerUpGrowthTime, false);
             if (standLeft == null)
             {
-                standRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverStand.png");
+                if (Program.screenHeight > 720)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverHit.png");
+                    standRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverStandNinja.png");
+                    walkRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverWalkNinja.png");
+                    hitRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverHitNinja.png");
+                }
+                else if (Program.screenHeight > 480)
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverHit.png");
+                    standRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverStandNinja.png");
+                    walkRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverWalkNinja.png");
+                    hitRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverHitNinja.png");
+                }
+                else
+                {
+                    standRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverStand.png");
+                    walkRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverWalk.png");
+                    hitRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverHit.png");
+                    standRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverStandNinja.png");
+                    walkRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverWalkNinja.png");
+                    hitRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverHitNinja.png");
+                }
+
                 standLeft = standRight.CreateFlippedHorizontalSurface();
-
-                walkRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalk.png");
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
-
-                hitRight = BuildSpriteSurface("./assets/rendered/beaver/BeaverHit.png");
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
-
                 dead = hitRight.CreateFlippedVerticalSurface();
-
-
-                standRightNinja = BuildSpriteSurface("./assets/rendered/beaver/BeaverStandNinja.png");
                 standLeftNinja = standRightNinja.CreateFlippedHorizontalSurface();
-
-                walkRightNinja = BuildSpriteSurface("./assets/rendered/beaver/BeaverWalkNinja.png");
                 walkLeftNinja = walkRightNinja.CreateFlippedHorizontalSurface();
-
-                hitRightNinja = BuildSpriteSurface("./assets/rendered/beaver/BeaverHitNinja.png");
                 hitLeftNinja = hitRightNinja.CreateFlippedHorizontalSurface();
 
                 deadNinja = hitRightNinja.CreateFlippedVerticalSurface();
