@@ -29,10 +29,14 @@ namespace AbrahmanAdventure
 
         public bool isPressPageDown = false;
 
+        public bool isPressThrowRope = false;
+
         public int jumpButton = PersistentConfig.JumpButton;
 
         public int attackButton = PersistentConfig.AttackButton;
 
         public int leaveBeaverButton = PersistentConfig.LeaveBeaverButton;
+
+        public int throwRopeButton = PersistentConfig.ThrowRopeButton;
     }
 }

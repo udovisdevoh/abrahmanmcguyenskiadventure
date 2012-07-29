@@ -74,6 +74,9 @@ namespace AbrahmanAdventure.physics
                         sprite.IsNeedToJumpAgain = true;
                         if (sprite is PlayerSprite)
                             SoundManager.PlayDiveOutSound();
+
+                        if (sprite.IClimbingOn != null && sprite.IClimbingOn is LianaSprite)
+                            sprite.IClimbingOn = null;
                     }
                 }
                 else if (sprite.IGround != null)

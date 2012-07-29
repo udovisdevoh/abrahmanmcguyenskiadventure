@@ -82,9 +82,14 @@ namespace AbrahmanAdventure.hud
         private static bool isWaitingForLeaveBeaverButtonRemap = false;
 
         /// <summary>
+        /// Whether we are expecting to press a new joystick button to remap throw rope button
+        /// </summary>
+        private static bool isWaitingForThrowRopeButtonRemap = false;
+
+        /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {9,1,2,2,0,12};
+        private static int[] listMaxMenuItemCount = {9,1,3,2,0,12};
         #endregion
 
         #region Internal methods
@@ -139,6 +144,11 @@ namespace AbrahmanAdventure.hud
                 else
                     mainSurface.Blit(GetFontText("Leave beaver button: button " + userInput.leaveBeaverButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
 
+                if (isWaitingForThrowRopeButtonRemap)
+                    mainSurface.Blit(GetFontText("Throw rope button: press throw rope"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+                else
+                    mainSurface.Blit(GetFontText("Throw rope button: button " + userInput.throwRopeButton), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
             else if (currentSubMenu == SubMenu.EpisodeList)
@@ -172,11 +182,13 @@ namespace AbrahmanAdventure.hud
                 if (currentMenuPositionX == 0)
                 {
                     mainSurface.Blit(GetFontText("Arrows: (move)", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
-                    mainSurface.Blit(GetFontText("Space: Jump", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
-                    mainSurface.Blit(GetFontText("Ctrl: Attack / run / grab / dig", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
-                    mainSurface.Blit(GetFontText("Alt: Jump out of beaver, throw ninja grappler up", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
-                    mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
-                    mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                    mainSurface.Blit(GetFontText("Z or Space: Jump", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                    mainSurface.Blit(GetFontText("A or Ctrl: Attack / run / grab / dig", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                    mainSurface.Blit(GetFontText("X or Alt: Jump out of beaver, throw ninja grappler up", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+                    mainSurface.Blit(GetFontText("S or Shift: Throw ninja grappler up and keep beaver", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
+
+                    mainSurface.Blit(GetFontText("Enter: Select menu item", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                    mainSurface.Blit(GetFontText("Esc: Go back", System.Drawing.Color.Brown), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
                 }
                 else
                 {
@@ -337,6 +349,7 @@ namespace AbrahmanAdventure.hud
             isWaitingForJumpButtonRemap = false;
             isWaitingForAttackButtonRemap = false;
             isWaitingForLeaveBeaverButtonRemap = false;
+            isWaitingForThrowRopeButtonRemap = false;
             currentSubMenu = SubMenu.Main;
             currentMenuPositionY = 0;
             keyCycle.StopAndReset();
@@ -634,12 +647,15 @@ namespace AbrahmanAdventure.hud
                 isWaitingForJumpButtonRemap = false;
                 isWaitingForAttackButtonRemap = false;
                 isWaitingForLeaveBeaverButtonRemap = false;
+                isWaitingForThrowRopeButtonRemap = false;
                 if (currentMenuPositionY == 0)
                     isWaitingForJumpButtonRemap = true;
                 else if (currentMenuPositionY == 1)
                     isWaitingForAttackButtonRemap = true;
                 else if (currentMenuPositionY == 2)
                     isWaitingForLeaveBeaverButtonRemap = true;
+                else if (currentMenuPositionY == 3)
+                    isWaitingForThrowRopeButtonRemap = true;
             }
             else if (currentSubMenu == SubMenu.EpisodeList)
             {
@@ -751,6 +767,15 @@ namespace AbrahmanAdventure.hud
         {
             get { return isWaitingForLeaveBeaverButtonRemap; }
             set { isWaitingForLeaveBeaverButtonRemap = value; }
+        }
+
+        /// <summary>
+        /// Whether we are expecting to press new joystick button to remap throw rope button
+        /// </summary>
+        public static bool IsWaitingForThrowRopeButtonRemap
+        {
+            get { return isWaitingForThrowRopeButtonRemap; }
+            set { isWaitingForThrowRopeButtonRemap = value; }
         }
         #endregion
     }

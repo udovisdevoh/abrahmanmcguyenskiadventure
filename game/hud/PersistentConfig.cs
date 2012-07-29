@@ -137,6 +137,21 @@ namespace AbrahmanAdventure.hud
             }
         }
 
+        public static int ThrowRopeButton
+        {
+            get
+            {
+                if (IsConfigItemExist("throwRopeButton"))
+                    return int.Parse(GetConfigItem("throwRopeButton"));
+                else
+                    return 0;
+            }
+            set
+            {
+                SetConfigItem("throwRopeButton", value.ToString());
+            }
+        }
+        
         public static int ScreenWidth
         {
             get
