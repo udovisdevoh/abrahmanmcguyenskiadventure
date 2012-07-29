@@ -260,6 +260,8 @@ namespace AbrahmanAdventure
                 userInput.isPressPageUp = true;
             else if (args.Key == Key.PageDown)
                 userInput.isPressPageDown = true;
+            else if (args.Key == Key.LeftShift || args.Key == Key.RightShift || args.Key == Key.S)
+                userInput.isPressThrowRope = true;
         }
 
         public void OnKeyboardUp(object sender, KeyboardEventArgs args)
@@ -282,6 +284,8 @@ namespace AbrahmanAdventure
                 userInput.isPressPageUp = false;
             else if (args.Key == Key.PageDown)
                 userInput.isPressPageDown = false;
+            else if (args.Key == Key.LeftShift || args.Key == Key.RightShift || args.Key == Key.S)
+                userInput.isPressThrowRope = false;
         }
 
         public void OnJoystickButtonDown(object sender, JoystickButtonEventArgs args)
@@ -312,6 +316,14 @@ namespace AbrahmanAdventure
                     GameMenu.Dirthen();
                     return;
                 }
+                else if (GameMenu.IsWaitingForThrowRopeButtonRemap)
+                {
+                    userInput.throwRopeButton = args.Button;
+                    PersistentConfig.ThrowRopeButton = userInput.throwRopeButton;
+                    GameMenu.IsWaitingForThrowRopeButtonRemap = false;
+                    GameMenu.Dirthen();
+                    return;
+                }
             }
 
             if (args.Button == userInput.attackButton)
@@ -320,6 +332,8 @@ namespace AbrahmanAdventure
                 userInput.isPressJump = true;
             else if (args.Button == userInput.leaveBeaverButton)
                 userInput.isPressLeaveBeaver = true;
+            else if (args.Button == userInput.throwRopeButton)
+                userInput.isPressThrowRope = true;
 
             WinNative.SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED);
         }
@@ -332,6 +346,8 @@ namespace AbrahmanAdventure
                 userInput.isPressJump = false;
             else if (args.Button == userInput.leaveBeaverButton)
                 userInput.isPressLeaveBeaver = false;
+            else if (args.Button == userInput.throwRopeButton)
+                userInput.isPressThrowRope = false;
         }
 
         public void OnJoystickHatMotion(object sender, JoystickHatEventArgs args)
@@ -501,7 +517,9 @@ namespace AbrahmanAdventure
                             playerSprite.YPosition += playerSprite.MaximumWalkingHeight;
 
                             if (playerSprite.IsInWater)
+                            {
                                 playerSprite.IsNeedToJumpAgain = true;
+                            }
 
                             IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
 
@@ -695,6 +713,13 @@ namespace AbrahmanAdventure
                         }
                         else if (playerSprite.IsNinja && !playerSprite.IsNeedToPressThrowNinjaRopeAgain)
                             playerSprite.IsTryThrowNinjaRope = true;
+                    }
+                    else if (userInput.isPressThrowRope && playerSprite.IsNinja)
+                    {
+                        if (!playerSprite.IsNeedToPressThrowNinjaRopeAgain)
+                        {
+                            playerSprite.IsTryThrowNinjaRope = true;
+                        }
                     }
                     else
                     {
