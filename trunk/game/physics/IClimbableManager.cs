@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.level;
+using AbrahmanAdventure.audio;
 
 namespace AbrahmanAdventure.physics
 {
@@ -35,6 +36,9 @@ namespace AbrahmanAdventure.physics
                                 if (sprite.IGround != null && Math.Abs(sprite.YPosition - sprite.IGround[sprite.XPosition]) >= sprite.MinimumFallingHeight)
                                     sprite.IGround = null;
                                 sprite.IClimbingOn = (IClimbable)potentialClimbable;
+
+                                if (sprite.IClimbingOn is LianaSprite && wasClimbingOnAtPreviousFrame == null)
+                                    SoundManager.PlayCatchSound();
                             }
                         }
                     }
