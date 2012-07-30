@@ -303,6 +303,13 @@ namespace AbrahmanAdventure.sprites
 
         #region Constructor
         /// <summary>
+        /// Create empty abstract sprite (don't use this constructor)
+        /// </summary>
+        public AbstractSprite()
+        {
+        }
+
+        /// <summary>
         /// Create abstract sprite
         /// </summary>
         /// <param name="xPosition">x position</param>
