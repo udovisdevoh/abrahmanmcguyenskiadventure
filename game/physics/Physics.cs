@@ -207,10 +207,10 @@ namespace AbrahmanAdventure.physics
                     if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed) && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
                     {
                         SongPlayer.StopSync();
-                        if (playerSpriteReference.IsNinja)
+                        /*if (playerSpriteReference.IsNinja)
                             SongPlayer.IRiff = SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);
-                        else
-                            SongPlayer.IRiff = gameState.Song;
+                        else*/
+                        SongPlayer.IRiff = gameState.Song;
                         SongPlayer.PlayAsync();
                     }
                     #endregion

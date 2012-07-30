@@ -99,12 +99,12 @@ namespace AbrahmanAdventure.physics
                 else if (sprite is PlayerSprite && otherSprite is BandanaSprite && otherSprite.IsAlive)
                 {
                     powerUpManager.UpdateTouchBandana((PlayerSprite)sprite, (BandanaSprite)otherSprite);
-                    if (SongPlayer.IRiff != SongGenerator.GetNinjaSong(gameState.Seed, 0))
+                    /*if (SongPlayer.IRiff != SongGenerator.GetNinjaSong(gameState.Seed, 0))
                     {
                         SongPlayer.StopSync();
                         SongPlayer.IRiff = SongGenerator.GetNinjaSong(gameState.Seed, 0);
                         SongPlayer.PlayAsync();
-                    }
+                    }*/
                 }
                 else if (sprite is PlayerSprite && otherSprite is VortexSprite && sprite.IsTryToWalkUp && !((PlayerSprite)sprite).FromVortexCycle.IsFired && (sprite.IGround != null || sprite.YPosition <= otherSprite.YPosition))
                 {

@@ -34,8 +34,6 @@ namespace AbrahmanAdventure.audio
         private static List<string> fastSnareNameList = null;
 
         private static IRiff invincibilitySong = null;
-
-        private static IRiff ninjaSong = null;
         #endregion
 
         #region Internal Methods
@@ -120,27 +118,6 @@ namespace AbrahmanAdventure.audio
                 invincibilitySong = BuildSong(seed, 0, SongType.Invincibility);
 
             return invincibilitySong;
-        }
-
-        /// <summary>
-        /// Reset ninja song
-        /// </summary>
-        internal static void ResetNinjaSong()
-        {
-            ninjaSong = null;
-        }
-
-        /// <summary>
-        /// Get invincibility song (or build it if it doesn't exist
-        /// </summary>
-        /// <param name="seed">seed</param>
-        /// <returns>invincibility song</returns>
-        internal static IRiff GetNinjaSong(int seed, int skillLevel)
-        {
-            if (ninjaSong == null)
-                ninjaSong = BuildSong(seed, skillLevel, SongType.Ninja);
-
-            return ninjaSong;
         }
 
         /// <summary>

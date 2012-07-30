@@ -428,6 +428,7 @@ namespace AbrahmanAdventure
         }
         #endregion
 
+        
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {
@@ -479,13 +480,13 @@ namespace AbrahmanAdventure
                     LianaManager.ResetNinjaRope();
                     levelViewer.ClearCache();
                     SongGenerator.GetInvincibilitySong(gameState.Seed);//We pre-render invincibility song if it's not pre-rendered (it will be the same for this episode)
-                    SongGenerator.ResetNinjaSong();
-                    SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);//We pre-render ninja song if it's not pre-rendered (it will be the same for this episode)
+                    /*SongGenerator.ResetNinjaSong();
+                    SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);*/ //We pre-render ninja song if it's not pre-rendered (it will be the same for this episode)
                     GC.Collect();
-                    if (gameMetaState.IsNinja)
+                    /*if (gameMetaState.IsNinja)
                         SongPlayer.IRiff = SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);
-                    else
-                        SongPlayer.IRiff = gameState.Song;
+                    else*/
+                    SongPlayer.IRiff = gameState.Song;
                     SongPlayer.PlayAsync();
                     #endregion
                 }
@@ -509,7 +510,7 @@ namespace AbrahmanAdventure
                 {
                     #region We manage jumping input logic
                     playerSprite.IsTryingToJump = false;
-                    if (userInput.isPressJump || (userInput.isPressLeaveBeaver && !playerSprite.IsNinja))
+                    if (userInput.isPressJump || (userInput.isPressLeaveBeaver/* && !playerSprite.IsNinja*/))
                     {
                         //We manage jumping from one ground to a lower ground
                         if (userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight && playerSprite.IGround != null && !playerSprite.IsNeedToJumpAgain && playerSprite.CurrentWalkingSpeed == 0)

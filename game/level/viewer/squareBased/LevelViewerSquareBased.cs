@@ -69,6 +69,9 @@ namespace AbrahmanAdventure.level
             int minTileY = GetMinZoneY(viewOffsetY);
             int maxTileY = GetMaxZoneY(viewOffsetY);
 
+            if (Program.screenHeight > 480)
+                maxTileX++;
+
             for (int zoneX = minTileX; zoneX <= maxTileX; zoneX += Program.squareZoneTileWidth)
             {
                 for (int zoneY = minTileY; zoneY <= maxTileY; zoneY += Program.squareZoneTileHeight)
