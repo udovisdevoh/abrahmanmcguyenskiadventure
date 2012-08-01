@@ -37,17 +37,17 @@ namespace AbrahmanAdventure.sprites
             throw new NotImplementedException();
         }
 
-        protected override int BuildZIndex()
+        protected override string BuildTutorialComment()
+        {
+            return "Play with that ferris wheel, it's fun! Be careful when there are flail balls attached to it.";
+        }
+
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             throw new NotImplementedException();
         }
 
-        protected override string BuildTutorialComment()
-        {
-            return "Play with that ferris wheel, it's fun. Be careful when there are flail balls attached to it.";
-        }
-
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        public override double BuildSupportHeight()
         {
             throw new NotImplementedException();
         }

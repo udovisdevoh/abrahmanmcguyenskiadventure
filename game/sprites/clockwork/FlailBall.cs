@@ -37,17 +37,17 @@ namespace AbrahmanAdventure.sprites
             throw new NotImplementedException();
         }
 
-        protected override int BuildZIndex()
-        {
-            throw new NotImplementedException();
-        }
-
         protected override string BuildTutorialComment()
         {
-            throw new NotImplementedException();
+            return "Beware the flail!";
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override double BuildSupportHeight()
         {
             throw new NotImplementedException();
         }
