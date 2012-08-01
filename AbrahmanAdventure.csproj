@@ -1016,6 +1016,8 @@
     <Content Include="assets\rendered\1080\blob\blob2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\1080\clockwork\Bearing.png" />
+    <Content Include="assets\rendered\1080\clockwork\Platform.png" />
     <Content Include="assets\rendered\1080\corn\corn1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1365,6 +1367,8 @@
     <Content Include="assets\rendered\480\beaver\BeaverAttackNinja.png" />
     <Content Include="assets\rendered\480\beaver\BeaverCrouched.png" />
     <Content Include="assets\rendered\480\beaver\BeaverCrouchedNinja.png" />
+    <Content Include="assets\rendered\480\clockwork\Bearing.png" />
+    <Content Include="assets\rendered\480\clockwork\Platform.png" />
     <Content Include="assets\rendered\480\TitleScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1932,6 +1936,8 @@
     <Content Include="assets\rendered\720\blob\blob2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\rendered\720\clockwork\Bearing.png" />
+    <Content Include="assets\rendered\720\clockwork\Platform.png" />
     <Content Include="assets\rendered\720\corn\corn1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
