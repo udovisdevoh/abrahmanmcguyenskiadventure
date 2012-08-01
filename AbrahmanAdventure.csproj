@@ -281,6 +281,10 @@
     <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
     <Compile Include="game\sprites\clockwork\AbstractLinkage.cs" />
+    <Compile Include="game\sprites\clockwork\Pendulum.cs" />
+    <Compile Include="game\sprites\clockwork\Platform.cs" />
+    <Compile Include="game\sprites\clockwork\SeeSaw.cs" />
+    <Compile Include="game\sprites\clockwork\Wheel.cs" />
     <Compile Include="game\sprites\powerups\BandanaSprite.cs" />
     <Compile Include="game\sprites\projectiles\IPlayerProjectile.cs" />
     <Compile Include="game\sprites\projectiles\ShurikenSprite.cs" />
