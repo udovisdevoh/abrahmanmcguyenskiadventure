@@ -12,6 +12,10 @@ namespace AbrahmanAdventure.sprites
     #warning Eventually remove abstract keyword
     internal abstract class SeeSaw : AbstractLinkage
     {
+        #region Private members
+        private static Surface surface = null;
+        #endregion
+
         #region Override
         protected override bool BuildIsAffectedByGravity()
         {
@@ -45,7 +49,8 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            throw new NotImplementedException();
+            xOffset = yOffset = 0;
+            return surface;
         }
         #endregion
 
@@ -65,7 +70,16 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         public SeeSaw(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
-        {   
+        {
+            if (surface == null)
+            {
+                if (Program.screenHeight > 720)
+                    surface = BuildSpriteSurface("./assets/rendered/1080/clockwork/Bearing.png");
+                else if (Program.screenHeight > 480)
+                    surface = BuildSpriteSurface("./assets/rendered/720/clockwork/Bearing.png");
+                else
+                    surface = BuildSpriteSurface("./assets/rendered/480/clockwork/Bearing.png");
+            }
         }
 
         /// <summary>
