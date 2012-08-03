@@ -10,10 +10,12 @@ namespace AbrahmanAdventure.sprites
     /// Represents a wheel and its bearing
     /// </summary>
     #warning Eventually remove abstract keyword
-    internal abstract class Wheel : AbstractLinkage
+    internal class Wheel : AbstractLinkage, ILinkageNode
     {
         #region Private members
         private static Surface surface = null;
+
+        private List<AbstractLinkage> childList = new List<AbstractLinkage>();
         #endregion
 
         #region Override
@@ -39,12 +41,17 @@ namespace AbrahmanAdventure.sprites
 
         protected override string BuildTutorialComment()
         {
-            return "Play with that ferris wheel, it's fun! Be careful when there are flail balls attached to it.";
+            return "Play with that ferris wheel, it's fun!\nBe careful when there are flail balls attached to it.";
         }
 
         public override double BuildSupportHeight()
         {
             return 0;
+        }
+
+        protected override bool BuildIsImpassable()
+        {
+            return false;
         }
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
@@ -94,7 +101,21 @@ namespace AbrahmanAdventure.sprites
             : this(xPosition, yPosition, random)
         {
             this.IsAffectedByGravity = isAffectedByGravity;
+            this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
+        }
+        #endregion
+
+        #region ILinkageNode
+        public void AddChild(AbstractLinkage childComponent)
+        {
+            childList.Add(childComponent);
+            childComponent._ParentNode = this;
+        }
+
+        public List<AbstractLinkage> ChildList
+        {
+            get { return childList; }
         }
         #endregion
     }

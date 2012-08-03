@@ -18,15 +18,15 @@ namespace AbrahmanAdventure.sprites
         /// Height of the support (can be 0 in many cases)
         /// </summary>
         private double supportHeight;
+
+        /// <summary>
+        /// Parent node of current linkage (can be null)
+        /// </summary>
+        private ILinkageNode parentNode = null;
         #endregion
 
         #region Protected Override
         protected override bool BuildIsCrossGrounds()
-        {
-            return true;
-        }
-
-        protected override bool BuildIsImpassable()
         {
             return true;
         }
@@ -139,6 +139,22 @@ namespace AbrahmanAdventure.sprites
         {
             get { return supportHeight; }
             set { supportHeight = value; }
+        }
+
+        /// <summary>
+        /// Parent node of current linkage (can be null)
+        /// </summary>
+        public ILinkageNode ParentNode
+        {
+            get { return parentNode; }
+        }
+
+        /// <summary>
+        /// Parent node of current linkage. Don't use directly
+        /// </summary>
+        public ILinkageNode _ParentNode
+        {
+            set { parentNode = value; }
         }
         #endregion
     }

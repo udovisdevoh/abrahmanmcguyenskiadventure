@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// Represents a platform attached to a wheel or any mechanical component
     /// </summary>
     #warning Eventually remove abstract keyword
-    internal abstract class Platform : AbstractLinkage
+    internal class Platform : AbstractLinkage
     {
         #region Private members
         private static Surface surface = null;
@@ -35,6 +35,11 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildBounciness()
         {
             return 0.0;
+        }
+
+        protected override bool BuildIsImpassable()
+        {
+            return true;
         }
 
         protected override string BuildTutorialComment()
@@ -94,6 +99,7 @@ namespace AbrahmanAdventure.sprites
             : this(xPosition, yPosition, random)
         {
             this.IsAffectedByGravity = isAffectedByGravity;
+            this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
         }
         #endregion

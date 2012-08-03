@@ -30,6 +30,7 @@ namespace AbrahmanAdventure.sprites
             PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, random);
             CloudDispatcher.DispatchBlocks(level, spritePopulation, addedBlockMemory, random);
             LianaDispatcher.DispatchLianas(level, spritePopulation, waterInfo, random);
+            ClockworkDispatcher.DispatchClockwork(level, spritePopulation, waterInfo, random);
         }
 
         /// <summary>
