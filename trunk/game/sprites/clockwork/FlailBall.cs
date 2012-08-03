@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// Represents a flail ball attached to a linkage
     /// </summary>
     #warning Eventually remove abstract keyword
-    internal abstract class FlailBall : AbstractLinkage
+    internal class FlailBall : AbstractLinkage
     {
         #region Private members
         private static Surface surface = null;
@@ -42,6 +42,11 @@ namespace AbrahmanAdventure.sprites
             return "Beware the flail!";
         }
 
+        protected override bool BuildIsImpassable()
+        {
+            return false;
+        }
+
         public override double BuildSupportHeight()
         {
             return 0;
@@ -49,7 +54,8 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = yOffset = 0;
+            xOffset = 0;
+            yOffset = 0.655;
             return surface;
         }
         #endregion
@@ -94,6 +100,7 @@ namespace AbrahmanAdventure.sprites
             : this(xPosition, yPosition, random)
         {
             this.IsAffectedByGravity = isAffectedByGravity;
+            this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
         }
         #endregion

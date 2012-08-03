@@ -282,6 +282,7 @@
     <Compile Include="game\level\WaterInfo.cs" />
     <Compile Include="game\sprites\clockwork\AbstractLinkage.cs" />
     <Compile Include="game\sprites\clockwork\FlailBall.cs" />
+    <Compile Include="game\sprites\clockwork\ILinkageNode.cs" />
     <Compile Include="game\sprites\clockwork\Pendulum.cs" />
     <Compile Include="game\sprites\clockwork\Platform.cs" />
     <Compile Include="game\sprites\clockwork\SeeSaw.cs" />
@@ -289,6 +290,7 @@
     <Compile Include="game\sprites\powerups\BandanaSprite.cs" />
     <Compile Include="game\sprites\projectiles\IPlayerProjectile.cs" />
     <Compile Include="game\sprites\projectiles\ShurikenSprite.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\ClockworkDispatcher.cs" />
     <Compile Include="game\texture\ParallelTextureRenderer.cs" />
     <Compile Include="game\WinNative.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
@@ -1016,9 +1018,15 @@
     <Content Include="assets\rendered\1080\blob\blob2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\1080\clockwork\Bearing.png" />
-    <Content Include="assets\rendered\1080\clockwork\FlailBall.png" />
-    <Content Include="assets\rendered\1080\clockwork\Platform.png" />
+    <Content Include="assets\rendered\1080\clockwork\Bearing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\clockwork\FlailBall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\clockwork\Platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\1080\corn\corn1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1368,9 +1376,15 @@
     <Content Include="assets\rendered\480\beaver\BeaverAttackNinja.png" />
     <Content Include="assets\rendered\480\beaver\BeaverCrouched.png" />
     <Content Include="assets\rendered\480\beaver\BeaverCrouchedNinja.png" />
-    <Content Include="assets\rendered\480\clockwork\Bearing.png" />
-    <Content Include="assets\rendered\480\clockwork\FlailBall.png" />
-    <Content Include="assets\rendered\480\clockwork\Platform.png" />
+    <Content Include="assets\rendered\480\clockwork\Bearing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\480\clockwork\FlailBall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\480\clockwork\Platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\480\TitleScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1938,9 +1952,15 @@
     <Content Include="assets\rendered\720\blob\blob2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\720\clockwork\Bearing.png" />
-    <Content Include="assets\rendered\720\clockwork\FlailBall.png" />
-    <Content Include="assets\rendered\720\clockwork\Platform.png" />
+    <Content Include="assets\rendered\720\clockwork\Bearing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\clockwork\FlailBall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\clockwork\Platform.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\rendered\720\corn\corn1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
