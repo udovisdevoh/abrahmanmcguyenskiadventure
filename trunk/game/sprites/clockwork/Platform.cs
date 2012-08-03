@@ -13,7 +13,7 @@ namespace AbrahmanAdventure.sprites
     internal class Platform : AbstractLinkage
     {
         #region Private members
-        private static Surface surface = null;
+        private static Surface surface;
         #endregion
 
         #region Override

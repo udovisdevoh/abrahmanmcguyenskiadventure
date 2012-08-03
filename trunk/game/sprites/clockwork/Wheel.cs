@@ -9,15 +9,8 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a wheel and its bearing
     /// </summary>
-    #warning Eventually remove abstract keyword
-    internal class Wheel : AbstractLinkage, ILinkageNode
+    internal class Wheel : AbstractBearing
     {
-        #region Private members
-        private static Surface surface = null;
-
-        private List<AbstractLinkage> childList = new List<AbstractLinkage>();
-        #endregion
-
         #region Override
         protected override bool BuildIsAffectedByGravity()
         {
@@ -57,65 +50,19 @@ namespace AbrahmanAdventure.sprites
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;
-            return surface;
+            return bearingSurface;
         }
         #endregion
 
-        #region Constructor
-        /// <summary>
-        /// Do not use that constructor
-        /// </summary>
-        public Wheel()
-        {
-        }
-
-        /// <summary>
-        /// Build an abstract linkage (wheel, pendulum, seesaw, lift, platform, liana)
-        /// </summary>
-        /// <param name="xPosition">x position</param>
-        /// <param name="yPosition">y position</param>
-        /// <param name="random">random number generator</param>
+        #region Constructors
         public Wheel(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            if (surface == null)
-            {
-                if (Program.screenHeight > 720)
-                    surface = BuildSpriteSurface("./assets/rendered/1080/clockwork/Bearing.png");
-                else if (Program.screenHeight > 480)
-                    surface = BuildSpriteSurface("./assets/rendered/720/clockwork/Bearing.png");
-                else
-                    surface = BuildSpriteSurface("./assets/rendered/480/clockwork/Bearing.png");
-            }
         }
 
-        /// <summary>
-        /// Build an abstract linkage (wheel, pendulum, seesaw, lift, platform, liana)
-        /// </summary>
-        /// <param name="xPosition">x position</param>
-        /// <param name="yPosition">y position</param>
-        /// <param name="random">random number generator</param>
-        /// <param name="isAffectedByGravity">whether wheel is affected by gravity (default: false)</param>
-        /// <param name="supportHeight">support's height (default: 0)</param>
         public Wheel(double xPosition, double yPosition, Random random, bool isAffectedByGravity, double supportHeight)
-            : this(xPosition, yPosition, random)
+            : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
-            this.IsAffectedByGravity = isAffectedByGravity;
-            this.IsCrossGrounds = !isAffectedByGravity;
-            this.SupportHeight = supportHeight;
-        }
-        #endregion
-
-        #region ILinkageNode
-        public void AddChild(AbstractLinkage childComponent)
-        {
-            childList.Add(childComponent);
-            childComponent._ParentNode = this;
-        }
-
-        public List<AbstractLinkage> ChildList
-        {
-            get { return childList; }
         }
         #endregion
     }

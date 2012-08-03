@@ -22,7 +22,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Parent node of current linkage (can be null)
         /// </summary>
-        private ILinkageNode parentNode = null;
+        private AbstractBearing parentNode = null;
         #endregion
 
         #region Protected Override
@@ -144,7 +144,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Parent node of current linkage (can be null)
         /// </summary>
-        public ILinkageNode ParentNode
+        public AbstractBearing ParentNode
         {
             get { return parentNode; }
         }
@@ -152,7 +152,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Parent node of current linkage. Don't use directly
         /// </summary>
-        public ILinkageNode _ParentNode
+        public AbstractBearing _ParentNode
         {
             set { parentNode = value; }
         }

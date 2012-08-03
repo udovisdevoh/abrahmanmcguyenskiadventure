@@ -13,7 +13,7 @@ namespace AbrahmanAdventure.sprites
     internal class FlailBall : AbstractLinkage
     {
         #region Private members
-        private static Surface surface = null;
+        private static Surface surface;
         #endregion
 
         #region Override
