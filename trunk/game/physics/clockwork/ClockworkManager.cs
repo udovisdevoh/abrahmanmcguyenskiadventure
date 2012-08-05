@@ -26,6 +26,11 @@ namespace AbrahmanAdventure.physics
         /// Manages pendulum physics
         /// </summary>
         private PendulumManager pendulumManager = new PendulumManager();
+
+        /// <summary>
+        /// Manages wheels
+        /// </summary>
+        private WheelManager wheelManager = new WheelManager();
         #endregion
 
         #region Internal Methods
@@ -55,6 +60,8 @@ namespace AbrahmanAdventure.physics
         {
             if (rootLinkage is Pendulum)
                 pendulumManager.Update((Pendulum)rootLinkage, playerSprite, timeDelta);
+            else if (rootLinkage is Wheel)
+                wheelManager.Update((Wheel)rootLinkage, playerSprite, timeDelta);
 
             if (rootLinkage is AbstractBearing)
                 foreach (AbstractLinkage childLinkage in ((AbstractBearing)rootLinkage).ChildList)
