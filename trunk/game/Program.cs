@@ -159,6 +159,8 @@ namespace AbrahmanAdventure
 
         private SpriteViewer spriteViewer;
 
+        private VectorViewer vectorViewer;
+
         private JoystickManager joystickManager;
 
         private BeaverManager beaverManager;
@@ -166,6 +168,8 @@ namespace AbrahmanAdventure
         private PipeManager pipeManager;
 
         private IClimbableManager climbableManager;
+
+        private ClockworkManager clockworkManager;
 
         private MonsterAi monsterAi;
 
@@ -204,6 +208,7 @@ namespace AbrahmanAdventure
             pipeManager = new PipeManager();
             userInput = new UserInput();
             gameMetaState = new GameMetaState();
+            clockworkManager = new ClockworkManager();
             int soundVolume = PersistentConfig.SoundVolume;
             SongPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
             SongPlayer.PlayAsync();
@@ -216,6 +221,7 @@ namespace AbrahmanAdventure
 
             levelViewer = new LevelViewerSquareBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
+            vectorViewer = new VectorViewer(clockworkManager, mainSurface);
 
             #region Some pre-caching
             SoundManager.PreCache();
@@ -738,6 +744,8 @@ namespace AbrahmanAdventure
                                 if (sprite is MonsterSprite && sprite.IsAlive)
                                     monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                             }
+
+                        clockworkManager.Update(toUpdateSpriteList, playerSprite, timeDelta);
                     }
                 }
                 else
@@ -754,6 +762,7 @@ namespace AbrahmanAdventure
                 #region We update the viewers
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
+                vectorViewer.Update(viewOffsetX, viewOffsetY);
                 if (Program.isShowHealthBar)
                     HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)

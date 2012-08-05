@@ -11,20 +11,20 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class Pendulum : AbstractBearing
     {
+        #region Fields and parts
+        private double ropeLength;
+
+        private double speed;
+
+        private double amplitude;
+
+        private Cycle movingCycle = new Cycle(50, true, true, false);
+        #endregion
+
         #region Override
         protected override bool BuildIsAffectedByGravity()
         {
             return false;
-        }
-
-        protected override double BuildWidth(Random random)
-        {
-            return 1.0;
-        }
-
-        protected override double BuildHeight(Random random)
-        {
-            return 1.0;
         }
 
         protected override double BuildBounciness()
@@ -55,14 +55,72 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructors
-        public Pendulum(double xPosition, double yPosition, Random random)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xPosition"></param>
+        /// <param name="yPosition"></param>
+        /// <param name="random"></param>
+        /// <param name="ropeLength"></param>
+        /// <param name="speed"></param>
+        /// <param name="amplitude">max 1.8 (scaled on rope's length)</param>
+        public Pendulum(double xPosition, double yPosition, Random random, double ropeLength, double speed, double amplitude)
             : base(xPosition, yPosition, random)
         {
+            this.ropeLength = ropeLength;
+            this.speed = speed;
+            
+            this.amplitude = amplitude;
+            this.amplitude = Math.Min(this.amplitude, 1.8);
+            this.amplitude *= this.ropeLength;
+
+            movingCycle.Fire();
         }
 
-        public Pendulum(double xPosition, double yPosition, Random random, bool isAffectedByGravity, double supportHeight)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xPosition"></param>
+        /// <param name="yPosition"></param>
+        /// <param name="random"></param>
+        /// <param name="ropeLength"></param>
+        /// <param name="speed"></param>
+        /// <param name="amplitude">max 1.8 (scaled on rope's length)</param>
+        /// <param name="isAffectedByGravity"></param>
+        /// <param name="supportHeight"></param>
+        public Pendulum(double xPosition, double yPosition, Random random, double ropeLength, double speed, double amplitude, bool isAffectedByGravity, double supportHeight)
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
+            this.ropeLength = ropeLength;
+            this.speed = speed;
+            
+            this.amplitude = amplitude;
+            this.amplitude = Math.Min(this.amplitude, 1.8);
+            this.amplitude *= this.ropeLength;
+
+            movingCycle.Fire();
+        }
+        #endregion
+
+        #region Properties
+        public double Speed
+        {
+            get { return speed; }
+        }
+
+        public double RopeLength
+        {
+            get { return ropeLength; }
+        }
+
+        public double Amplitude
+        {
+            get { return amplitude; }
+        }
+
+        public Cycle MovingCycle
+        {
+            get { return movingCycle; }
         }
         #endregion
     }

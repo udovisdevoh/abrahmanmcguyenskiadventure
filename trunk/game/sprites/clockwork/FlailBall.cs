@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// Represents a flail ball attached to a linkage
     /// </summary>
     #warning Eventually remove abstract keyword
-    internal class FlailBall : AbstractLinkage
+    internal class FlailBall : AbstractLinkage, IEvilSprite
     {
         #region Private members
         private static Surface surface;
@@ -52,9 +52,19 @@ namespace AbrahmanAdventure.sprites
             return 0;
         }
 
+        protected override int BuildZIndex()
+        {
+            return 1;
+        }
+
+        protected override double BuildAttackStrengthCollision()
+        {
+            return 0.5;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = 0;
+            xOffset = 0.0655;
             yOffset = 0.655;
             return surface;
         }

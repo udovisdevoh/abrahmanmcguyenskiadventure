@@ -52,6 +52,11 @@ namespace AbrahmanAdventure.sprites
             return 0;
         }
 
+        protected override int BuildZIndex()
+        {
+            return 1;
+        }
+
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
             xOffset = yOffset = 0;

@@ -157,6 +157,10 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
                 }
+                else if (sprite is PlayerSprite && otherSprite is FlailBall)
+                {
+                    UpdateFlailCollision((PlayerSprite)sprite, (FlailBall)otherSprite, timeDelta, spritePopulation, random, gameState);
+                }
             }
         }
         #endregion
@@ -212,44 +216,71 @@ namespace AbrahmanAdventure.physics
 
                     if (sprite.IsBeaver)
                     {
-                        SoundManager.PlayBeaverHitSound();
-                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
-                        sprite.IGround = null;
-                        sprite.JumpingCycle.Fire();
-                        sprite.IsBeaver = false;
-                        BeaverSprite beaverSprite = new BeaverSprite(sprite.XPosition, sprite.YPosition, random);
-                        spritePopulation.Add(beaverSprite);
-                        beaverSprite.IsWalkEnabled = true;
+                        CollisionRemoveBeaver(sprite, spritePopulation, random);
                     }
                     else
                     {
-                        if (sprite is PlayerSprite && !sprite.IsTiny && !sprite.IsNinja)
-                            ((PlayerSprite)sprite).ChangingSizeAnimationCycle.Fire();
-
-                        SoundManager.PlayHit2Sound();
-                        if (sprite.IsDoped)
-                            sprite.IsDoped = false;
-                        if (sprite.IsRasta)
-                            sprite.IsRasta = false;
-                        if (sprite.IsNinja)
-                        {
-                            sprite.IsNinja = false;
-                            if (SongPlayer.IRiff != gameState.Song)
-                            {
-                                SongPlayer.StopSync();
-                                SongPlayer.IRiff = gameState.Song;
-                                SongPlayer.PlayAsync();
-                            }
-                            //Only lose ninja status, no damage
-                        }
-                        else
-                        {
-                            sprite.IsTiny = true;
-                            sprite.CurrentDamageReceiving = monsterSprite.AttackStrengthCollision;
-                        }
+                        CollisionRemoveSuitOrBecomeSmallOrDie(sprite, monsterSprite, gameState);
                     }
                 }
             }
+        }
+
+        private void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, GameState gameState)
+        {
+            if (!playerSprite.IsTiny && !playerSprite.IsNinja)
+                ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
+
+            SoundManager.PlayHit2Sound();
+            if (playerSprite.IsDoped)
+                playerSprite.IsDoped = false;
+            if (playerSprite.IsRasta)
+                playerSprite.IsRasta = false;
+            if (playerSprite.IsNinja)
+            {
+                playerSprite.IsNinja = false;
+                /*if (SongPlayer.IRiff != gameState.Song)
+                {
+                    SongPlayer.StopSync();
+                    SongPlayer.IRiff = gameState.Song;
+                    SongPlayer.PlayAsync();
+                }*/
+                //Only lose ninja status, no damage
+            }
+            else
+            {
+                playerSprite.IsTiny = true;
+                playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
+            }
+        }
+
+        private void UpdateFlailCollision(PlayerSprite playerSprite, FlailBall flailBall, double timeDelta, SpritePopulation spritePopulation, Random random, GameState gameState)
+        {
+            if (!playerSprite.InvincibilityCycle.IsFired && !playerSprite.HitCycle.IsFired)
+            {
+                playerSprite.HitCycle.Fire();
+
+                if (playerSprite.IsBeaver)
+                {
+                    CollisionRemoveBeaver(playerSprite, spritePopulation, random);
+                }
+                else
+                {
+                    CollisionRemoveSuitOrBecomeSmallOrDie(playerSprite, flailBall, gameState);
+                }
+            }
+        }
+
+        private void CollisionRemoveBeaver(PlayerSprite playerSprite, SpritePopulation spritePopulation, Random random)
+        {
+            SoundManager.PlayBeaverHitSound();
+            playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;
+            playerSprite.IGround = null;
+            playerSprite.JumpingCycle.Fire();
+            playerSprite.IsBeaver = false;
+            BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, random);
+            spritePopulation.Add(beaverSprite);
+            beaverSprite.IsWalkEnabled = true;
         }
 
         /// <summary>

@@ -11,6 +11,18 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class Wheel : AbstractBearing
     {
+        #region Fields and parts
+        private double radius;
+
+        private double firstChildOffset;
+
+        private double speed;
+
+        private bool isShowCircumference;
+
+        private Cycle rotationCycle = new Cycle(100, true);
+        #endregion
+
         #region Override
         protected override bool BuildIsAffectedByGravity()
         {
@@ -20,16 +32,6 @@ namespace AbrahmanAdventure.sprites
         protected override double BuildBounciness()
         {
             return 0;
-        }
-
-        protected override double BuildWidth(Random random)
-        {
-            return 1.0;
-        }
-
-        protected override double BuildHeight(Random random)
-        {
-            return 1.0;
         }
 
         protected override string BuildTutorialComment()
@@ -55,14 +57,36 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructors
-        public Wheel(double xPosition, double yPosition, Random random)
-            : base(xPosition, yPosition, random)
-        {
-        }
-
-        public Wheel(double xPosition, double yPosition, Random random, bool isAffectedByGravity, double supportHeight)
+        /// <summary>
+        /// Create wheel
+        /// </summary>
+        /// <param name="xPosition"></param>
+        /// <param name="yPosition"></param>
+        /// <param name="random"></param>
+        /// <param name="radius"></param>
+        /// <param name="firstChildOffset">from 0 to 1.0</param>
+        /// <param name="isAffectedByGravity"></param>
+        /// <param name="supportHeight"></param>
+        /// <param name="speed">speed (can be negative for reverse rotation)</param>
+        public Wheel(double xPosition, double yPosition, Random random, double radius, double firstChildOffset, double speed, bool isAffectedByGravity, bool isShowCircumference, double supportHeight)
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
+            this.radius = radius;
+            this.firstChildOffset = firstChildOffset;
+            this.isShowCircumference = isShowCircumference;
+            this.speed = speed;
+        }
+        #endregion
+
+        #region Properties
+        public bool IsShowCircumference
+        {
+            get { return isShowCircumference; }
+        }
+
+        public double Radius
+        {
+            get { return radius; }
         }
         #endregion
     }

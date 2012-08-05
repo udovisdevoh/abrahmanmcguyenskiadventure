@@ -14,9 +14,20 @@ namespace AbrahmanAdventure.sprites
         private List<AbstractLinkage> childList = new List<AbstractLinkage>();
         #endregion
 
+        protected override double BuildWidth(Random random)
+        {
+            return 0.5;
+        }
+
+        protected override double BuildHeight(Random random)
+        {
+            return 0.5;
+        }
+
         #region Public Methods
         public void AddChild(AbstractLinkage childComponent)
         {
+            childComponent.IsAffectedByGravity = false;
             childList.Add(childComponent);
             childComponent._ParentNode = this;
         }
