@@ -10,7 +10,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a wheel and its bearing
     /// </summary>
-    internal class Wheel : AbstractBearing
+    internal class Wheel : AbstractBearing, IWheel
     {
         #region Fields and parts
         private double radius;

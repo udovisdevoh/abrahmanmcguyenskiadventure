@@ -69,8 +69,8 @@ namespace AbrahmanAdventure.sprites
                 foreach (AbstractLinkage childLinkage in abstractBearing.ChildList)
                     ShowVectors(childLinkage, viewOffsetX, viewOffsetY);
 
-                if (abstractBearing is Wheel && ((Wheel)abstractBearing).IsShowCircumference && abstractBearing.ChildList.Count > 0)
-                    mainSurface.Draw(new Circle(GetSpritePosition(abstractLinkage, viewOffsetX, viewOffsetY/*, abstractBearing.ChildList[0].SupportHeight*/), (short)(((Wheel)abstractBearing).Radius * (double)Program.tileSize)), abstractBearing.FrameColor);
+                if (abstractBearing is IWheel && ((IWheel)abstractBearing).IsShowCircumference && abstractBearing.ChildList.Count > 0)
+                    mainSurface.Draw(new Circle(GetSpritePosition(abstractLinkage, viewOffsetX, viewOffsetY/*, abstractBearing.ChildList[0].SupportHeight*/), (short)(((IWheel)abstractBearing).Radius * (double)Program.tileSize)), abstractBearing.FrameColor);
             }
         }
 
