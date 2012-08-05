@@ -67,13 +67,6 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void DispatchMonsters(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
         {
-            /*burger: 1.17
-            jew: 2.85
-            raptor: 3.45
-            riot1: 2.17
-            riot2: 1.67
-            mormon: 2.85
-            farmer: 2.61*/
             double monsterDensity = random.NextDouble() * 0.1 + 0.05; //Random density, for easiest skill (0.05 to 0.15)
             monsterDensity *= Program.monsterDensityAdjustment;
 
@@ -82,15 +75,17 @@ namespace AbrahmanAdventure.sprites
             double availableMonsterPopulationMass = monsterDensity * level.Size;
             double monsterTypeEntropy = random.NextDouble();//0: all the same monster, 1: very diverse
 
+
+            Random monsterTypeSamplePrivateRandomGenerator = new Random(random.Next());
             do
             {
                 double maxDispatchRatioPerMonster = GetMaxDispatchRatioPerMonster(skillLevel);
-                MonsterSprite monsterTypeSample = GetRandomMonsterTypeSample(monsterTypeEntropy, spritePopulation, maxDispatchRatioPerMonster, random);
+                MonsterSprite monsterTypeSample = GetRandomMonsterTypeSample(monsterTypeEntropy, spritePopulation, maxDispatchRatioPerMonster, monsterTypeSamplePrivateRandomGenerator);
 
                 if (monsterTypeSample == null)
                     break;
 
-                MonsterSprite monster = BuildMonsterFromSampleAtRandomPosition(monsterTypeSample, level, random);
+                MonsterSprite monster = BuildMonsterFromSampleAtRandomPosition(monsterTypeSample, level, monsterTypeSamplePrivateRandomGenerator);
                 spritePopulation.Add(monster);
 
                 availableMonsterPopulationMass -= monster.SkillDispatchRatio;
