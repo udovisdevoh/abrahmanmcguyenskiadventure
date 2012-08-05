@@ -55,7 +55,7 @@ namespace AbrahmanAdventure.sprites
             Pendulum pendulum4 = new Pendulum(40, -30, random, 12, 0.4, 1.0, false, 0);
             spritePopulation.Add(pendulum4);
             
-            Wheel wheel = new Wheel(40, -18, random, 8.0, 0.0, -3.0, false, true, 0);
+            Wheel wheel = new Wheel(40, -18, random, 8.0, 0.0, -3.0, false, true, false, 0);
             spritePopulation.Add(wheel);
 
             pendulum4.AddChild(wheel);
@@ -86,6 +86,26 @@ namespace AbrahmanAdventure.sprites
             wheelPlatform = new Platform(37, -20, random, false, 2);
             spritePopulation.Add(wheelPlatform);
             wheel.AddChild(wheelPlatform);
+
+
+
+            Wheel flailWheel = new Wheel(40, -18, random, 3.0, 0.0, -3.0, false, false, true, 0);
+            spritePopulation.Add(flailWheel);
+
+            FlailBall flailBall2;
+            flailBall2 = new FlailBall(40, -18, random, false, 0);
+            spritePopulation.Add(flailBall2);
+            flailWheel.AddChild(flailBall2);
+
+            flailBall2 = new FlailBall(40, -18, random, false, 0);
+            spritePopulation.Add(flailBall2);
+            flailWheel.AddChild(flailBall2);
+
+            flailBall2 = new FlailBall(40, -18, random, false, 0);
+            spritePopulation.Add(flailBall2);
+            flailWheel.AddChild(flailBall2);
+
+            wheel.AddChild(flailWheel);
         }
     }
 }

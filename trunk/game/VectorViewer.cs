@@ -44,14 +44,7 @@ namespace AbrahmanAdventure.sprites
             {
                 //draw link to parent node
 
-                Color color;
-
-                if (abstractLinkage.ParentNode is SeeSaw)
-                    color = Color.Crimson;
-                else if (abstractLinkage.ParentNode is Wheel)
-                    color = Color.Blue;
-                else/* if (abstractLinkage.ParentNode is Pendulum)*/
-                    color = Color.Beige;
+                Color color = abstractLinkage.ParentNode.FrameColor;
 
 
                 Point spriteTopSupportPosition = GetSpritePosition(abstractLinkage, viewOffsetX, viewOffsetY, abstractLinkage.SupportHeight);
@@ -77,7 +70,7 @@ namespace AbrahmanAdventure.sprites
                     ShowVectors(childLinkage, viewOffsetX, viewOffsetY);
 
                 if (abstractBearing is Wheel && ((Wheel)abstractBearing).IsShowCircumference && abstractBearing.ChildList.Count > 0)
-                    mainSurface.Draw(new Circle(GetSpritePosition(abstractLinkage, viewOffsetX, viewOffsetY/*, abstractBearing.ChildList[0].SupportHeight*/), (short)(((Wheel)abstractBearing).Radius * (double)Program.tileSize)), Color.Blue);
+                    mainSurface.Draw(new Circle(GetSpritePosition(abstractLinkage, viewOffsetX, viewOffsetY/*, abstractBearing.ChildList[0].SupportHeight*/), (short)(((Wheel)abstractBearing).Radius * (double)Program.tileSize)), abstractBearing.FrameColor);
             }
         }
 
