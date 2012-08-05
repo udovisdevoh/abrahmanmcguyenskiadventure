@@ -95,6 +95,7 @@ namespace AbrahmanAdventure.sprites
         public Color FrameColor
         {
             get { return frameColor; }
+            set { frameColor = value; }
         }
         #endregion
     }

@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.sprites
 
 
 
-            Wheel flailWheel = new Wheel(40, -18, random, 3.0, 0.0, -3.0, false, false, true, 0);
+            Wheel flailWheel = new Wheel(40, -18, random, 3.0, 0.0, -6.0, false, false, true, 0);
             spritePopulation.Add(flailWheel);
 
             FlailBall flailBall2;
