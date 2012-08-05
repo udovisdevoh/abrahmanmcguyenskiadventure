@@ -126,6 +126,36 @@ namespace AbrahmanAdventure.sprites
             spritePopulation.Add(seeSawPlatform);
             seeSaw.AddChild(seeSawPlatform);
 
+            seeSawPlatform = new Platform(59, -9, random, false, 2);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+
+
+
+
+
+
+
+
+            seeSaw = new SeeSaw(80, -15, random, 5, 3.0, 3.0, false, true, 0);
+            spritePopulation.Add(seeSaw);
+
+            seeSawPlatform = new Platform(80, -9, random, false, 2);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+            SeeSaw subSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 3.0, false, true, 0);
+            spritePopulation.Add(subSeeSaw);
+            seeSaw.AddChild(subSeeSaw);
+
+            seeSawPlatform = new Platform(80, -9, random, false, 2);
+            spritePopulation.Add(seeSawPlatform);
+            subSeeSaw.AddChild(seeSawPlatform);
+
+            seeSawPlatform = new Platform(80, -9, random, false, 2);
+            spritePopulation.Add(seeSawPlatform);
+            subSeeSaw.AddChild(seeSawPlatform);
 
 
 

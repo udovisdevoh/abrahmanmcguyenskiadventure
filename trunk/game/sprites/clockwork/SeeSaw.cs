@@ -87,7 +87,16 @@ namespace AbrahmanAdventure.sprites
         public double Angle
         {
             get { return angle; }
-            set { angle = value; }
+            set
+            {
+                angle = value;
+
+                while (angle > 1.0)
+                    angle -= 1.0;
+
+                while (angle < 0)
+                    angle += 1.0;
+            }
         }
 
         public bool IsRadiusDistanceFromParentWheel

@@ -11,6 +11,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class SeeSawManager
     {
+        #region Internal Methods
         /// <summary>
         /// Update seesaw
         /// </summary>
@@ -19,7 +20,24 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         internal void Update(SeeSaw seeSaw, PlayerSprite playerSprite, double timeDelta)
         {
+            Update(seeSaw, playerSprite, timeDelta, null);
+        }
+
+        /// <summary>
+        /// Update seesaw
+        /// </summary>
+        /// <param name="seeSaw">see saw</param>
+        /// <param name="playerSprite">player's sprite</param>
+        /// <param name="timeDelta">time delta</param>
+        /// <param name="forcedPlatformPlayerIsOn">default: null</param>
+        internal void Update(SeeSaw seeSaw, PlayerSprite playerSprite, double timeDelta, AbstractLinkage forcedPlatformPlayerIsOn)
+        {
             double counter = 0;
+
+            AbstractLinkage platformPlayerIsOn = null;
+            double angleOfPlatformPlayerIsOn = 0;
+
+            double availablePower = seeSaw.Speed * timeDelta / seeSaw.Radius;
 
             foreach (AbstractLinkage childLinkage in seeSaw.ChildList)
             {
@@ -53,14 +71,64 @@ namespace AbrahmanAdventure.physics
                 double xMove = childLinkage.XPosition - childLinkage.XPositionPrevious;
                 double yMove = childLinkage.YPosition - childLinkage.YPositionPrevious;
 
-                if (playerSprite.IGround == childLinkage)
+                if (playerSprite.IGround == childLinkage || forcedPlatformPlayerIsOn == childLinkage)
                 {
-                    playerSprite.YPositionKeepPrevious = childLinkage.TopBound;
-                    playerSprite.XPosition += xMove;
+                    if (playerSprite.IGround == childLinkage)
+                    {
+                        playerSprite.YPositionKeepPrevious = childLinkage.TopBound;
+                        playerSprite.XPosition += xMove;
+                    }
+                    platformPlayerIsOn = childLinkage;
+
+                    angleOfPlatformPlayerIsOn = angle;
                 }
 
                 counter += 1.0;
             }
+
+            if (platformPlayerIsOn != null)
+            {
+                AbstractLinkage forcedPlatformPlayerIsOnParentSeeSaw;
+                AbstractLinkage nextParentSeeSaw = GetNextParentSeeSaw(seeSaw, out forcedPlatformPlayerIsOnParentSeeSaw);
+
+
+                if (Math.Abs(angleOfPlatformPlayerIsOn - 0.25) /*, Math.Abs(angleOfPlatformPlayerIsOn - 0.75)*/ > availablePower / 300)
+                {
+                    if (angleOfPlatformPlayerIsOn >= 0.25 && angleOfPlatformPlayerIsOn <= 0.75)
+                    {
+                        seeSaw.Angle -= availablePower / 200;
+                    }
+                    else
+                    {
+                        seeSaw.Angle += availablePower / 200;
+                    }
+                }
+
+                if (nextParentSeeSaw != null)
+                {
+                    Update((SeeSaw)nextParentSeeSaw, playerSprite, timeDelta, forcedPlatformPlayerIsOnParentSeeSaw);
+                }
+            }
         }
+
+        private AbstractLinkage GetNextParentSeeSaw(AbstractLinkage linkage, out AbstractLinkage forcedPlatformPlayerIsOnParentSeeSaw)
+        {
+            if (linkage.ParentNode == null)
+            {
+                forcedPlatformPlayerIsOnParentSeeSaw = null;
+                return null;
+            }
+
+            if (linkage.ParentNode is SeeSaw)
+            {
+                forcedPlatformPlayerIsOnParentSeeSaw = linkage;
+                return linkage.ParentNode;
+            }
+            else
+            {
+                return GetNextParentSeeSaw(linkage.ParentNode, out forcedPlatformPlayerIsOnParentSeeSaw);
+            }
+        }
+        #endregion
     }
 }
