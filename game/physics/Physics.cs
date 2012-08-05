@@ -141,7 +141,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         internal void Update(AbstractSprite spriteToUpdate, PlayerSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, Random random)
         {
-            if (spriteToUpdate.IGround is Platform)
+            if (spriteToUpdate != playerSpriteReference && spriteToUpdate.IGround is Platform)
             {
                 Platform platform = (Platform)spriteToUpdate.IGround;
                 spriteToUpdate.XPosition += platform.LastDistanceX;
