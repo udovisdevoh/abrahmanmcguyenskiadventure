@@ -106,6 +106,20 @@ namespace AbrahmanAdventure.sprites
             flailWheel.AddChild(flailBall2);
 
             wheel.AddChild(flailWheel);
+
+
+
+            //We generate colors for platforms
+            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
+            {
+                if (sprite is AbstractBearing)
+                {
+                    AbstractBearing bearing = (AbstractBearing)sprite;
+
+                    if (bearing.ParentNode == null)
+                        bearing.GenerateColoredPlatformSurface(random);
+                }
+            }
         }
     }
 }

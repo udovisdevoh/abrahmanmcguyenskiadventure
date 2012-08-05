@@ -14,6 +14,8 @@ namespace AbrahmanAdventure.sprites
     {
         #region Private members
         private static Surface surface;
+
+        private Surface coloredSurface = null;
         #endregion
 
         #region Override
@@ -59,7 +61,10 @@ namespace AbrahmanAdventure.sprites
 
         public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
         {
-            xOffset = yOffset = 0;
+            xOffset = 0;
+            yOffset = -0.0666;
+            if (coloredSurface != null)
+                return coloredSurface;
             return surface;
         }
         #endregion
@@ -106,6 +111,19 @@ namespace AbrahmanAdventure.sprites
             this.IsAffectedByGravity = isAffectedByGravity;
             this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
+        }
+        #endregion
+
+        #region Properties
+        public static Surface Surface
+        {
+            get { return surface; }
+        }
+
+        public Surface ColoredSurface
+        {
+            get { return coloredSurface; }
+            set { coloredSurface = value; }
         }
         #endregion
     }
