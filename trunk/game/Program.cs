@@ -433,8 +433,7 @@ namespace AbrahmanAdventure
             WinNative.SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED);
         }
         #endregion
-
-        
+       
         #region Public Methods
         public void Update(object sender, TickEventArgs args)
         {

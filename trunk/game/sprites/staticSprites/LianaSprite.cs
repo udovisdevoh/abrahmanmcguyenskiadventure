@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -30,6 +31,8 @@ namespace AbrahmanAdventure.sprites
         private Cycle movementCycle;
 
         private static Dictionary<int, Surface> internalSurfaceCache;
+
+        private IGround attachedToIGround;
         #endregion
 
         #region Constructor
@@ -262,6 +265,12 @@ namespace AbrahmanAdventure.sprites
         public Cycle MovementCycle
         {
             get { return movementCycle; }
+        }
+
+        public IGround AttachedToIGround
+        {
+            get { return attachedToIGround; }
+            set { attachedToIGround = value; }
         }
         #endregion
     }
