@@ -17,6 +17,18 @@ namespace AbrahmanAdventure.physics
 
         internal void UpdateLiana(LianaSprite lianaSprite, PlayerSprite playerSpriteReference, double timeDelta)
         {
+            //We move liana if it's attached to a platform
+            if (lianaSprite.AttachedToIGround != null && lianaSprite.AttachedToIGround is Platform)
+            {
+                Platform platform = (Platform)lianaSprite.AttachedToIGround;
+                lianaSprite.TopBound = platform.YPosition;
+                lianaSprite.XPosition += platform.LastDistanceX;
+
+                if (playerSpriteReference.IClimbingOn == lianaSprite)
+                    playerSpriteReference.YPosition += platform.LastDistanceY;
+            }
+
+
             double heightBeforeMovement = -1;//Warning, must not keep this value
             if (lianaSprite.MovementCycle.IsFired)
             {
@@ -85,12 +97,15 @@ namespace AbrahmanAdventure.physics
 
             if (ninjaRope != null)
             {
+                ninjaRope.AttachedToIGround = null;
                 spritePopulation.Remove(ninjaRope);
                 if (playerSprite.IClimbingOn == ninjaRope)
                     playerSprite.IClimbingOn = null;
             }
 
             ninjaRope = new LianaSprite(playerSprite.XPosition, yPosition, random);
+
+            ninjaRope.AttachedToIGround = attachedGround;
 
             if (playerSprite.IsTryingToWalkRight)
                 ninjaRope.MovementCycle.CurrentValue = ninjaRope.MovementCycle.TotalTimeLength * 0.375;

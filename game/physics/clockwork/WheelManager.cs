@@ -50,10 +50,7 @@ namespace AbrahmanAdventure.physics
                 double yMove = childLinkage.YPosition - childLinkage.YPositionPrevious;
 
                 if (playerSprite.IGround == childLinkage)
-                {
-                    playerSprite.XPosition += xMove;
-                    playerSprite.YPosition += yMove;
-                }
+                    playerSprite.YPositionKeepPrevious = childLinkage.TopBound;
 
                 counter += 1.0;
             }

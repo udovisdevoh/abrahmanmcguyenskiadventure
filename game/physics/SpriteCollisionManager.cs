@@ -161,6 +161,11 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateFlailCollision((PlayerSprite)sprite, (FlailBall)otherSprite, timeDelta, spritePopulation, random, gameState);
                 }
+
+                else if ((sprite is PlayerSprite || sprite is MonsterSprite) && otherSprite is Platform)
+                {
+                    UpdatePlatformMovesUpCatchSprite(sprite, (Platform)otherSprite);
+                }
             }
         }
         #endregion
@@ -395,6 +400,23 @@ namespace AbrahmanAdventure.physics
             else if (monsterSprite.IsEnableSpontaneousConversion)
             {
                 monsterSprite.SpontaneousTransformationCycle.Fire(); //We schedule an eventual transformation from helmet to monster
+            }
+        }
+
+        /// <summary>
+        /// Platform is moving up then catches sprite that was on other ground
+        /// </summary>
+        /// <param name="sprite">sprite (player or monster)</param>
+        /// <param name="platform">platform</param>
+        private void UpdatePlatformMovesUpCatchSprite(AbstractSprite sprite, Platform platform)
+        {
+            if (sprite.IGround != null && sprite.IGround != platform)
+            {
+                if (platform.TopBound < sprite.YPosition && platform.TopBoundPrevious >= sprite.YPosition)
+                {
+                    sprite.IGround = platform;
+                    sprite.YPositionKeepPrevious = platform.TopBound;
+                }
             }
         }
         #endregion
