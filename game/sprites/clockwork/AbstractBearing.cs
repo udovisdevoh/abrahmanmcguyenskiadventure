@@ -31,7 +31,7 @@ namespace AbrahmanAdventure.sprites
         #region Public Methods
         public void AddChild(AbstractLinkage childComponent)
         {
-            childComponent.IsAffectedByGravity = this.IsAffectedByGravity;
+            childComponent.IsAffectedByGravity = false;
             childList.Add(childComponent);
             childComponent._ParentNode = this;
         }

@@ -287,6 +287,7 @@
     <Compile Include="game\sprites\clockwork\AbstractBearing.cs" />
     <Compile Include="game\sprites\clockwork\AbstractLinkage.cs" />
     <Compile Include="game\sprites\clockwork\FlailBall.cs" />
+    <Compile Include="game\sprites\clockwork\IWheel.cs" />
     <Compile Include="game\sprites\clockwork\Pendulum.cs" />
     <Compile Include="game\sprites\clockwork\Platform.cs" />
     <Compile Include="game\sprites\clockwork\SeeSaw.cs" />

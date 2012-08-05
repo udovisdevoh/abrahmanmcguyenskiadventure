@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a seesaw
     /// </summary>
-    internal class SeeSaw : AbstractBearing
+    internal class SeeSaw : AbstractBearing, IWheel
     {
         #region Fields and parts
         private double radius;
@@ -21,6 +21,8 @@ namespace AbrahmanAdventure.sprites
         private double angle;
 
         private bool isRadiusDistanceFromParentWheel;
+
+        private bool isShowCircumference;
         #endregion
 
         #region Override
@@ -57,13 +59,14 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructors
-        public SeeSaw(double xPosition, double yPosition, Random random, double radius, double speed, double rotationAmplitude, bool isAffectedByGravity, bool isRadiusDistanceFromParentWheel, double supportHeight)
+        public SeeSaw(double xPosition, double yPosition, Random random, double radius, double speed, double rotationAmplitude, bool isAffectedByGravity, bool isRadiusDistanceFromParentWheel, bool isShowCircumference, double supportHeight)
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
             this.radius = radius;
             this.speed = speed;
             this.rotationAmplitude = rotationAmplitude;
             this.angle = 0;
+            this.isShowCircumference = isShowCircumference;
             this.isRadiusDistanceFromParentWheel = isRadiusDistanceFromParentWheel;
         }
         #endregion
@@ -102,6 +105,11 @@ namespace AbrahmanAdventure.sprites
         public bool IsRadiusDistanceFromParentWheel
         {
             get { return isRadiusDistanceFromParentWheel; }
+        }
+
+        public bool IsShowCircumference
+        {
+            get { return isShowCircumference; }
         }
         #endregion
     }
