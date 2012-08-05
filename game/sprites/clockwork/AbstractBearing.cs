@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.sprites
 {
@@ -12,6 +14,8 @@ namespace AbrahmanAdventure.sprites
         protected static Surface bearingSurface;
 
         private List<AbstractLinkage> childList = new List<AbstractLinkage>();
+
+        private Color frameColor;
         #endregion
 
         protected override double BuildWidth(Random random)
@@ -64,6 +68,10 @@ namespace AbrahmanAdventure.sprites
                 else
                     bearingSurface = BuildSpriteSurface("./assets/rendered/480/clockwork/Bearing.png");
             }
+
+            
+
+            frameColor = new ColorHsl(random.Next(0, 256), random.Next(0, 256), random.Next(128, 256)).GetColor();
         }
 
         /// <summary>
@@ -80,6 +88,13 @@ namespace AbrahmanAdventure.sprites
             this.IsAffectedByGravity = isAffectedByGravity;
             this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
+        }
+        #endregion
+
+        #region Properties
+        public Color FrameColor
+        {
+            get { return frameColor; }
         }
         #endregion
     }

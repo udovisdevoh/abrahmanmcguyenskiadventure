@@ -15,11 +15,15 @@ namespace AbrahmanAdventure.physics
         {
             wheel.RotationCycle.Increment(timeDelta * wheel.Speed);
 
-            double hypotenus = wheel.Radius;
             double counter = 0;
 
             foreach (AbstractLinkage childLinkage in wheel.ChildList)
             {
+                double hypotenus = wheel.Radius;
+
+                if (childLinkage is Wheel && ((Wheel)childLinkage).IsRadiusDistanceFromParentWheel)
+                    hypotenus += ((Wheel)childLinkage).Radius;
+
                 double angle = (wheel.RotationCycle.CurrentValue / wheel.RotationCycle.TotalTimeLength);
 
                 double angleOffset = counter / (double)wheel.ChildList.Count;
