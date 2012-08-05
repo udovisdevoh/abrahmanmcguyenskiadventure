@@ -40,6 +40,37 @@ namespace AbrahmanAdventure.sprites
         {
             get { return childList; }
         }
+
+
+        #region Public methods
+        public void GenerateColoredPlatformSurface(Random random)
+        {
+            GenerateColoredPlatformSurface(null, random);
+        }
+
+        public void GenerateColoredPlatformSurface(Surface coloredPlatformSurface, Random random)
+        {
+            if (coloredPlatformSurface == null)
+            {
+                if (Platform.Surface == null)
+                {
+                    Platform platformForCachedSurface = new Platform(0, 0, random, false, 0);
+                }
+
+                coloredPlatformSurface = new Surface(Platform.Surface.Width, Platform.Surface.Height);
+                coloredPlatformSurface.Fill(new ColorHsl(random.Next(0, 256), random.Next(192, 256), random.Next(128, 256)).GetColor());
+                coloredPlatformSurface.Blit(Platform.Surface);
+            }
+
+            foreach (AbstractLinkage childLinkage in childList)
+            {
+                if (childLinkage is Platform)
+                    ((Platform)childLinkage).ColoredSurface = coloredPlatformSurface;
+                else if (childLinkage is AbstractBearing)
+                    ((AbstractBearing)childLinkage).GenerateColoredPlatformSurface(coloredPlatformSurface, random);
+            }
+        }
+        #endregion
         #endregion
 
         #region Constructor

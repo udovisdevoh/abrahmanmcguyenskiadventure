@@ -760,8 +760,8 @@ namespace AbrahmanAdventure
 
                 #region We update the viewers
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
-                vectorViewer.Update(viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
+                vectorViewer.Update(viewOffsetX, viewOffsetY);
                 if (Program.isShowHealthBar)
                     HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
