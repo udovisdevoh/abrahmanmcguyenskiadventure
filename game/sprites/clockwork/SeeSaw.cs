@@ -11,6 +11,18 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class SeeSaw : AbstractBearing
     {
+        #region Fields and parts
+        private double radius;
+
+        private double speed;
+
+        private double rotationAmplitude;
+
+        private double angle;
+
+        private bool isRadiusDistanceFromParentWheel;
+        #endregion
+
         #region Override
         protected override bool BuildIsAffectedByGravity()
         {
@@ -45,14 +57,42 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructors
-        public SeeSaw(double xPosition, double yPosition, Random random)
-            : base(xPosition, yPosition, random)
-        {
-        }
-
-        public SeeSaw(double xPosition, double yPosition, Random random, bool isAffectedByGravity, double supportHeight)
+        public SeeSaw(double xPosition, double yPosition, Random random, double radius, double speed, double rotationAmplitude, bool isAffectedByGravity, bool isRadiusDistanceFromParentWheel, double supportHeight)
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
+            this.radius = radius;
+            this.speed = speed;
+            this.rotationAmplitude = rotationAmplitude;
+            this.angle = 0;
+            this.isRadiusDistanceFromParentWheel = isRadiusDistanceFromParentWheel;
+        }
+        #endregion
+
+        #region Properties
+        public double Radius
+        {
+            get { return radius; }
+        }
+
+        public double Speed
+        {
+            get { return speed; }
+        }
+
+        public double RotationAmplitude
+        {
+            get { return rotationAmplitude; }
+        }
+
+        public double Angle
+        {
+            get { return angle; }
+            set { angle = value; }
+        }
+
+        public bool IsRadiusDistanceFromParentWheel
+        {
+            get { return isRadiusDistanceFromParentWheel; }
         }
         #endregion
     }

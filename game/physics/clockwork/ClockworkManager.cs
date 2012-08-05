@@ -31,6 +31,11 @@ namespace AbrahmanAdventure.physics
         /// Manages wheels
         /// </summary>
         private WheelManager wheelManager = new WheelManager();
+
+        /// <summary>
+        /// Manages seesaws
+        /// </summary>
+        private SeeSawManager seeSawManager = new SeeSawManager();
         #endregion
 
         #region Internal Methods
@@ -62,6 +67,8 @@ namespace AbrahmanAdventure.physics
                 pendulumManager.Update((Pendulum)rootLinkage, playerSprite, timeDelta);
             else if (rootLinkage is Wheel)
                 wheelManager.Update((Wheel)rootLinkage, playerSprite, timeDelta);
+            else if (rootLinkage is SeeSaw)
+                seeSawManager.Update((SeeSaw)rootLinkage, playerSprite, timeDelta);
 
             if (rootLinkage is AbstractBearing)
                 foreach (AbstractLinkage childLinkage in ((AbstractBearing)rootLinkage).ChildList)

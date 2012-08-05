@@ -109,6 +109,29 @@ namespace AbrahmanAdventure.sprites
 
 
 
+
+
+
+            SeeSaw seeSaw = new SeeSaw(60, -15, random, 4, 3.0, 3.0, false, true, 0);
+            spritePopulation.Add(seeSaw);
+
+            
+            Platform seeSawPlatform;
+
+            seeSawPlatform = new Platform(61, -9, random, false, 2);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+            seeSawPlatform = new Platform(59, -9, random, false, 2);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+
+
+
+
+
+
             //We generate colors for platforms
             foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
             {
