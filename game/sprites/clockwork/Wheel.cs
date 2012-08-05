@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.sprites
 
         private bool isShowCircumference;
 
-        private Cycle rotationCycle = new Cycle(100, true);
+        private Cycle rotationCycle;
         #endregion
 
         #region Override
@@ -72,9 +72,13 @@ namespace AbrahmanAdventure.sprites
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
             this.radius = radius;
-            this.firstChildOffset = firstChildOffset;
             this.isShowCircumference = isShowCircumference;
-            this.speed = speed;
+            this.speed = speed / radius;
+
+            firstChildOffset = Math.Min(1.0, Math.Max(firstChildOffset, 0));
+
+            rotationCycle = new Cycle(100, true);
+            rotationCycle.CurrentValue = firstChildOffset * 100;
         }
         #endregion
 
@@ -87,6 +91,16 @@ namespace AbrahmanAdventure.sprites
         public double Radius
         {
             get { return radius; }
+        }
+
+        public double Speed
+        {
+            get { return speed; }
+        }
+
+        public Cycle RotationCycle
+        {
+            get { return rotationCycle; }
         }
         #endregion
     }

@@ -55,7 +55,7 @@ namespace AbrahmanAdventure.sprites
             Pendulum pendulum4 = new Pendulum(40, -30, random, 12, 0.4, 1.0, false, 0);
             spritePopulation.Add(pendulum4);
             
-            Wheel wheel = new Wheel(40, -18, random, 8.0, 0.0, 1.0, false, true, 0);
+            Wheel wheel = new Wheel(40, -18, random, 8.0, 0.0, -3.0, false, true, 0);
             spritePopulation.Add(wheel);
 
             pendulum4.AddChild(wheel);
