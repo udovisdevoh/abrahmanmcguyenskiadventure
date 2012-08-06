@@ -13,6 +13,7 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class DeathManager
     {
+        #region Internal Methods
         /// <summary>
         /// Make fall, annhilate or respawn dead sprite if sprite is dead
         /// </summary>
@@ -23,10 +24,14 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
+        internal void Update(AbstractSprite sprite, PlayerSprite playerSprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
         {
             if (sprite.YPosition > Program.totalHeightTileCount / 2 + 3)
+            {
                 sprite.IsAlive = false;
+                if (sprite is AbstractLinkage)
+                    KillLinkageGroup((AbstractLinkage)sprite, playerSprite);
+            }
 
             if (sprite.IsAnnihilateOnExitScreen && !visibleSpriteList.Contains(sprite))
             {
@@ -99,5 +104,48 @@ namespace AbrahmanAdventure.physics
                 sprite.YPosition += 0.25;//we make it fall even faster so it doesn't get stucked by falling on grounds
             }
         }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Set isAlive to false on all member of this linkage group from root parent
+        /// </summary>
+        /// <param name="abstractLinkage">abstract linkage</param>
+        private void KillLinkageGroup(AbstractLinkage abstractLinkage, PlayerSprite playerSprite)
+        {
+            abstractLinkage.IsAlive = false;
+
+            if (playerSprite.IGround == abstractLinkage)
+                playerSprite.IsAlive = false;
+
+            AbstractLinkage rootParentNode = GetLinkageRootParentNode(abstractLinkage);
+            if (rootParentNode != null)
+                KillLinkageGroupRecursively(rootParentNode, playerSprite);
+        }
+
+        private AbstractLinkage GetLinkageRootParentNode(AbstractLinkage linkage)
+        {
+           if (linkage.ParentNode == null)
+                return linkage;
+
+           return GetLinkageRootParentNode(linkage.ParentNode);
+        }
+
+        private void KillLinkageGroupRecursively(AbstractLinkage abstractLinkage, PlayerSprite playerSprite)
+        {
+            abstractLinkage.IsAlive = false;
+
+            if (playerSprite.IGround == abstractLinkage)
+                playerSprite.IsAlive = false;
+
+            if (abstractLinkage is AbstractBearing)
+            {
+                foreach (AbstractLinkage childNode in ((AbstractBearing)abstractLinkage).ChildList)
+                {
+                    KillLinkageGroupRecursively(childNode, playerSprite);
+                }
+            }
+        }
+        #endregion
     }
 }

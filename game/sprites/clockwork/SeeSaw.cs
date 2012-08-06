@@ -50,12 +50,6 @@ namespace AbrahmanAdventure.sprites
         {
             return false;
         }
-
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
-        {
-            xOffset = yOffset = 0;
-            return bearingSurface;
-        }
         #endregion
 
         #region Constructors

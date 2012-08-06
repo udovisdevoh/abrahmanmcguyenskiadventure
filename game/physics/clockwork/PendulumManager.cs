@@ -21,8 +21,10 @@ namespace AbrahmanAdventure.physics
             double distanceFromCenter = Math.Abs(pendulum.MovingCycle.CurrentValue - pendulum.MovingCycle.TotalTimeLength / 2.0);
             double distanceFromSide = pendulum.MovingCycle.TotalTimeLength - distanceFromCenter;
 
-            double currentSpeed = pendulum.Speed * (Math.Pow(distanceFromSide + 0.1, 1.5) / 200);
+            double currentSpeed = pendulum.Speed * (Math.Pow(distanceFromSide + 0.1, 1.5) / 600);
 
+            if (timeDelta > 10) //to prevent absurd time delta after pausing or stuff like that
+                timeDelta = 10;
 
             pendulum.MovingCycle.Increment(timeDelta * currentSpeed);
 

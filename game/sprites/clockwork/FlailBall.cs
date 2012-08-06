@@ -9,7 +9,6 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Represents a flail ball attached to a linkage
     /// </summary>
-    #warning Eventually remove abstract keyword
     internal class FlailBall : AbstractLinkage, IEvilSprite
     {
         #region Private members

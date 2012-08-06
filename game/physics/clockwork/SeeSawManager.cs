@@ -39,6 +39,10 @@ namespace AbrahmanAdventure.physics
 
             double availablePower = seeSaw.Speed * timeDelta / seeSaw.Radius;
 
+            bool isWalking = false;
+
+            double rotationMovement = 0;
+
             foreach (AbstractLinkage childLinkage in seeSaw.ChildList)
             {
                 double hypotenus = seeSaw.Radius;
@@ -81,6 +85,9 @@ namespace AbrahmanAdventure.physics
                     platformPlayerIsOn = childLinkage;
 
                     angleOfPlatformPlayerIsOn = angle;
+
+                    if (seeSaw.IsAffectedByGravity)
+                        isWalking = true;
                 }
 
                 counter += 1.0;
@@ -91,23 +98,54 @@ namespace AbrahmanAdventure.physics
                 AbstractLinkage forcedPlatformPlayerIsOnParentSeeSaw;
                 AbstractLinkage nextParentSeeSaw = GetNextParentSeeSaw(seeSaw, out forcedPlatformPlayerIsOnParentSeeSaw);
 
+                
+
 
                 if (Math.Abs(angleOfPlatformPlayerIsOn - 0.25) /*, Math.Abs(angleOfPlatformPlayerIsOn - 0.75)*/ > availablePower / 300)
                 {
-                    if (angleOfPlatformPlayerIsOn >= 0.25 && angleOfPlatformPlayerIsOn <= 0.75)
+                    if (Math.Abs(angleOfPlatformPlayerIsOn - 0.75) < availablePower / 300)
                     {
-                        seeSaw.Angle -= availablePower / 200;
+                        //if platform is at the top, it will rotate on the side player is standing
+                        if (playerSprite.XPosition > platformPlayerIsOn.XPosition)
+                        {
+                            rotationMovement = availablePower / 200;
+                        }
+                        else
+                        {
+                            rotationMovement = -(availablePower / 200);
+                        }
                     }
                     else
                     {
-                        seeSaw.Angle += availablePower / 200;
+                        if (angleOfPlatformPlayerIsOn >= 0.25 && angleOfPlatformPlayerIsOn <= 0.75)
+                        {
+                            rotationMovement = -(availablePower / 200);
+                        }
+                        else
+                        {
+                            rotationMovement = availablePower / 200;
+                        }
                     }
+
+                    seeSaw.Angle += rotationMovement;
                 }
 
                 if (nextParentSeeSaw != null)
                 {
                     Update((SeeSaw)nextParentSeeSaw, playerSprite, timeDelta, forcedPlatformPlayerIsOnParentSeeSaw);
                 }
+            }
+
+            if (isWalking && Math.Abs(rotationMovement) > 0.0001)
+            {
+                seeSaw.IsTryingToWalk = true;
+                seeSaw.MaxWalkingSpeed = 0.17 * seeSaw.Radius;
+                seeSaw.IsTryingToWalkRight = (rotationMovement > 0);
+            }
+            else
+            {
+                seeSaw.IsTryingToWalk = false;
+                seeSaw.CurrentWalkingSpeed = 0;
             }
         }
 

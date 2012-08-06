@@ -14,7 +14,7 @@ namespace AbrahmanAdventure.sprites
     {
         internal static void DispatchClockwork(Level level, SpritePopulation spritePopulation, level.WaterInfo waterInfo, Random random)
         {
-            Pendulum pendulum = new Pendulum(8, -17, random, 4, 1.0, 1.8, false, 0);
+            Pendulum pendulum = new Pendulum(8, -17, random, 4, 2.4, 1.8, false, 0);
             spritePopulation.Add(pendulum);
 
             Platform platform = new Platform(8, -11, random, false, 2);
@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
 
 
 
-            Pendulum pendulum2 = new Pendulum(8, -17, random, 5, 1.7, 1.75, false, 2);
+            Pendulum pendulum2 = new Pendulum(8, -17, random, 5, 2.7, 1.75, false, 2);
             spritePopulation.Add(pendulum2);
 
             pendulum.AddChild(pendulum2);
@@ -40,7 +40,7 @@ namespace AbrahmanAdventure.sprites
 
 
             //Flail attached to pendulum
-            Pendulum pendulum3 = new Pendulum(20, -20, random, 4.0, 1.0, 1.5, false, 0);
+            Pendulum pendulum3 = new Pendulum(20, -20, random, 4.0, 2.4, 1.5, false, 0);
             spritePopulation.Add(pendulum3);
 
             FlailBall flailBall = new FlailBall(20, -13, random, false, 1.0);
@@ -52,7 +52,7 @@ namespace AbrahmanAdventure.sprites
 
 
             //Wheel attached to pendulum
-            Pendulum pendulum4 = new Pendulum(40, -30, random, 12, 0.4, 1.0, false, 0);
+            Pendulum pendulum4 = new Pendulum(40, -30, random, 12, 1.4, 1.0, false, 0);
             spritePopulation.Add(pendulum4);
             
             Wheel wheel = new Wheel(40, -18, random, 8.0, 0.0, -3.0, false, true, false, 0);
@@ -165,7 +165,7 @@ namespace AbrahmanAdventure.sprites
 
 
 
-            //Complexe structure with seesaw and pendulums
+            //Complex structure with seesaw and pendulums
             seeSaw = new SeeSaw(100, -15, random, 5, 3.0, 3.0, false, true, false, 0);
             spritePopulation.Add(seeSaw);
 
@@ -235,6 +235,24 @@ namespace AbrahmanAdventure.sprites
             seeSaw.AddChild(seeSawPlatform);
 
 
+
+            //Walking feet on wheel
+            seeSaw = new SeeSaw(156, -15, random, 2, 3.0, 3.0, true, true, true, 0);
+            spritePopulation.Add(seeSaw);
+
+            seeSawPlatform = new Platform(61, -9, random, false, 0);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+            seeSawPlatform = new Platform(59, -9, random, false, 0);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+
+
+            //Walking platform
+            platform = new Platform(146, -9, random, true, 0);
+            spritePopulation.Add(platform);
 
 
 

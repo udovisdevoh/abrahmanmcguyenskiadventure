@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SdlDotNet.Graphics;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
     /// Represents a platform attached to a wheel or any mechanical component
     /// </summary>
-    #warning Eventually remove abstract keyword
     internal class Platform : AbstractLinkage
     {
         #region Private members
         private static Surface surface;
+
+        private static Surface defaultColorSurface;
 
         private Surface coloredSurface = null;
         #endregion
@@ -65,7 +67,7 @@ namespace AbrahmanAdventure.sprites
             yOffset = -0.0666;
             if (coloredSurface != null)
                 return coloredSurface;
-            return surface;
+            return defaultColorSurface;
         }
         #endregion
 
@@ -94,6 +96,10 @@ namespace AbrahmanAdventure.sprites
                     surface = BuildSpriteSurface("./assets/rendered/720/clockwork/Platform.png");
                 else
                     surface = BuildSpriteSurface("./assets/rendered/480/clockwork/Platform.png");
+
+                defaultColorSurface = new Surface(surface.Width, surface.Height);
+                defaultColorSurface.Fill(new ColorHsl(random.Next(0, 256), random.Next(192, 256), random.Next(128, 256)).GetColor());
+                defaultColorSurface.Blit(surface);
             }
         }
 
