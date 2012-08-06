@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.sprites
 
 
             //See saw that looks like a wheel
-            SeeSaw seeSaw = new SeeSaw(60, -15, random, 4, 3.0, 3.0, false, true, true, 0);
+            SeeSaw seeSaw = new SeeSaw(60, -15, random, 4, 3.0, 1.0, false, true, true, false, 0);
             spritePopulation.Add(seeSaw);
             
             Platform seeSawPlatform;
@@ -138,14 +138,14 @@ namespace AbrahmanAdventure.sprites
 
 
             //Nested see saw
-            seeSaw = new SeeSaw(80, -15, random, 5, 3.0, 3.0, false, true, false, 0);
+            seeSaw = new SeeSaw(80, -15, random, 5, 3.0, 1.0, false, true, false, false, 0);
             spritePopulation.Add(seeSaw);
 
             seeSawPlatform = new Platform(80, -9, random, false, 2);
             spritePopulation.Add(seeSawPlatform);
             seeSaw.AddChild(seeSawPlatform);
 
-            SeeSaw subSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 3.0, false, true, false, 0);
+            SeeSaw subSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 1.0, false, true, false, false, 0);
             spritePopulation.Add(subSeeSaw);
             seeSaw.AddChild(subSeeSaw);
 
@@ -166,14 +166,14 @@ namespace AbrahmanAdventure.sprites
 
 
             //Complex structure with seesaw and pendulums
-            seeSaw = new SeeSaw(100, -15, random, 5, 3.0, 3.0, false, true, false, 0);
+            seeSaw = new SeeSaw(100, -15, random, 5, 3.0, 1.0, false, true, false, false, 0);
             spritePopulation.Add(seeSaw);
 
             seeSawPlatform = new Platform(80, -9, random, false, 2);
             spritePopulation.Add(seeSawPlatform);
             seeSaw.AddChild(seeSawPlatform);
 
-            subSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 3.0, false, true, false, 0);
+            subSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 1.0, false, true, false, false, 0);
             spritePopulation.Add(subSeeSaw);
             seeSaw.AddChild(subSeeSaw);
 
@@ -185,7 +185,7 @@ namespace AbrahmanAdventure.sprites
             spritePopulation.Add(pendulum);
             subSeeSaw.AddChild(pendulum);
 
-            SeeSaw subPendulumSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 3.0, false, true, false, 0);
+            SeeSaw subPendulumSeeSaw = new SeeSaw(80, -15, random, 5, 3.0, 1.0, false, true, false, false, 0);
             spritePopulation.Add(subPendulumSeeSaw);
             pendulum.AddChild(subPendulumSeeSaw);
 
@@ -201,7 +201,7 @@ namespace AbrahmanAdventure.sprites
 
 
             //4 side see saw
-            seeSaw = new SeeSaw(126, -15, random, 3, 3.0, 3.0, false, true, false, 0);
+            seeSaw = new SeeSaw(126, -15, random, 3, 3.0, 1.0, false, true, false, false, 0);
             spritePopulation.Add(seeSaw);
 
             seeSawPlatform = new Platform(61, -9, random, false, 0);
@@ -223,7 +223,7 @@ namespace AbrahmanAdventure.sprites
 
 
             //Walking feet
-            seeSaw = new SeeSaw(136, -15, random, 2, 3.0, 3.0, true, true, false, 0);
+            seeSaw = new SeeSaw(136, -15, random, 2, 3.0, 1.0, true, true, false, false, 0);
             spritePopulation.Add(seeSaw);
 
             seeSawPlatform = new Platform(61, -9, random, false, 0);
@@ -237,7 +237,7 @@ namespace AbrahmanAdventure.sprites
 
 
             //Walking feet on wheel
-            seeSaw = new SeeSaw(156, -15, random, 2, 3.0, 3.0, true, true, true, 0);
+            seeSaw = new SeeSaw(156, -15, random, 2, 3.0, 1.0, true, true, true, false, 0);
             spritePopulation.Add(seeSaw);
 
             seeSawPlatform = new Platform(61, -9, random, false, 0);
@@ -253,6 +253,20 @@ namespace AbrahmanAdventure.sprites
             //Walking platform
             platform = new Platform(146, -9, random, true, 0);
             spritePopulation.Add(platform);
+
+
+
+            //Resistant see saw
+            seeSaw = new SeeSaw(-20, -15, random, 3.5, 3.0, 1.0, false, true, false, true, 0);
+            spritePopulation.Add(seeSaw);
+
+            seeSawPlatform = new Platform(61, -9, random, false, 0);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
+
+            seeSawPlatform = new Platform(59, -9, random, false, 0);
+            spritePopulation.Add(seeSawPlatform);
+            seeSaw.AddChild(seeSawPlatform);
 
 
 
