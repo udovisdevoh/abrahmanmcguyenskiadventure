@@ -98,8 +98,6 @@ namespace AbrahmanAdventure.physics
                 AbstractLinkage forcedPlatformPlayerIsOnParentSeeSaw;
                 AbstractLinkage nextParentSeeSaw = GetNextParentSeeSaw(seeSaw, out forcedPlatformPlayerIsOnParentSeeSaw);
 
-                
-
 
                 if (Math.Abs(angleOfPlatformPlayerIsOn - 0.25) /*, Math.Abs(angleOfPlatformPlayerIsOn - 0.75)*/ > availablePower / 300)
                 {
@@ -135,7 +133,20 @@ namespace AbrahmanAdventure.physics
                     Update((SeeSaw)nextParentSeeSaw, playerSprite, timeDelta, forcedPlatformPlayerIsOnParentSeeSaw);
                 }
             }
+            else if (seeSaw.IsResistant && (seeSaw.Angle > 0.001 && seeSaw.Angle < 0.999))
+            {
+                if (seeSaw.Angle > 0.5)
+                {
+                    rotationMovement = availablePower / 200;
+                }
+                else
+                {
+                    rotationMovement = -(availablePower / 200);
+                }
+                seeSaw.Angle += rotationMovement;
+            }
 
+            #region Walking See Saw
             if (isWalking && Math.Abs(rotationMovement) > 0.0001)
             {
                 seeSaw.IsTryingToWalk = true;
@@ -147,6 +158,7 @@ namespace AbrahmanAdventure.physics
                 seeSaw.IsTryingToWalk = false;
                 seeSaw.CurrentWalkingSpeed = 0;
             }
+            #endregion
         }
 
         private AbstractLinkage GetNextParentSeeSaw(AbstractLinkage linkage, out AbstractLinkage forcedPlatformPlayerIsOnParentSeeSaw)
