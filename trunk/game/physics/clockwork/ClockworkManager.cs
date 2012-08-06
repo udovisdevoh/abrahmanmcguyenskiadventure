@@ -63,6 +63,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         private void Update(AbstractLinkage rootLinkage, PlayerSprite playerSprite, double timeDelta)
         {
+            if (!rootLinkage.IsAlive)
+                return;
+
             if (rootLinkage is Pendulum)
                 pendulumManager.Update((Pendulum)rootLinkage, playerSprite, timeDelta);
             else if (rootLinkage is Wheel)

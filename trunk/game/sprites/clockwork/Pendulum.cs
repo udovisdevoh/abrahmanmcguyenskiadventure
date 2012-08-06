@@ -46,12 +46,6 @@ namespace AbrahmanAdventure.sprites
         {
             return false;
         }
-
-        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
-        {
-            xOffset = yOffset = 0;
-            return bearingSurface;
-        }
         #endregion
 
         #region Constructors
@@ -91,10 +85,11 @@ namespace AbrahmanAdventure.sprites
         public Pendulum(double xPosition, double yPosition, Random random, double ropeLength, double speed, double amplitude, bool isAffectedByGravity, double supportHeight)
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
-            this.ropeLength = ropeLength;
-            this.speed = speed;
-            
+            this.ropeLength = ropeLength;            
             this.amplitude = amplitude;
+
+            this.speed = speed / amplitude;
+
             this.amplitude = Math.Min(this.amplitude, 1.8);
             this.amplitude *= this.ropeLength;
 

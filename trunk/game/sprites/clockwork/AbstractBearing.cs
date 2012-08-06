@@ -18,6 +18,7 @@ namespace AbrahmanAdventure.sprites
         private Color frameColor;
         #endregion
 
+        #region Override
         protected override double BuildWidth(Random random)
         {
             return 0.5;
@@ -27,6 +28,13 @@ namespace AbrahmanAdventure.sprites
         {
             return 0.5;
         }
+
+        public override Surface GetCurrentSurface(out double xOffset, out double yOffset)
+        {
+            xOffset = yOffset = 0;
+            return bearingSurface;
+        }
+        #endregion
 
         #region Public Methods
         public void AddChild(AbstractLinkage childComponent)
