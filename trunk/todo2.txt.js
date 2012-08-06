@@ -39,8 +39,10 @@ lorsque tombe: pieds qui marchent doivent détecter collision par platforme la pl
 	si circomférence visible: détecter collision par radius
 }
 
-seesaw avec résistance, catapultes
+seesaw: catapultes
 seesaw: si sprite sur platforme, doit faire comme avec player
+
+seesaw: momentum de rotation
 
 
 créer levels de boss faits avec clockwork (sprite de cible),
