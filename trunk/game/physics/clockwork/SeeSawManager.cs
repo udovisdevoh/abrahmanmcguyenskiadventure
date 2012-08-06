@@ -101,16 +101,30 @@ namespace AbrahmanAdventure.physics
 
                 if (Math.Abs(angleOfPlatformPlayerIsOn - 0.25) /*, Math.Abs(angleOfPlatformPlayerIsOn - 0.75)*/ > availablePower / 300)
                 {
+                    #region if platform is at the top, it will rotate on the side player is standing
                     if (Math.Abs(angleOfPlatformPlayerIsOn - 0.75) < availablePower / 300)
                     {
-                        //if platform is at the top, it will rotate on the side player is standing
-                        if (playerSprite.XPosition > platformPlayerIsOn.XPosition)
+                        if (Math.Abs(playerSprite.XPosition - platformPlayerIsOn.XPosition) < 0.6)
                         {
-                            rotationMovement = availablePower / 200;
+                            if (playerSprite.IsTryingToWalkRight)
+                            {
+                                rotationMovement = availablePower / 200;
+                            }
+                            else
+                            {
+                                rotationMovement = -(availablePower / 200);
+                            }
                         }
                         else
                         {
-                            rotationMovement = -(availablePower / 200);
+                            if (playerSprite.XPosition > platformPlayerIsOn.XPosition)
+                            {
+                                rotationMovement = availablePower / 200;
+                            }
+                            else
+                            {
+                                rotationMovement = -(availablePower / 200);
+                            }
                         }
                     }
                     else
@@ -124,6 +138,7 @@ namespace AbrahmanAdventure.physics
                             rotationMovement = availablePower / 200;
                         }
                     }
+                    #endregion
 
                     seeSaw.Angle += rotationMovement;
                 }
