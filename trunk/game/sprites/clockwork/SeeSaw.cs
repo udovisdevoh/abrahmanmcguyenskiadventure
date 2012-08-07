@@ -20,11 +20,13 @@ namespace AbrahmanAdventure.sprites
 
         private double angle;
 
+        private double tensionRatio;
+
         private bool isRadiusDistanceFromParentWheel;
 
         private bool isShowCircumference;
 
-        private bool isResistant;
+        private bool isTension;
         #endregion
 
         #region Override
@@ -55,7 +57,7 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Constructors
-        public SeeSaw(double xPosition, double yPosition, Random random, double radius, double speed, double rotationAmplitude, bool isAffectedByGravity, bool isRadiusDistanceFromParentWheel, bool isShowCircumference, bool isResistant, double supportHeight)
+        public SeeSaw(double xPosition, double yPosition, Random random, double radius, double speed, double rotationAmplitude, double tensionRatio, bool isAffectedByGravity, bool isRadiusDistanceFromParentWheel, bool isShowCircumference, bool isTension, double supportHeight)
             : base(xPosition, yPosition, random, isAffectedByGravity, supportHeight)
         {
             this.radius = radius;
@@ -64,7 +66,8 @@ namespace AbrahmanAdventure.sprites
             this.angle = 0;
             this.isShowCircumference = isShowCircumference;
             this.isRadiusDistanceFromParentWheel = isRadiusDistanceFromParentWheel;
-            this.isResistant = isResistant;
+            this.isTension = isTension;
+            this.tensionRatio = tensionRatio;
         }
         #endregion
 
@@ -99,6 +102,14 @@ namespace AbrahmanAdventure.sprites
             }
         }
 
+        /// <summary>
+        /// 1.0: same as rotation speed
+        /// </summary>
+        public double TensionRatio
+        {
+            get { return tensionRatio; }
+        }
+
         public bool IsRadiusDistanceFromParentWheel
         {
             get { return isRadiusDistanceFromParentWheel; }
@@ -109,9 +120,9 @@ namespace AbrahmanAdventure.sprites
             get { return isShowCircumference; }
         }
 
-        public bool IsResistant
+        public bool IsTension
         {
-            get { return isResistant; }
+            get { return isTension; }
         }
         #endregion
     }

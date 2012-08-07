@@ -529,7 +529,7 @@ namespace AbrahmanAdventure
 
                             IGround highestVisibleGroundBelowSprite = IGroundHelper.GetHighestVisibleIGroundBelowSprite(playerSprite, level, visibleSpriteList);
 
-                            if (playerSprite.IGround is Ground && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
+                            if ((playerSprite.IGround is Ground || playerSprite.IGround is AbstractLinkage) && highestVisibleGroundBelowSprite != null && highestVisibleGroundBelowSprite != playerSprite.IGround && highestVisibleGroundBelowSprite[playerSprite.XPosition] < (double)Program.totalHeightTileCount /*&& !IGroundHelper.IsSpriteIGroundHeightStackedOn(playerSprite.IGround, highestVisibleGroundBelowSprite)*/)
                                 playerSprite.IGround = null;
                             else //Oops, we jumped from the lowest ground or we jumped from over a hole. Let's undo the falling
                                 playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];

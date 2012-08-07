@@ -17,10 +17,7 @@ abrahman adventure
 
 roue qui marche toute seule: si trou ou mur: change de direction
 
-pendulum doit être immunisé à time delta absurde
 
-
-seesaw et roues: doivent pouvoir "marcher" dans sens de rotation
 
 bike and walking feet
 {

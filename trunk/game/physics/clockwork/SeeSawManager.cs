@@ -75,6 +75,7 @@ namespace AbrahmanAdventure.physics
                 double xMove = childLinkage.XPosition - childLinkage.XPositionPrevious;
                 double yMove = childLinkage.YPosition - childLinkage.YPositionPrevious;
 
+
                 if (playerSprite.IGround == childLinkage || forcedPlatformPlayerIsOn == childLinkage)
                 {
                     if (playerSprite.IGround == childLinkage)
@@ -89,9 +90,18 @@ namespace AbrahmanAdventure.physics
                     if (seeSaw.IsAffectedByGravity)
                         isWalking = true;
                 }
+                else if (playerSprite.IClimbingOn is LianaSprite && ((LianaSprite)playerSprite.IClimbingOn).AttachedToIGround == childLinkage)
+                {
+                    platformPlayerIsOn = childLinkage;
+                    angleOfPlatformPlayerIsOn = angle;
+                    if (seeSaw.IsAffectedByGravity)
+                        isWalking = true;
+                }
+
 
                 counter += 1.0;
             }
+
 
             if (platformPlayerIsOn != null)
             {
@@ -148,17 +158,23 @@ namespace AbrahmanAdventure.physics
                     Update((SeeSaw)nextParentSeeSaw, playerSprite, timeDelta, forcedPlatformPlayerIsOnParentSeeSaw);
                 }
             }
-            else if (seeSaw.IsResistant && (seeSaw.Angle > 0.001 && seeSaw.Angle < 0.999))
+            else if (seeSaw.IsTension && (seeSaw.Angle > 0.001 && seeSaw.Angle < 0.999))
             {
-                if (seeSaw.Angle > 0.5)
+                bool isAngleLargerThanHalf = seeSaw.Angle > 0.5;
+
+                if (isAngleLargerThanHalf)
                 {
                     rotationMovement = availablePower / 200;
+                    seeSaw.Angle += rotationMovement * seeSaw.TensionRatio;
                 }
                 else
                 {
                     rotationMovement = -(availablePower / 200);
+                    seeSaw.Angle += rotationMovement * seeSaw.TensionRatio;
                 }
-                seeSaw.Angle += rotationMovement;
+
+                if (isAngleLargerThanHalf != seeSaw.Angle > 0.5)
+                    seeSaw.Angle = 0;
             }
 
             #region Walking See Saw
