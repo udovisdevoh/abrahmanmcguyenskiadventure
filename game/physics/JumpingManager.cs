@@ -83,11 +83,13 @@ namespace AbrahmanAdventure.physics
                 {
                     sprite.JumpingCycle.Reset();
                     sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+
                     sprite.IGround = null;
                     if (sprite is PlayerSprite)
                     {
                         if (((PlayerSprite)sprite).IsNinja)
                             ((PlayerSprite)sprite).NinjaFlipCycle.Fire();
+
                         SoundManager.PlayJumpSound();
                     }
                 }
@@ -97,6 +99,7 @@ namespace AbrahmanAdventure.physics
                     {
                         sprite.JumpingCycle.Reset();
                         sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+
                         sprite.IGround = null;
                         sprite.IsNeedToJumpAgain = true;
 

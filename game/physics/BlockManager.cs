@@ -210,6 +210,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="random">random number generator</param>
         private void ManageBlockSideCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, Random random)
         {
+            if (sprite.IGround is AbstractLinkage)
+                return;
+
             //Side collision
             if (sprite.XPosition < block.XPosition)
                 sprite.RightBoundKeepPrevious = block.LeftBound;// - 0.1;
