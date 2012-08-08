@@ -64,17 +64,19 @@ namespace AbrahmanAdventure.hud
                     }
                     ConstructorInfo constructorInfo = type.GetConstructor(constructorArgumentTypeList);
 
-                    AbstractSprite sprite = (AbstractSprite)constructorInfo.Invoke(constructorArgumentList);
-
-                    if (sprite.TutorialComment != null)
+                    if (constructorInfo != null) //we only create sprites for which there are 3 or 4 argments in the constructor
                     {
-                        if (sprite is MonsterSprite)
+                        AbstractSprite sprite = (AbstractSprite)constructorInfo.Invoke(constructorArgumentList);
+                        if (sprite.TutorialComment != null)
                         {
-                            monsterSpriteList.Add((MonsterSprite)sprite);
-                        }
-                        else
-                        {
-                            staticSpriteList.Add(sprite);
+                            if (sprite is MonsterSprite)
+                            {
+                                monsterSpriteList.Add((MonsterSprite)sprite);
+                            }
+                            else
+                            {
+                                staticSpriteList.Add(sprite);
+                            }
                         }
                     }
                 }
