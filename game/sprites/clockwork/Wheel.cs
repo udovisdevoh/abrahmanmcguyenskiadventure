@@ -75,6 +75,8 @@ namespace AbrahmanAdventure.sprites
 
             rotationCycle = new Cycle(100, true);
             rotationCycle.CurrentValue = firstChildOffset * 100;
+
+            IsBoundToGroundForever = isAffectedByGravity;
         }
         #endregion
 

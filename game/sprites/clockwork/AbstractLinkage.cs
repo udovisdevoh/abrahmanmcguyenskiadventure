@@ -41,6 +41,11 @@ namespace AbrahmanAdventure.sprites
             return false;
         }
 
+        protected override bool BuildIsBoundToGroundForever()
+        {
+            return false;
+        }
+
         protected override double BuildMaxHealth()
         {
             return 100;
@@ -91,14 +96,14 @@ namespace AbrahmanAdventure.sprites
             return 0;
         }
 
-        protected override int BuildZIndex()
-        {
-            return 0;
-        }
-
         protected override double BuildMaxFallingSpeed()
         {
             return double.PositiveInfinity;
+        }
+
+        protected override int BuildZIndex()
+        {
+            return 0;
         }
         #endregion
 

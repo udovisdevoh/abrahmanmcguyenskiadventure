@@ -68,6 +68,7 @@ namespace AbrahmanAdventure.sprites
             this.isRadiusDistanceFromParentWheel = isRadiusDistanceFromParentWheel;
             this.isTension = isTension;
             this.tensionRatio = tensionRatio;
+            IsBoundToGroundForever = isAffectedByGravity;
         }
         #endregion
 
