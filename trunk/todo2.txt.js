@@ -46,6 +46,8 @@ créer levels de boss faits avec clockwork (sprite de cible),
 si on butte les cibles (faces du mental inexistant, genre (where did you learn to fly), le level est finis (spawn un portal?)
 scie rondes == flail ball
 
+charge comme megaman
+
 texte de storyline (dans intro), possiblement générée random
 {
 	lutte contre le mental inexistant
