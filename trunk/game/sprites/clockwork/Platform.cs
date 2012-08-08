@@ -73,13 +73,6 @@ namespace AbrahmanAdventure.sprites
 
         #region Constructor
         /// <summary>
-        /// Do not use that constructor
-        /// </summary>
-        public Platform()
-        {
-        }
-
-        /// <summary>
         /// Build an abstract linkage (wheel, pendulum, seesaw, lift, platform, liana)
         /// </summary>
         /// <param name="xPosition">x position</param>
