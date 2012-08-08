@@ -2,7 +2,7 @@ site pixailes
 
 abrahman adventure
 {
-	?vue projection cavali�re?
+	?vue projection cavaliÃ¨re?
 
 	abrahman
 	{
@@ -31,9 +31,9 @@ bike and walking feet
 must have wider and thinner platforms
 
 
-lorsque tombe: pieds qui marchent doivent d�tecter collision par platforme la plus basse
+lorsque tombe: pieds qui marchent doivent dÃ©tecter collision par platforme la plus basse
 {
-	si circomf�rence visible: d�tecter collision par radius
+	si circomfÃ©rence visible: dÃ©tecter collision par radius
 }
 
 seesaw: catapultes
@@ -42,13 +42,25 @@ seesaw: si sprite sur platforme, doit faire comme avec player
 seesaw: momentum de rotation
 
 
-cr�er levels de boss faits avec clockwork (sprite de cible),
+crÃ©er levels de boss faits avec clockwork (sprite de cible),
 si on butte les cibles (faces du mental inexistant, genre (where did you learn to fly), le level est finis (spawn un portal?)
 scie rondes == flail ball
 
+
 charge comme megaman
 
-texte de storyline (dans intro), possiblement g�n�r�e random
+texte de storyline (dans intro), possiblement générée random
 {
-	lutte contre le mental inexistant
+	idées
+	{
+		struggle against nonexistant concepts (institutions, corporations, religions, ideologies)
+		quest for enlightenment
+		zen
+	}
+	
+	Texte
+	{
+	}
 }
+
+genre d'oracles ou de sage qui disent des trucs générés random qui ne veulent rien dire
