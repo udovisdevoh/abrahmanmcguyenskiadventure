@@ -3598,6 +3598,11 @@ namespace AbrahmanAdventure.sprites
             return true;
         }
 
+        protected override bool BuildIsBoundToGroundForever()
+        {
+            return false;
+        }
+
         protected override int BuildZIndex()
         {
             return 2;

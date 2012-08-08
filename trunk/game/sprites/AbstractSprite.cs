@@ -190,6 +190,11 @@ namespace AbrahmanAdventure.sprites
         private bool isVulnerableToPunch;
 
         /// <summary>
+        /// Whether sprite is bound to ground and cannot leave it
+        /// </summary>
+        private bool isBoundToGroundForever;
+
+        /// <summary>
         /// Max falling speed
         /// </summary>
         private double maxFallingSpeed = double.PositiveInfinity;
@@ -337,6 +342,7 @@ namespace AbrahmanAdventure.sprites
             isCrossGrounds = BuildIsCrossGrounds();
             zIndex = BuildZIndex();
             isVulnerableToPunch = BuildIsVulnerableToPunch();
+            isBoundToGroundForever = BuildIsBoundToGroundForever();
             walkingCycle = new Cycle(BuildWalkingCycleLength(),true);
             jumpingCycle = new Cycle(BuildJumpingTime(), false);
             attackingCycle = new Cycle(BuildAttackingTime(), false, false, true);
@@ -425,6 +431,12 @@ namespace AbrahmanAdventure.sprites
         /// </summary>
         /// <returns>Whether sprite is vulnerable to punch</returns>
         protected abstract bool BuildIsVulnerableToPunch();
+
+        /// <summary>
+        /// Whether sprite is locked on ground forever once affected to it
+        /// </summary>
+        /// <returns>Whether sprite is locked on ground forever once affected to it</returns>
+        protected abstract bool BuildIsBoundToGroundForever();
 
         /// <summary>
         /// Maximum health
@@ -709,6 +721,15 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Whether sprite is bound to ground and cannot leave it once affected to it
+        /// </summary>
+        public bool IsBoundToGroundForever
+        {
+            get { return isBoundToGroundForever; }
+            set { isBoundToGroundForever = value; }
+        }
+
+        /// <summary>
         /// To which sprite collection the sprite belongs
         /// </summary>
         public SpritePopulation ParentSpriteCollection
@@ -760,6 +781,9 @@ namespace AbrahmanAdventure.sprites
             get { return iGround; }
             set
             {
+                if (isBoundToGroundForever && iGround != null)
+                    return;
+
                 if (isAlive || value == null)
                 {
                     iGround = value;

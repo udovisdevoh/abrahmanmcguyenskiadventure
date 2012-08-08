@@ -110,6 +110,7 @@ namespace AbrahmanAdventure.sprites
             this.IsAffectedByGravity = isAffectedByGravity;
             this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
+            IsBoundToGroundForever = isAffectedByGravity;
         }
         #endregion
 

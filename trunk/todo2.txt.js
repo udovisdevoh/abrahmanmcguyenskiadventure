@@ -42,7 +42,7 @@ seesaw: si sprite sur platforme, doit faire comme avec player
 seesaw: momentum de rotation
 
 
-crÃ©er levels de boss faits avec clockwork (sprite de cible),
+créer levels de boss faits avec clockwork (sprite de cible),
 si on butte les cibles (faces du mental inexistant, genre (where did you learn to fly), le level est finis (spawn un portal?)
 scie rondes == flail ball
 
