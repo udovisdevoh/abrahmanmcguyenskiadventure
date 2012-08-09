@@ -48,6 +48,10 @@ namespace AbrahmanAdventure.physics
         {
             playerSprite.IsBeaver = false;
             BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, random);
+
+            if (playerSprite.IGround != null)
+                beaverSprite.IGround = playerSprite.IGround;
+
             spritePopulation.Add(beaverSprite);
             if (beaverSprite.IGround == null)
                 beaverSprite.IsCurrentlyInFreeFallX = true;
