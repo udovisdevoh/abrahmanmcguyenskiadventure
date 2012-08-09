@@ -336,6 +336,9 @@ namespace AbrahmanAdventure.level
 
                 int groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
 
+                if (groundYOnTile < 0)
+                    continue;
+
                 zoneSurface.Draw(new Point(x,groundYOnTile), waveColor);
             }
         }
