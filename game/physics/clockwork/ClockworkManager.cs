@@ -36,6 +36,11 @@ namespace AbrahmanAdventure.physics
         /// Manages seesaws
         /// </summary>
         private SeeSawManager seeSawManager = new SeeSawManager();
+
+        /// <summary>
+        /// Manages platforms (elevators etc)
+        /// </summary>
+        private PlatformManager platformManager = new PlatformManager();
         #endregion
 
         #region Internal Methods
@@ -72,6 +77,8 @@ namespace AbrahmanAdventure.physics
                 wheelManager.Update((Wheel)rootLinkage, playerSprite, timeDelta);
             else if (rootLinkage is SeeSaw)
                 seeSawManager.Update((SeeSaw)rootLinkage, playerSprite, timeDelta);
+            else if (rootLinkage is Platform)
+                platformManager.Update((Platform)rootLinkage, playerSprite, timeDelta);
 
             if (rootLinkage is AbstractBearing)
                 foreach (AbstractLinkage childLinkage in ((AbstractBearing)rootLinkage).ChildList)
