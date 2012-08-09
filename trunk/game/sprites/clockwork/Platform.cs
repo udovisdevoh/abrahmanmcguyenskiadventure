@@ -18,6 +18,12 @@ namespace AbrahmanAdventure.sprites
         private static Surface defaultColorSurface;
 
         private Surface coloredSurface = null;
+
+        private Cycle elevatorCycle = null;
+
+        private double elevatorSpeed = 0;
+
+        private double originalYPosition;
         #endregion
 
         #region Override
@@ -94,6 +100,8 @@ namespace AbrahmanAdventure.sprites
                 defaultColorSurface.Fill(new ColorHsl(random.Next(0, 256), random.Next(192, 256), random.Next(128, 256)).GetColor());
                 defaultColorSurface.Blit(surface);
             }
+
+            originalYPosition = yPosition;
         }
 
         /// <summary>
@@ -104,13 +112,21 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         /// <param name="isAffectedByGravity">whether wheel is affected by gravity (default: false)</param>
         /// <param name="supportHeight">support's height (default: 0)</param>
-        public Platform(double xPosition, double yPosition, Random random, bool isAffectedByGravity, double supportHeight)
+        public Platform(double xPosition, double yPosition, Random random, bool isAffectedByGravity, double supportHeight, bool isElevator, double elevatorHeight, double elevatorSpeed)
             : this(xPosition, yPosition, random)
         {
             this.IsAffectedByGravity = isAffectedByGravity;
             this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
             IsBoundToGroundForever = isAffectedByGravity;
+
+            if (isElevator)
+            {
+                elevatorCycle = new Cycle(elevatorHeight, true, true, false);
+                elevatorCycle.CurrentValue = random.NextDouble() * elevatorCycle.TotalTimeLength;
+                elevatorCycle.Fire();
+                this.elevatorSpeed = elevatorSpeed;
+            }
         }
         #endregion
 
@@ -124,6 +140,25 @@ namespace AbrahmanAdventure.sprites
         {
             get { return coloredSurface; }
             set { coloredSurface = value; }
+        }
+
+        public Cycle ElevatorCycle
+        {
+            get { return elevatorCycle; }
+        }
+
+        public double ElevatorSpeed
+        {
+            get { return elevatorSpeed; }
+        }
+
+        /// <summary>
+        /// Elevator's middle Y position
+        /// </summary>
+        public double OriginalYPosition
+        {
+            get { return originalYPosition; }
+            set { originalYPosition = value; }
         }
         #endregion
     }

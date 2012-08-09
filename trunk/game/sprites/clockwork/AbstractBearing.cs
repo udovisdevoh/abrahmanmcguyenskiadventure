@@ -62,7 +62,7 @@ namespace AbrahmanAdventure.sprites
             {
                 if (Platform.Surface == null)
                 {
-                    Platform platformForCachedSurface = new Platform(0, 0, random, false, 0);
+                    Platform platformForCachedSurface = new Platform(0, 0, random, false, 0, false, 0, 0);
                 }
 
                 coloredPlatformSurface = new Surface(Platform.Surface.Width, Platform.Surface.Height);

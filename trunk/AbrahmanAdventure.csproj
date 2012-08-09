@@ -282,6 +282,7 @@
     <Compile Include="game\level\WaterInfo.cs" />
     <Compile Include="game\physics\clockwork\ClockworkManager.cs" />
     <Compile Include="game\physics\clockwork\PendulumManager.cs" />
+    <Compile Include="game\physics\clockwork\PlatformManager.cs" />
     <Compile Include="game\physics\clockwork\SeeSawManager.cs" />
     <Compile Include="game\physics\clockwork\WheelManager.cs" />
     <Compile Include="game\sprites\clockwork\AbstractBearing.cs" />
