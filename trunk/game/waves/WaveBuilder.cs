@@ -22,21 +22,22 @@ namespace AbrahmanAdventure.level
         /// Build a wave pack
         /// </summary>
         /// <param name="random">random number generator</param>
+        /// <param name="isOnlyContinuous">true: no saw wave nor square wave</param>
         /// <returns>wave pack</returns>
-        internal static WavePack BuildWavePack(Random random)
+        internal static WavePack BuildWavePack(Random random, bool isOnlyContinuous)
         {
             WavePack wavePack = new WavePack();
             //Mountains
             do
             {
-                wavePack.Add(BuildIndividualWave(32, 512, 16, 48, random, true, true));
+                wavePack.Add(BuildIndividualWave(32, 512, 16, 48, random, true || isOnlyContinuous, true));
             } while (random.Next(0, 3) != 0);
 
             //Platforms
             do
             {
                 bool isAllowSawWave = random.Next(0, 2) == 1;
-                wavePack.Add(BuildIndividualWave(4, 64, 1, 6, random, false, isAllowSawWave));
+                wavePack.Add(BuildIndividualWave(4, 64, 1, 6, random, false || isOnlyContinuous, isAllowSawWave));
             } while (random.Next(0, 3) != 0);
 
             return wavePack;

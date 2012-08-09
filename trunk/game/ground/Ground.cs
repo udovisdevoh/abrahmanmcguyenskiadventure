@@ -74,8 +74,14 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private double ceilingHeight = 0.0;
 
+        /// <summary>
+        /// Type of level bound (hill, valley, etc) at the westernmost side of the level
+        /// </summary>
         private LevelBoundType leftBoundType;
 
+        /// <summary>
+        /// Type of level bound (hill, valley, etc) at the easternmost side of the level
+        /// </summary>
         private LevelBoundType rightBoundType;
 
         /// <summary>
@@ -87,6 +93,12 @@ namespace AbrahmanAdventure.level
         /// Whether we put a base texture
         /// </summary>
         private bool isUseBottomTexture;
+
+        /// <summary>
+        /// Whether this ground is only a path (nobody can walk on it except linkages (platforms, wheels, seesaws etc)
+        /// Paths have no texture. They are single lines
+        /// </summary>
+        private bool isPathOnly;
         #endregion
 
         #region Constructors
@@ -97,7 +109,8 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="color">terrain's top most layer's color</param>
         /// <param name="holeSet">represents wave modelization of holes in a level</param>
-        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, bool isCeiling, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
+        /// <param name="isPathOnly">whether ground is only a path for linkages (platforms, wheels etc)</param>
+        public Ground(AbstractWave terrainWave, Random random, Color color, HoleSet holeSet, bool isCeiling, bool isPathOnly, int seed, int groundId, double leftBound, double rightBound, LevelBoundType leftBoundType, LevelBoundType rightBoundType)
         {
             this.isCeiling = isCeiling;
             this.holeSet = holeSet;
@@ -105,10 +118,14 @@ namespace AbrahmanAdventure.level
             this.rightBound = rightBound;
             this.leftBoundType = leftBoundType;
             this.rightBoundType = rightBoundType;
+            this.isPathOnly = isPathOnly;
 
-            topTexture = new Texture(random, color, 1.5, (!Program.isEnableParallelTextureRendering || isCeiling), seed, groundId, true);
-            if (isCeiling)
-                topTexture.Surface = topTexture.Surface.CreateFlippedVerticalSurface();
+            if (!isPathOnly)
+            {
+                topTexture = new Texture(random, color, 1.5, (!Program.isEnableParallelTextureRendering || isCeiling), seed, groundId, true);
+                if (isCeiling)
+                    topTexture.Surface = topTexture.Surface.CreateFlippedVerticalSurface();
+            }
 
             beaverDestructionSet = new BeaverDestructionSet();
 
@@ -119,7 +136,7 @@ namespace AbrahmanAdventure.level
 
             pillarWidth = Program.collisionDetectionResolution;
 
-            if (Program.isUseBottomTexture && isUseBottomTexture)
+            if (Program.isUseBottomTexture && isUseBottomTexture && !isPathOnly)
             {
                 bottomTexture = new Texture(random, color, 16, 0.75, (!Program.isEnableParallelTextureRendering || isCeiling), seed, groundId, false);
                 if (isCeiling)
@@ -294,6 +311,15 @@ namespace AbrahmanAdventure.level
         public bool IsUseTopTextureThicknessScaling
         {
             get { return topTexture.IsUseTopTextureThicknessScaling; }
+        }
+
+        /// <summary>
+        /// Whether this ground is only a path (nobody can walk on it except linkages (platforms, wheels, seesaws etc)
+        /// Paths have no texture. They are single lines
+        /// </summary>
+        public bool IsPathOnly
+        {
+            get { return isPathOnly; }
         }
 
         /// <summary>

@@ -27,6 +27,15 @@ namespace AbrahmanAdventure.physics
                 if (playerSprite.IGround == platform)
                     playerSprite.YPositionKeepPrevious = platform.TopBound;
             }
+
+            if (platform.IsAffectedByGravity && platform.IGround != null)
+            {
+                platform.IsTryingToWalk = true;
+                platform.MaxWalkingSpeed = 0.17;
+                
+                if (platform.CurrentWalkingSpeed == 0)
+                    platform.IsTryingToWalkRight = !platform.IsTryingToWalkRight;
+            }
         }
     }
 }

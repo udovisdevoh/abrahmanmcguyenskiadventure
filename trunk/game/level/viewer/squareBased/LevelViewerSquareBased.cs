@@ -146,12 +146,14 @@ namespace AbrahmanAdventure.level
             {
                 Color waveColor = colorTheme.GetColor(themeColorId);
                 themeColorId--;
-
                 DrawGround(zoneSurface, ground, waveColor, zoneX, zoneY, zoneWidth, zoneHeight, level, waterInfo);
             }
 
             if (level.Ceiling != null)
                 DrawCeiling(zoneSurface, level.Ceiling, colorTheme.GetColor(level.Count - 1), zoneX, zoneY, zoneWidth, zoneHeight, level, waterInfo);
+
+            if (level.Path != null)
+                DrawPath(zoneSurface, level.Path, Color.White, zoneX, zoneY, zoneWidth, zoneHeight, level, waterInfo);
 
             #region Water
             if (waterInfo != null && waterInfo.Height <= zoneY + Program.squareZoneTileHeight)
@@ -306,6 +308,35 @@ namespace AbrahmanAdventure.level
                         zoneSurface.Blit(ground.TopTexture.Surface, new Point(x, groundYOnTile), new Rectangle(textureInputX, 0, 1, ground.TopTexture.Surface.GetHeight()));
                 }
                 #endregion
+            }
+        }
+
+        /// <summary>
+        /// Draw ground on zone's surface
+        /// </summary>
+        /// <param name="zoneSurface">zone's surface</param>
+        /// <param name="ground">ground</param>
+        /// <param name="waveColor">wave's color</param>
+        /// <param name="zoneX">zone's X coordinates</param>
+        /// <param name="zoneY">zone's Y coordinates</param>
+        /// <param name="zoneWidth">zone's width</param>
+        /// <param name="zoneHeight">zone's height</param>
+        /// <param name="level">level</param>
+        /// <param name="waterInfo">info about water</param>
+        private void DrawPath(Surface zoneSurface, Ground ground, Color waveColor, int zoneX, int zoneY, int zoneWidth, int zoneHeight, Level level, WaterInfo waterInfo)
+        {
+            for (int x = 0; x < zoneWidth; x++)
+            {
+                double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
+                double waveOutputY = ground[waveInputX];
+
+
+                if (waveOutputY > (double)(zoneY + Program.squareZoneTileHeight))
+                    continue;
+
+                int groundYOnTile = (int)(waveOutputY * Program.tileSize) - zoneY * Program.tileSize;
+
+                zoneSurface.Draw(new Point(x,groundYOnTile), waveColor);
             }
         }
 

@@ -24,6 +24,11 @@ namespace AbrahmanAdventure.level
         private Ground ceiling = null;
 
         /// <summary>
+        /// Some levels have a path for platforms and wheels (can be null)
+        /// </summary>
+        private Ground path = null;
+
+        /// <summary>
         /// Represents wave modelization of holes in a level
         /// </summary>
         private HoleSet holeSet;
@@ -80,7 +85,13 @@ namespace AbrahmanAdventure.level
 
             int groundId;
             for (groundId = 0; groundId < waveCount; groundId++)
-                AddGround(new Ground(BuildGroundWave(random), random, colorTheme.GetColor(waveCount - groundId - 1), holeSet, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
+                AddGround(new Ground(BuildGroundWave(random, false), random, colorTheme.GetColor(waveCount - groundId - 1), holeSet, false, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
+
+
+            #region We add a path for platforms and wheels
+            path = new Ground(BuildGroundWave(random, true), random, Color.White, holeSet, false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
+            #endregion
+
 
             if (Program.isEnableParallelTextureRendering)
             {
@@ -100,7 +111,7 @@ namespace AbrahmanAdventure.level
             if (isCeiling)
             {
                 double highestXPoint = IGroundHelper.GetHighestXPoint(this, leftBound, rightBound);
-                ceiling = new Ground(BuildGroundWave(random), random, colorTheme.GetRandomColor(random), holeSet, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
+                ceiling = new Ground(BuildGroundWave(random, false), random, colorTheme.GetRandomColor(random), holeSet, true, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
                 double lowestXPoint = IGroundHelper.GetLowestXPoint(ceiling, this, leftBound, rightBound, Program.addedDistanceBetweenHighestGroundAndCeilingIfAboveHole);
                 ceiling.CeilingHeight = Math.Abs(highestXPoint - lowestXPoint) + (double)random.Next(2, 5);
             }
@@ -182,11 +193,15 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Build a ground's (or ceiling's) wave pacl
         /// </summary>
-        /// <returns></returns>
-        private AbstractWave BuildGroundWave(Random random)
+        /// <returns>wave pack</returns>
+        private AbstractWave BuildGroundWave(Random random, bool isPathOnly)
         {
-            AbstractWave wave = WaveBuilder.BuildWavePack(random);
+            AbstractWave wave = WaveBuilder.BuildWavePack(random, isPathOnly);
             double normalizationFactor = (random.NextDouble() * 20) + 4;
+
+            if (isPathOnly)
+                normalizationFactor *= (random.NextDouble() + 1.0);
+            
             wave.Normalize(normalizationFactor, false);
 
             double highestJumpingStep = wave.GetHighestJumpingStep(leftBound, rightBound);
@@ -229,6 +244,14 @@ namespace AbrahmanAdventure.level
         public Ground Ceiling
         {
             get { return ceiling; }
+        }
+
+        /// <summary>
+        /// Path for platforms and wheels (can be null)
+        /// </summary>
+        public Ground Path
+        {
+            get { return path; }
         }
 
         /// <summary>
