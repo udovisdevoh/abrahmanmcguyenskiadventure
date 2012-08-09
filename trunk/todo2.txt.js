@@ -2,7 +2,7 @@ site pixailes
 
 abrahman adventure
 {
-	?vue projection cavaliÃ¨re?
+	?vue projection cavalière?
 
 	abrahman
 	{
@@ -31,9 +31,9 @@ bike and walking feet
 must have wider and thinner platforms
 
 
-lorsque tombe: pieds qui marchent doivent dÃ©tecter collision par platforme la plus basse
+lorsque tombe: pieds qui marchent doivent détecter collision par platforme la plus basse
 {
-	si circomfÃ©rence visible: dÃ©tecter collision par radius
+	si circomférence visible: détecter collision par radius
 }
 
 seesaw: catapultes
@@ -60,6 +60,13 @@ texte de storyline (dans intro), possiblement générée random
 	
 	Texte
 	{
+		In a world where materialism reigns, it is often tempting to judge our reality. Suffering is part of our existence.
+		We develop anger and hate against the system, institution, coporations, ideologies and religions.
+		We often become nostalgic about our past because it is idealized in our mind while the present is incomprehensible.
+		One must realize that institutions, corporations, ideologies and religions only exist in the human mind. They
+		have no other existence. Fight against these ghosts will only create more suffering, because what exists in your
+		mind is your own creation. You are not your thoughts. Thoughts are only flowing withing you.
+		Our reality is our collective creation.
 	}
 }
 
