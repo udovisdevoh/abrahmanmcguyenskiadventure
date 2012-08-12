@@ -12,7 +12,57 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal static class ClockworkDispatcher
     {
-        internal static void DispatchClockwork(Level level, SpritePopulation spritePopulation, level.WaterInfo waterInfo, Random random)
+        #region Internal Methods
+        /// <summary>
+        /// Dispatch clockwork sprites
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="waterInfo">info about water</param>
+        /// <param name="random">random number generator</param>
+        internal static void DispatchClockwork(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
+        {
+            //double density = (random.NextDouble() * 0.1 + 0.05) * Program.monsterDensityAdjustment;
+            //DispatchHardcodedTestContent(spritePopulation, random);
+
+            #warning Implement DispatchClockwork();
+
+            PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+            PendulumDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+            WheelDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+            SeeSawDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+
+            GeneratePlatformColors(spritePopulation, random);
+        }
+        #endregion
+
+        #region Private methods
+        /// <summary>
+        /// Generate colors for platforms
+        /// </summary>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="random">random number generator</param>
+        private static void GeneratePlatformColors(SpritePopulation spritePopulation, Random random)
+        {
+            //We generate colors for platforms
+            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
+            {
+                if (sprite is AbstractBearing)
+                {
+                    AbstractBearing bearing = (AbstractBearing)sprite;
+
+                    if (bearing.ParentNode == null)
+                        bearing.GenerateColoredPlatformSurface(random);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Create hardcoded clockwork sprite
+        /// </summary>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="random">random number generator</param>
+        private static void DispatchHardcodedTestContent(SpritePopulation spritePopulation, Random random)
         {
             Pendulum pendulum = new Pendulum(8, -17, random, 4, 2.4, 1.8, false, 0);
             spritePopulation.Add(pendulum);
@@ -54,7 +104,7 @@ namespace AbrahmanAdventure.sprites
             //Wheel attached to pendulum
             Pendulum pendulum4 = new Pendulum(40, -30, random, 12, 1.4, 1.0, false, 0);
             spritePopulation.Add(pendulum4);
-            
+
             Wheel wheel = new Wheel(40, -18, random, 8.0, 0.0, -3.0, false, true, false, 0);
             spritePopulation.Add(wheel);
 
@@ -115,7 +165,7 @@ namespace AbrahmanAdventure.sprites
             //See saw that looks like a wheel
             SeeSaw seeSaw = new SeeSaw(60, -15, random, 4, 3.0, 1.0, 1.0, false, true, true, false, 0);
             spritePopulation.Add(seeSaw);
-            
+
             Platform seeSawPlatform;
 
             seeSawPlatform = new Platform(61, -9, random, false, 2, false, 0, 0);
@@ -278,7 +328,7 @@ namespace AbrahmanAdventure.sprites
             spritePopulation.Add(seeSawPlatform);
             seeSaw.AddChild(seeSawPlatform);
 
-            seeSawPlatform = new Platform(59, -9, random, false, 0, false, 0,0);
+            seeSawPlatform = new Platform(59, -9, random, false, 0, false, 0, 0);
             spritePopulation.Add(seeSawPlatform);
             seeSaw.AddChild(seeSawPlatform);
 
@@ -288,20 +338,7 @@ namespace AbrahmanAdventure.sprites
             //Elevator
             platform = new Platform(-50, -9, random, false, 0, true, 10, 1.0);
             spritePopulation.Add(platform);
-
-
-
-            //We generate colors for platforms
-            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
-            {
-                if (sprite is AbstractBearing)
-                {
-                    AbstractBearing bearing = (AbstractBearing)sprite;
-
-                    if (bearing.ParentNode == null)
-                        bearing.GenerateColoredPlatformSurface(random);
-                }
-            }
         }
+        #endregion
     }
 }
