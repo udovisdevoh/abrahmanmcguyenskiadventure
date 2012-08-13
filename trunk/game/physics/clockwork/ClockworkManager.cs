@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
@@ -49,13 +50,13 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="toUpdateSpriteList">visible sprites</param>
         /// <param name="timeDelta">time delta</param>
-        internal void Update(HashSet<AbstractSprite> toUpdateSpriteList, PlayerSprite playerSprite, double timeDelta)
+        internal void Update(HashSet<AbstractSprite> toUpdateSpriteList, PlayerSprite playerSprite, Level level, double timeDelta)
         {
             PopulateRootLinkageSpriteList(toUpdateSpriteList);
 
             foreach (AbstractLinkage rootLinkage in rootLinkageSpriteList)
             {
-                Update(rootLinkage, playerSprite, timeDelta);
+                Update(rootLinkage, playerSprite, level, timeDelta);
             }
         }
         #endregion
@@ -66,7 +67,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="rootLinkage">root linkage sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void Update(AbstractLinkage rootLinkage, PlayerSprite playerSprite, double timeDelta)
+        private void Update(AbstractLinkage rootLinkage, PlayerSprite playerSprite, Level level, double timeDelta)
         {
             if (!rootLinkage.IsAlive)
                 return;
@@ -78,11 +79,11 @@ namespace AbrahmanAdventure.physics
             else if (rootLinkage is SeeSaw)
                 seeSawManager.Update((SeeSaw)rootLinkage, playerSprite, timeDelta);
             else if (rootLinkage is Platform)
-                platformManager.Update((Platform)rootLinkage, playerSprite, timeDelta);
+                platformManager.Update((Platform)rootLinkage, playerSprite, level, timeDelta);
 
             if (rootLinkage is AbstractBearing)
                 foreach (AbstractLinkage childLinkage in ((AbstractBearing)rootLinkage).ChildList)
-                    Update(childLinkage, playerSprite, timeDelta);
+                    Update(childLinkage, playerSprite, level, timeDelta);
         }
 
         /// <summary>

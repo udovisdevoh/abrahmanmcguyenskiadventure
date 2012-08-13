@@ -28,9 +28,26 @@ namespace AbrahmanAdventure.sprites
             #warning Implement DispatchClockwork();
 
             PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
-            PendulumDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+            /*PendulumDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
             WheelDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
-            SeeSawDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+            SeeSawDispatcher.Dispatch(level, spritePopulation, waterInfo, random);*/
+
+            #region Remove path if nothing is attached to it
+            if (level.Path != null)
+            {
+                bool isFoundWagon = false;
+                foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
+                {
+                    if (sprite.IGround == level.Path)
+                    {
+                        isFoundWagon = true;
+                        break;
+                    }
+                }
+                if (!isFoundWagon)
+                    level.Path = null;
+            }
+            #endregion
 
             GeneratePlatformColors(spritePopulation, random);
         }

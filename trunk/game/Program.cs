@@ -105,6 +105,8 @@ namespace AbrahmanAdventure
 
         public const double monsterDensityAdjustment = 0.5;
 
+        public const double platformDensityAdjustment = 0.2;
+
         public const double maximumAllowedJumpingStep = 3.5;
 
         public const double maxCloudHeightFromGround = 7;
@@ -454,6 +456,7 @@ namespace AbrahmanAdventure
                 if (gameState == null || gameState.IsExpired)
                 {
                     #region We regenerate game state because it is nonexistant or expired (changing environment)
+                    Platform.ResetDefaultColorSurface();
                     SongPlayer.StopSync();
                     mainSurface.Fill(System.Drawing.Color.Black);
                     mainSurface.Update();
@@ -744,7 +747,7 @@ namespace AbrahmanAdventure
                                     monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                             }
 
-                        clockworkManager.Update(toUpdateSpriteList, playerSprite, timeDelta);
+                        clockworkManager.Update(toUpdateSpriteList, playerSprite, level, timeDelta);
                     }
                 }
                 else
