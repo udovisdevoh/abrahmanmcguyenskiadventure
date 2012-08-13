@@ -118,14 +118,14 @@ namespace AbrahmanAdventure.sprites
             this.IsAffectedByGravity = isAffectedByGravity;
             this.IsCrossGrounds = !isAffectedByGravity;
             this.SupportHeight = supportHeight;
-            IsBoundToGroundForever = isAffectedByGravity;
+            this.elevatorSpeed = elevatorSpeed;
+            IsBoundToGroundForever = !isElevator;
 
             if (isElevator)
             {
                 elevatorCycle = new Cycle(elevatorHeight, true, true, false);
                 elevatorCycle.CurrentValue = random.NextDouble() * elevatorCycle.TotalTimeLength;
                 elevatorCycle.Fire();
-                this.elevatorSpeed = elevatorSpeed;
             }
         }
         #endregion
@@ -159,6 +159,17 @@ namespace AbrahmanAdventure.sprites
         {
             get { return originalYPosition; }
             set { originalYPosition = value; }
+        }
+        #endregion
+
+        #region Internal Methods
+        /// <summary>
+        /// Clear cached surfaces (default color etc)
+        /// </summary>
+        internal static void ResetDefaultColorSurface()
+        {
+            surface = null;
+            defaultColorSurface = null;
         }
         #endregion
     }

@@ -176,6 +176,16 @@ namespace AbrahmanAdventure.level
             double yValue = (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
             return holeSet[xPosition, yValue];
         }
+
+        /// <summary>
+        /// Get ground height at X position regardless holes
+        /// </summary>
+        /// <param name="xPosition">x position</param>
+        /// <returns>height at X position regardless holes</returns>
+        internal double GetGroundHeightNoHole(double xPosition)
+        {
+            return (Program.isUseWaveValueCache) ? terrainWave.GetCachedValue(xPosition) : terrainWave[xPosition];
+        }
         #endregion
 
         #region Properties

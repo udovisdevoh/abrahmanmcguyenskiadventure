@@ -89,7 +89,8 @@ namespace AbrahmanAdventure.level
 
 
             #region We add a path for platforms and wheels
-            path = new Ground(BuildGroundWave(random, true), random, Color.White, holeSet, false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
+            if (random.NextDouble() > 0.6)
+                path = new Ground(BuildGroundWave(random, true), random, Color.White, holeSet, false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
             #endregion
 
 
@@ -200,7 +201,7 @@ namespace AbrahmanAdventure.level
             double normalizationFactor = (random.NextDouble() * 20) + 4;
 
             if (isPathOnly)
-                normalizationFactor *= (random.NextDouble() + 1.0);
+                normalizationFactor *= ((random.NextDouble() * 1.5) + 1.0);
             
             wave.Normalize(normalizationFactor, false);
 
@@ -252,6 +253,7 @@ namespace AbrahmanAdventure.level
         public Ground Path
         {
             get { return path; }
+            set { path = value; }
         }
 
         /// <summary>
