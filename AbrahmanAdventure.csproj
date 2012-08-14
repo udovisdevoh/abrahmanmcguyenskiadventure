@@ -292,10 +292,9 @@
     <Compile Include="game\sprites\clockwork\Pendulum.cs" />
     <Compile Include="game\sprites\clockwork\Platform.cs" />
     <Compile Include="game\sprites\clockwork\SeeSaw.cs" />
-    <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\PendulumDispatcher.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\VehicleDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\PlatformDispatcher.cs" />
-    <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\SeeSawDispatcher.cs" />
-    <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\WheelDispatcher.cs" />
+    <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\AmusementDispatcher.cs" />
     <Compile Include="game\VectorViewer.cs" />
     <Compile Include="game\sprites\clockwork\Wheel.cs" />
     <Compile Include="game\sprites\monsters\IEvilSprite.cs" />

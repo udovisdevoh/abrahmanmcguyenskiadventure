@@ -8,12 +8,12 @@ using AbrahmanAdventure.physics;
 namespace AbrahmanAdventure.sprites
 {
     /// <summary>
-    /// Dispatches wheels
+    /// Dispatches bicycles moving wheels
     /// </summary>
-    internal static class WheelDispatcher
+    internal static class VehicleDispatcher
     {
         /// <summary>
-        /// Dispatch wheels
+        /// Dispatch pendulums
         /// </summary>
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
