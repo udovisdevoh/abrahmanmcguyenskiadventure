@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.level
 
 
             #region We add a path for platforms and wheels
-            if (random.NextDouble() > 0.6)
+            if (random.NextDouble() > 0.5)
                 path = new Ground(BuildGroundWave(random, true), random, Color.White, holeSet, false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
             #endregion
 
