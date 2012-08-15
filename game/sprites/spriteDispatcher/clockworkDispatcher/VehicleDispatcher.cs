@@ -48,10 +48,14 @@ namespace AbrahmanAdventure.sprites
         {
             bool isWheel = random.NextDouble() > 0.5;
             
-            double radius = random.NextDouble() * 1.5 + 1.5;
+            double radius = random.NextDouble() * 1.0 + 1.5;
 
+            int platformCount;
 
-            int platformCount = random.Next(2, 5);
+            if (isWheel)
+                platformCount = random.Next(1, 5);
+            else
+                platformCount = random.Next(2, 5);
 
             bool isShowCircumference = (platformCount != 2) && random.NextDouble() > 0.5;
             double firstChildOffset = random.NextDouble();
