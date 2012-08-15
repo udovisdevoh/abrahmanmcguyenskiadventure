@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
@@ -18,9 +19,9 @@ namespace AbrahmanAdventure.physics
         /// <param name="seeSaw">see saw</param>
         /// <param name="playerSprite">player's sprite</param>
         /// <param name="timeDelta">time delta</param>
-        internal void Update(SeeSaw seeSaw, PlayerSprite playerSprite, double timeDelta)
+        internal void Update(SeeSaw seeSaw, PlayerSprite playerSprite, Level level, double timeDelta)
         {
-            Update(seeSaw, playerSprite, timeDelta, null);
+            Update(seeSaw, playerSprite, level, timeDelta, null);
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="playerSprite">player's sprite</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="forcedPlatformPlayerIsOn">default: null</param>
-        internal void Update(SeeSaw seeSaw, PlayerSprite playerSprite, double timeDelta, AbstractLinkage forcedPlatformPlayerIsOn)
+        internal void Update(SeeSaw seeSaw, PlayerSprite playerSprite, Level level, double timeDelta, AbstractLinkage forcedPlatformPlayerIsOn)
         {
             double counter = 0;
 
@@ -87,14 +88,14 @@ namespace AbrahmanAdventure.physics
 
                     angleOfPlatformPlayerIsOn = angle;
 
-                    if (seeSaw.IsAffectedByGravity)
+                    if (seeSaw.IsBoundToGroundForever && seeSaw.IGround == level.Path)
                         isWalking = true;
                 }
                 else if (playerSprite.IClimbingOn is LianaSprite && ((LianaSprite)playerSprite.IClimbingOn).AttachedToIGround == childLinkage)
                 {
                     platformPlayerIsOn = childLinkage;
                     angleOfPlatformPlayerIsOn = angle;
-                    if (seeSaw.IsAffectedByGravity)
+                    if (seeSaw.IsBoundToGroundForever && seeSaw.IGround == level.Path)
                         isWalking = true;
                 }
 
@@ -155,7 +156,7 @@ namespace AbrahmanAdventure.physics
 
                 if (nextParentSeeSaw != null)
                 {
-                    Update((SeeSaw)nextParentSeeSaw, playerSprite, timeDelta, forcedPlatformPlayerIsOnParentSeeSaw);
+                    Update((SeeSaw)nextParentSeeSaw, playerSprite, level, timeDelta, forcedPlatformPlayerIsOnParentSeeSaw);
                 }
             }
             else if (seeSaw.IsTension && (seeSaw.Angle > 0.001 && seeSaw.Angle < 0.999))
@@ -180,14 +181,53 @@ namespace AbrahmanAdventure.physics
             #region Walking See Saw
             if (isWalking && Math.Abs(rotationMovement) > 0.0001)
             {
-                seeSaw.IsTryingToWalk = true;
-                seeSaw.MaxWalkingSpeed = 0.17 * seeSaw.Radius;
-                seeSaw.IsTryingToWalkRight = (rotationMovement > 0);
-            }
-            else
-            {
                 seeSaw.IsTryingToWalk = false;
-                seeSaw.CurrentWalkingSpeed = 0;
+                seeSaw.IsTryingToWalkRight = (rotationMovement > 0);
+
+                double walkingSpeed = seeSaw.Speed / 22;
+
+                if (seeSaw.IsTryingToWalkRight)
+                {
+                    seeSaw.XPosition += walkingSpeed;
+                }
+                else
+                {
+                    seeSaw.XPosition -= walkingSpeed;
+                }
+
+
+                Ground path = (Ground)(seeSaw.IGround);
+
+                if (path.IsHoleAt(seeSaw.XPosition) || seeSaw.XPosition >= level.RightBound || seeSaw.XPosition <= level.LeftBound)
+                {
+                    if (seeSaw.IsTryingToWalkRight)
+                    {
+                        seeSaw.XPosition -= walkingSpeed;
+                    }
+                    else
+                    {
+                        seeSaw.XPosition += walkingSpeed;
+                    }
+
+                    seeSaw.IsTryingToWalkRight = !seeSaw.IsTryingToWalkRight;
+                }
+                else
+                {
+                    seeSaw.YPosition = seeSaw.IGround[seeSaw.XPosition] + 0.25;
+                    if (playerSprite.IGround == seeSaw)
+                    {
+                        playerSprite.YPositionKeepPrevious = seeSaw.TopBound;
+
+                        if (seeSaw.IsTryingToWalkRight)
+                        {
+                            playerSprite.XPositionKeepPrevious += walkingSpeed;
+                        }
+                        else
+                        {
+                            playerSprite.XPositionKeepPrevious -= walkingSpeed;
+                        }
+                    }
+                }
             }
             #endregion
         }

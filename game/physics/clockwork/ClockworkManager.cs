@@ -77,7 +77,7 @@ namespace AbrahmanAdventure.physics
             else if (rootLinkage is Wheel)
                 wheelManager.Update((Wheel)rootLinkage, playerSprite, level, timeDelta);
             else if (rootLinkage is SeeSaw)
-                seeSawManager.Update((SeeSaw)rootLinkage, playerSprite, timeDelta);
+                seeSawManager.Update((SeeSaw)rootLinkage, playerSprite, level, timeDelta);
             else if (rootLinkage is Platform)
                 platformManager.Update((Platform)rootLinkage, playerSprite, level, timeDelta);
 
