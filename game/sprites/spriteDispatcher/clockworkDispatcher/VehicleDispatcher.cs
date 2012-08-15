@@ -50,6 +50,8 @@ namespace AbrahmanAdventure.sprites
             
             double radius = random.NextDouble() * 1.0 + 1.5;
 
+            bool isEvil = (isWheel) && random.NextDouble() < ((double)(level.SkillLevel + 1) / 16);
+
             int platformCount;
 
             if (isWheel)
@@ -99,9 +101,15 @@ namespace AbrahmanAdventure.sprites
 
                 for (int i = 0; i < platformCount; i++)
                 {
-                    Platform platform = new Platform(xPosition, yPosition, random, false, supportHeight, false, 0.0, 0.0);
-                    spritePopulation.Add(platform);
-                    vehicle.AddChild(platform);
+                    AbstractLinkage platformOrFlailBall;
+
+                    if (isEvil)
+                        platformOrFlailBall = new FlailBall(xPosition, yPosition, random, false, supportHeight);
+                    else
+                        platformOrFlailBall = new Platform(xPosition, yPosition, random, false, supportHeight, false, 0.0, 0.0);
+
+                    spritePopulation.Add(platformOrFlailBall);
+                    vehicle.AddChild(platformOrFlailBall);
                 }
 
                 vehicle.IGround = level.Path;
