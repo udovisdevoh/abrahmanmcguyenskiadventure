@@ -121,6 +121,8 @@ namespace AbrahmanAdventure
 
         public const double swordRange = 1.8;
 
+        public const double pathHoleDistanceMultiplicator = 5.0;
+
         public static double zoneWidthScreenCount = 0.025;
 
         public static double collisionDetectionResolution = 0.0625;
