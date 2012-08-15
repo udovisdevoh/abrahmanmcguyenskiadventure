@@ -29,10 +29,10 @@ namespace AbrahmanAdventure.sprites
 
             HashSet<int> wagonIgnoreList = new HashSet<int>();
 
-            PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
-            
             if (level.Path != null)
-                VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), random);
+                VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
+
+            PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
             
             AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
             
