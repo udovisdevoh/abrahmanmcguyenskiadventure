@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
@@ -11,12 +12,71 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class WheelManager
     {
-        internal void Update(Wheel wheel, PlayerSprite playerSprite, double timeDelta)
+        internal void Update(Wheel wheel, PlayerSprite playerSprite, Level level, double timeDelta)
         {
-            wheel.RotationCycle.Increment(timeDelta * wheel.Speed);
+            double rotationSpeed = timeDelta * wheel.Speed;
+
+            if (!wheel.IsTryingToWalkRight)
+                rotationSpeed *= -1;
+
+            wheel.RotationCycle.Increment(rotationSpeed);
+           
+
+            if (wheel.IsBoundToGroundForever && wheel.IGround != null)
+            {
+                #region We manage "walking" physics
+                double walkingSpeed = wheel.Speed / 17;
+                wheel.IsTryingToWalk = false;
+                wheel.MaxWalkingSpeed = 0.17;
+
+                if (wheel.IsTryingToWalkRight)
+                {
+                    wheel.XPosition += walkingSpeed;
+                }
+                else
+                {
+                    wheel.XPosition -= walkingSpeed;
+                }
+
+
+                Ground path = (Ground)(wheel.IGround);
+
+                if (path.IsHoleAt(wheel.XPosition) || wheel.XPosition >= level.RightBound || wheel.XPosition <= level.LeftBound)
+                {
+                    if (wheel.IsTryingToWalkRight)
+                    {
+                        wheel.XPosition -= walkingSpeed;
+                    }
+                    else
+                    {
+                        wheel.XPosition += walkingSpeed;
+                    }
+
+                    wheel.IsTryingToWalkRight = !wheel.IsTryingToWalkRight;
+                }
+                else
+                {
+                    wheel.YPosition = wheel.IGround[wheel.XPosition] + 0.25;
+                    if (playerSprite.IGround == wheel)
+                    {
+                        playerSprite.YPositionKeepPrevious = wheel.TopBound;
+
+                        if (wheel.IsTryingToWalkRight)
+                        {
+                            playerSprite.XPositionKeepPrevious += walkingSpeed;
+                        }
+                        else
+                        {
+                            playerSprite.XPositionKeepPrevious -= walkingSpeed;
+                        }
+                    }
+                }
+                #endregion
+            }
 
             double counter = 0;
 
+            #region We move the child linkages
             foreach (AbstractLinkage childLinkage in wheel.ChildList)
             {
                 double hypotenus = wheel.Radius;
@@ -57,6 +117,7 @@ namespace AbrahmanAdventure.physics
 
                 counter += 1.0;
             }
+            #endregion
         }
     }
 }

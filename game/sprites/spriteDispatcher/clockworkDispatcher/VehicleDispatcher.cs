@@ -92,7 +92,7 @@ namespace AbrahmanAdventure.sprites
                 }
 
                 vehicle.IGround = level.Path;
-
+                vehicle.IsBoundToGroundForever = true;
 
                 vehicle.IsTryingToWalkRight = random.NextDouble() > 0.5;
                 vehicle.IGround = level.Path;
