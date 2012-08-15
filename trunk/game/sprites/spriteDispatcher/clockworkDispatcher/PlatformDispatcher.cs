@@ -20,10 +20,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="waterInfo">info about water</param>
         /// <param name="random">random number generator</param>
-        internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
+        internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, HashSet<int> wagonIgnoreList, Random random)
         {
             HashSet<int> elevatorIgnoreList = new HashSet<int>();
-            HashSet<int> wagonIgnoreList = new HashSet<int>();
 
             double density = random.NextDouble() * 0.15;
             density *= Program.platformDensityAdjustment;
@@ -35,6 +34,29 @@ namespace AbrahmanAdventure.sprites
 
             for (int i = 0; i < platformCount; i++)
                 AddPlatform(level, spritePopulation, waterInfo, elevatorIgnoreList, wagonIgnoreList, wagonSpeed, random);
+        }
+
+        /// <summary>
+        /// Closest distance from ignore list elements
+        /// </summary>
+        /// <param name="roundedXPosition"></param>
+        /// <param name="ignoreList"></param>
+        /// <returns></returns>
+        internal static int GetClosestDistanceFromIgnoreListElement(int roundedXPosition, HashSet<int> ignoreList)
+        {
+            if (ignoreList.Contains(roundedXPosition))
+                return 0;
+
+            int closestValue = int.MaxValue;
+
+            foreach (int otherValue in ignoreList)
+            {
+                int currentDistance = Math.Abs(roundedXPosition - otherValue);
+                if (currentDistance < closestValue)
+                    closestValue = currentDistance;
+            }
+
+            return closestValue;
         }
         #endregion
 
@@ -80,30 +102,8 @@ namespace AbrahmanAdventure.sprites
                 platform.IsTryingToWalkRight = random.NextDouble() > 0.5;
 
                 platform.IGround = level.Path;
+                break;
             }
-        }
-
-        /// <summary>
-        /// Closest distance from ignore list elements
-        /// </summary>
-        /// <param name="roundedXPosition"></param>
-        /// <param name="ignoreList"></param>
-        /// <returns></returns>
-        private static int GetClosestDistanceFromIgnoreListElement(int roundedXPosition, HashSet<int> ignoreList)
-        {
-            if (ignoreList.Contains(roundedXPosition))
-                return 0;
-
-            int closestValue = int.MaxValue;
-
-            foreach (int otherValue in ignoreList)
-            {
-                int currentDistance = Math.Abs(roundedXPosition - otherValue);
-                if (currentDistance < closestValue) 
-                    closestValue = currentDistance;
-            }
-
-            return closestValue;
         }
 
         /// <summary>
@@ -161,6 +161,7 @@ namespace AbrahmanAdventure.sprites
                         xPosition = (holeXBoundRight + holeXBoundLeft) / 2.0;
 
                         int roundedXPosition = (int)Math.Round(xPosition);
+
                         if (!ignoreList.Contains(roundedXPosition))
                         {
                             ignoreList.Add(roundedXPosition);

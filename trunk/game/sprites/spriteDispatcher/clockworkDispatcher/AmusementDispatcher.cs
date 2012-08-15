@@ -21,7 +21,6 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
         {
-            throw new NotImplementedException();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">timeDelta</param>
         internal void Update(Platform platform, PlayerSprite playerSprite, Level level, double timeDelta)
         {
-            if (platform.IsBoundToGroundForever) //if platform is a wagon
+            if (platform.IsBoundToGroundForever && platform.IGround != null) //if platform is a wagon
             {
                 #region Manage wagon physics
                 platform.IsTryingToWalk = false;
