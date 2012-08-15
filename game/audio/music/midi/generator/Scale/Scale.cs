@@ -65,6 +65,9 @@ namespace AbrahmanAdventure.audio.midi.generator
         {
             scalar *= ((double)(radius));
 
+            if (double.IsInfinity(scalar))
+                return 0;
+
             int offset = 0;
             while (scalar > 12)
             {
@@ -103,6 +106,9 @@ namespace AbrahmanAdventure.audio.midi.generator
         public int GetCeilValue(double scalar, int radius)
         {
             scalar *= ((double)(radius));
+
+            if (double.IsInfinity(scalar))
+                return 0;
 
             int offset = 0;
             while (scalar > 12)

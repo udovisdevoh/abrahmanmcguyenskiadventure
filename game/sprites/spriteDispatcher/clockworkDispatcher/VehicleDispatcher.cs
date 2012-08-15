@@ -12,6 +12,7 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal static class VehicleDispatcher
     {
+        #region Internal Methods
         /// <summary>
         /// Dispatch pendulums
         /// </summary>
@@ -19,9 +20,86 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="waterInfo">info about water</param>
         /// <param name="random">random number generator</param>
-        internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
+        internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, HashSet<int> wagonIgnoreList, Random random)
         {
-            throw new NotImplementedException();
+            double density = random.NextDouble() * 0.15;
+            density *= Program.vehicleDensityAdjustment;
+
+            double speed = random.NextDouble() * 1.5 + 1.2;
+
+            int platformCount = (int)((double)(level.Size * density));
+
+            for (int i = 0; i < platformCount; i++)
+                AddVehicle(level, spritePopulation, waterInfo, wagonIgnoreList, speed, random);
         }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Add vehicle
+        /// </summary>
+        /// <param name="level">level</param>
+        /// <param name="spritePopulation">sprite population</param>
+        /// <param name="waterInfo">info about water</param>
+        /// <param name="wagonIgnoreList">ignore list</param>
+        /// <param name="speed">speed</param>
+        /// <param name="random">random number generator</param>
+        private static void AddVehicle(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, HashSet<int> ignoreList, double speed, Random random)
+        {
+            bool isWheel = random.NextDouble() > 0.5;
+            double radius = random.NextDouble() * 2 + 2.0;
+            int platformCount = random.Next(2, 5);
+            bool isShowCircumference = (platformCount != 2) && random.NextDouble() > 0.5;
+            double firstChildOffset = random.NextDouble();
+            double tensionRatio = random.NextDouble();
+            double supportHeight = (random.NextDouble() > 0.5) ? 0.0 : random.NextDouble() * radius;
+            bool isTension = (platformCount == 2) && random.NextDouble() > 0.5;
+
+
+            for (int tryCount = 0; tryCount < 100; tryCount++)
+            {
+                double xPosition = random.NextDouble() * level.Size + level.LeftBound;
+
+                int roundedXPosition = (int)(Math.Round(xPosition));
+
+                int closestDistanceFromIgnoreListElement = PlatformDispatcher.GetClosestDistanceFromIgnoreListElement(roundedXPosition, ignoreList);
+
+                if (closestDistanceFromIgnoreListElement < 14)
+                    continue;
+
+                ignoreList.Add(roundedXPosition);
+
+                double yPosition = level.Path[xPosition];
+
+
+                AbstractBearing vehicle;
+                
+                if (isWheel)
+                {
+                    vehicle = new Wheel(xPosition, yPosition, random, radius, firstChildOffset, speed, false, isShowCircumference, false, 0.0);
+                }
+                else
+                {
+                    vehicle = new SeeSaw(xPosition, yPosition, random, radius, speed, 1.0, tensionRatio, false, false, isShowCircumference, isTension, 0.0);
+                }
+                spritePopulation.Add(vehicle);
+
+                for (int i = 0; i < platformCount; i++)
+                {
+                    Platform platform = new Platform(xPosition, yPosition, random, false, supportHeight, false, 0.0, 0.0);
+                    spritePopulation.Add(platform);
+                    vehicle.AddChild(platform);
+                }
+
+                vehicle.IGround = level.Path;
+
+
+                vehicle.IsTryingToWalkRight = random.NextDouble() > 0.5;
+                vehicle.IGround = level.Path;
+
+                break;
+            }
+        }
+        #endregion
     }
 }

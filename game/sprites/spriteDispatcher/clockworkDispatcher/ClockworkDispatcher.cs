@@ -27,10 +27,12 @@ namespace AbrahmanAdventure.sprites
 
             #warning Implement DispatchClockwork();
 
-            PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+            HashSet<int> wagonIgnoreList = new HashSet<int>();
+
+            PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
             
             if (level.Path != null)
-                VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+                VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), random);
             
             AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
             
