@@ -105,9 +105,9 @@ namespace AbrahmanAdventure
 
         public const double monsterDensityAdjustment = 0.5;
 
-        public const double platformDensityAdjustment = 0.5;
+        public const double vehicleDensityAdjustment = 0.2;
 
-        public const double vehicleDensityAdjustment = 0.5;
+        public const double platformDensityAdjustment = 0.5;
 
         public const double maximumAllowedJumpingStep = 3.5;
 
