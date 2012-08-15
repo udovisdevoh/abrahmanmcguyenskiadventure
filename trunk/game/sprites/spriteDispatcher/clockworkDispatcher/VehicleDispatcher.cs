@@ -47,13 +47,22 @@ namespace AbrahmanAdventure.sprites
         private static void AddVehicle(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, HashSet<int> ignoreList, double speed, Random random)
         {
             bool isWheel = random.NextDouble() > 0.5;
-            double radius = random.NextDouble() * 2 + 2.0;
+            
+            double radius = random.NextDouble() * 1.5 + 1.5;
+
+
             int platformCount = random.Next(2, 5);
+
             bool isShowCircumference = (platformCount != 2) && random.NextDouble() > 0.5;
             double firstChildOffset = random.NextDouble();
             double tensionRatio = random.NextDouble();
             double supportHeight = (random.NextDouble() > 0.5) ? 0.0 : random.NextDouble() * radius;
             bool isTension = (platformCount == 2) && random.NextDouble() > 0.5;
+
+            if (isTension && !isWheel && platformCount == 2)
+                platformCount++;
+
+            radius *= ((double)platformCount / 3.0);
 
 
             for (int tryCount = 0; tryCount < 100; tryCount++)

@@ -25,9 +25,8 @@ namespace AbrahmanAdventure.physics
             if (wheel.IsBoundToGroundForever && wheel.IGround != null)
             {
                 #region We manage "walking" physics
-                double walkingSpeed = wheel.Speed / 17;
+                double walkingSpeed = wheel.Speed / 14;
                 wheel.IsTryingToWalk = false;
-                wheel.MaxWalkingSpeed = 0.17;
 
                 if (wheel.IsTryingToWalkRight)
                 {

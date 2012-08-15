@@ -24,7 +24,6 @@ namespace AbrahmanAdventure.physics
             {
                 #region Manage wagon physics
                 platform.IsTryingToWalk = false;
-                platform.MaxWalkingSpeed = 0.17;
 
                 if (platform.IsTryingToWalkRight)
                 {
