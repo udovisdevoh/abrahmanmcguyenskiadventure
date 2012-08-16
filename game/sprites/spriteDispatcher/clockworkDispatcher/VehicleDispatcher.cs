@@ -27,9 +27,9 @@ namespace AbrahmanAdventure.sprites
 
             double speed = random.NextDouble() * 1.5 + 1.2;
 
-            int platformCount = (int)((double)(level.Size * density));
+            int vehicleCount = (int)((double)(level.Size * density));
 
-            for (int i = 0; i < platformCount; i++)
+            for (int i = 0; i < vehicleCount; i++)
                 AddVehicle(level, spritePopulation, waterInfo, wagonIgnoreList, speed, random);
         }
         #endregion
