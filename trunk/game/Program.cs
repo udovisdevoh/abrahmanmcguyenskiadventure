@@ -125,6 +125,8 @@ namespace AbrahmanAdventure
 
         public const double pathHoleDistanceMultiplicator = 5.0;
 
+        public const double recursiveAmusementStructureProbability = 0.5;
+
         public static double zoneWidthScreenCount = 0.025;
 
         public static double collisionDetectionResolution = 0.0625;
