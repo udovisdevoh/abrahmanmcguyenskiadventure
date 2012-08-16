@@ -93,7 +93,7 @@ namespace AbrahmanAdventure.sprites
 
                 ignoreList.Add(roundedXPosition);
 
-                double yPosition = level.Path[xPosition];
+                double yPosition = level.Path[xPosition] + 0.25;
 
 
                 AbstractBearing vehicle;
