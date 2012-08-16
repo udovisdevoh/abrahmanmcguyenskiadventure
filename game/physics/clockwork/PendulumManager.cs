@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbrahmanAdventure.sprites;
+using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.physics
 {
@@ -16,7 +17,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="pendulum">pendulum</param>
         /// <param name="timeDelta">physics</param>
-        internal void Update(Pendulum pendulum, PlayerSprite playerSprite, double timeDelta)
+        internal void Update(Pendulum pendulum, PlayerSprite playerSprite, Level level, double timeDelta)
         {
             double distanceFromCenter = Math.Abs(pendulum.MovingCycle.CurrentValue - pendulum.MovingCycle.TotalTimeLength / 2.0);
             double distanceFromSide = pendulum.MovingCycle.TotalTimeLength - distanceFromCenter;
@@ -27,6 +28,59 @@ namespace AbrahmanAdventure.physics
                 timeDelta = 10;
 
             pendulum.MovingCycle.Increment(timeDelta * currentSpeed);
+
+
+            #region Walking pendulum
+            if (pendulum.IsBoundToGroundForever && pendulum.IGround != null)
+            {
+                double walkingSpeed = pendulum.Speed / 14;
+                pendulum.IsTryingToWalk = false;
+
+                if (pendulum.IsTryingToWalkRight)
+                {
+                    pendulum.XPosition += walkingSpeed;
+                }
+                else
+                {
+                    pendulum.XPosition -= walkingSpeed;
+                }
+
+
+                Ground path = (Ground)(pendulum.IGround);
+
+                if (path.IsHoleAt(pendulum.XPosition) || pendulum.XPosition >= level.RightBound || pendulum.XPosition <= level.LeftBound)
+                {
+                    if (pendulum.IsTryingToWalkRight)
+                    {
+                        pendulum.XPosition -= walkingSpeed;
+                    }
+                    else
+                    {
+                        pendulum.XPosition += walkingSpeed;
+                    }
+
+                    pendulum.IsTryingToWalkRight = !pendulum.IsTryingToWalkRight;
+                }
+                else
+                {
+                    pendulum.YPosition = pendulum.IGround[pendulum.XPosition] + 0.25;
+                    if (playerSprite.IGround == pendulum)
+                    {
+                        playerSprite.YPositionKeepPrevious = pendulum.TopBound;
+
+                        if (pendulum.IsTryingToWalkRight)
+                        {
+                            playerSprite.XPositionKeepPrevious += walkingSpeed;
+                        }
+                        else
+                        {
+                            playerSprite.XPositionKeepPrevious -= walkingSpeed;
+                        }
+                    }
+                }
+            }
+            #endregion
+
 
             if (pendulum.ChildList.Count > 0)
             {

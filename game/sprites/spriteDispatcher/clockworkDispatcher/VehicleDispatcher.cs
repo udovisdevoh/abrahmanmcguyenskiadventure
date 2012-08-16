@@ -47,6 +47,8 @@ namespace AbrahmanAdventure.sprites
         private static void AddVehicle(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, HashSet<int> ignoreList, double speed, Random random)
         {
             bool isWheel = random.NextDouble() > 0.5;
+
+            bool isPendulum = (isWheel) && random.NextDouble() > 0.666;
             
             double radius = random.NextDouble() * 1.0 + 1.5;
 
@@ -54,10 +56,16 @@ namespace AbrahmanAdventure.sprites
 
             int platformCount;
 
-            if (isWheel)
+            if (isPendulum)
+                platformCount = 1;
+            else if (isWheel)
                 platformCount = random.Next(1, 5);
             else
                 platformCount = random.Next(2, 5);
+
+            double ropeLength = random.NextDouble() * 5 + 3.2;
+            double amplitude = random.NextDouble() * 3 + 4;
+
 
             bool isShowCircumference = (platformCount != 2) && random.NextDouble() > 0.5;
             double firstChildOffset = random.NextDouble();
@@ -68,7 +76,8 @@ namespace AbrahmanAdventure.sprites
             if (isTension && !isWheel && platformCount == 2)
                 platformCount++;
 
-            radius *= ((double)platformCount / 3.0);
+            if (!isPendulum)
+                radius *= ((double)platformCount / 3.0);
 
 
             for (int tryCount = 0; tryCount < 100; tryCount++)
@@ -89,7 +98,11 @@ namespace AbrahmanAdventure.sprites
 
                 AbstractBearing vehicle;
                 
-                if (isWheel)
+                if (isPendulum)
+                {
+                    vehicle = new Pendulum(xPosition, yPosition, random, ropeLength, speed, amplitude);
+                }
+                else if (isWheel)
                 {
                     vehicle = new Wheel(xPosition, yPosition, random, radius, firstChildOffset, speed, false, isShowCircumference, false, 0.0);
                 }
