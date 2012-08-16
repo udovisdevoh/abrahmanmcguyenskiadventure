@@ -25,8 +25,6 @@ namespace AbrahmanAdventure.sprites
             //double density = (random.NextDouble() * 0.1 + 0.05) * Program.monsterDensityAdjustment;
             //DispatchHardcodedTestContent(spritePopulation, random);
 
-            #warning Implement DispatchClockwork();
-
             HashSet<int> wagonIgnoreList = new HashSet<int>();
 
             if (level.Path != null)
