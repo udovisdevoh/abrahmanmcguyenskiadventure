@@ -78,11 +78,11 @@ namespace AbrahmanAdventure.sprites
 
             double tensionRatio;
 
-            double supportHeight;
-            if (random.NextDouble() > 0.333)
+            double supportHeight = 0;
+            /*if (random.NextDouble() > 0.333)
                 supportHeight = 0;
             else
-                supportHeight = random.NextDouble() * 1.5 + 0.5;
+                supportHeight = random.NextDouble() * 1.5 + 0.5;*/
 
             AbstractBearing parentStructure = null;
 
@@ -171,7 +171,7 @@ namespace AbrahmanAdventure.sprites
             if (random.NextDouble() > 0.5)
                 supportHeightChild = 0;
             else
-                supportHeightChild = random.NextDouble() * 2.5 + 1.5;
+                supportHeightChild = random.NextDouble() * 1.5 + 0.5;
 
             for (int i = 0; i < platformCount; i++)
             {
@@ -199,6 +199,26 @@ namespace AbrahmanAdventure.sprites
                         parentStructure.YPosition -= ((Pendulum)amusement).Height;
                 }
                 parentStructure.AddChild(amusement);
+
+                #region platform is parent is pendulum
+                if (parentStructure is Pendulum)
+                {
+                    AbstractLinkage foundChild = null;
+                    foreach (AbstractLinkage child in parentStructure.ChildList)
+                    {
+                        if (child is Platform)
+                        {
+                            foundChild = child;
+                            break;
+                        }
+                    }
+                    if (foundChild != null)
+                    {
+                        parentStructure.ChildList.Remove(foundChild);
+                        spritePopulation.Remove(foundChild);
+                    }
+                }
+                #endregion
             }
             else
             {

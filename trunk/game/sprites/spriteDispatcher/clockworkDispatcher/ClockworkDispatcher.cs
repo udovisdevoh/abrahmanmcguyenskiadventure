@@ -27,12 +27,27 @@ namespace AbrahmanAdventure.sprites
 
             HashSet<int> wagonIgnoreList = new HashSet<int>();
 
-            if (level.Path != null)
+            bool isShowVehicle = random.NextDouble() > 0.5;
+            bool isShowPlatform = random.NextDouble() > 0.5;
+            bool isShowAmusement = random.NextDouble() > 0.5;
+
+
+            if (level.Path != null && !isShowVehicle && !isShowPlatform)
+            {
+                //there is a path, force vehicle OR platform
+                isShowVehicle = random.NextDouble() > 0.5;
+                isShowPlatform = !isShowVehicle;
+            }
+
+
+            if (level.Path != null && isShowVehicle)
                 VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
 
-            PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
+            if (isShowPlatform)
+                PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
 
-            AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), random);
+            if (isShowAmusement)
+                AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), random);
             
 
             #region Remove path if nothing is attached to it

@@ -70,7 +70,7 @@ namespace AbrahmanAdventure.sprites
             bool isShowCircumference = (platformCount != 2) && random.NextDouble() > 0.5;
             double firstChildOffset = random.NextDouble();
             double tensionRatio = random.NextDouble();
-            double supportHeight = (random.NextDouble() > 0.5) ? 0.0 : random.NextDouble() * radius;
+            double supportHeight = (random.NextDouble() > 0.5) ? 0.0 : random.NextDouble() * 1.5 + 0.5;
             bool isTension = (platformCount == 2) && random.NextDouble() > 0.5;
 
             if (isTension && !isWheel && platformCount == 2)
@@ -104,11 +104,11 @@ namespace AbrahmanAdventure.sprites
                 }
                 else if (isWheel)
                 {
-                    vehicle = new Wheel(xPosition, yPosition, random, radius, firstChildOffset, speed, false, isShowCircumference, false, 0.0);
+                    vehicle = new Wheel(xPosition, yPosition, random, radius, firstChildOffset, speed, false, isShowCircumference, true, 0.0);
                 }
                 else
                 {
-                    vehicle = new SeeSaw(xPosition, yPosition, random, radius, speed, 1.0, tensionRatio, false, false, isShowCircumference, isTension, 0.0);
+                    vehicle = new SeeSaw(xPosition, yPosition, random, radius, speed, 1.0, tensionRatio, false, true, isShowCircumference, isTension, 0.0);
                 }
                 spritePopulation.Add(vehicle);
 
