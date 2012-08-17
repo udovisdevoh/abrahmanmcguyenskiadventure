@@ -31,8 +31,8 @@ namespace AbrahmanAdventure.sprites
                 VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
 
             PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
-            
-            AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, random);
+
+            AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), random);
             
 
             #region Remove path if nothing is attached to it

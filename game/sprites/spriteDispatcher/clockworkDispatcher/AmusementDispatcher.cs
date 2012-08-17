@@ -37,24 +37,19 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="waterInfo">info about water</param>
         /// <param name="random">random number generator</param>
-        internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, Random random)
+        internal static void Dispatch(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, HashSet<int> amusementIgnoreList, Random random)
         {
             double density = random.NextDouble() * 0.15;
             density *= Program.amusementDensityAdjustment;
 
-            double speed = random.NextDouble() * 1.5 + 1.2;
-
-            bool isFloating;
-
-            if (level.Path == null && !IsExistClockworkToBuildOn(spritePopulation))
-                isFloating = true;
-            else
-                isFloating = random.NextDouble() > Program.recursiveAmusementStructureProbability;
-
             int amusementCount = (int)((double)(level.Size * density));
 
             for (int i = 0; i < amusementCount; i++)
-                AddAmusement(level, spritePopulation, waterInfo, speed, isFloating, random);
+            {
+                double speed = random.NextDouble() * 1.5 + 1.2;
+                bool isFloating = random.NextDouble() > Program.recursiveAmusementStructureProbability;
+                AddAmusement(level, spritePopulation, waterInfo, speed, isFloating, amusementIgnoreList, random);
+            }
         }
         #endregion
 
@@ -68,7 +63,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="speed">speed</param>
         /// <param name="random">random number generator</param>
         /// <param name="isFloating">true: structure is floating, false: structure is attached to something</param>
-        private static void AddAmusement(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, double speed, bool isFloating, Random random)
+        private static void AddAmusement(Level level, SpritePopulation spritePopulation, WaterInfo waterInfo, double speed, bool isFloating, HashSet<int> amusementIgnoreList, Random random)
         {
             AbstractBearing amusement;
 
@@ -84,22 +79,39 @@ namespace AbrahmanAdventure.sprites
             double tensionRatio;
 
             double supportHeight;
-            if (random.NextDouble() > 0.5)
+            if (random.NextDouble() > 0.333)
                 supportHeight = 0;
             else
-                supportHeight = random.NextDouble() * 2.5 + 1.5;
+                supportHeight = random.NextDouble() * 1.5 + 0.5;
 
             AbstractBearing parentStructure = null;
 
             if (!isFloating)
             {
                 parentStructure = GetRandomParentBearing(spritePopulation, random);
+                if (parentStructure == null)
+                    isFloating = true;
+            }
+
+            if (!isFloating)
+            {
                 xPosition = parentStructure.XPosition;
                 yPosition = parentStructure.YPosition;
             }
             else
             {
-                xPosition = (random.NextDouble() * level.Size) + level.LeftBound;
+                xPosition = 0;//will be reassigned soon
+                for (int i = 0; i < 100; i++)
+                {
+                    xPosition = (random.NextDouble() * level.Size) + level.LeftBound;
+                    int roundedXPosition = (int)(Math.Round(xPosition));
+                    if (PlatformDispatcher.GetClosestDistanceFromIgnoreListElement(roundedXPosition, amusementIgnoreList) < 14)
+                    {
+                        amusementIgnoreList.Add(roundedXPosition);
+                        break;
+                    }
+                }
+
                 yPosition = GetRandomYPosition(level, xPosition, random);
             }
 
@@ -113,7 +125,7 @@ namespace AbrahmanAdventure.sprites
                 if (isFloating)
                     yPosition -= radius;
 
-                amusement = new Pendulum(xPosition, yPosition, random, radius, speed, amplitude, false, supportHeight);
+                amusement = new Pendulum(xPosition, yPosition, random, radius, speed * 7, amplitude, false, supportHeight);
                 amusement.IsAffectedByGravity = false;
             }
             else if (amusementType == 1) //see saw
@@ -137,7 +149,7 @@ namespace AbrahmanAdventure.sprites
             }
             else //wheel
             {
-                radius = random.NextDouble() * 1.0 + 1.5;
+                radius = random.NextDouble() * 1.0 + 3.5;
                 platformCount = random.Next(1, 8);
                 radius *= ((double)platformCount / 3.0);
 
@@ -179,6 +191,13 @@ namespace AbrahmanAdventure.sprites
 
             if (parentStructure != null)
             {
+                if (!parentStructure.IsContainSubStructure)
+                {
+                    if (amusement is IWheel)
+                        parentStructure.YPosition -= ((IWheel)amusement).Radius;
+                    else if (amusement is Pendulum)
+                        parentStructure.YPosition -= ((Pendulum)amusement).Height;
+                }
                 parentStructure.AddChild(amusement);
             }
             else
@@ -254,21 +273,10 @@ namespace AbrahmanAdventure.sprites
                 if (sprite is AbstractBearing)
                     _parentBearingList.Add((AbstractBearing)sprite);
 
+            if (_parentBearingList.Count == 0)
+                return null;
+
             return _parentBearingList[random.Next(_parentBearingList.Count)];
-        }
-
-        /// <summary>
-        /// Whether sprite population contains structures on which we can add more structures
-        /// </summary>
-        /// <param name="spritePopulation">sprite population</param>
-        /// <returns>Whether sprite population contains structures on which we can add more structures</returns>
-        private static bool IsExistClockworkToBuildOn(SpritePopulation spritePopulation)
-        {
-            foreach (AbstractSprite sprite in spritePopulation.AllSpriteList)
-                if (sprite is AbstractBearing)
-                    return true;
-
-            return false;
         }
         #endregion
     }
