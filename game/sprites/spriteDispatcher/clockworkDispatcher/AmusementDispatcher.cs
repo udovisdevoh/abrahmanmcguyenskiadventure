@@ -134,6 +134,11 @@ namespace AbrahmanAdventure.sprites
                 platformCount = random.Next(2, 5);
                 radius *= ((double)platformCount / 3.0);
 
+
+                if (platformCount <= 2 && random.NextDouble() > 0.5)
+                    radius *= random.NextDouble() * 2 + 1;
+
+
                 if (platformCount != 2)
                     isShowCircumference = random.NextDouble() > 0.5;
 
@@ -152,6 +157,10 @@ namespace AbrahmanAdventure.sprites
                 radius = random.NextDouble() * 1.0 + 3.5;
                 platformCount = random.Next(1, 8);
                 radius *= ((double)platformCount / 3.0);
+
+
+                if (platformCount <= 2 && random.NextDouble() > 0.5)
+                    radius *= random.NextDouble() * 2 + 1;
 
                 if (platformCount != 2)
                     isShowCircumference = random.NextDouble() > 0.5;
@@ -191,7 +200,7 @@ namespace AbrahmanAdventure.sprites
 
             if (parentStructure != null)
             {
-                if (!parentStructure.IsContainSubStructure)
+                if (!parentStructure.IsContainSubStructure && parentStructure.IGround == null)
                 {
                     if (amusement is IWheel)
                         parentStructure.YPosition -= ((IWheel)amusement).Radius;
