@@ -54,6 +54,10 @@ namespace AbrahmanAdventure.sprites
             get { return childList; }
         }
 
+        public static void ClearBearingSurface()
+        {
+            bearingSurface = null;
+        }
 
         #region Public methods
         public void GenerateColoredPlatformSurface(Random random)

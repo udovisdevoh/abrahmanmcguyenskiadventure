@@ -25,7 +25,7 @@ namespace AbrahmanAdventure
 
         public const bool isShowMenuOnStart = true;
 
-        public const bool isHardwareSurface = true;
+        public const bool isHardwareSurface = false;
 
         public const bool isUseBottomTexture = true;
 
@@ -465,6 +465,7 @@ namespace AbrahmanAdventure
                 {
                     #region We regenerate game state because it is nonexistant or expired (changing environment)
                     Platform.ResetDefaultColorSurface();
+                    AbstractBearing.ClearBearingSurface();
                     SongPlayer.StopSync();
                     mainSurface.Fill(System.Drawing.Color.Black);
                     mainSurface.Update();

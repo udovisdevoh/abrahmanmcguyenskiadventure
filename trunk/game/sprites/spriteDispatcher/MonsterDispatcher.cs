@@ -52,6 +52,7 @@ namespace AbrahmanAdventure.sprites
             allPossibleDispatchableMonsterTypes.Add(new SnakeSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new KidSprite(0, 0, random));
             allPossibleDispatchableMonsterTypes.Add(new LawyerSprite(0, 0, random));
+            allPossibleDispatchableMonsterTypes.Add(new CarSprite(0, 0, random));
 
             __temporarySpriteList = new Dictionary<MonsterSprite,double>();
         }
