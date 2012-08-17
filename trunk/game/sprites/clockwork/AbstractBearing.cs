@@ -16,6 +16,8 @@ namespace AbrahmanAdventure.sprites
         private List<AbstractLinkage> childList = new List<AbstractLinkage>();
 
         private Color frameColor;
+
+        private bool isContainSubStructure = false;
         #endregion
 
         #region Override
@@ -42,6 +44,9 @@ namespace AbrahmanAdventure.sprites
             childComponent.IsAffectedByGravity = false;
             childList.Add(childComponent);
             childComponent._ParentNode = this;
+
+            if (childComponent is AbstractBearing)
+                isContainSubStructure = true;
         }
 
         public List<AbstractLinkage> ChildList
@@ -128,6 +133,11 @@ namespace AbrahmanAdventure.sprites
         {
             get { return frameColor; }
             set { frameColor = value; }
+        }
+
+        public bool IsContainSubStructure
+        {
+            get { return isContainSubStructure; }
         }
         #endregion
     }
