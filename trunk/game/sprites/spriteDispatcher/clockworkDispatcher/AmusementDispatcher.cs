@@ -136,7 +136,7 @@ namespace AbrahmanAdventure.sprites
 
 
                 if (platformCount <= 2 && random.NextDouble() > 0.5)
-                    radius *= random.NextDouble() * 2 + 1;
+                    radius *= (random.NextDouble() * 2 + 1.5);
 
 
                 if (platformCount != 2)
@@ -160,7 +160,7 @@ namespace AbrahmanAdventure.sprites
 
 
                 if (platformCount <= 2 && random.NextDouble() > 0.5)
-                    radius *= random.NextDouble() * 2 + 1;
+                    radius *= (random.NextDouble() * 2 + 1.5);
 
                 if (platformCount != 2)
                     isShowCircumference = random.NextDouble() > 0.5;
