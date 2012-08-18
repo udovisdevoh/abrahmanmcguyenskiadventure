@@ -213,12 +213,23 @@ namespace AbrahmanAdventure.hud
             {
                 mainSurface.Fill(System.Drawing.Color.Black);
 
-                mainSurface.Blit(GetFontText("Display (" + Video.VideoDriver + ")"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 5));
+                //VideoInfo.HasColorFills
+
+                mainSurface.Blit(GetFontText("Display (" + Video.VideoDriver + " " + VideoInfo.BitsPerPixel + " bits)"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 5));
+
+                mainSurface.Blit(GetFontText("Video memory: " + VideoInfo.VideoMemory / 1024), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 3));
+                mainSurface.Blit(GetFontText("Hardware: " + (Program.isHardwareSurface ? "yes" : "no")), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                mainSurface.Blit(GetFontText("Hardware surface: " + (VideoInfo.HasHardwareSurfaces ? "yes" : "no")), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 1));
+                mainSurface.Blit(GetFontText("Hardware blits: " + (VideoInfo.HasHardwareBlits ? "yes" : "no")), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 0));
+                mainSurface.Blit(GetFontText("Hardware alpha blits: " + (VideoInfo.HasHardwareAlphaBlits ? "yes" : "no")), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                mainSurface.Blit(GetFontText("Software alpha blits: " + (VideoInfo.HasSoftwareAlphaBlits ? "yes" : "no")), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                mainSurface.Blit(GetFontText("Color fills: " + (VideoInfo.HasColorFills ? "yes" : "no")), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));
+
 
                 if (program.GameState != null)
                 {
-                    mainSurface.Blit(GetFontText("The level will be restarted"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 3));
-                    mainSurface.Blit(GetFontText("if you change the resolution"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                    mainSurface.Blit(GetFontText("The level will be restarted"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 4));
+                    mainSurface.Blit(GetFontText("if you change the resolution"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 5));
                 }
 
                 string isFullScreenText = (Program.isFullScreen) ? "on" : "off";
@@ -229,10 +240,10 @@ namespace AbrahmanAdventure.hud
                 else if (Program.screenWidth == 1280 && Program.screenHeight == 720)
                     resolutionText = "720p HD";
 
-                mainSurface.Blit(GetFontText("Fullscreen: " + isFullScreenText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
-                mainSurface.Blit(GetFontText("Resolution: " + resolutionText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                mainSurface.Blit(GetFontText("Fullscreen: " + isFullScreenText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 6));
+                mainSurface.Blit(GetFontText("Resolution: " + resolutionText, System.Drawing.Color.Yellow), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
 
-                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(episodeMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY + (lineSpace * 6)));
             }
             else if (currentSubMenu == SubMenu.Audio)
             {

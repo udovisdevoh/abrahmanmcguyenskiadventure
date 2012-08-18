@@ -209,6 +209,9 @@ namespace AbrahmanAdventure
         #region Constructor
         public Program()
         {
+            /*if (System.Environment.OSVersion.Platform == PlatformID.Win32NT)
+                System.Environment.SetEnvironmentVariable("SDL_VIDEODRIVER", "directx");*/
+
             InitSurfaceViewPortRatioSettingsEtc();//Will affect mainSurface
             physics = new Physics();
             monsterAi = new MonsterAi();
@@ -224,8 +227,8 @@ namespace AbrahmanAdventure
             SongPlayer.PlayAsync();
 
             spriteBehaviorRandom = new Random();
-            seedNextGameState = new Random().Next();        
-            
+            seedNextGameState = new Random().Next();
+
             if (isFullScreen)
                 Cursor.Hide();
 
@@ -817,6 +820,7 @@ namespace AbrahmanAdventure
             tileRowCount = screenHeight / tileSize;
             maxViewOffsetY = totalHeightTileCount / 2.0 - (double)tileRowCount;
             zoneColumnWidthTileCount = (double)totalZoneWidth / (double)tileSize;
+
             mainSurface = Video.SetVideoMode(screenWidth, screenHeight, Program.bitDepth, false, false, isFullScreen, isHardwareSurface);
             Video.WindowCaption = "Abrahman McGuyenski's Adventure";
             HudViewer.InitCachedSurfaces();
