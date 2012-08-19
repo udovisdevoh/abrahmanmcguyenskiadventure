@@ -88,12 +88,6 @@ namespace AbrahmanAdventure.level
                 AddGround(new Ground(BuildGroundWave(random, false), random, colorTheme.GetColor(waveCount - groundId - 1), holeSet, false, false, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType));
 
 
-            #region We add a path for platforms and wheels
-            if (random.NextDouble() > 0.76)
-                path = new Ground(BuildGroundWave(random, true), random, Color.White, new HoleSet(random, 0, levelWidth, true), false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
-            #endregion
-
-
             if (Program.isEnableParallelTextureRendering)
             {
                 ParallelTextureRenderer parallelTextureRenderer = new ParallelTextureRenderer();
@@ -116,6 +110,11 @@ namespace AbrahmanAdventure.level
                 double lowestXPoint = IGroundHelper.GetLowestXPoint(ceiling, this, leftBound, rightBound, Program.addedDistanceBetweenHighestGroundAndCeilingIfAboveHole);
                 ceiling.CeilingHeight = Math.Abs(highestXPoint - lowestXPoint) + (double)random.Next(2, 5);
             }
+
+            #region We add a path for platforms and wheels
+            if (random.NextDouble() > 0.76)
+                path = new Ground(BuildGroundWave(random, true), random, Color.White, new HoleSet(random, 0, levelWidth, true), false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
+            #endregion
         }
         #endregion
 
