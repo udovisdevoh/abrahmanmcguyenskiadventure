@@ -271,10 +271,9 @@
     <Compile Include="game\joystick\JoystickManager.cs" />
     <Compile Include="game\GameState.cs" />
     <Compile Include="game\level\background\AbstractBackground.cs" />
+    <Compile Include="game\level\background\ColumnSet.cs" />
     <Compile Include="game\level\background\Wall.cs" />
     <Compile Include="game\level\Level.cs" />
-    <Compile Include="game\level\viewer\columnBased\LevelViewerColumnBased.cs" />
-    <Compile Include="game\level\viewer\columnBased\LevelViewerCacheColumnBased.cs" />
     <Compile Include="game\hud\GameMenu.cs" />
     <Compile Include="game\level\viewer\ILevelViewer.cs" />
     <Compile Include="game\level\viewer\squareBased\LevelViewerCacheSquareBased.cs" />
@@ -3000,6 +2999,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\muslim\muslimWalk2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\Cylinder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\Nebulae.png">

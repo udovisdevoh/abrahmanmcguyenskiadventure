@@ -60,17 +60,21 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="waterInfo">waterInfo</param>
-        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
+        /// <param name="column">column (1st parallax)</param>
+        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, /*ColumnSet column,*/ WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
             viewBackground(mainSurface, background, viewOffsetX, viewOffsetY);
+
+            /*if (column != null)
+                viewColumn(mainSurface, column);*/
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);
             int minTileY = GetMinZoneY(viewOffsetY);
             int maxTileY = GetMaxZoneY(viewOffsetY);
 
-            if (Program.screenHeight > 480)
-                maxTileX++;
+            /*if (Program.screenHeight > 480)
+                maxTileX++;*/
 
             for (int zoneX = minTileX; zoneX <= maxTileX; zoneX += Program.squareZoneTileWidth)
             {
@@ -452,6 +456,16 @@ namespace AbrahmanAdventure.level
                 mainSurface.Blit(background.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt - Program.screenHeight), background.Surface.GetRectangle());
             }
         }
+
+        /// <summary>
+        /// View column
+        /// </summary>
+        /// <param name="mainSurface">surface to draw on</param>
+        /// <param name="column">column</param>
+        /*private void viewColumn(Surface mainSurface, ColumnSet column)
+        {
+            mainSurface.Blit(column.Surface, new Point(0, 0));
+        }*/
         #endregion
     }
 }

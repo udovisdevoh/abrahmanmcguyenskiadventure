@@ -774,7 +774,7 @@ namespace AbrahmanAdventure
                 #endregion
 
                 #region We update the viewers
-                levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.WaterInfo, viewOffsetX, viewOffsetY);
+                levelViewer.Update(level, gameState.ColorTheme, gameState.Background/*, gameState.Column*/, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 vectorViewer.Update(viewOffsetX, viewOffsetY);
                 if (Program.isShowHealthBar)
@@ -812,6 +812,12 @@ namespace AbrahmanAdventure
             screenHeight = PersistentConfig.ScreenHeight;
             tileColumnCount = (int)Math.Round(20.0 / (640.0 / 480.0) * ((double)screenWidth / (double)screenHeight)); //20 for 4/3 screen
             tileSize = screenWidth / tileColumnCount;
+            if (tileSize == 35)
+                tileSize = 36;
+            else if (tileSize == 47)
+                tileSize = 48;
+            else if (tileSize == 71)
+                tileSize = 72;
             totalZoneWidth = (int)(Program.zoneWidthScreenCount * Program.screenWidth);
             totalZoneHeight = Program.zoneHeightScreenCount * Program.screenHeight;
             terrainColumnBufferRightCount = (int)(1.1 / zoneWidthScreenCount);
