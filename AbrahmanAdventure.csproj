@@ -471,7 +471,7 @@
     <Content Include="assets\rendered\1080\abrahman\bodhiCrouchedHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\1080\abrahman\bodhiCrouchedPunch1.png">
+    <Content Include="assets\rendered\1080\abrahman\bodhiCrouchedPunch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\1080\abrahman\bodhiHit.png">
@@ -480,7 +480,19 @@
     <Content Include="assets\rendered\1080\abrahman\bodhiKick1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\1080\abrahman\bodhiPunch1.png">
+    <Content Include="assets\rendered\1080\abrahman\bodhiPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\bodhiPunch3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\bodhiPunch6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\bodhiPunch8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\1080\abrahman\bodhiPunch9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\1080\abrahman\bodhiStand.png">
@@ -1428,7 +1440,7 @@
     <Content Include="assets\rendered\480\abrahman\bodhiCrouchedHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\480\abrahman\bodhiCrouchedPunch1.png">
+    <Content Include="assets\rendered\480\abrahman\bodhiCrouchedPunch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\abrahman\bodhiHit.png">
@@ -1437,7 +1449,19 @@
     <Content Include="assets\rendered\480\abrahman\bodhiKick1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\480\abrahman\bodhiPunch1.png">
+    <Content Include="assets\rendered\480\abrahman\bodhiPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\480\abrahman\bodhiPunch3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\480\abrahman\bodhiPunch6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\480\abrahman\bodhiPunch8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\480\abrahman\bodhiPunch9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\480\abrahman\bodhiStand.png">
@@ -1483,7 +1507,7 @@
     <Content Include="assets\rendered\720\abrahman\bodhiCrouchedHit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\720\abrahman\bodhiCrouchedPunch1.png">
+    <Content Include="assets\rendered\720\abrahman\bodhiCrouchedPunch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\720\abrahman\bodhiHit.png">
@@ -1492,7 +1516,19 @@
     <Content Include="assets\rendered\720\abrahman\bodhiKick1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\rendered\720\abrahman\bodhiPunch1.png">
+    <Content Include="assets\rendered\720\abrahman\bodhiPunch2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\bodhiPunch3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\bodhiPunch6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\bodhiPunch8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\rendered\720\abrahman\bodhiPunch9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\rendered\720\abrahman\bodhiStand.png">
