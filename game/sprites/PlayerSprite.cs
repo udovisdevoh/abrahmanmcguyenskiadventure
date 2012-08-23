@@ -810,6 +810,11 @@ namespace AbrahmanAdventure.sprites
         private bool isNinja = false;
 
         /// <summary>
+        /// Whether sprite is currently a bodhi
+        /// </summary>
+        private bool isBodhi = false;
+
+        /// <summary>
         /// Whether sprite is currently trying to throw a fire ball
         /// </summary>
         private bool isTryThrowingBall = false;
@@ -4606,6 +4611,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isNinja; }
             set { isNinja = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently a bodhi
+        /// </summary>
+        public bool IsBodhi
+        {
+            get { return isBodhi; }
+            set { isBodhi = value; }
         }
 
         /// <summary>

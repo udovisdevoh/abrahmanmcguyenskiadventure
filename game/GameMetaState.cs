@@ -42,6 +42,11 @@ namespace AbrahmanAdventure
         private bool isNinja = false;
 
         /// <summary>
+        /// Whether sprite is currently a bodhi
+        /// </summary>
+        private bool isBodhi = false;
+
+        /// <summary>
         /// Skill level for unexplored levels
         /// </summary>
         private int skillLevelForUnknownLevels;
@@ -82,6 +87,7 @@ namespace AbrahmanAdventure
             isTiny = playerSprite.IsTiny;
             isBeaver = playerSprite.IsBeaver;
             isNinja = playerSprite.IsNinja;
+            isBodhi = playerSprite.IsBodhi;
             health = playerSprite.Health;
         }
 
@@ -96,6 +102,7 @@ namespace AbrahmanAdventure
             playerSprite.IsTiny = isTiny;
             playerSprite.IsBeaver = isBeaver;
             playerSprite.IsNinja = isNinja;
+            playerSprite.IsBodhi = isBodhi;
             playerSprite.Health = health;
         }
         
@@ -200,6 +207,15 @@ namespace AbrahmanAdventure
         {
             get { return isNinja; }
             set { isNinja = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently bodhi
+        /// </summary>
+        public bool IsBodhi
+        {
+            get { return isBodhi; }
+            set { isBodhi = value; }
         }
 
         /// <summary>
