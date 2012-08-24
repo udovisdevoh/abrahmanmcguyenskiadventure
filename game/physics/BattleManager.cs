@@ -43,6 +43,11 @@ namespace AbrahmanAdventure.physics
                     powerUpManager.UpdateTouchRastaHat(playerSprite, (RastaHatSprite)otherSprite);
                     break;
                 }
+                else if (otherSprite is BuddhaSprite && playerSprite.IsBeaver)
+                {
+                    powerUpManager.UpdateTouchBuddha(playerSprite, (BuddhaSprite)otherSprite);
+                    break;
+                }
                 else if (otherSprite is PeyoteSprite && playerSprite.IsBeaver)
                 {
                     powerUpManager.UpdateTouchPeyote(playerSprite, (PeyoteSprite)otherSprite);

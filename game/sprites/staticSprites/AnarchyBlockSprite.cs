@@ -219,7 +219,14 @@ namespace AbrahmanAdventure.sprites
                 case BlockContent.Whisky:
                     return new WhiskySprite(XPosition, TopBound, random);
                 case BlockContent.RastaHat:
-                    if (playerSprite.IsDoped || playerSprite.IsRasta || playerSprite.IsNinja)
+                    if (playerSprite.IsNinja)
+                    {
+                        BuddhaSprite buddhaSprite = new BuddhaSprite(XPosition, TopBound, random);
+                        buddhaSprite.JumpingCycle.Fire();
+                        buddhaSprite.CurrentJumpAcceleration = buddhaSprite.StartingJumpAcceleration;
+                        return buddhaSprite;
+                    }
+                    else if (playerSprite.IsDoped || playerSprite.IsRasta)
                     {
                         BandanaSprite bandanaSprite = new BandanaSprite(XPosition, TopBound, random);
                         return bandanaSprite;
@@ -256,7 +263,14 @@ namespace AbrahmanAdventure.sprites
                     vineSprite.Height = 0.0;
                     return vineSprite;
                 default: //Peyote
-                    if (playerSprite.IsDoped || playerSprite.IsRasta || playerSprite.IsNinja)
+                    if (playerSprite.IsNinja)
+                    {
+                        BuddhaSprite buddhaSprite = new BuddhaSprite(XPosition, TopBound, random);
+                        buddhaSprite.JumpingCycle.Fire();
+                        buddhaSprite.CurrentJumpAcceleration = buddhaSprite.StartingJumpAcceleration;
+                        return buddhaSprite;
+                    }
+                    else if (playerSprite.IsDoped || playerSprite.IsRasta)
                     {
                         BandanaSprite bandanaSprite = new BandanaSprite(XPosition, TopBound, random);
                         return bandanaSprite;

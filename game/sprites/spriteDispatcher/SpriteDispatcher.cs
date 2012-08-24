@@ -93,6 +93,7 @@ namespace AbrahmanAdventure.sprites
             CornSprite cornSprite = new CornSprite(0, 0, spriteCachingRandom);
             BandanaSprite bandanaSprite = new BandanaSprite(0, 0, spriteCachingRandom);
             ShurikenSprite shurikenSprite = new ShurikenSprite(0, 0, spriteCachingRandom);
+            BuddhaSprite buddhaSprite = new BuddhaSprite(0, 0, spriteCachingRandom);
         }
         #endregion
     }

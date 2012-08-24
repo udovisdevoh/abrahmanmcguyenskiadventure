@@ -3569,6 +3569,7 @@ namespace AbrahmanAdventure.sprites
             isDoped = false;
             isBeaver = false;
             isNinja = false;
+            isBodhi = false;
             Health = 0.5;
         }
         #endregion

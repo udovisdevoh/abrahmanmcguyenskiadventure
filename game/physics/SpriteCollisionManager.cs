@@ -96,6 +96,10 @@ namespace AbrahmanAdventure.physics
                 {
                     powerUpManager.UpdateTouchRastaHat((PlayerSprite)sprite, (RastaHatSprite)otherSprite);
                 }
+                else if (sprite is PlayerSprite && otherSprite is BuddhaSprite && otherSprite.IsAlive)
+                {
+                    powerUpManager.UpdateTouchBuddha((PlayerSprite)sprite, (BuddhaSprite)otherSprite);
+                }
                 else if (sprite is PlayerSprite && otherSprite is BandanaSprite && otherSprite.IsAlive)
                 {
                     powerUpManager.UpdateTouchBandana((PlayerSprite)sprite, (BandanaSprite)otherSprite);
@@ -241,7 +245,12 @@ namespace AbrahmanAdventure.physics
                 playerSprite.IsDoped = false;
             if (playerSprite.IsRasta)
                 playerSprite.IsRasta = false;
-            if (playerSprite.IsNinja)
+            if (playerSprite.IsBodhi)
+            {
+                playerSprite.IsBodhi = false;
+                playerSprite.IsNinja = true;
+            }
+            else if (playerSprite.IsNinja)
             {
                 playerSprite.IsNinja = false;
                 /*if (SongPlayer.IRiff != gameState.Song)
