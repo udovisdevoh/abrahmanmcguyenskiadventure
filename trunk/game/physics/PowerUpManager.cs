@@ -70,6 +70,22 @@ namespace AbrahmanAdventure.physics
             rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
+        internal void UpdateTouchBuddha(PlayerSprite playerSprite, BuddhaSprite buddhaSprite)
+        {
+            SoundManager.PlayEnlightenmentSound();
+            playerSprite.PowerUpAnimationCycle.Fire();
+            if (playerSprite.IsTiny)
+                playerSprite.ChangingSizeAnimationCycle.Fire();
+            playerSprite.Health = playerSprite.MaxHealth;
+            playerSprite.IsTiny = false;
+            playerSprite.IsDoped = false;
+            playerSprite.IsRasta = false;
+            playerSprite.IsNinja = false;
+            playerSprite.IsBodhi = true;
+            buddhaSprite.IsAlive = false;
+            buddhaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+
         /// <summary>
         /// Touch ninja bandana
         /// </summary>

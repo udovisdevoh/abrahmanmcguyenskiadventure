@@ -90,6 +90,8 @@ namespace AbrahmanAdventure.audio
         private static Sound nunchakuSound;
 
         private static Sound catchSound;
+
+        private static Sound enlightenmentSound;
         #endregion
 
         #region Constructors
@@ -135,6 +137,7 @@ namespace AbrahmanAdventure.audio
             goreSound = LoadSound("./assets/sounds/Gore.ogg");
             swordSound = LoadSound("./assets/sounds/Sword.ogg");
             nunchakuSound = LoadSound("./assets/sounds/Nunchaku.ogg");
+            enlightenmentSound = LoadSound("./assets/sounds/Enlightenment.ogg");
             
             catchSound = LoadSound("./assets/sounds/Catch.ogg");
             catchSound.Volume = 56;
@@ -349,6 +352,11 @@ namespace AbrahmanAdventure.audio
         internal static void PlayCatchSound()
         {
             catchSound.Play();
+        }
+
+        internal static void PlayEnlightenmentSound()
+        {
+            enlightenmentSound.Play();
         }
         #endregion
 
