@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Become enlightened.";
+        private const string tutorialComment = "Throw fireball, charged fireball, make air jumps.";
         #endregion
 
         #region Constructors
