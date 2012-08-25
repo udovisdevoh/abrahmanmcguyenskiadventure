@@ -79,6 +79,19 @@ namespace AbrahmanAdventure.physics
                             sprite.IClimbingOn = null;
                     }
                 }
+                else if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBodhi && sprite.CurrentJumpAcceleration <= 0 && sprite.IClimbingOn == null)
+                {
+                    if (!sprite.IsNeedToJumpAgain && sprite.IsAlive)
+                    {
+                        sprite.JumpingCycle.Reset();
+                        sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration;
+                        sprite.IGround = null;
+                        sprite.IsNeedToJumpAgain = true;
+                        SoundManager.PlayBodhiJumpSound();
+                        if (sprite.IClimbingOn != null && sprite.IClimbingOn is LianaSprite)
+                            sprite.IClimbingOn = null;
+                    }
+                }
                 else if (sprite.IGround != null)
                 {
                     sprite.JumpingCycle.Reset();

@@ -92,6 +92,20 @@ namespace AbrahmanAdventure.audio
         private static Sound catchSound;
 
         private static Sound enlightenmentSound;
+
+        private static Sound bodhiJumpSound;
+
+        private static Sound bodhiJumpSound2;
+
+        private static Sound bodhiJumpSound3;
+
+        private static Sound bodhiJumpSound4;
+
+        private static Sound bodhiJumpSound5;
+
+        private static Random random = new Random();
+
+        private static int bodhiJumpSoundRandomIndex = 0;
         #endregion
 
         #region Constructors
@@ -138,7 +152,12 @@ namespace AbrahmanAdventure.audio
             swordSound = LoadSound("./assets/sounds/Sword.ogg");
             nunchakuSound = LoadSound("./assets/sounds/Nunchaku.ogg");
             enlightenmentSound = LoadSound("./assets/sounds/Enlightenment.ogg");
-            
+            bodhiJumpSound = LoadSound("./assets/sounds/BodhiJump.ogg");
+            bodhiJumpSound2 = LoadSound("./assets/sounds/BodhiJump2.ogg");
+            bodhiJumpSound3 = LoadSound("./assets/sounds/BodhiJump3.ogg");
+            bodhiJumpSound4 = LoadSound("./assets/sounds/BodhiJump4.ogg");
+            bodhiJumpSound5 = LoadSound("./assets/sounds/BodhiJump5.ogg");
+
             catchSound = LoadSound("./assets/sounds/Catch.ogg");
             catchSound.Volume = 56;
         }
@@ -357,6 +376,31 @@ namespace AbrahmanAdventure.audio
         internal static void PlayEnlightenmentSound()
         {
             enlightenmentSound.Play();
+        }
+
+        internal static void PlayBodhiJumpSound()
+        {
+            bodhiJumpSoundRandomIndex = random.Next(0, 5);
+
+            switch (bodhiJumpSoundRandomIndex)
+            {
+                case 1:
+                    bodhiJumpSound2.Play();
+                    break;
+                case 2:
+                    bodhiJumpSound3.Play();
+                    break;
+                case 3:
+                    bodhiJumpSound4.Play();
+                    break;
+                case 4:
+                    bodhiJumpSound5.Play();
+                    break;
+                default:
+                    bodhiJumpSound.Play();
+                    break;
+
+            }
         }
         #endregion
 
