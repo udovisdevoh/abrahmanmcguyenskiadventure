@@ -22,7 +22,8 @@ namespace AbrahmanAdventure.physics
             {
                 Platform platform = (Platform)lianaSprite.AttachedToIGround;
                 lianaSprite.TopBound = platform.YPosition;
-                lianaSprite.XPosition += platform.LastDistanceX;
+                if (platform.ElevatorCycle == null) //if platform is not an elevator
+                    lianaSprite.XPosition += platform.LastDistanceX;
 
                 if (playerSpriteReference.IClimbingOn == lianaSprite)
                     playerSpriteReference.YPosition += platform.LastDistanceY;
