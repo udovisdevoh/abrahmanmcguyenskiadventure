@@ -237,7 +237,7 @@ namespace AbrahmanAdventure.physics
 
         private void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, GameState gameState)
         {
-            if (!playerSprite.IsTiny && !playerSprite.IsNinja)
+            if (!playerSprite.IsTiny && !playerSprite.IsNinja && !playerSprite.IsBodhi)
                 ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
 
             SoundManager.PlayHit2Sound();
