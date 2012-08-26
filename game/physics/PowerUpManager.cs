@@ -45,6 +45,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsTiny = false;
             playerSprite.IsRasta = false;
             playerSprite.IsDoped = true;
+            playerSprite.IsBodhi = false;
             playerSprite.IsNinja = false;
             peyoteSprite.IsAlive = false;
             peyoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
@@ -66,6 +67,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsDoped = false;
             playerSprite.IsRasta = true;
             playerSprite.IsNinja = false;
+            playerSprite.IsBodhi = false;
             rastaHatSprite.IsAlive = false;
             rastaHatSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
@@ -101,6 +103,7 @@ namespace AbrahmanAdventure.physics
             playerSprite.IsTiny = false;
             playerSprite.IsDoped = false;
             playerSprite.IsRasta = false;
+            playerSprite.IsBodhi = false;
             playerSprite.IsNinja = true;
             bandanaSprite.IsAlive = false;
             bandanaSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down

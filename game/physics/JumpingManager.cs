@@ -79,7 +79,7 @@ namespace AbrahmanAdventure.physics
                             sprite.IClimbingOn = null;
                     }
                 }
-                else if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBodhi && sprite.CurrentJumpAcceleration <= 0 && sprite.IClimbingOn == null)
+                else if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBodhi && sprite.CurrentJumpAcceleration <= 0 && sprite.IClimbingOn == null && !sprite.IsCrouch)
                 {
                     if (!sprite.IsNeedToJumpAgain && sprite.IsAlive)
                     {
