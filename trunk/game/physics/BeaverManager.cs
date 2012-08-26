@@ -56,7 +56,7 @@ namespace AbrahmanAdventure.physics
             if (beaverSprite.IGround == null)
                 beaverSprite.IsCurrentlyInFreeFallX = true;
 
-            if (playerSprite.IsNinja)
+            if (playerSprite.IsNinja || playerSprite.IsBodhi)
             {
                 if (playerSprite.LatestNinjaBeaver != null)
                     RemoveNinjaStatusFromBeaver(playerSprite.LatestNinjaBeaver);

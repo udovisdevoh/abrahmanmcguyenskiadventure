@@ -219,7 +219,7 @@ namespace AbrahmanAdventure.sprites
                 case BlockContent.Whisky:
                     return new WhiskySprite(XPosition, TopBound, random);
                 case BlockContent.RastaHat:
-                    if (playerSprite.IsNinja)
+                    if (playerSprite.IsNinja || playerSprite.IsBodhi)
                     {
                         BuddhaSprite buddhaSprite = new BuddhaSprite(XPosition, TopBound, random);
                         buddhaSprite.JumpingCycle.Fire();
@@ -263,7 +263,7 @@ namespace AbrahmanAdventure.sprites
                     vineSprite.Height = 0.0;
                     return vineSprite;
                 default: //Peyote
-                    if (playerSprite.IsNinja)
+                    if (playerSprite.IsNinja || playerSprite.IsBodhi)
                     {
                         BuddhaSprite buddhaSprite = new BuddhaSprite(XPosition, TopBound, random);
                         buddhaSprite.JumpingCycle.Fire();

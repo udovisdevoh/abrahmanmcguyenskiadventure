@@ -732,10 +732,10 @@ namespace AbrahmanAdventure
                             beaverManager.LeaveBeaver(playerSprite, spritePopulation);
                             playerSprite.IsNeedToPressThrowNinjaRopeAgain = true;
                         }
-                        else if (playerSprite.IsNinja && !playerSprite.IsNeedToPressThrowNinjaRopeAgain)
+                        else if ((playerSprite.IsNinja || playerSprite.IsBodhi) && !playerSprite.IsNeedToPressThrowNinjaRopeAgain)
                             playerSprite.IsTryThrowNinjaRope = true;
                     }
-                    else if (userInput.isPressThrowRope && playerSprite.IsNinja)
+                    else if (userInput.isPressThrowRope && (playerSprite.IsNinja || playerSprite.IsBodhi))
                     {
                         if (!playerSprite.IsNeedToPressThrowNinjaRopeAgain)
                         {
