@@ -850,7 +850,7 @@ namespace AbrahmanAdventure.sprites
             changingSizeAnimationCycle = new Cycle(20, false);
             throwBallCycle = new Cycle(2.5, false);
             invincibilityCycle = new Cycle(400, false);
-            fromVortexCycle = new Cycle(15, false);
+            fromVortexCycle = new Cycle(22, false);
             ninjaFlipCycle = new Cycle(15, true);
             nunchakuCycle = new Cycle(7, true);
 
