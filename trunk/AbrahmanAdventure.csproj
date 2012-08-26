@@ -293,6 +293,8 @@
     <Compile Include="game\sprites\clockwork\SeeSaw.cs" />
     <Compile Include="game\sprites\monsters\CarSprite.cs" />
     <Compile Include="game\sprites\powerups\BuddhaSprite.cs" />
+    <Compile Include="game\sprites\projectiles\IAngleProjectile.cs" />
+    <Compile Include="game\sprites\projectiles\KiBallSprite.cs" />
     <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\VehicleDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\PlatformDispatcher.cs" />
     <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\AmusementDispatcher.cs" />
@@ -471,6 +473,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="assets\sounds\Enlightenment.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\sounds\KiCharged.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\sounds\KiCharging.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

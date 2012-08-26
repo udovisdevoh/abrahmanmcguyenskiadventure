@@ -669,6 +669,10 @@ namespace AbrahmanAdventure.sprites
                 else
                     return width;
             }
+            set
+            {
+                width = value;
+            }
         }
 
         /// <summary>
