@@ -759,6 +759,114 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface rastaFlyCrouchedDopedLeft;
 
+        
+        
+        private static Surface bodhiStandLeft;
+
+        private static Surface bodhiWalk1Left;
+
+        private static Surface bodhiWalk2Left;
+
+        private static Surface bodhiHitLeft;
+
+        private static Surface bodhiCrouchedLeft;
+
+        private static Surface bodhiCrouchedHitLeft;
+
+        private static Surface bodhiCrouchedPunchLeft;
+
+        private static Surface bodhiKick1Left;
+
+        private static Surface bodhiPunch2Left;
+
+        private static Surface bodhiPunch3Left;
+
+        private static Surface bodhiPunch6Left;
+
+        private static Surface bodhiPunch8Left;
+
+        private static Surface bodhiPunch9Left;
+
+        private static Surface bodhiStandLeftDoped;
+
+        private static Surface bodhiWalk1LeftDoped;
+
+        private static Surface bodhiWalk2LeftDoped;
+
+        private static Surface bodhiHitLeftDoped;
+
+        private static Surface bodhiCrouchedLeftDoped;
+
+        private static Surface bodhiCrouchedHitLeftDoped;
+
+        private static Surface bodhiCrouchedPunchLeftDoped;
+
+        private static Surface bodhiKick1LeftDoped;
+
+        private static Surface bodhiPunch2LeftDoped;
+
+        private static Surface bodhiPunch3LeftDoped;
+
+        private static Surface bodhiPunch6LeftDoped;
+
+        private static Surface bodhiPunch8LeftDoped;
+
+        private static Surface bodhiPunch9LeftDoped;
+
+        private static Surface bodhiStandRight;
+
+        private static Surface bodhiWalk1Right;
+
+        private static Surface bodhiWalk2Right;
+
+        private static Surface bodhiHitRight;
+
+        private static Surface bodhiCrouchedRight;
+
+        private static Surface bodhiCrouchedHitRight;
+
+        private static Surface bodhiCrouchedPunchRight;
+
+        private static Surface bodhiKick1Right;
+
+        private static Surface bodhiPunch2Right;
+
+        private static Surface bodhiPunch3Right;
+
+        private static Surface bodhiPunch6Right;
+
+        private static Surface bodhiPunch8Right;
+
+        private static Surface bodhiPunch9Right;
+
+        private static Surface bodhiStandRightDoped;
+
+        private static Surface bodhiWalk1RightDoped;
+
+        private static Surface bodhiWalk2RightDoped;
+
+        private static Surface bodhiHitRightDoped;
+
+        private static Surface bodhiCrouchedRightDoped;
+
+        private static Surface bodhiCrouchedHitRightDoped;
+
+        private static Surface bodhiCrouchedPunchRightDoped;
+
+        private static Surface bodhiKick1RightDoped;
+
+        private static Surface bodhiPunch2RightDoped;
+
+        private static Surface bodhiPunch3RightDoped;
+
+        private static Surface bodhiPunch6RightDoped;
+
+        private static Surface bodhiPunch8RightDoped;
+
+        private static Surface bodhiPunch9RightDoped;
+
+
+
         /// <summary>
         /// Tutorial's comment
         /// </summary>
@@ -977,6 +1085,69 @@ namespace AbrahmanAdventure.sprites
                 crouchedNinjaDopedHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/crouchedHitNinjaDoped.png");
                 standingNinjaRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/standNinja.png");
                 standingNinjaDopedRightSurface = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/standNinjaDoped.png");
+
+
+
+
+
+
+                bodhiStandRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiStand.png");
+                bodhiWalk1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk1.png");
+                bodhiWalk2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk2.png");
+                bodhiCrouchedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiCrouched.png");
+                bodhiHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiHit.png");
+                bodhiCrouchedHitRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiCrouchedHit.png");
+                bodhiCrouchedPunchRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiCrouchedPunch.png");
+                bodhiKick1Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiKick1.png");
+                bodhiPunch2Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch2.png");
+                bodhiPunch3Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch3.png");
+                bodhiPunch6Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch6.png");
+                bodhiPunch9Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch9.png");
+                bodhiPunch8Right = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch8.png");
+                bodhiStandLeft = bodhiStandRight.CreateFlippedHorizontalSurface();
+                bodhiWalk1Left = bodhiWalk1Right.CreateFlippedHorizontalSurface();
+                bodhiWalk2Left = bodhiWalk2Right.CreateFlippedHorizontalSurface();
+                bodhiCrouchedLeft = bodhiCrouchedRight.CreateFlippedHorizontalSurface();
+                bodhiHitLeft = bodhiHitRight.CreateFlippedHorizontalSurface();
+                bodhiCrouchedHitLeft = bodhiCrouchedHitRight.CreateFlippedHorizontalSurface();
+                bodhiCrouchedPunchLeft = bodhiCrouchedPunchRight.CreateFlippedHorizontalSurface();
+                bodhiKick1Left = bodhiKick1Right.CreateFlippedHorizontalSurface();
+                bodhiPunch2Left = bodhiPunch2Right.CreateFlippedHorizontalSurface();
+                bodhiPunch3Left = bodhiPunch3Right.CreateFlippedHorizontalSurface();
+                bodhiPunch6Left = bodhiPunch6Right.CreateFlippedHorizontalSurface();
+                bodhiPunch9Left = bodhiPunch9Right.CreateFlippedHorizontalSurface();
+                bodhiPunch8Left = bodhiPunch8Right.CreateFlippedHorizontalSurface();
+
+                bodhiStandRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiStandDoped.png");
+                bodhiWalk1RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk1Doped.png");
+                bodhiWalk2RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk2Doped.png");
+                bodhiCrouchedRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiCrouchedDoped.png");
+                bodhiHitRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiHitDoped.png");
+                bodhiCrouchedHitRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiCrouchedHitDoped.png");
+                bodhiCrouchedPunchRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiCrouchedPunchDoped.png");
+                bodhiKick1RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiKick1Doped.png");
+                bodhiPunch2RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch2Doped.png");
+                bodhiPunch3RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch3Doped.png");
+                bodhiPunch6RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch6Doped.png");
+                bodhiPunch9RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch9Doped.png");
+                bodhiPunch8RightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiPunch8Doped.png");
+                bodhiStandLeftDoped = bodhiStandRightDoped.CreateFlippedHorizontalSurface();
+                bodhiWalk1LeftDoped = bodhiWalk1RightDoped.CreateFlippedHorizontalSurface();
+                bodhiWalk2LeftDoped = bodhiWalk2RightDoped.CreateFlippedHorizontalSurface();
+                bodhiCrouchedLeftDoped = bodhiCrouchedRightDoped.CreateFlippedHorizontalSurface();
+                bodhiHitLeftDoped = bodhiHitRightDoped.CreateFlippedHorizontalSurface();
+                bodhiCrouchedHitLeftDoped = bodhiCrouchedHitRightDoped.CreateFlippedHorizontalSurface();
+                bodhiCrouchedPunchLeftDoped = bodhiCrouchedPunchRightDoped.CreateFlippedHorizontalSurface();
+                bodhiKick1LeftDoped = bodhiKick1RightDoped.CreateFlippedHorizontalSurface();
+                bodhiPunch2LeftDoped = bodhiPunch2RightDoped.CreateFlippedHorizontalSurface();
+                bodhiPunch3LeftDoped = bodhiPunch3RightDoped.CreateFlippedHorizontalSurface();
+                bodhiPunch6LeftDoped = bodhiPunch6RightDoped.CreateFlippedHorizontalSurface();
+                bodhiPunch9LeftDoped = bodhiPunch9RightDoped.CreateFlippedHorizontalSurface();
+                bodhiPunch8LeftDoped = bodhiPunch8RightDoped.CreateFlippedHorizontalSurface();
+
+
+                
+
 
                 beaverStandTallLeft = beaverStandTallRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallLeft = beaverWalkTallRight.CreateFlippedHorizontalSurface();

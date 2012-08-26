@@ -550,7 +550,10 @@ namespace AbrahmanAdventure
                                 playerSprite.YPosition = playerSprite.IGround[playerSprite.XPosition];
 
                             if (playerSprite.IGround == null) //play sound if jump down was a success
+                            {
+                                playerSprite.IsNeedToJumpAgain = true;
                                 SoundManager.PlayJumpDownSound();
+                            }
                         }
                         else
                         {
