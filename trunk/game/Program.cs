@@ -648,7 +648,7 @@ namespace AbrahmanAdventure
                     if (playerSprite.IsAlive)
                     {
                         playerSprite.IsRunning = userInput.isPressAttack;
-                        if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
+                        if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk || playerSprite.IGround == null))
                         {
                             gameState.IsPlayerReady = true;
                             previousDateTime = DateTime.Now;
@@ -661,7 +661,7 @@ namespace AbrahmanAdventure
                             playerSprite.IsTryingToSlide = false;
                             #endregion
                         }
-                        else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk))
+                        else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk || playerSprite.IGround == null))
                         {
                             gameState.IsPlayerReady = true;
                             previousDateTime = DateTime.Now;
