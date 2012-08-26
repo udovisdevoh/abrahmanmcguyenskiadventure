@@ -686,7 +686,7 @@ namespace AbrahmanAdventure
                             if (playerSprite.IGround != null && !playerSprite.AttackingCycle.IsFired && !playerSprite.IsBeaver)
                             {
                                 double rightSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, Program.collisionDetectionResolution, true);
-                                if (rightSlope > 0.125 && (!playerSprite.IsTryingToSlide || playerSprite.IsTryingToWalkRight))
+                                if (rightSlope > 0.125 && playerSprite.IsTryingToWalkRight)
                                 {
                                     playerSprite.IsTryingToWalk = true;
                                     playerSprite.IsTryingToWalkRight = true;
@@ -695,7 +695,7 @@ namespace AbrahmanAdventure
                                 else
                                 {
                                     double leftSlope = Physics.GetSlopeRatio(playerSprite, playerSprite.IGround, -Program.collisionDetectionResolution, false);
-                                    if (leftSlope > 0.125 && (!playerSprite.IsTryingToSlide || !playerSprite.IsTryingToWalkRight))
+                                    if (leftSlope > 0.125 && !playerSprite.IsTryingToWalkRight)
                                     {
                                         playerSprite.IsTryingToWalk = true;
                                         playerSprite.IsTryingToWalkRight = false;
