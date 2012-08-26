@@ -1290,40 +1290,75 @@ namespace AbrahmanAdventure.sprites
             #region We preload the textures that use lazy initialization
             GetDeadSurface();
 
-            GetWalking1RightSurface(false, false, false);
-            GetWalking1RightSurface(true, false, false);
-            GetWalking1RightSurface(false, true, false);
-            GetWalking1RightSurface(true, true, false);
-            GetWalking2RightSurface(false, false, false);
-            GetWalking2RightSurface(true, false, false);
-            GetWalking2RightSurface(false, true, false);
-            GetWalking2RightSurface(true, true, false);
-            GetWalking1LeftSurface(false, false,false);
-            GetWalking1LeftSurface(true, false, false);
-            GetWalking1LeftSurface(false, true, false);
-            GetWalking1LeftSurface(true, true, false);
-            GetWalking2LeftSurface(false, false, false);
-            GetWalking2LeftSurface(true, false, false);
-            GetWalking2LeftSurface(false, true, false);
-            GetWalking2LeftSurface(true, true, false);
+            GetWalking1RightSurface(false, false, false, false);
+            GetWalking1RightSurface(true, false, false, false);
+            GetWalking1RightSurface(false, true, false, false);
+            GetWalking1RightSurface(true, true, false, false);
+            GetWalking1RightSurface(false, false, false, true);
+            GetWalking1RightSurface(true, false, false, true);
+            GetWalking1RightSurface(false, true, false, true);
+            GetWalking1RightSurface(true, true, false, true);
+            GetWalking2RightSurface(false, false, false, false);
+            GetWalking2RightSurface(true, false, false, false);
+            GetWalking2RightSurface(false, true, false, false);
+            GetWalking2RightSurface(true, true, false, false);
+            GetWalking2RightSurface(false, false, false, true);
+            GetWalking2RightSurface(true, false, false, true);
+            GetWalking2RightSurface(false, true, false, true);
+            GetWalking2RightSurface(true, true, false, true);
+            GetWalking1LeftSurface(false, false,false, false);
+            GetWalking1LeftSurface(true, false, false, false);
+            GetWalking1LeftSurface(false, true, false, false);
+            GetWalking1LeftSurface(true, true, false, false);
+            GetWalking1LeftSurface(false, false, false, true);
+            GetWalking1LeftSurface(true, false, false, true);
+            GetWalking1LeftSurface(false, true, false, true);
+            GetWalking1LeftSurface(true, true, false, true);
+            GetWalking2LeftSurface(false, false, false, false);
+            GetWalking2LeftSurface(true, false, false, false);
+            GetWalking2LeftSurface(false, true, false, false);
+            GetWalking2LeftSurface(true, true, false, false);
+            GetWalking2LeftSurface(false, false, false, true);
+            GetWalking2LeftSurface(true, false, false, true);
+            GetWalking2LeftSurface(false, true, false, true);
+            GetWalking2LeftSurface(true, true, false, true);
 
-            GetStandingRightSurface(false, false, false);
-            GetStandingRightSurface(false, true, false);
-            GetStandingRightSurface(true, false, false);
-            GetStandingRightSurface(true, true, false);
-            GetStandingLeftSurface(false, false, false);
-            GetStandingLeftSurface(false, true, false);
-            GetStandingLeftSurface(true, false, false);
-            GetStandingLeftSurface(true, true, false);
+            GetStandingRightSurface(false, false, false, false);
+            GetStandingRightSurface(false, true, false, false);
+            GetStandingRightSurface(true, false, false, false);
+            GetStandingRightSurface(true, true, false, false);
+            GetStandingRightSurface(false, false, false, true);
+            GetStandingRightSurface(false, true, false, true);
+            GetStandingRightSurface(true, false, false, true);
+            GetStandingRightSurface(true, true, false, true);
 
-            GetCrouchedLeftSurface(false, false, false);
-            GetCrouchedLeftSurface(false, true, false);
-            GetCrouchedLeftSurface(true, false, false);
-            GetCrouchedLeftSurface(true, true, false);
-            GetCrouchedRightSurface(false, false, false);
-            GetCrouchedRightSurface(false, true, false);
-            GetCrouchedRightSurface(true, false, false);
-            GetCrouchedRightSurface(true, true, false);
+            GetStandingLeftSurface(false, false, false, false);
+            GetStandingLeftSurface(false, true, false, false);
+            GetStandingLeftSurface(true, false, false, false);
+            GetStandingLeftSurface(true, true, false, false);
+            GetStandingLeftSurface(false, false, false, true);
+            GetStandingLeftSurface(false, true, false, true);
+            GetStandingLeftSurface(true, false, false, true);
+            GetStandingLeftSurface(true, true, false, true);
+
+            GetCrouchedLeftSurface(false, false, false, false);
+            GetCrouchedLeftSurface(false, true, false, false);
+            GetCrouchedLeftSurface(true, false, false, false);
+            GetCrouchedLeftSurface(true, true, false, false);
+            GetCrouchedLeftSurface(false, false, false, true);
+            GetCrouchedLeftSurface(false, true, false, true);
+            GetCrouchedLeftSurface(true, false, false, true);
+            GetCrouchedLeftSurface(true, true, false, true);
+
+
+            GetCrouchedRightSurface(false, false, false, false);
+            GetCrouchedRightSurface(false, true, false, false);
+            GetCrouchedRightSurface(true, false, false, false);
+            GetCrouchedRightSurface(true, true, false, false);
+            GetCrouchedRightSurface(false, false, false, true);
+            GetCrouchedRightSurface(false, true, false, true);
+            GetCrouchedRightSurface(true, false, false, true);
+            GetCrouchedRightSurface(true, true, false, true);
 
             GetCrouchedHitRightSurface(false);
             GetCrouchedHitRightSurface(true);
@@ -1386,10 +1421,15 @@ namespace AbrahmanAdventure.sprites
             GetKickFrame2LeftSurface(false, true);
             GetKickFrame2LeftSurface(true, true);
 
-            GetFlyRightSurface(false);
-            GetFlyRightSurface(true);
-            GetFlyLeftSurface(false);
-            GetFlyLeftSurface(true);
+            GetFlyRightSurface(false, false);
+            GetFlyRightSurface(true, false);
+            GetFlyRightSurface(false, true);
+            GetFlyRightSurface(true, true);
+
+            GetFlyLeftSurface(false, false);
+            GetFlyLeftSurface(true, false);
+            GetFlyLeftSurface(false, true);
+            GetFlyLeftSurface(true, true);
 
             GetWalking1RightSurfaceTiny(false);
             GetWalking1RightSurfaceTiny(true);
@@ -1432,9 +1472,16 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Private Methods
-        private Surface GetWalking1RightSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetWalking1RightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiWalk1RightDoped;
+                else
+                    return bodhiWalk1Right;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return walking1NinjaDopedRightSurface;
@@ -1490,9 +1537,16 @@ namespace AbrahmanAdventure.sprites
             return walking1RightSurfaceRasta;
         }
 
-        private Surface GetWalking1LeftSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetWalking1LeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiWalk1LeftDoped;
+                else
+                    return bodhiWalk1Left;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return walking1NinjaDopedLeftSurface;
@@ -1507,7 +1561,7 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking1LeftSurfaceDoped();
 
             if (walking1LeftSurface == null)
-                walking1LeftSurface = GetWalking1RightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
+                walking1LeftSurface = GetWalking1RightSurface(false, isRasta, false, isBodhi).CreateFlippedHorizontalSurface();
 
             return walking1LeftSurface;
         }
@@ -1528,9 +1582,16 @@ namespace AbrahmanAdventure.sprites
             return walking1LeftSurfaceRasta;
         }
 
-        private Surface GetWalking2LeftSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetWalking2LeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiWalk2LeftDoped;
+                else
+                    return bodhiWalk2Left;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return walking2NinjaDopedLeftSurface;
@@ -1545,7 +1606,7 @@ namespace AbrahmanAdventure.sprites
                 return GetWalking2LeftSurfaceDoped();
 
             if (walking2LeftSurface == null)
-                walking2LeftSurface = GetWalking2RightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
+                walking2LeftSurface = GetWalking2RightSurface(false, isRasta, false, isBodhi).CreateFlippedHorizontalSurface();
 
             return walking2LeftSurface;
         }
@@ -1566,9 +1627,16 @@ namespace AbrahmanAdventure.sprites
             return walking2LeftSurfaceRasta;
         }
 
-        private Surface GetWalking2RightSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetWalking2RightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiWalk2RightDoped;
+                else
+                    return bodhiWalk2Right;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return walking2NinjaDopedRightSurface;
@@ -1625,9 +1693,16 @@ namespace AbrahmanAdventure.sprites
             return walking2RightSurfaceRasta;
         }
 
-        private Surface GetStandingLeftSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetStandingLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiStandLeftDoped;
+                else
+                    return bodhiStandLeft;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return standingNinjaDopedLeftSurface;
@@ -1642,7 +1717,7 @@ namespace AbrahmanAdventure.sprites
                 return GetStandingLeftSurfaceDoped();
 
             if (standingLeftSurface == null)
-                standingLeftSurface = GetStandingRightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
+                standingLeftSurface = GetStandingRightSurface(false, isRasta, false, false).CreateFlippedHorizontalSurface();
 
             return standingLeftSurface;
         }
@@ -1663,9 +1738,16 @@ namespace AbrahmanAdventure.sprites
             return standingLeftSurfaceRasta;
         }
 
-        private Surface GetCrouchedRightSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetCrouchedRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiCrouchedRightDoped;
+                else
+                    return bodhiCrouchedRight;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return crouchedNinjaDopedRight;
@@ -1722,9 +1804,16 @@ namespace AbrahmanAdventure.sprites
             return crouchedRightSurfaceRasta;
         }
 
-        private Surface GetCrouchedLeftSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetCrouchedLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiCrouchedLeftDoped;
+                else
+                    return bodhiCrouchedLeft;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return crouchedNinjaDopedLeft;
@@ -1739,7 +1828,7 @@ namespace AbrahmanAdventure.sprites
                 return GetCrouchedLeftSurfaceDoped();
 
             if (crouchedLeftSurface == null)
-                crouchedLeftSurface = GetCrouchedRightSurface(false, isRasta, false).CreateFlippedHorizontalSurface();
+                crouchedLeftSurface = GetCrouchedRightSurface(false, isRasta, false, false).CreateFlippedHorizontalSurface();
 
             return crouchedLeftSurface;
         }
@@ -1818,9 +1907,16 @@ namespace AbrahmanAdventure.sprites
             return hitLeftSurface;
         }
 
-        private Surface GetStandingRightSurface(bool isDoped, bool isRasta, bool isNinja)
+        private Surface GetStandingRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
         {
-            if (isNinja)
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return bodhiStandRightDoped;
+                else
+                    return bodhiStandRight;
+            }
+            else if (isNinja)
             {
                 if (isDoped)
                     return standingNinjaDopedRightSurface;
@@ -3066,27 +3162,36 @@ namespace AbrahmanAdventure.sprites
             return hitRightSurfaceTinyDoped;
         }
 
-        private Surface GetFlyLeftSurface(bool isShowDopedColor)
+        private Surface GetFlyLeftSurface(bool isShowDopedColor, bool isBodhi)
         {
             if (isShowDopedColor)
-                return GetFlyLeftSurfaceDoped();
+                return GetFlyLeftSurfaceDoped(isBodhi);
+
+            if (isBodhi)
+                return bodhiKick1Left;
 
             if (flyLeftSurface == null)
-                flyLeftSurface = GetFlyRightSurface(isShowDopedColor).CreateFlippedHorizontalSurface();
+                flyLeftSurface = GetFlyRightSurface(isShowDopedColor, isBodhi).CreateFlippedHorizontalSurface();
             return flyLeftSurface;
         }
 
-        private Surface GetFlyLeftSurfaceDoped()
+        private Surface GetFlyLeftSurfaceDoped(bool isBodhi)
         {
+            if (isBodhi)
+                return bodhiKick1LeftDoped;
+
             if (flyLeftSurfaceDoped == null)
-                flyLeftSurfaceDoped = GetFlyRightSurfaceDoped().CreateFlippedHorizontalSurface();
+                flyLeftSurfaceDoped = GetFlyRightSurfaceDoped(isBodhi).CreateFlippedHorizontalSurface();
             return flyLeftSurfaceDoped;
         }
 
-        private Surface GetFlyRightSurface(bool isShowDopedColor)
+        private Surface GetFlyRightSurface(bool isShowDopedColor, bool isBodhi)
         {
             if (isShowDopedColor)
-                return GetFlyRightSurfaceDoped();
+                return GetFlyRightSurfaceDoped(isBodhi);
+
+            if (isBodhi)
+                return bodhiKick1Right;
 
             if (flyRightSurface == null)
             {
@@ -3100,8 +3205,11 @@ namespace AbrahmanAdventure.sprites
             return flyRightSurface;
         }
 
-        private Surface GetFlyRightSurfaceDoped()
+        private Surface GetFlyRightSurfaceDoped(bool isBodhi)
         {
+            if (isBodhi)
+                return bodhiKick1RightDoped;
+
             if (flyRightSurfaceDoped == null)
             {
                 if (Program.screenHeight > 720)
@@ -3904,6 +4012,7 @@ namespace AbrahmanAdventure.sprites
             
             if (ThrowBallCycle.IsFired && !isNinja)
             {
+                #region Throw fireball
                 if (IsCrouch)
                 {
                     if (IsTryingToWalkRight)
@@ -3930,6 +4039,7 @@ namespace AbrahmanAdventure.sprites
                         return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
                     }
                 }
+                #endregion
             }
             else if (AttackingCycle.IsFired)
             {
@@ -4489,7 +4599,24 @@ namespace AbrahmanAdventure.sprites
             {
                 if (HitCycle.IsFired && !isRasta)
                 {
-                    if (isNinja)
+                    if (isBodhi)
+                    {
+                        if (isShowDopedColor)
+                        {
+                            if (IsTryingToWalkRight)
+                                return bodhiCrouchedHitRightDoped;
+                            else
+                                return bodhiCrouchedHitLeftDoped;
+                        }
+                        else
+                        {
+                            if (IsTryingToWalkRight)
+                                return bodhiCrouchedHitRight;
+                            else
+                                return bodhiCrouchedHitLeft;
+                        }
+                    }
+                    else if (isNinja)
                     {
                         if (isShowDopedColor)
                         {
@@ -4526,7 +4653,7 @@ namespace AbrahmanAdventure.sprites
                             else
                                 return rastaFlyCrouchedRight;
                         }
-                        return GetCrouchedRightSurface(isShowDopedColor, isRasta,isNinja);
+                        return GetCrouchedRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     }
                     else
                     {
@@ -4538,7 +4665,7 @@ namespace AbrahmanAdventure.sprites
                             else
                                 return rastaFlyCrouchedLeft;
                         }
-                        return GetCrouchedLeftSurface(isShowDopedColor, isRasta, isNinja);
+                        return GetCrouchedLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     }
                 }
             }
@@ -4611,23 +4738,33 @@ namespace AbrahmanAdventure.sprites
                         #region Jumping or falling NOT as ninja
                         if (IsTryingToWalkRight)
                         {
-                            if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            if (isBodhi)
                             {
                                 xOffset = -0.33;
-                                return GetFlyRightSurface(isShowDopedColor);
+                                return GetFlyRightSurface(isShowDopedColor, isBodhi);
+                            }
+                            else if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            {
+                                xOffset = -0.33;
+                                return GetFlyRightSurface(isShowDopedColor, isBodhi);
                             }
                             else
-                                return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja);
+                                return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                         }
                         else
                         {
-                            if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            if (isBodhi)
                             {
                                 xOffset = 0.33;
-                                return GetFlyLeftSurface(isShowDopedColor);
+                                return GetFlyLeftSurface(isShowDopedColor, isBodhi);
+                            }
+                            else if (isRasta && IsTryingToJump && CurrentJumpAcceleration < 0) //falling as rasta
+                            {
+                                xOffset = 0.33;
+                                return GetFlyLeftSurface(isShowDopedColor, isBodhi);
                             }
                             else
-                                return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja);
+                                return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                         }
                         #endregion
                     }
@@ -4696,9 +4833,9 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
-                            return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja);
+                            return GetWalking1RightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                         else
-                            return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja);
+                            return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     }
                     else if (cycleDivision == 3)
                     {
@@ -4711,16 +4848,16 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
-                            return GetWalking2RightSurface(isShowDopedColor, isRasta, isNinja);
+                            return GetWalking2RightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                         else
-                            return GetWalking2LeftSurface(isShowDopedColor, isRasta, isNinja);
+                            return GetWalking2LeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     }
                     else
                     {
                         if (IsTryingToWalkRight)
-                            return GetStandingRightSurface(isShowDopedColor, isRasta, isNinja);
+                            return GetStandingRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                         else
-                            return GetStandingLeftSurface(isShowDopedColor, isRasta, isNinja);
+                            return GetStandingLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     }
                     #endregion
                 }
@@ -4739,9 +4876,9 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     if (IsTryingToWalkRight)
-                        return GetStandingRightSurface(isShowDopedColor, isRasta, isNinja);
+                        return GetStandingRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     else
-                        return GetStandingLeftSurface(isShowDopedColor, isRasta, isNinja);
+                        return GetStandingLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                 }
                 #endregion
             }
