@@ -449,7 +449,7 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildWalkingCycleLength()
         {
-            return 4;
+            return 6;
         }
 
         protected override double BuildWalkingAcceleration()
