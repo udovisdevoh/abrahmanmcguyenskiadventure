@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void Update(PlayerSprite playerSprite, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, UserInput userInput, Random random)
+        internal void Update(PlayerSprite playerSprite, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
         {
             if (playerSprite.IsTryThrowingBall)
             {
@@ -69,10 +69,13 @@ namespace AbrahmanAdventure.physics
                         {
                             if (playerSprite.IGround == null)
                             {
-                                if (userInput.isPressRight)
-                                    ((IAngleProjectile)projectileSprite).AngleIndex = 3;
-                                else if (userInput.isPressLeft)
-                                    ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                if (playerSprite.IsPressLeftOrRight)
+                                {
+                                    if (playerSprite.IsTryingToWalkRight)
+                                        ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                    else
+                                        ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                }
                                 else
                                 {
                                     ((IAngleProjectile)projectileSprite).AngleIndex = 4;
@@ -82,22 +85,28 @@ namespace AbrahmanAdventure.physics
                             }
                             else
                             {
-                                if (userInput.isPressRight)
-                                    ((IAngleProjectile)projectileSprite).AngleIndex = 3;
-                                else if (userInput.isPressLeft)
-                                    ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                if (playerSprite.IsPressLeftOrRight)
+                                {
+                                    if (playerSprite.IsTryingToWalkRight)
+                                        ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                    else
+                                        ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                }    
                                 else if (playerSprite.IsTryingToWalkRight)
                                     ((IAngleProjectile)projectileSprite).AngleIndex = 2;
                                 else
                                     ((IAngleProjectile)projectileSprite).AngleIndex = 6;
                             }
                         }
-                        else if (userInput.isPressUp)
+                        else if (playerSprite.IsPressUp)
                         {
-                            if (userInput.isPressRight)
-                                ((IAngleProjectile)projectileSprite).AngleIndex = 1;
-                            else if (userInput.isPressLeft)
-                                ((IAngleProjectile)projectileSprite).AngleIndex = 7;
+                            if (playerSprite.IsPressLeftOrRight)
+                            {
+                                if (playerSprite.IsTryingToWalkRight)
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 1;
+                                else
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 7;
+                            }
                             else
                             {
                                 ((IAngleProjectile)projectileSprite).AngleIndex = 0;

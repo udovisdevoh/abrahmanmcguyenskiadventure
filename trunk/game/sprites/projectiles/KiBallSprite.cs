@@ -13,7 +13,7 @@ namespace AbrahmanAdventure.sprites
 
         private bool isLarge = false;
 
-        private static string tutorialComment = "Throw the ki ball.";
+        private static string tutorialComment = "Throw the ki ball. Hold attack to charge.";
 
         private static Surface[,,] surfaceArray;
 
