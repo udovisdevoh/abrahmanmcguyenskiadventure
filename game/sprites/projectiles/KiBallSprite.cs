@@ -262,10 +262,10 @@ namespace AbrahmanAdventure.sprites
                 surfaceArray[0, 5, 1] = surface1bS;
                 surfaceArray[0, 5, 2] = surface1cS;
                 surfaceArray[0, 5, 3] = surface1dS;
-                surfaceArray[0, 6, 0] = surface2aS;
-                surfaceArray[0, 6, 1] = surface2bS;
-                surfaceArray[0, 6, 2] = surface2cS;
-                surfaceArray[0, 6, 3] = surface2dS;
+                surfaceArray[0, 6, 0] = surface4aS;
+                surfaceArray[0, 6, 1] = surface4bS;
+                surfaceArray[0, 6, 2] = surface4cS;
+                surfaceArray[0, 6, 3] = surface4dS;
                 surfaceArray[0, 7, 0] = surface7aS;
                 surfaceArray[0, 7, 1] = surface7bS;
                 surfaceArray[0, 7, 2] = surface7cS;
@@ -294,10 +294,10 @@ namespace AbrahmanAdventure.sprites
                 surfaceArray[1, 5, 1] = surface1bL;
                 surfaceArray[1, 5, 2] = surface1cL;
                 surfaceArray[1, 5, 3] = surface1dL;
-                surfaceArray[1, 6, 0] = surface2aL;
-                surfaceArray[1, 6, 1] = surface2bL;
-                surfaceArray[1, 6, 2] = surface2cL;
-                surfaceArray[1, 6, 3] = surface2dL;
+                surfaceArray[1, 6, 0] = surface4aL;
+                surfaceArray[1, 6, 1] = surface4bL;
+                surfaceArray[1, 6, 2] = surface4cL;
+                surfaceArray[1, 6, 3] = surface4dL;
                 surfaceArray[1, 7, 0] = surface7aL;
                 surfaceArray[1, 7, 1] = surface7bL;
                 surfaceArray[1, 7, 2] = surface7cL;
@@ -334,12 +334,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override bool BuildIsJumpableOn()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsJumpableOnEvenByBeaver()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsFullSpeedAfterBounceNoAi()
@@ -459,12 +459,12 @@ namespace AbrahmanAdventure.sprites
 
         protected override double BuildMaxWalkingSpeed()
         {
-            return 0.65;
+            return 0.85;
         }
 
         protected override double BuildMaxRunningSpeed()
         {
-            return 0.95;
+            return 1.15;
         }
 
         protected override double BuildStartingJumpAcceleration()
@@ -620,9 +620,10 @@ namespace AbrahmanAdventure.sprites
             }
         }
 
-        public int AngleIndex
+        public byte AngleIndex
         {
             get { return angleIndex; }
+            set { angleIndex = value; }
         }
         #endregion
     }

@@ -19,7 +19,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">list of visible sprites</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal void Update(PlayerSprite playerSprite, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, Random random)
+        internal void Update(PlayerSprite playerSprite, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, UserInput userInput, Random random)
         {
             if (playerSprite.IsTryThrowingBall)
             {
@@ -57,9 +57,63 @@ namespace AbrahmanAdventure.physics
                         projectileSprite.IsCurrentlyInFreeFallX = true;
                         projectileSprite.IsCurrentlyInFreeFallY = true;
                     }
+
                     projectileSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + projectileSprite.MaxWalkingSpeed;
                     projectileSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
                     spritePopulation.Add((AbstractSprite)projectileSprite);
+
+                    #region We manage projectile's angle if it's a IAngleProjectile
+                    if (projectileSprite is IAngleProjectile)
+                    {
+                        if (playerSprite.IsCrouch)
+                        {
+                            if (playerSprite.IGround == null)
+                            {
+                                if (userInput.isPressRight)
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                else if (userInput.isPressLeft)
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                else
+                                {
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 4;
+                                    ((AbstractSprite)projectileSprite).TopBound = playerSprite.YPosition;
+                                    ((AbstractSprite)projectileSprite).XPosition = playerSprite.XPosition;
+                                }
+                            }
+                            else
+                            {
+                                if (userInput.isPressRight)
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                else if (userInput.isPressLeft)
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                else if (playerSprite.IsTryingToWalkRight)
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 2;
+                                else
+                                    ((IAngleProjectile)projectileSprite).AngleIndex = 6;
+                            }
+                        }
+                        else if (userInput.isPressUp)
+                        {
+                            if (userInput.isPressRight)
+                                ((IAngleProjectile)projectileSprite).AngleIndex = 1;
+                            else if (userInput.isPressLeft)
+                                ((IAngleProjectile)projectileSprite).AngleIndex = 7;
+                            else
+                            {
+                                ((IAngleProjectile)projectileSprite).AngleIndex = 0;
+                                ((AbstractSprite)projectileSprite).YPosition = playerSprite.TopBound;
+                                ((AbstractSprite)projectileSprite).XPosition = playerSprite.XPosition;
+                            }
+                        }
+                        else
+                        {
+                            if (playerSprite.IsTryingToWalkRight)
+                                ((IAngleProjectile)projectileSprite).AngleIndex = 2;
+                            else
+                                ((IAngleProjectile)projectileSprite).AngleIndex = 6;
+                        }
+                    }
+                    #endregion
                 }
             }
         }
