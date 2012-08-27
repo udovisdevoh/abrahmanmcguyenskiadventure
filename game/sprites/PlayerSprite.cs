@@ -938,6 +938,16 @@ namespace AbrahmanAdventure.sprites
         private bool isTryThrowNinjaRope = false;
 
         /// <summary>
+        /// Whether player is pressing up
+        /// </summary>
+        private bool isPressUp = false;
+
+        /// <summary>
+        /// Whether player is pressing left or right
+        /// </summary>
+        private bool isPressLeftOrRight = false;
+
+        /// <summary>
         /// Default health
         /// </summary>
         private double defaultHealth = 0.5;
@@ -4012,31 +4022,229 @@ namespace AbrahmanAdventure.sprites
             
             if (ThrowBallCycle.IsFired && !isNinja)
             {
-                #region Throw fireball
-                if (IsCrouch)
+                if (isBodhi)
                 {
-                    if (IsTryingToWalkRight)
+                    #region Throw ki ball
+                    if (IsCrouch)
                     {
-                        xOffset = 0.2;
-                        return GetCrouchedAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                        if (IGround == null)
+                        {
+                            if (IsPressLeftOrRight)
+                            {
+                                if (isShowDopedColor)
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch3RightDoped;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch3LeftDoped;
+                                    }
+                                }
+                                else
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch3Right;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch3Left;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (isShowDopedColor)
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch2RightDoped;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch2LeftDoped;
+                                    }
+                                }
+                                else
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch2Right;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch2Left;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (IsPressLeftOrRight)
+                            {
+                                if (isShowDopedColor)
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch3RightDoped;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch3LeftDoped;
+                                    }
+                                }
+                                else
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch3Right;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch3Left;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (isShowDopedColor)
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiCrouchedPunchRightDoped;
+                                    }
+                                    else
+                                    {
+                                        return bodhiCrouchedPunchLeftDoped;
+                                    }
+                                }
+                                else
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiCrouchedPunchRight;
+                                    }
+                                    else
+                                    {
+                                        return bodhiCrouchedPunchLeft;
+                                    }
+                                }
+                            }
+                        }
                     }
                     else
                     {
-                        xOffset = -0.2;
-                        return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                        if (IsPressUp)
+                        {
+                            if (IsPressLeftOrRight)
+                            {
+                                if (isShowDopedColor)
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch9RightDoped;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch9LeftDoped;
+                                    }
+                                }
+                                else
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch9Right;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch9Left;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (isShowDopedColor)
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch8RightDoped;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch8LeftDoped;
+                                    }
+                                }
+                                else
+                                {
+                                    if (IsTryingToWalkRight)
+                                    {
+                                        return bodhiPunch8Right;
+                                    }
+                                    else
+                                    {
+                                        return bodhiPunch8Left;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (isShowDopedColor)
+                            {
+                                if (IsTryingToWalkRight)
+                                {
+                                    return bodhiPunch6RightDoped;
+                                }
+                                else
+                                {
+                                    return bodhiPunch6LeftDoped;
+                                }
+                            }
+                            else
+                            {
+                                if (IsTryingToWalkRight)
+                                {
+                                    return bodhiPunch6Right;
+                                }
+                                else
+                                {
+                                    return bodhiPunch6Left;
+                                }
+                            }
+                        }
                     }
+                    #endregion
                 }
                 else
                 {
-                    if (IsTryingToWalkRight)
+                    #region Throw fireball
+                    if (IsCrouch)
                     {
-                        xOffset = 0.2;
-                        return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                        if (IsTryingToWalkRight)
+                        {
+                            xOffset = 0.2;
+                            return GetCrouchedAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                        }
+                        else
+                        {
+                            xOffset = -0.2;
+                            return GetCrouchedAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                        }
                     }
                     else
                     {
-                        xOffset = -0.2;
-                        return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                        if (IsTryingToWalkRight)
+                        {
+                            xOffset = 0.2;
+                            return GetAttackFrame1RightSurface(isShowDopedColor, isRasta);
+                        }
+                        else
+                        {
+                            xOffset = -0.2;
+                            return GetAttackFrame1LeftSurface(isShowDopedColor, isRasta);
+                        }
                     }
                 }
                 #endregion
@@ -4956,6 +5164,24 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isTryThrowNinjaRope; }
             set { isTryThrowNinjaRope = value; }
+        }
+
+        /// <summary>
+        /// Whether player is pressing up
+        /// </summary>
+        public bool IsPressUp
+        {
+            get { return isPressUp; }
+            set { isPressUp = value; }
+        }
+
+        /// <summary>
+        /// Whether player is pressing left or right
+        /// </summary>
+        public bool IsPressLeftOrRight
+        {
+            get { return isPressLeftOrRight; }
+            set { isPressLeftOrRight = value; }
         }
 
         /// <summary>

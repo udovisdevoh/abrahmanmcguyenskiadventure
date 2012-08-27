@@ -181,7 +181,12 @@ namespace AbrahmanAdventure.physics
                         ((PlayerSprite)spriteToUpdate).ChangingSizeAnimationCycle.Increment(timeDelta);
 
                     if (((PlayerSprite)spriteToUpdate).ThrowBallCycle.IsFired)
-                        ((PlayerSprite)spriteToUpdate).ThrowBallCycle.Increment(timeDelta);
+                    {
+                        if (playerSpriteReference.IsBodhi)
+                            ((PlayerSprite)spriteToUpdate).ThrowBallCycle.Increment(timeDelta / 2.0);
+                        else
+                            ((PlayerSprite)spriteToUpdate).ThrowBallCycle.Increment(timeDelta);
+                    }
 
                     if (((PlayerSprite)spriteToUpdate).InvincibilityCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).InvincibilityCycle.Increment(timeDelta);

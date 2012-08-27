@@ -567,6 +567,8 @@ namespace AbrahmanAdventure
                     playerSprite.IsCrouch = userInput.isPressDown && !userInput.isPressUp && (!playerSprite.IsTiny || playerSprite.IsBeaver);
 
                     playerSprite.IsTryToWalkUp = userInput.isPressUp && !userInput.isPressDown && !userInput.isPressLeft && !userInput.isPressRight;
+                    playerSprite.IsPressLeftOrRight = userInput.isPressLeft || userInput.isPressRight;
+                    playerSprite.IsPressUp = userInput.isPressUp;
 
                     #region We manage the "beaver digs ground" logic
                     playerSprite.IsTryDigGround = playerSprite.IsCrouch && userInput.isPressAttack && playerSprite.IsBeaver && !playerSprite.IsNeedToAttackAgain;
