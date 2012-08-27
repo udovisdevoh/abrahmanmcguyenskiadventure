@@ -753,11 +753,11 @@ namespace AbrahmanAdventure
 
                     if (gameState.IsPlayerReady)
                     {
-                        physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
+                        physics.Update(playerSprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, userInput, spriteBehaviorRandom);
                         foreach (AbstractSprite sprite in toUpdateSpriteList)
                             if (sprite != playerSprite)
                             {
-                                physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, spriteBehaviorRandom);
+                                physics.Update(sprite, playerSprite, level, this, timeDelta, visibleSpriteList, spritePopulation, gameMetaState, gameState, levelViewer, userInput, spriteBehaviorRandom);
                                 if (sprite is MonsterSprite && sprite.IsAlive)
                                     monsterAi.Update((MonsterSprite)sprite, playerSprite, level, timeDelta, visibleSpriteList, spriteBehaviorRandom);
                             }

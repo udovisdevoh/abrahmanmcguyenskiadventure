@@ -105,7 +105,11 @@ namespace AbrahmanAdventure.physics
                 }
                 #endregion
 
-                sprite.XPosition += walkingDistance;
+
+                if (sprite is IAngleProjectile)
+                    MoveAngleProjectileSprite(sprite, Math.Abs(walkingDistance), ((IAngleProjectile)sprite).AngleIndex);
+                else
+                    sprite.XPosition += walkingDistance;
             }
 
             //Must prevent sprite from accelerating while pushing on a collision
@@ -174,6 +178,49 @@ namespace AbrahmanAdventure.physics
                 }
             }
             return previousDistance;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Sprite is an angled projectile, move it according to its angle
+        /// </summary>
+        /// <param name="sprite">sprite</param>
+        /// <param name="absoluteDistance">absolute distance</param>
+        /// <param name="angleIndex">angle's index</param>
+        private void MoveAngleProjectileSprite(AbstractSprite sprite, double absoluteDistance, byte angleIndex)
+        {
+            switch (angleIndex)
+            {
+                case 0:
+                    sprite.YPosition -= absoluteDistance;
+                    break;
+                case 1:
+                    sprite.YPosition -= absoluteDistance * 0.7;
+                    sprite.XPosition += absoluteDistance * 0.7;
+                    break;
+                case 2:
+                    sprite.XPosition += absoluteDistance;
+                    break;
+                case 3:
+                    sprite.YPosition += absoluteDistance * 0.7;
+                    sprite.XPosition += absoluteDistance * 0.7;
+                    break;
+                case 4:
+                    sprite.YPosition += absoluteDistance;
+                    break;
+                case 5:
+                    sprite.YPosition += absoluteDistance * 0.7;
+                    sprite.XPosition -= absoluteDistance * 0.7;
+                    break;
+                case 6:
+                    sprite.XPosition -= absoluteDistance;
+                    break;
+                default:
+                    sprite.YPosition -= absoluteDistance * 0.7;
+                    sprite.XPosition -= absoluteDistance * 0.7;
+                    break;
+            }
         }
         #endregion
     }

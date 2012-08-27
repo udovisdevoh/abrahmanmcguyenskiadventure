@@ -8,9 +8,10 @@ namespace AbrahmanAdventure.sprites
 {
     interface IAngleProjectile
     {
-        int AngleIndex
+        byte AngleIndex
         {
             get;
+            set;
         }
     }
 }
