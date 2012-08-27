@@ -103,6 +103,14 @@ namespace AbrahmanAdventure.audio
 
         private static Sound bodhiJumpSound5;
 
+        private static Sound kiBallSound;
+
+        private static Sound largeKiBallSound;
+
+        private static Sound kiChargingSound;
+
+        private static Sound kiChargedSound;
+
         private static Random random = new Random();
 
         private static int bodhiJumpSoundRandomIndex = 0;
@@ -157,7 +165,10 @@ namespace AbrahmanAdventure.audio
             bodhiJumpSound3 = LoadSound("./assets/sounds/BodhiJump3.ogg");
             bodhiJumpSound4 = LoadSound("./assets/sounds/BodhiJump4.ogg");
             bodhiJumpSound5 = LoadSound("./assets/sounds/BodhiJump5.ogg");
-
+            kiBallSound = LoadSound("./assets/sounds/KiBall.ogg");
+            largeKiBallSound = LoadSound("./assets/sounds/LargeKiBall.ogg");
+            kiChargingSound = LoadSound("./assets/sounds/KiCharging.ogg");
+            kiChargedSound = LoadSound("./assets/sounds/KiCharged.ogg");
             catchSound = LoadSound("./assets/sounds/Catch.ogg");
             catchSound.Volume = 56;
         }
@@ -376,6 +387,26 @@ namespace AbrahmanAdventure.audio
         internal static void PlayEnlightenmentSound()
         {
             enlightenmentSound.Play();
+        }
+
+        internal static void PlayKiBallSound()
+        {
+            kiBallSound.Play();
+        }
+
+        internal static void PlayLargeKiBallSound()
+        {
+            largeKiBallSound.Play();
+        }
+
+        internal static void PlayKiChargingSound()
+        {
+            kiChargingSound.Play();
+        }
+
+        internal static void PlayKiChargedSound()
+        {
+            kiChargedSound.Play();
         }
 
         internal static void PlayBodhiJumpSound()

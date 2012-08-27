@@ -32,7 +32,8 @@ namespace AbrahmanAdventure.physics
                     {
                         SoundManager.PlayHitSound();
                         otherSprite.HitCycle.Fire();
-                        projectile.IsAlive = false;
+                        if (!(projectile is KiBallSprite))
+                            projectile.IsAlive = false;
 
                         if (!(otherSprite is MonsterSprite) || !(((MonsterSprite)otherSprite).IsResistantToPlayerProjectile))
                         {

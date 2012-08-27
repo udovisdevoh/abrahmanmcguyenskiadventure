@@ -28,27 +28,38 @@ namespace AbrahmanAdventure.physics
                     if (otherSprite is IPlayerProjectile)
                         ballCount++;
 
-                if (ballCount < Program.maxPlayerFireBallPerScreen)
+                if (playerSprite.IsBodhi || ballCount < Program.maxPlayerFireBallPerScreen)
                 {
                     playerSprite.ThrowBallCycle.Fire();
                     double xPosition = (playerSprite.IsTryingToWalkRight) ? playerSprite.RightBound + 0.5: playerSprite.LeftBound - 0.5;
                     
-                    IPlayerProjectile fireBallOrShurikenSprite;
+                    IPlayerProjectile projectileSprite;
 
-                    if (playerSprite.IsDoped)
+                    if (playerSprite.IsBodhi)
+                    {
+                        SoundManager.PlayKiBallSound();
+                        if (playerSprite.IsCrouch)
+                            projectileSprite = new KiBallSprite(xPosition, playerSprite.YPosition, random);
+                        else
+                            projectileSprite = new KiBallSprite(xPosition, playerSprite.TopBound + 1.0, random);
+                    }
+                    else if (playerSprite.IsDoped)
                     {
                         SoundManager.PlayFireBallSound();
-                        fireBallOrShurikenSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
+                        projectileSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
                     }
                     else
-                        fireBallOrShurikenSprite = new ShurikenSprite(xPosition, playerSprite.TopBound + 0.33, random);
+                        projectileSprite = new ShurikenSprite(xPosition, playerSprite.TopBound + 0.33, random);
 
-                    fireBallOrShurikenSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-                    fireBallOrShurikenSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + fireBallOrShurikenSprite.MaxWalkingSpeed;
-                    fireBallOrShurikenSprite.CurrentJumpAcceleration = -30;
-                    fireBallOrShurikenSprite.IsCurrentlyInFreeFallX = true;
-                    fireBallOrShurikenSprite.IsCurrentlyInFreeFallY = true;
-                    spritePopulation.Add((AbstractSprite)fireBallOrShurikenSprite);
+                    if (playerSprite.IsDoped || playerSprite.IsNinja)
+                    {
+                        projectileSprite.CurrentJumpAcceleration = -30;
+                        projectileSprite.IsCurrentlyInFreeFallX = true;
+                        projectileSprite.IsCurrentlyInFreeFallY = true;
+                    }
+                    projectileSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + projectileSprite.MaxWalkingSpeed;
+                    projectileSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                    spritePopulation.Add((AbstractSprite)projectileSprite);
                 }
             }
         }
