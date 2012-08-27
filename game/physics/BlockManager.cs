@@ -116,7 +116,8 @@ namespace AbrahmanAdventure.physics
             }
             else
             {
-                SoundManager.PlayHelmetBumpSound();
+                if (!(sprite is IPlayerProjectile))
+                    SoundManager.PlayHelmetBumpSound();
             }
         }
 

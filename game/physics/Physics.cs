@@ -107,7 +107,7 @@ namespace AbrahmanAdventure.physics
         /// <summary>
         /// Manages collisions between fireball and monsters
         /// </summary>
-        private PlayerProjectileToMonsterCollisionManager playerProjectileToMonsterCollisionManager = new PlayerProjectileToMonsterCollisionManager();
+        private PlayerProjectileCollisionManager playerProjectileCollisionManager = new PlayerProjectileCollisionManager(new BlockManager());
 
         /// <summary>
         /// Manages explosive sprites
@@ -241,11 +241,11 @@ namespace AbrahmanAdventure.physics
             }
             else if (spriteToUpdate is IPlayerProjectile)
             {
-                playerProjectileToMonsterCollisionManager.Update(spriteToUpdate, level, visibleSpriteList);
+                playerProjectileCollisionManager.Update(spriteToUpdate, level, visibleSpriteList, playerSpriteReference, spritePopulation, random);
             }
             else if (spriteToUpdate is IHarvestable && spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsDieOnTouchGround)
             {
-                playerProjectileToMonsterCollisionManager.Update(spriteToUpdate, level, visibleSpriteList);
+                playerProjectileCollisionManager.Update(spriteToUpdate, level, visibleSpriteList, playerSpriteReference, spritePopulation, random);
             }
 
             if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive && visibleSpriteList.Contains(spriteToUpdate))

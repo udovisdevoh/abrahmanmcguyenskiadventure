@@ -11,15 +11,22 @@ namespace AbrahmanAdventure.physics
     /// <summary>
     /// Manages collisions between fireball and monster
     /// </summary>
-    class PlayerProjectileToMonsterCollisionManager
+    class PlayerProjectileCollisionManager
     {
+        private BlockManager blockManager;
+
+        public PlayerProjectileCollisionManager(BlockManager blockManager)
+        {
+            this.blockManager = blockManager;
+        }
+
         /// <summary>
         /// Manages collisions between fireball and monster
         /// </summary>
         /// <param name="fireBallSprite">fire ball</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
-        internal void Update(AbstractSprite projectile, Level level, HashSet<AbstractSprite> visibleSpriteList)
+        internal void Update(AbstractSprite projectile, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, SpritePopulation spritePopulation, Random random)
         {
             if (!projectile.IsAlive)
                 return;
@@ -38,6 +45,13 @@ namespace AbrahmanAdventure.physics
                         if (!(otherSprite is MonsterSprite) || !(((MonsterSprite)otherSprite).IsResistantToPlayerProjectile))
                         {
                             otherSprite.CurrentDamageReceiving = projectile.AttackStrengthCollision;
+                        }
+                    }
+                    else if (projectile is KiBallSprite && (otherSprite is BrickSprite || otherSprite is AnarchyBlockSprite) && otherSprite.IsAlive)
+                    {
+                        if (Physics.IsDetectCollision(projectile, otherSprite))
+                        {
+                            blockManager.TryOpenOrBreakBlock(projectile, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
                         }
                     }
                 }
