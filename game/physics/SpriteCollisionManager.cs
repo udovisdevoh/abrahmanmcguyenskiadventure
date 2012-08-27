@@ -99,8 +99,6 @@ namespace AbrahmanAdventure.physics
                 else if (sprite is PlayerSprite && otherSprite is BuddhaSprite && otherSprite.IsAlive)
                 {
                     powerUpManager.UpdateTouchBuddha((PlayerSprite)sprite, (BuddhaSprite)otherSprite);
-                    if (((PlayerSprite)sprite).IsBeaver)
-                        beaverManager.LeaveBeaver((PlayerSprite)sprite, spritePopulation);
                 }
                 else if (sprite is PlayerSprite && otherSprite is BandanaSprite && otherSprite.IsAlive)
                 {
@@ -122,7 +120,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite.IGround == null && sprite.IsAlive && !(sprite is IPlayerProjectile) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
-                    if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0 && !((PlayerSprite)sprite).IsBodhi)
+                    if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0)
                     {
                         beaverManager.UpdateJumpOnBeaver((PlayerSprite)sprite, (BeaverSprite)otherSprite);
                     }

@@ -202,7 +202,7 @@ namespace AbrahmanAdventure.physics
                         carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,program,timeDelta);
                     }
 
-                    playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, userInput, random);
+                    playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);
                     if (spriteToUpdate.IsTryDigGround)
                         beaverHoleDiggingManager.Update((PlayerSprite)spriteToUpdate, level, levelViewer, visibleSpriteList);
 
