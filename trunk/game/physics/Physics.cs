@@ -228,7 +228,7 @@ namespace AbrahmanAdventure.physics
                     #endregion
                 }
 
-                if (level.Ceiling != null)
+                if (level.Ceiling != null && !(spriteToUpdate is IAngleProjectile))
                     ceilingCollisionManager.Update(spriteToUpdate, level.Ceiling);
 
                 if (spriteToUpdate is IFluctuatingSafeDistance)

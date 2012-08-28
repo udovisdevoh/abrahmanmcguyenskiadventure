@@ -758,8 +758,6 @@ namespace AbrahmanAdventure.sprites
         private static Surface rastaFlyCrouchedDopedRight;
 
         private static Surface rastaFlyCrouchedDopedLeft;
-
-        
         
         private static Surface bodhiStandLeft;
 
@@ -865,7 +863,45 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface bodhiPunch9RightDoped;
 
+        private static Surface beaverStandTallRightBodhi;
 
+        private static Surface beaverStandTallRightBodhiDoped;
+        
+        private static Surface beaverWalkTallRightBodhi;
+        
+        private static Surface beaverWalkTallRightBodhiDoped;
+                
+        private static Surface beaverHitTallRightBodhi;
+        
+        private static Surface beaverHitTallRightBodhiDoped;
+
+        private static Surface beaverCrouchedTallRightBodhi;
+                
+        private static Surface beaverCrouchedTallRightBodhiDoped;
+                
+        private static Surface beaverAttackTallRightBodhi;
+
+        private static Surface beaverAttackTallRightBodhiDoped;
+
+        private static Surface beaverStandTallLeftBodhi;
+
+        private static Surface beaverStandTallLeftBodhiDoped;
+
+        private static Surface beaverWalkTallLeftBodhi;
+
+        private static Surface beaverWalkTallLeftBodhiDoped;
+
+        private static Surface beaverHitTallLeftBodhi;
+
+        private static Surface beaverHitTallLeftBodhiDoped;
+
+        private static Surface beaverCrouchedTallLeftBodhi;
+
+        private static Surface beaverCrouchedTallLeftBodhiDoped;
+
+        private static Surface beaverAttackTallLeftBodhi;
+
+        private static Surface beaverAttackTallLeftBodhiDoped;
 
         /// <summary>
         /// Tutorial's comment
@@ -982,6 +1018,37 @@ namespace AbrahmanAdventure.sprites
                     resolutionPath = "720";
                 else
                     resolutionPath = "480";
+
+
+                beaverStandTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallBodhi.png");
+                beaverStandTallLeftBodhi = beaverStandTallRightBodhi.CreateFlippedHorizontalSurface();
+
+                beaverStandTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallBodhiDoped.png");
+                beaverStandTallLeftBodhiDoped = beaverStandTallRightBodhiDoped.CreateFlippedHorizontalSurface();
+
+                beaverWalkTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallBodhi.png");
+                beaverWalkTallLeftBodhi = beaverWalkTallRightBodhi.CreateFlippedHorizontalSurface();
+
+                beaverWalkTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallBodhiDoped.png");
+                beaverWalkTallLeftBodhiDoped = beaverWalkTallRightBodhiDoped.CreateFlippedHorizontalSurface();
+
+                beaverHitTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallBodhi.png");
+                beaverHitTallLeftBodhi = beaverHitTallRightBodhi.CreateFlippedHorizontalSurface();
+
+                beaverHitTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallBodhiDoped.png");
+                beaverHitTallLeftBodhiDoped = beaverHitTallRightBodhiDoped.CreateFlippedHorizontalSurface();
+
+                beaverCrouchedTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallBodhi.png");
+                beaverCrouchedTallLeftBodhi = beaverCrouchedTallRightBodhi.CreateFlippedHorizontalSurface();
+
+                beaverCrouchedTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallBodhiDoped.png");
+                beaverCrouchedTallLeftBodhiDoped = beaverCrouchedTallRightBodhiDoped.CreateFlippedHorizontalSurface();
+
+                beaverAttackTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallBodhi.png");
+                beaverAttackTallLeftBodhi = beaverAttackTallRightBodhi.CreateFlippedHorizontalSurface();
+
+                beaverAttackTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallBodhiDoped.png");
+                beaverAttackTallLeftBodhiDoped = beaverAttackTallRightBodhiDoped.CreateFlippedHorizontalSurface();
 
                 beaverStandTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTall.png");
                 beaverWalkTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTall.png");
@@ -3368,6 +3435,35 @@ namespace AbrahmanAdventure.sprites
                         hitSurfaceLeft = beaverHitTallNinjaLeft;
                     }
                 }
+                else if (isBodhi)
+                {
+                    if (isShowDopedColor)
+                    {
+                        standSurfaceRight = beaverStandTallRightBodhiDoped;
+                        standSurfaceLeft = beaverStandTallLeftBodhiDoped;
+                        walkSurfaceRight = beaverWalkTallRightBodhiDoped;
+                        walkSurfaceLeft = beaverWalkTallLeftBodhiDoped;
+                        attackSurfaceRight = beaverAttackTallRightBodhiDoped;
+                        attackSurfaceLeft = beaverAttackTallLeftBodhiDoped;
+                        crouchedSurfaceRight = beaverCrouchedTallRightBodhiDoped;
+                        crouchedSurfaceLeft = beaverCrouchedTallLeftBodhiDoped;
+                        hitSurfaceRight = beaverHitTallRightBodhiDoped;
+                        hitSurfaceLeft = beaverHitTallLeftBodhiDoped;
+                    }
+                    else
+                    {
+                        standSurfaceRight = beaverStandTallRightBodhi;
+                        standSurfaceLeft = beaverStandTallLeftBodhi;
+                        walkSurfaceRight = beaverWalkTallRightBodhi;
+                        walkSurfaceLeft = beaverWalkTallLeftBodhi;
+                        attackSurfaceRight = beaverAttackTallRightBodhi;
+                        attackSurfaceLeft = beaverAttackTallLeftBodhi;
+                        crouchedSurfaceRight = beaverCrouchedTallRightBodhi;
+                        crouchedSurfaceLeft = beaverCrouchedTallLeftBodhi;
+                        hitSurfaceRight = beaverHitTallRightBodhi;
+                        hitSurfaceLeft = beaverHitTallLeftBodhi;
+                    }
+                }
                 else
                 {
                     if (isShowDopedColor)
@@ -3424,7 +3520,7 @@ namespace AbrahmanAdventure.sprites
 
             int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
-            if (AttackingCycle.IsFired)
+            if (AttackingCycle.IsFired || (ThrowBallCycle.IsFired && isBodhi))
             {
                 if (IsTryingToWalkRight)
                     xOffset += 0.5;
@@ -4884,7 +4980,24 @@ namespace AbrahmanAdventure.sprites
                 #region Jumping or falling while being hit
                 if (HitCycle.IsFired && !isRasta)
                 {
-                    if (isNinja)
+                    if (isBodhi)
+                    {
+                        if (isShowDopedColor)
+                        {
+                            if (IsTryingToWalkRight)
+                                return bodhiHitRightDoped;
+                            else
+                                return bodhiHitLeftDoped;
+                        }
+                        else
+                        {
+                            if (IsTryingToWalkRight)
+                                return bodhiHitRight;
+                            else
+                                return bodhiHitLeft;
+                        }
+                    }
+                    else if (isNinja)
                     {
                         if (isShowDopedColor)
                         {
