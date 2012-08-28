@@ -1,4 +1,28 @@
-site pixailes
+Bodhi: charge comme megaman
+
+Game modes
+{
+	Action Platform
+	{
+		Mode normal
+	}
+
+	Adventure RPG
+	{
+		Exp
+		Level up
+		upgrade permanent par level
+		meilleur exp si level difficile
+		meilleur AI de castor
+		castor se respawn comme tails dans sonic
+	}
+
+	Extreme Action
+	{
+		Toujours avec ki ball
+		3* plus de monstres
+	}
+}
 
 abrahman adventure
 {
@@ -15,20 +39,8 @@ abrahman adventure
 	must be able to use sword when on beaver
 }
 
-roue qui marche toute seule: si trou ou mur: change de direction
 
-
-
-bike and walking feet
-{
-	must have distance from ground (use gravity manager)
-	
-	fix sprite's height and width (from radius) to walk over obstacles
-	
-	clockwork's bearing's IGround must not be another clockwork component (platform etc)
-}
-
-must have wider and thinner platforms
+?must have wider and thinner platforms?
 
 
 lorsque tombe: pieds qui marchent doivent détecter collision par platforme la plus basse
@@ -46,8 +58,6 @@ créer levels de boss faits avec clockwork (sprite de cible),
 si on butte les cibles (faces du mental inexistant, genre (where did you learn to fly), le level est finis (spawn un portal?)
 scie rondes == flail ball
 
-
-charge comme megaman
 
 texte de storyline (dans intro), possiblement générée random
 {
