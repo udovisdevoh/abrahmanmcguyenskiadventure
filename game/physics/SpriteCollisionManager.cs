@@ -161,7 +161,7 @@ namespace AbrahmanAdventure.physics
                 {
                     UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
                 }
-                else if (sprite is PlayerSprite && otherSprite is FlailBall)
+                else if (sprite is PlayerSprite && otherSprite is FlailBall && otherSprite.IsAlive)
                 {
                     UpdateFlailCollision((PlayerSprite)sprite, (FlailBall)otherSprite, timeDelta, spritePopulation, random, gameState);
                 }
