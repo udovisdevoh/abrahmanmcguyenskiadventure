@@ -1,5 +1,3 @@
-Si perd bodhi pendant charge: doit avoir bonne couleur et doit reseter charge arrêter son etc
-
 ?rendre skill level curve plus abrupte?
 ?rendre powerups seulement visible si skill level le permet (progression)?
 
@@ -22,8 +20,11 @@ Game modes
 
 	Extreme Action
 	{
-		Toujours avec ki ball
+		Toujours en Gandhi avec ki ball, mais pas forcément toujours avec air jump
 		3* plus de monstres
+		Moins de trous
+		Musique plus intense
+		Affiche barre d'énergie
 	}
 }
 
