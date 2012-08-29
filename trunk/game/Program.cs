@@ -476,6 +476,7 @@ namespace AbrahmanAdventure
                     SurfaceSizeCache.Clear();
                     if (gameState != null)
                     {
+                        SoundManager.StopKiChargingSound();
                         SoundManager.PlayVortexInSound();
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
@@ -577,6 +578,44 @@ namespace AbrahmanAdventure
                     #region We manage attack, nunchaku and harvesting input logic
                     playerSprite.IsTryThrowingBall = false;
                     playerSprite.IsTryUseNunchaku = false;
+
+                    #region Ki Ball logic
+                    if (playerSprite.IsBodhi)
+                    {
+                        playerSprite.IsTryThrowingLargeBall = false;
+                        if (userInput.isPressAttack)
+                        {
+                            if (!playerSprite.IsNeedToAttackAgain)
+                            {
+                                playerSprite.KiBallChargeCycle.Fire();
+                                SoundManager.PlayKiChargingSound();
+                            }
+
+                            bool wasFinished = playerSprite.KiBallChargeCycle.IsFinished;
+
+                            if (playerSprite.KiBallChargeCycle.IsFired)
+                                playerSprite.KiBallChargeCycle.Increment(timeDelta);
+
+                            if (!wasFinished && playerSprite.KiBallChargeCycle.IsFinished)
+                            {
+                                SoundManager.StopKiChargingSound();
+                                SoundManager.PlayKiChargedSound();
+                            }
+                        }
+                        else if (playerSprite.KiBallChargeCycle.IsFired)
+                        {
+                            if (playerSprite.KiBallChargeCycle.IsFinished)
+                            {
+                                playerSprite.IsTryThrowingBall = true;
+                                playerSprite.IsTryThrowingLargeBall = true;
+                            }
+
+                            playerSprite.KiBallChargeCycle.StopAndReset();
+                            SoundManager.StopKiChargingSound();
+                        }
+                    }
+                    #endregion
+
                     if (userInput.isPressAttack)
                     {
                         if (!playerSprite.IsNeedToAttackAgain && playerSprite.AttackingCycle.IsReadyToFire)

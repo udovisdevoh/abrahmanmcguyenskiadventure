@@ -113,6 +113,8 @@ namespace AbrahmanAdventure.audio
 
         private static Random random = new Random();
 
+        private static Channel kiChargingSoundChannel = null;
+
         private static int bodhiJumpSoundRandomIndex = 0;
         #endregion
 
@@ -167,8 +169,13 @@ namespace AbrahmanAdventure.audio
             bodhiJumpSound5 = LoadSound("./assets/sounds/BodhiJump5.ogg");
             kiBallSound = LoadSound("./assets/sounds/KiBall.ogg");
             largeKiBallSound = LoadSound("./assets/sounds/LargeKiBall.ogg");
+            
             kiChargingSound = LoadSound("./assets/sounds/KiCharging.ogg");
+            kiChargingSound.Volume = 52;
+
             kiChargedSound = LoadSound("./assets/sounds/KiCharged.ogg");
+            kiChargedSound.Volume = 52;
+
             catchSound = LoadSound("./assets/sounds/Catch.ogg");
             catchSound.Volume = 56;
         }
@@ -401,14 +408,22 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayKiChargingSound()
         {
-            kiChargingSound.Play();
+            kiChargingSoundChannel = kiChargingSound.Play();
         }
 
         internal static void PlayKiChargedSound()
         {
-            kiChargedSound.Play();
+            kiChargingSoundChannel = kiChargedSound.Play(true);
         }
 
+        internal static void StopKiChargingSound()
+        {
+            if (kiChargingSoundChannel != null)
+            {
+                kiChargingSoundChannel.Stop();
+                kiChargingSoundChannel = null;
+            }
+        }
         internal static void PlayBodhiJumpSound()
         {
             bodhiJumpSoundRandomIndex = random.Next(0, 5);
