@@ -239,6 +239,8 @@ namespace AbrahmanAdventure.physics
         {
             if (!playerSprite.IsTiny && !playerSprite.IsNinja && !playerSprite.IsBodhi)
                 ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
+            
+            ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
 
             SoundManager.PlayHit2Sound();
             if (playerSprite.IsDoped)
