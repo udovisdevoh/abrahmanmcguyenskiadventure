@@ -922,6 +922,8 @@ namespace AbrahmanAdventure.sprites
 
         private Cycle nunchakuCycle;
 
+        private Cycle kiBallChargeCycle;
+
         /// <summary>
         /// When sprite is currently moving from one pipe to another (destination pipe)
         /// This value is normally null
@@ -962,6 +964,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether sprite is currently trying to throw a fire ball
         /// </summary>
         private bool isTryThrowingBall = false;
+
+        /// <summary>
+        /// Whether sprite is currently trying to throw a large fire ball (after charging)
+        /// </summary>
+        private bool isTryThrowingLargeBall = false;
 
         /// <summary>
         /// Whether sprite is currently using nunchaku
@@ -1007,6 +1014,7 @@ namespace AbrahmanAdventure.sprites
             fromVortexCycle = new Cycle(22, false);
             ninjaFlipCycle = new Cycle(15, true);
             nunchakuCycle = new Cycle(7, true);
+            kiBallChargeCycle = new Cycle(44.5, false, false, true);
 
             if (beaverStandTallRight == null)
             {
@@ -3330,6 +3338,10 @@ namespace AbrahmanAdventure.sprites
             {
                 isShowDopedColor = ((int)(invincibilityCycle.CurrentValue) % 4 >= 2);
             }
+            else if (kiBallChargeCycle.IsFired)
+            {
+                isShowDopedColor = ((int)(Math.Pow(kiBallChargeCycle.CurrentValue, 1.5)) % 32 >= 16);
+            }
             else
             {
                 isShowDopedColor = isDoped;
@@ -4103,6 +4115,10 @@ namespace AbrahmanAdventure.sprites
             else if (invincibilityCycle.IsFired)
             {
                 isShowDopedColor = ((int)(invincibilityCycle.CurrentValue) % 4 >= 2);
+            }
+            else if (kiBallChargeCycle.IsFired)
+            {
+                isShowDopedColor = ((int)(Math.Pow(kiBallChargeCycle.CurrentValue, 1.5)) % 32 >= 16);
             }
             else
             {
@@ -5262,6 +5278,15 @@ namespace AbrahmanAdventure.sprites
         }
 
         /// <summary>
+        /// Whether sprite is currently trying to throw a large fire ball (after charging)
+        /// </summary>
+        public bool IsTryThrowingLargeBall
+        {
+            get { return isTryThrowingLargeBall; }
+            set { isTryThrowingLargeBall = value; }
+        }
+
+        /// <summary>
         /// Whether sprite is currently using nunchakus
         /// </summary>
         public bool IsTryUseNunchaku
@@ -5337,6 +5362,14 @@ namespace AbrahmanAdventure.sprites
         public Cycle ThrowBallCycle
         {
             get { return throwBallCycle; }
+        }
+
+        /// <summary>
+        /// Ki ball charge cycle
+        /// </summary>
+        public Cycle KiBallChargeCycle
+        {
+            get { return kiBallChargeCycle; }
         }
 
         /// <summary>

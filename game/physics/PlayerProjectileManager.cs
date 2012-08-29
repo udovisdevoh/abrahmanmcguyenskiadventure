@@ -37,11 +37,26 @@ namespace AbrahmanAdventure.physics
 
                     if (playerSprite.IsBodhi)
                     {
-                        SoundManager.PlayKiBallSound();
-                        if (playerSprite.IsCrouch)
-                            projectileSprite = new KiBallSprite(xPosition, playerSprite.YPosition, random);
+                        if (playerSprite.IsTryThrowingLargeBall)
+                        {
+                            if (playerSprite.IsCrouch)
+                                projectileSprite = new KiBallSprite(xPosition, playerSprite.YPosition + 0.6, random);
+                            else
+                                projectileSprite = new KiBallSprite(xPosition, playerSprite.TopBound + 0.8, random);
+
+                            ((KiBallSprite)projectileSprite).IsLarge = true;
+                            SoundManager.PlayLargeKiBallSound();
+                        }
                         else
-                            projectileSprite = new KiBallSprite(xPosition, playerSprite.TopBound + 1.0, random);
+                        {
+                            if (playerSprite.IsCrouch)
+                                projectileSprite = new KiBallSprite(xPosition, playerSprite.YPosition, random);
+                            else
+                                projectileSprite = new KiBallSprite(xPosition, playerSprite.TopBound + 1.0, random);
+
+                            SoundManager.PlayKiBallSound();
+                        }
+
                     }
                     else if (playerSprite.IsDoped)
                     {
