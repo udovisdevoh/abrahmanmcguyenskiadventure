@@ -49,6 +49,16 @@ namespace AbrahmanAdventure.sprites
                 isContainSubStructure = true;
         }
 
+        internal void RemoveChild(AbstractLinkage childComponent)
+        {
+            childComponent.IsAffectedByGravity = true;
+            childList.Remove(childComponent);
+            childComponent._ParentNode = null;
+
+            if (childComponent is AbstractBearing)
+                isContainSubStructure = true;
+        }
+
         public List<AbstractLinkage> ChildList
         {
             get { return childList; }
