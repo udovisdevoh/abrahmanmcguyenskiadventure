@@ -1,6 +1,9 @@
 ?rendre skill level curve plus abrupte?
 ?rendre powerups seulement visible si skill level le permet (progression)?
 
+precache fireballs
+must be able to kill flail balls with fireballs
+
 Game modes
 {
 	Action Platform
