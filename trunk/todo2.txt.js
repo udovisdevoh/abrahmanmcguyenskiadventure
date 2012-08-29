@@ -1,4 +1,7 @@
-Bodhi: charge comme megaman
+Si perd bodhi pendant charge: doit avoir bonne couleur et doit reseter charge arrêter son etc
+
+?rendre skill level curve plus abrupte?
+?rendre powerups seulement visible si skill level le permet (progression)?
 
 Game modes
 {
