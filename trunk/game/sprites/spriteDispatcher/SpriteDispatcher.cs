@@ -94,6 +94,8 @@ namespace AbrahmanAdventure.sprites
             BandanaSprite bandanaSprite = new BandanaSprite(0, 0, spriteCachingRandom);
             ShurikenSprite shurikenSprite = new ShurikenSprite(0, 0, spriteCachingRandom);
             BuddhaSprite buddhaSprite = new BuddhaSprite(0, 0, spriteCachingRandom);
+            FireBallSprite fireBallSprite = new FireBallSprite(0, 0, spriteCachingRandom);
+            KiBallSprite kiBallSprite = new KiBallSprite(0, 0, spriteCachingRandom);
         }
         #endregion
     }
