@@ -54,6 +54,18 @@ namespace AbrahmanAdventure.physics
                             blockManager.TryOpenOrBreakBlock(projectile, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
                         }
                     }
+                    else if (projectile is KiBallSprite && otherSprite is FlailBall && otherSprite.IsAlive)
+                    {
+                        if (Physics.IsDetectCollision(projectile, otherSprite))
+                        {
+                            SoundManager.PlayHitSound();
+                            otherSprite.IsAlive = false;
+                            if (((FlailBall)otherSprite).ParentNode != null)
+                            {
+                                ((FlailBall)otherSprite).ParentNode.RemoveChild((AbstractLinkage)otherSprite);
+                            }
+                        }
+                    }
                 }
             }
         }
