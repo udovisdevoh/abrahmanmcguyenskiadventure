@@ -47,6 +47,16 @@ namespace AbrahmanAdventure
         private bool isBodhi = false;
 
         /// <summary>
+        /// Whether game mode is "extreme action"
+        /// </summary>
+        private bool isExtremeAction = false;
+
+        /// <summary>
+        /// Whether game mode is "adventure rpg"
+        /// </summary>
+        private bool isAdventureRpg = false;
+
+        /// <summary>
         /// Skill level for unexplored levels
         /// </summary>
         private int skillLevelForUnknownLevels;
@@ -216,6 +226,24 @@ namespace AbrahmanAdventure
         {
             get { return isBodhi; }
             set { isBodhi = value; }
+        }
+
+        /// <summary>
+        /// Whether game mode is "adventure rpg"
+        /// </summary>
+        public bool IsAdventureRpg
+        {
+            get { return isAdventureRpg; }
+            set { isAdventureRpg = value; }
+        }
+
+        /// <summary>
+        /// Whether game mode is "extreme action"
+        /// </summary>
+        public bool IsExtremeAction
+        {
+            get { return isExtremeAction; }
+            set { isExtremeAction = value; }
         }
 
         /// <summary>

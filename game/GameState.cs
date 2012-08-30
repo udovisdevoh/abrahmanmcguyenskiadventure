@@ -45,6 +45,11 @@ namespace AbrahmanAdventure
         private ColorHsl backgroundColorHsl;
 
         /// <summary>
+        /// Represents the game mode ("action platform", "adventure rpg", "extreme action"
+        /// </summary>
+        private AbstractGameMode gameMode;
+
+        /// <summary>
         /// Random number generator using local seed
         /// </summary>
         private Random random;

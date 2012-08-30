@@ -257,6 +257,7 @@
     <Compile Include="game\colorTheme\ColorHsl.cs" />
     <Compile Include="game\colorTheme\ColorTheme.cs" />
     <Compile Include="game\GameMetaState.cs" />
+    <Compile Include="game\gameModes\AbstractGameMode.cs" />
     <Compile Include="game\ground\BeaverDestructionSet.cs" />
     <Compile Include="game\ground\Ground.cs" />
     <Compile Include="game\ground\IGround.cs" />
