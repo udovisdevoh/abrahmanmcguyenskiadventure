@@ -106,7 +106,8 @@ namespace AbrahmanAdventure
         /// </summary>
         /// <param name="seed">seed for random number generator</param>
         /// <param name="skillLevel">skill level</param>
-        public GameState(int seed, int skillLevel) : this(seed, skillLevel, null, null)
+        public GameState(int seed, int skillLevel, bool isExtremeAction, bool isAdventureRpg)
+            : this(seed, skillLevel, null, null, isExtremeAction, isAdventureRpg)
         {
         }
 
@@ -116,8 +117,8 @@ namespace AbrahmanAdventure
         /// <param name="seed">seed for random number generator</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress)
-            : this(seed, skillLevel, null, surfaceToDrawLoadingProgress)
+        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress, bool isExtremeAction, bool isAdventureRpg)
+            : this(seed, skillLevel, null, surfaceToDrawLoadingProgress, isExtremeAction, isAdventureRpg)
         {
         }
 
@@ -128,7 +129,7 @@ namespace AbrahmanAdventure
         /// <param name="playerSprite">player sprite (if null, it will create a new one)</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress)
+        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress, bool isExtremeAction, bool isAdventureRpg)
         {
             this.seed = seed;
             this.skillLevel = skillLevel;
@@ -136,6 +137,13 @@ namespace AbrahmanAdventure
             name = WordGenerator.GenerateName(random);
             colorTheme = new ColorTheme(random);
             backgroundColorHsl = new ColorHsl(random);
+
+            if (isAdventureRpg)
+                gameMode = new AdventureRpgGameMode();
+            else if (isExtremeAction)
+                gameMode = new ExtremeActionGameMode();
+            else
+                gameMode = new PlatformerGameMode();
 
             if (Program.isTellPlanetName)
                 TutorialTalker.Talk("Planet " + name);
@@ -154,7 +162,7 @@ namespace AbrahmanAdventure
 
             //column = new ColumnSet(random, colorTheme.GetRandomColor(random));
 
-            level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null);
+            level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null, gameMode);
 
             #region We set the background
             if ((level.Ceiling == null && random.Next(0, 4) == 1) || (level.Ceiling != null && random.Next(0, 4) != 1))
@@ -174,9 +182,9 @@ namespace AbrahmanAdventure
 
             this.playerSprite.YPosition = IGroundHelper.GetHighestGround(this.level, this.playerSprite.XPosition)[this.playerSprite.XPosition];
 
-            SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, waterInfo, random);
+            SpriteDispatcher.DispatchSprites(level, spritePopulation, skillLevel, waterInfo, gameMode, random);
 
-            song = SongGenerator.BuildSong(seed, skillLevel, SongType.Level);
+            song = SongGenerator.BuildSong(seed, skillLevel, SongType.Level, gameMode);
 
             //AddHardCodedTestSprite();
         }
@@ -341,6 +349,14 @@ namespace AbrahmanAdventure
         public Level Level
         {
             get { return level; }
+        }
+
+        /// <summary>
+        /// Game mode
+        /// </summary>
+        public AbstractGameMode GameMode
+        {
+            get { return gameMode; }
         }
 
         /// <summary>

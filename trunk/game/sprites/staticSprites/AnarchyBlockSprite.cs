@@ -212,14 +212,20 @@ namespace AbrahmanAdventure.sprites
         #endregion
 
         #region Internal Methods
-        internal AbstractSprite GetPowerUpSprite(PlayerSprite playerSprite, Random random)
+        internal AbstractSprite GetPowerUpSprite(PlayerSprite playerSprite, AbstractGameMode gameMode, Random random)
         {
             switch (BlockContent)
             {
                 case BlockContent.Whisky:
                     return new WhiskySprite(XPosition, TopBound, random);
                 case BlockContent.RastaHat:
-                    if (playerSprite.IsNinja || playerSprite.IsBodhi)
+                    if (gameMode.IsMushroomOverrideUpgrade)
+                    {
+                        MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
+                        mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                        return mushroomSprite;
+                    }
+                    else if (playerSprite.IsNinja || playerSprite.IsBodhi)
                     {
                         BuddhaSprite buddhaSprite = new BuddhaSprite(XPosition, TopBound, random);
                         buddhaSprite.JumpingCycle.Fire();
@@ -263,7 +269,13 @@ namespace AbrahmanAdventure.sprites
                     vineSprite.Height = 0.0;
                     return vineSprite;
                 default: //Peyote
-                    if (playerSprite.IsNinja || playerSprite.IsBodhi)
+                    if (gameMode.IsMushroomOverrideUpgrade)
+                    {
+                        MushroomSprite mushroomSprite = new MushroomSprite(XPosition, TopBound, random);
+                        mushroomSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                        return mushroomSprite;
+                    }
+                    else if (playerSprite.IsNinja || playerSprite.IsBodhi)
                     {
                         BuddhaSprite buddhaSprite = new BuddhaSprite(XPosition, TopBound, random);
                         buddhaSprite.JumpingCycle.Fire();

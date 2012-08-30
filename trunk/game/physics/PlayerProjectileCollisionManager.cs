@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="fireBallSprite">fire ball</param>
         /// <param name="level">level</param>
         /// <param name="visibleSpriteList">list of visible sprites</param>
-        internal void Update(AbstractSprite projectile, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, SpritePopulation spritePopulation, Random random)
+        internal void Update(AbstractSprite projectile, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, SpritePopulation spritePopulation, AbstractGameMode gameMode, Random random)
         {
             if (!projectile.IsAlive)
                 return;
@@ -51,7 +51,7 @@ namespace AbrahmanAdventure.physics
                     {
                         if (Physics.IsDetectCollision(projectile, otherSprite))
                         {
-                            blockManager.TryOpenOrBreakBlock(projectile, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
+                            blockManager.TryOpenOrBreakBlock(projectile, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, gameMode, random);
                         }
                     }
                     else if (projectile is KiBallSprite && otherSprite is FlailBall && otherSprite.IsAlive)

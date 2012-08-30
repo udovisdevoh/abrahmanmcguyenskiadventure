@@ -20,9 +20,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, WaterInfo waterInfo, Random random)
+        internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, WaterInfo waterInfo, AbstractGameMode gameMode, Random random)
         {
-            MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, random);
+            MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, gameMode, random);
             VortexDispatcher.DispatchVortexes(level, spritePopulation, skillLevel, random);
             TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, random);
             MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, random);

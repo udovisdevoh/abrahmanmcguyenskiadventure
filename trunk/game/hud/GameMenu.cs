@@ -13,7 +13,7 @@ using AbrahmanAdventure.level;
 
 namespace AbrahmanAdventure.hud
 {
-    enum SubMenu { Main, Display, Controller, Audio, HowTo, EpisodeList }
+    enum SubMenu { Main, Display, Controller, Audio, HowTo, EpisodeList, GameMode }
 
     /// <summary>
     /// Game's main menu
@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {9,1,3,2,0,12};
+        private static int[] listMaxMenuItemCount = {9,1,3,2,0,12,2};
         #endregion
 
         #region Internal methods
@@ -123,6 +123,16 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("How to play"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 7));
                 mainSurface.Blit(GetFontText("Reset config"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 8));
                 mainSurface.Blit(GetFontText("Exit"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 9));
+
+                mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
+            }
+            else if (currentSubMenu == SubMenu.GameMode)
+            {
+                mainSurface.Fill(System.Drawing.Color.Black);
+                mainSurface.Blit(GetFontText("Game mode"), new System.Drawing.Point(episodeMenuMarginLeft, mainMenuMarginTop - lineSpace * 2));
+                mainSurface.Blit(GetFontText("Action Platform"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
+                mainSurface.Blit(GetFontText("Extreme Action"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
+                mainSurface.Blit(GetFontText("Adventure RPG"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
@@ -361,7 +371,12 @@ namespace AbrahmanAdventure.hud
             isWaitingForAttackButtonRemap = false;
             isWaitingForLeaveBeaverButtonRemap = false;
             isWaitingForThrowRopeButtonRemap = false;
-            currentSubMenu = SubMenu.Main;
+
+            if (currentSubMenu == SubMenu.EpisodeList)
+                currentSubMenu = SubMenu.GameMode;
+            else
+                currentSubMenu = SubMenu.Main;
+
             currentMenuPositionY = 0;
             keyCycle.StopAndReset();
             Dirthen();
@@ -574,7 +589,7 @@ namespace AbrahmanAdventure.hud
                     case 0: //new game
                         currentMenuPositionY = 0;
                         SongGenerator.ResetInvincibilitySong();
-                        currentSubMenu = SubMenu.EpisodeList;
+                        currentSubMenu = SubMenu.GameMode;
                         break;
                     case 1: //Tutorial
                         program.IsPlayTutorialSounds = true;
@@ -681,6 +696,28 @@ namespace AbrahmanAdventure.hud
                 program.IsPlayTutorialSounds = false;
                 program.IsShowMenu = false;
             }
+            else if (currentSubMenu == SubMenu.GameMode)
+            {
+                if (currentMenuPositionY == 0)
+                {
+                    program.GameMetaState.IsAdventureRpg = false;
+                    program.GameMetaState.IsExtremeAction = false;
+                }
+                else if (currentMenuPositionY == 1)
+                {
+                    program.GameMetaState.IsAdventureRpg = false;
+                    program.GameMetaState.IsExtremeAction = true;
+                }
+                else
+                {
+                    program.GameMetaState.IsAdventureRpg = true;
+                    program.GameMetaState.IsExtremeAction = false;
+                }
+
+                currentSubMenu = SubMenu.EpisodeList;
+                currentMenuPositionY = 0;
+                currentMenuPositionX = 0;
+            }
             else if (currentSubMenu == SubMenu.Display)
             {
                 if (currentMenuPositionY == 0)
@@ -695,7 +732,7 @@ namespace AbrahmanAdventure.hud
                 }
                 else
                 {
-                    ResolutionManager.ChangeResolution(1,program);
+                    ResolutionManager.ChangeResolution(1, program);
                 }
             }
         }

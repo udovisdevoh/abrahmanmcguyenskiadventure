@@ -66,13 +66,14 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchMonsters(Level level, SpritePopulation spritePopulation, int skillLevel, Random random)
+        internal static void DispatchMonsters(Level level, SpritePopulation spritePopulation, int skillLevel, AbstractGameMode gameMode, Random random)
         {
             double monsterDensity = random.NextDouble() * 0.1 + 0.05; //Random density, for easiest skill (0.05 to 0.15)
             monsterDensity *= Program.monsterDensityAdjustment;
 
             double skillLevelAdjustmentRatio = Math.Sqrt(((double)skillLevel) + 1.0);
             monsterDensity *= skillLevelAdjustmentRatio;
+            monsterDensity *= gameMode.MonsterDensityMultiplicator;
             double availableMonsterPopulationMass = monsterDensity * level.Size;
             double monsterTypeEntropy = random.NextDouble();//0: all the same monster, 1: very diverse
 

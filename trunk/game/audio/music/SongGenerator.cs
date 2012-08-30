@@ -41,8 +41,9 @@ namespace AbrahmanAdventure.audio
         /// Build a song
         /// </summary>
         /// <param name="seed">seed</param>
+        /// <param name="gameMode">game mode (can be null for default behavior)</param>
         /// <returns>Song</returns>
-        internal static IRiff BuildSong(int seed, int skillLevel, SongType songType)
+        internal static IRiff BuildSong(int seed, int skillLevel, SongType songType, AbstractGameMode gameMode)
         {
             Random random = new Random(seed);
             PredefinedGenerator predefinedGenerator = new PredefinedGenerator();
@@ -50,6 +51,8 @@ namespace AbrahmanAdventure.audio
 
             if (songType == SongType.Ninja)
                 skillLevel += 3;
+            else if (gameMode != null && gameMode.IsMusicSpeedUp)
+                skillLevel += 4;
 
             predefinedGenerator.IsOverrideScale = true;
             predefinedGenerator.IsOverrideTempo = true;
@@ -65,6 +68,13 @@ namespace AbrahmanAdventure.audio
             
             songLength = random.Next(8, 17) * 2;
             double barDensity = Math.Min(1.0, 0.5 + (((double)skillLevel) / 20.0));//0.5 for easy, 1.0 for hard)
+
+
+            if (gameMode != null && gameMode.IsMusicSpeedUp)
+            {
+                predefinedGenerator.Tempo += random.Next(20,80);
+                barDensity = 1.0;
+            }
 
 
             if (songType == SongType.Invincibility)
@@ -112,10 +122,10 @@ namespace AbrahmanAdventure.audio
         /// </summary>
         /// <param name="seed">seed</param>
         /// <returns>invincibility song</returns>
-        internal static IRiff GetInvincibilitySong(int seed)
+        internal static IRiff GetInvincibilitySong(int seed, AbstractGameMode gameMode)
         {
             if (invincibilitySong == null)
-                invincibilitySong = BuildSong(seed, 0, SongType.Invincibility);
+                invincibilitySong = BuildSong(seed, 0, SongType.Invincibility, gameMode);
 
             return invincibilitySong;
         }

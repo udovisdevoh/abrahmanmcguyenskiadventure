@@ -223,7 +223,7 @@ namespace AbrahmanAdventure
             gameMetaState = new GameMetaState();
             clockworkManager = new ClockworkManager();
             int soundVolume = PersistentConfig.SoundVolume;
-            SongPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu);
+            SongPlayer.IRiff = SongGenerator.BuildSong(123, 0, SongType.Menu, null);
             SongPlayer.PlayAsync();
 
             spriteBehaviorRandom = new Random();
@@ -481,8 +481,10 @@ namespace AbrahmanAdventure
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
                     }
-                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface);
+                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface, gameMetaState.IsExtremeAction, gameMetaState.IsAdventureRpg);
                     gameMetaState.ApplyPlayerInfoToSprite(gameState.PlayerSprite);
+                    gameState.GameMode.HackPlayerSprite(gameState.PlayerSprite);
+
                     List<int> listWarpBackSeed;
                     if (gameMetaState.TryGetWarpBackTargetSeed(gameState.Seed, out listWarpBackSeed))
                         gameState.AddWarpBackVortexList(listWarpBackSeed);
@@ -500,7 +502,7 @@ namespace AbrahmanAdventure
                     gameState.PlayerSprite.YPosition = gameState.PlayerSprite.YPosition;//reset previous Y
                     LianaManager.ResetNinjaRope();
                     levelViewer.ClearCache();
-                    SongGenerator.GetInvincibilitySong(gameState.Seed);//We pre-render invincibility song if it's not pre-rendered (it will be the same for this episode)
+                    SongGenerator.GetInvincibilitySong(gameState.Seed, gameState.GameMode);//We pre-render invincibility song if it's not pre-rendered (it will be the same for this episode)
                     /*SongGenerator.ResetNinjaSong();
                     SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel);*/ //We pre-render ninja song if it's not pre-rendered (it will be the same for this episode)
                     GC.Collect();
@@ -821,7 +823,7 @@ namespace AbrahmanAdventure
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background/*, gameState.Column*/, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 vectorViewer.Update(viewOffsetX, viewOffsetY);
-                if (Program.isShowHealthBar)
+                if (Program.isShowHealthBar || gameState.GameMode.IsShowHealthBar)
                     HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)

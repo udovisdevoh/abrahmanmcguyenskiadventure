@@ -67,7 +67,7 @@ namespace AbrahmanAdventure.level
         /// <param name="colorTheme">color theme</param>
         /// <param name="seed">seed</param>
         /// <param name="skillLevel">skill level</param>
-        public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel, bool isWater)
+        public Level(Random random, ColorTheme colorTheme, int seed, int skillLevel, bool isWater, AbstractGameMode gameMode)
         {
             this.skillLevel = skillLevel;
             groundList = new List<Ground>();
@@ -81,7 +81,7 @@ namespace AbrahmanAdventure.level
 
             double levelWidth = rightBound - leftBound;
 
-            holeSet = new HoleSet(random, skillLevel, levelWidth);
+            holeSet = new HoleSet(random, skillLevel, levelWidth, gameMode);
 
             int groundId;
             for (groundId = 0; groundId < waveCount; groundId++)
@@ -113,7 +113,7 @@ namespace AbrahmanAdventure.level
 
             #region We add a path for platforms and wheels
             if (random.NextDouble() > 0.76)
-                path = new Ground(BuildGroundWave(random, true), random, Color.White, new HoleSet(random, 0, levelWidth, true), false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
+                path = new Ground(BuildGroundWave(random, true), random, Color.White, new HoleSet(random, 0, levelWidth, true, gameMode), false, true, seed, groundId, leftBound, rightBound, leftBoundType, rightBoundType);
             #endregion
         }
         #endregion

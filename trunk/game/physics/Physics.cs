@@ -160,7 +160,7 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate.IsFullGravityOnNextFrame)
                 gravityManager.ApplyFullGravityForce(spriteToUpdate, level, visibleSpriteList);
 
-            jumpingManager.Update(spriteToUpdate, playerSpriteReference, timeDelta);
+            jumpingManager.Update(spriteToUpdate, playerSpriteReference, gameState.GameMode, timeDelta);
             damageManager.Update(spriteToUpdate, timeDelta);
             deathManager.Update(spriteToUpdate, playerSpriteReference, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState, levelViewer);
 
@@ -216,7 +216,7 @@ namespace AbrahmanAdventure.physics
                     }
 
                     #region Put back level's song at the end of invincibility
-                    if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed) && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
+                    if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed, gameState.GameMode) && (playerSpriteReference.InvincibilityCycle.IsFinished || playerSpriteReference.InvincibilityCycle.CurrentValue > playerSpriteReference.InvincibilityCycle.TotalTimeLength * 0.9))
                     {
                         SongPlayer.StopSync();
                         /*if (playerSpriteReference.IsNinja)
@@ -242,15 +242,15 @@ namespace AbrahmanAdventure.physics
             
             if (spriteToUpdate is HelmetSprite)
             {
-                helmetCollisionManager.Update((HelmetSprite)spriteToUpdate, playerSpriteReference, level, spritePopulation, visibleSpriteList, random);
+                helmetCollisionManager.Update((HelmetSprite)spriteToUpdate, playerSpriteReference, level, spritePopulation, visibleSpriteList, gameState.GameMode, random);
             }
             else if (spriteToUpdate is IPlayerProjectile)
             {
-                playerProjectileCollisionManager.Update(spriteToUpdate, level, visibleSpriteList, playerSpriteReference, spritePopulation, random);
+                playerProjectileCollisionManager.Update(spriteToUpdate, level, visibleSpriteList, playerSpriteReference, spritePopulation, gameState.GameMode, random);
             }
             else if (spriteToUpdate is IHarvestable && spriteToUpdate is MonsterSprite && ((MonsterSprite)spriteToUpdate).IsDieOnTouchGround)
             {
-                playerProjectileCollisionManager.Update(spriteToUpdate, level, visibleSpriteList, playerSpriteReference, spritePopulation, random);
+                playerProjectileCollisionManager.Update(spriteToUpdate, level, visibleSpriteList, playerSpriteReference, spritePopulation, gameState.GameMode, random);
             }
 
             if (spriteToUpdate is IProjectileShooter && spriteToUpdate.IsAlive && visibleSpriteList.Contains(spriteToUpdate))
