@@ -3,11 +3,6 @@
 
 Game modes
 {
-	Action Platform
-	{
-		Mode normal
-	}
-
 	Adventure RPG
 	{
 		Exp
@@ -20,11 +15,7 @@ Game modes
 
 	Extreme Action
 	{
-		Toujours en Gandhi avec ki ball, mais pas forcément toujours avec air jump
-		3* plus de monstres
-		Moins de trous
-		Musique plus intense
-		Affiche barre d'énergie
+		davantage de clockwork
 	}
 }
 
