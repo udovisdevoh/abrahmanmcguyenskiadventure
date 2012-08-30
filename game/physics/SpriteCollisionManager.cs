@@ -81,10 +81,10 @@ namespace AbrahmanAdventure.physics
                 else if (sprite is PlayerSprite && otherSprite is WhiskySprite && otherSprite.IsAlive)
                 {
                     powerUpManager.UpdateTouchWhisky((PlayerSprite)sprite, (WhiskySprite)otherSprite);
-                    if (SongPlayer.IRiff != SongGenerator.GetInvincibilitySong(gameState.Seed))
+                    if (SongPlayer.IRiff != SongGenerator.GetInvincibilitySong(gameState.Seed, gameState.GameMode))
                     {
                         SongPlayer.StopSync();
-                        SongPlayer.IRiff = SongGenerator.GetInvincibilitySong(gameState.Seed);
+                        SongPlayer.IRiff = SongGenerator.GetInvincibilitySong(gameState.Seed, gameState.GameMode);
                         SongPlayer.PlayAsync();
                     }
                 }
@@ -116,7 +116,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (otherSprite is StaticSprite && otherSprite.IsImpassable && otherSprite.IsAlive && !sprite.IsCrossGrounds && sprite != playerSpriteReference.CarriedSprite)
                 {
-                    blockManager.UpdateBlockCollision(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, playerSpriteReference, random);
+                    blockManager.UpdateBlockCollision(sprite, (StaticSprite)otherSprite, spritePopulation, level, visibleSpriteList, playerSpriteReference, gameState.GameMode, random);
                 }
                 else if (sprite.IGround == null && sprite.IsAlive && !(sprite is IPlayerProjectile) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
@@ -229,44 +229,9 @@ namespace AbrahmanAdventure.physics
                     }
                     else
                     {
-                        CollisionRemoveSuitOrBecomeSmallOrDie(sprite, monsterSprite, gameState);
+                        gameState.GameMode.CollisionRemoveSuitOrBecomeSmallOrDie(sprite, monsterSprite);
                     }
                 }
-            }
-        }
-
-        private void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, GameState gameState)
-        {
-            if (!playerSprite.IsTiny && !playerSprite.IsNinja && !playerSprite.IsBodhi)
-                ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
-            
-            ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
-
-            SoundManager.PlayHit2Sound();
-            if (playerSprite.IsDoped)
-                playerSprite.IsDoped = false;
-            if (playerSprite.IsRasta)
-                playerSprite.IsRasta = false;
-            if (playerSprite.IsBodhi)
-            {
-                playerSprite.IsBodhi = false;
-                playerSprite.IsNinja = true;
-            }
-            else if (playerSprite.IsNinja)
-            {
-                playerSprite.IsNinja = false;
-                /*if (SongPlayer.IRiff != gameState.Song)
-                {
-                    SongPlayer.StopSync();
-                    SongPlayer.IRiff = gameState.Song;
-                    SongPlayer.PlayAsync();
-                }*/
-                //Only lose ninja status, no damage
-            }
-            else
-            {
-                playerSprite.IsTiny = true;
-                playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
             }
         }
 
@@ -282,7 +247,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
-                    CollisionRemoveSuitOrBecomeSmallOrDie(playerSprite, flailBall, gameState);
+                    gameState.GameMode.CollisionRemoveSuitOrBecomeSmallOrDie(playerSprite, flailBall);
                 }
             }
         }

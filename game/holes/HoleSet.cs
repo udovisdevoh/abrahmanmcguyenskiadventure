@@ -29,8 +29,8 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="random">random number generator</param>
         /// <param name="skillLevel">skill level</param>
-        public HoleSet(Random random, int skillLevel, double levelWidth)
-            :this(random, skillLevel, levelWidth, false)
+        public HoleSet(Random random, int skillLevel, double levelWidth, AbstractGameMode gameMode)
+            : this(random, skillLevel, levelWidth, false, gameMode)
         {
         }
 
@@ -40,7 +40,7 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="isPathOnly">whether holeset is for path only, not refular ground. default: false</param>
-        public HoleSet(Random random, int skillLevel, double levelWidth, bool isPathOnly)
+        public HoleSet(Random random, int skillLevel, double levelWidth, bool isPathOnly, AbstractGameMode gameMode)
         {
             cycleLength = levelWidth;//400.0;
             holeIntervals = new List<double>();
@@ -53,10 +53,15 @@ namespace AbrahmanAdventure.level
 
                 groundSurfaceLength /= Math.Max(1.0,random.NextDouble() * Math.Sqrt((double)skillLevel + 1.0));
 
+                groundSurfaceLength *= gameMode.GroundSurfaceLengthMultiplicator;
+
                 if (isPathOnly)
                     groundSurfaceLength *= Program.pathHoleDistanceMultiplicator;
 
                 double holeLength = random.NextDouble() * 6.0 + 1.0;
+
+                groundSurfaceLength *= gameMode.HoleLengthMultiplicator;
+
                 xPosition += groundSurfaceLength + holeLength;
 
                 if (xPosition + groundSurfaceLength + holeLength >= cycleLength - 1.0)

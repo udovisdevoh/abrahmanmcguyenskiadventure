@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="visibleSpriteList">visible sprite list</param>
         /// <param name="spritePopulation">all the sprites in game state</param>
         /// <param name="random">random number generator</param>
-        internal void Update(HelmetSprite helmet, PlayerSprite playerSpriteReference, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Random random)
+        internal void Update(HelmetSprite helmet, PlayerSprite playerSpriteReference, Level level, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, AbstractGameMode gameMode, Random random)
         {
             if (!helmet.IsWalkEnabled && !helmet.IsCurrentlyInFreeFallX && helmet != playerSpriteReference.CarriedSprite)
                 return;
@@ -65,7 +65,7 @@ namespace AbrahmanAdventure.physics
                         double virtualY = helmet.IGround[virtualX];
                         if (Physics.IsDetectCollision(helmet, virtualX, virtualY, 1.0, otherSprite))
                         {
-                            blockManager.TryOpenOrBreakBlock(helmet, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, random);
+                            blockManager.TryOpenOrBreakBlock(helmet, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, gameMode, random);
                         }
                     }
                 }

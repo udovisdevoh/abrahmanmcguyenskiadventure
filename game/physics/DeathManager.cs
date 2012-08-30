@@ -50,7 +50,7 @@ namespace AbrahmanAdventure.physics
                     //sprite.YPosition = Program.totalHeightTileCount / -2;
                     sprite.YPosition = IGroundHelper.GetHighestGround(gameState.Level, sprite.XPosition)[sprite.XPosition];
 
-                    if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed)/* || SongPlayer.IRiff == SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel)*/) //If player died (in hole) while invincible or ninja
+                    if (SongPlayer.IRiff == SongGenerator.GetInvincibilitySong(gameState.Seed, gameState.GameMode)/* || SongPlayer.IRiff == SongGenerator.GetNinjaSong(gameState.Seed, gameState.SkillLevel)*/) //If player died (in hole) while invincible or ninja
                     {
                         SongPlayer.StopSync();
                         SongPlayer.IRiff = gameState.Song;
@@ -70,6 +70,8 @@ namespace AbrahmanAdventure.physics
                     ((PlayerSprite)sprite).IsTiny = true;
                     ((PlayerSprite)sprite).FromVortexCycle.Fire();
                     sprite.CarriedSprite = null;
+
+                    gameState.GameMode.HackPlayerSprite(((PlayerSprite)sprite));
 
                     if (gameMetaState.PreviousSeed != -1)
                         gameState.MovePlayerToVortexGoingToSeed(gameMetaState.PreviousSeed);

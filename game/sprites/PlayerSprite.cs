@@ -1450,10 +1450,14 @@ namespace AbrahmanAdventure.sprites
             GetCrouchedHitLeftSurface(false);
             GetCrouchedHitLeftSurface(true);
 
-            GetHitRightSurface(false);
-            GetHitRightSurface(true);
-            GetHitLeftSurface(false);
-            GetHitLeftSurface(true);
+            GetHitRightSurface(false, false);
+            GetHitRightSurface(true, false);
+            GetHitLeftSurface(false, false);
+            GetHitLeftSurface(true, false);
+            GetHitRightSurface(false, true);
+            GetHitRightSurface(true, true);
+            GetHitLeftSurface(false, true);
+            GetHitLeftSurface(true, true);
 
             GetAttackFrame1RightSurface(false, false);
             GetAttackFrame1RightSurface(false, true);
@@ -1963,10 +1967,13 @@ namespace AbrahmanAdventure.sprites
             return crouchedHitLeftSurface;
         }
 
-        private Surface GetHitRightSurface(bool isDoped)
+        private Surface GetHitRightSurface(bool isDoped, bool isBodhi)
         {
             if (isDoped)
-                return GetHitRightSurfaceDoped();
+                return GetHitRightSurfaceDoped(isBodhi);
+
+            if (isBodhi)
+                return bodhiHitRight;
 
             if (hitRightSurface == null)
             {
@@ -1981,13 +1988,16 @@ namespace AbrahmanAdventure.sprites
             return hitRightSurface;
         }
 
-        private Surface GetHitLeftSurface(bool isDoped)
+        private Surface GetHitLeftSurface(bool isDoped, bool isBodhi)
         {
             if (isDoped)
-                return GetHitLeftSurfaceDoped();
+                return GetHitLeftSurfaceDoped(isBodhi);
+
+            if (isBodhi)
+                return bodhiHitLeft;
 
             if (hitLeftSurface == null)
-                hitLeftSurface = GetHitRightSurface(false).CreateFlippedHorizontalSurface();
+                hitLeftSurface = GetHitRightSurface(false, isBodhi).CreateFlippedHorizontalSurface();
 
             return hitLeftSurface;
         }
@@ -2751,8 +2761,11 @@ namespace AbrahmanAdventure.sprites
             return crouchedHitLeftSurfaceDoped;
         }
 
-        private Surface GetHitRightSurfaceDoped()
+        private Surface GetHitRightSurfaceDoped(bool isBodhi)
         {
+            if (isBodhi)
+                return bodhiHitRightDoped;
+
             if (hitRightSurfaceDoped == null)
             {
                 if (Program.screenHeight > 720)
@@ -2766,10 +2779,13 @@ namespace AbrahmanAdventure.sprites
             return hitRightSurfaceDoped;
         }
 
-        private Surface GetHitLeftSurfaceDoped()
+        private Surface GetHitLeftSurfaceDoped(bool isBodhi)
         {
+            if (isBodhi)
+                return bodhiHitLeftDoped;
+
             if (hitLeftSurfaceDoped == null)
-                hitLeftSurfaceDoped = GetHitRightSurfaceDoped().CreateFlippedHorizontalSurface();
+                hitLeftSurfaceDoped = GetHitRightSurfaceDoped(isBodhi).CreateFlippedHorizontalSurface();
 
             return hitLeftSurfaceDoped;
         }
@@ -5043,9 +5059,9 @@ namespace AbrahmanAdventure.sprites
                     {
                         #region Not tiny
                         if (IsTryingToWalkRight)
-                            return GetHitRightSurface(isShowDopedColor);
+                            return GetHitRightSurface(isShowDopedColor, isBodhi);
                         else
-                            return GetHitLeftSurface(isShowDopedColor);
+                            return GetHitLeftSurface(isShowDopedColor, isBodhi);
                         #endregion
                     }
                 }
@@ -5164,9 +5180,9 @@ namespace AbrahmanAdventure.sprites
                         if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
                             if (IsTryingToWalkRight)
-                                return GetHitRightSurface(isShowDopedColor);
+                                return GetHitRightSurface(isShowDopedColor, isBodhi);
                             else
-                                return GetHitLeftSurface(isShowDopedColor);
+                                return GetHitLeftSurface(isShowDopedColor, isBodhi);
                         }
 
                         if (IsTryingToWalkRight)
@@ -5179,9 +5195,9 @@ namespace AbrahmanAdventure.sprites
                         if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
                             if (IsTryingToWalkRight)
-                                return GetHitRightSurface(isShowDopedColor);
+                                return GetHitRightSurface(isShowDopedColor, isBodhi);
                             else
-                                return GetHitLeftSurface(isShowDopedColor);
+                                return GetHitLeftSurface(isShowDopedColor, isBodhi);
                         }
 
                         if (IsTryingToWalkRight)

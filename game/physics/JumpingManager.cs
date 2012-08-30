@@ -26,13 +26,13 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">sprite</param>
         /// <param name="playerSpriteReference">player sprite reference</param>
         /// <param name="timeDelta">time delta</param>
-        internal void Update(AbstractSprite sprite, PlayerSprite playerSpriteReference, double timeDelta)
+        internal void Update(AbstractSprite sprite, PlayerSprite playerSpriteReference, AbstractGameMode gameMode, double timeDelta)
         {
             if (sprite is StaticSprite)
                 return;
 
             if (sprite.IsTryingToJump)
-                StartOrContinueJump(sprite, timeDelta);
+                StartOrContinueJump(sprite, timeDelta, gameMode);
 
             #region We manage ninja flip cycle
             if (sprite is PlayerSprite && sprite.IGround == null && sprite.IClimbingOn == null && ((PlayerSprite)sprite).IsNinja && ((PlayerSprite)sprite).NinjaFlipCycle.IsFired)
@@ -57,7 +57,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="sprite">sprite</param>
         /// <param name="timeDelta">time delta</param>
-        private void StartOrContinueJump(AbstractSprite sprite, double timeDelta)
+        private void StartOrContinueJump(AbstractSprite sprite, double timeDelta, AbstractGameMode gameMode)
         {
             if (!sprite.IsNeedToJumpAgain)
             {
@@ -79,7 +79,7 @@ namespace AbrahmanAdventure.physics
                             sprite.IClimbingOn = null;
                     }
                 }
-                else if (sprite is PlayerSprite && ((PlayerSprite)sprite).IsBodhi && sprite.CurrentJumpAcceleration <= 0 && sprite.IClimbingOn == null)
+                else if (gameMode.IsAllowBodhiAirJump && sprite is PlayerSprite && ((PlayerSprite)sprite).IsBodhi && sprite.CurrentJumpAcceleration <= 0 && sprite.IClimbingOn == null)
                 {
                     if (!sprite.IsNeedToJumpAgain && sprite.IsAlive)
                     {
