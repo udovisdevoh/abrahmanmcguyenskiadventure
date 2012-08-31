@@ -51,16 +51,25 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Show Hud
         /// </summary>
-        /// <param name="playerHealth">player's health (1.0 = default max)</param>
-        internal static void Update(Surface surface, double playerHealth, bool isPlayerReady)
+        /// <param name="dataSize">player's health (1.0 = default max)</param>
+        /// <param name="isHealth">true: red bar, false: blue bar</param>
+        internal static void Update(Surface surface, double dataSize, bool isPlayerReady, bool isRed)
         {
-            int yellowBarWidth = (int)((playerHealth * (double)(75)) * Program.screenWidth / 640);
+            int yellowBarWidth = (int)((dataSize * (double)(75)) * Program.screenWidth / 640);
 
             Rectangle yellowRectangle = new Rectangle(xYOffsetEnergyBar, xYOffsetEnergyBar, yellowBarWidth, energyBarThickness);
             Rectangle redRectangle = new Rectangle(yellowBarWidth + xYOffsetEnergyBar, xYOffsetEnergyBar, maxEnergyBarWidth - yellowBarWidth, energyBarThickness);
-            
-            surface.Fill(yellowRectangle, Color.Yellow);
-            surface.Fill(redRectangle, Color.Red);
+
+            if (isRed)
+            {
+                surface.Fill(yellowRectangle, Color.Yellow);
+                surface.Fill(redRectangle, Color.Red);
+            }
+            else
+            {
+                surface.Fill(yellowRectangle, Color.Blue);
+                surface.Fill(redRectangle, Color.Black);
+            }
 
             if (!isPlayerReady)
             {

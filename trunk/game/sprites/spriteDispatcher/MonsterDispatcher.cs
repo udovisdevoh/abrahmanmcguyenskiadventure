@@ -78,16 +78,15 @@ namespace AbrahmanAdventure.sprites
             double monsterTypeEntropy = random.NextDouble();//0: all the same monster, 1: very diverse
 
 
-            Random monsterTypeSamplePrivateRandomGenerator = new Random(random.Next());
             do
             {
                 double maxDispatchRatioPerMonster = GetMaxDispatchRatioPerMonster(skillLevel);
-                MonsterSprite monsterTypeSample = GetRandomMonsterTypeSample(monsterTypeEntropy, spritePopulation, maxDispatchRatioPerMonster, monsterTypeSamplePrivateRandomGenerator);
+                MonsterSprite monsterTypeSample = GetRandomMonsterTypeSample(monsterTypeEntropy, spritePopulation, maxDispatchRatioPerMonster, random);
 
                 if (monsterTypeSample == null)
                     break;
 
-                MonsterSprite monster = BuildMonsterFromSampleAtRandomPosition(monsterTypeSample, level, monsterTypeSamplePrivateRandomGenerator);
+                MonsterSprite monster = BuildMonsterFromSampleAtRandomPosition(monsterTypeSample, level, random);
                 spritePopulation.Add(monster);
 
                 availableMonsterPopulationMass -= monster.SkillDispatchRatio;
