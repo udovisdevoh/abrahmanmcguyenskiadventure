@@ -11,6 +11,22 @@ Game modes
 		meilleur exp si level difficile
 		meilleur AI de castor
 		castor se respawn comme tails dans sonic
+		
+		Niveaux
+		{
+			Small no punch no kick
+			Big with punch and kick
+			Rasta
+			Fireball
+			Ninja no shuriken no nunchaku no rope
+			Ninja with nunchaku
+			Ninja with nunchaku and shuriken
+			Ninja with nunchaku, shuriken and rope
+			Bodhi no float, no charge, straight attack only (and rope)
+			Bodhi no float, no charge, angle attack (and rope)
+			Bodhi no float, with charge, with angle attack (and rope)
+			Bodhi with float, charge and angle attack (and rope)
+		}
 	}
 
 	Extreme Action

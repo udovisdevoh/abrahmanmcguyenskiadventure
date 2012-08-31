@@ -89,7 +89,7 @@ namespace AbrahmanAdventure.hud
         /// <summary>
         /// Max menu item per menu
         /// </summary>
-        private static int[] listMaxMenuItemCount = {9,1,3,2,0,12,2};
+        private static int[] listMaxMenuItemCount = {9,1,3,2,0,12,/*3*/2};
         #endregion
 
         #region Internal methods
@@ -133,6 +133,7 @@ namespace AbrahmanAdventure.hud
                 mainSurface.Blit(GetFontText("Action Platform"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 0));
                 mainSurface.Blit(GetFontText("Extreme Action"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 1));
                 mainSurface.Blit(GetFontText("Adventure RPG"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 2));
+                /*mainSurface.Blit(GetFontText("Racing"), new System.Drawing.Point(mainMenuMarginLeft, mainMenuMarginTop + lineSpace * 3));*/
 
                 mainSurface.Blit(GetFontText(">", System.Drawing.Color.Red), new System.Drawing.Point(mainMenuCursorLeft, mainMenuMarginTop + lineSpace * currentMenuPositionY));
             }
@@ -702,16 +703,25 @@ namespace AbrahmanAdventure.hud
                 {
                     program.GameMetaState.IsAdventureRpg = false;
                     program.GameMetaState.IsExtremeAction = false;
+                    program.GameMetaState.IsRacing = false;
                 }
                 else if (currentMenuPositionY == 1)
                 {
                     program.GameMetaState.IsAdventureRpg = false;
                     program.GameMetaState.IsExtremeAction = true;
+                    program.GameMetaState.IsRacing = false;
+                }
+                else if (currentMenuPositionY == 3)
+                {
+                    program.GameMetaState.IsAdventureRpg = false;
+                    program.GameMetaState.IsExtremeAction = false;
+                    program.GameMetaState.IsRacing = true;
                 }
                 else
                 {
                     program.GameMetaState.IsAdventureRpg = true;
                     program.GameMetaState.IsExtremeAction = false;
+                    program.GameMetaState.IsRacing = false;
                 }
 
                 currentSubMenu = SubMenu.EpisodeList;

@@ -106,8 +106,8 @@ namespace AbrahmanAdventure
         /// </summary>
         /// <param name="seed">seed for random number generator</param>
         /// <param name="skillLevel">skill level</param>
-        public GameState(int seed, int skillLevel, bool isExtremeAction, bool isAdventureRpg)
-            : this(seed, skillLevel, null, null, isExtremeAction, isAdventureRpg)
+        public GameState(int seed, int skillLevel, bool isExtremeAction, bool isAdventureRpg, bool isRacing)
+            : this(seed, skillLevel, null, null, isExtremeAction, isAdventureRpg, isRacing)
         {
         }
 
@@ -117,8 +117,8 @@ namespace AbrahmanAdventure
         /// <param name="seed">seed for random number generator</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress, bool isExtremeAction, bool isAdventureRpg)
-            : this(seed, skillLevel, null, surfaceToDrawLoadingProgress, isExtremeAction, isAdventureRpg)
+        public GameState(int seed, int skillLevel, Surface surfaceToDrawLoadingProgress, bool isExtremeAction, bool isAdventureRpg, bool isRacing)
+            : this(seed, skillLevel, null, surfaceToDrawLoadingProgress, isExtremeAction, isAdventureRpg, isRacing)
         {
         }
 
@@ -129,7 +129,7 @@ namespace AbrahmanAdventure
         /// <param name="playerSprite">player sprite (if null, it will create a new one)</param>
         /// <param name="skillLevel">skill level</param>
         /// <param name="surfaceToDrawLoadingProgress">optional surface to draw loading progress on</param>
-        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress, bool isExtremeAction, bool isAdventureRpg)
+        public GameState(int seed, int skillLevel, PlayerSprite playerSprite, Surface surfaceToDrawLoadingProgress, bool isExtremeAction, bool isAdventureRpg, bool isRacing)
         {
             this.seed = seed;
             this.skillLevel = skillLevel;
@@ -142,6 +142,8 @@ namespace AbrahmanAdventure
                 gameMode = new AdventureRpgGameMode();
             else if (isExtremeAction)
                 gameMode = new ExtremeActionGameMode();
+            else if (isRacing)
+                gameMode = new RacingGameMode();
             else
                 gameMode = new PlatformerGameMode();
 
