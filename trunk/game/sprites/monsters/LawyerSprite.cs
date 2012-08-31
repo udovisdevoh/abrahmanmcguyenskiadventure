@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = "Don't let the lawyer sue you!\nYou can only slay this enemy with\nclosed range ninja weapons.";
+        private const string tutorialComment = "Don't let the lawyer sue you!\nYou can only slay this enemy with\nclosed range ninja weapons.\nOr charged attack.";
         #endregion
 
         #region Constructors
