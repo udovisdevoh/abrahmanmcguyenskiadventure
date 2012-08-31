@@ -60,5 +60,10 @@ namespace AbrahmanAdventure
         {
             return false;
         }
+
+        protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
+        {
+            return false;
+        }
     }
 }

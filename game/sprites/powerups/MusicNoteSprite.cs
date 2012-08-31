@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.sprites
         /// <summary>
         /// Tutorial's comment
         /// </summary>
-        private const string tutorialComment = null;
+        private static string tutorialComment = "Get " + Program.musicNoteCountForBodhi + " music notes\nto experience enlightenment.";
         #endregion
 
         #region Constructor

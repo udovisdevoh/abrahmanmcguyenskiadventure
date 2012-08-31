@@ -114,10 +114,31 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="playerSprite">player</param>
         /// <param name="musicNoteSprite">music note</param>
-        internal void UpdateTouchMusicNote(PlayerSprite playerSprite, MusicNoteSprite musicNoteSprite)
+        internal void UpdateTouchMusicNote(PlayerSprite playerSprite, MusicNoteSprite musicNoteSprite, AbstractGameMode gameMode)
         {
+            if (gameMode.IsTransformToBodhiWhenGetsEnoughMusicNote && playerSprite.IsBodhi)
+                return;
+
             SoundManager.PlayCoinSound();
             musicNoteSprite.IsAlive = false;
+            playerSprite.MusicNoteCount++;
+
+            if (gameMode.IsTransformToBodhiWhenGetsEnoughMusicNote && playerSprite.MusicNoteCount >= Program.musicNoteCountForBodhi)
+            {
+                SoundManager.PlayEnlightenmentSound();
+                playerSprite.PowerUpAnimationCycle.Fire();
+                if (playerSprite.IsTiny)
+                    playerSprite.ChangingSizeAnimationCycle.Fire();
+                playerSprite.Health = playerSprite.MaxHealth;
+                playerSprite.IsTiny = false;
+                playerSprite.IsDoped = false;
+                playerSprite.IsRasta = false;
+                playerSprite.IsNinja = false;
+                playerSprite.IsBodhi = true;
+
+                playerSprite.MusicNoteCount = 0;
+            }
+
             musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 

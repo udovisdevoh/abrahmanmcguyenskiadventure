@@ -172,7 +172,7 @@ namespace AbrahmanAdventure.physics
                 if (spriteToUpdate is PlayerSprite)
                 {
                     if (spriteToUpdate.AttackingCycle.IsFired && ((!spriteToUpdate.AttackingCycle.IsFinished && spriteToUpdate.AttackingCycle.GetCycleDivision(8) >= 4) || ((PlayerSprite)spriteToUpdate).IsTryUseNunchaku))
-                        battleManager.Update((PlayerSprite)spriteToUpdate, level, timeDelta, sortedVisibleSpriteList, playerSpriteReference);
+                        battleManager.Update((PlayerSprite)spriteToUpdate, level, gameState.GameMode, timeDelta, sortedVisibleSpriteList, playerSpriteReference);
 
                     if (((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.IsFired)
                         ((PlayerSprite)spriteToUpdate).PowerUpAnimationCycle.Increment(timeDelta);

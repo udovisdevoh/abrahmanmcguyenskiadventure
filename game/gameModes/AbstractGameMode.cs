@@ -26,6 +26,8 @@ namespace AbrahmanAdventure
         private bool isShowHealthBar;
 
         private bool isAllowBodhiAirJump;
+
+        private bool isTransformToBodhiWhenGetsEnoughMusicNote;
         #endregion
 
         #region Constructor
@@ -38,6 +40,7 @@ namespace AbrahmanAdventure
             isMushroomOverrideUpgrade = BuildIsMushroomOverrideUpgrade();
             isShowHealthBar = BuildIsShowHealthBar();
             isAllowBodhiAirJump = BuildIsAllowBodhiAirJump();
+            isTransformToBodhiWhenGetsEnoughMusicNote = BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
         }
         #endregion
 
@@ -54,6 +57,8 @@ namespace AbrahmanAdventure
         protected abstract bool BuildIsShowHealthBar();
 
         protected abstract bool BuildIsAllowBodhiAirJump();
+
+        protected abstract bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
 
         public abstract void HackPlayerSprite(PlayerSprite playerSprite);
 
@@ -91,6 +96,11 @@ namespace AbrahmanAdventure
         public bool IsAllowBodhiAirJump
         {
             get { return isAllowBodhiAirJump; }
+        }
+
+        public bool IsTransformToBodhiWhenGetsEnoughMusicNote
+        {
+            get { return isTransformToBodhiWhenGetsEnoughMusicNote; }
         }
         #endregion
 
