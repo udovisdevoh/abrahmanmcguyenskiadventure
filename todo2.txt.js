@@ -14,18 +14,18 @@ Game modes
 		
 		Niveaux
 		{
-			Small no punch no kick
-			Big with punch and kick
-			Rasta
-			Fireball
-			Ninja no shuriken no nunchaku no rope
-			Ninja with nunchaku
-			Ninja with nunchaku and shuriken
-			Ninja with nunchaku, shuriken and rope
-			Bodhi no float, no charge, straight attack only (and rope)
-			Bodhi no float, no charge, angle attack (and rope)
-			Bodhi no float, with charge, with angle attack (and rope)
-			Bodhi with float, charge and angle attack (and rope)
+			1: Small no punch no kick
+			2: Big with punch and kick
+			3: Rasta
+			4: Fireball
+			5: Ninja no shuriken no nunchaku no rope
+			6: Ninja with nunchaku
+			7: Ninja with nunchaku and shuriken
+			8: Ninja with nunchaku, shuriken and rope
+			9: Bodhi no float, no charge, straight attack only (and rope)
+			10: Bodhi no float, no charge, angle attack (and rope)
+			11: Bodhi no float, with charge, with angle attack (and rope)
+			12: Bodhi with float, charge and angle attack (and rope)
 		}
 	}
 
