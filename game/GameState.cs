@@ -207,7 +207,7 @@ namespace AbrahmanAdventure
             //spritePopulation.Add(new HorseSprite(20, Program.totalHeightTileCount / -2, random));
             //spritePopulation.Add(new PuppetSprite(20, Program.totalHeightTileCount / -2, random));
             
-            spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
+            /*spritePopulation.Add(new HamburgerSprite(20, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new BlobSprite(40, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new RiotControlSprite(60, Program.totalHeightTileCount / -2, random));
             spritePopulation.Add(new HamburgerSprite(65, Program.totalHeightTileCount / -2, random));
@@ -262,7 +262,7 @@ namespace AbrahmanAdventure
             spritePopulation.Add(new VortexSprite(-60, Program.totalHeightTileCount / -2, random, true));
             spritePopulation.Add(new VortexSprite(-75, Program.totalHeightTileCount / -2, random, true));
 
-            spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));
+            spritePopulation.Add(new MusicNoteSprite(25, Program.totalHeightTileCount / -2, random));*/
         }
 
         /// <summary>
