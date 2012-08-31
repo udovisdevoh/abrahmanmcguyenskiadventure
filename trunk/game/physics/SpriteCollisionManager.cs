@@ -90,7 +90,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MusicNoteSprite && otherSprite.IsAlive)
                 {
-                    powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite);
+                    powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite, gameState.GameMode);
                 }
                 else if (sprite is PlayerSprite && otherSprite is RastaHatSprite && otherSprite.IsAlive)
                 {

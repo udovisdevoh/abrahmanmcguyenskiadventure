@@ -26,7 +26,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="timeDelta">time delta</param>
         /// <param name="sortedVisibleSpriteList">visible sprite sorted list</param>
         /// <param name="playerSpriteReference">player sprite</param>
-        internal void Update(PlayerSprite playerSprite, Level level, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
+        internal void Update(PlayerSprite playerSprite, Level level, AbstractGameMode gameMode, double timeDelta, List<AbstractSprite> sortedVisibleSpriteList, PlayerSprite playerSpriteReference)
         {
             foreach (AbstractSprite otherSprite in sortedVisibleSpriteList)
             {
@@ -55,7 +55,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (otherSprite is MusicNoteSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchMusicNote(playerSprite, (MusicNoteSprite)otherSprite);
+                    powerUpManager.UpdateTouchMusicNote(playerSprite, (MusicNoteSprite)otherSprite, gameMode);
                     break;
                 }
                 else if (otherSprite is WhiskySprite && playerSprite.IsBeaver)

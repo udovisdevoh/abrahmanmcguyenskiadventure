@@ -991,6 +991,11 @@ namespace AbrahmanAdventure.sprites
         private bool isPressLeftOrRight = false;
 
         /// <summary>
+        /// How many music notes
+        /// </summary>
+        private int musicNoteCount = 0;
+
+        /// <summary>
         /// Default health
         /// </summary>
         private double defaultHealth = 0.5;
@@ -5336,6 +5341,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isPressLeftOrRight; }
             set { isPressLeftOrRight = value; }
+        }
+
+        /// <summary>
+        /// How many music notes
+        /// </summary>
+        public int MusicNoteCount
+        {
+            get { return musicNoteCount; }
+            set { musicNoteCount = value; }
         }
 
         /// <summary>

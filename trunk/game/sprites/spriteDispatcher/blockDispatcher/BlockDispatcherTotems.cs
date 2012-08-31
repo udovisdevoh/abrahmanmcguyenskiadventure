@@ -102,9 +102,9 @@ namespace AbrahmanAdventure.sprites
                             {
                                 StaticSprite blockSprite;
                                 if (random.NextDouble() < BlockDispatcher.anarchyBlockProbability)
-                                    blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false, level.SkillLevel);
+                                    blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, false);
                                 else if (random.NextDouble() < BlockDispatcher.hiddenAnarchyBlockProbability)
-                                    blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true, level.SkillLevel);
+                                    blockSprite = new AnarchyBlockSprite(xPosition, yPosition, random, true);
                                 else if (random.NextDouble() < BlockDispatcher.indestructibleBlockProbability)
                                     blockSprite = new BrickSprite(xPosition, yPosition, random, false);
                                 else

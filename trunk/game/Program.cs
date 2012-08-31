@@ -80,6 +80,8 @@ namespace AbrahmanAdventure
         public const int vineMinHeight = 10;
 
         public const int vineMaxHeight = 36;
+
+        public const int musicNoteCountForBodhi = 10;
        
         public const double holeHeight = 100.0;
 

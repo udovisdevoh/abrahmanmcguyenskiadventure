@@ -77,5 +77,10 @@ namespace AbrahmanAdventure
                 playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
             }
         }
+
+        protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
+        {
+            return true;
+        }
     }
 }

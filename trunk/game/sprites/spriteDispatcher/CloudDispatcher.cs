@@ -161,7 +161,7 @@ namespace AbrahmanAdventure.sprites
                     return;
 
                 BlockContent blockContent = (BlockContent)random.Next(1, 5);
-                AnarchyBlockSprite anarchyBlock = new AnarchyBlockSprite(x, y - bonusYDistance, random, blockContent, false, level.SkillLevel);
+                AnarchyBlockSprite anarchyBlock = new AnarchyBlockSprite(x, y - bonusYDistance, random, blockContent, false);
                 spritePopulation.Add(anarchyBlock);
             }
             else

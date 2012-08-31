@@ -77,6 +77,11 @@ namespace AbrahmanAdventure
         private int previousSeed = -1;
 
         /// <summary>
+        /// How many music notes
+        /// </summary>
+        private int musicNoteCount = 0;
+
+        /// <summary>
         /// Key: game state's seed
         /// Value: skill level (0: default)
         /// </summary>
@@ -104,6 +109,7 @@ namespace AbrahmanAdventure
             isNinja = playerSprite.IsNinja;
             isBodhi = playerSprite.IsBodhi;
             health = playerSprite.Health;
+            musicNoteCount = playerSprite.MusicNoteCount;
         }
 
         /// <summary>
@@ -119,6 +125,7 @@ namespace AbrahmanAdventure
             playerSprite.IsNinja = isNinja;
             playerSprite.IsBodhi = isBodhi;
             playerSprite.Health = health;
+            playerSprite.MusicNoteCount = musicNoteCount;
         }
         
         /// <summary>
@@ -285,6 +292,14 @@ namespace AbrahmanAdventure
         {
             get { return skillLevelForUnknownLevels; }
             set { skillLevelForUnknownLevels = value; }
+        }
+
+        /// <summary>
+        /// How many music notes
+        /// </summary>
+        public int MusicNoteCount
+        {
+            get { return musicNoteCount; }
         }
 
         /// <summary>

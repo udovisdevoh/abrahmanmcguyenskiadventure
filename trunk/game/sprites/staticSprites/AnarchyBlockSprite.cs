@@ -56,7 +56,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="yPosition">y position</param>
         /// <param name="random">random number generator</param>
         public AnarchyBlockSprite(double xPosition, double yPosition, Random random)
-            : this(xPosition, yPosition, random, BlockContent.Undefined, false, 0)
+            : this(xPosition, yPosition, random, BlockContent.Undefined, false)
         {
         }
 
@@ -69,23 +69,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="blockContent">block's content</param>
         /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
         public AnarchyBlockSprite(double xPosition, double yPosition, Random random, bool isBrick)
-            : this(xPosition, yPosition, random, BlockContent.Undefined, isBrick, 0)
+            : this(xPosition, yPosition, random, BlockContent.Undefined, isBrick)
         {
         }
-
-        /// <summary>
-        /// Create sprite
-        /// </summary>
-        /// <param name="xPosition">x position</param>
-        /// <param name="yPosition">y position</param>
-        /// <param name="random">random number generator</param>
-        /// <param name="blockContent">block's content</param>
-        /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
-        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, bool isBrick, int skillLevel)
-            : this(xPosition, yPosition, random, BlockContent.Undefined, isBrick, skillLevel)
-        {
-        }
-
 
         /// <summary>
         /// Create sprite
@@ -96,11 +82,11 @@ namespace AbrahmanAdventure.sprites
         /// <param name="blockContent">block's content (default:undefined)</param>
         /// <param name="isBrick">whether block looks like a breakable brick block (default:false)</param>
         /// <param name="skillLevel">skill level (default -1) this will affect the powerups</param>
-        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, BlockContent blockContent, bool isBrick, int skillLevel)
+        public AnarchyBlockSprite(double xPosition, double yPosition, Random random, BlockContent blockContent, bool isBrick)
             : base(xPosition, yPosition, random)
         {
-            isAllowNinja = skillLevel >= 1 && random.Next(0, 2) == 0;
-            isAllowBodhi = skillLevel >= 2 && random.Next(0, 2) == 0;
+            isAllowNinja = random.Next(0, 2) == 0;
+            isAllowBodhi = false;//random.Next(0, 2) == 0;
 
             this.isBrick = isBrick;
             if (blockContent != BlockContent.Undefined)
