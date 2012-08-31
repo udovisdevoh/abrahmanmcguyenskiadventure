@@ -57,6 +57,11 @@ namespace AbrahmanAdventure
         private bool isAdventureRpg = false;
 
         /// <summary>
+        /// Racing mode
+        /// </summary>
+        private bool isRacing = false;
+
+        /// <summary>
         /// Skill level for unexplored levels
         /// </summary>
         private int skillLevelForUnknownLevels;
@@ -244,6 +249,15 @@ namespace AbrahmanAdventure
         {
             get { return isExtremeAction; }
             set { isExtremeAction = value; }
+        }
+
+        /// <summary>
+        /// Racing mode
+        /// </summary>
+        public bool IsRacing
+        {
+            get { return isRacing; }
+            set { isRacing = value; }
         }
 
         /// <summary>

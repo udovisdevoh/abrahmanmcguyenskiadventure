@@ -100,6 +100,7 @@ namespace AbrahmanAdventure
                 ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
 
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
+            SoundManager.StopKiChargingSound();
 
             SoundManager.PlayHit2Sound();
             if (playerSprite.IsDoped)

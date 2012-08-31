@@ -37,6 +37,7 @@ namespace AbrahmanAdventure
         {
             SoundManager.PlayHit2Sound();
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
+            SoundManager.StopKiChargingSound();
             playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision * 0.3;
         }
 

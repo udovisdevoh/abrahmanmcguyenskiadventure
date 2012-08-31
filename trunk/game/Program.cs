@@ -481,7 +481,7 @@ namespace AbrahmanAdventure
                         gameMetaState.PreviousSeed = gameState.Seed;
                         gameMetaState.GetInfoFromPlayer(gameState.PlayerSprite);
                     }
-                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface, gameMetaState.IsExtremeAction, gameMetaState.IsAdventureRpg);
+                    gameState = new GameState(seedNextGameState, gameMetaState.GetSkillLevel(seedNextGameState), mainSurface, gameMetaState.IsExtremeAction, gameMetaState.IsAdventureRpg, gameMetaState.IsRacing);
                     gameMetaState.ApplyPlayerInfoToSprite(gameState.PlayerSprite);
                     gameState.GameMode.HackPlayerSprite(gameState.PlayerSprite);
 
