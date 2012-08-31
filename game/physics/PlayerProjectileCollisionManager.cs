@@ -54,7 +54,7 @@ namespace AbrahmanAdventure.physics
                             blockManager.TryOpenOrBreakBlock(projectile, (StaticSprite)otherSprite, spritePopulation, visibleSpriteList, level, playerSpriteReference, gameMode, random);
                         }
                     }
-                    else if (projectile is KiBallSprite && (otherSprite is FlailBall || (otherSprite is LawyerSprite && ((KiBallSprite)otherSprite).IsLarge)) && otherSprite.IsAlive)
+                    else if (projectile is KiBallSprite && otherSprite is FlailBall && otherSprite.IsAlive)
                     {
                         if (Physics.IsDetectCollision(projectile, otherSprite))
                         {

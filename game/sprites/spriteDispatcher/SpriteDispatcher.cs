@@ -22,15 +22,15 @@ namespace AbrahmanAdventure.sprites
         /// <param name="random">random number generator</param>
         internal static void DispatchSprites(Level level, SpritePopulation spritePopulation, int skillLevel, WaterInfo waterInfo, AbstractGameMode gameMode, Random random)
         {
-            MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, gameMode, random);
-            VortexDispatcher.DispatchVortexes(level, spritePopulation, skillLevel, random);
-            TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, random);
-            MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, random);
-            AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, random);
-            PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, random);
-            CloudDispatcher.DispatchBlocks(level, spritePopulation, addedBlockMemory, random);
-            LianaDispatcher.DispatchLianas(level, spritePopulation, waterInfo, random);
-            ClockworkDispatcher.DispatchClockwork(level, spritePopulation, waterInfo, random);
+            MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, gameMode, new Random(random.Next()));
+            VortexDispatcher.DispatchVortexes(level, spritePopulation, skillLevel, new Random(random.Next()));
+            TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, new Random(random.Next()));
+            MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, new Random(random.Next()));
+            AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, new Random(random.Next()));
+            PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, new Random(random.Next()));
+            CloudDispatcher.DispatchBlocks(level, spritePopulation, addedBlockMemory, new Random(random.Next()));
+            LianaDispatcher.DispatchLianas(level, spritePopulation, waterInfo, new Random(random.Next()));
+            ClockworkDispatcher.DispatchClockwork(level, spritePopulation, waterInfo, new Random(random.Next()));
         }
 
         /// <summary>

@@ -81,7 +81,7 @@ namespace AbrahmanAdventure
 
         public const int vineMaxHeight = 36;
 
-        public const int musicNoteCountForBodhi = 10;
+        public const int musicNoteCountForBodhi = 30;
        
         public const double holeHeight = 100.0;
 
@@ -826,7 +826,10 @@ namespace AbrahmanAdventure
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 vectorViewer.Update(viewOffsetX, viewOffsetY);
                 if (Program.isShowHealthBar || gameState.GameMode.IsShowHealthBar)
-                    HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
+                    HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady, true);
+                else if (gameState.GameMode.IsTransformToBodhiWhenGetsEnoughMusicNote)
+                    HudViewer.Update(mainSurface, (double)(playerSprite.MusicNoteCount) / (double)(Program.musicNoteCountForBodhi), gameState.IsPlayerReady, false);
+
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
                         if (sprite != playerSprite)
