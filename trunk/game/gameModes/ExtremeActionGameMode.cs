@@ -38,7 +38,7 @@ namespace AbrahmanAdventure
             SoundManager.PlayHit2Sound();
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
             SoundManager.StopKiChargingSound();
-            playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision * 0.3;
+            playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision * 0.4;
         }
 
         protected override bool BuildIsMusicSpeedUp()
@@ -64,6 +64,21 @@ namespace AbrahmanAdventure
         protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
         {
             return false;
+        }
+
+        protected override bool BuildIsShowExp()
+        {
+            return false;
+        }
+
+        public override void PerformKillMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
+        {
+            //do nothing
+        }
+
+        public override int GetExperienceNeededForLevel(int level)
+        {
+            return 0;
         }
     }
 }

@@ -82,5 +82,20 @@ namespace AbrahmanAdventure
         {
             return true;
         }
+
+        protected override bool BuildIsShowExp()
+        {
+            return false;
+        }
+
+        public override void PerformKillMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
+        {
+            //do nothing
+        }
+
+        public override int GetExperienceNeededForLevel(int level)
+        {
+            return 0;
+        }
     }
 }

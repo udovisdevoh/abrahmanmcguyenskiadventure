@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.audio
 
         private static Sound drinkSound;
 
-        private static Sound musicNoteSound;
+        //private static Sound musicNoteSound;
 
         private static Sound reggaeSound;
 
@@ -140,7 +140,7 @@ namespace AbrahmanAdventure.audio
             fireBallSound = LoadSound("./assets/sounds/FireBall.ogg");
             bricksSound = LoadSound("./assets/sounds/Bricks.ogg");
             drinkSound = LoadSound("./assets/sounds/Drink.ogg");
-            musicNoteSound = LoadSound("./assets/sounds/MusicNote.ogg");
+            /*musicNoteSound = LoadSound("./assets/sounds/MusicNote.ogg");*/
             reggaeSound = LoadSound("./assets/sounds/Reggae.ogg");
             coinSound = LoadSound("./assets/sounds/Coin.ogg");
             explosionSound = LoadSound("./assets/sounds/Explosion.ogg");
@@ -281,10 +281,10 @@ namespace AbrahmanAdventure.audio
             drinkSound.Play();
         }
 
-        internal static void PlayMusicNoteSound()
+        /*internal static void PlayMusicNoteSound()
         {
             musicNoteSound.Play();
-        }
+        }*/
 
         internal static void PlayReggaeSound()
         {

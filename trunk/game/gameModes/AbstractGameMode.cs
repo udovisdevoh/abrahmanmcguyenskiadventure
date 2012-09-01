@@ -25,6 +25,8 @@ namespace AbrahmanAdventure
 
         private bool isShowHealthBar;
 
+        private bool isShowExp;
+
         private bool isAllowBodhiAirJump;
 
         private bool isTransformToBodhiWhenGetsEnoughMusicNote;
@@ -41,6 +43,7 @@ namespace AbrahmanAdventure
             isShowHealthBar = BuildIsShowHealthBar();
             isAllowBodhiAirJump = BuildIsAllowBodhiAirJump();
             isTransformToBodhiWhenGetsEnoughMusicNote = BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
+            isShowExp = BuildIsShowExp();
         }
         #endregion
 
@@ -60,7 +63,13 @@ namespace AbrahmanAdventure
 
         protected abstract bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
 
+        protected abstract bool BuildIsShowExp();
+
+        public abstract void PerformKillMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
+
         public abstract void HackPlayerSprite(PlayerSprite playerSprite);
+
+        public abstract int GetExperienceNeededForLevel(int level);
 
         #region Properties
         public double HoleLengthMultiplicator
@@ -101,6 +110,11 @@ namespace AbrahmanAdventure
         public bool IsTransformToBodhiWhenGetsEnoughMusicNote
         {
             get { return isTransformToBodhiWhenGetsEnoughMusicNote; }
+        }
+
+        public bool IsShowExp
+        {
+            get { return isShowExp; }
         }
         #endregion
 

@@ -26,7 +26,11 @@ Game modes
 			10: Bodhi no float, no charge, angle attack (and rope)
 			11: Bodhi no float, with charge, with angle attack (and rope)
 			12: Bodhi with float, charge and angle attack (and rope)
+			
+			12+ (augmente max health, (être sur que mushroom ne redonne pas tout), augmente force, augmente max walking speed, augmente jump acceleration, augmente mana
 		}
+		
+		Note de musique: augmente mana (pour attaques spéciales de bodhi)
 	}
 
 	Extreme Action

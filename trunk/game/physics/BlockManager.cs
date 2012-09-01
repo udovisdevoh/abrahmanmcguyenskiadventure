@@ -72,6 +72,7 @@ namespace AbrahmanAdventure.physics
                 if (((AnarchyBlockSprite)block).BlockContent == BlockContent.MusicNote)
                 {
                     SoundManager.PlayCoinSound();
+                    playerSpriteReference.MusicNoteCount++;
                 }
                 else
                 {

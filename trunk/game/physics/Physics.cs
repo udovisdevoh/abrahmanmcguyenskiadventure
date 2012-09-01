@@ -161,7 +161,7 @@ namespace AbrahmanAdventure.physics
                 gravityManager.ApplyFullGravityForce(spriteToUpdate, level, visibleSpriteList);
 
             jumpingManager.Update(spriteToUpdate, playerSpriteReference, gameState.GameMode, timeDelta);
-            damageManager.Update(spriteToUpdate, timeDelta);
+            damageManager.Update(spriteToUpdate, playerSpriteReference, gameState, timeDelta);
             deathManager.Update(spriteToUpdate, playerSpriteReference, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState, levelViewer);
 
             if (spriteToUpdate is PlayerSprite || spriteToUpdate is MonsterSprite)
@@ -199,7 +199,7 @@ namespace AbrahmanAdventure.physics
 
                     if (spriteToUpdate.CarriedSprite != null)
                     {
-                        carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,program,timeDelta);
+                        carriableSpriteManager.UpdateCarriedSprite(spriteToUpdate, spriteToUpdate.CarriedSprite,level,program,gameState.GameMode,timeDelta);
                     }
 
                     playerProjectileManager.Update((PlayerSprite)spriteToUpdate, visibleSpriteList, spritePopulation, random);

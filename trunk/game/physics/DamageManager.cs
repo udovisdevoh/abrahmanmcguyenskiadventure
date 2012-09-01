@@ -18,7 +18,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="sprite">Sprite</param>
         /// <param name="timeDelta">Time delta</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite sprite, double timeDelta)
+        internal void Update(AbstractSprite sprite, PlayerSprite playerSprite, GameState gameState, double timeDelta)
         {
             sprite.HitCycle.Increment(timeDelta);
             sprite.PunchedCycle.Increment(timeDelta);
@@ -32,6 +32,10 @@ namespace AbrahmanAdventure.physics
                 if (sprite.Health - sprite.CurrentDamageReceiving < 0.05)
                 {
                     //Instant death, no progressive decrease of health because health < damage
+
+                    if (sprite is MonsterSprite)
+                        gameState.GameMode.PerformKillMonsterExtraLogic(playerSprite, (MonsterSprite)sprite, gameState.Level.SkillLevel);
+
                     sprite.IsAlive = false;
                 }
                 else

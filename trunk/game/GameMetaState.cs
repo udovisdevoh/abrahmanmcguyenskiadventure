@@ -67,6 +67,16 @@ namespace AbrahmanAdventure
         private int skillLevelForUnknownLevels;
 
         /// <summary>
+        /// Player's experience
+        /// </summary>
+        private int experience;
+
+        /// <summary>
+        /// Player's level
+        /// </summary>
+        private int level;
+
+        /// <summary>
         /// Player's health
         /// </summary>
         private double health = 0.5;
@@ -110,6 +120,8 @@ namespace AbrahmanAdventure
             isBodhi = playerSprite.IsBodhi;
             health = playerSprite.Health;
             musicNoteCount = playerSprite.MusicNoteCount;
+            experience = playerSprite.Experience;
+            level = playerSprite.Level;
         }
 
         /// <summary>
@@ -126,6 +138,8 @@ namespace AbrahmanAdventure
             playerSprite.IsBodhi = isBodhi;
             playerSprite.Health = health;
             playerSprite.MusicNoteCount = musicNoteCount;
+            playerSprite.Experience = experience;
+            playerSprite.Level = level;
         }
         
         /// <summary>
@@ -300,6 +314,22 @@ namespace AbrahmanAdventure
         public int MusicNoteCount
         {
             get { return musicNoteCount; }
+        }
+
+        /// <summary>
+        /// Player's experience
+        /// </summary>
+        public int Experience
+        {
+            get { return experience; }
+        }
+
+        /// <summary>
+        /// Player's level
+        /// </summary>
+        public int Level
+        {
+            get { return level; }
         }
 
         /// <summary>

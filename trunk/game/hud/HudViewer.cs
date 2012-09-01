@@ -6,6 +6,7 @@ using SdlDotNet.Graphics;
 using SdlDotNet.Graphics.Primitives;
 using SdlDotNet.Core;
 using System.Drawing;
+using AbrahmanAdventure.sprites;
 
 namespace AbrahmanAdventure.hud
 {
@@ -34,6 +35,14 @@ namespace AbrahmanAdventure.hud
         /// Thickness of energy bar
         /// </summary>
         private static int energyBarThickness;
+
+        private static int previousGenericSkillValue = 0;
+
+        private static int previousGenericSkillValue2;
+
+        private static Surface genericSkillInfoSurface = null;
+
+        private static Cycle cycleDisplayGenericSkill = new Cycle(50, false, false, false);
         #endregion
 
         #region Constructor
@@ -53,23 +62,16 @@ namespace AbrahmanAdventure.hud
         /// </summary>
         /// <param name="dataSize">player's health (1.0 = default max)</param>
         /// <param name="isHealth">true: red bar, false: blue bar</param>
-        internal static void Update(Surface surface, double dataSize, bool isPlayerReady, bool isRed)
+        internal static void UpdateHealthBar(Surface surface, double dataSize, bool isPlayerReady)
         {
             int yellowBarWidth = (int)((dataSize * (double)(75)) * Program.screenWidth / 640);
 
             Rectangle yellowRectangle = new Rectangle(xYOffsetEnergyBar, xYOffsetEnergyBar, yellowBarWidth, energyBarThickness);
             Rectangle redRectangle = new Rectangle(yellowBarWidth + xYOffsetEnergyBar, xYOffsetEnergyBar, maxEnergyBarWidth - yellowBarWidth, energyBarThickness);
 
-            if (isRed)
-            {
-                surface.Fill(yellowRectangle, Color.Yellow);
-                surface.Fill(redRectangle, Color.Red);
-            }
-            else
-            {
-                surface.Fill(yellowRectangle, Color.Blue);
-                surface.Fill(redRectangle, Color.Black);
-            }
+            surface.Fill(yellowRectangle, Color.Yellow);
+            surface.Fill(redRectangle, Color.Red);
+
 
             if (!isPlayerReady)
             {
@@ -83,6 +85,44 @@ namespace AbrahmanAdventure.hud
             xYOffsetEnergyBar = (int)(16 * Program.screenWidth / 640);
             energyBarThickness = (int)(8 * Program.screenWidth / 640);
             pausedText = GameMenu.GetFontText("move left or right to resume", Color.White);
+            genericSkillInfoSurface = null;
+        }
+
+        internal static void UpdateKarmaCounter(Surface mainSurface, int karmaValue, double timeDelta)
+        {
+            if (karmaValue != previousGenericSkillValue || genericSkillInfoSurface == null)
+            {
+                genericSkillInfoSurface = GameMenu.GetFontText("Karma: " + karmaValue + " / " + Program.musicNoteCountForBodhi);
+                previousGenericSkillValue = karmaValue;
+                cycleDisplayGenericSkill.Fire();
+            }
+
+            if (cycleDisplayGenericSkill.IsFired)
+            {
+                cycleDisplayGenericSkill.Increment(timeDelta);
+                mainSurface.Blit(genericSkillInfoSurface, new Point(xYOffsetEnergyBar, xYOffsetEnergyBar));
+            }
+        }
+
+        internal static void UpdateExpCounter(Surface mainSurface, int experience, int experienceForNextLevel, int playerLevel, double timeDelta)
+        {
+            if (experience != previousGenericSkillValue || playerLevel != previousGenericSkillValue2 || genericSkillInfoSurface == null)
+            {
+                Surface levelLine = GameMenu.GetFontText("Level: " + (playerLevel + 1));
+                Surface expLine = GameMenu.GetFontText("Exp: " + experience + " / " + experienceForNextLevel);
+
+                genericSkillInfoSurface = new Surface(Math.Max(levelLine.Width, expLine.Width), levelLine.Height + expLine.Height);
+                genericSkillInfoSurface.Transparent = true;
+
+                genericSkillInfoSurface.Blit(levelLine);
+                genericSkillInfoSurface.Blit(expLine, new Point(0, levelLine.Height));
+
+                previousGenericSkillValue = experience;
+                previousGenericSkillValue2 = playerLevel;
+                cycleDisplayGenericSkill.Fire();
+            }
+
+            mainSurface.Blit(genericSkillInfoSurface, new Point(xYOffsetEnergyBar, xYOffsetEnergyBar * 2));
         }
         #endregion
     }
