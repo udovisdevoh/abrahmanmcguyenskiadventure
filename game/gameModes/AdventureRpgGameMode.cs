@@ -26,7 +26,37 @@ namespace AbrahmanAdventure
 
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
-            //do nothing
+            switch (playerSprite.Level)
+            {
+                case 0:
+                    playerSprite.IsTiny = true;
+                    playerSprite.IsRasta = false;
+                    playerSprite.IsDoped = false;
+                    playerSprite.IsNinja = false;
+                    playerSprite.IsBodhi = false;
+                    break;
+                case 1:
+                    playerSprite.IsTiny = false;
+                    playerSprite.IsRasta = false;
+                    playerSprite.IsDoped = false;
+                    playerSprite.IsNinja = false;
+                    playerSprite.IsBodhi = false;
+                    break;
+                case 2:
+                    playerSprite.IsTiny = false;
+                    playerSprite.IsRasta = true;
+                    playerSprite.IsDoped = false;
+                    playerSprite.IsNinja = false;
+                    playerSprite.IsBodhi = false;
+                    break;
+                case 3:
+                    playerSprite.IsTiny = false;
+                    playerSprite.IsRasta = false;
+                    playerSprite.IsDoped = true;
+                    playerSprite.IsNinja = false;
+                    playerSprite.IsBodhi = false;
+                    break;
+            }
         }
 
         protected override bool BuildIsMusicSpeedUp()
@@ -67,6 +97,11 @@ namespace AbrahmanAdventure
             {
                 playerSprite.Level++;
                 SoundManager.PlayEnlightenmentSound();
+                if (playerSprite.IsTiny)
+                    playerSprite.ChangingSizeAnimationCycle.Fire();
+                else
+                    playerSprite.PowerUpAnimationCycle.Fire();
+                HackPlayerSprite(playerSprite);
             }
         }
 
@@ -76,6 +111,16 @@ namespace AbrahmanAdventure
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
             SoundManager.StopKiChargingSound();
             playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision * 0.4;
+        }
+
+        public override void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
+        {
+            SoundManager.PlayPowerUpSound();
+
+            playerSprite.PowerUpAnimationCycle.Fire();
+            playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
+            mushroomSprite.IsAlive = false;
+            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
         public override int GetExperienceNeededForLevel(int level)

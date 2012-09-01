@@ -35,7 +35,7 @@ namespace AbrahmanAdventure.physics
 
                 if (otherSprite is MushroomSprite && playerSprite.IsBeaver)
                 {
-                    powerUpManager.UpdateTouchMushroom(playerSprite, (MushroomSprite)otherSprite);
+                    gameMode.UpdateTouchMushroom(playerSprite, (MushroomSprite)otherSprite);
                     break;
                 }
                 else if (otherSprite is RastaHatSprite && playerSprite.IsBeaver)

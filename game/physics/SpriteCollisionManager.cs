@@ -72,7 +72,7 @@ namespace AbrahmanAdventure.physics
 
                 if (sprite is PlayerSprite && otherSprite is MushroomSprite && otherSprite.IsAlive)
                 {
-                    powerUpManager.UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
+                    gameState.GameMode.UpdateTouchMushroom((PlayerSprite)sprite, (MushroomSprite)otherSprite);
                 }
                 else if (sprite is PlayerSprite && otherSprite is PeyoteSprite && otherSprite.IsAlive)
                 {
