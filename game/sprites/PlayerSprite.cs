@@ -996,6 +996,16 @@ namespace AbrahmanAdventure.sprites
         private int musicNoteCount = 0;
 
         /// <summary>
+        /// Player's exp
+        /// </summary>
+        private int experience = 0;
+
+        /// <summary>
+        /// Player's level
+        /// </summary>
+        private int level = 0;
+
+        /// <summary>
         /// Default health
         /// </summary>
         private double defaultHealth = 0.5;
@@ -5350,6 +5360,24 @@ namespace AbrahmanAdventure.sprites
         {
             get { return musicNoteCount; }
             set { musicNoteCount = value; }
+        }
+
+        /// <summary>
+        /// Player's exp
+        /// </summary>
+        public int Experience
+        {
+            get { return experience; }
+            set { experience = value; }
+        }
+
+        /// <summary>
+        /// Player's level
+        /// </summary>
+        public int Level
+        {
+            get { return level; }
+            set { level = value; }
         }
 
         /// <summary>

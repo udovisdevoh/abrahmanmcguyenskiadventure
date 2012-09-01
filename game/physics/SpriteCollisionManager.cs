@@ -142,7 +142,7 @@ namespace AbrahmanAdventure.physics
                         }
                         else
                         {
-                            UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, random);
+                            UpdateJumpOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, gameState.GameMode, random);
                         }
                     }
                 }
@@ -154,7 +154,7 @@ namespace AbrahmanAdventure.physics
                     }
                     else
                     {
-                        KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, timeDelta);
+                        KickOrStopHelmet(sprite, (MonsterSprite)otherSprite, level, gameState.GameMode, timeDelta);
                     }
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
@@ -213,6 +213,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                 {
                     SoundManager.PlayHitSound();
+                    gameState.GameMode.PerformKillMonsterExtraLogic(sprite, monsterSprite, level.SkillLevel);
                     monsterSprite.IsAlive = false;
                     monsterSprite.JumpingCycle.Fire();
                 }
@@ -273,7 +274,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="timeDelta">time delta</param>
         /// <param name="random">random number generator</param>
-        private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, Random random)
+        private void UpdateJumpOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, AbstractGameMode gameMode, Random random)
         {
             if (Physics.IsSpriteInDeadZone(otherSprite, sprite))
                 return;
@@ -320,12 +321,13 @@ namespace AbrahmanAdventure.physics
                             }
                             else if (monsterSprite.IsToggleWalkWhenJumpedOn) //Start/stop (for helmets)
                             {
-                                KickOrStopHelmet(sprite, monsterSprite, level, timeDelta);
+                                KickOrStopHelmet(sprite, monsterSprite, level, gameMode, timeDelta);
                             }
                             else 
                             {
                                 if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                                 {
+                                    gameMode.PerformKillMonsterExtraLogic((PlayerSprite)sprite, monsterSprite,level.SkillLevel);
                                     monsterSprite.IsAlive = false;
                                     monsterSprite.JumpingCycle.Fire();
                                 }
@@ -351,7 +353,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="monsterSprite">kicked</param>
         /// <param name="level">level</param>
         /// <param name="timeDelta">time delta</param>
-        public void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, double timeDelta)
+        public void KickOrStopHelmet(AbstractSprite sprite, MonsterSprite monsterSprite, Level level, AbstractGameMode gameMode, double timeDelta)
         {
             if (monsterSprite.KickedHelmetCycle.IsFired)
                 return;
@@ -359,6 +361,7 @@ namespace AbrahmanAdventure.physics
             if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
             {
                 SoundManager.PlayHitSound();
+                gameMode.PerformKillMonsterExtraLogic((PlayerSprite)sprite, monsterSprite, level.SkillLevel);
                 monsterSprite.IsAlive = false;
                 monsterSprite.JumpingCycle.Fire();
                 return;

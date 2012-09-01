@@ -29,7 +29,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="level">level</param>
         /// <param name="program">program</param>
         /// <param name="timeDelta">time delta</param>
-        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, double timeDelta)
+        internal void UpdateCarriedSprite(AbstractSprite carrier, AbstractSprite carriedItem, Level level, Program program, AbstractGameMode gameMode, double timeDelta)
         {
             if (!carriedItem.IsAlive)
             {
@@ -101,7 +101,7 @@ namespace AbrahmanAdventure.physics
                     }
                     else //We throw it left or right (helmets only)
                     {
-                        spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, timeDelta);
+                        spriteCollisionManager.KickOrStopHelmet(carrier, (MonsterSprite)carriedItem, level, gameMode, timeDelta);
                         ((MonsterSprite)carriedItem).IsNoAiDefaultDirectionWalkingRight = carrier.IsTryingToWalkRight;
                         carriedItem.CurrentWalkingSpeed = (carriedItem.MaxWalkingSpeed / 2.0) + carrier.CurrentWalkingSpeed;
 

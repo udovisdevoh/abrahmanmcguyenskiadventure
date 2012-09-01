@@ -41,13 +41,13 @@ namespace AbrahmanAdventure.sprites
 
 
             if (level.Path != null && isShowVehicle)
-                VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
+                VehicleDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, new Random(random.Next()));
 
             if (isShowPlatform)
-                PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, random);
+                PlatformDispatcher.Dispatch(level, spritePopulation, waterInfo, wagonIgnoreList, new Random(random.Next()));
 
             if (isShowAmusement)
-                AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), random);
+                AmusementDispatcher.Dispatch(level, spritePopulation, waterInfo, new HashSet<int>(), new Random(random.Next()));
             
 
             #region Remove path if nothing is attached to it
@@ -67,7 +67,7 @@ namespace AbrahmanAdventure.sprites
             }
             #endregion
 
-            GeneratePlatformColors(spritePopulation, random);
+            GeneratePlatformColors(spritePopulation, new Random(random.Next()));
         }
         #endregion
 

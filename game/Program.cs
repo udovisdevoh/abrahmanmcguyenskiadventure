@@ -825,10 +825,14 @@ namespace AbrahmanAdventure
                 levelViewer.Update(level, gameState.ColorTheme, gameState.Background/*, gameState.Column*/, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 vectorViewer.Update(viewOffsetX, viewOffsetY);
+
                 if (Program.isShowHealthBar || gameState.GameMode.IsShowHealthBar)
-                    HudViewer.Update(mainSurface, playerSprite.Health, gameState.IsPlayerReady, true);
+                    HudViewer.UpdateHealthBar(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 else if (gameState.GameMode.IsTransformToBodhiWhenGetsEnoughMusicNote)
-                    HudViewer.Update(mainSurface, (double)(playerSprite.MusicNoteCount) / (double)(Program.musicNoteCountForBodhi), gameState.IsPlayerReady, false);
+                    HudViewer.UpdateKarmaCounter(mainSurface, playerSprite.MusicNoteCount, timeDelta);
+
+                if (gameState.GameMode.IsShowExp)
+                    HudViewer.UpdateExpCounter(mainSurface, playerSprite.Experience, gameState.GameMode.GetExperienceNeededForLevel(playerSprite.Level + 1), playerSprite.Level, timeDelta);
 
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
