@@ -12,23 +12,6 @@ namespace AbrahmanAdventure.physics
     /// </summary>
     internal class PowerUpManager
     {
-        /// <summary>
-        /// Player touches mushroom and get health
-        /// </summary>
-        /// <param name="playerSprite">player</param>
-        /// <param name="mushroomSprite">mushroom</param>
-        internal void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
-        {
-            SoundManager.PlayPowerUpSound();
-            if (playerSprite.IsTiny)
-                playerSprite.ChangingSizeAnimationCycle.Fire();
-            else
-                playerSprite.PowerUpAnimationCycle.Fire();
-            playerSprite.Health = playerSprite.MaxHealth;
-            playerSprite.IsTiny = false;
-            mushroomSprite.IsAlive = false;
-            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
 
         /// <summary>
         /// Sprite touches peyote

@@ -71,6 +71,57 @@ namespace AbrahmanAdventure
 
         public abstract int GetExperienceNeededForLevel(int level);
 
+        #region Virtual Methods
+        public virtual void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
+        {
+            if (!playerSprite.IsTiny && !playerSprite.IsNinja && !playerSprite.IsBodhi)
+                ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
+
+            ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
+            SoundManager.StopKiChargingSound();
+
+            SoundManager.PlayHit2Sound();
+            if (playerSprite.IsDoped)
+                playerSprite.IsDoped = false;
+            if (playerSprite.IsRasta)
+                playerSprite.IsRasta = false;
+            if (playerSprite.IsBodhi)
+            {
+                playerSprite.IsBodhi = false;
+                playerSprite.IsNinja = true;
+            }
+            else if (playerSprite.IsNinja)
+            {
+                playerSprite.IsNinja = false;
+                /*if (SongPlayer.IRiff != gameState.Song)
+                {
+                    SongPlayer.StopSync();
+                    SongPlayer.IRiff = gameState.Song;
+                    SongPlayer.PlayAsync();
+                }*/
+                //Only lose ninja status, no damage
+            }
+            else
+            {
+                playerSprite.IsTiny = true;
+                playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
+            }
+        }
+
+        public virtual void UpdateTouchMushroom(PlayerSprite playerSprite, MushroomSprite mushroomSprite)
+        {
+            SoundManager.PlayPowerUpSound();
+            if (playerSprite.IsTiny)
+                playerSprite.ChangingSizeAnimationCycle.Fire();
+            else
+                playerSprite.PowerUpAnimationCycle.Fire();
+            playerSprite.Health = playerSprite.MaxHealth;
+            playerSprite.IsTiny = false;
+            mushroomSprite.IsAlive = false;
+            mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+        }
+        #endregion
+
         #region Properties
         public double HoleLengthMultiplicator
         {
@@ -117,41 +168,5 @@ namespace AbrahmanAdventure
             get { return isShowExp; }
         }
         #endregion
-
-        public virtual void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
-        {
-            if (!playerSprite.IsTiny && !playerSprite.IsNinja && !playerSprite.IsBodhi)
-                ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
-
-            ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
-            SoundManager.StopKiChargingSound();
-
-            SoundManager.PlayHit2Sound();
-            if (playerSprite.IsDoped)
-                playerSprite.IsDoped = false;
-            if (playerSprite.IsRasta)
-                playerSprite.IsRasta = false;
-            if (playerSprite.IsBodhi)
-            {
-                playerSprite.IsBodhi = false;
-                playerSprite.IsNinja = true;
-            }
-            else if (playerSprite.IsNinja)
-            {
-                playerSprite.IsNinja = false;
-                /*if (SongPlayer.IRiff != gameState.Song)
-                {
-                    SongPlayer.StopSync();
-                    SongPlayer.IRiff = gameState.Song;
-                    SongPlayer.PlayAsync();
-                }*/
-                //Only lose ninja status, no damage
-            }
-            else
-            {
-                playerSprite.IsTiny = true;
-                playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
-            }
-        }
     }
 }

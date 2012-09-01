@@ -1,5 +1,8 @@
 ?rendre skill level curve plus abrupte?
 ?rendre powerups seulement visible si skill level le permet (progression)?
+Fix bug: elevator platform crunches monsters and beaver sprite
+
+?Doped: must be able to throw fireball even when on beaver?
 
 Game modes
 {
@@ -17,7 +20,7 @@ Game modes
 			1: Small no punch no kick
 			2: Big with punch and kick
 			3: Rasta
-			4: Fireball
+			4: Doped
 			5: Ninja no shuriken no nunchaku no rope
 			6: Ninja with nunchaku
 			7: Ninja with nunchaku and shuriken
