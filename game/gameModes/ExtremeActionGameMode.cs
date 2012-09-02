@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SdlDotNet.Graphics;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.audio;
 
@@ -9,6 +10,13 @@ namespace AbrahmanAdventure
 {
     class ExtremeActionGameMode : AbstractGameMode
     {
+        #region Constructor
+        public ExtremeActionGameMode(Surface surfaceToDrawLoadingProgress)
+            : base(surfaceToDrawLoadingProgress)
+        {
+        }
+        #endregion
+
         protected override double BuildHoleLengthMultiplicator()
         {
             return 0.5;
@@ -56,11 +64,6 @@ namespace AbrahmanAdventure
             return true;
         }
 
-        protected override bool BuildIsAllowBodhiAirJump()
-        {
-            return false;
-        }
-
         protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
         {
             return false;
@@ -79,6 +82,41 @@ namespace AbrahmanAdventure
         public override int GetExperienceNeededForLevel(int level)
         {
             return 0;
+        }
+
+        public override bool IsAllowThrowBallOrShuriken(PlayerSprite playerSprite)
+        {
+            return true;
+        }
+
+        public override bool IsAllowNunchaku(PlayerSprite playerSprite)
+        {
+            return true;
+        }
+
+        public override bool IsAllowPunchKick(PlayerSprite playerSprite)
+        {
+            return true;
+        }
+
+        public override bool IsAllowThrowNinjaRope(PlayerSprite playerSprite)
+        {
+            return true;
+        }
+
+        public override bool IsAllowBodhiAirJump(PlayerSprite playerSprite)
+        {
+            return false;
+        }
+
+        public override bool IsAllowCharge(PlayerSprite playerSprite)
+        {
+            return true;
+        }
+
+        public override bool IsAllowAngleAttack(PlayerSprite playerSprite)
+        {
+            return true;
         }
     }
 }

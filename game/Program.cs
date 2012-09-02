@@ -589,7 +589,7 @@ namespace AbrahmanAdventure
                         playerSprite.IsTryThrowingLargeBall = false;
                         if (userInput.isPressAttack)
                         {
-                            if (!playerSprite.IsNeedToAttackAgain)
+                            if (!playerSprite.IsNeedToAttackAgain && gameState.GameMode.IsAllowCharge(playerSprite))
                             {
                                 playerSprite.KiBallChargeCycle.Fire();
                                 SoundManager.PlayKiChargingSound();
@@ -649,18 +649,21 @@ namespace AbrahmanAdventure
                                 if ((playerSprite.IsDoped && !playerSprite.IsBeaver) || playerSprite.IsNinja || playerSprite.IsBodhi)
                                 {
                                     #region Throwing balls or shuriken, and if ninja and not on beaver, fire attack cycle (sword)
-                                    playerSprite.IsTryThrowingBall = true;
-                                    if (playerSprite.IsNinja)
+                                    if (gameState.GameMode.IsAllowThrowBallOrShuriken(playerSprite))
                                     {
-                                        if (playerSprite.IsBeaver)
-                                            SoundManager.PlayAttemptSound();
-                                        else
-                                            SoundManager.PlaySwordSound();
-                                        playerSprite.AttackingCycle.Fire();
+                                        playerSprite.IsTryThrowingBall = true;
+                                        if (playerSprite.IsNinja)
+                                        {
+                                            if (playerSprite.IsBeaver)
+                                                SoundManager.PlayAttemptSound();
+                                            else
+                                                SoundManager.PlaySwordSound();
+                                            playerSprite.AttackingCycle.Fire();
+                                        }
                                     }
                                     #endregion
                                 }
-                                else
+                                else if (gameState.GameMode.IsAllowPunchKick(playerSprite))
                                 {
                                     #region Standard punch attempt
                                     SoundManager.PlayAttemptSound();
@@ -683,7 +686,10 @@ namespace AbrahmanAdventure
                         if (playerSprite.IsNinja && userInput.isPressAttack && !playerSprite.IsBeaver && playerSprite.CurrentWalkingSpeed <= 0.07)
                         {
                             if (playerSprite.AttackingCycle.CurrentValue >= playerSprite.AttackingCycle.TotalTimeLength * 5.0)
-                                playerSprite.IsTryUseNunchaku = true;
+                            {
+                                if (gameState.GameMode.IsAllowNunchaku(playerSprite))
+                                    playerSprite.IsTryUseNunchaku = true;
+                            }
                         }
                         else
                         {
@@ -781,13 +787,21 @@ namespace AbrahmanAdventure
                             playerSprite.IsNeedToPressThrowNinjaRopeAgain = true;
                         }
                         else if ((playerSprite.IsNinja || playerSprite.IsBodhi) && !playerSprite.IsNeedToPressThrowNinjaRopeAgain)
-                            playerSprite.IsTryThrowNinjaRope = true;
+                        {
+                            if (gameState.GameMode.IsAllowThrowNinjaRope(playerSprite))
+                            {
+                                playerSprite.IsTryThrowNinjaRope = true;
+                            }
+                        }
                     }
                     else if (userInput.isPressThrowRope && (playerSprite.IsNinja || playerSprite.IsBodhi))
                     {
                         if (!playerSprite.IsNeedToPressThrowNinjaRopeAgain)
                         {
-                            playerSprite.IsTryThrowNinjaRope = true;
+                            if (gameState.GameMode.IsAllowThrowNinjaRope(playerSprite))
+                            {
+                                playerSprite.IsTryThrowNinjaRope = true;
+                            }
                         }
                     }
                     else

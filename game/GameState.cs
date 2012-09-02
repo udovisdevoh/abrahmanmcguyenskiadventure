@@ -139,13 +139,13 @@ namespace AbrahmanAdventure
             backgroundColorHsl = new ColorHsl(random);
 
             if (isAdventureRpg)
-                gameMode = new AdventureRpgGameMode();
+                gameMode = new AdventureRpgGameMode(surfaceToDrawLoadingProgress);
             else if (isExtremeAction)
-                gameMode = new ExtremeActionGameMode();
+                gameMode = new ExtremeActionGameMode(surfaceToDrawLoadingProgress);
             else if (isRacing)
-                gameMode = new RacingGameMode();
+                gameMode = new RacingGameMode(surfaceToDrawLoadingProgress);
             else
-                gameMode = new PlatformerGameMode();
+                gameMode = new PlatformerGameMode(surfaceToDrawLoadingProgress);
 
             if (Program.isTellPlanetName)
                 TutorialTalker.Talk("Planet " + name);
