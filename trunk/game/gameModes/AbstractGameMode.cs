@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SdlDotNet.Graphics;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.audio;
 
@@ -12,7 +13,11 @@ namespace AbrahmanAdventure
     /// </summary>
     abstract class AbstractGameMode
     {
-        #region Fields
+        #region Fields and parts
+        private Surface mainSurface;
+
+        private Cycle drawTextCycle = new Cycle(50, false, false, false);
+
         private double holeLengthMultiplicator;
 
         private double groundSurfaceLengthMultiplicator;
@@ -27,21 +32,19 @@ namespace AbrahmanAdventure
 
         private bool isShowExp;
 
-        private bool isAllowBodhiAirJump;
-
         private bool isTransformToBodhiWhenGetsEnoughMusicNote;
         #endregion
 
         #region Constructor
-        public AbstractGameMode()
+        public AbstractGameMode(Surface mainSurface)
         {
+            this.mainSurface = mainSurface;
             holeLengthMultiplicator = BuildHoleLengthMultiplicator();
             groundSurfaceLengthMultiplicator = BuildGroundSurfaceLengthMultiplicator();
             monsterDensityMultiplicator = BuildMonsterDensityMultiplicator();
             isMusicSpeedUp = BuildIsMusicSpeedUp();
             isMushroomOverrideUpgrade = BuildIsMushroomOverrideUpgrade();
             isShowHealthBar = BuildIsShowHealthBar();
-            isAllowBodhiAirJump = BuildIsAllowBodhiAirJump();
             isTransformToBodhiWhenGetsEnoughMusicNote = BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
             isShowExp = BuildIsShowExp();
         }
@@ -59,8 +62,6 @@ namespace AbrahmanAdventure
 
         protected abstract bool BuildIsShowHealthBar();
 
-        protected abstract bool BuildIsAllowBodhiAirJump();
-
         protected abstract bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
 
         protected abstract bool BuildIsShowExp();
@@ -70,6 +71,20 @@ namespace AbrahmanAdventure
         public abstract void HackPlayerSprite(PlayerSprite playerSprite);
 
         public abstract int GetExperienceNeededForLevel(int level);
+
+        public abstract bool IsAllowThrowBallOrShuriken(PlayerSprite playerSprite);
+
+        public abstract bool IsAllowNunchaku(PlayerSprite playerSprite);
+
+        public abstract bool IsAllowPunchKick(PlayerSprite playerSprite);
+
+        public abstract bool IsAllowThrowNinjaRope(PlayerSprite playerSprite);
+
+        public abstract bool IsAllowBodhiAirJump(PlayerSprite playerSprite);
+
+        public abstract bool IsAllowCharge(PlayerSprite playerSprite);
+
+        public abstract bool IsAllowAngleAttack(PlayerSprite playerSprite);
 
         #region Virtual Methods
         public virtual void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
@@ -151,11 +166,6 @@ namespace AbrahmanAdventure
         public bool IsShowHealthBar
         {
             get { return isShowHealthBar; }
-        }
-
-        public bool IsAllowBodhiAirJump
-        {
-            get { return isAllowBodhiAirJump; }
         }
 
         public bool IsTransformToBodhiWhenGetsEnoughMusicNote

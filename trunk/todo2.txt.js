@@ -8,10 +8,7 @@ Game modes
 {
 	Adventure RPG
 	{
-		Exp
-		Level up
 		upgrade permanent par level
-		meilleur exp si level difficile
 		meilleur AI de castor
 		castor se respawn comme tails dans sonic
 		
@@ -30,8 +27,10 @@ Game modes
 			11: Bodhi no float, with charge, with angle attack (and rope)
 			12: Bodhi with float, charge and angle attack (and rope)
 			
-			12+ (augmente max health, (être sur que mushroom ne redonne pas tout), augmente force, augmente max walking speed, augmente jump acceleration, augmente mana
+			13+ (augmente max health, augmente force, augmente max walking speed, augmente jump acceleration, augmente mana
 		}
+		
+		Afficher message texte à chaque level up
 		
 		Note de musique: augmente mana (pour attaques spéciales de bodhi)
 	}
