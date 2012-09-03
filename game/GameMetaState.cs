@@ -314,6 +314,7 @@ namespace AbrahmanAdventure
         public int MusicNoteCount
         {
             get { return musicNoteCount; }
+            set { musicNoteCount = value; }
         }
 
         /// <summary>
@@ -322,6 +323,7 @@ namespace AbrahmanAdventure
         public int Experience
         {
             get { return experience; }
+            set { experience = value; }
         }
 
         /// <summary>
@@ -330,6 +332,7 @@ namespace AbrahmanAdventure
         public int Level
         {
             get { return level; }
+            set { level = value; }
         }
 
         /// <summary>

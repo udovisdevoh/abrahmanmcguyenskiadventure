@@ -855,6 +855,8 @@ namespace AbrahmanAdventure
                                 TutorialTalker.TryTalkAbout(sprite);
                 #endregion
 
+                gameState.GameMode.UpdateByFrame(timeDelta, playerSprite);
+
                 //levelViewer.PreCacheNextZoneIfLevelViewerCacheNotFull(level, playerSprite.IsTryingToWalkRight);
             }
 

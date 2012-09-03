@@ -1,3 +1,6 @@
+test fix bug save+load level, music notes and exp
+fix bug no sword / nunchaku (rpg)
+
 ?rendre skill level curve plus abrupte?
 ?rendre powerups seulement visible si skill level le permet (progression)?
 Fix bug: elevator platform crunches monsters and beaver sprite

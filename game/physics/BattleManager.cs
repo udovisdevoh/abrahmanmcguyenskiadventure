@@ -84,7 +84,7 @@ namespace AbrahmanAdventure.physics
 
                             if (playerSprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                             {
-                                gameMode.PerformKillMonsterExtraLogic(playerSprite, monsterSprite, level.SkillLevel);
+                                gameMode.PerformDestroyMonsterExtraLogic(playerSprite, monsterSprite, level.SkillLevel);
                                 monsterSprite.IsAlive = false;
                                 monsterSprite.JumpingCycle.Fire();
                             }

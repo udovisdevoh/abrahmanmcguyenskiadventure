@@ -74,7 +74,7 @@ namespace AbrahmanAdventure
             return false;
         }
 
-        public override void PerformKillMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
+        public override void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
         {
             //do nothing
         }
@@ -117,6 +117,11 @@ namespace AbrahmanAdventure
         public override bool IsAllowAngleAttack(PlayerSprite playerSprite)
         {
             return true;
+        }
+
+        public override void UpdateByFrame(double timeDelta, PlayerSprite playerSprite)
+        {
+            //do nothing
         }
     }
 }
