@@ -78,6 +78,11 @@ namespace AbrahmanAdventure.sprites
         private bool isAiEnabled;
 
         /// <summary>
+        /// Whether monster attacks monsters
+        /// </summary>
+        private bool isAttackMonsters;
+
+        /// <summary>
         /// Whether sprite will change direction if no AI, when stucked
         /// </summary>
         private bool isNoAiChangeDirectionWhenStucked;
@@ -732,6 +737,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isResistantToPlayerProjectile; }
             set { isResistantToPlayerProjectile = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite attacks other monsters
+        /// </summary>
+        public bool IsAttackMonsters
+        {
+            get { return isAttackMonsters; }
+            set { isAttackMonsters = value; }
         }
 
         /// <summary>

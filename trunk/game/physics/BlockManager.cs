@@ -27,6 +27,11 @@ namespace AbrahmanAdventure.physics
         /// Manages pipe (player going into pipes)
         /// </summary>
         private PipeManager pipeManager = new PipeManager();
+
+        /// <summary>
+        /// Manages beaver logic
+        /// </summary>
+        private BeaverManager beaverManager = new BeaverManager();
         #endregion
 
         #region Internal Methods
@@ -83,6 +88,9 @@ namespace AbrahmanAdventure.physics
                     spritePopulation.Add(powerUpSprite);
                     powerUpSprite.XPosition = powerUpSprite.XPosition;//We reset previous position
                     powerUpSprite.YPosition = powerUpSprite.YPosition;//We reset previous position
+
+                    if (powerUpSprite is BeaverSprite && gameMode.IsBeaverAlwaysStrongAi)
+                        beaverManager.SetBeaverAi((BeaverSprite)powerUpSprite, playerSpriteReference, true);
                 }
 
                 foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)

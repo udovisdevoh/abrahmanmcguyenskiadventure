@@ -1,5 +1,11 @@
 charged ki ball must destroy lawyers
 
+fix bugs
+{
+	-when falling torward platform moving up: sometimes crosses platform
+	-720p, 1080p: crouched flying rasta wrong picture size
+}
+
 Game modes
 {
 	Adventure RPG
@@ -12,7 +18,7 @@ Game modes
 			13+ (augmente max health, augmente force, augmente max walking speed, augmente jump acceleration, augmente mana (music notes), amplitude de mouvement sinusoidal de ki ball, ?ninja et bodhi en même temps?
 		}
 				
-		Note de musique: augmente mana (pour attaques spéciales de bodhi)
+		Note de musique: augmente mana (pour attaques spéciales de bodhi, fireball, shuriken etc)
 	}
 }
 

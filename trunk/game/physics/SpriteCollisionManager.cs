@@ -226,7 +226,7 @@ namespace AbrahmanAdventure.physics
 
                     if (sprite.IsBeaver)
                     {
-                        CollisionRemoveBeaver(sprite, spritePopulation, random);
+                        CollisionRemoveBeaver(sprite, spritePopulation, gameState.GameMode, random);
                     }
                     else
                     {
@@ -244,7 +244,7 @@ namespace AbrahmanAdventure.physics
 
                 if (playerSprite.IsBeaver)
                 {
-                    CollisionRemoveBeaver(playerSprite, spritePopulation, random);
+                    CollisionRemoveBeaver(playerSprite, spritePopulation, gameState.GameMode, random);
                 }
                 else
                 {
@@ -253,7 +253,7 @@ namespace AbrahmanAdventure.physics
             }
         }
 
-        private void CollisionRemoveBeaver(PlayerSprite playerSprite, SpritePopulation spritePopulation, Random random)
+        private void CollisionRemoveBeaver(PlayerSprite playerSprite, SpritePopulation spritePopulation, AbstractGameMode gameMode, Random random)
         {
             SoundManager.PlayBeaverHitSound();
             playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration;
@@ -261,6 +261,10 @@ namespace AbrahmanAdventure.physics
             playerSprite.JumpingCycle.Fire();
             playerSprite.IsBeaver = false;
             BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, random);
+
+            if (gameMode.IsBeaverAlwaysStrongAi)
+                beaverManager.SetBeaverAi(beaverSprite, playerSprite, true);
+
             spritePopulation.Add(beaverSprite);
             beaverSprite.IsWalkEnabled = true;
         }
