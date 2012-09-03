@@ -31,6 +31,10 @@ namespace AbrahmanAdventure
         private bool isShowExp;
 
         private bool isTransformToBodhiWhenGetsEnoughMusicNote;
+
+        private bool isBeaverAlwaysStrongAi;
+
+        private bool isAllowJumpOnBeaver;
         #endregion
 
         #region Constructor
@@ -45,6 +49,8 @@ namespace AbrahmanAdventure
             isShowHealthBar = BuildIsShowHealthBar();
             isTransformToBodhiWhenGetsEnoughMusicNote = BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
             isShowExp = BuildIsShowExp();
+            isAllowJumpOnBeaver = BuildIsAllowJumpOnBeaver();
+            isBeaverAlwaysStrongAi = BuildIsBeaverAlwaysStrongAi();
         }
         #endregion
 
@@ -63,6 +69,10 @@ namespace AbrahmanAdventure
         protected abstract bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
 
         protected abstract bool BuildIsShowExp();
+
+        protected abstract bool BuildIsAllowJumpOnBeaver();
+
+        protected abstract bool BuildIsBeaverAlwaysStrongAi();
 
         public abstract void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
 
@@ -176,6 +186,16 @@ namespace AbrahmanAdventure
         public bool IsShowExp
         {
             get { return isShowExp; }
+        }
+
+        public bool IsBeaverAlwaysStrongAi
+        {
+            get { return isBeaverAlwaysStrongAi; }
+        }
+
+        public bool IsAllowJumpOnBeaver
+        {
+            get { return isAllowJumpOnBeaver; }
         }
         #endregion
     }

@@ -50,6 +50,16 @@ namespace AbrahmanAdventure
             return true;
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsBeaverAlwaysStrongAi()
+        {
+            return true;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             playerSprite.MaxRunningSpeed *= 2;

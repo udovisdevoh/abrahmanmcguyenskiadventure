@@ -157,6 +157,16 @@ namespace AbrahmanAdventure
             mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsBeaverAlwaysStrongAi()
+        {
+            return true;
+        }
+
         public override int GetExperienceNeededForLevel(int level)
         {
             return (int)Math.Round(Math.Pow((double)(level + 1), 1.9) * 50.0);

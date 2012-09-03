@@ -74,6 +74,16 @@ namespace AbrahmanAdventure
             return false;
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsBeaverAlwaysStrongAi()
+        {
+            return false;
+        }
+
         public override void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
         {
             //do nothing

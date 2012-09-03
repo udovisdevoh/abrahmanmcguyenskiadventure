@@ -44,7 +44,7 @@ namespace AbrahmanAdventure.physics
         /// </summary>
         /// <param name="playerSprite">player sprite</param>
         /// <param name="spritePopulation">sprite population</param>
-        internal void LeaveBeaver(PlayerSprite playerSprite, SpritePopulation spritePopulation)
+        internal void LeaveBeaver(PlayerSprite playerSprite, SpritePopulation spritePopulation, AbstractGameMode gameMode)
         {
             playerSprite.IsBeaver = false;
             BeaverSprite beaverSprite = new BeaverSprite(playerSprite.XPosition, playerSprite.YPosition, random);
@@ -56,19 +56,15 @@ namespace AbrahmanAdventure.physics
             if (beaverSprite.IGround == null)
                 beaverSprite.IsCurrentlyInFreeFallX = true;
 
-            if (playerSprite.IsNinja || playerSprite.IsBodhi)
+            if (playerSprite.IsNinja || playerSprite.IsBodhi || gameMode.IsBeaverAlwaysStrongAi)
             {
                 if (playerSprite.LatestNinjaBeaver != null)
                     RemoveNinjaStatusFromBeaver(playerSprite.LatestNinjaBeaver);
 
-                //we give special status to latest beaver voluntarily left by ninja
-                beaverSprite.IsAiEnabled = true;
-                beaverSprite.MaxWalkingSpeed = playerSprite.MaxRunningSpeed;
-                beaverSprite.IsAvoidFall = true;
-                beaverSprite.IsCanJump = true;
-                beaverSprite.StartingJumpAcceleration = playerSprite.StartingJumpAcceleration * 1.2;
-                beaverSprite.SafeDistanceAi = 3.5;
                 playerSprite.LatestNinjaBeaver = beaverSprite;
+                beaverSprite.StartingJumpAcceleration = playerSprite.StartingJumpAcceleration * 1.2;
+
+                SetBeaverAi(beaverSprite, playerSprite, gameMode.IsBeaverAlwaysStrongAi);
             }
             else
             {
@@ -87,6 +83,18 @@ namespace AbrahmanAdventure.physics
             playerSprite.YPosition -= 0.5;
 
             playerSprite.IsTryingToJump = true;
+        }
+
+        internal void SetBeaverAi(BeaverSprite beaverSprite, PlayerSprite playerSprite, bool isStrongAgressiveAi)
+        {
+            //we give special status to latest beaver voluntarily left by ninja
+            beaverSprite.IsAiEnabled = true;
+            beaverSprite.MaxWalkingSpeed = playerSprite.MaxRunningSpeed;
+            beaverSprite.IsAvoidFall = true;
+            beaverSprite.IsCanJump = true;
+            beaverSprite.SafeDistanceAi = 3.5;
+            beaverSprite.IsWalkEnabled = true;
+            beaverSprite.IsAttackMonsters = isStrongAgressiveAi;
         }
         #endregion
 
