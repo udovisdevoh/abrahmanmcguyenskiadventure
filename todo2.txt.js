@@ -1,6 +1,3 @@
-test fix bug save+load level, music notes and exp
-fix bug no sword / nunchaku (rpg)
-
 ?rendre skill level curve plus abrupte?
 ?rendre powerups seulement visible si skill level le permet (progression)?
 Fix bug: elevator platform crunches monsters and beaver sprite
@@ -11,30 +8,14 @@ Game modes
 {
 	Adventure RPG
 	{
-		upgrade permanent par level
 		meilleur AI de castor
 		castor se respawn comme tails dans sonic
 		
 		Niveaux
-		{
-			1: Small no punch no kick
-			2: Big with punch and kick
-			3: Rasta
-			4: Doped
-			5: Ninja no shuriken no nunchaku no rope
-			6: Ninja with nunchaku
-			7: Ninja with nunchaku and shuriken
-			8: Ninja with nunchaku, shuriken and rope
-			9: Bodhi no float, no charge, straight attack only (and rope)
-			10: Bodhi no float, no charge, angle attack (and rope)
-			11: Bodhi no float, with charge, with angle attack (and rope)
-			12: Bodhi with float, charge and angle attack (and rope)
-			
-			13+ (augmente max health, augmente force, augmente max walking speed, augmente jump acceleration, augmente mana
+		{		
+			13+ (augmente max health, augmente force, augmente max walking speed, augmente jump acceleration, augmente mana (music notes), amplitude de mouvement sinusoidal de ki ball, ?ninja et bodhi en même temps?
 		}
-		
-		Afficher message texte à chaque level up
-		
+				
 		Note de musique: augmente mana (pour attaques spéciales de bodhi)
 	}
 
