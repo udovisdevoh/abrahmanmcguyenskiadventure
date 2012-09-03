@@ -1,7 +1,3 @@
-?rendre skill level curve plus abrupte?
-?rendre powerups seulement visible si skill level le permet (progression)?
-Fix bug: elevator platform crunches monsters and beaver sprite
-
 ?Doped: must be able to throw fireball even when on beaver?
 
 Game modes

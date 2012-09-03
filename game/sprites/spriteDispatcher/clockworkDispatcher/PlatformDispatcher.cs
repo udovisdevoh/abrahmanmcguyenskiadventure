@@ -127,6 +127,7 @@ namespace AbrahmanAdventure.sprites
 
                 Platform platform = new Platform(xPosition, yPosition, random, false, 0.0, true, elevatorHeight, elevatorSpeed);
                 spritePopulation.Add(platform);
+                platform.XPosition = xPosition;//to change previous xPosition
             }
         }
 
