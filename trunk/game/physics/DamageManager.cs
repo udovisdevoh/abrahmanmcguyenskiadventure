@@ -34,7 +34,7 @@ namespace AbrahmanAdventure.physics
                     //Instant death, no progressive decrease of health because health < damage
 
                     if (sprite is MonsterSprite)
-                        gameState.GameMode.PerformKillMonsterExtraLogic(playerSprite, (MonsterSprite)sprite, gameState.Level.SkillLevel);
+                        gameState.GameMode.PerformDestroyMonsterExtraLogic(playerSprite, (MonsterSprite)sprite, gameState.Level.SkillLevel);
 
                     sprite.IsAlive = false;
                 }

@@ -213,7 +213,7 @@ namespace AbrahmanAdventure.physics
                 if (sprite.InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                 {
                     SoundManager.PlayHitSound();
-                    gameState.GameMode.PerformKillMonsterExtraLogic(sprite, monsterSprite, level.SkillLevel);
+                    gameState.GameMode.PerformDestroyMonsterExtraLogic(sprite, monsterSprite, level.SkillLevel);
                     monsterSprite.IsAlive = false;
                     monsterSprite.JumpingCycle.Fire();
                 }
@@ -327,7 +327,7 @@ namespace AbrahmanAdventure.physics
                             {
                                 if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
                                 {
-                                    gameMode.PerformKillMonsterExtraLogic((PlayerSprite)sprite, monsterSprite,level.SkillLevel);
+                                    gameMode.PerformDestroyMonsterExtraLogic((PlayerSprite)sprite, monsterSprite,level.SkillLevel);
                                     monsterSprite.IsAlive = false;
                                     monsterSprite.JumpingCycle.Fire();
                                 }
@@ -361,7 +361,7 @@ namespace AbrahmanAdventure.physics
             if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired)
             {
                 SoundManager.PlayHitSound();
-                gameMode.PerformKillMonsterExtraLogic((PlayerSprite)sprite, monsterSprite, level.SkillLevel);
+                gameMode.PerformDestroyMonsterExtraLogic((PlayerSprite)sprite, monsterSprite, level.SkillLevel);
                 monsterSprite.IsAlive = false;
                 monsterSprite.JumpingCycle.Fire();
                 return;

@@ -14,9 +14,7 @@ namespace AbrahmanAdventure
     abstract class AbstractGameMode
     {
         #region Fields and parts
-        private Surface mainSurface;
-
-        private Cycle drawTextCycle = new Cycle(50, false, false, false);
+        protected Surface mainSurface;
 
         private double holeLengthMultiplicator;
 
@@ -66,7 +64,7 @@ namespace AbrahmanAdventure
 
         protected abstract bool BuildIsShowExp();
 
-        public abstract void PerformKillMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
+        public abstract void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
 
         public abstract void HackPlayerSprite(PlayerSprite playerSprite);
 
@@ -85,6 +83,8 @@ namespace AbrahmanAdventure
         public abstract bool IsAllowCharge(PlayerSprite playerSprite);
 
         public abstract bool IsAllowAngleAttack(PlayerSprite playerSprite);
+
+        public abstract void UpdateByFrame(double timeDelta, PlayerSprite playerSprite);
 
         #region Virtual Methods
         public virtual void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)

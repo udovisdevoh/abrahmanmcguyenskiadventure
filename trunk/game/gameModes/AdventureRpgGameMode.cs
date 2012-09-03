@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using SdlDotNet.Graphics;
 using AbrahmanAdventure.sprites;
 using AbrahmanAdventure.audio;
+using AbrahmanAdventure.hud;
 
 namespace AbrahmanAdventure
 {
     class AdventureRpgGameMode : AbstractGameMode
     {
+        private Cycle drawTextCycle = new Cycle(500, false, false, false);
+
+        private Surface messageSurface = null;
+
+        private Point messagePosition;
+
         #region Constructor
         public AdventureRpgGameMode(Surface surfaceToDrawLoadingProgress)
             : base(surfaceToDrawLoadingProgress)
         {
         }
         #endregion
-
-        private Surface surfaceToDrawLoadingProgress;
 
         protected override double BuildHoleLengthMultiplicator()
         {
@@ -114,7 +120,7 @@ namespace AbrahmanAdventure
             return true;
         }
 
-        public override void PerformKillMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
+        public override void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
         {
             playerSprite.Experience += (int)Math.Round((monsterSprite.MaxHealth + monsterSprite.AttackStrengthCollision) * (double)(skillLevel + 1) * 10.0);
 
@@ -127,6 +133,9 @@ namespace AbrahmanAdventure
                 else
                     playerSprite.PowerUpAnimationCycle.Fire();
                 HackPlayerSprite(playerSprite);
+
+                drawTextCycle.Fire();
+                messageSurface = null;
             }
         }
 
@@ -186,6 +195,77 @@ namespace AbrahmanAdventure
         public override bool IsAllowAngleAttack(PlayerSprite playerSprite)
         {
             return playerSprite.Level > 8;
+        }
+
+        public override void UpdateByFrame(double timeDelta, PlayerSprite playerSprite)
+        {
+            if (drawTextCycle.IsFired)
+            {
+                drawTextCycle.Increment(timeDelta);
+
+                if (messageSurface == null)
+                {
+                    #region Draw text surface
+                    Surface line1 = GameMenu.GetFontText("You have reached level " + (playerSprite.Level + 1) + ".");
+                    Surface line2;
+
+                    switch (playerSprite.Level)
+                    {
+                        case 1:
+                            line2 = GameMenu.GetFontText("You became a big. You can now punch and kick.");
+                            break;
+                        case 2:
+                            line2 = GameMenu.GetFontText("You became a rasta. Use your hair like a parachute.");
+                            break;
+                        case 3:
+                            line2 = GameMenu.GetFontText("You're now doped on mescaline. Throw fireballs.");
+                            break;
+                        case 4:
+                            line2 = GameMenu.GetFontText("You are now a ninja. Try using your cool sword.");
+                            break;
+                        case 5:
+                            line2 = GameMenu.GetFontText("You can now use your nunchaku.");
+                            break;
+                        case 6:
+                            line2 = GameMenu.GetFontText("You can now throw shurikens.");
+                            break;
+                        case 7:
+                            line2 = GameMenu.GetFontText("You can throw ninja ropes.");
+                            break;
+                        case 8:
+                            line2 = GameMenu.GetFontText("You reached enlightenment. Throw ki balls.");
+                            break;
+                        case 9:
+                            line2 = GameMenu.GetFontText("Throw ki balls in each angle.");
+                            break;
+                        case 10:
+                            line2 = GameMenu.GetFontText("You can now throw charged ki balls.");
+                            break;
+                        case 11:
+                            line2 = GameMenu.GetFontText("You can now fly.");
+                            break;
+                        default:
+                            line2 = null;
+                            break;
+                    }
+
+                    if (line2 == null)
+                        messageSurface = line1;
+                    else
+                    {
+                        messageSurface = new Surface(Math.Max(line1.Width, line2.Width), line1.Height + line2.Height);
+                        messageSurface.Blit(line1, new Point(0, 0));
+                        messageSurface.Blit(line2, new Point(0, line1.Height));
+                    }
+
+                    messageSurface.Transparent = true;
+
+                    messagePosition = new Point(Program.screenWidth / 2 - messageSurface.Width / 2, Program.screenHeight - messageSurface.Height);
+                    #endregion
+                }
+
+                mainSurface.Blit(messageSurface, messagePosition); 
+            }
         }
     }
 }
