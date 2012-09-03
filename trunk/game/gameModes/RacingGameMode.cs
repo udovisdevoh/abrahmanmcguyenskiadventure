@@ -101,7 +101,7 @@ namespace AbrahmanAdventure
             return 0;
         }
 
-        public override bool IsAllowThrowBallOrShuriken(PlayerSprite playerSprite)
+        public override bool IsAllowShuriken(PlayerSprite playerSprite)
         {
             return true;
         }

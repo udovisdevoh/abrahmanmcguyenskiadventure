@@ -70,7 +70,7 @@ namespace AbrahmanAdventure
 
         public abstract int GetExperienceNeededForLevel(int level);
 
-        public abstract bool IsAllowThrowBallOrShuriken(PlayerSprite playerSprite);
+        public abstract bool IsAllowShuriken(PlayerSprite playerSprite);
 
         public abstract bool IsAllowNunchaku(PlayerSprite playerSprite);
 

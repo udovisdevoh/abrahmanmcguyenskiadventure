@@ -649,17 +649,14 @@ namespace AbrahmanAdventure
                                 if ((playerSprite.IsDoped && !playerSprite.IsBeaver) || playerSprite.IsNinja || playerSprite.IsBodhi)
                                 {
                                     #region Throwing balls or shuriken, and if ninja and not on beaver, fire attack cycle (sword)
-                                    if (gameState.GameMode.IsAllowThrowBallOrShuriken(playerSprite))
+                                    playerSprite.IsTryThrowingBall = true;
+                                    if (playerSprite.IsNinja)
                                     {
-                                        playerSprite.IsTryThrowingBall = true;
-                                        if (playerSprite.IsNinja)
-                                        {
-                                            if (playerSprite.IsBeaver)
-                                                SoundManager.PlayAttemptSound();
-                                            else
-                                                SoundManager.PlaySwordSound();
-                                            playerSprite.AttackingCycle.Fire();
-                                        }
+                                        if (playerSprite.IsBeaver)
+                                            SoundManager.PlayAttemptSound();
+                                        else
+                                            SoundManager.PlaySwordSound();
+                                        playerSprite.AttackingCycle.Fire();
                                     }
                                     #endregion
                                 }

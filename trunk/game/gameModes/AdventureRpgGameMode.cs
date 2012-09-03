@@ -162,7 +162,7 @@ namespace AbrahmanAdventure
             return (int)Math.Round(Math.Pow((double)(level + 1), 1.9) * 50.0);
         }
 
-        public override bool IsAllowThrowBallOrShuriken(PlayerSprite playerSprite)
+        public override bool IsAllowShuriken(PlayerSprite playerSprite)
         {
             return playerSprite.Level > 5 || playerSprite.Level == 3;
         }

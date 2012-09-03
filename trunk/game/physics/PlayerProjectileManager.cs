@@ -63,73 +63,83 @@ namespace AbrahmanAdventure.physics
                         SoundManager.PlayFireBallSound();
                         projectileSprite = new FireBallSprite(xPosition, playerSprite.TopBound + 0.33, random);
                     }
-                    else
+                    else if (gameMode.IsAllowShuriken(playerSprite))
                         projectileSprite = new ShurikenSprite(xPosition, playerSprite.TopBound + 0.33, random);
 
-
-                    if (playerSprite.IsDoped || playerSprite.IsNinja)
+                    if (projectileSprite != null)
                     {
-                        projectileSprite.CurrentJumpAcceleration = -30;
-                        projectileSprite.IsCurrentlyInFreeFallX = true;
-                        projectileSprite.IsCurrentlyInFreeFallY = true;
-                    }
 
-                    projectileSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + projectileSprite.MaxWalkingSpeed;
-                    projectileSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
-                    spritePopulation.Add((AbstractSprite)projectileSprite);
-
-                    #region We manage projectile's angle if it's a IAngleProjectile
-                    if (projectileSprite is IAngleProjectile)
-                    {
-                        if (gameMode.IsAllowAngleAttack(playerSprite))
+                        if (playerSprite.IsDoped || playerSprite.IsNinja)
                         {
-                            if (playerSprite.IsCrouch)
+                            projectileSprite.CurrentJumpAcceleration = -30;
+                            projectileSprite.IsCurrentlyInFreeFallX = true;
+                            projectileSprite.IsCurrentlyInFreeFallY = true;
+                        }
+
+                        projectileSprite.CurrentWalkingSpeed = playerSprite.CurrentWalkingSpeed + projectileSprite.MaxWalkingSpeed;
+                        projectileSprite.IsNoAiDefaultDirectionWalkingRight = playerSprite.IsTryingToWalkRight;
+                        spritePopulation.Add((AbstractSprite)projectileSprite);
+
+                        #region We manage projectile's angle if it's a IAngleProjectile
+                        if (projectileSprite is IAngleProjectile)
+                        {
+                            if (gameMode.IsAllowAngleAttack(playerSprite))
                             {
-                                if (playerSprite.IGround == null)
+                                if (playerSprite.IsCrouch)
+                                {
+                                    if (playerSprite.IGround == null)
+                                    {
+                                        if (playerSprite.IsPressLeftOrRight)
+                                        {
+                                            if (playerSprite.IsTryingToWalkRight)
+                                                ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                            else
+                                                ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                        }
+                                        else
+                                        {
+                                            ((IAngleProjectile)projectileSprite).AngleIndex = 4;
+                                            ((AbstractSprite)projectileSprite).TopBound = playerSprite.YPosition;
+                                            ((AbstractSprite)projectileSprite).XPosition = playerSprite.XPosition;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (playerSprite.IsPressLeftOrRight)
+                                        {
+                                            if (playerSprite.IsTryingToWalkRight)
+                                                ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                            else
+                                                ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                        }
+                                        else if (playerSprite.IsTryingToWalkRight)
+                                            ((IAngleProjectile)projectileSprite).AngleIndex = 2;
+                                        else
+                                            ((IAngleProjectile)projectileSprite).AngleIndex = 6;
+                                    }
+                                }
+                                else if (playerSprite.IsPressUp)
                                 {
                                     if (playerSprite.IsPressLeftOrRight)
                                     {
                                         if (playerSprite.IsTryingToWalkRight)
-                                            ((IAngleProjectile)projectileSprite).AngleIndex = 3;
+                                            ((IAngleProjectile)projectileSprite).AngleIndex = 1;
                                         else
-                                            ((IAngleProjectile)projectileSprite).AngleIndex = 5;
+                                            ((IAngleProjectile)projectileSprite).AngleIndex = 7;
                                     }
                                     else
                                     {
-                                        ((IAngleProjectile)projectileSprite).AngleIndex = 4;
-                                        ((AbstractSprite)projectileSprite).TopBound = playerSprite.YPosition;
+                                        ((IAngleProjectile)projectileSprite).AngleIndex = 0;
+                                        ((AbstractSprite)projectileSprite).YPosition = playerSprite.TopBound;
                                         ((AbstractSprite)projectileSprite).XPosition = playerSprite.XPosition;
                                     }
                                 }
                                 else
                                 {
-                                    if (playerSprite.IsPressLeftOrRight)
-                                    {
-                                        if (playerSprite.IsTryingToWalkRight)
-                                            ((IAngleProjectile)projectileSprite).AngleIndex = 3;
-                                        else
-                                            ((IAngleProjectile)projectileSprite).AngleIndex = 5;
-                                    }
-                                    else if (playerSprite.IsTryingToWalkRight)
+                                    if (playerSprite.IsTryingToWalkRight)
                                         ((IAngleProjectile)projectileSprite).AngleIndex = 2;
                                     else
                                         ((IAngleProjectile)projectileSprite).AngleIndex = 6;
-                                }
-                            }
-                            else if (playerSprite.IsPressUp)
-                            {
-                                if (playerSprite.IsPressLeftOrRight)
-                                {
-                                    if (playerSprite.IsTryingToWalkRight)
-                                        ((IAngleProjectile)projectileSprite).AngleIndex = 1;
-                                    else
-                                        ((IAngleProjectile)projectileSprite).AngleIndex = 7;
-                                }
-                                else
-                                {
-                                    ((IAngleProjectile)projectileSprite).AngleIndex = 0;
-                                    ((AbstractSprite)projectileSprite).YPosition = playerSprite.TopBound;
-                                    ((AbstractSprite)projectileSprite).XPosition = playerSprite.XPosition;
                                 }
                             }
                             else
@@ -140,15 +150,8 @@ namespace AbrahmanAdventure.physics
                                     ((IAngleProjectile)projectileSprite).AngleIndex = 6;
                             }
                         }
-                        else
-                        {
-                            if (playerSprite.IsTryingToWalkRight)
-                                ((IAngleProjectile)projectileSprite).AngleIndex = 2;
-                            else
-                                ((IAngleProjectile)projectileSprite).AngleIndex = 6;
-                        }
+                        #endregion
                     }
-                    #endregion
                 }
             }
         }
