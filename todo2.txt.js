@@ -4,8 +4,8 @@ Game modes
 {
 	Adventure RPG
 	{
-		meilleur AI de castor
-		castor se respawn comme tails dans sonic
+		meilleur AI de castor (pour racing mode aussi)
+		castor se respawn comme tails dans sonic (pour racing mode aussi)
 		
 		Niveaux
 		{		
@@ -13,11 +13,6 @@ Game modes
 		}
 				
 		Note de musique: augmente mana (pour attaques spéciales de bodhi)
-	}
-
-	Extreme Action
-	{
-		davantage de clockwork
 	}
 }
 
