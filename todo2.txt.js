@@ -1,4 +1,4 @@
-?Doped: must be able to throw fireball even when on beaver?
+charged ki ball must destroy lawyers
 
 Game modes
 {

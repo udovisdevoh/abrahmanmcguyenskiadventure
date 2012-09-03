@@ -3563,7 +3563,7 @@ namespace AbrahmanAdventure.sprites
 
             int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
 
-            if (AttackingCycle.IsFired || (ThrowBallCycle.IsFired && isBodhi))
+            if (AttackingCycle.IsFired || (ThrowBallCycle.IsFired && (isBodhi || isDoped)))
             {
                 if (IsTryingToWalkRight)
                     xOffset += 0.5;
