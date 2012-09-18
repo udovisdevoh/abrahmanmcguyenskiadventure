@@ -1,8 +1,7 @@
-charged ki ball must destroy lawyers
+charged ki ball must destroy lawyers and members of the peaceful religion
 
 fix bugs
 {
-	-when generating clockwork: don't put wheel/seesaw on pendulum if there is already one
 	-when falling torward platform moving up: sometimes crosses platform
 	-720p, 1080p: crouched flying rasta wrong picture size
 }
