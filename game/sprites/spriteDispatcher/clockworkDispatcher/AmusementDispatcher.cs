@@ -305,7 +305,24 @@ namespace AbrahmanAdventure.sprites
             if (_parentBearingList.Count == 0)
                 return null;
 
-            return _parentBearingList[random.Next(_parentBearingList.Count)];
+
+            AbstractBearing randomParent = null;
+
+
+            #region We prevent multiple substructures on pendulums
+            int tryCount = 100;
+        tryRandomParentAgain:
+            randomParent = _parentBearingList[random.Next(_parentBearingList.Count)];
+            if (randomParent is Pendulum && randomParent.IsContainSubStructure)
+            {
+                randomParent = null;
+                tryCount--;
+                if (tryCount > 0)
+                    goto tryRandomParentAgain;
+            }
+            #endregion
+
+            return randomParent;
         }
         #endregion
     }
