@@ -1,3 +1,27 @@
+charged ki ball must destroy lawyers and members of the peaceful religion
+fix bug: crouched flying rasta wrong picture size
+fix bug: when falling torward platform moving up: sometimes crosses platform
+?fix bug: si ninja puis new game: ninja et tiny?
+?si pese down et jump, lâche liane et ne la repogne pas
+
+?sol: vue projection cavalière?
+
+Game modes
+{
+	Adventure RPG
+	{
+		meilleur AI de castor (pour racing mode aussi)
+		castor se respawn comme tails dans sonic (pour racing mode aussi)
+		
+		Niveaux
+		{		
+			13+ (augmente max health, augmente force, augmente max walking speed, augmente jump acceleration, augmente mana (music notes), amplitude de mouvement sinusoidal de ki ball, ?ninja et bodhi en même temps?
+		}
+				
+		Note de musique: augmente mana (pour attaques spéciales de bodhi, fireball, shuriken etc)
+	}
+}
+
 arbres
 {
 	sur map et dans level
@@ -5,130 +29,44 @@ arbres
 	si beaucoup d'arbres sur map, beaucoup d'arbres dans planete (peut être triangle waves sur un layer de parallax)
 }
 
-?si pese down et jump, lâche liane et ne la repogne pas
-
-bug: si ninja puis new game: ninja et tiny
-
-meta-monde
+texte de storyline (dans intro), possiblement générée random
 {
-	faire sprite d'abrahman sur la map (tous les grandeurs, powerups et avec castor)
-
-	générer map
+	idées
 	{
-		zones concentriques ou adjacentes
-		{
-			map avec zones concentriques ou adjacentes.
-			chaque level est une porte pour sortire d'une zone concentrique
-			si level fini, on peut marcher sur le sprite de level sans collision
-		}
-	
-		générer terrain avec perlin noise
-		{
-			eau, montagnes etc
-		}
-		
-		générer emplacement des levels et des "places de bonus"
-		{
-			icone de level, tenir compte de ces infos
-			{
-				si toit (icône différente)
-				si eau ?(doit être sur eau sur map)
-				si mur ?(doit être près d'une dénivellation prononcée)
-			}
-			
-			icone de place de bonus (voir Bonus "achetable" gratuitement)
-		}
-		
-		générer routes entre les levels en utilisant aStar
-		{
-			générer un chemin unique du 1er au dernier level (chemin le plus court, ne passe pas nécéssairement par tous les levels)
-			plugger les levels restants pour faire autres chemins courts (début à la fin) qui passent par d'autres levels
-		}
+		struggle against nonexistant concepts (institutions, corporations, religions, ideologies)
+		quest for enlightenment
+		zen
 	}
 	
-	une planete par épisode
-	
-	musique lorsque sur map de meta-monde
-	
-	map de la planete (avec terrain et perlin noise)
-	
-	Bonus "achetable" gratuitement
+	Texte
 	{
-		Réduire résistance à l'alcool (invincibilité dure plus longtemps)
-		Réduire résistance à la mescaline (plus de boules de feu et de shuriken)
-		Meilleurs cheveux de rasta (tomber plus lentement lorsqu'on plane)
-		voler comme rasta lorsque ninja
-		Meilleur nage
-		Sauter plus haut
-		Courir plus vitte
-		Meilleure résistance aux monstres
-		Castor gruge plus large
-		Punch/kick/katana plus fort
-		Punch/kick/katana plus vitte
-		Punch/kick/katana plus loin (modifier offset pour réfleter range)
-	}
-	
-	trucs spéciaux de manipulation du temps
-	{
-		?ralentir le temps lorsque court vite (time delta réduit pour tout sauf player)?
-		?inverser le temps (time delta négatif)?
+		In a world where materialism reigns, it is often tempting to judge our reality. Suffering is part of our existence.
+		We develop anger and hate against the system, institution, coporations, ideologies and religions.
+		We often become nostalgic about our past because it is idealized in our mind while the present is incomprehensible.
+		One must realize that institutions, corporations, ideologies and religions only exist in the human mind. They
+		have no other existence. Fight against these ghosts will only create more suffering, because what exists in your
+		mind is your own creation. You are not your thoughts. Thoughts are only flowing withing you.
+		Our reality is our collective creation.
 	}
 }
 
-à la fin d'un level: toujours exponentiel (haut ou bas) pour éviter portails inaccessible
+genre d'oracles ou de sage qui disent des trucs générés random qui ne veulent rien dire
 
-si rasta: musique spéciale
+?à la fin d'un level: toujours exponentiel (haut ou bas) pour éviter portails inaccessible?
 
-ninja
-{	
-	doit être facile de quitter la corde même si en haut (press left and right)
-
-	?si déjà jump: possibilité de double jump?->?aussi: dire dans howto?
-	
-	?don't fall when having side collision
-}
-
-faire video youtube promotionnel
-demander à AVGN (et autres personnes du genre) de faire review du jeux
-
-optimize cache (add some static sprites on level viewer's cache) clouds, blocks, bricks, trampolines, vines etc
 
 ?remove stuff like: getfartestwalkingdistancenocollision?
-
-
-faire des grands trous
-si grand trou, mettre plateforme qui suit fonction mathématique ou onde (aussi trucs qui montent en assenceur comme dans smb1 level w1 l2
-
-faire sprites volants
-faire sprites volants qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
-faire plateformes qui suivent des path de wave ou de fonction mathématiques (ronds, etc)
-si rond, mettre sprite au centre et bras qui font tourner
-afficher path, ou pas, dépendant de la situation
-
-plateformes de largeur diverse
-
 
 
 
 some trampolines must be on blocks (and clouds)
 
 
-
 add great walls that can only be crossed by vine
 
 
 
-
-
-
-
 column parallax
-
-
-
-
-
-
 
 could maybe add some parallax moutains in the background of some levels
 
@@ -143,41 +81,6 @@ musique
 }
 
 
-
-
-
-?create ruin structure style block dispatcher
-fusionner wave et totem (si wave positive: totem)
-
-
-?add SMW style backup item rack?
-
-add infinite fireball bonus powerup
-add mullet powerup (could be infinite powerup)
-?add running powerup (to dash like sonic)
-
-
-
-
-
-fix flashing in water
-
-
-Salvia powerup
-{
-	Bonus "3D" style lotus 3
-}
-
-
-?teleporter to next level must be on a random ground, not just the top one
-
-
-
-
-
-
-fix add texture cache transparency bug
-
 Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 {
 	Boss de la fin: grosse machine, ?puis vrai boss, contre sois-même?
@@ -189,10 +92,6 @@ fix fire balls
 	ne doivent pas être affectées par les pentes à monter
 }
 
-?compteur de "music note" dans le hud? si 100, ajoute une vie et reset compteur?? augmente score lorsque touche music note? affiche score dans hud?
-{
-	?Note de musique: influencera la musique générative (jouera une note qui fit bien dans la tune au moment précis où elle est jouée)?
-}
 
 collision detection
 {
@@ -226,6 +125,10 @@ glisser: doit attaquer monstrers (ne doit plus glisser sur pente trop douce)
 
 Boss?
 Miniboss?
+
+créer levels de boss faits avec clockwork (sprite de cible),
+si on butte les cibles (faces du mental inexistant, genre (where did you learn to fly), le level est finis (spawn un portal?)
+scie rondes == flail ball
 
 
 Monstres
