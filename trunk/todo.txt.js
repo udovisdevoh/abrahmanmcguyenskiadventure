@@ -1,5 +1,4 @@
 charged ki ball must destroy lawyers and members of the peaceful religion
-fix bug: crouched flying rasta wrong picture size
 fix bug: when falling torward platform moving up: sometimes crosses platform
 ?fix bug: si ninja puis new game: ninja et tiny?
 ?si pese down et jump, lâche liane et ne la repogne pas
