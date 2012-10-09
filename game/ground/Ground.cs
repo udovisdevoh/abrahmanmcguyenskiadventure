@@ -55,6 +55,11 @@ namespace AbrahmanAdventure.level
         private bool isCeiling;
 
         /// <summary>
+        /// Isometric width of ground
+        /// </summary>
+        private int isometricVerticalThickness;
+
+        /// <summary>
         /// Left bound
         /// </summary>
         private double leftBound;
@@ -119,6 +124,11 @@ namespace AbrahmanAdventure.level
             this.leftBoundType = leftBoundType;
             this.rightBoundType = rightBoundType;
             this.isPathOnly = isPathOnly;
+
+            if (Program.isDrawIsometricProjectionGround)
+                this.isometricVerticalThickness = (int)((random.NextDouble() * 0.5 + 0.125) * Program.tileSize);
+            else
+                this.isometricVerticalThickness = 0;
 
             if (!isPathOnly)
             {
@@ -239,6 +249,14 @@ namespace AbrahmanAdventure.level
         public double PillarWidth
         {
             get { return pillarWidth; }
+        }
+
+        /// <summary>
+        /// Vertical thicness of isometric surface
+        /// </summary>
+        public int IsometricVerticalThickness
+        {
+            get { return isometricVerticalThickness; }
         }
 
         private double GetOutBoundHeight(double xPosition, bool isRightBound)
