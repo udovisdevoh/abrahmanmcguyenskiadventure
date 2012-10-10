@@ -169,7 +169,10 @@ namespace AbrahmanAdventure.physics
                     expirableSprite.ExpirationCycle.Increment(timeDelta);
 
                     if (expirableSprite.ExpirationCycle.IsFinished)
+                    {
                         spriteToUpdate.IsAlive = false;
+                        spriteToUpdate.YPosition = Program.totalHeightTileCount + 1.0;
+                    }
                 }
             }
             #endregion
