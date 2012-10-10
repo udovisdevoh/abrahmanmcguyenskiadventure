@@ -53,7 +53,7 @@ namespace AbrahmanAdventure.sprites
         {
             if (isOddFrame)
             {
-                if (sprite.HitCycle.IsFired || sprite is PlayerSprite && ((PlayerSprite)sprite).FromVortexCycle.IsFired)
+                if (sprite.HitCycle.IsFired || (sprite is PlayerSprite && ((PlayerSprite)sprite).FromVortexCycle.IsFired) || (sprite is IExpirable && ((IExpirable)sprite).ExpirationCycle.IsFired))
                     return;
                 else if (sprite is LawyerSprite)
                     return;

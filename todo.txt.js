@@ -7,6 +7,15 @@ fix bug: when falling torward platform moving up: sometimes crosses platform
 
 Game modes
 {
+	Racing
+	{
+		lorsque spawn music notes, ces notes doivent rebondir au sol et s'en aller n'importe où (avec vitesse et direction random)
+		isCrouchFastWalkFlip
+		hillWaveComplexityMultiplicator
+		maxSlopeMultiplicator
+		?slopeGripMultiplicator (will hack the player), when running only?
+	}
+	
 	Adventure RPG
 	{
 		meilleur AI de castor (pour racing mode aussi)

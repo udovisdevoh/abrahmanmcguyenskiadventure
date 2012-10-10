@@ -202,6 +202,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// Build a ground's (or ceiling's) wave pacl
         /// </summary>
+        /// <param name="hillWaveComplexityMultiplicator">default: 1.0</param>
         /// <returns>wave pack</returns>
         private AbstractWave BuildGroundWave(Random random, bool isPathOnly, bool isCurvyWaveOnly)
         {
