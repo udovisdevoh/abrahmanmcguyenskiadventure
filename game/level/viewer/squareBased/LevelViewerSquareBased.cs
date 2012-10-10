@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -244,7 +245,7 @@ namespace AbrahmanAdventure.level
         /// <param name="waterInfo">info about water</param>
         private void DrawGround(Surface zoneSurface, Ground ground, Color waveColor, int zoneX, int zoneY, int zoneWidth, int zoneHeight, Level level, WaterInfo waterInfo)
         {
-            for (int x = 0 - ground.IsometricVerticalThickness / 4; x < zoneWidth + ground.IsometricVerticalThickness / 4; x++)
+            for (int x = 0; x < zoneWidth; x++)
             {
                 double waveInputX = (double)(zoneX) + (double)x / (double)Program.tileSize;
                 double waveOutputY = ground[waveInputX];
@@ -315,14 +316,6 @@ namespace AbrahmanAdventure.level
                     }
                     #endregion
                 }
-
-                #region Isometric ground
-                if (Program.isDrawIsometricProjectionGround)
-                {
-                    #warning Implement draw isometric ground
-                    zoneSurface.Draw(new Line((short)(x - ground.IsometricVerticalThickness / 4), (short)(groundYOnTile + ground.IsometricVerticalThickness / 2), (short)(x + ground.IsometricVerticalThickness / 4), (short)(groundYOnTile - ground.IsometricVerticalThickness / 2)), waveColor);
-                }
-                #endregion
             }
         }
 
