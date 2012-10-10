@@ -137,8 +137,6 @@ namespace AbrahmanAdventure
 
         public static bool isFullScreen = PersistentConfig.IsFullScreen;
 
-        public static bool isDrawIsometricProjectionGround = true;
-
         public static int screenWidth;
 
         public static int screenHeight;
