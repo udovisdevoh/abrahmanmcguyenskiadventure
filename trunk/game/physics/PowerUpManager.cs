@@ -121,6 +121,12 @@ namespace AbrahmanAdventure.physics
 
                 playerSprite.MusicNoteCount = 0;
             }
+            else if (gameMode.IsNoteGivesFullHealthMax99)
+            {
+                if (playerSprite.MusicNoteCount > 99)
+                    playerSprite.MusicNoteCount = 99;
+                playerSprite.Health = playerSprite.MaxHealth;
+            }
 
             musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
         }

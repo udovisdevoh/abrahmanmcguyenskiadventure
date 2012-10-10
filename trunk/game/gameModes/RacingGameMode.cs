@@ -42,12 +42,17 @@ namespace AbrahmanAdventure
 
         protected override double BuildMusicNoteDensityMultiplicator()
         {
-            return 8.0;
+            return 4.0;
         }
 
         protected override double BuildBlockDensityMultiplicator()
         {
             return 0.2;
+        }
+
+        protected override bool BuildIsNoteGivesFullHealthMax99()
+        {
+            return true;
         }
 
         protected override bool BuildIsMusicSpeedUp()
