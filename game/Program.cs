@@ -531,6 +531,8 @@ namespace AbrahmanAdventure
 
                 isOddFrame = !isOddFrame;
 
+                MusicNoteSprite.IncrementSpinCycle();
+
                 if (playerSprite.DestinationPipe == null)
                 {
                     #region We manage jumping input logic

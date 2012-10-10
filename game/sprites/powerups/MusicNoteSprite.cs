@@ -113,8 +113,6 @@ namespace AbrahmanAdventure.sprites
             xOffset = 0;
             yOffset = 0;
             
-            spinCycle.Increment(1);
-
             int cycleDivision = spinCycle.GetCycleDivision(6.0);
 
             switch (cycleDivision)
@@ -132,6 +130,11 @@ namespace AbrahmanAdventure.sprites
                 default:
                     return surface2;
             }
+        }
+
+        public static void IncrementSpinCycle()
+        {
+            spinCycle.Increment(1);
         }
         #endregion
     }
