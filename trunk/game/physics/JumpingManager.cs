@@ -40,7 +40,12 @@ namespace AbrahmanAdventure.physics
                 if (sprite.IsInWater || sprite.AttackingCycle.IsFired)
                     ((PlayerSprite)sprite).NinjaFlipCycle.StopAndReset();
                 else
-                    ((PlayerSprite)sprite).NinjaFlipCycle.Increment(timeDelta);
+                {
+                    if (gameMode.IsNinjaFlipProportionalToWalkingSpeed)
+                        ((PlayerSprite)sprite).NinjaFlipCycle.Increment(timeDelta * (Math.Abs(playerSpriteReference.CurrentWalkingSpeed) + 1.0));
+                    else
+                        ((PlayerSprite)sprite).NinjaFlipCycle.Increment(timeDelta);
+                }
             }
             #endregion
 

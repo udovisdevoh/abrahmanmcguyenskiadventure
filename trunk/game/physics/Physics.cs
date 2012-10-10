@@ -160,6 +160,20 @@ namespace AbrahmanAdventure.physics
             if (spriteToUpdate.IsFullGravityOnNextFrame)
                 gravityManager.ApplyFullGravityForce(spriteToUpdate, level, visibleSpriteList);
 
+            #region We update IExpirable sprites
+            if (spriteToUpdate is IExpirable)
+            {
+                IExpirable expirableSprite = (IExpirable)spriteToUpdate;
+                if (expirableSprite.ExpirationCycle.IsFired)
+                {
+                    expirableSprite.ExpirationCycle.Increment(timeDelta);
+
+                    if (expirableSprite.ExpirationCycle.IsFinished)
+                        spriteToUpdate.IsAlive = false;
+                }
+            }
+            #endregion
+
             jumpingManager.Update(spriteToUpdate, playerSpriteReference, gameState.GameMode, timeDelta);
             damageManager.Update(spriteToUpdate, playerSpriteReference, gameState, timeDelta);
             deathManager.Update(spriteToUpdate, playerSpriteReference, timeDelta, spritePopulation, visibleSpriteList, gameMetaState, gameState, levelViewer);

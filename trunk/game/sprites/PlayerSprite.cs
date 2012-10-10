@@ -12,7 +12,7 @@ namespace AbrahmanAdventure.sprites
     /// </summary>
     internal class PlayerSprite : AbstractSprite
     {
-        #region Fields and parts
+        #region Surfaces
         private static Surface walking1NinjaLeftSurface;
 
         private static Surface walking2NinjaLeftSurface;
@@ -902,7 +902,9 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverAttackTallLeftBodhi;
 
         private static Surface beaverAttackTallLeftBodhiDoped;
+        #endregion
 
+        #region Cycles
         /// <summary>
         /// Tutorial's comment
         /// </summary>
