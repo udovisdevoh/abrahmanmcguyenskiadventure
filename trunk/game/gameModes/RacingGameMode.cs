@@ -35,6 +35,11 @@ namespace AbrahmanAdventure
             return 1.0;
         }
 
+        protected override double BuildLevelSizeMultiplicator()
+        {
+            return 2.0;
+        }
+
         protected override bool BuildIsMusicSpeedUp()
         {
             return false;
@@ -48,11 +53,6 @@ namespace AbrahmanAdventure
         protected override bool BuildIsShowHealthBar()
         {
             return true;
-        }
-
-        protected override bool BuildIsAllowJumpOnBeaver()
-        {
-            return false;
         }
 
         protected override bool BuildIsBeaverAlwaysStrongAi()

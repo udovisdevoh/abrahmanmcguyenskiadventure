@@ -22,6 +22,8 @@ namespace AbrahmanAdventure
 
         private double monsterDensityMultiplicator;
 
+        private double levelSizeMultiplicator;
+
         private bool isMusicSpeedUp;
 
         private bool isMushroomOverrideUpgrade;
@@ -33,8 +35,6 @@ namespace AbrahmanAdventure
         private bool isTransformToBodhiWhenGetsEnoughMusicNote;
 
         private bool isBeaverAlwaysStrongAi;
-
-        private bool isAllowJumpOnBeaver;
         #endregion
 
         #region Constructor
@@ -49,10 +49,12 @@ namespace AbrahmanAdventure
             isShowHealthBar = BuildIsShowHealthBar();
             isTransformToBodhiWhenGetsEnoughMusicNote = BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
             isShowExp = BuildIsShowExp();
-            isAllowJumpOnBeaver = BuildIsAllowJumpOnBeaver();
             isBeaverAlwaysStrongAi = BuildIsBeaverAlwaysStrongAi();
+            levelSizeMultiplicator = BuildLevelSizeMultiplicator();
         }
         #endregion
+
+        protected abstract double BuildLevelSizeMultiplicator();
 
         protected abstract double BuildHoleLengthMultiplicator();
 
@@ -69,8 +71,6 @@ namespace AbrahmanAdventure
         protected abstract bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote();
 
         protected abstract bool BuildIsShowExp();
-
-        protected abstract bool BuildIsAllowJumpOnBeaver();
 
         protected abstract bool BuildIsBeaverAlwaysStrongAi();
 
@@ -163,6 +163,11 @@ namespace AbrahmanAdventure
             get { return monsterDensityMultiplicator; }
         }
 
+        public double LevelSizeMultiplicator
+        {
+            get { return levelSizeMultiplicator; }
+        }
+
         public bool IsMusicSpeedUp
         {
             get { return isMusicSpeedUp; }
@@ -191,11 +196,6 @@ namespace AbrahmanAdventure
         public bool IsBeaverAlwaysStrongAi
         {
             get { return isBeaverAlwaysStrongAi; }
-        }
-
-        public bool IsAllowJumpOnBeaver
-        {
-            get { return isAllowJumpOnBeaver; }
         }
         #endregion
     }
