@@ -88,6 +88,7 @@ namespace AbrahmanAdventure.hud
             genericSkillInfoSurface = null;
         }
 
+        
         internal static void UpdateKarmaCounter(Surface mainSurface, int karmaValue, double timeDelta)
         {
             if (karmaValue != previousGenericSkillValue || genericSkillInfoSurface == null)
@@ -100,6 +101,22 @@ namespace AbrahmanAdventure.hud
             if (cycleDisplayGenericSkill.IsFired)
             {
                 cycleDisplayGenericSkill.Increment(timeDelta);
+                mainSurface.Blit(genericSkillInfoSurface, new Point(xYOffsetEnergyBar, xYOffsetEnergyBar));
+            }
+        }
+
+        internal static void UpdateMusicNoteCounter(Surface mainSurface, int noteCount, double timeDelta)
+        {
+            if (noteCount != previousGenericSkillValue || genericSkillInfoSurface == null)
+            {
+                genericSkillInfoSurface = GameMenu.GetFontText(noteCount.ToString());
+                previousGenericSkillValue = noteCount;
+                cycleDisplayGenericSkill.Fire();
+            }
+
+            if (cycleDisplayGenericSkill.IsFired)
+            {
+                /*cycleDisplayGenericSkill.Increment(timeDelta);*/
                 mainSurface.Blit(genericSkillInfoSurface, new Point(xYOffsetEnergyBar, xYOffsetEnergyBar));
             }
         }

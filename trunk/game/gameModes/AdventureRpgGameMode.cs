@@ -45,6 +45,16 @@ namespace AbrahmanAdventure
             return 1.0;
         }
 
+        protected override double BuildMusicNoteDensityMultiplicator()
+        {
+            return 1.0;
+        }
+
+        protected override double BuildBlockDensityMultiplicator()
+        {
+            return 1.0;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             switch (playerSprite.Level)
@@ -123,6 +133,21 @@ namespace AbrahmanAdventure
         protected override bool BuildIsShowExp()
         {
             return true;
+        }
+
+        protected override bool BuildIsCurvyWaveOnly()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsBoundAlwaysWall()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsShowNoteCounter()
+        {
+            return false;
         }
 
         public override void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)

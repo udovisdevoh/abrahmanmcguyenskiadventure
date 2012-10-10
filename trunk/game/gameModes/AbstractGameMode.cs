@@ -24,6 +24,10 @@ namespace AbrahmanAdventure
 
         private double levelSizeMultiplicator;
 
+        private double musicNoteDensityMultiplicator;
+
+        private double blockDensityMultiplicator;
+
         private bool isMusicSpeedUp;
 
         private bool isMushroomOverrideUpgrade;
@@ -35,6 +39,12 @@ namespace AbrahmanAdventure
         private bool isTransformToBodhiWhenGetsEnoughMusicNote;
 
         private bool isBeaverAlwaysStrongAi;
+
+        private bool isCurvyWaveOnly;
+
+        private bool isBoundAlwaysWall;
+
+        private bool isShowNoteCounter;
         #endregion
 
         #region Constructor
@@ -51,6 +61,11 @@ namespace AbrahmanAdventure
             isShowExp = BuildIsShowExp();
             isBeaverAlwaysStrongAi = BuildIsBeaverAlwaysStrongAi();
             levelSizeMultiplicator = BuildLevelSizeMultiplicator();
+            isCurvyWaveOnly = BuildIsCurvyWaveOnly();
+            isBoundAlwaysWall = BuildIsBoundAlwaysWall();
+            musicNoteDensityMultiplicator = BuildMusicNoteDensityMultiplicator();
+            blockDensityMultiplicator = BuildBlockDensityMultiplicator();
+            isShowNoteCounter = BuildIsShowNoteCounter();
         }
         #endregion
 
@@ -61,6 +76,14 @@ namespace AbrahmanAdventure
         protected abstract double BuildGroundSurfaceLengthMultiplicator();
 
         protected abstract double BuildMonsterDensityMultiplicator();
+
+        protected abstract double BuildMusicNoteDensityMultiplicator();
+
+        protected abstract double BuildBlockDensityMultiplicator();
+
+        protected abstract bool BuildIsCurvyWaveOnly();
+
+        protected abstract bool BuildIsShowNoteCounter();
 
         protected abstract bool BuildIsMusicSpeedUp();
 
@@ -73,6 +96,8 @@ namespace AbrahmanAdventure
         protected abstract bool BuildIsShowExp();
 
         protected abstract bool BuildIsBeaverAlwaysStrongAi();
+
+        protected abstract bool BuildIsBoundAlwaysWall();
 
         public abstract void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
 
@@ -168,6 +193,16 @@ namespace AbrahmanAdventure
             get { return levelSizeMultiplicator; }
         }
 
+        public double MusicNoteDensityMultiplicator
+        {
+            get { return musicNoteDensityMultiplicator; }
+        }
+
+        public double BlockDensityMultiplicator
+        {
+            get { return blockDensityMultiplicator; }
+        }
+
         public bool IsMusicSpeedUp
         {
             get { return isMusicSpeedUp; }
@@ -196,6 +231,21 @@ namespace AbrahmanAdventure
         public bool IsBeaverAlwaysStrongAi
         {
             get { return isBeaverAlwaysStrongAi; }
+        }
+
+        public bool IsCurvyWaveOnly
+        {
+            get { return isCurvyWaveOnly; }
+        }
+
+        public bool IsBoundAlwaysWall
+        {
+            get { return isBoundAlwaysWall; }
+        }
+
+        public bool IsShowNoteCounter
+        {
+            get { return isShowNoteCounter; }
         }
         #endregion
     }

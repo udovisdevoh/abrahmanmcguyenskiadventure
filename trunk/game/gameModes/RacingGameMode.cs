@@ -22,12 +22,12 @@ namespace AbrahmanAdventure
 
         protected override double BuildHoleLengthMultiplicator()
         {
-            return 1.0;
+            return 1.5;
         }
 
         protected override double BuildGroundSurfaceLengthMultiplicator()
         {
-            return 1.0;
+            return 3.0;
         }
 
         protected override double BuildMonsterDensityMultiplicator()
@@ -38,6 +38,16 @@ namespace AbrahmanAdventure
         protected override double BuildLevelSizeMultiplicator()
         {
             return 2.0;
+        }
+
+        protected override double BuildMusicNoteDensityMultiplicator()
+        {
+            return 8.0;
+        }
+
+        protected override double BuildBlockDensityMultiplicator()
+        {
+            return 0.2;
         }
 
         protected override bool BuildIsMusicSpeedUp()
@@ -52,6 +62,11 @@ namespace AbrahmanAdventure
 
         protected override bool BuildIsShowHealthBar()
         {
+            return false;
+        }
+
+        protected override bool BuildIsCurvyWaveOnly()
+        {
             return true;
         }
 
@@ -60,10 +75,22 @@ namespace AbrahmanAdventure
             return true;
         }
 
+        protected override bool BuildIsBoundAlwaysWall()
+        {
+            return true;
+        }
+
+        protected override bool BuildIsShowNoteCounter()
+        {
+            return true;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
-            playerSprite.MaxRunningSpeed *= 2;
-            playerSprite.MaxWalkingSpeed *= 2;
+            playerSprite.MaxRunningSpeed = 1.2;
+            playerSprite.MaxWalkingSpeed = 0.9;
+            playerSprite.WalkingAcceleration = 0.012;
+
             playerSprite.IsTiny = false;
             playerSprite.IsNinja = true;
         }
@@ -77,7 +104,7 @@ namespace AbrahmanAdventure
 
         protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
         {
-            return true;
+            return false;
         }
 
         protected override bool BuildIsShowExp()
