@@ -39,6 +39,16 @@ namespace AbrahmanAdventure
             return 1.0;
         }
 
+        protected override double BuildMusicNoteDensityMultiplicator()
+        {
+            return 1.0;
+        }
+
+        protected override double BuildBlockDensityMultiplicator()
+        {
+            return 1.0;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             //do nothing
@@ -70,6 +80,21 @@ namespace AbrahmanAdventure
         }
 
         protected override bool BuildIsBeaverAlwaysStrongAi()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsCurvyWaveOnly()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsBoundAlwaysWall()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsShowNoteCounter()
         {
             return false;
         }

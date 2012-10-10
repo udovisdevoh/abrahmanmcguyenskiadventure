@@ -17,9 +17,9 @@ namespace AbrahmanAdventure.sprites
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal static void DispatchMusicNotes(Level level, SpritePopulation spritePopulation, Random random)
+        internal static void DispatchMusicNotes(Level level, SpritePopulation spritePopulation, AbstractGameMode gameMode, Random random)
         {
-            double musicNoteDensity = random.NextDouble() * 0.06 + 0.014;
+            double musicNoteDensity = (random.NextDouble() * 0.06 + 0.014) * gameMode.MusicNoteDensityMultiplicator;
             int musicNoteCount = (int)(musicNoteDensity * level.Size);
 
             double xPosition, yPosition;

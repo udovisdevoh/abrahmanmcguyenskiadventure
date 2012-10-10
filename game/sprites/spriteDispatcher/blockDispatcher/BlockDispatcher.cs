@@ -24,15 +24,15 @@ namespace AbrahmanAdventure.sprites
         /// <param name="level">level</param>
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="random">random number generator</param>
-        internal static AddedBlockMemory DispatchBlocks(Level level, SpritePopulation spritePopulation, Random random)
+        internal static AddedBlockMemory DispatchBlocks(Level level, SpritePopulation spritePopulation, AbstractGameMode gameMode, Random random)
         {
             AddedBlockMemory addedBlockMemory = new AddedBlockMemory();
             foreach (Ground ground in level)
             {
                 if (random.Next(0,5) == 1)
-                    BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+                    BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, gameMode, random);
                 else
-                    BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, random);
+                    BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, gameMode, random);
             }
 
             return addedBlockMemory;
@@ -71,12 +71,23 @@ namespace AbrahmanAdventure.sprites
         /// <returns>For block dispatcher, build wave for probability of having blocks (0 = yes)</returns>
         internal static AbstractWave BuildDensityWave(Random random)
         {
+            return BuildDensityWave(random, 1.0);
+        }
+
+        /// <summary>
+        /// For block dispatcher, build wave for probability of having blocks (0 = yes)
+        /// </summary>
+        /// <param name="random">random number generator</param>
+        /// <param name="density">default: 1.0</param>
+        /// <returns>For block dispatcher, build wave for probability of having blocks (0 = yes)</returns>
+        internal static AbstractWave BuildDensityWave(Random random, double density)
+        {
             WavePack wavePack = new WavePack();
             do
             {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 16, 0, 1, random, false, true));
+                wavePack.Add(WaveBuilder.BuildIndividualWave(4, 16, 0, 1, random, false, true, false));
             } while (random.Next(0, 5) != 0);
-            wavePack.Normalize();
+            wavePack.Normalize(density);
 
             return wavePack;
         }

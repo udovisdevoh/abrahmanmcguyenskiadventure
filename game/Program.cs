@@ -841,6 +841,8 @@ namespace AbrahmanAdventure
                     HudViewer.UpdateHealthBar(mainSurface, playerSprite.Health, gameState.IsPlayerReady);
                 else if (gameState.GameMode.IsTransformToBodhiWhenGetsEnoughMusicNote)
                     HudViewer.UpdateKarmaCounter(mainSurface, playerSprite.MusicNoteCount, timeDelta);
+                else if (gameState.GameMode.IsShowNoteCounter)
+                    HudViewer.UpdateMusicNoteCounter(mainSurface, playerSprite.MusicNoteCount, timeDelta);
 
                 if (gameState.GameMode.IsShowExp)
                     HudViewer.UpdateExpCounter(mainSurface, playerSprite.Experience, gameState.GameMode.GetExperienceNeededForLevel(playerSprite.Level + 1), playerSprite.Level, timeDelta);

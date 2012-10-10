@@ -25,8 +25,8 @@ namespace AbrahmanAdventure.sprites
             MonsterDispatcher.DispatchMonsters(level, spritePopulation, skillLevel, gameMode, new Random(random.Next()));
             VortexDispatcher.DispatchVortexes(level, spritePopulation, skillLevel, new Random(random.Next()));
             TrampolineDispatcher.DispatchTrampolines(level, spritePopulation, new Random(random.Next()));
-            MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, new Random(random.Next()));
-            AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, new Random(random.Next()));
+            MusicNoteDispatcher.DispatchMusicNotes(level, spritePopulation, gameMode, new Random(random.Next()));
+            AddedBlockMemory addedBlockMemory = BlockDispatcher.DispatchBlocks(level, spritePopulation, gameMode, new Random(random.Next()));
             PipeDispatcher.DispatchPipes(level, spritePopulation, skillLevel, waterInfo, new Random(random.Next()));
             CloudDispatcher.DispatchBlocks(level, spritePopulation, addedBlockMemory, new Random(random.Next()));
             LianaDispatcher.DispatchLianas(level, spritePopulation, waterInfo, new Random(random.Next()));

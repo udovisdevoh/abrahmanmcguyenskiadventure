@@ -21,7 +21,7 @@ namespace AbrahmanAdventure.sprites
         /// <param name="spritePopulation">sprite population</param>
         /// <param name="addedBlockMemory">to remember blocks that are already there</param>
         /// <param name="random">random number generator</param>
-        internal static int DispatchBlocks(Ground ground, Level level, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, Random random)
+        internal static int DispatchBlocks(Ground ground, Level level, SpritePopulation spritePopulation, AddedBlockMemory addedBlockMemory, AbstractGameMode gameMode, Random random)
         {
             int totalBlockAdded = 0;
             double yPosition;
@@ -30,6 +30,13 @@ namespace AbrahmanAdventure.sprites
 
             int groundSamplingWidthMin = random.Next(1, 7);
             int groundSamplingWidthMax = random.Next(4, 15);
+
+            if (gameMode.BlockDensityMultiplicator != 1.0)
+            {
+                groundSamplingWidthMin = (int)(Math.Round((double)groundSamplingWidthMin / gameMode.BlockDensityMultiplicator));
+                groundSamplingWidthMax = (int)(Math.Round((double)groundSamplingWidthMax / gameMode.BlockDensityMultiplicator));
+            }
+            
             int groundSamplingWidthCurrent = 0;
             double sampledGroundYPosition = 0;
 
@@ -147,7 +154,7 @@ namespace AbrahmanAdventure.sprites
             WavePack wavePack = new WavePack();
             do
             {
-                wavePack.Add(WaveBuilder.BuildIndividualWave(0, 8, 0, 2.5, random, true, false));
+                wavePack.Add(WaveBuilder.BuildIndividualWave(0, 8, 0, 2.5, random, true, false, false));
             } while (random.Next(0, 4) != 0);
             wavePack.Normalize(8.0);
 
