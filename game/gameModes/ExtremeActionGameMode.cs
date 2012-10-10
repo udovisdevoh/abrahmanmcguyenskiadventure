@@ -79,6 +79,11 @@ namespace AbrahmanAdventure
             return true;
         }
 
+        protected override bool BuildIsNoteGivesFullHealthMax99()
+        {
+            return false;
+        }
+
         protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
         {
             return false;

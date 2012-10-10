@@ -45,6 +45,8 @@ namespace AbrahmanAdventure
         private bool isBoundAlwaysWall;
 
         private bool isShowNoteCounter;
+
+        private bool isNoteGivesFullHealthMax99;
         #endregion
 
         #region Constructor
@@ -66,6 +68,7 @@ namespace AbrahmanAdventure
             musicNoteDensityMultiplicator = BuildMusicNoteDensityMultiplicator();
             blockDensityMultiplicator = BuildBlockDensityMultiplicator();
             isShowNoteCounter = BuildIsShowNoteCounter();
+            isNoteGivesFullHealthMax99 = BuildIsNoteGivesFullHealthMax99();
         }
         #endregion
 
@@ -98,6 +101,8 @@ namespace AbrahmanAdventure
         protected abstract bool BuildIsBeaverAlwaysStrongAi();
 
         protected abstract bool BuildIsBoundAlwaysWall();
+
+        protected abstract bool BuildIsNoteGivesFullHealthMax99();
 
         public abstract void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
 
@@ -246,6 +251,11 @@ namespace AbrahmanAdventure
         public bool IsShowNoteCounter
         {
             get { return isShowNoteCounter; }
+        }
+
+        public bool IsNoteGivesFullHealthMax99
+        {
+            get { return isNoteGivesFullHealthMax99; }
         }
         #endregion
     }

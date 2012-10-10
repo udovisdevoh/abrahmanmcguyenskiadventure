@@ -115,6 +115,11 @@ namespace AbrahmanAdventure
             return false;
         }
 
+        protected override bool BuildIsNoteGivesFullHealthMax99()
+        {
+            return false;
+        }
+
         protected override bool BuildIsMushroomOverrideUpgrade()
         {
             return true;
