@@ -34,6 +34,11 @@ namespace AbrahmanAdventure
             return 1.0;
         }
 
+        protected override double BuildLevelSizeMultiplicator()
+        {
+            return 1.0;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             //do nothing
@@ -62,11 +67,6 @@ namespace AbrahmanAdventure
         protected override bool BuildIsShowExp()
         {
             return false;
-        }
-
-        protected override bool BuildIsAllowJumpOnBeaver()
-        {
-            return true;
         }
 
         protected override bool BuildIsBeaverAlwaysStrongAi()

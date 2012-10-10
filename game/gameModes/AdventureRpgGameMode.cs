@@ -40,6 +40,11 @@ namespace AbrahmanAdventure
             return 1.0;
         }
 
+        protected override double BuildLevelSizeMultiplicator()
+        {
+            return 1.0;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             switch (playerSprite.Level)
@@ -155,11 +160,6 @@ namespace AbrahmanAdventure
             playerSprite.Health -= mushroomSprite.AttackStrengthCollision;
             mushroomSprite.IsAlive = false;
             mushroomSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
-        }
-
-        protected override bool BuildIsAllowJumpOnBeaver()
-        {
-            return true;
         }
 
         protected override bool BuildIsBeaverAlwaysStrongAi()

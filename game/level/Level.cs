@@ -75,7 +75,7 @@ namespace AbrahmanAdventure.level
             int waveCount = random.Next(3, 6);
 
             leftBound = -30;//-BuildLevelBound(random, skillLevel);
-            rightBound = BuildLevelBound(random, skillLevel);
+            rightBound = BuildLevelBound(random, skillLevel) * gameMode.LevelSizeMultiplicator;
             leftBoundType = BuildBoundType(random);
             rightBoundType = BuildBoundType(random);
 
