@@ -78,6 +78,13 @@ namespace AbrahmanAdventure.physics
                 {
                     SoundManager.PlayCoinSound();
                     playerSpriteReference.MusicNoteCount++;
+
+                    if (gameMode.IsNoteGivesFullHealthMax99)
+                    {
+                        if (playerSpriteReference.MusicNoteCount > 99)
+                            playerSpriteReference.MusicNoteCount = 99;
+                        playerSpriteReference.Health = playerSpriteReference.MaxHealth;
+                    }
                 }
                 else
                 {
