@@ -65,30 +65,14 @@ namespace AbrahmanAdventure
             playerSprite.MaxRunningSpeed *= 2;
             playerSprite.MaxWalkingSpeed *= 2;
             playerSprite.IsTiny = false;
+            playerSprite.IsNinja = true;
         }
 
         public override void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
         {
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
-
             SoundManager.PlayHit2Sound();
-            if (playerSprite.IsDoped)
-                playerSprite.IsDoped = false;
-            if (playerSprite.IsRasta)
-                playerSprite.IsRasta = false;
-            if (playerSprite.IsBodhi)
-            {
-                playerSprite.IsBodhi = false;
-                playerSprite.IsNinja = true;
-            }
-            else if (playerSprite.IsNinja)
-            {
-                playerSprite.IsNinja = false;
-            }
-            else
-            {
-                playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
-            }
+            playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
         }
 
         protected override bool BuildIsTransformToBodhiWhenGetsEnoughMusicNote()
