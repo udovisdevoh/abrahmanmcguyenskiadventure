@@ -56,7 +56,7 @@ namespace AbrahmanAdventure
             playerSprite.IsDoped = false;
         }
 
-        public override void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
+        public override void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, SpritePopulation spritePopulation)
         {
             SoundManager.PlayHit2Sound();
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
@@ -110,6 +110,11 @@ namespace AbrahmanAdventure
         }
 
         protected override bool BuildIsShowNoteCounter()
+        {
+            return false;
+        }
+
+        protected override bool BuildIsNinjaFlipProportionalToWalkingSpeed()
         {
             return false;
         }

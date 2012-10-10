@@ -104,6 +104,11 @@ namespace AbrahmanAdventure
             return false;
         }
 
+        protected override bool BuildIsNinjaFlipProportionalToWalkingSpeed()
+        {
+            return false;
+        }
+
         public override void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
         {
             //do nothing

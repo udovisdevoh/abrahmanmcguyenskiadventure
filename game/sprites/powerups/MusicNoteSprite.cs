@@ -9,7 +9,7 @@ namespace AbrahmanAdventure.sprites
     /// <summary>
     /// Music note sprite (equivalent to coin)
     /// </summary>
-    internal class MusicNoteSprite : StaticSprite
+    internal class MusicNoteSprite : StaticSprite, IExpirable
     {
         #region Fields and parts
         private static Surface surface1;
@@ -20,7 +20,9 @@ namespace AbrahmanAdventure.sprites
         
         private static Surface surface4;
 
-        private static Cycle spinCycle;
+        private static Cycle spinCycle = new Cycle(64, true);
+
+        private Cycle expirationCycle;
         
         /// <summary>
         /// Tutorial's comment
@@ -38,7 +40,8 @@ namespace AbrahmanAdventure.sprites
         public MusicNoteSprite(double xPosition, double yPosition, Random random)
             : base(xPosition, yPosition, random)
         {
-            spinCycle = new Cycle(64, true);
+            expirationCycle = new Cycle(100, false, false, false);
+
             if (surface1 == null)
             {
                 if (Program.screenHeight > 720)
@@ -131,10 +134,19 @@ namespace AbrahmanAdventure.sprites
                     return surface2;
             }
         }
+        #endregion
 
+        #region Properties
+        public Cycle ExpirationCycle
+        {
+            get { return expirationCycle; }
+        }
+        #endregion
+
+        #region Static
         public static void IncrementSpinCycle()
         {
-            spinCycle.Increment(1);
+            spinCycle.Increment(2);
         }
         #endregion
     }

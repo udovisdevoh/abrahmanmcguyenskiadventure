@@ -230,7 +230,7 @@ namespace AbrahmanAdventure.physics
                     }
                     else
                     {
-                        gameState.GameMode.CollisionRemoveSuitOrBecomeSmallOrDie(sprite, monsterSprite);
+                        gameState.GameMode.CollisionRemoveSuitOrBecomeSmallOrDie(sprite, monsterSprite, spritePopulation);
                     }
                 }
             }
@@ -248,7 +248,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else
                 {
-                    gameState.GameMode.CollisionRemoveSuitOrBecomeSmallOrDie(playerSprite, flailBall);
+                    gameState.GameMode.CollisionRemoveSuitOrBecomeSmallOrDie(playerSprite, flailBall, spritePopulation);
                 }
             }
         }

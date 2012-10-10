@@ -155,6 +155,11 @@ namespace AbrahmanAdventure
             return false;
         }
 
+        protected override bool BuildIsNinjaFlipProportionalToWalkingSpeed()
+        {
+            return false;
+        }
+
         public override void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel)
         {
             playerSprite.Experience += (int)Math.Round((monsterSprite.MaxHealth + monsterSprite.AttackStrengthCollision) * (double)(skillLevel + 1) * 10.0);
@@ -174,7 +179,7 @@ namespace AbrahmanAdventure
             }
         }
 
-        public override void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
+        public override void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, SpritePopulation spritePopulation)
         {
             SoundManager.PlayHit2Sound();
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();

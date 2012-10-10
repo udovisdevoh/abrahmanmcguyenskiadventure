@@ -47,6 +47,8 @@ namespace AbrahmanAdventure
         private bool isShowNoteCounter;
 
         private bool isNoteGivesFullHealthMax99;
+
+        private bool isNinjaFlipProportionalToWalkingSpeed;
         #endregion
 
         #region Constructor
@@ -69,6 +71,7 @@ namespace AbrahmanAdventure
             blockDensityMultiplicator = BuildBlockDensityMultiplicator();
             isShowNoteCounter = BuildIsShowNoteCounter();
             isNoteGivesFullHealthMax99 = BuildIsNoteGivesFullHealthMax99();
+            isNinjaFlipProportionalToWalkingSpeed = BuildIsNinjaFlipProportionalToWalkingSpeed();
         }
         #endregion
 
@@ -104,6 +107,8 @@ namespace AbrahmanAdventure
 
         protected abstract bool BuildIsNoteGivesFullHealthMax99();
 
+        protected abstract bool BuildIsNinjaFlipProportionalToWalkingSpeed();
+
         public abstract void PerformDestroyMonsterExtraLogic(PlayerSprite playerSprite, MonsterSprite monsterSprite, int skillLevel);
 
         public abstract void HackPlayerSprite(PlayerSprite playerSprite);
@@ -127,7 +132,7 @@ namespace AbrahmanAdventure
         public abstract void UpdateByFrame(double timeDelta, PlayerSprite playerSprite);
 
         #region Virtual Methods
-        public virtual void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite)
+        public virtual void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, SpritePopulation spritePopulation)
         {
             if (!playerSprite.IsTiny && !playerSprite.IsNinja && !playerSprite.IsBodhi)
                 ((PlayerSprite)playerSprite).ChangingSizeAnimationCycle.Fire();
@@ -256,6 +261,11 @@ namespace AbrahmanAdventure
         public bool IsNoteGivesFullHealthMax99
         {
             get { return isNoteGivesFullHealthMax99; }
+        }
+
+        public bool IsNinjaFlipProportionalToWalkingSpeed
+        {
+            get { return isNinjaFlipProportionalToWalkingSpeed; }
         }
         #endregion
     }
