@@ -12,8 +12,7 @@ Game modes
 	{
 		lorsque spawn music notes, ces notes doivent rebondir au sol et s'en aller n'importe où (avec vitesse et direction random)
 		isCrouchFastWalkFlip
-		maxSlopeMultiplicator
-		?slopeGripMultiplicator (will hack the player), when dashing only, or proportional to speed?
+		maxSlopeMultiplicator / slopeGripMultiplicator (will hack the player), when dashing only, or proportional to speed?
 		isBreakBricksFromSideAndTop
 	}
 	
