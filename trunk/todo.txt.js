@@ -1,3 +1,4 @@
+floating music notes
 charged ki ball must destroy lawyers and members of the peaceful religion
 fix bug: when falling torward platform moving up: sometimes crosses platform
 ?fix bug: si ninja puis new game: ninja et tiny?
