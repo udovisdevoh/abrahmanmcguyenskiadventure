@@ -15,6 +15,7 @@ Game modes
 		hillWaveComplexityMultiplicator
 		maxSlopeMultiplicator
 		?slopeGripMultiplicator (will hack the player), when running only?
+		isBreakBricksFromSideAndTop
 	}
 	
 	Adventure RPG
