@@ -111,9 +111,23 @@ namespace AbrahmanAdventure.audio
 
         private static Sound kiChargedSound;
 
+        private static Sound ringSound;
+
         private static Random random = new Random();
 
         private static Channel kiChargingSoundChannel = null;
+
+        private static Channel ringSoundChannel = null;
+
+        private static Channel growSoundChannel = null;
+
+        private static Channel helmetBumpSoundChannel = null;
+
+        private static Channel brickSoundChannel = null;
+
+        private static Channel hitSoundChannel = null;
+
+        private static Channel coinSoundChannel = null;
 
         private static int bodhiJumpSoundRandomIndex = 0;
         #endregion
@@ -170,6 +184,9 @@ namespace AbrahmanAdventure.audio
             kiBallSound = LoadSound("./assets/sounds/KiBall.ogg");
             largeKiBallSound = LoadSound("./assets/sounds/LargeKiBall.ogg");
             
+            ringSound = LoadSound("./assets/sounds/Ring.ogg");
+            ringSound.Volume = 52;
+            
             kiChargingSound = LoadSound("./assets/sounds/KiCharging.ogg");
             kiChargingSound.Volume = 52;
 
@@ -213,7 +230,10 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayHitSound()
         {
-            hitSound.Play();
+            if (hitSoundChannel != null && hitSoundChannel.IsPlaying())
+                hitSoundChannel.Stop();
+
+            hitSoundChannel = hitSound.Play();
         }
 
         internal static void PlayHit2Sound()
@@ -231,11 +251,6 @@ namespace AbrahmanAdventure.audio
             attemptSound.Play();
         }
 
-        internal static void PlayHarvesttSound()
-        {
-            harvestSound.Play();
-        }
-
         internal static void PlayPunchSound()
         {
             punchSound.Play();
@@ -243,7 +258,10 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayHelmetBumpSound()
         {
-            helmetBumpSound.Play();
+            if (helmetBumpSoundChannel != null && helmetBumpSoundChannel.IsPlaying())
+                helmetBumpSoundChannel.Stop();
+
+            helmetBumpSoundChannel = helmetBumpSound.Play();
         }
 
         internal static void PlayHelmetKickSound()
@@ -263,7 +281,10 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayGrowSound()
         {
-            growSound.Play();
+            if (growSoundChannel != null && growSoundChannel.IsPlaying())
+                growSoundChannel.Stop();
+
+            growSoundChannel = growSound.Play();
         }
 
         internal static void PlayFireBallSound()
@@ -273,7 +294,10 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayBricksSound()
         {
-            bricksSound.Play();
+            if (brickSoundChannel != null && brickSoundChannel.IsPlaying())
+                brickSoundChannel.Stop();
+
+            brickSoundChannel = bricksSound.Play();
         }
 
         internal static void PlayDrinkSound()
@@ -293,7 +317,10 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayCoinSound()
         {
-            coinSound.Play();
+            if (coinSoundChannel != null && coinSoundChannel.IsPlaying())
+                coinSoundChannel.Stop();
+
+            coinSoundChannel = coinSound.Play();
         }
 
         internal static void PlayExplosionSound()
@@ -404,6 +431,14 @@ namespace AbrahmanAdventure.audio
         internal static void PlayLargeKiBallSound()
         {
             largeKiBallSound.Play();
+        }
+
+        internal static void PlayRingSound()
+        {
+            if (ringSoundChannel != null && ringSoundChannel.IsPlaying())
+                ringSoundChannel.Stop();
+
+            ringSoundChannel = ringSound.Play();
         }
 
         internal static void PlayKiChargingSound()

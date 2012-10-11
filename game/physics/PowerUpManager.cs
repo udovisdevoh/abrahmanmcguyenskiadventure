@@ -102,7 +102,11 @@ namespace AbrahmanAdventure.physics
             if (gameMode.IsTransformToBodhiWhenGetsEnoughMusicNote && playerSprite.IsBodhi)
                 return;
 
-            SoundManager.PlayCoinSound();
+            if (!gameMode.IsNoteGivesFullHealthMax99)
+                SoundManager.PlayCoinSound();
+            else
+                SoundManager.PlayRingSound();
+
             musicNoteSprite.IsAlive = false;
             playerSprite.MusicNoteCount++;
 

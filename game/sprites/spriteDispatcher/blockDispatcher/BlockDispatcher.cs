@@ -29,10 +29,17 @@ namespace AbrahmanAdventure.sprites
             AddedBlockMemory addedBlockMemory = new AddedBlockMemory();
             foreach (Ground ground in level)
             {
-                if (random.Next(0,5) == 1)
-                    BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, gameMode, random);
-                else
+                if (gameMode.BlockDensityMultiplicator < 1.0)
+                {
                     BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, gameMode, random);
+                }
+                else
+                {
+                    if (random.Next(0, 5) == 1)
+                        BlockDispatcherTotems.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, gameMode, random);
+                    else
+                        BlockDispatcherWave.DispatchBlocks(ground, level, spritePopulation, addedBlockMemory, gameMode, random);
+                }
             }
 
             return addedBlockMemory;
