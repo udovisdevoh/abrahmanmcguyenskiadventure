@@ -113,7 +113,8 @@ namespace AbrahmanAdventure
         public override void CollisionRemoveSuitOrBecomeSmallOrDie(PlayerSprite playerSprite, IEvilSprite evilSprite, SpritePopulation spritePopulation)
         {
             ((PlayerSprite)playerSprite).KiBallChargeCycle.StopAndReset();
-            SoundManager.PlayHit2Sound();
+            if (playerSprite.MusicNoteCount > 0)
+                SoundManager.PlayLoseNotesSound();
             playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
 
             for (int musicNoteCounter = 0; musicNoteCounter < playerSprite.MusicNoteCount; musicNoteCounter++)
