@@ -53,8 +53,6 @@ namespace AbrahmanAdventure.audio
 
         private static Sound drinkSound;
 
-        //private static Sound musicNoteSound;
-
         private static Sound reggaeSound;
 
         private static Sound coinSound;
@@ -117,19 +115,21 @@ namespace AbrahmanAdventure.audio
 
         private static Random random = new Random();
 
-        private static Channel kiChargingSoundChannel = null;
+        private static Channel playerHitChannel = new Channel(0);
 
-        private static Channel ringSoundChannel = null;
+        private static Channel monsterHitChannel = new Channel(1);
 
-        private static Channel growSoundChannel = null;
+        private static Channel powerUpChannel = new Channel(2);
 
-        private static Channel helmetBumpSoundChannel = null;
+        private static Channel kiChargingSoundChannel = new Channel(3);
 
-        private static Channel brickSoundChannel = null;
+        private static Channel breakChannel = new Channel(4);
 
-        private static Channel hitSoundChannel = null;
+        private static Channel playerChannel = new Channel(5);
 
-        private static Channel coinSoundChannel = null;
+        private static Channel timerChannel = new Channel(6);
+
+        private static Channel beaverChannel = new Channel(7);
 
         private static int bodhiJumpSoundRandomIndex = 0;
         #endregion
@@ -156,7 +156,6 @@ namespace AbrahmanAdventure.audio
             fireBallSound = LoadSound("./assets/sounds/FireBall.ogg");
             bricksSound = LoadSound("./assets/sounds/Bricks.ogg");
             drinkSound = LoadSound("./assets/sounds/Drink.ogg");
-            /*musicNoteSound = LoadSound("./assets/sounds/MusicNote.ogg");*/
             reggaeSound = LoadSound("./assets/sounds/Reggae.ogg");
             coinSound = LoadSound("./assets/sounds/Coin.ogg");
             explosionSound = LoadSound("./assets/sounds/Explosion.ogg");
@@ -223,249 +222,222 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayJumpSound()
         {
-            jumpSound.Play();
+            playerChannel.Play(jumpSound);
         }
 
         internal static void PlayJumpDownSound()
         {
-            jumpDownSound.Play();
+            playerChannel.Play(jumpDownSound);
         }
 
         internal static void PlayHitSound()
         {
-            if (hitSoundChannel != null && hitSoundChannel.IsPlaying())
-                hitSoundChannel.Stop();
-
-            hitSoundChannel = hitSound.Play();
+            monsterHitChannel.Play(hitSound);
         }
 
         internal static void PlayHit2Sound()
         {
-            hit2Sound.Play();
+            playerHitChannel.Play(hit2Sound);
         }
 
         internal static void PlayLoseNotesSound()
         {
-            loseNotesSound.Play();
+            powerUpChannel.Play(loseNotesSound);
         }
 
         internal static void PlayKo2Sound()
         {
-            ko2Sound.Play();
+            playerHitChannel.Play(ko2Sound);
         }
 
         internal static void PlayAttemptSound()
         {
-            attemptSound.Play();
+            playerChannel.Play(attemptSound);
         }
 
         internal static void PlayPunchSound()
         {
-            punchSound.Play();
+            playerChannel.Play(punchSound);
         }
 
         internal static void PlayHelmetBumpSound()
         {
-            if (helmetBumpSoundChannel != null && helmetBumpSoundChannel.IsPlaying())
-                helmetBumpSoundChannel.Stop();
-
-            helmetBumpSoundChannel = helmetBumpSound.Play();
+            breakChannel.Play(helmetBumpSound);
         }
 
         internal static void PlayHelmetKickSound()
         {
-            helmetKickSound.Play();
+            playerChannel.Play(helmetKickSound);
         }
 
         internal static void PlayTrampolineSound()
         {
-            trampolineSound.Play();
+            playerChannel.Play(trampolineSound);
         }
 
         internal static void PlayPowerUpSound()
         {
-            powerUpSound.Play();
+            powerUpChannel.Play(powerUpSound);
         }
 
         internal static void PlayGrowSound()
         {
-            if (growSoundChannel != null && growSoundChannel.IsPlaying())
-                growSoundChannel.Stop();
-
-            growSoundChannel = growSound.Play();
+            powerUpChannel.Play(growSound);
         }
 
         internal static void PlayFireBallSound()
         {
-            fireBallSound.Play();
+            playerChannel.Play(fireBallSound);
         }
 
         internal static void PlayBricksSound()
         {
-            if (brickSoundChannel != null && brickSoundChannel.IsPlaying())
-                brickSoundChannel.Stop();
-
-            brickSoundChannel = bricksSound.Play();
+            breakChannel.Play(bricksSound);
         }
 
         internal static void PlayDrinkSound()
         {
-            drinkSound.Play();
+            powerUpChannel.Play(drinkSound);
         }
-
-        /*internal static void PlayMusicNoteSound()
-        {
-            musicNoteSound.Play();
-        }*/
 
         internal static void PlayReggaeSound()
         {
-            reggaeSound.Play();
+            powerUpChannel.Play(reggaeSound);
         }
 
         internal static void PlayCoinSound()
         {
-            if (coinSoundChannel != null && coinSoundChannel.IsPlaying())
-                coinSoundChannel.Stop();
-
-            coinSoundChannel = coinSound.Play();
+            powerUpChannel.Play(coinSound);
         }
 
         internal static void PlayExplosionSound()
         {
-            explosionSound.Play();
+            breakChannel.Play(explosionSound);
         }
 
         internal static void PlayBombTimerSound()
         {
-            bombTimerSound.Play();
+            timerChannel.Play(bombTimerSound);
         }
 
         internal static void PlayChargedSound()
         {
-            chargedSound.Play();
+            kiChargingSoundChannel.Play(chargedSound);
         }
 
         internal static void PlayVortexOutSound()
         {
-            vortexOutSound.Play();
+            playerChannel.Play(vortexOutSound);
         }
 
         internal static void PlayVortexInSound()
         {
-            vortexInSound.Play();
+            playerChannel.Play(vortexInSound);
         }
 
         internal static void PlayThrowSound()
         {
-            throwSound.Play();
+            playerChannel.Play(throwSound);
         }
 
         internal static void PlayGlassBreakSound()
         {
-            glassBreakSound.Play();
+            breakChannel.Play(glassBreakSound);
         }
 
         internal static void PlayBeaverAttackSound()
         {
-            beaverAttackSound.Play();
+            beaverChannel.Play(beaverAttackSound);
         }
 
         internal static void PlayBeaverUpSound()
         {
-            beaverUpSound.Play();
+            beaverChannel.Play(beaverUpSound);
         }
 
         internal static void PlayBeaverHitSound()
         {
-            beaverHitSound.Play();
+            beaverChannel.Play(beaverHitSound);
         }
 
         internal static void PlayDiveInSound()
         {
-            diveInSound.Play();
+            playerChannel.Play(diveInSound);
         }
 
         internal static void PlayDiveOutSound()
         {
-            diveOutSound.Play();
+            playerChannel.Play(diveOutSound);
         }
 
         internal static void PlayHarvestSound()
         {
-            harvestSound.Play();
+            playerChannel.Play(harvestSound);
         }
 
         internal static void PlayGongSound()
         {
-            gongSound.Play();
+            powerUpChannel.Play(gongSound);
         }
 
         internal static void PlayArrowHitSound()
         {
-            arrowHitSound.Play();
+            breakChannel.Play(arrowHitSound);
         }
 
         internal static void PlayGoreSound()
         {
-            goreSound.Play();
+            playerChannel.Play(gongSound);
         }
 
         internal static void PlaySwordSound()
         {
-            swordSound.Play();
+            playerChannel.Play(swordSound);
         }
 
         internal static void PlayNunchakuSound()
         {
-            nunchakuSound.Play();
+            playerChannel.Play(nunchakuSound);
         }
 
         internal static void PlayCatchSound()
         {
-            catchSound.Play();
+            playerChannel.Play(catchSound);
         }
 
         internal static void PlayEnlightenmentSound()
         {
-            enlightenmentSound.Play();
+            powerUpChannel.Play(enlightenmentSound);
         }
 
         internal static void PlayKiBallSound()
         {
-            kiBallSound.Play();
+            playerChannel.Play(kiBallSound);
         }
 
         internal static void PlayLargeKiBallSound()
         {
-            largeKiBallSound.Play();
+            playerChannel.Play(largeKiBallSound);
         }
 
         internal static void PlayRingSound()
         {
-            if (ringSoundChannel != null && ringSoundChannel.IsPlaying())
-                ringSoundChannel.Stop();
-
-            ringSoundChannel = ringSound.Play();
+            powerUpChannel.Play(ringSound);
         }
 
         internal static void PlayKiChargingSound()
         {
-            kiChargingSoundChannel = kiChargingSound.Play();
+            kiChargingSoundChannel.Play(kiChargingSound);
         }
 
         internal static void PlayKiChargedSound()
         {
-            kiChargingSoundChannel = kiChargedSound.Play(true);
+            kiChargingSoundChannel.Play(kiChargedSound, true);
         }
 
         internal static void StopKiChargingSound()
         {
-            if (kiChargingSoundChannel != null)
-            {
-                kiChargingSoundChannel.Stop();
-                kiChargingSoundChannel = null;
-            }
+            kiChargingSoundChannel.Stop();
         }
         internal static void PlayBodhiJumpSound()
         {
@@ -474,19 +446,19 @@ namespace AbrahmanAdventure.audio
             switch (bodhiJumpSoundRandomIndex)
             {
                 case 1:
-                    bodhiJumpSound2.Play();
+                    playerChannel.Play(bodhiJumpSound2);
                     break;
                 case 2:
-                    bodhiJumpSound3.Play();
+                    playerChannel.Play(bodhiJumpSound3);
                     break;
                 case 3:
-                    bodhiJumpSound4.Play();
+                    playerChannel.Play(bodhiJumpSound4);
                     break;
                 case 4:
-                    bodhiJumpSound5.Play();
+                    playerChannel.Play(bodhiJumpSound5);
                     break;
                 default:
-                    bodhiJumpSound.Play();
+                    playerChannel.Play(bodhiJumpSound);
                     break;
 
             }
