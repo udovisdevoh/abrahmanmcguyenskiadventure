@@ -9,7 +9,7 @@ clockwork dispatcher
 ?fix bug: si ninja puis new game: ninja et tiny?
 ?si pese down et jump, lâche liane et ne la repogne pas
 
-?sol: vue projection cavalière?
+effet d'immitation de pseudo mode 7 comme dans sonic 2 et dans evo
 
 Game modes
 {
