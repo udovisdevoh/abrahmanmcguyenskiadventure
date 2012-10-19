@@ -121,6 +121,18 @@ namespace AbrahmanAdventure.level
         {
             return colorList[random.Next(0, colorList.Count)];
         }
+
+        internal Color GetRandomColumnColor(Random random)
+        {
+            Color color = colorList[random.Next(0, colorList.Count)];
+
+            if (color.GetBrightness() < ColumnSet.minBrightness)
+            {
+                color = ColorFromHSV(color.GetHue(), color.GetSaturation(), ColumnSet.minBrightness);
+            }
+
+            return color;
+        }
         #endregion
 
         #region Private methods

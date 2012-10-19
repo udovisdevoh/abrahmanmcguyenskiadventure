@@ -25,7 +25,7 @@ namespace AbrahmanAdventure.level
         /// <param name="column">column (1st parallax)</param>
         /// <param name="viewOffsetX">view offset X</param>
         /// <param name="viewOffsetY">view offset Y</param>
-        void Update(Level level, ColorTheme colorTheme, AbstractBackground background/*, ColumnSet column*/, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY);
+        void Update(Level level, ColorTheme colorTheme, AbstractBackground background, ColumnSet column, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY);
 
         /// <summary>
         /// Clear level viewer's cache within provided bounds
