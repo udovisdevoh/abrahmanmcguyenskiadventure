@@ -1,6 +1,10 @@
 floating music notes
 charged ki ball must destroy lawyers and members of the peaceful religion
 fix bug: when falling torward platform moving up: sometimes crosses platform
+{
+	fixed for eleavor, must now fix for wagons, pendulum, wheel and seesaw
+}
+
 ?fix bug: si ninja puis new game: ninja et tiny?
 ?si pese down et jump, lâche liane et ne la repogne pas
 
