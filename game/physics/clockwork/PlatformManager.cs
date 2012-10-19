@@ -72,8 +72,14 @@ namespace AbrahmanAdventure.physics
 
             if (platform.ElevatorCycle != null) //if platform is an elevator
             {
+                bool isHorizontalAlignWithPlayer = (playerSprite.LeftBound <= platform.RightBound && playerSprite.LeftBound >= platform.LeftBound) || (platform.LeftBound <= playerSprite.RightBound && platform.LeftBound >= playerSprite.LeftBound);
+                bool wasPlayerHigherThanPlatform = playerSprite.YPosition < platform.TopBound;
+
                 platform.ElevatorCycle.Increment(platform.ElevatorSpeed * timeDelta / 10);
                 platform.YPosition = platform.OriginalYPosition + platform.ElevatorCycle.CurrentValue - (platform.ElevatorCycle.TotalTimeLength / 2.0);
+
+                if (wasPlayerHigherThanPlatform && isHorizontalAlignWithPlayer && playerSprite.IGround == null && playerSprite.YPosition >= platform.TopBound)
+                    playerSprite.IGround = platform;//to prevent crossing ground when falling to fast while platform is moving up
 
                 if (playerSprite.IGround == platform)
                     playerSprite.YPositionKeepPrevious = platform.TopBound;
