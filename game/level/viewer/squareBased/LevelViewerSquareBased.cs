@@ -62,12 +62,12 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="waterInfo">waterInfo</param>
         /// <param name="column">column (1st parallax)</param>
-        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, /*ColumnSet column,*/ WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
+        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, ColumnSet column, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
             viewBackground(mainSurface, background, viewOffsetX, viewOffsetY);
 
-            /*if (column != null)
-                viewColumn(mainSurface, column);*/
+            if (column != null)
+                viewColumn(mainSurface, column);
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);
@@ -466,10 +466,10 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="mainSurface">surface to draw on</param>
         /// <param name="column">column</param>
-        /*private void viewColumn(Surface mainSurface, ColumnSet column)
+        private void viewColumn(Surface mainSurface, ColumnSet column)
         {
             mainSurface.Blit(column.Surface, new Point(0, 0));
-        }*/
+        }
         #endregion
     }
 }

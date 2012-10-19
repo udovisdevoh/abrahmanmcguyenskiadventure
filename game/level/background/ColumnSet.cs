@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +13,12 @@ namespace AbrahmanAdventure.level
     /// </summary>
     internal class ColumnSet
     {
+        #region Static and const
+        private static Surface cylinderSurface = new Surface("./assets/rendered/Cylinder.png");
+
+        public const double minBrightness = 0.5;
+        #endregion
+
         #region Fields and parts
         /// <summary>
         /// Column's surface
@@ -39,6 +45,10 @@ namespace AbrahmanAdventure.level
         /// <param name="random">random number generator</param>
         public ColumnSet(Random random, Color color)
         {
+
+
+            random = new Random(random.Next());
+
             columnCount = random.Next(1, 5);
 
             Texture texture = new Texture(random, color, 1.0, true, random.Next(), 0, false);
@@ -62,12 +72,12 @@ namespace AbrahmanAdventure.level
             int sourceSurfaceHeight = texture.Surface.Height;
             int sourceSurfaceWidth = texture.Surface.Width;
 
-            Surface cylinderSurface = new Surface("./assets/rendered/Cylinder.png");
+            lock (cylinderSurface)
+            {
+                Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight), true);
+                texture.Surface.Blit(scaledCylinder, new Point(0, 0));
+            }
 
-            Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight), true);
-
-            texture.Surface.Blit(scaledCylinder, new Point(0, 0));
-            
 
             int x;
             for (int y = 0; y < height; y++)
@@ -135,4 +145,3 @@ namespace AbrahmanAdventure.level
         #endregion
     }
 }
-*/

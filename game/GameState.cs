@@ -62,7 +62,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Column (1st parallax)
         /// </summary>
-        /*private ColumnSet column = null;*/
+        private ColumnSet column = null;
 
         /// <summary>
         /// Water info (or null if no water)
@@ -162,7 +162,7 @@ namespace AbrahmanAdventure
             if (skillLevel != 0 && random.Next(0, 7) == 1)
                 waterInfo = new WaterInfo(backgroundColorHsl, random);
 
-            //column = new ColumnSet(random, colorTheme.GetRandomColor(random));
+            column = new ColumnSet(random, colorTheme.GetRandomColumnColor(random));
 
             level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null, gameMode);
 
@@ -405,10 +405,10 @@ namespace AbrahmanAdventure
         /// <summary>
         /// 1st parallax column background
         /// </summary>
-        /*public ColumnSet Column
+        public ColumnSet Column
         {
             get { return column; }
-        }*/
+        }
 
         /// <summary>
         /// Info about water
