@@ -223,7 +223,7 @@ namespace AbrahmanAdventure.level
 
         private int GetRoundedScaling(double scaling)
         {
-            return (int)(scaling * 20.0);
+            return (int)(scaling * 0.625 * Program.tileSize);
         }
 
         /*private double GetWaveContribution(bool isMultiply, bool isUseTangent, double xInput, AbstractWave wave, double waveStrengthMultiplicator)
