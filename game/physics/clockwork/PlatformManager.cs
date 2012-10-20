@@ -57,7 +57,7 @@ namespace AbrahmanAdventure.physics
                 {
                     platform.YPosition = platform.IGround[platform.XPosition] + 0.25;
 
-                    if (wasPlayerHigherThanPlatform && isHorizontalAlignWithPlayer && playerSprite.IGround == null && playerSprite.YPosition >= platform.TopBound)
+                    if (wasPlayerHigherThanPlatform && isHorizontalAlignWithPlayer && playerSprite.IGround == null && playerSprite.CurrentJumpAcceleration < 0 && playerSprite.YPosition >= platform.TopBound)
                         playerSprite.IGround = platform;//to prevent crossing ground when falling to fast while platform is moving up
 
                     if (playerSprite.IGround == platform)
@@ -82,7 +82,7 @@ namespace AbrahmanAdventure.physics
                 platform.ElevatorCycle.Increment(platform.ElevatorSpeed * timeDelta / 10);
                 platform.YPosition = platform.OriginalYPosition + platform.ElevatorCycle.CurrentValue - (platform.ElevatorCycle.TotalTimeLength / 2.0);
 
-                if (wasPlayerHigherThanPlatform && isHorizontalAlignWithPlayer && playerSprite.IGround == null && playerSprite.YPosition >= platform.TopBound)
+                if (wasPlayerHigherThanPlatform && isHorizontalAlignWithPlayer && playerSprite.IGround == null && playerSprite.CurrentJumpAcceleration < 0 && playerSprite.YPosition >= platform.TopBound)
                     playerSprite.IGround = platform;//to prevent crossing ground when falling to fast while platform is moving up
 
                 if (playerSprite.IGround == platform)

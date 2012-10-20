@@ -162,7 +162,9 @@ namespace AbrahmanAdventure
             if (skillLevel != 0 && random.Next(0, 7) == 1)
                 waterInfo = new WaterInfo(backgroundColorHsl, random);
 
-            column = new ColumnSet(random, colorTheme.GetRandomColumnColor(random));
+            int seedForColumn = random.Next();
+            if (random.Next(0,2) == 1 && Program.isEnableColumnSet)
+                column = new ColumnSet(seedForColumn, colorTheme);
 
             level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null, gameMode);
 

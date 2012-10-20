@@ -59,6 +59,8 @@ namespace AbrahmanAdventure
 
         public const bool isEnableParallelTextureRendering = true;
 
+        public const bool isEnableColumnSet = true;
+
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;
