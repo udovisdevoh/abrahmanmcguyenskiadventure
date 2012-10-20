@@ -42,12 +42,12 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="groundId">index of ground</param>
         /// <param name="seed">seed</param>
-        /// <param name="random">random number generator</param>
-        public ColumnSet(Random random, Color color)
+        /// <param name="seed">seed for random number generator</param>
+        public ColumnSet(int seed, ColorTheme colorTheme)
         {
+            Random random = new Random(seed);
 
-
-            random = new Random(random.Next());
+            Color color = colorTheme.GetRandomColumnColor(random);
 
             columnCount = random.Next(1, 5);
 
