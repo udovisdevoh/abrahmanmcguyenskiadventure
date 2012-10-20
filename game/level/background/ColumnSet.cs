@@ -76,7 +76,7 @@ namespace AbrahmanAdventure.level
             {
                 lock (cylinderSurface)
                 {
-                    Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight), true);
+                    Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight / 648.0), true);
                     texture.Surface.Blit(scaledCylinder, new Point(0, 0));
                 }
             }
