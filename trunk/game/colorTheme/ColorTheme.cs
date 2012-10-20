@@ -126,9 +126,9 @@ namespace AbrahmanAdventure.level
         {
             Color color = colorList[random.Next(0, colorList.Count)];
 
-            if (color.GetBrightness() < ColumnSet.minBrightness)
+            if (color.GetBrightness() < ColumnSet.minBrightness || color.GetSaturation() < ColumnSet.minBrightness)
             {
-                color = ColorFromHSV(color.GetHue(), color.GetSaturation(), ColumnSet.minBrightness);
+                color = ColorFromHSV(color.GetHue(), ColumnSet.minBrightness, ColumnSet.minBrightness);
             }
 
             return color;
