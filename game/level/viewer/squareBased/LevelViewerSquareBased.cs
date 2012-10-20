@@ -67,7 +67,7 @@ namespace AbrahmanAdventure.level
             viewBackground(mainSurface, background, viewOffsetX, viewOffsetY);
 
             if (column != null)
-                viewColumn(mainSurface, column);
+                viewColumn(mainSurface, column, viewOffsetX, viewOffsetY);
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);
@@ -466,9 +466,51 @@ namespace AbrahmanAdventure.level
         /// </summary>
         /// <param name="mainSurface">surface to draw on</param>
         /// <param name="column">column</param>
-        private void viewColumn(Surface mainSurface, ColumnSet column)
+        private void viewColumn(Surface mainSurface, ColumnSet column, double viewOffsetX, double viewOffsetY)
         {
-            mainSurface.Blit(column.Surface, new Point(0, 0));
+            int spaceBetweenColumns;
+
+            spaceBetweenColumns = Program.screenWidth / column.Count;
+
+            int columnWidth = column.Surface.GetWidth();
+            int columnHeight = column.Surface.GetHeight();
+
+            for (int columnId = 0; columnId < column.Count; columnId++)
+            {
+                int viewOffsetXInt = (int)(-viewOffsetX * Program.tileSize * 0.333);
+                int viewOffsetYInt = (int)(-viewOffsetY * Program.tileSize * 0.333);
+
+
+                viewOffsetXInt += (spaceBetweenColumns * columnId);
+
+
+                while (viewOffsetXInt > Program.screenWidth)
+                    viewOffsetXInt -= Program.screenWidth;
+                while (viewOffsetXInt < 0)
+                    viewOffsetXInt += Program.screenWidth;
+
+                while (viewOffsetYInt > columnHeight)
+                    viewOffsetYInt -= columnHeight;
+                while (viewOffsetYInt < 0)
+                    viewOffsetYInt += columnHeight;
+
+                viewOffsetYInt -= Program.screenHeight;
+
+                mainSurface.Blit(column.Surface, new Point(viewOffsetXInt, viewOffsetYInt));
+
+                bool isOverlapX = viewOffsetXInt + columnWidth > Program.screenWidth;
+                bool isOverlapY = viewOffsetYInt > 0;
+
+                if (isOverlapX)
+                    mainSurface.Blit(column.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt));
+
+                if (isOverlapY)
+                {
+                    mainSurface.Blit(column.Surface, new Point(viewOffsetXInt, viewOffsetYInt - columnHeight));
+                    if (isOverlapX)
+                        mainSurface.Blit(column.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt - columnHeight));
+                }
+            }
         }
         #endregion
     }

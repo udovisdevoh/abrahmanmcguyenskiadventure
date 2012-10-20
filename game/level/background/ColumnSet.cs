@@ -31,9 +31,9 @@ namespace AbrahmanAdventure.level
         private AbstractWave shapeWave;
 
         /// <summary>
-        /// How manu columns in set
+        /// How many columns in set
         /// </summary>
-        private int columnCount;
+        private int count;
         #endregion
 
         #region Constructor
@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.level
 
             Color color = colorTheme.GetRandomColumnColor(random);
 
-            columnCount = random.Next(1, 5);
+            count = random.Next(1, 5);
 
             Texture texture = new Texture(random, color, 1.0, true, random.Next(), 0, false);
 
@@ -74,8 +74,11 @@ namespace AbrahmanAdventure.level
 
             lock (cylinderSurface)
             {
-                Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight), true);
-                texture.Surface.Blit(scaledCylinder, new Point(0, 0));
+                lock (cylinderSurface)
+                {
+                    Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight), true);
+                    texture.Surface.Blit(scaledCylinder, new Point(0, 0));
+                }
             }
 
 
@@ -101,6 +104,18 @@ namespace AbrahmanAdventure.level
 
                 surface.Blit(scatedTextureSurface, new Point(x, y), new Rectangle(0, yFromSource, scatedTextureSurface.Width, 1));
             }
+
+            #region We make the surface twice the height (mirror in the middle
+            Surface flippedSurface = surface.CreateFlippedVerticalSurface();
+            flippedSurface.Transparent = true;
+
+            Surface compositeSurface = new Surface(width, height * 2, Program.bitDepth);
+            compositeSurface.Transparent = true;
+
+            compositeSurface.Blit(surface, new Point(0, 0));
+            compositeSurface.Blit(flippedSurface, new Point(0, surface.Height));
+            surface = compositeSurface;
+            #endregion
         }
         #endregion
 
@@ -141,6 +156,15 @@ namespace AbrahmanAdventure.level
         public Surface Surface
         {
             get { return surface; }
+        }
+
+        /// <summary>
+        /// How many columns in set
+        /// </summary>
+        public int Count
+        {
+            get { return count; }
+            set { count = value; }
         }
         #endregion
     }

@@ -59,8 +59,6 @@ namespace AbrahmanAdventure
 
         public const bool isEnableParallelTextureRendering = true;
 
-        public const bool isEnableColumnSet = true;
-
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;
@@ -138,6 +136,8 @@ namespace AbrahmanAdventure
         public static double absoluteMaxCeilingHeight = 2.0;
 
         public static bool isFullScreen = PersistentConfig.IsFullScreen;
+
+        public static bool isEnableColumnSet = true;
 
         public static int screenWidth;
 
