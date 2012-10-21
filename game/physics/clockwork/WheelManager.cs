@@ -82,6 +82,8 @@ namespace AbrahmanAdventure.physics
 
                 if (childLinkage is Wheel && ((Wheel)childLinkage).IsRadiusDistanceFromParentWheel)
                     hypotenus += ((Wheel)childLinkage).Radius;
+                else if (childLinkage is SeeSaw && ((SeeSaw)childLinkage).IsRadiusDistanceFromParentWheel)
+                    hypotenus += ((SeeSaw)childLinkage).Radius;
 
                 double angle = (wheel.RotationCycle.CurrentValue / wheel.RotationCycle.TotalTimeLength);
 
