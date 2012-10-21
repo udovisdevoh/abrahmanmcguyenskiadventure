@@ -24,7 +24,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="visibleSpriteList">visible sprite list</param>
-        internal void Update(AbstractSprite sprite, PlayerSprite playerSprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer)
+        internal void Update(AbstractSprite sprite, PlayerSprite playerSprite, double timeDelta, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, GameMetaState gameMetaState, GameState gameState, LevelViewerSquareBased levelViewer)
         {
             if (sprite.YPosition > Program.totalHeightTileCount / 2 + 3)
             {
