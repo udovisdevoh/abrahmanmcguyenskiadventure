@@ -63,13 +63,16 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetX">view offset x</param>
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="waterInfo">waterInfo</param>
-        /// <param name="column">column (1st parallax)</param>
-        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, ColumnSet column, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
+        /// <param name="columnSet">column (1st parallax)</param>
+        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, ColumnSet columnSet, ColumnSet beamSet, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
             viewBackground(mainSurface, background, viewOffsetX, viewOffsetY);
 
-            if (column != null)
-                columnViewer.ViewColumnSet(mainSurface, column, viewOffsetX, viewOffsetY);
+            if (beamSet != null)
+                columnViewer.ViewColumnSet(mainSurface, beamSet, viewOffsetX, viewOffsetY);
+
+            if (columnSet != null)
+                columnViewer.ViewColumnSet(mainSurface, columnSet, viewOffsetX, viewOffsetY);
 
             int minTileX = GetMinZoneX(viewOffsetX);
             int maxTileX = GetMaxZoneX(viewOffsetX);

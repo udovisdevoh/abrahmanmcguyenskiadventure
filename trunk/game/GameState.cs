@@ -60,9 +60,14 @@ namespace AbrahmanAdventure
         private AbstractBackground background;
 
         /// <summary>
-        /// Column (1st parallax)
+        /// Columns (1st parallax)
         /// </summary>
-        private ColumnSet column = null;
+        private ColumnSet columnSet = null;
+
+        /// <summary>
+        /// Beams
+        /// </summary>
+        private ColumnSet beamSet = null;
 
         /// <summary>
         /// Water info (or null if no water)
@@ -164,7 +169,11 @@ namespace AbrahmanAdventure
 
             int seedForColumn = random.Next();
             if (random.Next(0,2) == 1 && Program.isEnableColumnSet)
-                column = new ColumnSet(seedForColumn, colorTheme);
+                columnSet = new ColumnSet(seedForColumn, colorTheme);
+
+            /*seedForColumn = random.Next();
+            if (random.Next(0, 2) == 1 && Program.isEnableColumnSet)
+                beamSet = new ColumnSet(seedForColumn, colorTheme, true);*/
 
             level = new Level(random, colorTheme, seed, skillLevel, waterInfo != null, gameMode);
 
@@ -407,9 +416,17 @@ namespace AbrahmanAdventure
         /// <summary>
         /// 1st parallax column background
         /// </summary>
-        public ColumnSet Column
+        public ColumnSet ColumnSet
         {
-            get { return column; }
+            get { return columnSet; }
+        }
+
+        /// <summary>
+        /// Parallax beam set background (horizontal columns)
+        /// </summary>
+        public ColumnSet BeamSet
+        {
+            get { return beamSet; }
         }
 
         /// <summary>

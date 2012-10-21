@@ -26,20 +26,68 @@ namespace AbrahmanAdventure.level
             /*ViewLayer(3, mainSurface, columnSet, viewOffsetX, viewOffsetY);
             ViewLayer(2, mainSurface, columnSet, viewOffsetX, viewOffsetY);
             ViewLayer(1, mainSurface, columnSet, viewOffsetX, viewOffsetY);*/
-            ViewLayer(0, mainSurface, columnSet, viewOffsetX, viewOffsetY);
+
+            if (columnSet.IsHorizontal)
+                ViewBeamLayer(0, mainSurface, columnSet, viewOffsetX, viewOffsetY);
+            else
+                ViewColumnLayer(0, mainSurface, columnSet, viewOffsetX, viewOffsetY);
         }
         #endregion
 
         #region Private Methods
-        private void ViewLayer(int layerId, Surface mainSurface, ColumnSet columnSet, double viewOffsetX, double viewOffsetY)
+        private void ViewBeamLayer(int layerId, Surface mainSurface, ColumnSet beamSet, double viewOffsetX, double viewOffsetY)
         {
-            int spaceBetweenColumns;
+            int spaceBetweenBeams = Program.screenHeight / beamSet.ColumnCount;
 
-            spaceBetweenColumns = Program.screenWidth / columnSet.ColumnCount;
+            int beamLength = beamSet.Surface.GetWidth();
+            int beamThickness = beamSet.Surface.GetHeight();
 
-            Surface columnSurface = columnSet.Surface;
-            int columnWidth = columnSurface.GetWidth();
-            int columnHeight = columnSurface.GetHeight();
+            double movementCoeficient = 0.333 * Math.Sqrt((double)(layerId + 1));
+
+            for (int beamId = 0; beamId < beamSet.ColumnCount; beamId++)
+            {
+                int viewOffsetXInt = (int)(-viewOffsetX * Program.tileSize * movementCoeficient);
+                int viewOffsetYInt = (int)(-viewOffsetY * Program.tileSize * movementCoeficient);
+
+                viewOffsetYInt += (spaceBetweenBeams * beamId);
+
+
+                while (viewOffsetYInt > Program.screenHeight)
+                    viewOffsetYInt -= Program.screenHeight;
+                while (viewOffsetYInt < 0)
+                    viewOffsetYInt += Program.screenHeight;
+
+
+                while (viewOffsetXInt > beamLength)
+                    viewOffsetXInt -= beamLength;
+                while (viewOffsetXInt < 0)
+                    viewOffsetXInt += beamLength;
+
+                viewOffsetXInt -= Program.screenWidth;
+
+                mainSurface.Blit(beamSet.Surface, new Point(viewOffsetXInt, viewOffsetYInt));
+
+                bool isOverlapY = viewOffsetYInt + beamThickness > Program.screenHeight;
+                bool isOverlapX = viewOffsetXInt > 0;
+
+                if (isOverlapY)
+                    mainSurface.Blit(beamSet.Surface, new Point(viewOffsetXInt, viewOffsetYInt - Program.screenHeight));
+
+                if (isOverlapX)
+                {
+                    mainSurface.Blit(beamSet.Surface, new Point(viewOffsetXInt - beamLength, viewOffsetYInt));
+                    if (isOverlapY)
+                        mainSurface.Blit(beamSet.Surface, new Point(viewOffsetXInt - beamLength, viewOffsetYInt - Program.screenHeight));
+                }
+            }
+        }
+
+        private void ViewColumnLayer(int layerId, Surface mainSurface, ColumnSet columnSet, double viewOffsetX, double viewOffsetY)
+        {
+            int spaceBetweenColumns = Program.screenWidth / columnSet.ColumnCount;
+
+            int columnWidth = columnSet.Surface.GetWidth();
+            int columnHeight = columnSet.Surface.GetHeight();
 
             double movementCoeficient = 0.333 * Math.Sqrt((double)(layerId + 1));
 
@@ -64,19 +112,19 @@ namespace AbrahmanAdventure.level
 
                 viewOffsetYInt -= Program.screenHeight;
 
-                mainSurface.Blit(columnSurface, new Point(viewOffsetXInt, viewOffsetYInt));
+                mainSurface.Blit(columnSet.Surface, new Point(viewOffsetXInt, viewOffsetYInt));
 
                 bool isOverlapX = viewOffsetXInt + columnWidth > Program.screenWidth;
                 bool isOverlapY = viewOffsetYInt > 0;
 
                 if (isOverlapX)
-                    mainSurface.Blit(columnSurface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt));
+                    mainSurface.Blit(columnSet.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt));
 
                 if (isOverlapY)
                 {
-                    mainSurface.Blit(columnSurface, new Point(viewOffsetXInt, viewOffsetYInt - columnHeight));
+                    mainSurface.Blit(columnSet.Surface, new Point(viewOffsetXInt, viewOffsetYInt - columnHeight));
                     if (isOverlapX)
-                        mainSurface.Blit(columnSurface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt - columnHeight));
+                        mainSurface.Blit(columnSet.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt - columnHeight));
                 }
             }
         }
