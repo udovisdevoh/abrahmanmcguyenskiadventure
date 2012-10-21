@@ -34,22 +34,32 @@ namespace AbrahmanAdventure.level
         /// How many columns in set
         /// </summary>
         private int columnCount;
+
+        private bool isHorizontal;
         #endregion
 
         #region Constructor
+        public ColumnSet(int seed, ColorTheme colorTheme):this(seed,colorTheme,false)
+        {
+        }
+
         /// <summary>
         /// Column
         /// </summary>
         /// <param name="groundId">index of ground</param>
-        /// <param name="seed">seed</param>
         /// <param name="seed">seed for random number generator</param>
-        public ColumnSet(int seed, ColorTheme colorTheme)
+        /// <param name="isHorizontal">whether beam is horizontal</param>
+        public ColumnSet(int seed, ColorTheme colorTheme, bool isHorizontal)
         {
+            this.isHorizontal = isHorizontal;
             Random random = new Random(seed);
 
             Color color = colorTheme.GetRandomColumnColor(random);
 
-            columnCount = random.Next(1, 5);
+            if (isHorizontal)
+                columnCount = random.Next(1, 3);
+            else
+                columnCount = random.Next(1, 5);
 
             Texture texture = new Texture(random, color, 1.0, true, random.Next(), 0, false);
 
@@ -60,6 +70,9 @@ namespace AbrahmanAdventure.level
             double minimumThickness = (random.NextDouble() * 2 + 1);
 
             int height = Program.screenHeight;
+
+            if (isHorizontal)
+                height = Program.screenWidth;
 
             double radius = minimumThickness + variance;
 
@@ -116,6 +129,12 @@ namespace AbrahmanAdventure.level
             compositeSurface.Blit(flippedSurface, new Point(0, surface.Height));
             surface = compositeSurface;
             #endregion
+
+            if (isHorizontal)
+            {
+                surface = surface.CreateRotatedSurface(90, false);
+                surface.Transparent = true;
+            }
         }
         #endregion
 
@@ -165,6 +184,11 @@ namespace AbrahmanAdventure.level
         {
             get { return columnCount; }
             set { columnCount = value; }
+        }
+
+        public bool IsHorizontal
+        {
+            get { return isHorizontal; }
         }
         #endregion
     }
