@@ -169,7 +169,7 @@ namespace AbrahmanAdventure
 
         private UserInput userInput;
 
-        private ILevelViewer levelViewer;
+        private LevelViewerSquareBased levelViewer;
 
         private SpriteViewer spriteViewer;
 
@@ -912,7 +912,7 @@ namespace AbrahmanAdventure
         /// <summary>
         /// Level viewer
         /// </summary>
-        public ILevelViewer LevelViewer
+        public LevelViewerSquareBased LevelViewer
         {
             get { return levelViewer; }
         }

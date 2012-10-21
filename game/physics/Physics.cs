@@ -139,7 +139,7 @@ namespace AbrahmanAdventure.physics
         /// <param name="gameState">game state</param>
         /// <param name="levelViewer">level viewer</param>
         /// <param name="random">random number generator</param>
-        internal void Update(AbstractSprite spriteToUpdate, PlayerSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, ILevelViewer levelViewer, UserInput userInput, Random random)
+        internal void Update(AbstractSprite spriteToUpdate, PlayerSprite playerSpriteReference, Level level, Program program, double timeDelta, HashSet<AbstractSprite> visibleSpriteList, SpritePopulation spritePopulation, GameMetaState gameMetaState, GameState gameState, LevelViewerSquareBased levelViewer, UserInput userInput, Random random)
         {
             if (spriteToUpdate != playerSpriteReference && spriteToUpdate.IGround is Platform)
             {

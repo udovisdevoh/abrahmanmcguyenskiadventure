@@ -33,7 +33,7 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// How many columns in set
         /// </summary>
-        private int count;
+        private int columnCount;
         #endregion
 
         #region Constructor
@@ -49,7 +49,7 @@ namespace AbrahmanAdventure.level
 
             Color color = colorTheme.GetRandomColumnColor(random);
 
-            count = random.Next(1, 5);
+            columnCount = random.Next(1, 5);
 
             Texture texture = new Texture(random, color, 1.0, true, random.Next(), 0, false);
 
@@ -161,10 +161,10 @@ namespace AbrahmanAdventure.level
         /// <summary>
         /// How many columns in set
         /// </summary>
-        public int Count
+        public int ColumnCount
         {
-            get { return count; }
-            set { count = value; }
+            get { return columnCount; }
+            set { columnCount = value; }
         }
         #endregion
     }

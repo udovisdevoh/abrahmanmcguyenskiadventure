@@ -277,12 +277,12 @@
     <Compile Include="game\GameState.cs" />
     <Compile Include="game\level\background\AbstractBackground.cs" />
     <Compile Include="game\level\background\ColumnSet.cs" />
+    <Compile Include="game\level\background\ColumnViewer.cs" />
     <Compile Include="game\level\background\Wall.cs" />
     <Compile Include="game\level\Level.cs" />
     <Compile Include="game\hud\GameMenu.cs" />
-    <Compile Include="game\level\viewer\ILevelViewer.cs" />
-    <Compile Include="game\level\viewer\squareBased\LevelViewerCacheSquareBased.cs" />
-    <Compile Include="game\level\viewer\squareBased\LevelViewerSquareBased.cs" />
+    <Compile Include="game\level\viewer\LevelViewerCacheSquareBased.cs" />
+    <Compile Include="game\level\viewer\LevelViewerSquareBased.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
     <Compile Include="game\physics\clockwork\ClockworkManager.cs" />
     <Compile Include="game\physics\clockwork\PendulumManager.cs" />
