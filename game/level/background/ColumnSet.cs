@@ -71,7 +71,7 @@ namespace AbrahmanAdventure.level
 
             int width = (int)(Math.Round(radius * 2.0 * ((double)Program.tileSize)));
 
-            surface = new Surface(width, height, Program.bitDepth);
+            surface = new Surface(width, height, Program.bitDepth, false);
             surface.Transparent = true;
 
 
