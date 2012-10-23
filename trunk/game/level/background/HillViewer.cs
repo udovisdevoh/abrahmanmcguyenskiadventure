@@ -26,10 +26,13 @@ namespace AbrahmanAdventure.level
             while (viewOffsetXInt < 0)
                 viewOffsetXInt += Program.screenWidth;
 
-            mainSurface.Blit(hillSet.Surface, new Point(viewOffsetXInt, viewOffsetYInt));
+            if (viewOffsetYInt < Program.screenHeight)
+            {
+                mainSurface.Blit(hillSet.Surface, new Point(viewOffsetXInt, viewOffsetYInt));
 
-            if (viewOffsetXInt != 0)
-                mainSurface.Blit(hillSet.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt));
+                if (viewOffsetXInt != 0)
+                    mainSurface.Blit(hillSet.Surface, new Point(viewOffsetXInt - Program.screenWidth, viewOffsetYInt));
+            }
         }
     }
 }

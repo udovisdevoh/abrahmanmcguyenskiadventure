@@ -48,7 +48,7 @@ namespace AbrahmanAdventure.level
             AbstractWave hillWave = BuildHillWave(random);
             
 
-            int surfaceHeight = Program.screenHeight;
+            int surfaceHeight = (int)((double)Program.screenHeight * 1.23);
             int surfaceWidth = Program.screenWidth/* * 2*/;
 
 
@@ -81,6 +81,18 @@ namespace AbrahmanAdventure.level
             }
         }
         #endregion
+
+        #region Private Methods
+        private double GetXPositionInWave(int x, int surfaceWidth)
+        {
+            return (double)(x) / (double)(surfaceWidth) * 12.0;
+        }
+
+        private int GetY(AbstractWave hillWave, int x, int surfaceWidth, int surfaceHeight)
+        {
+            return (int)((hillWave[GetXPositionInWave(x, surfaceWidth)] + 1.0) / 4.0 * (double)surfaceHeight);
+        }
+
         private int GetShadeXOffset(int shadeSizeSurfaceSize, double y, double previousY)
         {
             int xOffset = shadeSizeSurfaceSize / 2;
@@ -93,25 +105,14 @@ namespace AbrahmanAdventure.level
                 return 180;*/
 
             int difference = (int)Math.Round((y - previousY) * (double)shadeSizeSurfaceSize * 20);
-            if (difference > shadeSizeSurfaceSize / 2 -1)
-                difference = shadeSizeSurfaceSize / 2 -1;
+            if (difference > shadeSizeSurfaceSize / 2 - 1)
+                difference = shadeSizeSurfaceSize / 2 - 1;
             else if (difference < -(shadeSizeSurfaceSize / 2))
                 difference = -(shadeSizeSurfaceSize / 2);
 
             xOffset += difference;
-            
+
             return xOffset;
-        }
-
-        #region Private Methods
-        private double GetXPositionInWave(int x, int surfaceWidth)
-        {
-            return (double)(x) / (double)(surfaceWidth) * 12.0;
-        }
-
-        private int GetY(AbstractWave hillWave, int x, int surfaceWidth, int surfaceHeight)
-        {
-            return (int)((hillWave[GetXPositionInWave(x, surfaceWidth)] + 1.0) / 4.0 * (double)surfaceHeight);
         }
 
         /// <summary>
