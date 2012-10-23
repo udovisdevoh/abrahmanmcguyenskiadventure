@@ -28,6 +28,8 @@ namespace AbrahmanAdventure.level
 
         private ColumnViewer columnViewer = new ColumnViewer();
 
+        private HillViewer hillViewer = new HillViewer();
+
         private Random random = new Random();
 
         private Color transparentColor = ColorTheme.ColorFromHSV(0, 0, 0);
@@ -64,9 +66,12 @@ namespace AbrahmanAdventure.level
         /// <param name="viewOffsetY">view offset y</param>
         /// <param name="waterInfo">waterInfo</param>
         /// <param name="columnSet">column (1st parallax)</param>
-        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, ColumnSet columnSet, ColumnSet beamSet, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
+        public void Update(Level level, ColorTheme colorTheme, AbstractBackground background, ColumnSet columnSet, ColumnSet beamSet, HillSet hillSet, WaterInfo waterInfo, double viewOffsetX, double viewOffsetY)
         {
             viewBackground(mainSurface, background, viewOffsetX, viewOffsetY);
+
+            if (hillSet != null)
+                hillViewer.ViewHillSet(mainSurface, hillSet, viewOffsetX, viewOffsetY);
 
             if (beamSet != null)
                 columnViewer.ViewColumnSet(mainSurface, beamSet, viewOffsetX, viewOffsetY);
@@ -445,8 +450,8 @@ namespace AbrahmanAdventure.level
                 mainSurface.Blit(background.Surface, new Point(0, background.BackgroundHeight / -4), background.Surface.GetRectangle());
             else
             {
-                int viewOffsetXInt = (int)(-viewOffsetX * Program.tileSize * 0.25);
-                int viewOffsetYInt = (int)(-viewOffsetY * Program.tileSize * 0.25);
+                int viewOffsetXInt = (int)(-viewOffsetX * Program.tileSize * 0.15);
+                int viewOffsetYInt = (int)(-viewOffsetY * Program.tileSize * 0.15);
 
                 while (viewOffsetXInt > Program.screenWidth)
                     viewOffsetXInt -= Program.screenWidth;
