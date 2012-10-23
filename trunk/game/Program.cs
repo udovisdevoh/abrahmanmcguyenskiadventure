@@ -859,7 +859,7 @@ namespace AbrahmanAdventure
                             if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 7.0)
                                 TutorialTalker.TryTalkAbout(sprite);
 
-                if (Program.isEnableTransparentWater && gameState.WaterInfo != null/* && waterInfo.Height <= zoneY + Program.squareZoneTileHeight*/)
+                if (Program.isEnableTransparentWater && gameState.WaterInfo != null)
                     waterViewer.ViewWater(mainSurface, gameState.WaterInfo, viewOffsetY);
                 #endregion
 
