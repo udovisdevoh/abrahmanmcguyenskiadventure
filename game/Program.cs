@@ -139,7 +139,7 @@ namespace AbrahmanAdventure
 
         public static bool isFullScreen = PersistentConfig.IsFullScreen;
 
-        public static bool isEnableColumnSet = true;
+        public static bool isEnableParallaxExtraLayers = true;
 
         public static int screenWidth;
 
@@ -842,7 +842,7 @@ namespace AbrahmanAdventure
                 #endregion
 
                 #region We update the viewers
-                levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.ColumnSet, gameState.BeamSet, gameState.HillSet, gameState.WaterInfo, viewOffsetX, viewOffsetY);
+                levelViewer.Update(level, gameState.ColorTheme, gameState.Background, gameState.ColumnSet, gameState.HillSet, gameState.WaterInfo, viewOffsetX, viewOffsetY);
                 spriteViewer.Update(viewOffsetX, viewOffsetY, SpriteDistanceSorter.SortByZIndex(visibleSpriteList), isOddFrame);
                 vectorViewer.Update(viewOffsetX, viewOffsetY);
 

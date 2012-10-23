@@ -96,15 +96,18 @@ namespace AbrahmanAdventure.level
 
                 double zoomX = ((double)currentWidth / (double)sourceSurfaceWidth);
 
-                Surface scaledTextureSurface = texture.Surface.CreateScaledSurface(zoomX, 1.0, true);
+                if (zoomX > 0)
+                {
+                    Surface scaledTextureSurface = texture.Surface.CreateScaledSurface(zoomX, 1.0, true);
 
-                int yFromSource = y;
-                while (yFromSource < 0)
-                    yFromSource += sourceSurfaceHeight;
-                while (yFromSource >= sourceSurfaceHeight)
-                    yFromSource -= sourceSurfaceHeight;
+                    int yFromSource = y;
+                    while (yFromSource < 0)
+                        yFromSource += sourceSurfaceHeight;
+                    while (yFromSource >= sourceSurfaceHeight)
+                        yFromSource -= sourceSurfaceHeight;
 
-                surface.Blit(scaledTextureSurface, new Point(x, y), new Rectangle(0, yFromSource, scaledTextureSurface.Width, 1));
+                    surface.Blit(scaledTextureSurface, new Point(x, y), new Rectangle(0, yFromSource, scaledTextureSurface.Width, 1));
+                }
             }
 
             #region We make the surface twice the height (mirror in the middle
