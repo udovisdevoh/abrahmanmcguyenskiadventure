@@ -111,7 +111,7 @@ namespace AbrahmanAdventure.level
 
         private int GetY(AbstractWave hillWave, int x, int surfaceWidth, int surfaceHeight)
         {
-            return (int)((hillWave[GetXPositionInWave(x, surfaceWidth)] + 1.0) / 2.0 * (double)surfaceHeight);
+            return (int)((hillWave[GetXPositionInWave(x, surfaceWidth)] + 1.0) / 4.0 * (double)surfaceHeight);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace AbrahmanAdventure.level
                 wavePack.Add(new Wave(amplitude, waveLength, phase, waveFunction));
             }
 
-            wavePack.Normalize(1.0, true, 00.1, 12.0);
+            wavePack.Normalize(1.0, true, 0.01, 12.0);
 
             return wavePack;
         }
