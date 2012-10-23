@@ -278,6 +278,8 @@
     <Compile Include="game\level\background\AbstractBackground.cs" />
     <Compile Include="game\level\background\ColumnSet.cs" />
     <Compile Include="game\level\background\ColumnViewer.cs" />
+    <Compile Include="game\level\background\HillSet.cs" />
+    <Compile Include="game\level\background\HillViewer.cs" />
     <Compile Include="game\level\background\Wall.cs" />
     <Compile Include="game\level\Level.cs" />
     <Compile Include="game\hud\GameMenu.cs" />

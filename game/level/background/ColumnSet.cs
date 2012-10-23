@@ -14,8 +14,6 @@ namespace AbrahmanAdventure.level
     internal class ColumnSet
     {
         #region Static and const
-        private static Surface cylinderSurface = new Surface("./assets/rendered/Cylinder.png");
-
         public const double minBrightness = 0.5;
         #endregion
 
@@ -24,11 +22,6 @@ namespace AbrahmanAdventure.level
         /// Column's surface
         /// </summary>
         private Surface surface;
-
-        /// <summary>
-        /// For column's shape
-        /// </summary>
-        private AbstractWave shapeWave;
 
         /// <summary>
         /// How many columns in set
@@ -65,7 +58,7 @@ namespace AbrahmanAdventure.level
 
             double variance = random.NextDouble() * 2.6 + 0.1;
 
-            shapeWave = BuildShapeWave(random, variance);
+            AbstractWave shapeWave = BuildShapeWave(random, variance);
 
             double minimumThickness = (random.NextDouble() * 2 + 1);
 
@@ -85,14 +78,10 @@ namespace AbrahmanAdventure.level
             int sourceSurfaceHeight = texture.Surface.Height;
             int sourceSurfaceWidth = texture.Surface.Width;
 
-            lock (cylinderSurface)
-            {
-                lock (cylinderSurface)
-                {
-                    Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight / 648.0), true);
-                    texture.Surface.Blit(scaledCylinder, new Point(0, 0));
-                }
-            }
+
+            Surface cylinderSurface = new Surface("./assets/rendered/Cylinder.png");
+            Surface scaledCylinder = cylinderSurface.CreateScaledSurface(((double)sourceSurfaceWidth / 648.0), ((double)sourceSurfaceHeight / 648.0), true);
+            texture.Surface.Blit(scaledCylinder, new Point(0, 0));
 
 
             int x;
@@ -107,7 +96,7 @@ namespace AbrahmanAdventure.level
 
                 double zoomX = ((double)currentWidth / (double)sourceSurfaceWidth);
 
-                Surface scatedTextureSurface = texture.Surface.CreateScaledSurface(zoomX, 1.0, true);
+                Surface scaledTextureSurface = texture.Surface.CreateScaledSurface(zoomX, 1.0, true);
 
                 int yFromSource = y;
                 while (yFromSource < 0)
@@ -115,7 +104,7 @@ namespace AbrahmanAdventure.level
                 while (yFromSource >= sourceSurfaceHeight)
                     yFromSource -= sourceSurfaceHeight;
 
-                surface.Blit(scatedTextureSurface, new Point(x, y), new Rectangle(0, yFromSource, scatedTextureSurface.Width, 1));
+                surface.Blit(scaledTextureSurface, new Point(x, y), new Rectangle(0, yFromSource, scaledTextureSurface.Width, 1));
             }
 
             #region We make the surface twice the height (mirror in the middle
