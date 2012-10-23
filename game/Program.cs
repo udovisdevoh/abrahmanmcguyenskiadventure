@@ -59,6 +59,8 @@ namespace AbrahmanAdventure
 
         public const bool isEnableParallelTextureRendering = true;
 
+        public const bool isEnableTransparentWater = true;
+
         public const int waveResolution = 1;
 
         public const int zoneHeightScreenCount = 4;
@@ -175,6 +177,8 @@ namespace AbrahmanAdventure
 
         private VectorViewer vectorViewer;
 
+        private WaterViewer waterViewer;
+
         private JoystickManager joystickManager;
 
         private BeaverManager beaverManager;
@@ -239,6 +243,7 @@ namespace AbrahmanAdventure
             levelViewer = new LevelViewerSquareBased(mainSurface);
             spriteViewer = new SpriteViewer(mainSurface);
             vectorViewer = new VectorViewer(clockworkManager, mainSurface);
+            waterViewer = new WaterViewer();
 
             #region Some pre-caching
             SoundManager.PreCache();
@@ -848,15 +853,18 @@ namespace AbrahmanAdventure
                 else if (gameState.GameMode.IsShowNoteCounter)
                     HudViewer.UpdateMusicNoteCounter(mainSurface, playerSprite.MusicNoteCount, timeDelta);
 
-                if (gameState.GameMode.IsShowExp)
-                    HudViewer.UpdateExpCounter(mainSurface, playerSprite.Experience, gameState.GameMode.GetExperienceNeededForLevel(playerSprite.Level + 1), playerSprite.Level, timeDelta);
-
                 if (isPlayTutorialSounds && gameState.IsPlayerReady && playerSprite.DestinationPipe == null)
                     foreach (AbstractSprite sprite in visibleSpriteList)
                         if (sprite != playerSprite)
                             if (SpriteDistanceSorter.GetExactDistanceTile(playerSprite, sprite) <= 7.0)
                                 TutorialTalker.TryTalkAbout(sprite);
+
+                if (Program.isEnableTransparentWater && gameState.WaterInfo != null/* && waterInfo.Height <= zoneY + Program.squareZoneTileHeight*/)
+                    waterViewer.ViewWater(mainSurface, gameState.WaterInfo, viewOffsetY);
                 #endregion
+
+                if (gameState.GameMode.IsShowExp)
+                    HudViewer.UpdateExpCounter(mainSurface, playerSprite.Experience, gameState.GameMode.GetExperienceNeededForLevel(playerSprite.Level + 1), playerSprite.Level, timeDelta);
 
                 gameState.GameMode.UpdateByFrame(timeDelta, playerSprite);
 

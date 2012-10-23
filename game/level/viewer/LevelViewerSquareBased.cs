@@ -171,7 +171,7 @@ namespace AbrahmanAdventure.level
                 DrawPath(zoneSurface, level.Path, Color.White, zoneX, zoneY, zoneWidth, zoneHeight, level, waterInfo);
 
             #region Water
-            if (waterInfo != null && waterInfo.Height <= zoneY + Program.squareZoneTileHeight)
+            if (!Program.isEnableTransparentWater && waterInfo != null && waterInfo.Height <= zoneY + Program.squareZoneTileHeight)
             {
                 short waterHeight = 0;
                 bool isDrawLine = false;

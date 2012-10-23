@@ -285,6 +285,7 @@
     <Compile Include="game\hud\GameMenu.cs" />
     <Compile Include="game\level\viewer\LevelViewerCacheSquareBased.cs" />
     <Compile Include="game\level\viewer\LevelViewerSquareBased.cs" />
+    <Compile Include="game\level\viewer\WaterViewer.cs" />
     <Compile Include="game\level\WaterInfo.cs" />
     <Compile Include="game\physics\clockwork\ClockworkManager.cs" />
     <Compile Include="game\physics\clockwork\PendulumManager.cs" />
