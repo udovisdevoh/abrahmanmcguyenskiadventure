@@ -387,7 +387,7 @@ namespace AbrahmanAdventure.audio
 
         internal static void PlayGoreSound()
         {
-            playerChannel.Play(gongSound);
+            monsterHitChannel.Play(goreSound);
         }
 
         internal static void PlaySwordSound()
