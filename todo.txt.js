@@ -1,4 +1,3 @@
-floating music notes
 charged ki ball must destroy lawyers and members of the peaceful religion
 
 standalone see saws must be larger
@@ -8,7 +7,6 @@ clockwork dispatcher
 	must dispatch elements far from another (use radius)
 }
 
-?fix bug: si ninja puis new game: ninja et tiny?
 ?si pese down et jump, lâche liane et ne la repogne pas
 
 effet d'immitation de pseudo mode 7 comme dans sonic 2 et dans evo
