@@ -49,6 +49,8 @@ namespace AbrahmanAdventure
         private bool isNoteGivesFullHealthMax99;
 
         private bool isNinjaFlipProportionalToWalkingSpeed;
+
+        private bool isAllowJumpOnBeaver;
         #endregion
 
         #region Constructor
@@ -72,6 +74,7 @@ namespace AbrahmanAdventure
             isShowNoteCounter = BuildIsShowNoteCounter();
             isNoteGivesFullHealthMax99 = BuildIsNoteGivesFullHealthMax99();
             isNinjaFlipProportionalToWalkingSpeed = BuildIsNinjaFlipProportionalToWalkingSpeed();
+            isAllowJumpOnBeaver = BuildIsAllowJumpOnBeaver();
         }
         #endregion
 
@@ -86,6 +89,8 @@ namespace AbrahmanAdventure
         protected abstract double BuildMusicNoteDensityMultiplicator();
 
         protected abstract double BuildBlockDensityMultiplicator();
+
+        protected abstract bool BuildIsAllowJumpOnBeaver();
 
         protected abstract bool BuildIsCurvyWaveOnly();
 
@@ -266,6 +271,11 @@ namespace AbrahmanAdventure
         public bool IsNinjaFlipProportionalToWalkingSpeed
         {
             get { return isNinjaFlipProportionalToWalkingSpeed; }
+        }
+
+        public bool IsAllowJumpOnBeaver
+        {
+            get { return isAllowJumpOnBeaver; }
         }
         #endregion
     }

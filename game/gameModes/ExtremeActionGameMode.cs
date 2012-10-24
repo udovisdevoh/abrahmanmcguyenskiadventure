@@ -47,6 +47,11 @@ namespace AbrahmanAdventure
             return 0.666;
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return true;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             playerSprite.IsBodhi = true;
