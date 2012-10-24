@@ -52,6 +52,11 @@ namespace AbrahmanAdventure
             return true;
         }
 
+        protected override bool BuildIsAllowDash()
+        {
+            return false;
+        }
+
         public override void HackPlayerSprite(PlayerSprite playerSprite)
         {
             playerSprite.IsBodhi = true;
