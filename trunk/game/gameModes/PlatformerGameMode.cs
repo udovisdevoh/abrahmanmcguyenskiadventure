@@ -39,6 +39,11 @@ namespace AbrahmanAdventure
             return 1.0;
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return true;
+        }
+
         protected override double BuildMusicNoteDensityMultiplicator()
         {
             return 1.0;

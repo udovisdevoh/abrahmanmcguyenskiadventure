@@ -120,7 +120,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite.IGround == null && sprite.IsAlive && !(sprite is IPlayerProjectile) && sprite.YPosition < otherSprite.YPosition) //Player IS jumping on the monster
                 {
-                    if (sprite is PlayerSprite && otherSprite is BeaverSprite && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0)
+                    if (sprite is PlayerSprite && otherSprite is BeaverSprite && gameState.GameMode.IsAllowJumpOnBeaver && !((PlayerSprite)sprite).IsBeaver && !program.UserInput.isPressLeaveBeaver && sprite.CurrentJumpAcceleration < 0)
                     {
                         beaverManager.UpdateJumpOnBeaver((PlayerSprite)sprite, (BeaverSprite)otherSprite);
                     }

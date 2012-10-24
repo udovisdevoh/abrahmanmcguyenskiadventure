@@ -75,6 +75,11 @@ namespace AbrahmanAdventure
             return false;
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return false;
+        }
+
         protected override bool BuildIsCurvyWaveOnly()
         {
             return true;

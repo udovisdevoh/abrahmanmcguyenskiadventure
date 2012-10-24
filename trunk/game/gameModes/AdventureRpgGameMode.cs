@@ -110,6 +110,11 @@ namespace AbrahmanAdventure
             }
         }
 
+        protected override bool BuildIsAllowJumpOnBeaver()
+        {
+            return true;
+        }
+
         protected override bool BuildIsMusicSpeedUp()
         {
             return false;
