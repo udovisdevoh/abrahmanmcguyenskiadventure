@@ -59,6 +59,11 @@ namespace AbrahmanAdventure
             //do nothing
         }
 
+        protected override bool BuildIsAllowDash()
+        {
+            return false;
+        }
+
         protected override bool BuildIsMusicSpeedUp()
         {
             return false;

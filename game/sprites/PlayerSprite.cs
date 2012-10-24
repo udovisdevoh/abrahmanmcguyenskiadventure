@@ -963,6 +963,11 @@ namespace AbrahmanAdventure.sprites
         private bool isBodhi = false;
 
         /// <summary>
+        /// Whether sprite is currently dashing
+        /// </summary>
+        private bool isDashing = false;
+
+        /// <summary>
         /// Whether sprite is currently trying to throw a fire ball
         /// </summary>
         private bool isTryThrowingBall = false;
@@ -5353,6 +5358,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isPressLeftOrRight; }
             set { isPressLeftOrRight = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is currently dashing
+        /// </summary>
+        public bool IsDashing
+        {
+            get { return isDashing; }
+            set { isDashing = value; }
         }
 
         /// <summary>

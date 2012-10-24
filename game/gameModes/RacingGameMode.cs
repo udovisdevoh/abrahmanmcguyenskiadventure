@@ -55,6 +55,11 @@ namespace AbrahmanAdventure
             return 0.2;
         }
 
+        protected override bool BuildIsAllowDash()
+        {
+            return true;
+        }
+
         protected override bool BuildIsNoteGivesFullHealthMax99()
         {
             return true;

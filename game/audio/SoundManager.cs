@@ -113,6 +113,8 @@ namespace AbrahmanAdventure.audio
 
         private static Sound loseNotesSound;
 
+        private static Sound dashSound;
+
         private static Random random = new Random();
 
         private static Channel playerHitChannel = new Channel(0);
@@ -185,6 +187,7 @@ namespace AbrahmanAdventure.audio
             kiBallSound = LoadSound("./assets/sounds/KiBall.ogg");
             largeKiBallSound = LoadSound("./assets/sounds/LargeKiBall.ogg");
             loseNotesSound = LoadSound("./assets/sounds/LoseNotes.ogg");
+            dashSound = LoadSound("./assets/sounds/Dash.ogg");
             
             ringSound = LoadSound("./assets/sounds/Ring.ogg");
             ringSound.Volume = 52;
@@ -439,6 +442,12 @@ namespace AbrahmanAdventure.audio
         {
             kiChargingSoundChannel.Stop();
         }
+
+        internal static void PlayDashSound()
+        {
+            kiChargingSoundChannel.Play(dashSound);
+        }
+
         internal static void PlayBodhiJumpSound()
         {
             bodhiJumpSoundRandomIndex = random.Next(0, 5);

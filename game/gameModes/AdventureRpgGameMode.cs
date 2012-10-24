@@ -110,6 +110,11 @@ namespace AbrahmanAdventure
             }
         }
 
+        protected override bool BuildIsAllowDash()
+        {
+            return false;
+        }
+
         protected override bool BuildIsAllowJumpOnBeaver()
         {
             return true;
