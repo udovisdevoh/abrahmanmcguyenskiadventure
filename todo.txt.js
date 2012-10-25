@@ -8,7 +8,6 @@ Game modes
 {
 	Racing
 	{
-		Faire dashing avec charge comme dans Sonic 2
 		side trampolines
 	
 		isBreakBricksFromSideAndTop
