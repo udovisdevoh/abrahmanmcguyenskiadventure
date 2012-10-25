@@ -461,7 +461,6 @@ namespace AbrahmanAdventure
         {
         	#warning Textures: make sure multiplied (x * y) doesn't multiply negative number with positive numbers
             #warning ?Must prevent sprite to suicide by jumping torward the lowest ground under the ground, over the secondary texture or color
-        	#warning Create parallax decorations (columns, trees, mountains)
 
             if (joystickManager.DefaultJoystickForRealAxes != null)
                 joystickManager.SetInputStateFromAxes(userInput);
@@ -591,8 +590,37 @@ namespace AbrahmanAdventure
                             if (!wasDashing)
                                 SoundManager.PlayDashSound();
                             playerSprite.IsDashing = true;
+                            playerSprite.IsRunning = true;
                         }
                         playerSprite.IsCrouch = false;
+                    }
+                    #endregion
+
+                    #region We manage dash charging
+                    if (gameState.GameMode.IsAllowDash)
+                    {
+                        bool wasDashCharging = playerSprite.IsDashCharging;
+                        playerSprite.IsDashCharging = false;
+                        if (wasDashCharging || (userInput.isPressDown && (userInput.isPressAttack || userInput.isPressJump || userInput.isPressLeaveBeaver)))
+                        {
+                            if (playerSprite.CurrentWalkingSpeed == 0)
+                            {
+                                if (!wasDashCharging)
+                                    SoundManager.PlayDashSound();
+
+                                playerSprite.IsDashCharging = true;
+                            }
+                        }
+
+                        if (wasDashCharging && !userInput.isPressDown)
+                        {
+                            playerSprite.CurrentWalkingSpeed = playerSprite.MaxRunningSpeed;
+                            playerSprite.IsTryingToWalk = true;
+                            playerSprite.IsRunning = true;
+                            playerSprite.IsDashing = true;
+                            playerSprite.IsDashCharging = false;
+                            SoundManager.PlayDashSound();
+                        }
                     }
                     #endregion
 
@@ -724,7 +752,7 @@ namespace AbrahmanAdventure
                     if (playerSprite.IsAlive)
                     {
                         playerSprite.IsRunning = userInput.isPressAttack;
-                        if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk || playerSprite.IGround == null))
+                        if (userInput.isPressLeft && !userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk || playerSprite.IGround == null || playerSprite.IsDashing))
                         {
                             gameState.IsPlayerReady = true;
                             previousDateTime = DateTime.Now;
@@ -737,7 +765,7 @@ namespace AbrahmanAdventure
                             playerSprite.IsTryingToSlide = false;
                             #endregion
                         }
-                        else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk || playerSprite.IGround == null))
+                        else if (!userInput.isPressLeft && userInput.isPressRight && (!userInput.isPressDown || Program.isEnableCrouchedWalk || playerSprite.IGround == null || playerSprite.IsDashing))
                         {
                             gameState.IsPlayerReady = true;
                             previousDateTime = DateTime.Now;

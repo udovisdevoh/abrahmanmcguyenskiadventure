@@ -925,7 +925,9 @@ namespace AbrahmanAdventure.sprites
         private Cycle nunchakuCycle;
 
         private Cycle kiBallChargeCycle;
+        #endregion
 
+        #region Fields and parts
         /// <summary>
         /// When sprite is currently moving from one pipe to another (destination pipe)
         /// This value is normally null
@@ -996,6 +998,11 @@ namespace AbrahmanAdventure.sprites
         /// Whether player is pressing left or right
         /// </summary>
         private bool isPressLeftOrRight = false;
+
+        /// <summary>
+        /// Whether sprite is charing for dash
+        /// </summary>
+        private bool isDashCharging = false;
 
         /// <summary>
         /// How many music notes
@@ -5371,6 +5378,15 @@ namespace AbrahmanAdventure.sprites
         {
             get { return isDashing; }
             set { isDashing = value; }
+        }
+
+        /// <summary>
+        /// Whether sprite is charging for dash
+        /// </summary>
+        public bool IsDashCharging
+        {
+            get { return isDashCharging; }
+            set { isDashCharging = value; }
         }
 
         /// <summary>
