@@ -136,16 +136,9 @@ Monstres
 	
 	Rcmp
 	
-	Bosses
-	{
-		Tom Cruise
-		John Travolta
-		Le pape
-		Sarah Palin
-		Ron Hubbard
-		Présidents de banque
-		Stephenson Harpenstein: boss de la fin: Harper Frankenstein
-	}
+	Tom Cruise
+	
+	John Travolta
 	
 	millitaire de l'armé américaine
 	
