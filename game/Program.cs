@@ -583,11 +583,15 @@ namespace AbrahmanAdventure
                     #region We manage dashing
                     bool wasDashing = playerSprite.IsDashing;
                     playerSprite.IsDashing = false;
-                    if (gameState.GameMode.IsAllowDash && (playerSprite.IsCrouch || wasDashing) && playerSprite.CurrentWalkingSpeed > 0.1)
-                    {
-                        if (!wasDashing)
-                            SoundManager.PlayDashSound();
-                        playerSprite.IsDashing = true;
+                    if (gameState.GameMode.IsAllowDash && playerSprite.CurrentWalkingSpeed > 0.1)
+                    {   
+                        if ((playerSprite.IsCrouch || wasDashing) && playerSprite.IGround != null)
+                        {
+                            playerSprite.NinjaFlipCycle.Increment(timeDelta * (Math.Abs(playerSprite.CurrentWalkingSpeed) + 1.0));
+                            if (!wasDashing)
+                                SoundManager.PlayDashSound();
+                            playerSprite.IsDashing = true;
+                        }
                         playerSprite.IsCrouch = false;
                     }
                     #endregion

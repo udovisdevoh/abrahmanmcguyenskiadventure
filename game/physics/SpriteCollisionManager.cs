@@ -90,7 +90,8 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MusicNoteSprite && otherSprite.IsAlive)
                 {
-                    powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite, gameState.GameMode);
+                    if (!sprite.HitCycle.IsFired || !gameState.GameMode.IsNoteGivesFullHealthMax99)
+                        powerUpManager.UpdateTouchMusicNote((PlayerSprite)sprite, (MusicNoteSprite)otherSprite, gameState.GameMode);
                 }
                 else if (sprite is PlayerSprite && otherSprite is RastaHatSprite && otherSprite.IsAlive)
                 {
@@ -159,7 +160,14 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
-                    UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
+                    if (sprite is PlayerSprite && (playerSpriteReference.IsDashing || (sprite.IGround == null && gameState.GameMode.IsAllowDash && !sprite.IsCrouch)))
+                    {
+                        UpdateDashOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, gameState.GameMode, random);
+                    }
+                    else
+                    {
+                        UpdateDirectCollision((PlayerSprite)sprite, (MonsterSprite)otherSprite, level, gameState, timeDelta, spritePopulation, random);
+                    }
                 }
                 else if (sprite is PlayerSprite && otherSprite is FlailBall && otherSprite.IsAlive)
                 {
@@ -267,6 +275,28 @@ namespace AbrahmanAdventure.physics
 
             spritePopulation.Add(beaverSprite);
             beaverSprite.IsWalkEnabled = true;
+        }
+
+        private void UpdateDashOnSprite(AbstractSprite sprite, AbstractSprite otherSprite, Level level, SpritePopulation spritePopulation, double timeDelta, AbstractGameMode gameMode, Random random)
+        {
+            if (otherSprite is MonsterSprite)
+            {
+                MonsterSprite monsterSprite = (MonsterSprite)otherSprite;
+
+                if (sprite is PlayerSprite && ((PlayerSprite)sprite).InvincibilityCycle.IsFired && monsterSprite.IsVulnerableToInvincibility)
+                {
+                    SoundManager.PlayHitSound();
+                    gameMode.PerformDestroyMonsterExtraLogic((PlayerSprite)sprite, monsterSprite, level.SkillLevel);
+                    monsterSprite.IsAlive = false;
+                    monsterSprite.JumpingCycle.Fire();
+                }
+                else if (otherSprite is MonsterSprite && ((MonsterSprite)otherSprite).IsJumpableOn) //Other sprite (monster) will be damaged
+                {
+                    SoundManager.PlayHitSound();
+                    otherSprite.HitCycle.Fire();
+                    otherSprite.CurrentDamageReceiving = sprite.AttackStrengthCollision;
+                }
+            }
         }
 
         /// <summary>

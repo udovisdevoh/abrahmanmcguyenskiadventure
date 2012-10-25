@@ -127,6 +127,10 @@ namespace AbrahmanAdventure
                 SoundManager.PlayLoseNotesSound();
             playerSprite.CurrentDamageReceiving = evilSprite.AttackStrengthCollision;
 
+            playerSprite.CurrentJumpAcceleration = playerSprite.StartingJumpAcceleration * 1.5;
+            playerSprite.IGround = null;
+            playerSprite.JumpingCycle.Fire();
+
             for (int musicNoteCounter = 0; musicNoteCounter < playerSprite.MusicNoteCount; musicNoteCounter++)
             {
                 MusicNoteSprite musicNote = new MusicNoteSprite(playerSprite.XPosition, playerSprite.TopBound - 1.0, noteSpawningRandom);
