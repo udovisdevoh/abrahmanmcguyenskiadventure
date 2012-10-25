@@ -160,7 +160,7 @@ namespace AbrahmanAdventure.physics
                 }
                 else if (sprite is PlayerSprite && otherSprite is MonsterSprite && otherSprite.IsAlive)
                 {
-                    if (sprite is PlayerSprite && (playerSpriteReference.IsDashing || (sprite.IGround == null && gameState.GameMode.IsAllowDash && !sprite.IsCrouch)))
+                    if (sprite is PlayerSprite && (playerSpriteReference.IsDashing || (sprite.IGround == null && gameState.GameMode.IsAllowDash && !sprite.IsCrouch && !sprite.IsInWater)))
                     {
                         UpdateDashOnSprite(sprite, otherSprite, level, spritePopulation, timeDelta, gameState.GameMode, random);
                     }
