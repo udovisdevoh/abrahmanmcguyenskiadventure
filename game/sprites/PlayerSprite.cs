@@ -3628,6 +3628,10 @@ namespace AbrahmanAdventure.sprites
         private Surface GetNinjaFlipSurface(bool isShowDopedColor, out double xOffset)
         {
             int ninjaFlipRotationId = ninjaFlipCycle.GetCycleDivision(8);
+
+            if (IsInWater && !isDashing)
+                ninjaFlipRotationId = 0;
+
             if (IsTryingToWalkRight)
             {
                 xOffset = -0.1;
