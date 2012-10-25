@@ -5029,7 +5029,7 @@ namespace AbrahmanAdventure.sprites
             }
             #endregion
 
-            if (CurrentJumpAcceleration != 0)
+            if (CurrentJumpAcceleration != 0 || isDashing)
             {
                 #region Jumping or falling while being hit
                 if (HitCycle.IsFired && !isRasta)
