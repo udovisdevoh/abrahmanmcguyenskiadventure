@@ -2,22 +2,15 @@ charged ki ball must destroy lawyers and members of the peaceful religion
 
 standalone see saws must be larger
 
-clockwork dispatcher
-{
-	must dispatch elements far from another (use radius)
-}
-
 ?si pese down et jump, lâche liane et ne la repogne pas
-
-effet d'immitation de pseudo mode 7 comme dans sonic 2 et dans evo
 
 Game modes
 {
 	Racing
 	{
-		lorsque spawn music notes, ces notes doivent rebondir au sol et s'en aller n'importe où (avec vitesse et direction random)
-		isCrouchFastWalkFlip
-		maxSlopeMultiplicator / slopeGripMultiplicator (will hack the player), when dashing only, or proportional to speed?
+		Faire dashing avec charge comme dans Sonic 2
+		side trampolines
+	
 		isBreakBricksFromSideAndTop
 	}
 	
@@ -33,13 +26,6 @@ Game modes
 				
 		Note de musique: augmente mana (pour attaques spéciales de bodhi, fireball, shuriken etc)
 	}
-}
-
-arbres
-{
-	sur map et dans level
-	(générer arbre pour une planete)
-	si beaucoup d'arbres sur map, beaucoup d'arbres dans planete (peut être triangle waves sur un layer de parallax)
 }
 
 texte de storyline (dans intro), possiblement générée random
@@ -79,11 +65,6 @@ add great walls that can only be crossed by vine
 
 
 
-column parallax
-
-could maybe add some parallax moutains in the background of some levels
-
-
 musique
 {
 	wave pour raisonnance
@@ -102,7 +83,7 @@ Après chaque boss: Un gars d'Anonymous dit: "désolé c'était une marionnette"
 fix fire balls
 {
 	must show explode image when touching impassable sprite or monster
-	ne doivent pas être affectées par les pentes à monter
+	ne doivent pas être affectées par les pentes à monter (shuriken aussi)
 }
 
 
@@ -122,10 +103,6 @@ collision detection
 }?
 
 
-
-
-
-?add bouncing notes?
 
 
 ?on doit pouvoir grimper sur les parroies verticales
