@@ -315,6 +315,8 @@
     <Compile Include="game\sprites\projectiles\ShurikenSprite.cs" />
     <Compile Include="game\sprites\spriteDispatcher\clockworkDispatcher\ClockworkDispatcher.cs" />
     <Compile Include="game\texture\ParallelTextureRenderer.cs" />
+    <Compile Include="game\waves\multiPack\WaveMultiPack.cs" />
+    <Compile Include="game\waves\multiPack\WaveMultiPackSegmentationData.cs" />
     <Compile Include="game\WinNative.cs" />
     <Compile Include="game\monsterAi\MonsterAi.cs" />
     <Compile Include="game\physics\BattleManager.cs" />
