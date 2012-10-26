@@ -21,6 +21,8 @@ namespace AbrahmanAdventure.level
         /// </summary>
         private double frequency;
 
+        private double waveLength;
+
         private Dictionary<int, double> waveValueCache = new Dictionary<int, double>();
 
         /// <summary>
@@ -59,6 +61,7 @@ namespace AbrahmanAdventure.level
                 waveFunction = Math.Sin;
 
             this.amplitude = amplitude;
+            this.waveLength = waveLength;
             this.frequency = 1.0 / waveLength;
             this.phase = phase;
             this.waveFunction = waveFunction;
@@ -161,6 +164,16 @@ namespace AbrahmanAdventure.level
                 return ((WavePack)other)[0].Equals(this);
             }
             return false;
+        }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Wave's cycle length
+        /// </summary>
+        public double WaveLength
+        {
+            get { return waveLength; }
         }
         #endregion
     }
