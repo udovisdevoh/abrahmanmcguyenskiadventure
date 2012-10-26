@@ -1,3 +1,5 @@
+charging dash: must not work if IGround == null
+
 charged ki ball must destroy lawyers and members of the peaceful religion
 
 standalone see saws must be larger
