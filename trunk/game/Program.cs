@@ -601,25 +601,28 @@ namespace AbrahmanAdventure
                     {
                         bool wasDashCharging = playerSprite.IsDashCharging;
                         playerSprite.IsDashCharging = false;
-                        if (wasDashCharging || (userInput.isPressDown && (userInput.isPressAttack || userInput.isPressJump || userInput.isPressLeaveBeaver)))
+                        if (playerSprite.IGround != null)
                         {
-                            if (playerSprite.CurrentWalkingSpeed == 0)
+                            if (wasDashCharging || (userInput.isPressDown && (userInput.isPressAttack || userInput.isPressJump || userInput.isPressLeaveBeaver)))
                             {
-                                if (!wasDashCharging)
-                                    SoundManager.PlayDashSound();
+                                if (playerSprite.CurrentWalkingSpeed == 0)
+                                {
+                                    if (!wasDashCharging)
+                                        SoundManager.PlayDashSound();
 
-                                playerSprite.IsDashCharging = true;
+                                    playerSprite.IsDashCharging = true;
+                                }
                             }
-                        }
 
-                        if (wasDashCharging && !userInput.isPressDown)
-                        {
-                            playerSprite.CurrentWalkingSpeed = playerSprite.MaxRunningSpeed;
-                            playerSprite.IsTryingToWalk = true;
-                            playerSprite.IsRunning = true;
-                            playerSprite.IsDashing = true;
-                            playerSprite.IsDashCharging = false;
-                            SoundManager.PlayDashSound();
+                            if (wasDashCharging && !userInput.isPressDown)
+                            {
+                                playerSprite.CurrentWalkingSpeed = playerSprite.MaxRunningSpeed;
+                                playerSprite.IsTryingToWalk = true;
+                                playerSprite.IsRunning = true;
+                                playerSprite.IsDashing = true;
+                                playerSprite.IsDashCharging = false;
+                                SoundManager.PlayDashSound();
+                            }
                         }
                     }
                     #endregion
