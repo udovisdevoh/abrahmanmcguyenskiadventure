@@ -1,3 +1,7 @@
+charging for dash: must not dash at full speed by jumping right after dashing
+
+WavePackSet: AbstractWave that changes on X axis (smooth changes: keep same tangent, rough change: don't keep same tangent): use multiple of largest wave length of the pack for chaging points
+
 charged ki ball must destroy lawyers and members of the peaceful religion
 
 standalone see saws must be larger
