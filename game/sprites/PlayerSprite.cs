@@ -587,6 +587,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallRight;
 
+        private static Surface beaverWalkBTallRight;
+
         private static Surface beaverAttackTallRight;
 
         private static Surface beaverHitTallRight;
@@ -596,6 +598,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallDopedRight;
 
         private static Surface beaverWalkTallDopedRight;
+
+        private static Surface beaverWalkBTallDopedRight;
 
         private static Surface beaverAttackTallDopedRight;
 
@@ -607,6 +611,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallRastaRight;
 
+        private static Surface beaverWalkBTallRastaRight;
+
         private static Surface beaverAttackTallRastaRight;
 
         private static Surface beaverHitTallRastaRight;
@@ -616,6 +622,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallRastaDopedRight;
 
         private static Surface beaverWalkTallRastaDopedRight;
+
+        private static Surface beaverWalkBTallRastaDopedRight;
 
         private static Surface beaverAttackTallRastaDopedRight;
 
@@ -637,6 +645,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTinyDopedRight;
 
+        private static Surface beaverWalkBTinyDopedRight;
+
         private static Surface beaverAttackTinyDopedRight;
 
         private static Surface beaverHitTinyDopedRight;
@@ -646,6 +656,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallLeft;
 
         private static Surface beaverWalkTallLeft;
+
+        private static Surface beaverWalkBTallLeft;
 
         private static Surface beaverAttackTallLeft;
 
@@ -657,6 +669,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallDopedLeft;
 
+        private static Surface beaverWalkBTallDopedLeft;
+
         private static Surface beaverAttackTallDopedLeft;
 
         private static Surface beaverHitTallDopedLeft;
@@ -666,6 +680,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallRastaLeft;
 
         private static Surface beaverWalkTallRastaLeft;
+
+        private static Surface beaverWalkBTallRastaLeft;
 
         private static Surface beaverAttackTallRastaLeft;
 
@@ -685,6 +701,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallRastaDopedLeft;
 
+        private static Surface beaverWalkBTallRastaDopedLeft;
+
         private static Surface beaverAttackTallRastaDopedLeft;
 
         private static Surface beaverHitTallRastaDopedLeft;
@@ -694,6 +712,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTinyLeft;
 
         private static Surface beaverWalkTinyLeft;
+
+        private static Surface beaverWalkBTinyLeft;
 
         private static Surface beaverAttackTinyLeft;
 
@@ -705,6 +725,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTinyDopedLeft;
 
+        private static Surface beaverWalkBTinyDopedLeft;
+
         private static Surface beaverAttackTinyDopedLeft;
 
         private static Surface beaverHitTinyDopedLeft;
@@ -714,6 +736,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallNinjaRight;
 
         private static Surface beaverWalkTallNinjaRight;
+
+        private static Surface beaverWalkBTallNinjaRight;
 
         private static Surface beaverAttackTallNinjaRight;
 
@@ -725,6 +749,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallNinjaDopedRight;
 
+        private static Surface beaverWalkBTallNinjaDopedRight;
+
         private static Surface beaverAttackTallNinjaDopedRight;
 
         private static Surface beaverHitTallNinjaDopedRight;
@@ -735,6 +761,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallNinjaLeft;
 
+        private static Surface beaverWalkBTallNinjaLeft;
+
         private static Surface beaverAttackTallNinjaLeft;
 
         private static Surface beaverHitTallNinjaLeft;
@@ -744,6 +772,8 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallNinjaDopedLeft;
 
         private static Surface beaverWalkTallNinjaDopedLeft;
+
+        private static Surface beaverWalkBTallNinjaDopedLeft;
 
         private static Surface beaverAttackTallNinjaDopedLeft;
 
@@ -868,8 +898,12 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverStandTallRightBodhiDoped;
         
         private static Surface beaverWalkTallRightBodhi;
+
+        private static Surface beaverWalkBTallRightBodhi;
         
         private static Surface beaverWalkTallRightBodhiDoped;
+
+        private static Surface beaverWalkBTallRightBodhiDoped;
                 
         private static Surface beaverHitTallRightBodhi;
         
@@ -889,7 +923,11 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkTallLeftBodhi;
 
+        private static Surface beaverWalkBTallLeftBodhi;
+
         private static Surface beaverWalkTallLeftBodhiDoped;
+
+        private static Surface beaverWalkBTallLeftBodhiDoped;
 
         private static Surface beaverHitTallLeftBodhi;
 
