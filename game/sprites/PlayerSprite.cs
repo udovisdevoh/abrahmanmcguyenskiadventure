@@ -902,6 +902,87 @@ namespace AbrahmanAdventure.sprites
         private static Surface beaverAttackTallLeftBodhi;
 
         private static Surface beaverAttackTallLeftBodhiDoped;
+
+
+        private static Surface tinyWalk1bRight;
+
+        private static Surface tinyWalk1bLeft;
+
+        private static Surface tinyWalk2bRight;
+
+        private static Surface tinyWalk2bLeft;
+
+        private static Surface tinyWalk1bRightDoped;
+
+        private static Surface tinyWalk1bLeftDoped;
+
+        private static Surface tinyWalk2bRightDoped;
+
+        private static Surface tinyWalk2bLeftDoped;
+
+        private static Surface walk1bRight;
+
+        private static Surface walk1bLeft;
+
+        private static Surface walk2bRight;
+
+        private static Surface walk2bLeft;
+
+        private static Surface walk1bRightDoped;
+
+        private static Surface walk1bLeftDoped;
+
+        private static Surface walk2bRightDoped;
+
+        private static Surface walk2bLeftDoped;
+
+        private static Surface walk1bRightRasta;
+
+        private static Surface walk1bLeftRasta;
+
+        private static Surface walk2bRightRasta;
+
+        private static Surface walk2bLeftRasta;
+
+        private static Surface walk1bRightDopedRasta;
+
+        private static Surface walk1bLeftDopedRasta;
+
+        private static Surface walk2bRightDopedRasta;
+
+        private static Surface walk2bLeftDopedRasta;
+
+        private static Surface walk1bRightNinja;
+
+        private static Surface walk1bLeftNinja;
+
+        private static Surface walk2bRightNinja;
+
+        private static Surface walk2bLeftNinja;
+
+        private static Surface walk1bRightDopedNinja;
+
+        private static Surface walk1bLeftDopedNinja;
+
+        private static Surface walk2bRightDopedNinja;
+
+        private static Surface walk2bLeftDopedNinja;
+
+        private static Surface walk1bRightBodhi;
+
+        private static Surface walk1bLeftBodhi;
+
+        private static Surface walk2bRightBodhi;
+
+        private static Surface walk2bLeftBodhi;
+
+        private static Surface walk1bRightDopedBodhi;
+
+        private static Surface walk1bLeftDopedBodhi;
+
+        private static Surface walk2bRightDopedBodhi;
+
+        private static Surface walk2bLeftDopedBodhi;
         #endregion
 
         #region Cycles
