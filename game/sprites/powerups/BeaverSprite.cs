@@ -26,6 +26,10 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface walkLeft;
 
+        private static Surface walkBRight;
+
+        private static Surface walkBLeft;
+
         private static Surface hitRight;
 
         private static Surface hitLeft;
@@ -37,6 +41,10 @@ namespace AbrahmanAdventure.sprites
         private static Surface standLeftNinja;
 
         private static Surface walkRightNinja;
+
+        private static Surface walkBRightNinja;
+
+        private static Surface walkBLeftNinja;
 
         private static Surface walkLeftNinja;
 
@@ -74,36 +82,44 @@ namespace AbrahmanAdventure.sprites
                 {
                     standRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverStand.png");
                     walkRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverWalk.png");
+                    walkBRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverWalkB.png");
                     hitRight = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverHit.png");
                     standRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverStandNinja.png");
                     walkRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverWalkNinja.png");
+                    walkBRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverWalkBNinja.png");
                     hitRightNinja = BuildSpriteSurface("./assets/rendered/1080/beaver/BeaverHitNinja.png");
                 }
                 else if (Program.screenHeight > 480)
                 {
                     standRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverStand.png");
                     walkRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverWalk.png");
+                    walkBRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverWalkB.png");
                     hitRight = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverHit.png");
                     standRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverStandNinja.png");
                     walkRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverWalkNinja.png");
+                    walkBRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverWalkBNinja.png");
                     hitRightNinja = BuildSpriteSurface("./assets/rendered/720/beaver/BeaverHitNinja.png");
                 }
                 else
                 {
                     standRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverStand.png");
                     walkRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverWalk.png");
+                    walkBRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverWalkB.png");
                     hitRight = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverHit.png");
                     standRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverStandNinja.png");
                     walkRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverWalkNinja.png");
+                    walkBRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverWalkBNinja.png");
                     hitRightNinja = BuildSpriteSurface("./assets/rendered/480/beaver/BeaverHitNinja.png");
                 }
 
                 standLeft = standRight.CreateFlippedHorizontalSurface();
                 walkLeft = walkRight.CreateFlippedHorizontalSurface();
+                walkBLeft = walkBRight.CreateFlippedHorizontalSurface();
                 hitLeft = hitRight.CreateFlippedHorizontalSurface();
                 dead = hitRight.CreateFlippedVerticalSurface();
                 standLeftNinja = standRightNinja.CreateFlippedHorizontalSurface();
                 walkLeftNinja = walkRightNinja.CreateFlippedHorizontalSurface();
+                walkBLeftNinja = walkBRightNinja.CreateFlippedHorizontalSurface();
                 hitLeftNinja = hitRightNinja.CreateFlippedHorizontalSurface();
 
                 deadNinja = hitRightNinja.CreateFlippedVerticalSurface();
@@ -327,6 +343,13 @@ namespace AbrahmanAdventure.sprites
                 if (cycleDivision == 1 || cycleDivision == 3)
                 {
                     if (IsTryingToWalkRight)
+                        return walkBRightNinja;
+                    else
+                        return walkBLeftNinja;
+                }
+                else if (cycleDivision == 2)
+                {
+                    if (IsTryingToWalkRight)
                         return walkRightNinja;
                     else
                         return walkLeftNinja;
@@ -355,6 +378,13 @@ namespace AbrahmanAdventure.sprites
                     return dead;
 
                 if (cycleDivision == 1 || cycleDivision == 3)
+                {
+                    if (IsTryingToWalkRight)
+                        return walkBRight;
+                    else
+                        return walkBLeft;
+                }
+                else if (cycleDivision == 2)
                 {
                     if (IsTryingToWalkRight)
                         return walkRight;
