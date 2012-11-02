@@ -1184,8 +1184,14 @@ namespace AbrahmanAdventure.sprites
                 beaverWalkTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallBodhi.png");
                 beaverWalkTallLeftBodhi = beaverWalkTallRightBodhi.CreateFlippedHorizontalSurface();
 
+                beaverWalkBTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallBodhi.png");
+                beaverWalkBTallLeftBodhi = beaverWalkBTallRightBodhi.CreateFlippedHorizontalSurface();
+
                 beaverWalkTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallBodhiDoped.png");
                 beaverWalkTallLeftBodhiDoped = beaverWalkTallRightBodhiDoped.CreateFlippedHorizontalSurface();
+
+                beaverWalkBTallRightBodhiDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallBodhiDoped.png");
+                beaverWalkBTallLeftBodhiDoped = beaverWalkBTallRightBodhiDoped.CreateFlippedHorizontalSurface();
 
                 beaverHitTallRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallBodhi.png");
                 beaverHitTallLeftBodhi = beaverHitTallRightBodhi.CreateFlippedHorizontalSurface();
@@ -1207,21 +1213,25 @@ namespace AbrahmanAdventure.sprites
 
                 beaverStandTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTall.png");
                 beaverWalkTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTall.png");
+                beaverWalkBTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTall.png");
                 beaverAttackTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTall.png");
                 beaverHitTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTall.png");
                 beaverCrouchedTallRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTall.png");
                 beaverStandTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallDoped.png");
                 beaverWalkTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallDoped.png");
+                beaverWalkBTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallDoped.png");
                 beaverAttackTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallDoped.png");
                 beaverHitTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallDoped.png");
                 beaverCrouchedTallDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallDoped.png");
                 beaverStandTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallRasta.png");
                 beaverWalkTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRasta.png");
+                beaverWalkBTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallRasta.png");
                 beaverAttackTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallRasta.png");
                 beaverHitTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallRasta.png");
                 beaverCrouchedTallRastaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallRasta.png");
                 beaverStandTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallRastaDoped.png");
                 beaverWalkTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRastaDoped.png");
+                beaverWalkBTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallRastaDoped.png");
                 beaverAttackTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallRastaDoped.png");
                 beaverHitTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallRastaDoped.png");
                 beaverCrouchedTallRastaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallRastaDoped.png");
@@ -1280,11 +1290,13 @@ namespace AbrahmanAdventure.sprites
                 beaverStandTallRastaFlyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallRastaFly.png");
                 beaverStandTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallNinja.png");
                 beaverWalkTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallNinja.png");
+                beaverWalkBTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallNinja.png");
                 beaverAttackTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallNinja.png");
                 beaverHitTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallNinja.png");
                 beaverCrouchedTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallNinja.png");
                 beaverStandTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallNinjaDoped.png");
                 beaverWalkTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallNinjaDoped.png");
+                beaverWalkBTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallNinjaDoped.png");
                 beaverAttackTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallNinjaDoped.png");
                 beaverHitTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallNinjaDoped.png");
                 beaverCrouchedTallNinjaDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallNinjaDoped.png");
@@ -1383,21 +1395,25 @@ namespace AbrahmanAdventure.sprites
 
                 beaverStandTallLeft = beaverStandTallRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallLeft = beaverWalkTallRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTallLeft = beaverWalkBTallRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallLeft = beaverAttackTallRight.CreateFlippedHorizontalSurface();
                 beaverHitTallLeft = beaverHitTallRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallLeft = beaverCrouchedTallRight.CreateFlippedHorizontalSurface();
                 beaverStandTallDopedLeft = beaverStandTallDopedRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallDopedLeft = beaverWalkTallDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTallDopedLeft = beaverWalkBTallDopedRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallDopedLeft = beaverAttackTallDopedRight.CreateFlippedHorizontalSurface();
                 beaverHitTallDopedLeft = beaverHitTallDopedRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallDopedLeft = beaverCrouchedTallDopedRight.CreateFlippedHorizontalSurface();
                 beaverStandTallRastaLeft = beaverStandTallRastaRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallRastaLeft = beaverWalkTallRastaRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTallRastaLeft = beaverWalkBTallRastaRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallRastaLeft = beaverAttackTallRastaRight.CreateFlippedHorizontalSurface();
                 beaverHitTallRastaLeft = beaverHitTallRastaRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallRastaLeft = beaverCrouchedTallRastaRight.CreateFlippedHorizontalSurface();
                 beaverStandTallRastaDopedLeft = beaverStandTallRastaDopedRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallRastaDopedLeft = beaverWalkTallRastaDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTallRastaDopedLeft = beaverWalkBTallRastaDopedRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallRastaDopedLeft = beaverAttackTallRastaDopedRight.CreateFlippedHorizontalSurface();
                 beaverHitTallRastaDopedLeft = beaverHitTallRastaDopedRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallRastaDopedLeft = beaverCrouchedTallRastaDopedRight.CreateFlippedHorizontalSurface();
@@ -1417,11 +1433,13 @@ namespace AbrahmanAdventure.sprites
                 rastaFlyCrouchedLeft = rastaFlyCrouchedRight.CreateFlippedHorizontalSurface();
                 beaverStandTallNinjaLeft = beaverStandTallNinjaRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallNinjaLeft = beaverWalkTallNinjaRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTallNinjaLeft = beaverWalkBTallNinjaRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallNinjaLeft = beaverAttackTallNinjaRight.CreateFlippedHorizontalSurface();
                 beaverHitTallNinjaLeft = beaverHitTallNinjaRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallNinjaLeft = beaverCrouchedTallNinjaRight.CreateFlippedHorizontalSurface();
                 beaverStandTallNinjaDopedLeft = beaverStandTallNinjaDopedRight.CreateFlippedHorizontalSurface();
                 beaverWalkTallNinjaDopedLeft = beaverWalkTallNinjaDopedRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTallNinjaDopedLeft = beaverWalkBTallNinjaDopedRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallNinjaDopedLeft = beaverAttackTallNinjaDopedRight.CreateFlippedHorizontalSurface();
                 beaverHitTallNinjaDopedLeft = beaverHitTallNinjaDopedRight.CreateFlippedHorizontalSurface();
                 beaverCrouchedTallNinjaDopedLeft = beaverCrouchedTallNinjaDopedRight.CreateFlippedHorizontalSurface();
