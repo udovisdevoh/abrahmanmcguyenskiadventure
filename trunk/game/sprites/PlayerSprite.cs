@@ -941,7 +941,6 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverAttackTallLeftBodhiDoped;
 
-
         private static Surface tinyWalk1bRight;
 
         private static Surface tinyWalk1bLeft;
@@ -1518,6 +1517,56 @@ namespace AbrahmanAdventure.sprites
                 ninjaNunchaku6Left = ninjaNunchaku6Right.CreateFlippedHorizontalSurface();
                 ninjaNunchaku7Left = ninjaNunchaku7Right.CreateFlippedHorizontalSurface();
                 ninjaNunchaku8Left = ninjaNunchaku8Right.CreateFlippedHorizontalSurface();
+
+
+                walk1bRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk1b.png");
+                walk1bLeft = walk1bRight.CreateFlippedHorizontalSurface();
+                walk1bRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk1bDoped.png");
+                walk1bLeftDoped = walk1bRightDoped.CreateFlippedHorizontalSurface();
+                walk2bRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk2b.png");
+                walk2bLeft = walk2bRight.CreateFlippedHorizontalSurface();
+                walk2bRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk2bDoped.png");
+                walk2bLeftDoped = walk2bRightDoped.CreateFlippedHorizontalSurface();
+
+
+                walk1bRightRasta = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/rastaWalk1b.png");
+                walk1bLeftRasta = walk1bRightRasta.CreateFlippedHorizontalSurface();
+                walk1bRightDopedRasta = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/rastaWalk1bDoped.png");
+                walk1bLeftDopedRasta = walk1bRightDopedRasta.CreateFlippedHorizontalSurface();
+                walk2bRightRasta = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/rastaWalk2b.png");
+                walk2bLeftRasta = walk2bRightRasta.CreateFlippedHorizontalSurface();
+                walk2bRightDopedRasta = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/rastaWalk2bDoped.png");
+                walk2bLeftDopedRasta = walk2bRightDopedRasta.CreateFlippedHorizontalSurface();
+
+
+                walk1bRightNinja = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk1bNinja.png");
+                walk1bLeftNinja = walk1bRightNinja.CreateFlippedHorizontalSurface();
+                walk1bRightDopedNinja = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk1bNinjaDoped.png");
+                walk1bLeftDopedNinja = walk1bRightDopedNinja.CreateFlippedHorizontalSurface();
+                walk2bRightNinja = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk2bNinja.png");
+                walk2bLeftNinja = walk2bRightNinja.CreateFlippedHorizontalSurface();
+                walk2bRightDopedNinja = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/walk2bNinjaDoped.png");
+                walk2bLeftDopedNinja = walk2bRightDopedNinja.CreateFlippedHorizontalSurface();
+
+
+                walk1bRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk1b.png");
+                walk1bLeftBodhi = walk1bRightBodhi.CreateFlippedHorizontalSurface();
+                walk1bRightDopedBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk1bDoped.png");
+                walk1bLeftDopedBodhi = walk1bRightDopedBodhi.CreateFlippedHorizontalSurface();
+                walk2bRightBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk2b.png");
+                walk2bLeftBodhi = walk2bRightBodhi.CreateFlippedHorizontalSurface();
+                walk2bRightDopedBodhi = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/bodhiWalk2bDoped.png");
+                walk2bLeftDopedBodhi = walk2bRightDopedBodhi.CreateFlippedHorizontalSurface();
+
+
+                tinyWalk1bRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/tinyWalk1b.png");
+                tinyWalk1bLeft = tinyWalk1bRight.CreateFlippedHorizontalSurface();
+                tinyWalk1bRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/tinyWalk1bDoped.png");
+                tinyWalk1bLeftDoped = tinyWalk1bRightDoped.CreateFlippedHorizontalSurface();
+                tinyWalk2bRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/tinyWalk2b.png");
+                tinyWalk2bLeft = tinyWalk2bRight.CreateFlippedHorizontalSurface();
+                tinyWalk2bRightDoped = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/abrahman/tinyWalk2bDoped.png");
+                tinyWalk2bLeftDoped = tinyWalk2bRightDoped.CreateFlippedHorizontalSurface();
             }
 
             #region We preload the textures that use lazy initialization
