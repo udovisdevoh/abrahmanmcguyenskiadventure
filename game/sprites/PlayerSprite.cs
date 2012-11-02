@@ -715,6 +715,8 @@ namespace AbrahmanAdventure.sprites
 
         private static Surface beaverWalkBTinyLeft;
 
+        private static Surface beaverWalkBTinyRight;
+
         private static Surface beaverAttackTinyLeft;
 
         private static Surface beaverHitTinyLeft;
@@ -1291,6 +1293,10 @@ namespace AbrahmanAdventure.sprites
                 beaverStandTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverStandStandTallNinja.png");
                 beaverWalkTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkStandTallNinja.png");
                 beaverWalkBTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTallNinja.png");
+                beaverWalkBTinyRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTiny.png");
+                beaverWalkBTinyLeft = beaverWalkBTinyRight.CreateFlippedHorizontalSurface();
+                beaverWalkBTinyDopedRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverWalkBStandTinyDoped.png");
+                beaverWalkBTinyDopedLeft = beaverWalkBTinyDopedRight.CreateFlippedHorizontalSurface();
                 beaverAttackTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverAttackStandTallNinja.png");
                 beaverHitTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverHitStandTallNinja.png");
                 beaverCrouchedTallNinjaRight = BuildSpriteSurface("./assets/rendered/" + resolutionPath + "/beaver/BeaverCrouchedStandTallNinja.png");
@@ -1810,6 +1816,110 @@ namespace AbrahmanAdventure.sprites
             }
                 
             return walking1RightSurface;
+        }
+
+        private Surface GetWalking1BRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        {
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return walk1bRightDopedBodhi;
+                else
+                    return walk1bRightBodhi;
+            }
+            else if (isNinja)
+            {
+                if (isDoped)
+                    return walk1bRightDopedNinja;
+                else
+                    return walk1bRightNinja;
+            }
+            else if (isDoped && isRasta)
+                return walk1bRightDopedRasta;
+            else if (isRasta)
+                return walk1bRightRasta;
+            else if (isDoped)
+                return walk1bRightDoped;
+
+            return walk1bRight;
+        }
+
+        private Surface GetWalking1BLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        {
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return walk1bLeftDopedBodhi;
+                else
+                    return walk1bLeftBodhi;
+            }
+            else if (isNinja)
+            {
+                if (isDoped)
+                    return walk1bLeftDopedNinja;
+                else
+                    return walk1bLeftNinja;
+            }
+            else if (isDoped && isRasta)
+                return walk1bLeftDopedRasta;
+            else if (isRasta)
+                return walk1bLeftRasta;
+            else if (isDoped)
+                return walk1bLeftDoped;
+
+            return walk1bLeft;
+        }
+
+        private Surface GetWalking2BRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        {
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return walk2bRightDopedBodhi;
+                else
+                    return walk2bRightBodhi;
+            }
+            else if (isNinja)
+            {
+                if (isDoped)
+                    return walk2bRightDopedNinja;
+                else
+                    return walk2bRightNinja;
+            }
+            else if (isDoped && isRasta)
+                return walk2bRightDopedRasta;
+            else if (isRasta)
+                return walk2bRightRasta;
+            else if (isDoped)
+                return walk2bRightDoped;
+
+            return walk2bRight;
+        }
+
+        private Surface GetWalking2BLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        {
+            if (isBodhi)
+            {
+                if (isDoped)
+                    return walk2bLeftDopedBodhi;
+                else
+                    return walk2bLeftBodhi;
+            }
+            else if (isNinja)
+            {
+                if (isDoped)
+                    return walk2bLeftDopedNinja;
+                else
+                    return walk2bLeftNinja;
+            }
+            else if (isDoped && isRasta)
+                return walk2bLeftDopedRasta;
+            else if (isRasta)
+                return walk2bLeftRasta;
+            else if (isDoped)
+                return walk2bLeftDoped;
+
+            return walk2bLeft;
         }
 
         private Surface GetWalking1RightSurfaceRastaDoped()
@@ -2877,6 +2987,38 @@ namespace AbrahmanAdventure.sprites
             return walking1RightSurfaceTiny;
         }
 
+        private Surface GetWalking1BRightSurfaceTiny(bool isShowDopedColor)
+        {
+            if (isShowDopedColor)
+                return tinyWalk1bRightDoped;
+            else
+                return tinyWalk1bRight;
+        }
+
+        private Surface GetWalking1BLeftSurfaceTiny(bool isShowDopedColor)
+        {
+            if (isShowDopedColor)
+                return tinyWalk1bLeftDoped;
+            else
+                return tinyWalk1bLeft;
+        }
+
+        private Surface GetWalking2BRightSurfaceTiny(bool isShowDopedColor)
+        {
+            if (isShowDopedColor)
+                return tinyWalk2bRightDoped;
+            else
+                return tinyWalk2bRight;
+        }
+
+        private Surface GetWalking2BLeftSurfaceTiny(bool isShowDopedColor)
+        {
+            if (isShowDopedColor)
+                return tinyWalk2bLeftDoped;
+            else
+                return tinyWalk2bLeft;
+        }
+
         private Surface GetWalking1RightSurfaceDoped()
         {
             if (walking1RightSurfaceDoped == null)
@@ -3582,6 +3724,8 @@ namespace AbrahmanAdventure.sprites
             Surface standSurfaceLeft;
             Surface walkSurfaceRight;
             Surface walkSurfaceLeft;
+            Surface walkBSurfaceRight;
+            Surface walkBSurfaceLeft;
             Surface attackSurfaceRight;
             Surface attackSurfaceLeft;
             Surface crouchedSurfaceRight;
@@ -3597,6 +3741,8 @@ namespace AbrahmanAdventure.sprites
                     standSurfaceLeft = beaverStandTinyDopedLeft;
                     walkSurfaceRight = beaverWalkTinyDopedRight;
                     walkSurfaceLeft = beaverWalkTinyDopedLeft;
+                    walkBSurfaceRight = beaverWalkBTinyDopedRight;
+                    walkBSurfaceLeft = beaverWalkBTinyDopedLeft;
                     attackSurfaceRight = beaverAttackTinyDopedRight;
                     attackSurfaceLeft = beaverAttackTinyDopedLeft;
                     crouchedSurfaceRight = beaverCrouchedTinyDopedRight;
@@ -3610,6 +3756,8 @@ namespace AbrahmanAdventure.sprites
                     standSurfaceLeft = beaverStandTinyLeft;
                     walkSurfaceRight = beaverWalkTinyRight;
                     walkSurfaceLeft = beaverWalkTinyLeft;
+                    walkBSurfaceRight = beaverWalkBTinyRight;
+                    walkBSurfaceLeft = beaverWalkBTinyLeft;
                     attackSurfaceRight = beaverAttackTinyRight;
                     attackSurfaceLeft = beaverAttackTinyLeft;
                     crouchedSurfaceRight = beaverCrouchedTinyRight;
@@ -3628,6 +3776,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallRastaDopedLeft;
                         walkSurfaceRight = beaverWalkTallRastaDopedRight;
                         walkSurfaceLeft = beaverWalkTallRastaDopedLeft;
+                        walkBSurfaceRight = beaverWalkBTallRastaDopedRight;
+                        walkBSurfaceLeft = beaverWalkBTallRastaDopedLeft;
                         attackSurfaceRight = beaverAttackTallRastaDopedRight;
                         attackSurfaceLeft = beaverAttackTallRastaDopedLeft;
                         crouchedSurfaceRight = beaverCrouchedTallRastaDopedRight;
@@ -3641,6 +3791,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallRastaLeft;
                         walkSurfaceRight = beaverWalkTallRastaRight;
                         walkSurfaceLeft = beaverWalkTallRastaLeft;
+                        walkBSurfaceRight = beaverWalkBTallRastaRight;
+                        walkBSurfaceLeft = beaverWalkBTallRastaLeft;
                         attackSurfaceRight = beaverAttackTallRastaRight;
                         attackSurfaceLeft = beaverAttackTallRastaLeft;
                         crouchedSurfaceRight = beaverCrouchedTallRastaRight;
@@ -3657,6 +3809,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallNinjaDopedLeft;
                         walkSurfaceRight = beaverWalkTallNinjaDopedRight;
                         walkSurfaceLeft = beaverWalkTallNinjaDopedLeft;
+                        walkBSurfaceRight = beaverWalkBTallNinjaDopedRight;
+                        walkBSurfaceLeft = beaverWalkBTallNinjaDopedLeft;
                         attackSurfaceRight = beaverAttackTallNinjaDopedRight;
                         attackSurfaceLeft = beaverAttackTallNinjaDopedLeft;
                         crouchedSurfaceRight = beaverCrouchedTallNinjaDopedRight;
@@ -3670,6 +3824,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallNinjaLeft;
                         walkSurfaceRight = beaverWalkTallNinjaRight;
                         walkSurfaceLeft = beaverWalkTallNinjaLeft;
+                        walkBSurfaceRight = beaverWalkBTallNinjaRight;
+                        walkBSurfaceLeft = beaverWalkBTallNinjaLeft;
                         attackSurfaceRight = beaverAttackTallNinjaRight;
                         attackSurfaceLeft = beaverAttackTallNinjaLeft;
                         crouchedSurfaceRight = beaverCrouchedTallNinjaRight;
@@ -3686,6 +3842,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallLeftBodhiDoped;
                         walkSurfaceRight = beaverWalkTallRightBodhiDoped;
                         walkSurfaceLeft = beaverWalkTallLeftBodhiDoped;
+                        walkBSurfaceRight = beaverWalkBTallRightBodhiDoped;
+                        walkBSurfaceLeft = beaverWalkBTallLeftBodhiDoped;
                         attackSurfaceRight = beaverAttackTallRightBodhiDoped;
                         attackSurfaceLeft = beaverAttackTallLeftBodhiDoped;
                         crouchedSurfaceRight = beaverCrouchedTallRightBodhiDoped;
@@ -3699,6 +3857,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallLeftBodhi;
                         walkSurfaceRight = beaverWalkTallRightBodhi;
                         walkSurfaceLeft = beaverWalkTallLeftBodhi;
+                        walkBSurfaceRight = beaverWalkBTallRightBodhi;
+                        walkBSurfaceLeft = beaverWalkBTallLeftBodhi;
                         attackSurfaceRight = beaverAttackTallRightBodhi;
                         attackSurfaceLeft = beaverAttackTallLeftBodhi;
                         crouchedSurfaceRight = beaverCrouchedTallRightBodhi;
@@ -3715,6 +3875,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallDopedLeft;
                         walkSurfaceRight = beaverWalkTallDopedRight;
                         walkSurfaceLeft = beaverWalkTallDopedLeft;
+                        walkBSurfaceRight = beaverWalkBTallDopedRight;
+                        walkBSurfaceLeft = beaverWalkBTallDopedLeft;
                         attackSurfaceRight = beaverAttackTallDopedRight;
                         attackSurfaceLeft = beaverAttackTallDopedLeft;
                         crouchedSurfaceRight = beaverCrouchedTallDopedRight;
@@ -3728,6 +3890,8 @@ namespace AbrahmanAdventure.sprites
                         standSurfaceLeft = beaverStandTallLeft;
                         walkSurfaceRight = beaverWalkTallRight;
                         walkSurfaceLeft = beaverWalkTallLeft;
+                        walkBSurfaceRight = beaverWalkBTallRight;
+                        walkBSurfaceLeft = beaverWalkBTallLeft;
                         attackSurfaceRight = beaverAttackTallRight;
                         attackSurfaceLeft = beaverAttackTallLeft;
                         crouchedSurfaceRight = beaverCrouchedTallRight;
@@ -3740,6 +3904,7 @@ namespace AbrahmanAdventure.sprites
 
             Surface standSurface;
             Surface walkSurface;
+            Surface walkBSurface;
             Surface attackSurface;
             Surface crouchedSurface;
             Surface hitSurface;
@@ -3748,6 +3913,7 @@ namespace AbrahmanAdventure.sprites
             {
                 standSurface = standSurfaceRight;
                 walkSurface = walkSurfaceRight;
+                walkBSurface = walkBSurfaceRight;
                 attackSurface = attackSurfaceRight;
                 crouchedSurface = crouchedSurfaceRight;
                 hitSurface = hitSurfaceRight;
@@ -3756,6 +3922,7 @@ namespace AbrahmanAdventure.sprites
             {
                 standSurface = standSurfaceLeft;
                 walkSurface = walkSurfaceLeft;
+                walkBSurface = walkBSurfaceLeft;
                 attackSurface = attackSurfaceLeft;
                 crouchedSurface = crouchedSurfaceLeft;
                 hitSurface = hitSurfaceLeft;
@@ -3805,9 +3972,13 @@ namespace AbrahmanAdventure.sprites
             }
 
 
-            if (cycleDivision == 1 || cycleDivision == 3 || IGround == null || CurrentJumpAcceleration != 0)
+            if (cycleDivision == 2 || IGround == null || CurrentJumpAcceleration != 0)
             {
                 return walkSurface;
+            }
+            else if (cycleDivision == 1 || cycleDivision == 3)
+            {
+                return walkBSurface;
             }
 
             if (HitCycle.IsFired)
@@ -5346,13 +5517,13 @@ namespace AbrahmanAdventure.sprites
             }
             else if (CurrentWalkingSpeed != 0)
             {
-                int cycleDivision = WalkingCycle.GetCycleDivision(4.0);
+                int cycleDivision = WalkingCycle.GetCycleDivision(8.0);
 
                 #region Walking
                 if (isShowTiny)
                 {
                     #region Tiny
-                    if (cycleDivision == 1)
+                    if (cycleDivision == 2)
                     {
                         if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
@@ -5367,7 +5538,37 @@ namespace AbrahmanAdventure.sprites
                         else
                             return GetWalking1LeftSurfaceTiny(isShowDopedColor);
                     }
-                    else if (cycleDivision == 3)
+                    else if (cycleDivision == 1 || cycleDivision == 3)
+                    {
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurfaceTiny(isShowDopedColor);
+                            else
+                                return GetHitLeftSurfaceTiny(isShowDopedColor);
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking1BRightSurfaceTiny(isShowDopedColor);
+                        else
+                            return GetWalking1BLeftSurfaceTiny(isShowDopedColor);
+                    }
+                    else if (cycleDivision == 5 || cycleDivision == 7)
+                    {
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurfaceTiny(isShowDopedColor);
+                            else
+                                return GetHitLeftSurfaceTiny(isShowDopedColor);
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking2BRightSurfaceTiny(isShowDopedColor);
+                        else
+                            return GetWalking2BLeftSurfaceTiny(isShowDopedColor);
+                    }
+                    else if (cycleDivision == 6)
                     {
                         if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
@@ -5394,7 +5595,7 @@ namespace AbrahmanAdventure.sprites
                 else
                 {
                     #region Not tiny
-                    if (cycleDivision == 1)
+                    if (cycleDivision == 2)
                     {
                         if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
@@ -5409,7 +5610,37 @@ namespace AbrahmanAdventure.sprites
                         else
                             return GetWalking1LeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
                     }
-                    else if (cycleDivision == 3)
+                    else if (cycleDivision == 1 || cycleDivision == 3)
+                    {
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurface(isShowDopedColor, isBodhi);
+                            else
+                                return GetHitLeftSurface(isShowDopedColor, isBodhi);
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking1BRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                        else
+                            return GetWalking1BLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                    }
+                    else if (cycleDivision == 5 || cycleDivision == 7)
+                    {
+                        if (HitCycle.IsFired && !isRasta && !isNinja)
+                        {
+                            if (IsTryingToWalkRight)
+                                return GetHitRightSurface(isShowDopedColor, isBodhi);
+                            else
+                                return GetHitLeftSurface(isShowDopedColor, isBodhi);
+                        }
+
+                        if (IsTryingToWalkRight)
+                            return GetWalking2BRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                        else
+                            return GetWalking2BLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                    }
+                    else if (cycleDivision == 6)
                     {
                         if (HitCycle.IsFired && !isRasta && !isNinja)
                         {
