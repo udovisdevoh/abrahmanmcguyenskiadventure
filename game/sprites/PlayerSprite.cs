@@ -1818,10 +1818,11 @@ namespace AbrahmanAdventure.sprites
             return walking1RightSurface;
         }
 
-        private Surface GetWalking1BRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        private Surface GetWalking1BRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi, out double xOffset)
         {
             if (isBodhi)
             {
+                xOffset = -0.0972;
                 if (isDoped)
                     return walk1bRightDopedBodhi;
                 else
@@ -1829,25 +1830,39 @@ namespace AbrahmanAdventure.sprites
             }
             else if (isNinja)
             {
+                xOffset = -0.06945;
                 if (isDoped)
                     return walk1bRightDopedNinja;
                 else
                     return walk1bRightNinja;
             }
             else if (isDoped && isRasta)
+            {
+                xOffset = -0.1528;
                 return walk1bRightDopedRasta;
+            }
             else if (isRasta)
+            {
+                xOffset = -0.1528;
                 return walk1bRightRasta;
+            }
             else if (isDoped)
+            {
+                xOffset = -0.04166;
                 return walk1bRightDoped;
-
-            return walk1bRight;
+            }
+            else
+            {
+                xOffset = -0.04166;
+                return walk1bRight;
+            }
         }
 
-        private Surface GetWalking1BLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        private Surface GetWalking1BLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi, out double xOffset)
         {
             if (isBodhi)
             {
+                xOffset = 0.0972;
                 if (isDoped)
                     return walk1bLeftDopedBodhi;
                 else
@@ -1855,25 +1870,39 @@ namespace AbrahmanAdventure.sprites
             }
             else if (isNinja)
             {
+                xOffset = 0.06945;
                 if (isDoped)
                     return walk1bLeftDopedNinja;
                 else
                     return walk1bLeftNinja;
             }
             else if (isDoped && isRasta)
+            {
+                xOffset = 0.1528;
                 return walk1bLeftDopedRasta;
+            }
             else if (isRasta)
+            {
+                xOffset = 0.1528;
                 return walk1bLeftRasta;
+            }
             else if (isDoped)
+            {
+                xOffset = 0.04166;
                 return walk1bLeftDoped;
-
-            return walk1bLeft;
+            }
+            else
+            {
+                xOffset = 0.04166;
+                return walk1bLeft;
+            }
         }
 
-        private Surface GetWalking2BRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        private Surface GetWalking2BRightSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi, out double xOffset)
         {
             if (isBodhi)
             {
+                xOffset = -0.0417;
                 if (isDoped)
                     return walk2bRightDopedBodhi;
                 else
@@ -1881,25 +1910,39 @@ namespace AbrahmanAdventure.sprites
             }
             else if (isNinja)
             {
+                xOffset = -0.08;
                 if (isDoped)
                     return walk2bRightDopedNinja;
                 else
                     return walk2bRightNinja;
             }
             else if (isDoped && isRasta)
+            {
+                xOffset = -0.2361;
                 return walk2bRightDopedRasta;
+            }
             else if (isRasta)
+            {
+                xOffset = -0.2361;
                 return walk2bRightRasta;
+            }
             else if (isDoped)
+            {
+                xOffset = -0.055;
                 return walk2bRightDoped;
-
-            return walk2bRight;
+            }
+            else
+            {
+                xOffset = -0.055;
+                return walk2bRight;
+            }
         }
 
-        private Surface GetWalking2BLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi)
+        private Surface GetWalking2BLeftSurface(bool isDoped, bool isRasta, bool isNinja, bool isBodhi, out double xOffset)
         {
             if (isBodhi)
             {
+                xOffset = 0.0417;
                 if (isDoped)
                     return walk2bLeftDopedBodhi;
                 else
@@ -1907,19 +1950,32 @@ namespace AbrahmanAdventure.sprites
             }
             else if (isNinja)
             {
+                xOffset = 0.08;
                 if (isDoped)
                     return walk2bLeftDopedNinja;
                 else
                     return walk2bLeftNinja;
             }
             else if (isDoped && isRasta)
+            {
+                xOffset = 0.2361;
                 return walk2bLeftDopedRasta;
+            }
             else if (isRasta)
+            {
+                xOffset = 0.2361;
                 return walk2bLeftRasta;
+            }
             else if (isDoped)
+            {
+                xOffset = 0.055;
                 return walk2bLeftDoped;
-
-            return walk2bLeft;
+            }
+            else
+            {
+                xOffset = 0.055;
+                return walk2bLeft;
+            }
         }
 
         private Surface GetWalking1RightSurfaceRastaDoped()
@@ -5534,9 +5590,15 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
+                        {
+                            xOffset = 0.0555;
                             return GetWalking1RightSurfaceTiny(isShowDopedColor);
+                        }
                         else
+                        {
+                            xOffset = -0.0555;
                             return GetWalking1LeftSurfaceTiny(isShowDopedColor);
+                        }
                     }
                     else if (cycleDivision == 1 || cycleDivision == 3)
                     {
@@ -5549,9 +5611,15 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
+                        {
+                            xOffset = 0.007;
                             return GetWalking1BRightSurfaceTiny(isShowDopedColor);
+                        }
                         else
+                        {
+                            xOffset = -0.007;
                             return GetWalking1BLeftSurfaceTiny(isShowDopedColor);
+                        }
                     }
                     else if (cycleDivision == 5 || cycleDivision == 7)
                     {
@@ -5579,9 +5647,15 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
+                        {
+                            xOffset = 0.0139;
                             return GetWalking2RightSurfaceTiny(isShowDopedColor);
+                        }
                         else
+                        {
+                            xOffset = -0.0139;
                             return GetWalking2LeftSurfaceTiny(isShowDopedColor);
+                        }
                     }
                     else
                     {
@@ -5621,9 +5695,9 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
-                            return GetWalking1BRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                            return GetWalking1BRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi, out xOffset);
                         else
-                            return GetWalking1BLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                            return GetWalking1BLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi, out xOffset);
                     }
                     else if (cycleDivision == 5 || cycleDivision == 7)
                     {
@@ -5636,9 +5710,9 @@ namespace AbrahmanAdventure.sprites
                         }
 
                         if (IsTryingToWalkRight)
-                            return GetWalking2BRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                            return GetWalking2BRightSurface(isShowDopedColor, isRasta, isNinja, isBodhi, out xOffset);
                         else
-                            return GetWalking2BLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi);
+                            return GetWalking2BLeftSurface(isShowDopedColor, isRasta, isNinja, isBodhi, out xOffset);
                     }
                     else if (cycleDivision == 6)
                     {
