@@ -133,8 +133,13 @@ namespace AbrahmanAdventure.physics
                 sprite.YPosition = groundHeight;
             }
 
-            if (sprite.IsTiny)
-                sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed * 1.5);
+            if (sprite is PlayerSprite)
+            {
+                if (sprite.IsTiny)
+                    sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed * 2.0);
+                else
+                    sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed * 1.5);                
+            }
             else
                 sprite.WalkingCycle.Increment(timeDelta * sprite.CurrentWalkingSpeed);
 
