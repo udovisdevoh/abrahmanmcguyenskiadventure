@@ -134,11 +134,11 @@ namespace AbrahmanAdventure.level
                 {
                     if (isMultNotAdd)
                     {
-                        return (leftChild[x] * leftChild[x]) * normalizationMultiplicator;
+                        return (leftChild[x] * rightChild[x]) * normalizationMultiplicator;
                     }
                     else
                     {
-                        return (leftChild[x] + leftChild[x]) * normalizationMultiplicator;
+                        return (leftChild[x] + rightChild[x]) * normalizationMultiplicator;
                     }
                 }
             }

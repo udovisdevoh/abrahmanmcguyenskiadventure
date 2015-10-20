@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbrahmanAdventure.game.waves;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace AbrahmanAdventure.level
     public static class WaveFunctions
     {
         #region Fields
-        private static WaveFunction sine = Math.Sin;
+        private static WaveFunction sine = /*new WaveFunctionPreRendered(*/Math.Sin/*).GetValue*/;
 
         private static WaveFunction square = SquareWave;
 
@@ -30,7 +31,7 @@ namespace AbrahmanAdventure.level
 
         private static WaveFunction negativeSaw = NegativeSawWave;
 
-        private static WaveFunction absSin = AbsSinWave;
+        private static WaveFunction absSin = /*new WaveFunctionPreRendered(*/AbsSinWave/*).GetValue*/;
         #endregion
 
         #region Public Methods
@@ -86,12 +87,12 @@ namespace AbrahmanAdventure.level
         #region Private Methods
         private static double SquareWave(double x)
         {
-            return Math.Round(Math.Sin(x));
+            return (Math.Round((x + (Math.PI / 2.0)) / Math.PI) % 2.0) * 2.0 - 1.0;
         }
 
         private static double TriangleWave(double x)
         {
-            return Math.Asin(Math.Sin(x));
+            return Math.Abs((((x + (Math.PI * 1.5)) / Math.PI) % 2.0) - 1.0) * 2.0 - 1.0;
         }
 
         private static double SawWave(double x)
