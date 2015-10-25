@@ -87,12 +87,14 @@ namespace AbrahmanAdventure.level
         #region Private Methods
         private static double SquareWave(double x)
         {
-            return (Math.Round((x + (Math.PI / 2.0)) / Math.PI) % 2.0) * 2.0 - 1.0;
+            return Math.Round(Math.Sin(x));
+            //return (Math.Round((x + (Math.PI / 2.0)) / Math.PI) % 2.0) * 2.0 - 1.0;
         }
 
         private static double TriangleWave(double x)
         {
-            return Math.Abs((((x + (Math.PI * 1.5)) / Math.PI) % 2.0) - 1.0) * 2.0 - 1.0;
+            return Math.Asin(Math.Sin(x));
+            //return Math.Abs((((x + (Math.PI * 1.5)) / Math.PI) % 2.0) - 1.0) * 2.0 - 1.0;
         }
 
         private static double SawWave(double x)

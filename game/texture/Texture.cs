@@ -346,12 +346,6 @@ namespace AbrahmanAdventure.level
                             currentLightness += ((horizontalLightnessContribution + verticalLightnessContribution) * 30.0);
 
 
-                        /*while (currentHue < 0.0)
-                            currentHue += 256.0;
-
-                        while (currentHue > 255.0)
-                            currentHue -= 256.0;*/
-
                         if (isTop)
                         {
                             if (y == 0)
