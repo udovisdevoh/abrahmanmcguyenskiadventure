@@ -32,6 +32,11 @@ namespace AbrahmanAdventure.physics
         /// Manages beaver logic
         /// </summary>
         private BeaverManager beaverManager = new BeaverManager();
+
+        /// <summary>
+        /// Manages powerup logic
+        /// </summary>
+        private PowerUpManager powerUpManager = new PowerUpManager();
         #endregion
 
         #region Internal Methods
@@ -76,33 +81,33 @@ namespace AbrahmanAdventure.physics
 
                 if (((AnarchyBlockSprite)block).BlockContent == BlockContent.MusicNote)
                 {
-                    SoundManager.PlayCoinSound();
-                    playerSpriteReference.MusicNoteCount++;
-
-                    if (gameMode.IsNoteGivesFullHealthMax99)
-                    {
-                        if (playerSpriteReference.MusicNoteCount > 99)
-                            playerSpriteReference.MusicNoteCount = 99;
-                        playerSpriteReference.Health = playerSpriteReference.MaxHealth;
-                    }
+                    powerUpManager.PerformObtainMusicNoteLogic(playerSpriteReference, gameMode);
                 }
                 else
                 {
                     SoundManager.PlayGrowSound();
                     powerUpSprite = ((AnarchyBlockSprite)block).GetPowerUpSprite(playerSpriteReference, gameMode, random);
                     if (powerUpSprite is IGrowable)
+                    {
                         ((IGrowable)powerUpSprite).GrowthCycle.Fire();
+                    }
                     spritePopulation.Add(powerUpSprite);
                     powerUpSprite.XPosition = powerUpSprite.XPosition;//We reset previous position
                     powerUpSprite.YPosition = powerUpSprite.YPosition;//We reset previous position
 
                     if (powerUpSprite is BeaverSprite && gameMode.IsBeaverAlwaysStrongAi)
+                    {
                         beaverManager.SetBeaverAi((BeaverSprite)powerUpSprite, playerSpriteReference, true);
+                    }
                 }
 
                 foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
+                {
                     if (IsSpriteStackedOn(spriteStackedOnBlock, block, powerUpSprite))
+                    {
                         UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
+                    }
+                }
             }
             else if (block.IsDestructible && block.IsAlive)
             {
@@ -110,11 +115,17 @@ namespace AbrahmanAdventure.physics
                 {
                     SoundManager.PlayHelmetBumpSound();
                     if (block is IBumpable)
+                    {
                         ((IBumpable)block).BumpCycle.Fire();
+                    }
 
                     foreach (AbstractSprite spriteStackedOnBlock in visibleSpriteList)
+                    {
                         if (IsSpriteStackedOn(spriteStackedOnBlock, block, powerUpSprite))
+                        {
                             UpdateJumpUnderBlockReachSpriteStackedOnBlock(sprite, (MonsterSprite)spriteStackedOnBlock, level, visibleSpriteList, spritePopulation, random);
+                        }
+                    }
                 }
                 else
                 {
@@ -133,14 +144,18 @@ namespace AbrahmanAdventure.physics
             else
             {
                 if (!(sprite is IPlayerProjectile))
+                {
                     SoundManager.PlayHelmetBumpSound();
+                }
             }
         }
 
         private bool IsSpriteStackedOn(AbstractSprite sprite, StaticSprite block, AbstractSprite powerUpSprite)
         {
             if (powerUpSprite == sprite || !(sprite is MonsterSprite))
+            {
                 return false;
+            }
 
             bool isSpriteStackedOn = sprite.IGround == block;
 
@@ -163,7 +178,9 @@ namespace AbrahmanAdventure.physics
         private void UpdateJumpUnderBlock(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, Level level, HashSet<AbstractSprite> visibleSpriteList, PlayerSprite playerSpriteReference, AbstractGameMode gameMode, Random random)
         {
             if (sprite.YPosition < block.YPosition)
+            {
                 return;
+            }
 
             sprite.CurrentJumpAcceleration = sprite.StartingJumpAcceleration / -4.0;
 
@@ -173,12 +190,16 @@ namespace AbrahmanAdventure.physics
                 sprite.TopBoundKeepPrevious = block.YPosition + 0.01;
 
             if (!(sprite is PlayerSprite) && !(sprite is HelmetSprite))
+            {
                 return;
+            }
 
             if (block is PipeSprite)
             {
                 if (((PipeSprite)block).LinkedPipe != null && sprite.IsTryToWalkUp && pipeManager.IsWithinPipeXRange((PlayerSprite)sprite, (PipeSprite)block))
+                {
                     pipeManager.SchedulePipeTeleportation((PlayerSprite)sprite, (PipeSprite)block);
+                }
 
                 return;
             }
@@ -202,7 +223,9 @@ namespace AbrahmanAdventure.physics
             {
                 AbstractSprite jumpedOnConvertedSprite = monsterSprite.GetConverstionSprite(random);
                 if (jumpedOnConvertedSprite != null)
+                {
                     spriteConverter.PerformSpriteConversion(jumper, monsterSprite, jumpedOnConvertedSprite, spritePopulation);
+                }
             }
             else
             {
@@ -228,20 +251,30 @@ namespace AbrahmanAdventure.physics
         private void ManageBlockSideCollision(AbstractSprite sprite, StaticSprite block, SpritePopulation spritePopulation, HashSet<AbstractSprite> visibleSpriteList, Level level, PlayerSprite playerSpriteReference, AbstractGameMode gameMode, Random random)
         {
             if (sprite.IGround is AbstractLinkage)
+            {
                 return;
+            }
 
             //Side collision
             if (sprite.XPosition < block.XPosition)
+            {
                 sprite.RightBoundKeepPrevious = block.LeftBound;// - 0.1;
+            }
             else if (sprite.XPosition > block.XPosition)
+            {
                 sprite.LeftBoundKeepPrevious = block.RightBound;// + 0.1;
+            }
             sprite.CurrentWalkingSpeed = 0;
 
             if (sprite.IGround is AbstractSprite)
+            {
                 sprite.IGround = null;
+            }
 
             if (sprite is HelmetSprite)
+            {
                 TryOpenOrBreakBlock(sprite, block, spritePopulation, visibleSpriteList, level, playerSpriteReference, gameMode, random);
+            }
         }
 
         /// <summary>

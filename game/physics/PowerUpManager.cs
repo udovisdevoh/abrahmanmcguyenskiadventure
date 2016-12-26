@@ -99,15 +99,29 @@ namespace AbrahmanAdventure.physics
         /// <param name="musicNoteSprite">music note</param>
         internal void UpdateTouchMusicNote(PlayerSprite playerSprite, MusicNoteSprite musicNoteSprite, AbstractGameMode gameMode)
         {
+            if (PerformObtainMusicNoteLogic(playerSprite, gameMode))
+            {
+                musicNoteSprite.IsAlive = false;
+                musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+            }
+        }
+
+        internal bool PerformObtainMusicNoteLogic(PlayerSprite playerSprite, AbstractGameMode gameMode)
+        {
             if (gameMode.IsTransformToBodhiWhenGetsEnoughMusicNote && playerSprite.IsBodhi)
-                return;
+            {
+                return false;
+            }
 
             if (!gameMode.IsNoteGivesFullHealthMax99)
+            {
                 SoundManager.PlayCoinSound();
+            }
             else
+            {
                 SoundManager.PlayRingSound();
+            }
 
-            musicNoteSprite.IsAlive = false;
             playerSprite.MusicNoteCount++;
 
             if (gameMode.IsTransformToBodhiWhenGetsEnoughMusicNote && playerSprite.MusicNoteCount >= Program.musicNoteCountForBodhi)
@@ -115,7 +129,9 @@ namespace AbrahmanAdventure.physics
                 SoundManager.PlayEnlightenmentSound();
                 playerSprite.PowerUpAnimationCycle.Fire();
                 if (playerSprite.IsTiny)
+                {
                     playerSprite.ChangingSizeAnimationCycle.Fire();
+                }
                 playerSprite.Health = playerSprite.MaxHealth;
                 playerSprite.IsTiny = false;
                 playerSprite.IsDoped = false;
@@ -128,11 +144,13 @@ namespace AbrahmanAdventure.physics
             else if (gameMode.IsNoteGivesFullHealthMax99)
             {
                 if (playerSprite.MusicNoteCount > 99)
+                {
                     playerSprite.MusicNoteCount = 99;
+                }
                 playerSprite.Health = playerSprite.MaxHealth;
             }
 
-            musicNoteSprite.YPosition = Program.totalHeightTileCount + 1.0;//The sprite will have already fell down
+            return true;
         }
 
         /// <summary>

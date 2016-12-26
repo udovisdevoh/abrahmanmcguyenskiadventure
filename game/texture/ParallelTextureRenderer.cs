@@ -55,7 +55,9 @@ namespace AbrahmanAdventure.level
             remainingCount--;
 
             if (remainingCount <= 0)
+            {
                 visitorThread.Resume();
+            }
         }
         #endregion
     }

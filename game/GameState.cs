@@ -153,7 +153,9 @@ namespace AbrahmanAdventure
                 gameMode = new PlatformerGameMode(surfaceToDrawLoadingProgress);
 
             if (Program.isTellPlanetName)
+            {
                 TutorialTalker.Talk("Planet " + name);
+            }
 
             Surface planetSurface = PlanetViewer.ShowPlanet(name, skillLevel, backgroundColorHsl, colorTheme, random);
 

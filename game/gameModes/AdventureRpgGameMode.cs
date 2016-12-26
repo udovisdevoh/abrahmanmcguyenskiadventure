@@ -267,7 +267,7 @@ namespace AbrahmanAdventure
                     switch (playerSprite.Level)
                     {
                         case 1:
-                            line2 = GameMenu.GetFontText("You became a big. You can now punch and kick.");
+                            line2 = GameMenu.GetFontText("You became big. You can now punch and kick.");
                             break;
                         case 2:
                             line2 = GameMenu.GetFontText("You became a rasta. Use your hair like a parachute.");
